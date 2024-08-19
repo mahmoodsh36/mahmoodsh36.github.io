@@ -15,7 +15,6 @@
 <link rel="stylesheet" href="/main.css">
 <!-- for dark mode -->
 <script src="darkmode.js"></script>
-<script src="search.js"></script>
 <script src="main.js"></script>
 </head>
 <body>
@@ -31,17 +30,17 @@
 </div><h1 class="main-title">exporting from org mode with pandoc</h1>
 </div>
 <div id="content" class="content">
-<div id="outline-container-orgc55bc89" class="outline-2">
-<h2 id="orgc55bc89">motivation</h2>
-<div class="outline-text-2" id="text-orgc55bc89">
+<div id="outline-container-orgd6df989" class="outline-2">
+<h2 id="orgd6df989">motivation</h2>
+<div class="outline-text-2" id="text-orgd6df989">
 <p>
 the need for an emacs-independent exporting of notes arose from the fact that i was using org version 9.7-pre in which exporting functionality is basically broken.<br />
 </p>
 </div>
 </div>
-<div id="outline-container-org5b68a7c" class="outline-2">
-<h2 id="org5b68a7c">pandoc</h2>
-<div class="outline-text-2" id="text-org5b68a7c">
+<div id="outline-container-org14767a6" class="outline-2">
+<h2 id="org14767a6">pandoc</h2>
+<div class="outline-text-2" id="text-org14767a6">
 <p>
 because i didnt want to reinvent the wheel, i landed on using pandoc, it has a huge community and i trust it to maintain org-mode parsability in the long run. there are some missing features in pandoc exporting which is why im writing this.<br />
 a starting point would be the following command:<br />
@@ -52,9 +51,9 @@ a starting point would be the following command:<br />
 </div>
 </div>
 </div>
-<div id="outline-container-orgc2cf88d" class="outline-2">
-<h2 id="orgc2cf88d">custom css</h2>
-<div class="outline-text-2" id="text-orgc2cf88d">
+<div id="outline-container-org5fabc06" class="outline-2">
+<h2 id="org5fabc06">custom css</h2>
+<div class="outline-text-2" id="text-org5fabc06">
 <p>
 if you have a css file that you'd like included, use the <code>--css</code> argument<br />
 </p>
@@ -67,9 +66,9 @@ if you have a css file that you'd like included, use the <code>--css</code> argu
 </div>
 </div>
 </div>
-<div id="outline-container-org228b952" class="outline-2">
-<h2 id="org228b952">custom html preamble/postamble</h2>
-<div class="outline-text-2" id="text-org228b952">
+<div id="outline-container-org472e47b" class="outline-2">
+<h2 id="org472e47b">custom html preamble/postamble</h2>
+<div class="outline-text-2" id="text-org472e47b">
 <p>
 or more generally, if you have an html file you'd like included in the header, use the <code>--include-in-header</code> argument<br />
 </p>
@@ -83,9 +82,9 @@ or more generally, if you have an html file you'd like included in the header, u
 </div>
 </div>
 </div>
-<div id="outline-container-org5a7aa7a" class="outline-2">
-<h2 id="org5a7aa7a">bibliography</h2>
-<div class="outline-text-2" id="text-org5a7aa7a">
+<div id="outline-container-org5ba2f4c" class="outline-2">
+<h2 id="org5ba2f4c">bibliography</h2>
+<div class="outline-text-2" id="text-org5ba2f4c">
 <p>
 if you have a bibliography file you want pandoc to use to handle citations, you can make use of the <code>--bibliography</code>, <code>--biblatex</code>, <code>--citeproc</code> arguments<br />
 </p>
@@ -100,9 +99,9 @@ if you have a bibliography file you want pandoc to use to handle citations, you 
 </div>
 </div>
 </div>
-<div id="outline-container-orgf5b8b5c" class="outline-2">
-<h2 id="orgf5b8b5c">latex rendering</h2>
-<div class="outline-text-2" id="text-orgf5b8b5c">
+<div id="outline-container-org64f7a09" class="outline-2">
+<h2 id="org64f7a09">latex rendering</h2>
+<div class="outline-text-2" id="text-org64f7a09">
 <p>
 pandoc supports multiple ways of handling latex snippets, it can use <code>mathjax</code> with the <code>--mathjax</code> argument, a better option for full latex support is rendering them with <code>dvisvgm</code>, using this lua filter that makes use of pandoc's filter api, which is a modified version of <a href="https://github.com/oltolm/pandoc-latex-math">https://github.com/oltolm/pandoc-latex-math</a><br />
 </p>
@@ -256,9 +255,9 @@ assuming this script is written in a file <code>tex.lua</code>, to use this filt
 </div>
 </div>
 </div>
-<div id="outline-container-org1d3a6a4" class="outline-2">
-<h2 id="org1d3a6a4">internal links</h2>
-<div class="outline-text-2" id="text-org1d3a6a4">
+<div id="outline-container-org3c8feb3" class="outline-2">
+<h2 id="org3c8feb3">internal links</h2>
+<div class="outline-text-2" id="text-org3c8feb3">
 <p>
 consider the following org mode snippet:<br />
 </p>
@@ -331,55 +330,55 @@ assuming this code is placed in the file <code>internal_links.lua</code>, our sh
 </div>
 </div>
 </div>
-<div id="outline-container-orgb9a6ed3" class="outline-2">
-<h2 id="orgb9a6ed3">org-roam links</h2>
-<div class="outline-text-2" id="text-orgb9a6ed3">
+<div id="outline-container-orge85bb9b" class="outline-2">
+<h2 id="orge85bb9b">org-roam links</h2>
+<div class="outline-text-2" id="text-orge85bb9b">
 <p>
 pandoc on its own has no context of org-roam links, but org-roam stores everything it needs to operate in <code>~/.emacs.d/org-roam.db</code>, this file is automatically updated if the option <code>org-roam-db-autosync-mode</code> is set to <code>t</code>, this way other programs can be used to query information from org-roam without needing to visit the org files themselves.<br />
 based on this fact the following filter that is a modified version of <a href="https://www.amoradi.org/20210730173543.html">https://www.amoradi.org/20210730173543.html</a> is used:<br />
 </p>
 <div class="org-src-container" data-language="python">
-<pre class="src src-python"><span style="color: #928374;">#</span><span style="color: #928374;">!/usr/bin/env python3.10</span>
+<pre class="src src-python"><span style="color: #928374;">#!/usr/bin/env python3.10</span>
 
-<span style="color: #928374;"># </span><span style="color: #928374;">source: https://www.amoradi.org/20210730173543.html</span>
+<span style="color: #928374;"># source: https://www.amoradi.org/20210730173543.html</span>
 
-import panflute as pf
-import sqlite3
-import pathlib
-import sys
-import os
-import pprint
-import urllib
+<span style="color: #DD6F48;">import</span> panflute <span style="color: #DD6F48;">as</span> pf
+<span style="color: #DD6F48;">import</span> sqlite3
+<span style="color: #DD6F48;">import</span> pathlib
+<span style="color: #DD6F48;">import</span> sys
+<span style="color: #DD6F48;">import</span> os
+<span style="color: #DD6F48;">import</span> pprint
+<span style="color: #DD6F48;">import</span> urllib
 
-ORG_ROAM_DB_PATH = <span style="color: #528B8B;">"~/.emacs.d/org-roam.db"</span>
+<span style="color: #83A598;">ORG_ROAM_DB_PATH</span> = <span style="color: #528B8B;">"~/.emacs.d/org-roam.db"</span>
 
-db = None
+<span style="color: #83A598;">db</span> = <span style="color: #BBAA97;">None</span>
 
-def sanitize_link<span style="color: #5C7E81;">(</span>elem, doc<span style="color: #5C7E81;">)</span>:
-    if type<span style="color: #5C7E81;">(</span>elem<span style="color: #5C7E81;">)</span> != pf.Link:
-        return None
+<span style="color: #DD6F48;">def</span> <span style="color: #A89984;">sanitize_link</span><span style="color: #5C7E81;">(</span><span style="color: #83A598;">elem</span>, <span style="color: #83A598;">doc</span><span style="color: #5C7E81;">)</span>:
+    <span style="color: #DD6F48;">if</span> <span style="color: #FE8019;">type</span><span style="color: #5C7E81;">(</span>elem<span style="color: #5C7E81;">)</span> != pf.Link:
+        <span style="color: #DD6F48;">return</span> <span style="color: #BBAA97;">None</span>
 
-    if not elem.url.startswith<span style="color: #5C7E81;">(</span><span style="color: #528B8B;">"id:"</span><span style="color: #5C7E81;">)</span>:
-        return None
+    <span style="color: #DD6F48;">if</span> <span style="color: #DD6F48;">not</span> elem.url.startswith<span style="color: #5C7E81;">(</span><span style="color: #528B8B;">"id:"</span><span style="color: #5C7E81;">)</span>:
+        <span style="color: #DD6F48;">return</span> <span style="color: #BBAA97;">None</span>
 
-    file_id = elem.url.split<span style="color: #5C7E81;">(</span><span style="color: #528B8B;">":"</span><span style="color: #5C7E81;">)[</span>1<span style="color: #5C7E81;">]</span>
+    <span style="color: #83A598;">file_id</span> = elem.url.split<span style="color: #5C7E81;">(</span><span style="color: #528B8B;">":"</span><span style="color: #5C7E81;">)[</span>1<span style="color: #5C7E81;">]</span>
 
-    cur = db.cursor<span style="color: #5C7E81;">()</span>
-    cur.execute<span style="color: #5C7E81;">(</span>f<span style="color: #528B8B;">"select id, file, title from nodes where id = '\"{file_id}\"';"</span><span style="color: #5C7E81;">)</span>
-    data = cur.fetchone<span style="color: #5C7E81;">()</span>
+    <span style="color: #83A598;">cur</span> = db.cursor<span style="color: #5C7E81;">()</span>
+    cur.execute<span style="color: #5C7E81;">(</span>f<span style="color: #528B8B;">"select id, file, title from nodes where id = '</span><span style="font-weight: bold;">\"</span>{file_id}<span style="font-weight: bold;">\"</span><span style="color: #528B8B;">';"</span><span style="color: #5C7E81;">)</span>
+    <span style="color: #83A598;">data</span> = cur.fetchone<span style="color: #5C7E81;">()</span>
 
-    <span style="color: #928374;"># </span><span style="color: #928374;">data contains string that are quoted, we need to remove the quotes</span>
-    file_id = data<span style="color: #5C7E81;">[</span>0<span style="color: #5C7E81;">][</span>1:-1<span style="color: #5C7E81;">]</span>
-    file_name = urllib.parse.quote<span style="color: #5C7E81;">(</span>os.path.splitext<span style="color: #837486;">(</span>os.path.basename<span style="color: #9C6F68;">(</span>data<span style="color: #7B665C;">[</span>1<span style="color: #7B665C;">][</span>1:-1<span style="color: #7B665C;">]</span><span style="color: #9C6F68;">)</span><span style="color: #837486;">)[</span>0<span style="color: #837486;">]</span><span style="color: #5C7E81;">)</span>
+    <span style="color: #928374;"># data contains string that are quoted, we need to remove the quotes</span>
+    <span style="color: #83A598;">file_id</span> = data<span style="color: #5C7E81;">[</span>0<span style="color: #5C7E81;">][</span>1:-1<span style="color: #5C7E81;">]</span>
+    <span style="color: #83A598;">file_name</span> = urllib.parse.quote<span style="color: #5C7E81;">(</span>os.path.splitext<span style="color: #837486;">(</span>os.path.basename<span style="color: #9C6F68;">(</span>data<span style="color: #7B665C;">[</span>1<span style="color: #7B665C;">][</span>1:-1<span style="color: #7B665C;">]</span><span style="color: #9C6F68;">)</span><span style="color: #837486;">)[</span>0<span style="color: #837486;">]</span><span style="color: #5C7E81;">)</span>
 
-    elem.url = f<span style="color: #528B8B;">"{file_name}.html"</span>
-    return elem
+    elem.<span style="color: #83A598;">url</span> = f<span style="color: #528B8B;">"</span>{file_name}<span style="color: #528B8B;">.html"</span>
+    <span style="color: #DD6F48;">return</span> elem
 
-def main<span style="color: #5C7E81;">(</span>doc=None<span style="color: #5C7E81;">)</span>:
-    return pf.run_filter<span style="color: #5C7E81;">(</span>sanitize_link, doc=doc<span style="color: #5C7E81;">)</span>
+<span style="color: #DD6F48;">def</span> <span style="color: #A89984;">main</span><span style="color: #5C7E81;">(</span><span style="color: #83A598;">doc</span>=<span style="color: #BBAA97;">None</span><span style="color: #5C7E81;">)</span>:
+    <span style="color: #DD6F48;">return</span> pf.run_filter<span style="color: #5C7E81;">(</span>sanitize_link, doc=doc<span style="color: #5C7E81;">)</span>
 
-if __name__ == <span style="color: #528B8B;">"__main__"</span>:
-    db = sqlite3.connect<span style="color: #5C7E81;">(</span>os.path.expanduser<span style="color: #837486;">(</span>ORG_ROAM_DB_PATH<span style="color: #837486;">)</span><span style="color: #5C7E81;">)</span>
+<span style="color: #DD6F48;">if</span> __name__ == <span style="color: #528B8B;">"__main__"</span>:
+    <span style="color: #83A598;">db</span> = sqlite3.connect<span style="color: #5C7E81;">(</span>os.path.expanduser<span style="color: #837486;">(</span>ORG_ROAM_DB_PATH<span style="color: #837486;">)</span><span style="color: #5C7E81;">)</span>
     main<span style="color: #5C7E81;">()</span>
 </pre>
 </div>
