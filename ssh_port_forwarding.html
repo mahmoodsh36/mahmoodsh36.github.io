@@ -6,8 +6,6 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<meta name="author" content="mahmood sheikh" />
-<meta name="generator" content="Org Mode" />
 <title>ssh port forwarding</title><!-- lambda icon, frail attempt -->
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22100%22 color=%22red%22>λ</text></svg>">
 <!-- not-so-awesome awesome font -->
@@ -15,7 +13,6 @@
 <link rel="stylesheet" href="/main.css">
 <!-- for dark mode -->
 <script src="darkmode.js"></script>
-<script src="search.js"></script>
 <script src="main.js"></script>
 </head>
 <body>
@@ -28,7 +25,7 @@
   <div id="darkModeToggle" onclick="toggleDarkMode()">
     &#9680; <!-- Circle with left half black -->
   </div>
-</div><h1 class="main-title">ssh port forwarding</h1>
+</div><h1 class="main-title">ssh port forwarding</h1><span class='date'>2024-05-23</span>
 </div>
 <div id="content" class="content">
 <p>
@@ -51,14 +48,14 @@ a connection to the tunnel can be opened using the command<br />
 <p>
 note that <code>localuser</code> would be the user of <code>local2</code> (not the remote machine) that you want ssh to use.<br />
 </p>
-<div id="outline-container-org4dc504f" class="outline-2">
-<h2 id="org4dc504f">connection refused</h2>
-<div class="outline-text-2" id="text-org4dc504f">
-<div class="dummy" id="org99a2df8">
+<div id="outline-container-orgc9656cf" class="outline-2">
+<h2 id="orgc9656cf">connection refused</h2>
+<div class="outline-text-2" id="text-orgc9656cf">
+<div class="dummy" id="org2cf38c0">
 <p>
 by default tunnel endpoints only listen on 127.0.0.1, so they can't be accessed from other machines. to change this you may need to add this to <code>/etc/ssh/sshd_config</code> on the server:<br />
 </p>
-<div class="literal" id="orgeaf6296">
+<div class="literal" id="org431c0ad">
 <p>
 GatewayPorts clientspecified<br />
 </p>
@@ -71,9 +68,9 @@ this is also the reason we use the address <code>*:5000:*:22</code>, the star is
 </p>
 </div>
 </div>
-<div id="outline-container-org50b7378" class="outline-2">
-<h2 id="org50b7378">using ipv6</h2>
-<div class="outline-text-2" id="text-org50b7378">
+<div id="outline-container-orga5472e9" class="outline-2">
+<h2 id="orga5472e9">using ipv6</h2>
+<div class="outline-text-2" id="text-orga5472e9">
 <p>
 if you're using ipv6 you need to make sure its enabled on all machines. <code>vim /etc/sysctl.conf</code> and make sure you have the following:<br />
 </p>
@@ -91,9 +88,9 @@ the ipv6 equivalent for <code>localhost</code> is <code>::1</code>. so, for exam
 </div>
 </div>
 </div>
-<div id="outline-container-org24c099c" class="outline-2">
-<h2 id="org24c099c">systemd service</h2>
-<div class="outline-text-2" id="text-org24c099c">
+<div id="outline-container-org4f8bbd7" class="outline-2">
+<h2 id="org4f8bbd7">systemd service</h2>
+<div class="outline-text-2" id="text-org4f8bbd7">
 <p>
 an example systemd service that i use to automatically open an ssh tunnel for a linux server:<br />
 </p>
