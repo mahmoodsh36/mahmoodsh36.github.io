@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<meta name="author" content="mahmood sheikh" />
+<meta name="generator" content="Org Mode" />
+<title>blk, text navigation on your terms</title><!-- lambda icon, frail attempt -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22100%22 color=%22red%22>λ</text></svg>">
+<!-- not-so-awesome awesome font -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="/main.css">
+<!-- for dark mode -->
+<script src="darkmode.js"></script>
+<script src="main.js"></script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div class="navbar">
+  <a href='/'>home</a>
+  <a href='/blog.html'>blog</a>
+  <a href='/search.html'>search</a>
+  <a href='/about.html'>about</a>
+  <div id="darkModeToggle" onclick="toggleDarkMode()">
+    &#9680; <!-- Circle with left half black -->
+  </div>
+</div><h1 class="main-title">blk, text navigation on your terms</h1>
+</div>
+<div id="content" class="content">
+<div id="outline-container-orgc08d21b" class="outline-2">
+<h2 id="orgc08d21b">introduction</h2>
+<div class="outline-text-2" id="text-orgc08d21b">
+<p>
+blk tries to generalize the idea of creating and navigating titles of text files, as well as making links from one file to another, or one block to another (possibly in different files). if you have used org-roam, denote, or other similar tools like obsidian and logseq, you would know that inserting links between two files (or nodes, as they're usually called) and navigating them is a must-have feature for note-taking, with <code>blk</code>, instead of restricting links to specific elements of text, such as a file or a heading, we can insert links to arbitrary forms of text, be it links to an org heading (or markdown heading), or a code block in an org file, or even links to python functions, elisp functions, or an html element (by its id).<br />
+</p>
+</div>
+</div>
+<div id="outline-container-orgd76f66a" class="outline-2">
+<h2 id="orgd76f66a">motivation</h2>
+<div class="outline-text-2" id="text-orgd76f66a">
+<p>
+most note-taking packages introduce rules or syntaxes of their own, for example, <code>org-roam</code> inserts akin to the following text below id's and headers to identify them (which, by the way, <code>blk</code> knows how to handle):<br />
+</p>
+<div class="org-src-container" data-language="org">
+<pre class="src src-org">:PROPERTIES:
+:ID: &lt;some-random-id-here&gt;
+:END:
+</pre>
+</div>
+<p>
+while this may be sufficient for most, it wasnt flexible enough for my use case, what if wanted to identify a specific code block by a unique string like <code>org-roam</code> does for headers and files? what if i wanted to identify a list item? say i wanted to write down the axioms of a vector space and i do it in the following manner in my <code>org-mode</code> file:<br />
+</p>
+<div class="org-src-container" data-language="org">
+<pre class="src src-org"><span style="color: #DD6F48;">#+begin_definition</span>
+a vector space is a set that satisfies the following axioms:
+- closure of addition,
+- closure of multiplication
+- closure of..
+- etc..
+<span style="color: #DD6F48;">#+end_definition</span>
+</pre>
+</div>
+<p>
+so far, so good. but what if i wanted to write the following text in another org file:<br />
+</p>
+<div class="org-src-container" data-language="org">
+<pre class="src src-org">consider the second axiom of vector spaces, we..
+</pre>
+</div>
+<p>
+shouldnt the text <b>second axiom</b> be clickable, and shouldnt it redirect to the user to the third axiom of the definition we have above when clicked? a <code>org-roam</code> user would most likely use a link to the header or the file containing the definition, but this isnt precise enough. first, it doesnt send the user to the axiom itself. second, the file <i>may</i> contain other text which would make finding the axiom the text refers to even less trivial.<br />
+to accomodate this, <code>blk</code> suggests the following syntax:<br />
+</p>
+<div class="org-src-container" data-language="org">
+<pre class="src src-org"><span style="color: #DD6F48;">#+begin_definition</span>
+a vector space is a set that satisfies the following axioms:
+- closure of addition,
+- <span style="color: #DD6F48;">&lt;&lt;&lt;vecspace-axiom-2&gt;&gt;&gt;</span>closure of multiplication
+- closure of..
+- etc..
+<span style="color: #DD6F48;">#+end_definition</span>
+</pre>
+</div>
+<p>
+this is what the org mode documentation refers to as a <a href="https://orgmode.org/manual/Radio-Targets.html">named target</a>. org mode by default allows linking to a named target using the text <code>[[named-target-here]]</code>, so for the target above, we would write:<br />
+</p>
+<div class="org-src-container" data-language="org">
+<pre class="src src-org">consider the <span style="color: #DD6F48;">[[vecspace-axiom-2][second axiom]]</span> of vector spaces, we..
+</pre>
+</div>
+<p>
+but as one might guess, this only works when the both the definition and the text exist in the same file, what <code>blk</code> suggests is simply the following:<br />
+</p>
+<div class="org-src-container" data-language="org">
+<pre class="src src-org">consider the <span style="color: #DD6F48;">[[blk:vecspace-axiom-2][second axiom]]</span> of vector spaces, we..
+</pre>
+</div>
+<p>
+this way, no matter where you place the link, it would work, in another org file, in another markdown file, or in any other type of text file you would want.<br />
+again, so far so good, but the text <b>vecspace-axiom-2</b> acts as an "id" and may be hard to remember each time you want to pull up the definition of a vector space. so again, to accomodate for this, blk suggest to rewrite the definition block as the following:<br />
+</p>
+<div class="org-src-container" data-language="org">
+<pre class="src src-org"><span style="color: #DD6F48;">#+name</span>: vecspace
+<span style="color: #DD6F48;">#+begin_definition</span> <span style="color: #DD6F48;">:title</span> vector space
+a vector space is a set that satisfies the following axioms:
+- closure of addition,
+- <span style="color: #DD6F48;">&lt;&lt;&lt;vecspace-axiom-2&gt;&gt;&gt;</span>closure of multiplication
+- closure of..
+- etc..
+<span style="color: #DD6F48;">#+end_definition</span>
+</pre>
+</div>
+<p>
+better yet, the <code>#+name</code> property can be written on the same line as the <code>title</code> property:<br />
+</p>
+<div class="org-src-container" data-language="org">
+<pre class="src src-org"><span style="color: #DD6F48;">#+begin_definition</span> <span style="color: #DD6F48;">:title</span> vector space <span style="color: #DD6F48;">:name</span> vecspace
+a vector space is a set that satisfies the following axioms:
+- closure of addition,
+- <span style="color: #DD6F48;">&lt;&lt;&lt;vecspace-axiom-2&gt;&gt;&gt;</span>closure of multiplication
+- closure of..
+- etc..
+<span style="color: #DD6F48;">#+end_definition</span>
+</pre>
+</div>
+<p>
+in both cases, <code>blk-find</code> can be invoked, and the user can navigate to the definition by its title "vector space", and if the user wants, they can even rewrite the cross-reference of the text we considered before to link to the definition too, in the following manner:<br />
+</p>
+<div class="org-src-container" data-language="org">
+<pre class="src src-org">consider the <span style="color: #DD6F48;">[[blk:vecspace-axiom-2][second axiom]]</span> of <span style="color: #DD6F48;">[[blk:vecspace][vector space]]</span>s, we..
+</pre>
+</div>
+<p>
+or, if the user enables <code>blk-treat-titles-as-ids</code> (set to <code>t</code>), they can write the following:<br />
+</p>
+<div class="org-src-container" data-language="org">
+<pre class="src src-org">consider the <span style="color: #DD6F48;">[[blk:vecspace-axiom-2][second axiom]]</span> of <span style="color: #DD6F48;">[[blk:vector space]]</span>s, we..
+</pre>
+</div>
+<p>
+when opened, both links would redirect to the second axiom, and the definition, respectively.<br />
+again, so far so good. but what if we want to write some code that makes heavy use of mathematics, and for some reason we wanted to refer to the definition of a vector space in our code, how would we do this? simple enough:<br />
+</p>
+<div class="org-src-container" data-language="emacs-lisp">
+<pre class="src src-emacs-lisp"><span style="color: #5C7E81;">(</span><span style="color: #DD6F48;">defun</span> <span style="color: #A89984;">my-function</span> <span style="color: #837486;">()</span>
+  <span style="color: #528B8B;">"this function does the following etc... refer to the definition of a [[blk:vector space]]"</span>
+  <span style="color: #837486;">(</span>message <span style="color: #528B8B;">"magic!"</span><span style="color: #837486;">)</span><span style="color: #5C7E81;">)</span>
+</pre>
+</div>
+<p>
+as expected, when the function <code>blk-open-at-point</code> is invoked at the link, emacs takes us to the definition of a vector space.<br />
+notice that for this to work, blk has to find the mentioned files in the directories listed in the variable <code>blk-directories</code> (it would search recursively if <code>blk-search-recursively</code> is set to <code>t</code>).<br />
+this workflow is demonstrated in the following gif:<br />
+
+<video muted>
+  <source src='/demo.mp4' type='video/mp4'>
+your browser does not support the video tag.
+</video><br />
+we can take things even further and use transclusions, say we want to not just <b>link</b> to the definition, but to insert it into the current document, without having to copy it from the other file and paste it into the current document, which would mean that modifiying one of them would cause the other to be "outdated", this is done using <code>blk</code>'s integration with <code>org-transclusion</code>:<br />
+</p>
+<div class="org-src-container" data-language="org">
+<pre class="src src-org">consider the following definition of a vector space:
+<span style="color: #DD6F48;">#+transclude</span>: <span style="color: #DD6F48;">[[blk:vecspace]]</span>
+</pre>
+</div>
+<p>
+to expand the transclusion we can use <code>M-x org-transclusion-mode</code>.<br />
+</p>
+</div>
+</div>
+<div id="outline-container-orgece707d" class="outline-2">
+<h2 id="orgece707d">main features</h2>
+<div class="outline-text-2" id="text-orgece707d">
+<ul class="org-ul">
+<li>linking to any type of text, without having to worry about filenames.<br /></li>
+<li>navigating text elements by their titles, including support for outline navigation, e.g. the outline for an org src block: <code>file/heading/block</code>.<br /></li>
+<li>support for alises to any title, so that any text element can be navigated to by its "main" title or one of its aliases (this includes org files, for an example).<br /></li>
+</ul>
+</div>
+<div id="outline-container-orgf2f9242" class="outline-3">
+<h3 id="orgf2f9242">org-mode specific features</h3>
+<div class="outline-text-3" id="text-orgf2f9242">
+<ul class="org-ul">
+<li>links to org-mode special blocks.<br /></li>
+<li>links to an arbitrary point in any org-mode file defined by <a id="id-here">id-here</a> (cross-file target links).<br /></li>
+<li>transclusion of latex environments from an <code>org</code> or <code>tex</code> file into another org file, by its <code>\label</code>.<br /></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd421620" class="outline-2">
+<h2 id="orgd421620">basic setup</h2>
+<div class="outline-text-2" id="text-orgd421620">
+<div class="org-src-container" data-language="emacs-lisp">
+<pre class="src src-emacs-lisp"><span style="color: #5C7E81;">(</span><span style="color: #DD6F48;">use-package</span> blk
+  <span style="color: #FE8019;">:straight</span> <span style="color: #837486;">(</span>blk <span style="color: #FE8019;">:host</span> github <span style="color: #FE8019;">:repo</span> <span style="color: #528B8B;">"mahmoodsheikh36/blk"</span><span style="color: #837486;">)</span> <span style="color: #928374;">;; </span><span style="color: #928374;">replace with :quelpa if needed</span>
+  <span style="color: #FE8019;">:after</span> <span style="color: #837486;">(</span>org<span style="color: #837486;">)</span>
+  <span style="color: #FE8019;">:config</span>
+  <span style="color: #837486;">(</span><span style="color: #DD6F48;">setq</span> blk-directories
+        <span style="color: #9C6F68;">(</span>list <span style="color: #7B665C;">(</span>expand-file-name <span style="color: #528B8B;">"~/notes"</span><span style="color: #7B665C;">)</span>
+              <span style="color: #7B665C;">(</span>file-name-parent-directory <span style="color: #5C7E81;">(</span>expand-file-name user-init-file<span style="color: #5C7E81;">)</span><span style="color: #7B665C;">)</span><span style="color: #9C6F68;">)</span><span style="color: #837486;">)</span>
+  <span style="color: #837486;">(</span>add-hook 'org-mode-hook #'blk-enable-completion<span style="color: #837486;">)</span>
+  <span style="color: #837486;">(</span><span style="color: #DD6F48;">setq</span> blk-use-cache t<span style="color: #837486;">)</span> <span style="color: #928374;">;; </span><span style="color: #928374;">makes completion significantly faster</span>
+  <span style="color: #837486;">(</span>global-set-key <span style="color: #9C6F68;">(</span>kbd <span style="color: #528B8B;">"C-c o"</span><span style="color: #9C6F68;">)</span> #'blk-open-at-point<span style="color: #837486;">)</span>
+  <span style="color: #837486;">(</span>global-set-key <span style="color: #9C6F68;">(</span>kbd <span style="color: #528B8B;">"C-c f"</span><span style="color: #9C6F68;">)</span> #'blk-find<span style="color: #837486;">)</span>
+  <span style="color: #837486;">(</span>global-set-key <span style="color: #9C6F68;">(</span>kbd <span style="color: #528B8B;">"C-c i"</span><span style="color: #9C6F68;">)</span> #'blk-insert<span style="color: #837486;">)</span><span style="color: #5C7E81;">)</span>
+</pre>
+</div>
+<p>
+if you want the transclusion functionality, you have to enable it after installing org-transclusion:<br />
+</p>
+<div class="org-src-container" data-language="emacs-lisp">
+<pre class="src src-emacs-lisp"><span style="color: #5C7E81;">(</span><span style="color: #DD6F48;">use-package</span> org-transclusion
+  <span style="color: #FE8019;">:config</span>
+  <span style="color: #837486;">(</span>add-hook 'org-mode-hook #'org-transclusion-mode<span style="color: #837486;">)</span><span style="color: #5C7E81;">)</span>
+
+<span style="color: #5C7E81;">(</span><span style="color: #DD6F48;">use-package</span> blk
+  <span style="color: #FE8019;">:straight</span> <span style="color: #837486;">(</span>blk <span style="color: #FE8019;">:host</span> github <span style="color: #FE8019;">:repo</span> <span style="color: #528B8B;">"mahmoodsheikh36/blk"</span><span style="color: #837486;">)</span> <span style="color: #928374;">;; </span><span style="color: #928374;">replace with :quelpa if needed</span>
+  <span style="color: #FE8019;">:after</span> <span style="color: #837486;">(</span>org org-transclusion<span style="color: #837486;">)</span>
+  <span style="color: #FE8019;">:config</span>
+  <span style="color: #837486;">(</span><span style="color: #DD6F48;">setq</span> blk-directories
+        <span style="color: #9C6F68;">(</span>list <span style="color: #7B665C;">(</span>expand-file-name <span style="color: #528B8B;">"~/notes"</span><span style="color: #7B665C;">)</span>
+              <span style="color: #7B665C;">(</span>file-name-parent-directory <span style="color: #5C7E81;">(</span>expand-file-name user-init-file<span style="color: #5C7E81;">)</span><span style="color: #7B665C;">)</span><span style="color: #9C6F68;">)</span><span style="color: #837486;">)</span>
+  <span style="color: #837486;">(</span>add-hook 'org-mode-hook #'blk-enable-completion<span style="color: #837486;">)</span>
+  <span style="color: #837486;">(</span>blk-configure-org-transclusion<span style="color: #837486;">)</span>
+  <span style="color: #837486;">(</span><span style="color: #DD6F48;">setq</span> blk-use-cache t<span style="color: #837486;">)</span> <span style="color: #928374;">;; </span><span style="color: #928374;">makes completion significantly faster</span>
+  <span style="color: #837486;">(</span>global-set-key <span style="color: #9C6F68;">(</span>kbd <span style="color: #528B8B;">"C-c o"</span><span style="color: #9C6F68;">)</span> #'blk-open-at-point<span style="color: #837486;">)</span>
+  <span style="color: #837486;">(</span>global-set-key <span style="color: #9C6F68;">(</span>kbd <span style="color: #528B8B;">"C-c f"</span><span style="color: #9C6F68;">)</span> #'blk-find<span style="color: #837486;">)</span>
+  <span style="color: #837486;">(</span>global-set-key <span style="color: #9C6F68;">(</span>kbd <span style="color: #528B8B;">"C-c i"</span><span style="color: #9C6F68;">)</span> #'blk-insert<span style="color: #837486;">)</span><span style="color: #5C7E81;">)</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb4d2393" class="outline-2">
+<h2 id="orgb4d2393">more demos</h2>
+<div class="outline-text-2" id="text-orgb4d2393">
+</div>
+<div id="outline-container-org2ac9fb1" class="outline-3">
+<h3 id="org2ac9fb1">latex block transclusion demo</h3>
+<div class="outline-text-3" id="text-org2ac9fb1">
+<p>
+
+<video muted>
+  <source src='/tex_transclusion.mp4' type='video/mp4'>
+your browser does not support the video tag.
+</video><br />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org191f53d" class="outline-2">
+<h2 id="org191f53d">writing custom rules</h2>
+</div>
+<div id="outline-container-orgffc3611" class="outline-2">
+<h2 id="orgffc3611">integration with other packages</h2>
+</div>
+</div>
+</body>
+</html>
