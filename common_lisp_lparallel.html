@@ -6,8 +6,6 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<meta name="author" content="mahmood sheikh" />
-<meta name="generator" content="Org Mode" />
 <title>common lisp lparallel</title><!-- lambda icon, frail attempt -->
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22100%22 color=%22red%22>λ</text></svg>">
 <!-- not-so-awesome awesome font -->
@@ -27,7 +25,7 @@
   <div id="darkModeToggle" onclick="toggleDarkMode()">
     &#9680; <!-- Circle with left half black -->
   </div>
-</div><h1 class="main-title">common lisp lparallel</h1>
+</div><h1 class="main-title">common lisp lparallel</h1><span class='date'>2023-08-10</span>
 </div>
 <div id="content" class="content">
 <p>
@@ -151,9 +149,9 @@ note that a kernel will not be garbage collected until <code>end-kernel</code> i
 <pre class="src src-lisp"><span style="color: #5C7E81;">(</span>lparallel:end-kernel<span style="color: #5C7E81;">)</span>
 </pre>
 </div>
-<div id="outline-container-org0789c53" class="outline-2">
-<h2 id="org0789c53">plet</h2>
-<div class="outline-text-2" id="text-org0789c53">
+<div id="outline-container-org44b2e03" class="outline-2">
+<h2 id="org44b2e03">plet</h2>
+<div class="outline-text-2" id="text-org44b2e03">
 <p>
 plet might be the simplest construct that lparallel offers for asynchronous computation, consider the following example:<br />
 </p>
@@ -186,9 +184,9 @@ the next sexp after <code>plet</code> doesnt run until <code>plet</code> is done
 </p>
 </div>
 </div>
-<div id="outline-container-org31d3078" class="outline-2">
-<h2 id="org31d3078">promise</h2>
-<div class="outline-text-2" id="text-org31d3078">
+<div id="outline-container-orgd12bc52" class="outline-2">
+<h2 id="orgd12bc52">promise</h2>
+<div class="outline-text-2" id="text-orgd12bc52">
 <p>
 promises and futures are also useful<br />
 a <code>promise</code> is a "promise" that needs to be <code>fulfill</code>'ed, <code>fullfilledp</code> checks whether a promise has been fulfilled, <code>fulfill</code> turns a promise into a fulfilled one, and attachs the second argument as its return value, <code>force</code> returns the value returned by a promise<br />

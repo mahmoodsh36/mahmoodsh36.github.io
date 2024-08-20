@@ -20,13 +20,17 @@ html, body {
 .content {
     max-width: 700px;
     margin: auto;
+    margin-top: 15px;
 }
 
-.main-title, .desc {
+.main-title, .desc, .date {
     margin: auto;
     width: fit-content;
     display: block;
     text-align: center;
+}
+.date {
+    font-style: italic;
 }
 
 .navbar {

@@ -6,8 +6,6 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<meta name="author" content="mahmood sheikh" />
-<meta name="generator" content="Org Mode" />
 <title>lambda calculus</title><!-- lambda icon, frail attempt -->
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22100%22 color=%22red%22>λ</text></svg>">
 <!-- not-so-awesome awesome font -->
@@ -27,14 +25,14 @@
   <div id="darkModeToggle" onclick="toggleDarkMode()">
     &#9680; <!-- Circle with left half black -->
   </div>
-</div><h1 class="main-title">lambda calculus</h1>
+</div><h1 class="main-title">lambda calculus</h1><span class='date'>2024-03-06</span>
 </div>
 <div id="content" class="content">
-<div class="dummy" id="orgd2f0be7">
+<div class="dummy" id="orga4af3d8">
 <p>
 the <i><?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='-.129519 -6.605231 5.280197 6.694893' style="max-height: 0.6502em; vertical-align: -0.0098em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='-.129519 -6.605231 5.280197 6.694893' style="max-height: 0.7486em; vertical-align: -0.0590em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g0-95' d='m5.250311-.727273l-.009963-.019925c-.139477 0-.308842 .33873-.727273 .33873c-1.882939 0 1.544209-6.117061-1.384807-6.117061h-.109589c-.179328 0-.597758 .14944-.727273 .268991c-.009963 .009963 .069738 .099626 .079701 .099626c.049813-.039851 .268991-.129514 .468244-.129514c.966376 0 .707347 1.594022 .707347 1.853051c.009963 .029888 0 .049813-.009963 .089664c-.199253 .926526-3.138232 3.536737-3.377335 4.343711h.996264c0-.099626 .009963-.199253 .029888-.308842c.288917-1.275218 2.241594-3.20797 2.241594-3.217933h.009963c-.059776 .518057-.956413 3.636364 .667497 3.636364c.438356 0 1.125778-.71731 1.145704-.836862z'/>
 </defs>
@@ -43,7 +41,7 @@ the <i><?xml version='1.0' encoding='UTF-8'?>
 </g>
 </svg>-calculus</i> consists of a set of objects called <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='-.129519 -6.605231 5.280197 6.694893' style="max-height: 0.6502em; vertical-align: -0.0098em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='-.129519 -6.605231 5.280197 6.694893' style="max-height: 0.7486em; vertical-align: -0.0590em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g0-95' d='m5.250311-.727273l-.009963-.019925c-.139477 0-.308842 .33873-.727273 .33873c-1.882939 0 1.544209-6.117061-1.384807-6.117061h-.109589c-.179328 0-.597758 .14944-.727273 .268991c-.009963 .009963 .069738 .099626 .079701 .099626c.049813-.039851 .268991-.129514 .468244-.129514c.966376 0 .707347 1.594022 .707347 1.853051c.009963 .029888 0 .049813-.009963 .089664c-.199253 .926526-3.138232 3.536737-3.377335 4.343711h.996264c0-.099626 .009963-.199253 .029888-.308842c.288917-1.275218 2.241594-3.20797 2.241594-3.217933h.009963c-.059776 .518057-.956413 3.636364 .667497 3.636364c.438356 0 1.125778-.71731 1.145704-.836862z'/>
 </defs>
@@ -53,7 +51,7 @@ the <i><?xml version='1.0' encoding='UTF-8'?>
 </svg>-terms and some rules for manipulating them. it was originally designed to capture formally the notions of functional abstraction and functional application and their interaction.<br />
 the <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='-.129519 -6.605231 5.280197 6.694893' style="max-height: 0.6502em; vertical-align: -0.0098em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='-.129519 -6.605231 5.280197 6.694893' style="max-height: 0.7486em; vertical-align: -0.0590em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g0-95' d='m5.250311-.727273l-.009963-.019925c-.139477 0-.308842 .33873-.727273 .33873c-1.882939 0 1.544209-6.117061-1.384807-6.117061h-.109589c-.179328 0-.597758 .14944-.727273 .268991c-.009963 .009963 .069738 .099626 .079701 .099626c.049813-.039851 .268991-.129514 .468244-.129514c.966376 0 .707347 1.594022 .707347 1.853051c.009963 .029888 0 .049813-.009963 .089664c-.199253 .926526-3.138232 3.536737-3.377335 4.343711h.996264c0-.099626 .009963-.199253 .029888-.308842c.288917-1.275218 2.241594-3.20797 2.241594-3.217933h.009963c-.059776 .518057-.956413 3.636364 .667497 3.636364c.438356 0 1.125778-.71731 1.145704-.836862z'/>
 </defs>
@@ -62,7 +60,7 @@ the <?xml version='1.0' encoding='UTF-8'?>
 </g>
 </svg>-calculus has had a profound impact on computing. one can see the basic principles of the <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='-.129519 -6.605231 5.280197 6.694893' style="max-height: 0.6502em; vertical-align: -0.0098em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='-.129519 -6.605231 5.280197 6.694893' style="max-height: 0.7486em; vertical-align: -0.0590em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g0-95' d='m5.250311-.727273l-.009963-.019925c-.139477 0-.308842 .33873-.727273 .33873c-1.882939 0 1.544209-6.117061-1.384807-6.117061h-.109589c-.179328 0-.597758 .14944-.727273 .268991c-.009963 .009963 .069738 .099626 .079701 .099626c.049813-.039851 .268991-.129514 .468244-.129514c.966376 0 .707347 1.594022 .707347 1.853051c.009963 .029888 0 .049813-.009963 .089664c-.199253 .926526-3.138232 3.536737-3.377335 4.343711h.996264c0-.099626 .009963-.199253 .029888-.308842c.288917-1.275218 2.241594-3.20797 2.241594-3.217933h.009963c-.059776 .518057-.956413 3.636364 .667497 3.636364c.438356 0 1.125778-.71731 1.145704-.836862z'/>
 </defs>
@@ -72,7 +70,7 @@ the <?xml version='1.0' encoding='UTF-8'?>
 </svg>-calculus at work in the functional programming language lisp and its more modern offspring SCHEME and DYLAN.<br />
 in mathematics, <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='-.129519 -6.605231 5.280197 6.694893' style="max-height: 0.6502em; vertical-align: -0.0098em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='-.129519 -6.605231 5.280197 6.694893' style="max-height: 0.7486em; vertical-align: -0.0590em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g0-95' d='m5.250311-.727273l-.009963-.019925c-.139477 0-.308842 .33873-.727273 .33873c-1.882939 0 1.544209-6.117061-1.384807-6.117061h-.109589c-.179328 0-.597758 .14944-.727273 .268991c-.009963 .009963 .069738 .099626 .079701 .099626c.049813-.039851 .268991-.129514 .468244-.129514c.966376 0 .707347 1.594022 .707347 1.853051c.009963 .029888 0 .049813-.009963 .089664c-.199253 .926526-3.138232 3.536737-3.377335 4.343711h.996264c0-.099626 .009963-.199253 .029888-.308842c.288917-1.275218 2.241594-3.20797 2.241594-3.217933h.009963c-.059776 .518057-.956413 3.636364 .667497 3.636364c.438356 0 1.125778-.71731 1.145704-.836862z'/>
 </defs>
@@ -238,7 +236,7 @@ in the programming language DYLAN, one would write<br />
 <p>
 for the same thing. the keyword <code>method</code> is really <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='-.129519 -6.605231 5.280197 6.694893' style="max-height: 0.6502em; vertical-align: -0.0098em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='-.129519 -6.605231 5.280197 6.694893' style="max-height: 0.7486em; vertical-align: -0.0590em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g0-95' d='m5.250311-.727273l-.009963-.019925c-.139477 0-.308842 .33873-.727273 .33873c-1.882939 0 1.544209-6.117061-1.384807-6.117061h-.109589c-.179328 0-.597758 .14944-.727273 .268991c-.009963 .009963 .069738 .099626 .079701 .099626c.049813-.039851 .268991-.129514 .468244-.129514c.966376 0 .707347 1.594022 .707347 1.853051c.009963 .029888 0 .049813-.009963 .089664c-.199253 .926526-3.138232 3.536737-3.377335 4.343711h.996264c0-.099626 .009963-.199253 .029888-.308842c.288917-1.275218 2.241594-3.20797 2.241594-3.217933h.009963c-.059776 .518057-.956413 3.636364 .667497 3.636364c.438356 0 1.125778-.71731 1.145704-.836862z'/>
 </defs>
@@ -756,7 +754,7 @@ we could have substituted <?xml version='1.0' encoding='UTF-8'?>
 </svg> in the third; we would have arrived at the same final result.<br />
 functions represented by <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='-.129519 -6.605231 5.280197 6.694893' style="max-height: 0.6502em; vertical-align: -0.0098em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='-.129519 -6.605231 5.280197 6.694893' style="max-height: 0.7486em; vertical-align: -0.0590em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g0-95' d='m5.250311-.727273l-.009963-.019925c-.139477 0-.308842 .33873-.727273 .33873c-1.882939 0 1.544209-6.117061-1.384807-6.117061h-.109589c-.179328 0-.597758 .14944-.727273 .268991c-.009963 .009963 .069738 .099626 .079701 .099626c.049813-.039851 .268991-.129514 .468244-.129514c.966376 0 .707347 1.594022 .707347 1.853051c.009963 .029888 0 .049813-.009963 .089664c-.199253 .926526-3.138232 3.536737-3.377335 4.343711h.996264c0-.099626 .009963-.199253 .029888-.308842c.288917-1.275218 2.241594-3.20797 2.241594-3.217933h.009963c-.059776 .518057-.956413 3.636364 .667497 3.636364c.438356 0 1.125778-.71731 1.145704-.836862z'/>
 </defs>
@@ -782,11 +780,11 @@ functions represented by <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.498132 -6.605231 8.697386 6.605231' style="max-height: 0.7388em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
-<path id='g4-34' d='m7.312578 0v-.159402c-.67746-.059776-.767123-.109589-.767123-.428394c0-.169365 .019925-.288917 .109589-.607721l1.225405-4.41345c.179328-.597758 .229141-.647572 .816936-.737235v-.159402h-1.663761l-3.347447 4.911582l-.547945-4.911582h-1.803238v.159402c.498132 .029888 .737235 .139477 .737235 .368618c0 .079701-.039851 .229141-.099626 .408468l-.089664 .298879l-.029888 .109589l-1.05604 3.706102c-.308842 1.036115-.458281 1.235367-.976339 1.295143v.159402h1.972603v-.159402c-.508095-.039851-.707347-.159402-.707347-.438356c0-.109589 .039851-.348692 .089664-.52802l1.175592-4.313823l.607721 5.439601h.169365l3.755915-5.589041l-1.285181 4.682441c-.159402 .52802-.358655 .67746-1.006227 .747198v.159402h2.719801z'/>
+<path id='g2-34' d='m7.312578 0v-.159402c-.67746-.059776-.767123-.109589-.767123-.428394c0-.169365 .019925-.288917 .109589-.607721l1.225405-4.41345c.179328-.597758 .229141-.647572 .816936-.737235v-.159402h-1.663761l-3.347447 4.911582l-.547945-4.911582h-1.803238v.159402c.498132 .029888 .737235 .139477 .737235 .368618c0 .079701-.039851 .229141-.099626 .408468l-.089664 .298879l-.029888 .109589l-1.05604 3.706102c-.308842 1.036115-.458281 1.235367-.976339 1.295143v.159402h1.972603v-.159402c-.508095-.039851-.707347-.159402-.707347-.438356c0-.109589 .039851-.348692 .089664-.52802l1.175592-4.313823l.607721 5.439601h.169365l3.755915-5.589041l-1.285181 4.682441c-.159402 .52802-.358655 .67746-1.006227 .747198v.159402h2.719801z'/>
 </defs>
-<g id='page46'>
+<g id='page8'>
 <g fill='currentColor'>
-<use x='.498132' y='0' xlink:href='#g4-34'/>
+<use x='.498132' y='0' xlink:href='#g2-34'/>
 </g>
 </g>
 </svg> is modeled by a function with one input <?xml version='1.0' encoding='UTF-8'?>
@@ -815,11 +813,11 @@ functions represented by <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.498132 -6.605231 8.697386 6.605231' style="max-height: 0.7388em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
-<path id='g4-34' d='m7.312578 0v-.159402c-.67746-.059776-.767123-.109589-.767123-.428394c0-.169365 .019925-.288917 .109589-.607721l1.225405-4.41345c.179328-.597758 .229141-.647572 .816936-.737235v-.159402h-1.663761l-3.347447 4.911582l-.547945-4.911582h-1.803238v.159402c.498132 .029888 .737235 .139477 .737235 .368618c0 .079701-.039851 .229141-.099626 .408468l-.089664 .298879l-.029888 .109589l-1.05604 3.706102c-.308842 1.036115-.458281 1.235367-.976339 1.295143v.159402h1.972603v-.159402c-.508095-.039851-.707347-.159402-.707347-.438356c0-.109589 .039851-.348692 .089664-.52802l1.175592-4.313823l.607721 5.439601h.169365l3.755915-5.589041l-1.285181 4.682441c-.159402 .52802-.358655 .67746-1.006227 .747198v.159402h2.719801z'/>
+<path id='g2-34' d='m7.312578 0v-.159402c-.67746-.059776-.767123-.109589-.767123-.428394c0-.169365 .019925-.288917 .109589-.607721l1.225405-4.41345c.179328-.597758 .229141-.647572 .816936-.737235v-.159402h-1.663761l-3.347447 4.911582l-.547945-4.911582h-1.803238v.159402c.498132 .029888 .737235 .139477 .737235 .368618c0 .079701-.039851 .229141-.099626 .408468l-.089664 .298879l-.029888 .109589l-1.05604 3.706102c-.308842 1.036115-.458281 1.235367-.976339 1.295143v.159402h1.972603v-.159402c-.508095-.039851-.707347-.159402-.707347-.438356c0-.109589 .039851-.348692 .089664-.52802l1.175592-4.313823l.607721 5.439601h.169365l3.755915-5.589041l-1.285181 4.682441c-.159402 .52802-.358655 .67746-1.006227 .747198v.159402h2.719801z'/>
 </defs>
-<g id='page46'>
+<g id='page8'>
 <g fill='currentColor'>
-<use x='.498132' y='0' xlink:href='#g4-34'/>
+<use x='.498132' y='0' xlink:href='#g2-34'/>
 </g>
 </g>
 </svg>. The technical term for this trick is currying (after Haskell B. Curry).<br />

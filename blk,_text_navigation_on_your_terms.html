@@ -6,8 +6,6 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<meta name="author" content="mahmood sheikh" />
-<meta name="generator" content="Org Mode" />
 <title>blk, text navigation on your terms</title><!-- lambda icon, frail attempt -->
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22100%22 color=%22red%22>λ</text></svg>">
 <!-- not-so-awesome awesome font -->
@@ -27,20 +25,20 @@
   <div id="darkModeToggle" onclick="toggleDarkMode()">
     &#9680; <!-- Circle with left half black -->
   </div>
-</div><h1 class="main-title">blk, text navigation on your terms</h1>
+</div><h1 class="main-title">blk, text navigation on your terms</h1><span class='date'>2024-04-14</span>
 </div>
 <div id="content" class="content">
-<div id="outline-container-org98f6079" class="outline-2">
-<h2 id="org98f6079">introduction</h2>
-<div class="outline-text-2" id="text-org98f6079">
+<div id="outline-container-org936973a" class="outline-2">
+<h2 id="org936973a">introduction</h2>
+<div class="outline-text-2" id="text-org936973a">
 <p>
 blk tries to generalize the idea of creating and navigating titles of text files, as well as making links from one file to another, or one block to another (possibly in different files). if you have used org-roam, denote, or other similar tools like obsidian and logseq, you would know that inserting links between two files (or nodes, as they're usually called) and navigating them is a must-have feature for note-taking, with <code>blk</code>, instead of restricting links to specific elements of text, such as a file or a heading, we can insert links to arbitrary forms of text, be it links to an org heading (or markdown heading), or a code block in an org file, or even links to python functions, elisp functions, or an html element (by its id).<br />
 </p>
 </div>
 </div>
-<div id="outline-container-org4387034" class="outline-2">
-<h2 id="org4387034">motivation</h2>
-<div class="outline-text-2" id="text-org4387034">
+<div id="outline-container-org282260f" class="outline-2">
+<h2 id="org282260f">motivation</h2>
+<div class="outline-text-2" id="text-org282260f">
 <p>
 most note-taking packages introduce rules or syntaxes of their own, for example, <code>org-roam</code> inserts akin to the following text below id's and headers to identify them (which, by the way, <code>blk</code> knows how to handle):<br />
 </p>
@@ -171,18 +169,18 @@ to expand the transclusion we can use <code>M-x org-transclusion-mode</code>.<br
 </p>
 </div>
 </div>
-<div id="outline-container-orgbfcd267" class="outline-2">
-<h2 id="orgbfcd267">main features</h2>
-<div class="outline-text-2" id="text-orgbfcd267">
+<div id="outline-container-org508fa96" class="outline-2">
+<h2 id="org508fa96">main features</h2>
+<div class="outline-text-2" id="text-org508fa96">
 <ul class="org-ul">
 <li>linking to any type of text, without having to worry about filenames.<br /></li>
 <li>navigating text elements by their titles, including support for outline navigation, e.g. the outline for an org src block: <code>file/heading/block</code>.<br /></li>
 <li>support for alises to any title, so that any text element can be navigated to by its "main" title or one of its aliases (this includes org files, for an example).<br /></li>
 </ul>
 </div>
-<div id="outline-container-org2ea59b3" class="outline-3">
-<h3 id="org2ea59b3">org-mode specific features</h3>
-<div class="outline-text-3" id="text-org2ea59b3">
+<div id="outline-container-org2fd0688" class="outline-3">
+<h3 id="org2fd0688">org-mode specific features</h3>
+<div class="outline-text-3" id="text-org2fd0688">
 <ul class="org-ul">
 <li>links to org-mode special blocks.<br /></li>
 <li>links to an arbitrary point in any org-mode file defined by <a id="id-here">id-here</a> (cross-file target links).<br /></li>
@@ -191,9 +189,9 @@ to expand the transclusion we can use <code>M-x org-transclusion-mode</code>.<br
 </div>
 </div>
 </div>
-<div id="outline-container-orgc11df74" class="outline-2">
-<h2 id="orgc11df74">basic setup</h2>
-<div class="outline-text-2" id="text-orgc11df74">
+<div id="outline-container-orgd7ac177" class="outline-2">
+<h2 id="orgd7ac177">basic setup</h2>
+<div class="outline-text-2" id="text-orgd7ac177">
 <div class="org-src-container" data-language="emacs-lisp">
 <pre class="src src-emacs-lisp"><span style="color: #5C7E81;">(</span><span style="color: #DD6F48;">use-package</span> blk
   <span style="color: #FE8019;">:straight</span> <span style="color: #837486;">(</span>blk <span style="color: #FE8019;">:host</span> github <span style="color: #FE8019;">:repo</span> <span style="color: #528B8B;">"mahmoodsheikh36/blk"</span><span style="color: #837486;">)</span> <span style="color: #928374;">;; </span><span style="color: #928374;">replace with :quelpa if needed</span>
@@ -234,13 +232,13 @@ if you want the transclusion functionality, you have to enable it after installi
 </div>
 </div>
 </div>
-<div id="outline-container-org82a69a7" class="outline-2">
-<h2 id="org82a69a7">more demos</h2>
-<div class="outline-text-2" id="text-org82a69a7">
+<div id="outline-container-org8c651de" class="outline-2">
+<h2 id="org8c651de">more demos</h2>
+<div class="outline-text-2" id="text-org8c651de">
 </div>
-<div id="outline-container-org9496196" class="outline-3">
-<h3 id="org9496196">latex block transclusion demo</h3>
-<div class="outline-text-3" id="text-org9496196">
+<div id="outline-container-org2217670" class="outline-3">
+<h3 id="org2217670">latex block transclusion demo</h3>
+<div class="outline-text-3" id="text-org2217670">
 <p>
 
 <video controls muted>
@@ -251,11 +249,11 @@ your browser does not support the video tag.
 </div>
 </div>
 </div>
-<div id="outline-container-org5abf8fa" class="outline-2">
-<h2 id="org5abf8fa">writing custom rules</h2>
+<div id="outline-container-orgba5d611" class="outline-2">
+<h2 id="orgba5d611">writing custom rules</h2>
 </div>
-<div id="outline-container-org7d9cf5e" class="outline-2">
-<h2 id="org7d9cf5e">integration with other packages</h2>
+<div id="outline-container-orgdac0c6b" class="outline-2">
+<h2 id="orgdac0c6b">integration with other packages</h2>
 </div>
 </div>
 </body>

@@ -6,8 +6,6 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<meta name="author" content="mahmood sheikh" />
-<meta name="generator" content="Org Mode" />
 <title>depth-first search</title><!-- lambda icon, frail attempt -->
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22100%22 color=%22red%22>λ</text></svg>">
 <!-- not-so-awesome awesome font -->
@@ -27,7 +25,7 @@
   <div id="darkModeToggle" onclick="toggleDarkMode()">
     &#9680; <!-- Circle with left half black -->
   </div>
-</div><h1 class="main-title">depth-first search</h1>
+</div><h1 class="main-title">depth-first search</h1><span class='date'>2023-05-30</span>
 </div>
 <div id="content" class="content">
 <p>
@@ -54,7 +52,7 @@ a <b>free</b> vertex is one that hasnt yet been visited<br />
 <p>
 during the traversal, two timestamps are set for each vertex, <b>discovery timestamp</b> and <b>departure timestamp</b>, each timestamp is a number between 1 and <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -7.043584 16.777078 8.976339' style="max-height: 0.8859em; vertical-align: -0.1926em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -7.043584 16.777078 8.976339' style="max-height: 0.8860em; vertical-align: -0.1926em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g6-43' d='m6.854296-6.346202v-.159402h-1.853051v.159402c.448319 .049813 .627646 .14944 .627646 .33873s-.179328 .607721-.518057 1.185554l-2.052304 3.5467l-.657534-4.41345c-.009963-.049813-.009963-.099626-.009963-.14944c0-.33873 .139477-.438356 .767123-.508095v-.159402h-2.400996v.159402c.557908 .069738 .577833 .099626 .787049 1.344956l.846824 5.180573h.18929l3.716065-6.127024c.169365-.268991 .328767-.388543 .557908-.398506z'/>
 <path id='g4-106' d='m1.275218 1.92279v-8.966376h-.557908v8.966376h.557908z'/>
@@ -71,7 +69,7 @@ during the traversal, two timestamps are set for each vertex, <b>discovery times
 <ul class="org-ul">
 <li><b>discovery time</b>: <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.249051 -7.043584 17.982538 8.976339' style="max-height: 0.8859em; vertical-align: -0.1926em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.249051 -7.043584 17.982538 8.976339' style="max-height: 0.8860em; vertical-align: -0.1926em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g4-187' d='m2.978829 1.673724h-.856787c-.328767 0-.488169-.169365-.488169-.518057v-7.511831c0-.308842 .129514-.438356 .448319-.438356h.896638v-.249066h-2.102117v8.966376h2.102117v-.249066z'/>
 <path id='g4-188' d='m.33873 1.673724v.249066h2.102117v-8.966376h-2.102117v.249066h.856787c.328767 0 .488169 .169365 .488169 .518057v7.511831c0 .308842-.139477 .438356-.448319 .438356h-.896638z'/>
@@ -98,7 +96,7 @@ during the traversal, two timestamps are set for each vertex, <b>discovery times
 </svg> is first visited during the traversal<br /></li>
 <li><b>departure time</b>: <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='1.73349 -7.043584 17.006204 9.105849' style="max-height: 0.8967em; vertical-align: -0.2033em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='1.73349 -7.043584 17.006204 9.105849' style="max-height: 0.8968em; vertical-align: -0.2034em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g4-187' d='m2.978829 1.673724h-.856787c-.328767 0-.488169-.169365-.488169-.518057v-7.511831c0-.308842 .129514-.438356 .448319-.438356h.896638v-.249066h-2.102117v8.966376h2.102117v-.249066z'/>
 <path id='g4-188' d='m.33873 1.673724v.249066h2.102117v-8.966376h-2.102117v.249066h.856787c.328767 0 .488169 .169365 .488169 .518057v7.511831c0 .308842-.139477 .438356-.448319 .438356h-.896638z'/>
@@ -129,7 +127,7 @@ during the traversal, two timestamps are set for each vertex, <b>discovery times
 next to each vertex is its discovery/departure timestamps<br />
 </p>
 
-<div id="orgb7e484b" class="figure">
+<div id="org5bf75fd" class="figure">
 <p><img src="/Tue_May_30_03:47:37_PM_IDT_2023.png" /><br />
 </p>
 <p><span class="figure-number">Figure 1: </span>an example of dfs execution</p>
@@ -186,7 +184,7 @@ a dfs tree gets built during traversal, if we're at a vertex <?xml version='1.0'
 </g>
 </svg> and the edge <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.498132 -7.043584 21.535833 9.056034' style="max-height: 0.8859em; vertical-align: -0.1926em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.498132 -7.043584 21.535833 9.056034' style="max-height: 0.8860em; vertical-align: -0.1926em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g6-68' d='m4.732254-1.075965l-.139477-.089664c-.52802 .657534-.667497 .787049-.826899 .787049c-.069738 0-.109589-.059776-.109589-.169365c0-.059776 0-.059776 .18929-.777086l.787049-2.978829h-.737235c-.537983 1.474471-.647572 1.713574-1.09589 2.430884c-.597758 .946451-1.085928 1.454545-1.404732 1.454545c-.129514 0-.209215-.099626-.209215-.249066c0-.039851 0-.059776 .009963-.089664l.9066-3.616438l-.029888-.019925c-.56787 .129514-.926526 .199253-1.494396 .268991v.139477c.37858 0 .398506 .009963 .488169 .059776c.059776 .019925 .109589 .109589 .109589 .179328c0 .079701-.049813 .33873-.139477 .667497l-.368618 1.414695c-.18929 .727273-.249066 1.036115-.249066 1.225405c0 .368618 .179328 .547945 .52802 .547945c.707347 0 1.235367-.537983 2.381071-2.460772c-.298879 1.09589-.448319 1.743462-.448319 1.96264c0 .308842 .179328 .478207 .478207 .478207c.468244 0 .687422-.18929 1.374844-1.165629z'/>
 <path id='g6-69' d='m4.244085-3.805729c0-.318804-.259029-.587796-.557908-.587796c-.229141 0-.368618 .129514-.368618 .33873c0 .159402 .059776 .278954 .239103 .438356c.129514 .119552 .179328 .199253 .179328 .298879c0 .468244-.647572 1.564134-1.364882 2.30137l-.308842 .318804c-.069738-1.344956-.119552-1.902864-.249066-2.560399c-.18929-1.075965-.209215-1.135741-.298879-1.135741c-.049813 0-.119552 .009963-.199253 .039851c-.318804 .069738-.657534 .139477-1.105853 .209215v.129514c.109589-.009963 .199253-.009963 .298879-.009963c.368618 0 .488169 .179328 .607721 .926526c.119552 .757161 .239103 2.211706 .239103 2.819427c0 .18929 0 .458281 .089664 .458281c.249066 0 1.145704-1.016189 2.191781-2.470735c.348692-.498132 .607721-1.135741 .607721-1.514321z'/>
@@ -226,7 +224,7 @@ a dfs tree gets built during traversal, if we're at a vertex <?xml version='1.0'
 </g>
 </svg>. in this case, the edge <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.498132 -7.043584 21.535833 9.056034' style="max-height: 0.8859em; vertical-align: -0.1926em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.498132 -7.043584 21.535833 9.056034' style="max-height: 0.8860em; vertical-align: -0.1926em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g6-68' d='m4.732254-1.075965l-.139477-.089664c-.52802 .657534-.667497 .787049-.826899 .787049c-.069738 0-.109589-.059776-.109589-.169365c0-.059776 0-.059776 .18929-.777086l.787049-2.978829h-.737235c-.537983 1.474471-.647572 1.713574-1.09589 2.430884c-.597758 .946451-1.085928 1.454545-1.404732 1.454545c-.129514 0-.209215-.099626-.209215-.249066c0-.039851 0-.059776 .009963-.089664l.9066-3.616438l-.029888-.019925c-.56787 .129514-.926526 .199253-1.494396 .268991v.139477c.37858 0 .398506 .009963 .488169 .059776c.059776 .019925 .109589 .109589 .109589 .179328c0 .079701-.049813 .33873-.139477 .667497l-.368618 1.414695c-.18929 .727273-.249066 1.036115-.249066 1.225405c0 .368618 .179328 .547945 .52802 .547945c.707347 0 1.235367-.537983 2.381071-2.460772c-.298879 1.09589-.448319 1.743462-.448319 1.96264c0 .308842 .179328 .478207 .478207 .478207c.468244 0 .687422-.18929 1.374844-1.165629z'/>
 <path id='g6-69' d='m4.244085-3.805729c0-.318804-.259029-.587796-.557908-.587796c-.229141 0-.368618 .129514-.368618 .33873c0 .159402 .059776 .278954 .239103 .438356c.129514 .119552 .179328 .199253 .179328 .298879c0 .468244-.647572 1.564134-1.364882 2.30137l-.308842 .318804c-.069738-1.344956-.119552-1.902864-.249066-2.560399c-.18929-1.075965-.209215-1.135741-.298879-1.135741c-.049813 0-.119552 .009963-.199253 .039851c-.318804 .069738-.657534 .139477-1.105853 .209215v.129514c.109589-.009963 .199253-.009963 .298879-.009963c.368618 0 .488169 .179328 .607721 .926526c.119552 .757161 .239103 2.211706 .239103 2.819427c0 .18929 0 .458281 .089664 .458281c.249066 0 1.145704-1.016189 2.191781-2.470735c.348692-.498132 .607721-1.135741 .607721-1.514321z'/>
@@ -265,7 +263,7 @@ a dfs tree gets built during traversal, if we're at a vertex <?xml version='1.0'
 </g>
 </svg> and <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.249051 -7.043584 49.44992 8.976339' style="max-height: 0.8859em; vertical-align: -0.1926em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.249051 -7.043584 49.44992 8.976339' style="max-height: 0.8860em; vertical-align: -0.1926em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g4-187' d='m2.978829 1.673724h-.856787c-.328767 0-.488169-.169365-.488169-.518057v-7.511831c0-.308842 .129514-.438356 .448319-.438356h.896638v-.249066h-2.102117v8.966376h2.102117v-.249066z'/>
 <path id='g4-188' d='m.33873 1.673724v.249066h2.102117v-8.966376h-2.102117v.249066h.856787c.328767 0 .488169 .169365 .488169 .518057v7.511831c0 .308842-.139477 .438356-.448319 .438356h-.896638z'/>
@@ -287,7 +285,7 @@ a dfs tree gets built during traversal, if we're at a vertex <?xml version='1.0'
 </g>
 </svg>. <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.498132 -7.043584 21.535833 9.056034' style="max-height: 0.8859em; vertical-align: -0.1926em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.498132 -7.043584 21.535833 9.056034' style="max-height: 0.8860em; vertical-align: -0.1926em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g6-68' d='m4.732254-1.075965l-.139477-.089664c-.52802 .657534-.667497 .787049-.826899 .787049c-.069738 0-.109589-.059776-.109589-.169365c0-.059776 0-.059776 .18929-.777086l.787049-2.978829h-.737235c-.537983 1.474471-.647572 1.713574-1.09589 2.430884c-.597758 .946451-1.085928 1.454545-1.404732 1.454545c-.129514 0-.209215-.099626-.209215-.249066c0-.039851 0-.059776 .009963-.089664l.9066-3.616438l-.029888-.019925c-.56787 .129514-.926526 .199253-1.494396 .268991v.139477c.37858 0 .398506 .009963 .488169 .059776c.059776 .019925 .109589 .109589 .109589 .179328c0 .079701-.049813 .33873-.139477 .667497l-.368618 1.414695c-.18929 .727273-.249066 1.036115-.249066 1.225405c0 .368618 .179328 .547945 .52802 .547945c.707347 0 1.235367-.537983 2.381071-2.460772c-.298879 1.09589-.448319 1.743462-.448319 1.96264c0 .308842 .179328 .478207 .478207 .478207c.468244 0 .687422-.18929 1.374844-1.165629z'/>
 <path id='g6-69' d='m4.244085-3.805729c0-.318804-.259029-.587796-.557908-.587796c-.229141 0-.368618 .129514-.368618 .33873c0 .159402 .059776 .278954 .239103 .438356c.129514 .119552 .179328 .199253 .179328 .298879c0 .468244-.647572 1.564134-1.364882 2.30137l-.308842 .318804c-.069738-1.344956-.119552-1.902864-.249066-2.560399c-.18929-1.075965-.209215-1.135741-.298879-1.135741c-.049813 0-.119552 .009963-.199253 .039851c-.318804 .069738-.657534 .139477-1.105853 .209215v.129514c.109589-.009963 .199253-.009963 .298879-.009963c.368618 0 .488169 .179328 .607721 .926526c.119552 .757161 .239103 2.211706 .239103 2.819427c0 .18929 0 .458281 .089664 .458281c.249066 0 1.145704-1.016189 2.191781-2.470735c.348692-.498132 .607721-1.135741 .607721-1.514321z'/>
@@ -304,9 +302,9 @@ a dfs tree gets built during traversal, if we're at a vertex <?xml version='1.0'
 </g>
 </svg> isnt included in the dfs forest<br /></li>
 </ul>
-<div id="outline-container-orgccd427a" class="outline-2">
-<h2 id="orgccd427a">process of a visit</h2>
-<div class="outline-text-2" id="text-orgccd427a">
+<div id="outline-container-org5a695ee" class="outline-2">
+<h2 id="org5a695ee">process of a visit</h2>
+<div class="outline-text-2" id="text-org5a695ee">
 <p>
 let <?xml version='1.0' encoding='UTF-8'?>
 
@@ -529,7 +527,7 @@ when we've gone through all of <?xml version='1.0' encoding='UTF-8'?>
 when we finally retreat to the origin node and there's no more free vertices, the first output tree would be complete. the process is over when there's no vertices left non-visited.<br />
 the simplest way to implement this logic is using recursion, which we may see later in the <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.734745 42.281448 6.874222' style="max-height: 0.6762em; vertical-align: -0.0137em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.734745 42.281448 6.874222' style="max-height: 0.6763em; vertical-align: -0.0138em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g3-37' d='m6.824408-3.327522c0-.896638-.298879-1.673724-.846824-2.221669c-.67746-.687422-1.763387-1.046077-3.128269-1.046077h-2.689913v.18929c.787049 .069738 .876712 .159402 .876712 .896638v4.423412c0 .71731-.119552 .846824-.876712 .896638v.18929h2.82939c1.155666 0 2.201743-.328767 2.819427-.886675c.647572-.587796 1.016189-1.474471 1.016189-2.440847zm-1.085928 .069738c0 1.175592-.408468 2.012453-1.215442 2.480697c-.508095 .288917-1.085928 .408468-1.952677 .408468c-.398506 0-.518057-.089664-.518057-.408468v-5.061021c0-.308842 .109589-.388543 .518057-.388543c.856787 0 1.504359 .159402 1.982565 .498132c.777086 .537983 1.185554 1.39477 1.185554 2.470735z'/>
 <path id='g3-39' d='m5.439601-5.17061l-.029888-1.424658h-5.290162v.18929c.737235 .059776 .86675 .199253 .86675 .896638v4.313823c0 .826899-.109589 .956413-.86675 1.006227v.18929h2.789539v-.18929c-.767123-.039851-.9066-.179328-.9066-.896638v-2.171856h1.444583c.806974 0 .976339 .14944 1.09589 .956413h.229141v-2.311333h-.229141c-.119552 .797011-.298879 .946451-1.09589 .946451h-1.444583v-2.211706c0-.278954 .049813-.33873 .318804-.33873h1.354919c1.125778 0 1.344956 .14944 1.514321 1.046077h.249066z'/>
@@ -555,16 +553,16 @@ the simplest way to implement this logic is using recursion, which we may see la
 </p>
 </div>
 </div>
-<div id="outline-container-org738c6a8" class="outline-2">
-<h2 id="org738c6a8">data structures used</h2>
-<div class="outline-text-2" id="text-org738c6a8">
+<div id="outline-container-org37b5e71" class="outline-2">
+<h2 id="org37b5e71">data structures used</h2>
+<div class="outline-text-2" id="text-org37b5e71">
 <p>
 the data structures used in the dfs algorithm are<br />
 </p>
 <ol class="org-ol">
 <li>a global variable <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='-.039859 -6.316312 18.550385 6.405974' style="max-height: 0.6306em; vertical-align: -0.0098em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='-.039859 -6.316312 18.550385 6.405974' style="max-height: 0.6307em; vertical-align: -0.0098em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g6-52' d='m3.686177-.966376l-.119552-.119552c-.71731 .587796-1.026152 .747198-1.464508 .747198c-.557908 0-.926526-.358655-.926526-.9066c0-.14944 .019925-.288917 .099626-.607721l.278954-.039851c1.494396-.209215 2.550436-.966376 2.550436-1.823163c0-.418431-.298879-.67746-.797011-.67746c-1.43462 0-2.998755 1.633873-2.998755 3.138232c0 .806974 .537983 1.364882 1.315068 1.364882c.707347 0 1.474471-.398506 2.062267-1.075965zm-.239103-2.809465c0 .308842-.18929 .667497-.498132 .966376c-.368618 .348692-.747198 .52802-1.603985 .737235l.169365-.438356c.33873-.886675 1.075965-1.653798 1.58406-1.653798c.209215 0 .348692 .14944 .348692 .388543z'/>
 <path id='g6-56' d='m2.34122-1.026152l-.129514-.109589c-.428394 .56787-.647572 .777086-.816936 .777086c-.079701 0-.159402-.069738-.159402-.14944c0-.159402 .099626-.458281 .159402-.657534l.876712-3.20797l-.029888-.019925c-1.006227 .18929-1.205479 .219178-1.594022 .249066v.159402c.537983 .009963 .627646 .039851 .627646 .239103c0 .079701-.029888 .249066-.089664 .438356l-.478207 1.763387c-.159402 .597758-.219178 .886675-.219178 1.085928c0 .368618 .159402 .56787 .458281 .56787c.468244 0 .826899-.298879 1.39477-1.135741zm.408468-4.83188c0-.288917-.229141-.547945-.498132-.547945s-.468244 .219178-.468244 .52802c0 .318804 .18929 .52802 .478207 .52802c.259029 0 .488169-.229141 .488169-.508095z'/>
@@ -579,7 +577,7 @@ the data structures used in the dfs algorithm are<br />
 </g>
 </svg> that allows giving timestampts to each <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.734745 42.281448 6.874222' style="max-height: 0.6762em; vertical-align: -0.0137em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.734745 42.281448 6.874222' style="max-height: 0.6763em; vertical-align: -0.0138em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g3-37' d='m6.824408-3.327522c0-.896638-.298879-1.673724-.846824-2.221669c-.67746-.687422-1.763387-1.046077-3.128269-1.046077h-2.689913v.18929c.787049 .069738 .876712 .159402 .876712 .896638v4.423412c0 .71731-.119552 .846824-.876712 .896638v.18929h2.82939c1.155666 0 2.201743-.328767 2.819427-.886675c.647572-.587796 1.016189-1.474471 1.016189-2.440847zm-1.085928 .069738c0 1.175592-.408468 2.012453-1.215442 2.480697c-.508095 .288917-1.085928 .408468-1.952677 .408468c-.398506 0-.518057-.089664-.518057-.408468v-5.061021c0-.308842 .109589-.388543 .518057-.388543c.856787 0 1.504359 .159402 1.982565 .498132c.777086 .537983 1.185554 1.39477 1.185554 2.470735z'/>
 <path id='g3-39' d='m5.439601-5.17061l-.029888-1.424658h-5.290162v.18929c.737235 .059776 .86675 .199253 .86675 .896638v4.313823c0 .826899-.109589 .956413-.86675 1.006227v.18929h2.789539v-.18929c-.767123-.039851-.9066-.179328-.9066-.896638v-2.171856h1.444583c.806974 0 .976339 .14944 1.09589 .956413h.229141v-2.311333h-.229141c-.119552 .797011-.298879 .946451-1.09589 .946451h-1.444583v-2.211706c0-.278954 .049813-.33873 .318804-.33873h1.354919c1.125778 0 1.344956 .14944 1.514321 1.046077h.249066z'/>
@@ -603,7 +601,7 @@ the data structures used in the dfs algorithm are<br />
 </g>
 </svg> call. the initial value of <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='-.039859 -6.316312 18.550385 6.405974' style="max-height: 0.6306em; vertical-align: -0.0098em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='-.039859 -6.316312 18.550385 6.405974' style="max-height: 0.6307em; vertical-align: -0.0098em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g6-52' d='m3.686177-.966376l-.119552-.119552c-.71731 .587796-1.026152 .747198-1.464508 .747198c-.557908 0-.926526-.358655-.926526-.9066c0-.14944 .019925-.288917 .099626-.607721l.278954-.039851c1.494396-.209215 2.550436-.966376 2.550436-1.823163c0-.418431-.298879-.67746-.797011-.67746c-1.43462 0-2.998755 1.633873-2.998755 3.138232c0 .806974 .537983 1.364882 1.315068 1.364882c.707347 0 1.474471-.398506 2.062267-1.075965zm-.239103-2.809465c0 .308842-.18929 .667497-.498132 .966376c-.368618 .348692-.747198 .52802-1.603985 .737235l.169365-.438356c.33873-.886675 1.075965-1.653798 1.58406-1.653798c.209215 0 .348692 .14944 .348692 .388543z'/>
 <path id='g6-56' d='m2.34122-1.026152l-.129514-.109589c-.428394 .56787-.647572 .777086-.816936 .777086c-.079701 0-.159402-.069738-.159402-.14944c0-.159402 .099626-.458281 .159402-.657534l.876712-3.20797l-.029888-.019925c-1.006227 .18929-1.205479 .219178-1.594022 .249066v.159402c.537983 .009963 .627646 .039851 .627646 .239103c0 .079701-.029888 .249066-.089664 .438356l-.478207 1.763387c-.159402 .597758-.219178 .886675-.219178 1.085928c0 .368618 .159402 .56787 .458281 .56787c.468244 0 .826899-.298879 1.39477-1.135741zm.408468-4.83188c0-.288917-.229141-.547945-.498132-.547945s-.468244 .219178-.468244 .52802c0 .318804 .18929 .52802 .478207 .52802c.259029 0 .488169-.229141 .488169-.508095z'/>
@@ -635,7 +633,7 @@ the data structures used in the dfs algorithm are<br />
 <ol class="org-ol">
 <li><?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.249051 -7.043584 17.982538 8.976339' style="max-height: 0.8859em; vertical-align: -0.1926em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.249051 -7.043584 17.982538 8.976339' style="max-height: 0.8860em; vertical-align: -0.1926em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g4-187' d='m2.978829 1.673724h-.856787c-.328767 0-.488169-.169365-.488169-.518057v-7.511831c0-.308842 .129514-.438356 .448319-.438356h.896638v-.249066h-2.102117v8.966376h2.102117v-.249066z'/>
 <path id='g4-188' d='m.33873 1.673724v.249066h2.102117v-8.966376h-2.102117v.249066h.856787c.328767 0 .488169 .169365 .488169 .518057v7.511831c0 .308842-.139477 .438356-.448319 .438356h-.896638z'/>
@@ -661,7 +659,7 @@ the data structures used in the dfs algorithm are<br />
 </g>
 </svg> (value of <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='-.039859 -6.316312 18.550385 6.405974' style="max-height: 0.6306em; vertical-align: -0.0098em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='-.039859 -6.316312 18.550385 6.405974' style="max-height: 0.6307em; vertical-align: -0.0098em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g6-52' d='m3.686177-.966376l-.119552-.119552c-.71731 .587796-1.026152 .747198-1.464508 .747198c-.557908 0-.926526-.358655-.926526-.9066c0-.14944 .019925-.288917 .099626-.607721l.278954-.039851c1.494396-.209215 2.550436-.966376 2.550436-1.823163c0-.418431-.298879-.67746-.797011-.67746c-1.43462 0-2.998755 1.633873-2.998755 3.138232c0 .806974 .537983 1.364882 1.315068 1.364882c.707347 0 1.474471-.398506 2.062267-1.075965zm-.239103-2.809465c0 .308842-.18929 .667497-.498132 .966376c-.368618 .348692-.747198 .52802-1.603985 .737235l.169365-.438356c.33873-.886675 1.075965-1.653798 1.58406-1.653798c.209215 0 .348692 .14944 .348692 .388543z'/>
 <path id='g6-56' d='m2.34122-1.026152l-.129514-.109589c-.428394 .56787-.647572 .777086-.816936 .777086c-.079701 0-.159402-.069738-.159402-.14944c0-.159402 .099626-.458281 .159402-.657534l.876712-3.20797l-.029888-.019925c-1.006227 .18929-1.205479 .219178-1.594022 .249066v.159402c.537983 .009963 .627646 .039851 .627646 .239103c0 .079701-.029888 .249066-.089664 .438356l-.478207 1.763387c-.159402 .597758-.219178 .886675-.219178 1.085928c0 .368618 .159402 .56787 .458281 .56787c.468244 0 .826899-.298879 1.39477-1.135741zm.408468-4.83188c0-.288917-.229141-.547945-.498132-.547945s-.468244 .219178-.468244 .52802c0 .318804 .18929 .52802 .478207 .52802c.259029 0 .488169-.229141 .488169-.508095z'/>
@@ -676,7 +674,7 @@ the data structures used in the dfs algorithm are<br />
 </g>
 </svg> at the start of <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.734745 42.281448 6.874222' style="max-height: 0.6762em; vertical-align: -0.0137em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.734745 42.281448 6.874222' style="max-height: 0.6763em; vertical-align: -0.0138em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g3-37' d='m6.824408-3.327522c0-.896638-.298879-1.673724-.846824-2.221669c-.67746-.687422-1.763387-1.046077-3.128269-1.046077h-2.689913v.18929c.787049 .069738 .876712 .159402 .876712 .896638v4.423412c0 .71731-.119552 .846824-.876712 .896638v.18929h2.82939c1.155666 0 2.201743-.328767 2.819427-.886675c.647572-.587796 1.016189-1.474471 1.016189-2.440847zm-1.085928 .069738c0 1.175592-.408468 2.012453-1.215442 2.480697c-.508095 .288917-1.085928 .408468-1.952677 .408468c-.398506 0-.518057-.089664-.518057-.408468v-5.061021c0-.308842 .109589-.388543 .518057-.388543c.856787 0 1.504359 .159402 1.982565 .498132c.777086 .537983 1.185554 1.39477 1.185554 2.470735z'/>
 <path id='g3-39' d='m5.439601-5.17061l-.029888-1.424658h-5.290162v.18929c.737235 .059776 .86675 .199253 .86675 .896638v4.313823c0 .826899-.109589 .956413-.86675 1.006227v.18929h2.789539v-.18929c-.767123-.039851-.9066-.179328-.9066-.896638v-2.171856h1.444583c.806974 0 .976339 .14944 1.09589 .956413h.229141v-2.311333h-.229141c-.119552 .797011-.298879 .946451-1.09589 .946451h-1.444583v-2.211706c0-.278954 .049813-.33873 .318804-.33873h1.354919c1.125778 0 1.344956 .14944 1.514321 1.046077h.249066z'/>
@@ -701,7 +699,7 @@ the data structures used in the dfs algorithm are<br />
 </svg>)<br /></li>
 <li><?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='1.73349 -7.043584 17.006204 9.105849' style="max-height: 0.8967em; vertical-align: -0.2033em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='1.73349 -7.043584 17.006204 9.105849' style="max-height: 0.8968em; vertical-align: -0.2034em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g4-187' d='m2.978829 1.673724h-.856787c-.328767 0-.488169-.169365-.488169-.518057v-7.511831c0-.308842 .129514-.438356 .448319-.438356h.896638v-.249066h-2.102117v8.966376h2.102117v-.249066z'/>
 <path id='g4-188' d='m.33873 1.673724v.249066h2.102117v-8.966376h-2.102117v.249066h.856787c.328767 0 .488169 .169365 .488169 .518057v7.511831c0 .308842-.139477 .438356-.448319 .438356h-.896638z'/>
@@ -727,7 +725,7 @@ the data structures used in the dfs algorithm are<br />
 </g>
 </svg> (the value of <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='-.039859 -6.316312 18.550385 6.405974' style="max-height: 0.6306em; vertical-align: -0.0098em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='-.039859 -6.316312 18.550385 6.405974' style="max-height: 0.6307em; vertical-align: -0.0098em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g6-52' d='m3.686177-.966376l-.119552-.119552c-.71731 .587796-1.026152 .747198-1.464508 .747198c-.557908 0-.926526-.358655-.926526-.9066c0-.14944 .019925-.288917 .099626-.607721l.278954-.039851c1.494396-.209215 2.550436-.966376 2.550436-1.823163c0-.418431-.298879-.67746-.797011-.67746c-1.43462 0-2.998755 1.633873-2.998755 3.138232c0 .806974 .537983 1.364882 1.315068 1.364882c.707347 0 1.474471-.398506 2.062267-1.075965zm-.239103-2.809465c0 .308842-.18929 .667497-.498132 .966376c-.368618 .348692-.747198 .52802-1.603985 .737235l.169365-.438356c.33873-.886675 1.075965-1.653798 1.58406-1.653798c.209215 0 .348692 .14944 .348692 .388543z'/>
 <path id='g6-56' d='m2.34122-1.026152l-.129514-.109589c-.428394 .56787-.647572 .777086-.816936 .777086c-.079701 0-.159402-.069738-.159402-.14944c0-.159402 .099626-.458281 .159402-.657534l.876712-3.20797l-.029888-.019925c-1.006227 .18929-1.205479 .219178-1.594022 .249066v.159402c.537983 .009963 .627646 .039851 .627646 .239103c0 .079701-.029888 .249066-.089664 .438356l-.478207 1.763387c-.159402 .597758-.219178 .886675-.219178 1.085928c0 .368618 .159402 .56787 .458281 .56787c.468244 0 .826899-.298879 1.39477-1.135741zm.408468-4.83188c0-.288917-.229141-.547945-.498132-.547945s-.468244 .219178-.468244 .52802c0 .318804 .18929 .52802 .478207 .52802c.259029 0 .488169-.229141 .488169-.508095z'/>
@@ -742,7 +740,7 @@ the data structures used in the dfs algorithm are<br />
 </g>
 </svg> at the end of <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.734745 42.281448 6.874222' style="max-height: 0.6762em; vertical-align: -0.0137em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.734745 42.281448 6.874222' style="max-height: 0.6763em; vertical-align: -0.0138em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g3-37' d='m6.824408-3.327522c0-.896638-.298879-1.673724-.846824-2.221669c-.67746-.687422-1.763387-1.046077-3.128269-1.046077h-2.689913v.18929c.787049 .069738 .876712 .159402 .876712 .896638v4.423412c0 .71731-.119552 .846824-.876712 .896638v.18929h2.82939c1.155666 0 2.201743-.328767 2.819427-.886675c.647572-.587796 1.016189-1.474471 1.016189-2.440847zm-1.085928 .069738c0 1.175592-.408468 2.012453-1.215442 2.480697c-.508095 .288917-1.085928 .408468-1.952677 .408468c-.398506 0-.518057-.089664-.518057-.408468v-5.061021c0-.308842 .109589-.388543 .518057-.388543c.856787 0 1.504359 .159402 1.982565 .498132c.777086 .537983 1.185554 1.39477 1.185554 2.470735z'/>
 <path id='g3-39' d='m5.439601-5.17061l-.029888-1.424658h-5.290162v.18929c.737235 .059776 .86675 .199253 .86675 .896638v4.313823c0 .826899-.109589 .956413-.86675 1.006227v.18929h2.789539v-.18929c-.767123-.039851-.9066-.179328-.9066-.896638v-2.171856h1.444583c.806974 0 .976339 .14944 1.09589 .956413h.229141v-2.311333h-.229141c-.119552 .797011-.298879 .946451-1.09589 .946451h-1.444583v-2.211706c0-.278954 .049813-.33873 .318804-.33873h1.354919c1.125778 0 1.344956 .14944 1.514321 1.046077h.249066z'/>
@@ -767,7 +765,7 @@ the data structures used in the dfs algorithm are<br />
 </svg>)<br /></li>
 <li><?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.727268 -7.043584 17.862976 9.085925' style="max-height: 0.8967em; vertical-align: -0.2033em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.727268 -7.043584 17.862976 9.085925' style="max-height: 0.8968em; vertical-align: -0.2034em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g4-187' d='m2.978829 1.673724h-.856787c-.328767 0-.488169-.169365-.488169-.518057v-7.511831c0-.308842 .129514-.438356 .448319-.438356h.896638v-.249066h-2.102117v8.966376h2.102117v-.249066z'/>
 <path id='g4-188' d='m.33873 1.673724v.249066h2.102117v-8.966376h-2.102117v.249066h.856787c.328767 0 .488169 .169365 .488169 .518057v7.511831c0 .308842-.139477 .438356-.448319 .438356h-.896638z'/>
@@ -796,9 +794,9 @@ the data structures used in the dfs algorithm are<br />
 </ol>
 </div>
 </div>
-<div id="outline-container-org8a31ee2" class="outline-2">
-<h2 id="org8a31ee2">pseudocode</h2>
-<div class="outline-text-2" id="text-org8a31ee2">
+<div id="outline-container-org3cefdb8" class="outline-2">
+<h2 id="org3cefdb8">pseudocode</h2>
+<div class="outline-text-2" id="text-org3cefdb8">
 
 <div class="equation-container">
 <span class="equation">
@@ -1268,7 +1266,7 @@ the data structures used in the dfs algorithm are<br />
 <p>
 the <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.734745 37.180573 6.874222' style="max-height: 0.6762em; vertical-align: -0.0137em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.734745 37.180573 6.874222' style="max-height: 0.6763em; vertical-align: -0.0138em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g3-37' d='m6.824408-3.327522c0-.896638-.298879-1.673724-.846824-2.221669c-.67746-.687422-1.763387-1.046077-3.128269-1.046077h-2.689913v.18929c.787049 .069738 .876712 .159402 .876712 .896638v4.423412c0 .71731-.119552 .846824-.876712 .896638v.18929h2.82939c1.155666 0 2.201743-.328767 2.819427-.886675c.647572-.587796 1.016189-1.474471 1.016189-2.440847zm-1.085928 .069738c0 1.175592-.408468 2.012453-1.215442 2.480697c-.508095 .288917-1.085928 .408468-1.952677 .408468c-.398506 0-.518057-.089664-.518057-.408468v-5.061021c0-.308842 .109589-.388543 .518057-.388543c.856787 0 1.504359 .159402 1.982565 .498132c.777086 .537983 1.185554 1.39477 1.185554 2.470735z'/>
 <path id='g3-39' d='m5.439601-5.17061l-.029888-1.424658h-5.290162v.18929c.737235 .059776 .86675 .199253 .86675 .896638v4.313823c0 .826899-.109589 .956413-.86675 1.006227v.18929h2.789539v-.18929c-.767123-.039851-.9066-.179328-.9066-.896638v-2.171856h1.444583c.806974 0 .976339 .14944 1.09589 .956413h.229141v-2.311333h-.229141c-.119552 .797011-.298879 .946451-1.09589 .946451h-1.444583v-2.211706c0-.278954 .049813-.33873 .318804-.33873h1.354919c1.125778 0 1.344956 .14944 1.514321 1.046077h.249066z'/>
@@ -1291,7 +1289,7 @@ the <?xml version='1.0' encoding='UTF-8'?>
 </g>
 </svg> function initiates the data structures we need, traversal is done by <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.734745 42.281448 6.874222' style="max-height: 0.6762em; vertical-align: -0.0137em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.734745 42.281448 6.874222' style="max-height: 0.6763em; vertical-align: -0.0138em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g3-37' d='m6.824408-3.327522c0-.896638-.298879-1.673724-.846824-2.221669c-.67746-.687422-1.763387-1.046077-3.128269-1.046077h-2.689913v.18929c.787049 .069738 .876712 .159402 .876712 .896638v4.423412c0 .71731-.119552 .846824-.876712 .896638v.18929h2.82939c1.155666 0 2.201743-.328767 2.819427-.886675c.647572-.587796 1.016189-1.474471 1.016189-2.440847zm-1.085928 .069738c0 1.175592-.408468 2.012453-1.215442 2.480697c-.508095 .288917-1.085928 .408468-1.952677 .408468c-.398506 0-.518057-.089664-.518057-.408468v-5.061021c0-.308842 .109589-.388543 .518057-.388543c.856787 0 1.504359 .159402 1.982565 .498132c.777086 .537983 1.185554 1.39477 1.185554 2.470735z'/>
 <path id='g3-39' d='m5.439601-5.17061l-.029888-1.424658h-5.290162v.18929c.737235 .059776 .86675 .199253 .86675 .896638v4.313823c0 .826899-.109589 .956413-.86675 1.006227v.18929h2.789539v-.18929c-.767123-.039851-.9066-.179328-.9066-.896638v-2.171856h1.444583c.806974 0 .976339 .14944 1.09589 .956413h.229141v-2.311333h-.229141c-.119552 .797011-.298879 .946451-1.09589 .946451h-1.444583v-2.211706c0-.278954 .049813-.33873 .318804-.33873h1.354919c1.125778 0 1.344956 .14944 1.514321 1.046077h.249066z'/>
@@ -1317,14 +1315,14 @@ the <?xml version='1.0' encoding='UTF-8'?>
 </p>
 </div>
 </div>
-<div id="outline-container-org2ea2a91" class="outline-2">
-<h2 id="org2ea2a91">further analysis</h2>
-<div class="outline-text-2" id="text-org2ea2a91">
+<div id="outline-container-orgd90c0c1" class="outline-2">
+<h2 id="orgd90c0c1">further analysis</h2>
+<div class="outline-text-2" id="text-orgd90c0c1">
 <div class="math-block lemma" data-before="lemma" data-after="">
 <p>
 the total time complexity of the dfs algorithm is <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -7.043584 49.747766 9.056034' style="max-height: 0.8859em; vertical-align: -0.1926em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -7.043584 49.747766 9.056034' style="max-height: 0.8860em; vertical-align: -0.1926em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g6-26' d='m5.65878-1.613948l-.159402-.079701c-.468244 .647572-.727273 .896638-1.155666 1.09589c-.368618 .169365-1.046077 .268991-1.803238 .268991c-.557908 0-.787049-.099626-.787049-.33873c0-.119552 .109589-.577833 .358655-1.454545l.318804-1.145704l.777086 .029888c.029888 0 .059776 0 .079701 0c.348692 0 .597758 .059776 .697385 .14944c.049813 .049813 .069738 .139477 .069738 .308842c0 .179328-.019925 .298879-.069738 .518057l.199253 .049813l.67746-2.311333l-.179328-.039851c-.37858 .846824-.478207 .916563-1.374844 .946451l-.787049 .019925l.657534-2.321295c.059776-.219178 .159402-.259029 .727273-.259029c1.564134 0 1.912827 .129514 1.912827 .727273c0 .129514-.009963 .278954-.019925 .448319l.209215 .019925l.308842-1.524284h-4.951432v.159402c.617684 .059776 .767123 .139477 .767123 .408468c0 .119552-.059776 .438356-.109589 .637609l-1.225405 4.403487c-.179328 .577833-.249066 .637609-.806974 .737235v.159402h5.051059l.617684-1.613948z'/>
 <path id='g6-43' d='m6.854296-6.346202v-.159402h-1.853051v.159402c.448319 .049813 .627646 .14944 .627646 .33873s-.179328 .607721-.518057 1.185554l-2.052304 3.5467l-.657534-4.41345c-.009963-.049813-.009963-.099626-.009963-.14944c0-.33873 .139477-.438356 .767123-.508095v-.159402h-2.400996v.159402c.557908 .069738 .577833 .099626 .787049 1.344956l.846824 5.180573h.18929l3.716065-6.127024c.169365-.268991 .328767-.388543 .557908-.398506z'/>
@@ -1352,7 +1350,7 @@ the total time complexity of the dfs algorithm is <?xml version='1.0' encoding='
 <p>
 complexity of <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.734745 37.180573 6.874222' style="max-height: 0.6762em; vertical-align: -0.0137em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.734745 37.180573 6.874222' style="max-height: 0.6763em; vertical-align: -0.0138em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g3-37' d='m6.824408-3.327522c0-.896638-.298879-1.673724-.846824-2.221669c-.67746-.687422-1.763387-1.046077-3.128269-1.046077h-2.689913v.18929c.787049 .069738 .876712 .159402 .876712 .896638v4.423412c0 .71731-.119552 .846824-.876712 .896638v.18929h2.82939c1.155666 0 2.201743-.328767 2.819427-.886675c.647572-.587796 1.016189-1.474471 1.016189-2.440847zm-1.085928 .069738c0 1.175592-.408468 2.012453-1.215442 2.480697c-.508095 .288917-1.085928 .408468-1.952677 .408468c-.398506 0-.518057-.089664-.518057-.408468v-5.061021c0-.308842 .109589-.388543 .518057-.388543c.856787 0 1.504359 .159402 1.982565 .498132c.777086 .537983 1.185554 1.39477 1.185554 2.470735z'/>
 <path id='g3-39' d='m5.439601-5.17061l-.029888-1.424658h-5.290162v.18929c.737235 .059776 .86675 .199253 .86675 .896638v4.313823c0 .826899-.109589 .956413-.86675 1.006227v.18929h2.789539v-.18929c-.767123-.039851-.9066-.179328-.9066-.896638v-2.171856h1.444583c.806974 0 .976339 .14944 1.09589 .956413h.229141v-2.311333h-.229141c-.119552 .797011-.298879 .946451-1.09589 .946451h-1.444583v-2.211706c0-.278954 .049813-.33873 .318804-.33873h1.354919c1.125778 0 1.344956 .14944 1.514321 1.046077h.249066z'/>
@@ -1375,7 +1373,7 @@ complexity of <?xml version='1.0' encoding='UTF-8'?>
 </g>
 </svg> is <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -7.043584 26.919054 9.056034' style="max-height: 0.8859em; vertical-align: -0.1926em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -7.043584 26.919054 9.056034' style="max-height: 0.8860em; vertical-align: -0.1926em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g6-43' d='m6.854296-6.346202v-.159402h-1.853051v.159402c.448319 .049813 .627646 .14944 .627646 .33873s-.179328 .607721-.518057 1.185554l-2.052304 3.5467l-.657534-4.41345c-.009963-.049813-.009963-.099626-.009963-.14944c0-.33873 .139477-.438356 .767123-.508095v-.159402h-2.400996v.159402c.557908 .069738 .577833 .099626 .787049 1.344956l.846824 5.180573h.18929l3.716065-6.127024c.169365-.268991 .328767-.388543 .557908-.398506z'/>
 <path id='g4-106' d='m1.275218 1.92279v-8.966376h-.557908v8.966376h.557908z'/>
@@ -1408,7 +1406,7 @@ for each <?xml version='1.0' encoding='UTF-8'?>
 </g>
 </svg>, the function <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.734745 42.281448 6.874222' style="max-height: 0.6762em; vertical-align: -0.0137em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.734745 42.281448 6.874222' style="max-height: 0.6763em; vertical-align: -0.0138em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g3-37' d='m6.824408-3.327522c0-.896638-.298879-1.673724-.846824-2.221669c-.67746-.687422-1.763387-1.046077-3.128269-1.046077h-2.689913v.18929c.787049 .069738 .876712 .159402 .876712 .896638v4.423412c0 .71731-.119552 .846824-.876712 .896638v.18929h2.82939c1.155666 0 2.201743-.328767 2.819427-.886675c.647572-.587796 1.016189-1.474471 1.016189-2.440847zm-1.085928 .069738c0 1.175592-.408468 2.012453-1.215442 2.480697c-.508095 .288917-1.085928 .408468-1.952677 .408468c-.398506 0-.518057-.089664-.518057-.408468v-5.061021c0-.308842 .109589-.388543 .518057-.388543c.856787 0 1.504359 .159402 1.982565 .498132c.777086 .537983 1.185554 1.39477 1.185554 2.470735z'/>
 <path id='g3-39' d='m5.439601-5.17061l-.029888-1.424658h-5.290162v.18929c.737235 .059776 .86675 .199253 .86675 .896638v4.313823c0 .826899-.109589 .956413-.86675 1.006227v.18929h2.789539v-.18929c-.767123-.039851-.9066-.179328-.9066-.896638v-2.171856h1.444583c.806974 0 .976339 .14944 1.09589 .956413h.229141v-2.311333h-.229141c-.119552 .797011-.298879 .946451-1.09589 .946451h-1.444583v-2.211706c0-.278954 .049813-.33873 .318804-.33873h1.354919c1.125778 0 1.344956 .14944 1.514321 1.046077h.249066z'/>
@@ -1476,7 +1474,7 @@ let <?xml version='1.0' encoding='UTF-8'?>
 </g>
 </svg> be a connected undirected graph in which <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.734745 18.271482 6.874222' style="max-height: 0.6762em; vertical-align: -0.0137em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.734745 18.271482 6.874222' style="max-height: 0.6763em; vertical-align: -0.0138em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g3-37' d='m6.824408-3.327522c0-.896638-.298879-1.673724-.846824-2.221669c-.67746-.687422-1.763387-1.046077-3.128269-1.046077h-2.689913v.18929c.787049 .069738 .876712 .159402 .876712 .896638v4.423412c0 .71731-.119552 .846824-.876712 .896638v.18929h2.82939c1.155666 0 2.201743-.328767 2.819427-.886675c.647572-.587796 1.016189-1.474471 1.016189-2.440847zm-1.085928 .069738c0 1.175592-.408468 2.012453-1.215442 2.480697c-.508095 .288917-1.085928 .408468-1.952677 .408468c-.398506 0-.518057-.089664-.518057-.408468v-5.061021c0-.308842 .109589-.388543 .518057-.388543c.856787 0 1.504359 .159402 1.982565 .498132c.777086 .537983 1.185554 1.39477 1.185554 2.470735z'/>
 <path id='g3-39' d='m5.439601-5.17061l-.029888-1.424658h-5.290162v.18929c.737235 .059776 .86675 .199253 .86675 .896638v4.313823c0 .826899-.109589 .956413-.86675 1.006227v.18929h2.789539v-.18929c-.767123-.039851-.9066-.179328-.9066-.896638v-2.171856h1.444583c.806974 0 .976339 .14944 1.09589 .956413h.229141v-2.311333h-.229141c-.119552 .797011-.298879 .946451-1.09589 .946451h-1.444583v-2.211706c0-.278954 .049813-.33873 .318804-.33873h1.354919c1.125778 0 1.344956 .14944 1.514321 1.046077h.249066z'/>
@@ -1503,7 +1501,7 @@ let <?xml version='1.0' encoding='UTF-8'?>
 <ol class="org-ol">
 <li>the function <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.734745 42.281448 6.874222' style="max-height: 0.6762em; vertical-align: -0.0137em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.734745 42.281448 6.874222' style="max-height: 0.6763em; vertical-align: -0.0138em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g3-37' d='m6.824408-3.327522c0-.896638-.298879-1.673724-.846824-2.221669c-.67746-.687422-1.763387-1.046077-3.128269-1.046077h-2.689913v.18929c.787049 .069738 .876712 .159402 .876712 .896638v4.423412c0 .71731-.119552 .846824-.876712 .896638v.18929h2.82939c1.155666 0 2.201743-.328767 2.819427-.886675c.647572-.587796 1.016189-1.474471 1.016189-2.440847zm-1.085928 .069738c0 1.175592-.408468 2.012453-1.215442 2.480697c-.508095 .288917-1.085928 .408468-1.952677 .408468c-.398506 0-.518057-.089664-.518057-.408468v-5.061021c0-.308842 .109589-.388543 .518057-.388543c.856787 0 1.504359 .159402 1.982565 .498132c.777086 .537983 1.185554 1.39477 1.185554 2.470735z'/>
 <path id='g3-39' d='m5.439601-5.17061l-.029888-1.424658h-5.290162v.18929c.737235 .059776 .86675 .199253 .86675 .896638v4.313823c0 .826899-.109589 .956413-.86675 1.006227v.18929h2.789539v-.18929c-.767123-.039851-.9066-.179328-.9066-.896638v-2.171856h1.444583c.806974 0 .976339 .14944 1.09589 .956413h.229141v-2.311333h-.229141c-.119552 .797011-.298879 .946451-1.09589 .946451h-1.444583v-2.211706c0-.278954 .049813-.33873 .318804-.33873h1.354919c1.125778 0 1.344956 .14944 1.514321 1.046077h.249066z'/>
@@ -1528,7 +1526,7 @@ let <?xml version='1.0' encoding='UTF-8'?>
 </svg> is executed once only<br /></li>
 <li><?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -7.043584 97.839295 9.105849' style="max-height: 0.8967em; vertical-align: -0.2033em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -7.043584 97.839295 9.105849' style="max-height: 0.8968em; vertical-align: -0.2034em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g6-43' d='m6.854296-6.346202v-.159402h-1.853051v.159402c.448319 .049813 .627646 .14944 .627646 .33873s-.179328 .607721-.518057 1.185554l-2.052304 3.5467l-.657534-4.41345c-.009963-.049813-.009963-.099626-.009963-.14944c0-.33873 .139477-.438356 .767123-.508095v-.159402h-2.400996v.159402c.557908 .069738 .577833 .099626 .787049 1.344956l.846824 5.180573h.18929l3.716065-6.127024c.169365-.268991 .328767-.388543 .557908-.398506z'/>
 <path id='g6-51' d='m4.732254-1.006227l-.119552-.099626c-.547945 .627646-.647572 .707347-.816936 .707347c-.099626 0-.179328-.079701-.179328-.199253c0-.159402 .308842-1.325031 .647572-2.450809l.986301-3.706102l-.049813-.049813c-.52802 .109589-.886675 .169365-1.524284 .229141v.169365c.547945 .019925 .617684 .049813 .617684 .259029c0 .139477-.009963 .169365-.14944 .697385l-.438356 1.633873c-.079701-.418431-.259029-.577833-.647572-.577833c-1.295143 0-2.909091 1.872976-2.909091 3.367372c0 .707347 .398506 1.135741 1.046077 1.135741c.67746 0 1.115816-.318804 1.793275-1.315068c-.109589 .498132-.129514 .657534-.129514 .886675c0 .268991 .159402 .448319 .418431 .448319c.418431 0 .946451-.408468 1.454545-1.135741zm-1.185554-2.590286c0 1.514321-1.036115 3.227895-1.952677 3.227895c-.348692 0-.577833-.259029-.577833-.657534c0-.826899 .498132-1.982565 1.155666-2.67995c.268991-.278954 .607721-.458281 .886675-.458281c.009963 0 .029888 0 .039851 0c.298879 .019925 .448319 .209215 .448319 .56787z'/>
@@ -1568,7 +1566,7 @@ let <?xml version='1.0' encoding='UTF-8'?>
 <p>
 assume <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.498132 -7.043584 21.535833 9.056034' style="max-height: 0.8859em; vertical-align: -0.1926em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.498132 -7.043584 21.535833 9.056034' style="max-height: 0.8860em; vertical-align: -0.1926em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g6-68' d='m4.732254-1.075965l-.139477-.089664c-.52802 .657534-.667497 .787049-.826899 .787049c-.069738 0-.109589-.059776-.109589-.169365c0-.059776 0-.059776 .18929-.777086l.787049-2.978829h-.737235c-.537983 1.474471-.647572 1.713574-1.09589 2.430884c-.597758 .946451-1.085928 1.454545-1.404732 1.454545c-.129514 0-.209215-.099626-.209215-.249066c0-.039851 0-.059776 .009963-.089664l.9066-3.616438l-.029888-.019925c-.56787 .129514-.926526 .199253-1.494396 .268991v.139477c.37858 0 .398506 .009963 .488169 .059776c.059776 .019925 .109589 .109589 .109589 .179328c0 .079701-.049813 .33873-.139477 .667497l-.368618 1.414695c-.18929 .727273-.249066 1.036115-.249066 1.225405c0 .368618 .179328 .547945 .52802 .547945c.707347 0 1.235367-.537983 2.381071-2.460772c-.298879 1.09589-.448319 1.743462-.448319 1.96264c0 .308842 .179328 .478207 .478207 .478207c.468244 0 .687422-.18929 1.374844-1.165629z'/>
 <path id='g6-69' d='m4.244085-3.805729c0-.318804-.259029-.587796-.557908-.587796c-.229141 0-.368618 .129514-.368618 .33873c0 .159402 .059776 .278954 .239103 .438356c.129514 .119552 .179328 .199253 .179328 .298879c0 .468244-.647572 1.564134-1.364882 2.30137l-.308842 .318804c-.069738-1.344956-.119552-1.902864-.249066-2.560399c-.18929-1.075965-.209215-1.135741-.298879-1.135741c-.049813 0-.119552 .009963-.199253 .039851c-.318804 .069738-.657534 .139477-1.105853 .209215v.129514c.109589-.009963 .199253-.009963 .298879-.009963c.368618 0 .488169 .179328 .607721 .926526c.119552 .757161 .239103 2.211706 .239103 2.819427c0 .18929 0 .458281 .089664 .458281c.249066 0 1.145704-1.016189 2.191781-2.470735c.348692-.498132 .607721-1.135741 .607721-1.514321z'/>
@@ -1596,7 +1594,7 @@ assume <?xml version='1.0' encoding='UTF-8'?>
 </g>
 </svg>. if <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.498132 -7.043584 21.535833 9.056034' style="max-height: 0.8859em; vertical-align: -0.1926em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.498132 -7.043584 21.535833 9.056034' style="max-height: 0.8860em; vertical-align: -0.1926em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g6-68' d='m4.732254-1.075965l-.139477-.089664c-.52802 .657534-.667497 .787049-.826899 .787049c-.069738 0-.109589-.059776-.109589-.169365c0-.059776 0-.059776 .18929-.777086l.787049-2.978829h-.737235c-.537983 1.474471-.647572 1.713574-1.09589 2.430884c-.597758 .946451-1.085928 1.454545-1.404732 1.454545c-.129514 0-.209215-.099626-.209215-.249066c0-.039851 0-.059776 .009963-.089664l.9066-3.616438l-.029888-.019925c-.56787 .129514-.926526 .199253-1.494396 .268991v.139477c.37858 0 .398506 .009963 .488169 .059776c.059776 .019925 .109589 .109589 .109589 .179328c0 .079701-.049813 .33873-.139477 .667497l-.368618 1.414695c-.18929 .727273-.249066 1.036115-.249066 1.225405c0 .368618 .179328 .547945 .52802 .547945c.707347 0 1.235367-.537983 2.381071-2.460772c-.298879 1.09589-.448319 1.743462-.448319 1.96264c0 .308842 .179328 .478207 .478207 .478207c.468244 0 .687422-.18929 1.374844-1.165629z'/>
 <path id='g6-69' d='m4.244085-3.805729c0-.318804-.259029-.587796-.557908-.587796c-.229141 0-.368618 .129514-.368618 .33873c0 .159402 .059776 .278954 .239103 .438356c.129514 .119552 .179328 .199253 .179328 .298879c0 .468244-.647572 1.564134-1.364882 2.30137l-.308842 .318804c-.069738-1.344956-.119552-1.902864-.249066-2.560399c-.18929-1.075965-.209215-1.135741-.298879-1.135741c-.049813 0-.119552 .009963-.199253 .039851c-.318804 .069738-.657534 .139477-1.105853 .209215v.129514c.109589-.009963 .199253-.009963 .298879-.009963c.368618 0 .488169 .179328 .607721 .926526c.119552 .757161 .239103 2.211706 .239103 2.819427c0 .18929 0 .458281 .089664 .458281c.249066 0 1.145704-1.016189 2.191781-2.470735c.348692-.498132 .607721-1.135741 .607721-1.514321z'/>
@@ -1613,7 +1611,7 @@ assume <?xml version='1.0' encoding='UTF-8'?>
 </g>
 </svg> is a tree edge and <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='-.029902 -7.043584 35.342854 9.085925' style="max-height: 0.8967em; vertical-align: -0.2033em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='-.029902 -7.043584 35.342854 9.085925' style="max-height: 0.8968em; vertical-align: -0.2034em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g4-187' d='m2.978829 1.673724h-.856787c-.328767 0-.488169-.169365-.488169-.518057v-7.511831c0-.308842 .129514-.438356 .448319-.438356h.896638v-.249066h-2.102117v8.966376h2.102117v-.249066z'/>
 <path id='g4-188' d='m.33873 1.673724v.249066h2.102117v-8.966376h-2.102117v.249066h.856787c.328767 0 .488169 .169365 .488169 .518057v7.511831c0 .308842-.139477 .438356-.448319 .438356h-.896638z'/>
@@ -1632,7 +1630,7 @@ assume <?xml version='1.0' encoding='UTF-8'?>
 </g>
 </svg>, then <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.498132 -7.043584 21.535833 9.056034' style="max-height: 0.8859em; vertical-align: -0.1926em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.498132 -7.043584 21.535833 9.056034' style="max-height: 0.8860em; vertical-align: -0.1926em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g6-68' d='m4.732254-1.075965l-.139477-.089664c-.52802 .657534-.667497 .787049-.826899 .787049c-.069738 0-.109589-.059776-.109589-.169365c0-.059776 0-.059776 .18929-.777086l.787049-2.978829h-.737235c-.537983 1.474471-.647572 1.713574-1.09589 2.430884c-.597758 .946451-1.085928 1.454545-1.404732 1.454545c-.129514 0-.209215-.099626-.209215-.249066c0-.039851 0-.059776 .009963-.089664l.9066-3.616438l-.029888-.019925c-.56787 .129514-.926526 .199253-1.494396 .268991v.139477c.37858 0 .398506 .009963 .488169 .059776c.059776 .019925 .109589 .109589 .109589 .179328c0 .079701-.049813 .33873-.139477 .667497l-.368618 1.414695c-.18929 .727273-.249066 1.036115-.249066 1.225405c0 .368618 .179328 .547945 .52802 .547945c.707347 0 1.235367-.537983 2.381071-2.460772c-.298879 1.09589-.448319 1.743462-.448319 1.96264c0 .308842 .179328 .478207 .478207 .478207c.468244 0 .687422-.18929 1.374844-1.165629z'/>
 <path id='g6-69' d='m4.244085-3.805729c0-.318804-.259029-.587796-.557908-.587796c-.229141 0-.368618 .129514-.368618 .33873c0 .159402 .059776 .278954 .239103 .438356c.129514 .119552 .179328 .199253 .179328 .298879c0 .468244-.647572 1.564134-1.364882 2.30137l-.308842 .318804c-.069738-1.344956-.119552-1.902864-.249066-2.560399c-.18929-1.075965-.209215-1.135741-.298879-1.135741c-.049813 0-.119552 .009963-.199253 .039851c-.318804 .069738-.657534 .139477-1.105853 .209215v.129514c.109589-.009963 .199253-.009963 .298879-.009963c.368618 0 .488169 .179328 .607721 .926526c.119552 .757161 .239103 2.211706 .239103 2.819427c0 .18929 0 .458281 .089664 .458281c.249066 0 1.145704-1.016189 2.191781-2.470735c.348692-.498132 .607721-1.135741 .607721-1.514321z'/>
@@ -1721,7 +1719,7 @@ let <?xml version='1.0' encoding='UTF-8'?>
 </g>
 </svg> is free at time <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.249051 -7.043584 18.321279 8.976339' style="max-height: 0.8859em; vertical-align: -0.1926em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.249051 -7.043584 18.321279 8.976339' style="max-height: 0.8860em; vertical-align: -0.1926em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g4-187' d='m2.978829 1.673724h-.856787c-.328767 0-.488169-.169365-.488169-.518057v-7.511831c0-.308842 .129514-.438356 .448319-.438356h.896638v-.249066h-2.102117v8.966376h2.102117v-.249066z'/>
 <path id='g4-188' d='m.33873 1.673724v.249066h2.102117v-8.966376h-2.102117v.249066h.856787c.328767 0 .488169 .169365 .488169 .518057v7.511831c0 .308842-.139477 .438356-.448319 .438356h-.896638z'/>
@@ -1758,7 +1756,7 @@ let <?xml version='1.0' encoding='UTF-8'?>
 </g>
 </svg> in <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.28891 -6.605231 10.594265 9.605066' style="max-height: 0.9308em; vertical-align: -0.2904em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.28891 -6.605231 10.594265 9.605066' style="max-height: 0.9309em; vertical-align: -0.2905em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g5-63' d='m3.847274-2.298183c-.014545-.567273-.385455-.909091-.989091-.909091c-.545455 0-.945455 .232727-1.41091 .821819l.225455-.792728c0 0-.014545-.029091-.036364-.029091h-.007273l-1.280001 .16l.021818 .109091c.247273 0 .538182 0 .545455 .196364c.007273 .087273-.276364 1.09091-.552728 2.058183l-.407273 1.629092c-.072727 .334546-.181818 .421818-.538182 .429091l.007273 .116364h1.723637l-.007273-.109091c-.392727 0-.538182-.058182-.545455-.218182c0-.101818 .130909-.647273 .276364-1.207273c.210909 .094545 .356364 .123636 .552728 .123636c1.214546 0 2.465456-1.214546 2.421819-2.378183zm-.763637 .021818c.021818 .48-.189091 1.083637-.523637 1.527273c-.334546 .458182-.734546 .690909-1.178182 .690909c-.232727 0-.407273-.109091-.414546-.269091c-.007273-.247273 .254546-1.192728 .48-1.738183c.203636-.48 .654546-.829091 1.061819-.829091h.036364c.356364 .014545 .523637 .203636 .538182 .618182z'/>
 <path id='g6-27' d='m6.107098-4.98132l.318804-1.524284h-4.961395v.159402c.657534 .059776 .767123 .119552 .767123 .398506c0 .159402-.039851 .398506-.109589 .647572l-1.225405 4.403487c-.179328 .597758-.249066 .657534-.816936 .737235v.159402h2.510585v-.159402c-.577833-.029888-.757161-.139477-.757161-.438356c0-.089664 .019925-.209215 .089664-.448319l.617684-2.221669c.368618 .019925 .587796 .029888 .806974 .029888c.388543 0 .448319 .009963 .547945 .049813c.139477 .069738 .219178 .209215 .219178 .408468c0 .159402-.019925 .278954-.079701 .587796l.169365 .049813l.757161-2.331258l-.179328-.049813c-.448319 .896638-.478207 .9066-2.15193 .926526l.657534-2.321295c.059776-.199253 .199253-.259029 .607721-.259029c1.683686 0 2.032379 .129514 2.032379 .757161c0 .069738 0 .109589-.009963 .229141c-.009963 .069738-.009963 .109589-.019925 .18929l.209215 .019925z'/>
@@ -1822,7 +1820,7 @@ let <?xml version='1.0' encoding='UTF-8'?>
 </g>
 </svg> in <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.28891 -6.605231 10.594265 9.605066' style="max-height: 0.9308em; vertical-align: -0.2904em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.28891 -6.605231 10.594265 9.605066' style="max-height: 0.9309em; vertical-align: -0.2905em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g5-63' d='m3.847274-2.298183c-.014545-.567273-.385455-.909091-.989091-.909091c-.545455 0-.945455 .232727-1.41091 .821819l.225455-.792728c0 0-.014545-.029091-.036364-.029091h-.007273l-1.280001 .16l.021818 .109091c.247273 0 .538182 0 .545455 .196364c.007273 .087273-.276364 1.09091-.552728 2.058183l-.407273 1.629092c-.072727 .334546-.181818 .421818-.538182 .429091l.007273 .116364h1.723637l-.007273-.109091c-.392727 0-.538182-.058182-.545455-.218182c0-.101818 .130909-.647273 .276364-1.207273c.210909 .094545 .356364 .123636 .552728 .123636c1.214546 0 2.465456-1.214546 2.421819-2.378183zm-.763637 .021818c.021818 .48-.189091 1.083637-.523637 1.527273c-.334546 .458182-.734546 .690909-1.178182 .690909c-.232727 0-.407273-.109091-.414546-.269091c-.007273-.247273 .254546-1.192728 .48-1.738183c.203636-.48 .654546-.829091 1.061819-.829091h.036364c.356364 .014545 .523637 .203636 .538182 .618182z'/>
 <path id='g6-27' d='m6.107098-4.98132l.318804-1.524284h-4.961395v.159402c.657534 .059776 .767123 .119552 .767123 .398506c0 .159402-.039851 .398506-.109589 .647572l-1.225405 4.403487c-.179328 .597758-.249066 .657534-.816936 .737235v.159402h2.510585v-.159402c-.577833-.029888-.757161-.139477-.757161-.438356c0-.089664 .019925-.209215 .089664-.448319l.617684-2.221669c.368618 .019925 .587796 .029888 .806974 .029888c.388543 0 .448319 .009963 .547945 .049813c.139477 .069738 .219178 .209215 .219178 .408468c0 .159402-.019925 .278954-.079701 .587796l.169365 .049813l.757161-2.331258l-.179328-.049813c-.448319 .896638-.478207 .9066-2.15193 .926526l.657534-2.321295c.059776-.199253 .199253-.259029 .607721-.259029c1.683686 0 2.032379 .129514 2.032379 .757161c0 .069738 0 .109589-.009963 .229141c-.009963 .069738-.009963 .109589-.019925 .18929l.209215 .019925z'/>
@@ -1833,7 +1831,7 @@ let <?xml version='1.0' encoding='UTF-8'?>
 </g>
 </svg> iff at time <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.249051 -7.043584 18.321279 8.976339' style="max-height: 0.8859em; vertical-align: -0.1926em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.249051 -7.043584 18.321279 8.976339' style="max-height: 0.8860em; vertical-align: -0.1926em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g4-187' d='m2.978829 1.673724h-.856787c-.328767 0-.488169-.169365-.488169-.518057v-7.511831c0-.308842 .129514-.438356 .448319-.438356h.896638v-.249066h-2.102117v8.966376h2.102117v-.249066z'/>
 <path id='g4-188' d='m.33873 1.673724v.249066h2.102117v-8.966376h-2.102117v.249066h.856787c.328767 0 .488169 .169365 .488169 .518057v7.511831c0 .308842-.139477 .438356-.448319 .438356h-.896638z'/>
@@ -1912,7 +1910,7 @@ let <?xml version='1.0' encoding='UTF-8'?>
 </g>
 </svg> be an undirected connected graph that dfs has been applied to starting at the vertex <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='-.159406 -6.605231 22.35157 6.804489' style="max-height: 0.6585em; vertical-align: -0.0181em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='-.159406 -6.605231 22.35157 6.804489' style="max-height: 0.6586em; vertical-align: -0.0182em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g4-50' d='m4.821918-.079701v-.498132h-1.892902c-.896638 0-1.77335-.737235-1.892902-1.733499h3.616438v-.498132h-3.616438c.109589-.946451 .896638-1.733499 1.892902-1.733499h1.892902v-.498132h-1.853051c-1.384807 0-2.450809 1.155666-2.450809 2.480697s1.066002 2.480697 2.450809 2.480697h1.853051z'/>
 <path id='g6-43' d='m6.854296-6.346202v-.159402h-1.853051v.159402c.448319 .049813 .627646 .14944 .627646 .33873s-.179328 .607721-.518057 1.185554l-2.052304 3.5467l-.657534-4.41345c-.009963-.049813-.009963-.099626-.009963-.14944c0-.33873 .139477-.438356 .767123-.508095v-.159402h-2.400996v.159402c.557908 .069738 .577833 .099626 .787049 1.344956l.846824 5.180573h.18929l3.716065-6.127024c.169365-.268991 .328767-.388543 .557908-.398506z'/>
@@ -1925,7 +1923,7 @@ let <?xml version='1.0' encoding='UTF-8'?>
 </g>
 </svg>. then <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.28891 -6.605231 10.594265 9.605066' style="max-height: 0.9308em; vertical-align: -0.2904em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.28891 -6.605231 10.594265 9.605066' style="max-height: 0.9309em; vertical-align: -0.2905em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g5-63' d='m3.847274-2.298183c-.014545-.567273-.385455-.909091-.989091-.909091c-.545455 0-.945455 .232727-1.41091 .821819l.225455-.792728c0 0-.014545-.029091-.036364-.029091h-.007273l-1.280001 .16l.021818 .109091c.247273 0 .538182 0 .545455 .196364c.007273 .087273-.276364 1.09091-.552728 2.058183l-.407273 1.629092c-.072727 .334546-.181818 .421818-.538182 .429091l.007273 .116364h1.723637l-.007273-.109091c-.392727 0-.538182-.058182-.545455-.218182c0-.101818 .130909-.647273 .276364-1.207273c.210909 .094545 .356364 .123636 .552728 .123636c1.214546 0 2.465456-1.214546 2.421819-2.378183zm-.763637 .021818c.021818 .48-.189091 1.083637-.523637 1.527273c-.334546 .458182-.734546 .690909-1.178182 .690909c-.232727 0-.407273-.109091-.414546-.269091c-.007273-.247273 .254546-1.192728 .48-1.738183c.203636-.48 .654546-.829091 1.061819-.829091h.036364c.356364 .014545 .523637 .203636 .538182 .618182z'/>
 <path id='g6-27' d='m6.107098-4.98132l.318804-1.524284h-4.961395v.159402c.657534 .059776 .767123 .119552 .767123 .398506c0 .159402-.039851 .398506-.109589 .647572l-1.225405 4.403487c-.179328 .597758-.249066 .657534-.816936 .737235v.159402h2.510585v-.159402c-.577833-.029888-.757161-.139477-.757161-.438356c0-.089664 .019925-.209215 .089664-.448319l.617684-2.221669c.368618 .019925 .587796 .029888 .806974 .029888c.388543 0 .448319 .009963 .547945 .049813c.139477 .069738 .219178 .209215 .219178 .408468c0 .159402-.019925 .278954-.079701 .587796l.169365 .049813l.757161-2.331258l-.179328-.049813c-.448319 .896638-.478207 .9066-2.15193 .926526l.657534-2.321295c.059776-.199253 .199253-.259029 .607721-.259029c1.683686 0 2.032379 .129514 2.032379 .757161c0 .069738 0 .109589-.009963 .229141c-.009963 .069738-.009963 .109589-.019925 .18929l.209215 .019925z'/>
@@ -1998,7 +1996,7 @@ let <?xml version='1.0' encoding='UTF-8'?>
 </g>
 </svg>. for each edge <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.498132 -7.043584 39.902341 9.056034' style="max-height: 0.8859em; vertical-align: -0.1926em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.498132 -7.043584 39.902341 9.056034' style="max-height: 0.8860em; vertical-align: -0.1926em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g6-26' d='m5.65878-1.613948l-.159402-.079701c-.468244 .647572-.727273 .896638-1.155666 1.09589c-.368618 .169365-1.046077 .268991-1.803238 .268991c-.557908 0-.787049-.099626-.787049-.33873c0-.119552 .109589-.577833 .358655-1.454545l.318804-1.145704l.777086 .029888c.029888 0 .059776 0 .079701 0c.348692 0 .597758 .059776 .697385 .14944c.049813 .049813 .069738 .139477 .069738 .308842c0 .179328-.019925 .298879-.069738 .518057l.199253 .049813l.67746-2.311333l-.179328-.039851c-.37858 .846824-.478207 .916563-1.374844 .946451l-.787049 .019925l.657534-2.321295c.059776-.219178 .159402-.259029 .727273-.259029c1.564134 0 1.912827 .129514 1.912827 .727273c0 .129514-.009963 .278954-.019925 .448319l.209215 .019925l.308842-1.524284h-4.951432v.159402c.617684 .059776 .767123 .139477 .767123 .408468c0 .119552-.059776 .438356-.109589 .637609l-1.225405 4.403487c-.179328 .577833-.249066 .637609-.806974 .737235v.159402h5.051059l.617684-1.613948z'/>
 <path id='g6-68' d='m4.732254-1.075965l-.139477-.089664c-.52802 .657534-.667497 .787049-.826899 .787049c-.069738 0-.109589-.059776-.109589-.169365c0-.059776 0-.059776 .18929-.777086l.787049-2.978829h-.737235c-.537983 1.474471-.647572 1.713574-1.09589 2.430884c-.597758 .946451-1.085928 1.454545-1.404732 1.454545c-.129514 0-.209215-.099626-.209215-.249066c0-.039851 0-.059776 .009963-.089664l.9066-3.616438l-.029888-.019925c-.56787 .129514-.926526 .199253-1.494396 .268991v.139477c.37858 0 .398506 .009963 .488169 .059776c.059776 .019925 .109589 .109589 .109589 .179328c0 .079701-.049813 .33873-.139477 .667497l-.368618 1.414695c-.18929 .727273-.249066 1.036115-.249066 1.225405c0 .368618 .179328 .547945 .52802 .547945c.707347 0 1.235367-.537983 2.381071-2.460772c-.298879 1.09589-.448319 1.743462-.448319 1.96264c0 .308842 .179328 .478207 .478207 .478207c.468244 0 .687422-.18929 1.374844-1.165629z'/>
@@ -2019,7 +2017,7 @@ let <?xml version='1.0' encoding='UTF-8'?>
 </g>
 </svg>, <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.498132 -7.043584 21.535833 9.056034' style="max-height: 0.8859em; vertical-align: -0.1926em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.498132 -7.043584 21.535833 9.056034' style="max-height: 0.8860em; vertical-align: -0.1926em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g6-68' d='m4.732254-1.075965l-.139477-.089664c-.52802 .657534-.667497 .787049-.826899 .787049c-.069738 0-.109589-.059776-.109589-.169365c0-.059776 0-.059776 .18929-.777086l.787049-2.978829h-.737235c-.537983 1.474471-.647572 1.713574-1.09589 2.430884c-.597758 .946451-1.085928 1.454545-1.404732 1.454545c-.129514 0-.209215-.099626-.209215-.249066c0-.039851 0-.059776 .009963-.089664l.9066-3.616438l-.029888-.019925c-.56787 .129514-.926526 .199253-1.494396 .268991v.139477c.37858 0 .398506 .009963 .488169 .059776c.059776 .019925 .109589 .109589 .109589 .179328c0 .079701-.049813 .33873-.139477 .667497l-.368618 1.414695c-.18929 .727273-.249066 1.036115-.249066 1.225405c0 .368618 .179328 .547945 .52802 .547945c.707347 0 1.235367-.537983 2.381071-2.460772c-.298879 1.09589-.448319 1.743462-.448319 1.96264c0 .308842 .179328 .478207 .478207 .478207c.468244 0 .687422-.18929 1.374844-1.165629z'/>
 <path id='g6-69' d='m4.244085-3.805729c0-.318804-.259029-.587796-.557908-.587796c-.229141 0-.368618 .129514-.368618 .33873c0 .159402 .059776 .278954 .239103 .438356c.129514 .119552 .179328 .199253 .179328 .298879c0 .468244-.647572 1.564134-1.364882 2.30137l-.308842 .318804c-.069738-1.344956-.119552-1.902864-.249066-2.560399c-.18929-1.075965-.209215-1.135741-.298879-1.135741c-.049813 0-.119552 .009963-.199253 .039851c-.318804 .069738-.657534 .139477-1.105853 .209215v.129514c.109589-.009963 .199253-.009963 .298879-.009963c.368618 0 .488169 .179328 .607721 .926526c.119552 .757161 .239103 2.211706 .239103 2.819427c0 .18929 0 .458281 .089664 .458281c.249066 0 1.145704-1.016189 2.191781-2.470735c.348692-.498132 .607721-1.135741 .607721-1.514321z'/>
@@ -2040,9 +2038,9 @@ let <?xml version='1.0' encoding='UTF-8'?>
 </div>
 </div>
 </div>
-<div id="outline-container-org0818902" class="outline-2">
-<h2 id="org0818902">dfs in a directed graph</h2>
-<div class="outline-text-2" id="text-org0818902">
+<div id="outline-container-org22d46d2" class="outline-2">
+<h2 id="org22d46d2">dfs in a directed graph</h2>
+<div class="outline-text-2" id="text-org22d46d2">
 <p>
 its not much different from dfs being applied to an undirected graph except that during traversal we only jump to neighbors that are descendants<br />
 </p>
@@ -2050,7 +2048,7 @@ its not much different from dfs being applied to an undirected graph except that
 <p>
 an edge <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.498132 -7.043584 21.535833 9.056034' style="max-height: 0.8859em; vertical-align: -0.1926em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.498132 -7.043584 21.535833 9.056034' style="max-height: 0.8860em; vertical-align: -0.1926em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g6-68' d='m4.732254-1.075965l-.139477-.089664c-.52802 .657534-.667497 .787049-.826899 .787049c-.069738 0-.109589-.059776-.109589-.169365c0-.059776 0-.059776 .18929-.777086l.787049-2.978829h-.737235c-.537983 1.474471-.647572 1.713574-1.09589 2.430884c-.597758 .946451-1.085928 1.454545-1.404732 1.454545c-.129514 0-.209215-.099626-.209215-.249066c0-.039851 0-.059776 .009963-.089664l.9066-3.616438l-.029888-.019925c-.56787 .129514-.926526 .199253-1.494396 .268991v.139477c.37858 0 .398506 .009963 .488169 .059776c.059776 .019925 .109589 .109589 .109589 .179328c0 .079701-.049813 .33873-.139477 .667497l-.368618 1.414695c-.18929 .727273-.249066 1.036115-.249066 1.225405c0 .368618 .179328 .547945 .52802 .547945c.707347 0 1.235367-.537983 2.381071-2.460772c-.298879 1.09589-.448319 1.743462-.448319 1.96264c0 .308842 .179328 .478207 .478207 .478207c.468244 0 .687422-.18929 1.374844-1.165629z'/>
 <path id='g6-69' d='m4.244085-3.805729c0-.318804-.259029-.587796-.557908-.587796c-.229141 0-.368618 .129514-.368618 .33873c0 .159402 .059776 .278954 .239103 .438356c.129514 .119552 .179328 .199253 .179328 .298879c0 .468244-.647572 1.564134-1.364882 2.30137l-.308842 .318804c-.069738-1.344956-.119552-1.902864-.249066-2.560399c-.18929-1.075965-.209215-1.135741-.298879-1.135741c-.049813 0-.119552 .009963-.199253 .039851c-.318804 .069738-.657534 .139477-1.105853 .209215v.129514c.109589-.009963 .199253-.009963 .298879-.009963c.368618 0 .488169 .179328 .607721 .926526c.119552 .757161 .239103 2.211706 .239103 2.819427c0 .18929 0 .458281 .089664 .458281c.249066 0 1.145704-1.016189 2.191781-2.470735c.348692-.498132 .607721-1.135741 .607721-1.514321z'/>
@@ -2089,7 +2087,7 @@ an edge <?xml version='1.0' encoding='UTF-8'?>
 </g>
 </svg> in <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.28891 -6.605231 10.594265 9.605066' style="max-height: 0.9308em; vertical-align: -0.2904em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.28891 -6.605231 10.594265 9.605066' style="max-height: 0.9309em; vertical-align: -0.2905em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g5-63' d='m3.847274-2.298183c-.014545-.567273-.385455-.909091-.989091-.909091c-.545455 0-.945455 .232727-1.41091 .821819l.225455-.792728c0 0-.014545-.029091-.036364-.029091h-.007273l-1.280001 .16l.021818 .109091c.247273 0 .538182 0 .545455 .196364c.007273 .087273-.276364 1.09091-.552728 2.058183l-.407273 1.629092c-.072727 .334546-.181818 .421818-.538182 .429091l.007273 .116364h1.723637l-.007273-.109091c-.392727 0-.538182-.058182-.545455-.218182c0-.101818 .130909-.647273 .276364-1.207273c.210909 .094545 .356364 .123636 .552728 .123636c1.214546 0 2.465456-1.214546 2.421819-2.378183zm-.763637 .021818c.021818 .48-.189091 1.083637-.523637 1.527273c-.334546 .458182-.734546 .690909-1.178182 .690909c-.232727 0-.407273-.109091-.414546-.269091c-.007273-.247273 .254546-1.192728 .48-1.738183c.203636-.48 .654546-.829091 1.061819-.829091h.036364c.356364 .014545 .523637 .203636 .538182 .618182z'/>
 <path id='g6-27' d='m6.107098-4.98132l.318804-1.524284h-4.961395v.159402c.657534 .059776 .767123 .119552 .767123 .398506c0 .159402-.039851 .398506-.109589 .647572l-1.225405 4.403487c-.179328 .597758-.249066 .657534-.816936 .737235v.159402h2.510585v-.159402c-.577833-.029888-.757161-.139477-.757161-.438356c0-.089664 .019925-.209215 .089664-.448319l.617684-2.221669c.368618 .019925 .587796 .029888 .806974 .029888c.388543 0 .448319 .009963 .547945 .049813c.139477 .069738 .219178 .209215 .219178 .408468c0 .159402-.019925 .278954-.079701 .587796l.169365 .049813l.757161-2.331258l-.179328-.049813c-.448319 .896638-.478207 .9066-2.15193 .926526l.657534-2.321295c.059776-.199253 .199253-.259029 .607721-.259029c1.683686 0 2.032379 .129514 2.032379 .757161c0 .069738 0 .109589-.009963 .229141c-.009963 .069738-.009963 .109589-.019925 .18929l.209215 .019925z'/>
@@ -2101,7 +2099,7 @@ an edge <?xml version='1.0' encoding='UTF-8'?>
 </svg>.<br />
 if <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.498132 -7.043584 21.535833 9.056034' style="max-height: 0.8859em; vertical-align: -0.1926em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.498132 -7.043584 21.535833 9.056034' style="max-height: 0.8860em; vertical-align: -0.1926em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g6-68' d='m4.732254-1.075965l-.139477-.089664c-.52802 .657534-.667497 .787049-.826899 .787049c-.069738 0-.109589-.059776-.109589-.169365c0-.059776 0-.059776 .18929-.777086l.787049-2.978829h-.737235c-.537983 1.474471-.647572 1.713574-1.09589 2.430884c-.597758 .946451-1.085928 1.454545-1.404732 1.454545c-.129514 0-.209215-.099626-.209215-.249066c0-.039851 0-.059776 .009963-.089664l.9066-3.616438l-.029888-.019925c-.56787 .129514-.926526 .199253-1.494396 .268991v.139477c.37858 0 .398506 .009963 .488169 .059776c.059776 .019925 .109589 .109589 .109589 .179328c0 .079701-.049813 .33873-.139477 .667497l-.368618 1.414695c-.18929 .727273-.249066 1.036115-.249066 1.225405c0 .368618 .179328 .547945 .52802 .547945c.707347 0 1.235367-.537983 2.381071-2.460772c-.298879 1.09589-.448319 1.743462-.448319 1.96264c0 .308842 .179328 .478207 .478207 .478207c.468244 0 .687422-.18929 1.374844-1.165629z'/>
 <path id='g6-69' d='m4.244085-3.805729c0-.318804-.259029-.587796-.557908-.587796c-.229141 0-.368618 .129514-.368618 .33873c0 .159402 .059776 .278954 .239103 .438356c.129514 .119552 .179328 .199253 .179328 .298879c0 .468244-.647572 1.564134-1.364882 2.30137l-.308842 .318804c-.069738-1.344956-.119552-1.902864-.249066-2.560399c-.18929-1.075965-.209215-1.135741-.298879-1.135741c-.049813 0-.119552 .009963-.199253 .039851c-.318804 .069738-.657534 .139477-1.105853 .209215v.129514c.109589-.009963 .199253-.009963 .298879-.009963c.368618 0 .488169 .179328 .607721 .926526c.119552 .757161 .239103 2.211706 .239103 2.819427c0 .18929 0 .458281 .089664 .458281c.249066 0 1.145704-1.016189 2.191781-2.470735c.348692-.498132 .607721-1.135741 .607721-1.514321z'/>
@@ -2140,7 +2138,7 @@ if <?xml version='1.0' encoding='UTF-8'?>
 </g>
 </svg>, then <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.249051 -7.043584 113.062151 9.105849' style="max-height: 0.8967em; vertical-align: -0.2033em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.249051 -7.043584 113.062151 9.105849' style="max-height: 0.8968em; vertical-align: -0.2034em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g4-187' d='m2.978829 1.673724h-.856787c-.328767 0-.488169-.169365-.488169-.518057v-7.511831c0-.308842 .129514-.438356 .448319-.438356h.896638v-.249066h-2.102117v8.966376h2.102117v-.249066z'/>
 <path id='g4-188' d='m.33873 1.673724v.249066h2.102117v-8.966376h-2.102117v.249066h.856787c.328767 0 .488169 .169365 .488169 .518057v7.511831c0 .308842-.139477 .438356-.448319 .438356h-.896638z'/>
@@ -2174,7 +2172,7 @@ if <?xml version='1.0' encoding='UTF-8'?>
 </svg><br />
 if <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.498132 -7.043584 21.535833 9.056034' style="max-height: 0.8859em; vertical-align: -0.1926em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.498132 -7.043584 21.535833 9.056034' style="max-height: 0.8860em; vertical-align: -0.1926em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g6-68' d='m4.732254-1.075965l-.139477-.089664c-.52802 .657534-.667497 .787049-.826899 .787049c-.069738 0-.109589-.059776-.109589-.169365c0-.059776 0-.059776 .18929-.777086l.787049-2.978829h-.737235c-.537983 1.474471-.647572 1.713574-1.09589 2.430884c-.597758 .946451-1.085928 1.454545-1.404732 1.454545c-.129514 0-.209215-.099626-.209215-.249066c0-.039851 0-.059776 .009963-.089664l.9066-3.616438l-.029888-.019925c-.56787 .129514-.926526 .199253-1.494396 .268991v.139477c.37858 0 .398506 .009963 .488169 .059776c.059776 .019925 .109589 .109589 .109589 .179328c0 .079701-.049813 .33873-.139477 .667497l-.368618 1.414695c-.18929 .727273-.249066 1.036115-.249066 1.225405c0 .368618 .179328 .547945 .52802 .547945c.707347 0 1.235367-.537983 2.381071-2.460772c-.298879 1.09589-.448319 1.743462-.448319 1.96264c0 .308842 .179328 .478207 .478207 .478207c.468244 0 .687422-.18929 1.374844-1.165629z'/>
 <path id='g6-69' d='m4.244085-3.805729c0-.318804-.259029-.587796-.557908-.587796c-.229141 0-.368618 .129514-.368618 .33873c0 .159402 .059776 .278954 .239103 .438356c.129514 .119552 .179328 .199253 .179328 .298879c0 .468244-.647572 1.564134-1.364882 2.30137l-.308842 .318804c-.069738-1.344956-.119552-1.902864-.249066-2.560399c-.18929-1.075965-.209215-1.135741-.298879-1.135741c-.049813 0-.119552 .009963-.199253 .039851c-.318804 .069738-.657534 .139477-1.105853 .209215v.129514c.109589-.009963 .199253-.009963 .298879-.009963c.368618 0 .488169 .179328 .607721 .926526c.119552 .757161 .239103 2.211706 .239103 2.819427c0 .18929 0 .458281 .089664 .458281c.249066 0 1.145704-1.016189 2.191781-2.470735c.348692-.498132 .607721-1.135741 .607721-1.514321z'/>
@@ -2213,7 +2211,7 @@ if <?xml version='1.0' encoding='UTF-8'?>
 </g>
 </svg> then <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.249051 -7.043584 113.062151 9.105849' style="max-height: 0.8967em; vertical-align: -0.2033em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.249051 -7.043584 113.062151 9.105849' style="max-height: 0.8968em; vertical-align: -0.2034em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g4-187' d='m2.978829 1.673724h-.856787c-.328767 0-.488169-.169365-.488169-.518057v-7.511831c0-.308842 .129514-.438356 .448319-.438356h.896638v-.249066h-2.102117v8.966376h2.102117v-.249066z'/>
 <path id='g4-188' d='m.33873 1.673724v.249066h2.102117v-8.966376h-2.102117v.249066h.856787c.328767 0 .488169 .169365 .488169 .518057v7.511831c0 .308842-.139477 .438356-.448319 .438356h-.896638z'/>
@@ -2250,15 +2248,15 @@ if <?xml version='1.0' encoding='UTF-8'?>
 </div>
 </div>
 </div>
-<div id="outline-container-orgbcf733b" class="outline-2">
-<h2 id="orgbcf733b">topological sorting</h2>
-<div class="outline-text-2" id="text-orgbcf733b">
+<div id="outline-container-org383a285" class="outline-2">
+<h2 id="org383a285">topological sorting</h2>
+<div class="outline-text-2" id="text-org383a285">
 
 <div class="equation-container">
 <span class="equation">
 <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='6.475716 -68.413484 584.139456 68.861765' style="max-height: 7.5141em; vertical-align: -0.4900em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='6.475716 -68.413484 584.139456 68.861765' style="max-height: 7.5142em; vertical-align: -0.4900em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g4-185' d='m2.938979-7.143213c-1.444583 .936488-2.460772 2.550436-2.460772 4.582814c0 1.853051 1.05604 3.726027 2.430884 4.572852l.119552-.159402c-1.315068-1.036115-1.693649-2.241594-1.693649-4.443337c0-2.211706 .408468-3.35741 1.693649-4.393524l-.089664-.159402z'/>
 <path id='g4-186' d='m.37858-7.143213l-.089664 .159402c1.285181 1.036115 1.693649 2.181818 1.693649 4.393524c0 2.201743-.37858 3.407223-1.693649 4.443337l.119552 .159402c1.374844-.846824 2.430884-2.719801 2.430884-4.572852c0-2.032379-1.016189-3.646326-2.460772-4.582814z'/>
@@ -2681,7 +2679,7 @@ if <?xml version='1.0' encoding='UTF-8'?>
 <b>proof of correctness</b>:<br />
 assume that <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.149434 -7.043584 38.228654 9.056034' style="max-height: 0.8859em; vertical-align: -0.1926em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.149434 -7.043584 38.228654 9.056034' style="max-height: 0.8860em; vertical-align: -0.1926em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g4-185' d='m2.938979-7.143213c-1.444583 .936488-2.460772 2.550436-2.460772 4.582814c0 1.853051 1.05604 3.726027 2.430884 4.572852l.119552-.159402c-1.315068-1.036115-1.693649-2.241594-1.693649-4.443337c0-2.211706 .408468-3.35741 1.693649-4.393524l-.089664-.159402z'/>
 <path id='g4-186' d='m.37858-7.143213l-.089664 .159402c1.285181 1.036115 1.693649 2.181818 1.693649 4.393524c0 2.201743-.37858 3.407223-1.693649 4.443337l.119552 .159402c1.374844-.846824 2.430884-2.719801 2.430884-4.572852c0-2.032379-1.016189-3.646326-2.460772-4.582814z'/>
@@ -2735,7 +2733,7 @@ assume that <?xml version='1.0' encoding='UTF-8'?>
 </g>
 </svg>. if we were to apply <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.368613 -6.605231 20.074716 6.804489' style="max-height: 0.6796em; vertical-align: -0.0181em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.368613 -6.605231 20.074716 6.804489' style="max-height: 0.6797em; vertical-align: -0.0182em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g6-25' d='m6.973848-3.825654c0-1.633873-1.135741-2.67995-2.909091-2.67995h-2.769614v.159402c.627646 .059776 .767123 .139477 .767123 .408468c0 .14944-.039851 .388543-.109589 .637609l-1.225405 4.403487c-.179328 .577833-.249066 .637609-.806974 .737235v.159402h2.520548c1.135741 0 2.181818-.298879 2.938979-.826899c.996264-.697385 1.594022-1.823163 1.594022-2.998755zm-1.105853-.239103c0 1.085928-.418431 2.191781-1.09589 2.86924c-.587796 .597758-1.39477 .896638-2.430884 .896638c-.458281 0-.647572-.109589-.647572-.368618c0-.129514 .049813-.328767 .219178-.946451l1.205479-4.303861c.059776-.219178 .199253-.288917 .607721-.288917c.557908 0 1.046077 .129514 1.364882 .348692c.498132 .348692 .777086 .996264 .777086 1.793275z'/>
 <path id='g6-27' d='m6.107098-4.98132l.318804-1.524284h-4.961395v.159402c.657534 .059776 .767123 .119552 .767123 .398506c0 .159402-.039851 .398506-.109589 .647572l-1.225405 4.403487c-.179328 .597758-.249066 .657534-.816936 .737235v.159402h2.510585v-.159402c-.577833-.029888-.757161-.139477-.757161-.438356c0-.089664 .019925-.209215 .089664-.448319l.617684-2.221669c.368618 .019925 .587796 .029888 .806974 .029888c.388543 0 .448319 .009963 .547945 .049813c.139477 .069738 .219178 .209215 .219178 .408468c0 .159402-.019925 .278954-.079701 .587796l.169365 .049813l.757161-2.331258l-.179328-.049813c-.448319 .896638-.478207 .9066-2.15193 .926526l.657534-2.321295c.059776-.199253 .199253-.259029 .607721-.259029c1.683686 0 2.032379 .129514 2.032379 .757161c0 .069738 0 .109589-.009963 .229141c-.009963 .069738-.009963 .109589-.019925 .18929l.209215 .019925z'/>
@@ -2759,7 +2757,7 @@ assume that <?xml version='1.0' encoding='UTF-8'?>
 </g>
 </svg>, then <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='1.73349 -7.043584 48.98169 9.105849' style="max-height: 0.8967em; vertical-align: -0.2033em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='1.73349 -7.043584 48.98169 9.105849' style="max-height: 0.8968em; vertical-align: -0.2034em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g4-187' d='m2.978829 1.673724h-.856787c-.328767 0-.488169-.169365-.488169-.518057v-7.511831c0-.308842 .129514-.438356 .448319-.438356h.896638v-.249066h-2.102117v8.966376h2.102117v-.249066z'/>
 <path id='g4-188' d='m.33873 1.673724v.249066h2.102117v-8.966376h-2.102117v.249066h.856787c.328767 0 .488169 .169365 .488169 .518057v7.511831c0 .308842-.139477 .438356-.448319 .438356h-.896638z'/>
@@ -2788,7 +2786,7 @@ assume that <?xml version='1.0' encoding='UTF-8'?>
 <b>time complexity</b>:<br />
 same as dfs, <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -7.043584 49.747766 9.056034' style="max-height: 0.8859em; vertical-align: -0.1926em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -7.043584 49.747766 9.056034' style="max-height: 0.8860em; vertical-align: -0.1926em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g6-26' d='m5.65878-1.613948l-.159402-.079701c-.468244 .647572-.727273 .896638-1.155666 1.09589c-.368618 .169365-1.046077 .268991-1.803238 .268991c-.557908 0-.787049-.099626-.787049-.33873c0-.119552 .109589-.577833 .358655-1.454545l.318804-1.145704l.777086 .029888c.029888 0 .059776 0 .079701 0c.348692 0 .597758 .059776 .697385 .14944c.049813 .049813 .069738 .139477 .069738 .308842c0 .179328-.019925 .298879-.069738 .518057l.199253 .049813l.67746-2.311333l-.179328-.039851c-.37858 .846824-.478207 .916563-1.374844 .946451l-.787049 .019925l.657534-2.321295c.059776-.219178 .159402-.259029 .727273-.259029c1.564134 0 1.912827 .129514 1.912827 .727273c0 .129514-.009963 .278954-.019925 .448319l.209215 .019925l.308842-1.524284h-4.951432v.159402c.617684 .059776 .767123 .139477 .767123 .408468c0 .119552-.059776 .438356-.109589 .637609l-1.225405 4.403487c-.179328 .577833-.249066 .637609-.806974 .737235v.159402h5.051059l.617684-1.613948z'/>
 <path id='g6-43' d='m6.854296-6.346202v-.159402h-1.853051v.159402c.448319 .049813 .627646 .14944 .627646 .33873s-.179328 .607721-.518057 1.185554l-2.052304 3.5467l-.657534-4.41345c-.009963-.049813-.009963-.099626-.009963-.14944c0-.33873 .139477-.438356 .767123-.508095v-.159402h-2.400996v.159402c.557908 .069738 .577833 .099626 .787049 1.344956l.846824 5.180573h.18929l3.716065-6.127024c.169365-.268991 .328767-.388543 .557908-.398506z'/>
