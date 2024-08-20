@@ -28,17 +28,17 @@
 </div><h1 class="main-title">blk</h1><span class="desc">text navigation on your terms</span><span class='date'>2024-04-14</span>
 </div>
 <div id="content" class="content">
-<div id="outline-container-org6d5025d" class="outline-2">
-<h2 id="org6d5025d">introduction</h2>
-<div class="outline-text-2" id="text-org6d5025d">
+<div id="outline-container-orgd92ba88" class="outline-2">
+<h2 id="orgd92ba88">introduction</h2>
+<div class="outline-text-2" id="text-orgd92ba88">
 <p>
-blk tries to generalize the idea of creating and navigating titles of text files, as well as making links from one file to another, or one block to another (possibly in different files). if you have used org-roam, denote, or other similar tools like obsidian and logseq, you would know that inserting links between two files (or nodes, as they're usually called) and navigating them is a must-have feature for note-taking, with <code>blk</code>, instead of restricting links to specific elements of text, such as a file or a heading, we can insert links to arbitrary forms of text, be it links to an org heading (or markdown heading), or a code block in an org file, or even links to python functions, elisp functions, or an html element (by its id).<br />
+<a href="https://github.com/mahmoodsheikh36/blk">blk</a> tries to generalize the idea of creating and navigating titles of text files, as well as making links from one file to another, or one block to another (possibly in different files). if you have used org-roam, denote, or other similar tools like obsidian and logseq, you would know that inserting links between two files (or nodes, as they're usually called) and navigating them is a must-have feature for note-taking, with <code>blk</code>, instead of restricting links to specific elements of text, such as a file or a heading, we can insert links to arbitrary forms of text, be it links to an org heading (or markdown heading), or a code block in an org file, or even links to python functions, elisp functions, or an html element (by its id).<br />
 </p>
 </div>
 </div>
-<div id="outline-container-org56c3c88" class="outline-2">
-<h2 id="org56c3c88">motivation</h2>
-<div class="outline-text-2" id="text-org56c3c88">
+<div id="outline-container-org2f21e9b" class="outline-2">
+<h2 id="org2f21e9b">motivation</h2>
+<div class="outline-text-2" id="text-org2f21e9b">
 <p>
 most note-taking packages introduce rules or syntaxes of their own, for example, <code>org-roam</code> inserts akin to the following text below id's and headers to identify them (which, by the way, <code>blk</code> knows how to handle):<br />
 </p>
@@ -169,18 +169,18 @@ to expand the transclusion we can use <code>M-x org-transclusion-mode</code>.<br
 </p>
 </div>
 </div>
-<div id="outline-container-org00a3357" class="outline-2">
-<h2 id="org00a3357">main features</h2>
-<div class="outline-text-2" id="text-org00a3357">
+<div id="outline-container-org13fad3f" class="outline-2">
+<h2 id="org13fad3f">main features</h2>
+<div class="outline-text-2" id="text-org13fad3f">
 <ul class="org-ul">
 <li>linking to any type of text, without having to worry about filenames.<br /></li>
 <li>navigating text elements by their titles, including support for outline navigation, e.g. the outline for an org src block: <code>file/heading/block</code>.<br /></li>
 <li>support for alises to any title, so that any text element can be navigated to by its "main" title or one of its aliases (this includes org files, for an example).<br /></li>
 </ul>
 </div>
-<div id="outline-container-org5e8ae23" class="outline-3">
-<h3 id="org5e8ae23">org-mode specific features</h3>
-<div class="outline-text-3" id="text-org5e8ae23">
+<div id="outline-container-org1aabb63" class="outline-3">
+<h3 id="org1aabb63">org-mode specific features</h3>
+<div class="outline-text-3" id="text-org1aabb63">
 <ul class="org-ul">
 <li>links to org-mode special blocks.<br /></li>
 <li>links to an arbitrary point in any org-mode file defined by <a id="id-here">id-here</a> (cross-file target links).<br /></li>
@@ -189,9 +189,9 @@ to expand the transclusion we can use <code>M-x org-transclusion-mode</code>.<br
 </div>
 </div>
 </div>
-<div id="outline-container-orga14440c" class="outline-2">
-<h2 id="orga14440c">basic setup</h2>
-<div class="outline-text-2" id="text-orga14440c">
+<div id="outline-container-org6e613c4" class="outline-2">
+<h2 id="org6e613c4">basic setup</h2>
+<div class="outline-text-2" id="text-org6e613c4">
 <div class="org-src-container" data-language="emacs-lisp">
 <pre class="src src-emacs-lisp"><span style="color: #5C7E81;">(</span><span style="color: #DD6F48;">use-package</span> blk
   <span style="color: #FE8019;">:straight</span> <span style="color: #837486;">(</span>blk <span style="color: #FE8019;">:host</span> github <span style="color: #FE8019;">:repo</span> <span style="color: #528B8B;">"mahmoodsheikh36/blk"</span><span style="color: #837486;">)</span> <span style="color: #928374;">;; </span><span style="color: #928374;">replace with :quelpa if needed</span>
@@ -232,13 +232,13 @@ if you want the transclusion functionality, you have to enable it after installi
 </div>
 </div>
 </div>
-<div id="outline-container-org05d74c3" class="outline-2">
-<h2 id="org05d74c3">more demos</h2>
-<div class="outline-text-2" id="text-org05d74c3">
+<div id="outline-container-org9068a6f" class="outline-2">
+<h2 id="org9068a6f">more demos</h2>
+<div class="outline-text-2" id="text-org9068a6f">
 </div>
-<div id="outline-container-org6654cd4" class="outline-3">
-<h3 id="org6654cd4">latex block transclusion demo</h3>
-<div class="outline-text-3" id="text-org6654cd4">
+<div id="outline-container-org7862366" class="outline-3">
+<h3 id="org7862366">latex block transclusion demo</h3>
+<div class="outline-text-3" id="text-org7862366">
 <p>
 
 <video controls muted>
@@ -249,9 +249,9 @@ your browser does not support the video tag.
 </div>
 </div>
 </div>
-<div id="outline-container-org9899f84" class="outline-2">
-<h2 id="org9899f84">writing custom rules</h2>
-<div class="outline-text-2" id="text-org9899f84">
+<div id="outline-container-org177091f" class="outline-2">
+<h2 id="org177091f">writing custom rules</h2>
+<div class="outline-text-2" id="text-org177091f">
 <p>
 when im taking notes in math, what i like to do is write the following:<br />
 </p>
@@ -307,9 +307,9 @@ the roles of the keywords in the list above are described in the docstring of <c
 </div>
 </div>
 </div>
-<div id="outline-container-org04b83c3" class="outline-2">
-<h2 id="org04b83c3">different greppers</h2>
-<div class="outline-text-2" id="text-org04b83c3">
+<div id="outline-container-orge46092e" class="outline-2">
+<h2 id="orge46092e">different greppers</h2>
+<div class="outline-text-2" id="text-orge46092e">
 <p>
 the greppers available for use are currently the standard <code>grep</code> or <code>ripgrep</code> (<code>rg</code>), or <code>emacs</code> itself. only use emacs as the grepper if you really are trying to avoid the dependency of an external grepper as it is an order of magnitude slower than the other options, though it is good to note that the plus side of using emacs as the grepper is that it is aware of unsaved changes to buffers since it greps those instead of the files themselves when they're already opened in buffers.<br />
 for each grepper a different table of patterns is defined, the grepper is chosen by setting the variable <code>blk-grepper</code> and defaults to <code>rg</code> and falls back to <code>grep</code> if <code>rg</code> isnt installed, and falls back to using emacs if <code>grep</code> isnt found aswell.<br />
@@ -360,17 +360,17 @@ for each grepper a different table of patterns is defined, the grepper is chosen
 </ul>
 </div>
 </div>
-<div id="outline-container-org8a34407" class="outline-2">
-<h2 id="org8a34407">dumping data</h2>
-<div class="outline-text-2" id="text-org8a34407">
+<div id="outline-container-orgf264406" class="outline-2">
+<h2 id="orgf264406">dumping data</h2>
+<div class="outline-text-2" id="text-orgf264406">
 <p>
 <code>blk</code> provides the function <code>blk-all-to-json</code> to dump the data that it gathers from files into a json file, for external use.<br />
 </p>
 </div>
 </div>
-<div id="outline-container-org0ee8ca2" class="outline-2">
-<h2 id="org0ee8ca2">variables for customization</h2>
-<div class="outline-text-2" id="text-org0ee8ca2">
+<div id="outline-container-org468a446" class="outline-2">
+<h2 id="org468a446">variables for customization</h2>
+<div class="outline-text-2" id="text-org468a446">
 <p>
 the following variables can be used to change some behaviors in the package.<br />
 </p>
@@ -400,11 +400,6 @@ the following variables can be used to change some behaviors in the package.<br 
 </tr>
 
 <tr>
-<td class="org-left">blk-tex-env-at-point-function</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
 <td class="org-left">blk-enable-groups</td>
 <td class="org-left">whether to enable outline navigation, like org-file/org-header</td>
 </tr>
@@ -420,15 +415,12 @@ the following variables can be used to change some behaviors in the package.<br 
 </tr>
 
 <tr>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">blk-tex-env-at-point-function</td>
 <td class="org-left">&#xa0;</td>
 </tr>
 </tbody>
 </table>
 </div>
-</div>
-<div id="outline-container-org567ec2f" class="outline-2">
-<h2 id="org567ec2f">integration with other packages</h2>
 </div>
 </div>
 </body>
