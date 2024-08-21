@@ -155,6 +155,10 @@ a {
     content: attr(data-language);
     right: 20px;
 }
+code {
+    color: #DD6F48;
+}
+
 .equation {
     max-width: 100%;
     display: block;
