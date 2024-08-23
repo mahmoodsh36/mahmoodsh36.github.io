@@ -90,7 +90,7 @@ pre {
 }
 
 /* block styling */
-.math-block {
+.fancy-block {
     -moz-border-radius: 6px;
     -webkit-border-radius: 6px;
     background-color: var(--secondary-background);
@@ -99,12 +99,12 @@ pre {
     padding: 10px;
     margin: 5px;
 }
-.math-block:before {
+.fancy-block:before {
     content: attr(data-before);
     font-weight: bold;
     font-style: italic;
 }
-.math-block:after {
+.fancy-block:after {
     content: attr(data-after);
     font-weight: bold;
     font-style: italic;
