@@ -149,9 +149,9 @@ note that a kernel will not be garbage collected until <code>end-kernel</code> i
 <pre class="src src-lisp"><span style="color: #d0730f;">(</span>lparallel:end-kernel<span style="color: #d0730f;">)</span>
 </pre>
 </div>
-<div id="outline-container-org585699e" class="outline-2">
-<h2 id="org585699e">plet</h2>
-<div class="outline-text-2" id="text-org585699e">
+<div id="outline-container-orgbb21563" class="outline-2">
+<h2 id="orgbb21563">plet</h2>
+<div class="outline-text-2" id="text-orgbb21563">
 <p>
 plet might be the simplest construct that lparallel offers for asynchronous computation, consider the following example:<br />
 </p>
@@ -184,9 +184,9 @@ the next sexp after <code>plet</code> doesnt run until <code>plet</code> is done
 </p>
 </div>
 </div>
-<div id="outline-container-orgaa43343" class="outline-2">
-<h2 id="orgaa43343">promise</h2>
-<div class="outline-text-2" id="text-orgaa43343">
+<div id="outline-container-org2593723" class="outline-2">
+<h2 id="org2593723">promise</h2>
+<div class="outline-text-2" id="text-org2593723">
 <p>
 promises and futures are also useful<br />
 a <code>promise</code> is a "promise" that needs to be <code>fulfill</code>'ed, <code>fullfilledp</code> checks whether a promise has been fulfilled, <code>fulfill</code> turns a promise into a fulfilled one, and attachs the second argument as its return value, <code>force</code> returns the value returned by a promise<br />
