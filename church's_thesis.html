@@ -14,6 +14,7 @@
 <!-- for dark mode -->
 <script src="darkmode.js"></script>
 <script src="main.js"></script>
+<script src="https://unpkg.com/feather-icons"></script>
 </head>
 <body>
 <div id="preamble" class="status">
@@ -28,14 +29,14 @@
 </div><h1 class="main-title">church's thesis</h1><span class='date'>2024-03-09</span>
 </div>
 <div id="content" class="content">
-<div class="dummy" id="orgb97d743">
+<div class="dummy" id="org40ec09b">
 <p>
 <a href="/turing_machine.html#1700140955">TM</a>s were invented in the 1930s, long before real computers appeared. they came at a time when mathematicians were trying to come to grips with the notion of effective computation. they knew various algorithms for computing things effectively, but they weren't quite sure how to define "effectively computable" in a general way that would allow them to distinguish between the computable and the noncomputable. several alternative formalisms evolved, each with its own peculiarities, in the attempt to nail down this notion:<br />
 </p>
 <ul class="org-ul">
 <li><a href="/turing_machine.html#1700140955">turing machine</a>s (Alan Turing);<br /></li>
 <li>Post systems (Emil Post);<br /></li>
-<li><?xml version='1.0' encoding='UTF-8'?>
+<li>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.478202 -4.363634 5.330011 6.425898' style="max-height: 0.7261em; vertical-align: -0.2525em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -45,7 +46,7 @@
 <use x='.478202' y='0' xlink:href='#g8-96'/>
 </g>
 </svg>-recursive functions (Kurt Godel);<br /></li>
-<li><a href="/lambda_calculus.html#1709732107"><?xml version='1.0' encoding='UTF-8'?>
+<li><a href="/lambda_calculus.html#1709732107">
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='-.129519 -6.605231 5.280197 6.694893' style="max-height: 0.7486em; vertical-align: -0.0590em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -60,7 +61,7 @@
 <li>combinatory logic (Moses Schonfinkel, Haskell B. Curry).<br /></li>
 </ul>
 <p>
-all of these systems embody the idea of effective computation in one form or another. they work on various types of data; for example, Turing machines manipulate strings over a finite alphabet, <?xml version='1.0' encoding='UTF-8'?>
+all of these systems embody the idea of effective computation in one form or another. they work on various types of data; for example, Turing machines manipulate strings over a finite alphabet, 
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.478202 -4.363634 5.330011 6.425898' style="max-height: 0.7261em; vertical-align: -0.2525em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -69,7 +70,7 @@ all of these systems embody the idea of effective computation in one form or ano
 <g id='page52'>
 <use x='.478202' y='0' xlink:href='#g8-96'/>
 </g>
-</svg>-recursive functions manipulate the natural numbers, the <?xml version='1.0' encoding='UTF-8'?>
+</svg>-recursive functions manipulate the natural numbers, the 
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='-.129519 -6.605231 5.280197 6.694893' style="max-height: 0.7486em; vertical-align: -0.0590em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -80,7 +81,7 @@ all of these systems embody the idea of effective computation in one form or ano
 <use x='-.129519' y='0' xlink:href='#g0-95'/>
 </g>
 </g>
-</svg>-calculus manipulates <?xml version='1.0' encoding='UTF-8'?>
+</svg>-calculus manipulates 
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='-.129519 -6.605231 5.280197 6.694893' style="max-height: 0.7486em; vertical-align: -0.0590em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -92,7 +93,7 @@ all of these systems embody the idea of effective computation in one form or ano
 </g>
 </g>
 </svg>-terms, and combinatory logic manipulates terms built from combinator symbols. however, there are natural translations between all these different types of data.<br />
-because these vastly dissimilar formalisms are all computationally equivalent, the common notion of computability that they embody is extremely robust, which is to say that it is invariant under fairly radical perturbations in the model. all these mathematicians with their pet systems turned out to be looking at the same thing from different angles. this was too striking to be mere coincidence. they soon came to the realization that the commonality among all these systems must be the elusive notion of effective computability that they had sought for so long. computability is not just Turing machines, nor the <?xml version='1.0' encoding='UTF-8'?>
+because these vastly dissimilar formalisms are all computationally equivalent, the common notion of computability that they embody is extremely robust, which is to say that it is invariant under fairly radical perturbations in the model. all these mathematicians with their pet systems turned out to be looking at the same thing from different angles. this was too striking to be mere coincidence. they soon came to the realization that the commonality among all these systems must be the elusive notion of effective computability that they had sought for so long. computability is not just Turing machines, nor the 
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='-.129519 -6.605231 5.280197 6.694893' style="max-height: 0.7486em; vertical-align: -0.0590em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -103,7 +104,7 @@ because these vastly dissimilar formalisms are all computationally equivalent, t
 <use x='-.129519' y='0' xlink:href='#g0-95'/>
 </g>
 </g>
-</svg>-calculus, nor the <?xml version='1.0' encoding='UTF-8'?>
+</svg>-calculus, nor the 
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.478202 -4.363634 5.330011 6.425898' style="max-height: 0.7261em; vertical-align: -0.2525em; display: inline-block" class="org-latex org-latex-inline">
 <defs>

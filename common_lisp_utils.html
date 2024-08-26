@@ -14,6 +14,7 @@
 <!-- for dark mode -->
 <script src="darkmode.js"></script>
 <script src="main.js"></script>
+<script src="https://unpkg.com/feather-icons"></script>
 </head>
 <body>
 <div id="preamble" class="status">
@@ -31,9 +32,9 @@
 <p>
 a collection of utility functions for <a href="/common_lisp.html#1677249560">common lisp</a>.<br />
 </p>
-<div id="outline-container-orgceb53a7" class="outline-2">
-<h2 id="orgceb53a7">arrays</h2>
-<div class="outline-text-2" id="text-orgceb53a7">
+<div id="outline-container-org00b5c2e" class="outline-2">
+<h2 id="org00b5c2e">arrays</h2>
+<div class="outline-text-2" id="text-org00b5c2e">
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp" id="src-array-dims"><span style="color: #cf9f7f; font-style: italic;">;; </span><span style="color: #cf9f7f; font-style: italic;">(defun array-width (2d-array)</span>
 <span style="color: #cf9f7f; font-style: italic;">;;   </span><span style="color: #cf9f7f; font-style: italic;">(car (cdr (array-dimensions 2d-array))))</span>
@@ -297,9 +298,9 @@ reducing an array with a function:<br />
 </div>
 </div>
 </div>
-<div id="outline-container-orgc5f7f2a" class="outline-2">
-<h2 id="orgc5f7f2a">sequences</h2>
-<div class="outline-text-2" id="text-orgc5f7f2a">
+<div id="outline-container-org9e72d2e" class="outline-2">
+<h2 id="org9e72d2e">sequences</h2>
+<div class="outline-text-2" id="text-org9e72d2e">
 <p>
 a function to get the last element in a list (or any sequence):<br />
 </p>
@@ -388,9 +389,9 @@ split a sequence into singleton sequences (of the same type as the original sequ
 </div>
 </div>
 </div>
-<div id="outline-container-org1baddbd" class="outline-2">
-<h2 id="org1baddbd">argmin and argmax</h2>
-<div class="outline-text-2" id="text-org1baddbd">
+<div id="outline-container-org3475ce8" class="outline-2">
+<h2 id="org3475ce8">argmin and argmax</h2>
+<div class="outline-text-2" id="text-org3475ce8">
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp" id="src-argmin-argmax"><span style="color: #d0730f;">(</span><span style="color: #c48702; font-weight: bold;">defun</span> <span style="color: #3dbbb0;">argmax</span> <span style="color: #64aa0f;">(</span>s <span style="color: #2fa526;">&amp;key</span> <span style="color: #ef656a;">(</span>key #'identity<span style="color: #ef656a;">)</span><span style="color: #64aa0f;">)</span>
   <span style="color: #5f9f6f; font-style: italic;">"returns value,index of element in sequence s that maximizes the key function"</span>
@@ -409,9 +410,9 @@ split a sequence into singleton sequences (of the same type as the original sequ
 </div>
 </div>
 </div>
-<div id="outline-container-org522fb47" class="outline-2">
-<h2 id="org522fb47">open url in browser</h2>
-<div class="outline-text-2" id="text-org522fb47">
+<div id="outline-container-org29e89f9" class="outline-2">
+<h2 id="org29e89f9">open url in browser</h2>
+<div class="outline-text-2" id="text-org29e89f9">
 <p>
 open a url by its default browser/app on macos/windows/linux<br />
 </p>
