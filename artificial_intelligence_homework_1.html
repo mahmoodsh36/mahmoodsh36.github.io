@@ -32,7 +32,7 @@
 <p>
 gotta apply the <a href="/A*_algorithm.html#1691868569">A* algorithm</a> to the graph from 
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='-.159406 -6.605231 13.917809 8.099612' style="max-height: 0.8577em; vertical-align: -0.1962em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='-.159406 -6.605231 13.917809 8.099612' style="max-height: 0.9069em; vertical-align: -0.1962em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g1-49' d='m2.865456 0v-.109091c-.574546-.007273-.690909-.08-.690909-.429091v-4.363638l-.058182-.014545l-1.309091 .661818v.101818c.087273-.036364 .167273-.065455 .196364-.08c.130909-.050909 .254546-.08 .327273-.08c.152727 0 .218182 .109091 .218182 .341818v3.294547c0 .24-.058182 .407273-.174546 .472727c-.109091 .065455-.210909 .087273-.516364 .094545v.109091h2.007274z'/>
 <path id='g1-52' d='m3.432729-1.214546v-.465455h-.741818v-3.236365h-.32l-2.283637 3.236365v.465455h2.043637v1.214546h.56v-1.214546h.741818zm-1.309091-.465455h-1.745455l1.745455-2.494546v2.494546z'/>
@@ -47,7 +47,7 @@ gotta apply the <a href="/A*_algorithm.html#1691868569">A* algorithm</a> to the 
 </g>
 </svg> to 
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='-.159406 -6.605231 10.281444 8.259615' style="max-height: 0.8734em; vertical-align: -0.2119em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='-.159406 -6.605231 10.281444 8.259615' style="max-height: 0.9226em; vertical-align: -0.2119em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g1-57' d='m3.338183-2.865456c0-1.200001-.669091-2.05091-1.607273-2.05091c-.865455 0-1.512728 .734546-1.512728 1.716364c0 .887273 .523637 1.476364 1.309091 1.476364c.4 0 .705455-.116364 1.09091-.414546c-.298182 1.185455-1.105455 1.963637-2.21091 2.152728l.021818 .145455c.814546-.094545 1.214546-.232727 1.709092-.589091c.756364-.552728 1.200001-1.454546 1.200001-2.436365zm-.705455 .283636c0 .145455-.029091 .210909-.109091 .276364c-.203636 .174546-.472727 .269091-.734546 .269091c-.552728 0-.901819-.545455-.901819-1.41091c0-.414546 .116364-.850909 .269091-1.04c.123636-.145455 .305455-.225455 .516364-.225455c.632728 0 .96 .625455 .96 1.847273v.283636z'/>
 <path id='g0-24' d='m5.977584-1.305106l-.169365-.139477c-.896638 .886675-1.474471 1.175592-2.291407 1.175592c-1.105853 0-1.743462-.747198-1.743462-2.042341c0-1.185554 .478207-2.391034 1.255293-3.198007c.478207-.498132 1.105853-.767123 1.763387-.767123c.916563 0 1.424658 .537983 1.524284 1.613948l.179328 .029888l.368618-1.982565h-.209215c-.079701 .159402-.179328 .219178-.37858 .219178c-.089664 0-.199253-.019925-.408468-.069738c-.438356-.109589-.836862-.169365-1.165629-.169365c-2.132005 0-4.044832 1.992528-4.044832 4.214197c0 1.524284 1.075965 2.600249 2.600249 2.600249c1.026152 0 1.823163-.428394 2.719801-1.484433z'/>
@@ -65,55 +65,55 @@ gotta apply the <a href="/A*_algorithm.html#1691868569">A* algorithm</a> to the 
 first i turned the tables/graphs into memory:<br />
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #d0730f;">(</span><span style="color: #c48702; font-weight: bold;">defparameter</span> <span style="color: #6fafff;">*graph*</span>
-  #<span style="color: #64aa0f;">(</span><span style="color: #ef656a;">(</span>c1 . <span style="color: #3dbbb0;">(</span>c2 . 90<span style="color: #3dbbb0;">)</span><span style="color: #ef656a;">)</span>
-    <span style="color: #ef656a;">(</span>c2 . <span style="color: #3dbbb0;">(</span>c7 . 150<span style="color: #3dbbb0;">)</span><span style="color: #ef656a;">)</span>
-    <span style="color: #ef656a;">(</span>c2 . <span style="color: #3dbbb0;">(</span>c3 . 100<span style="color: #3dbbb0;">)</span><span style="color: #ef656a;">)</span>
-    <span style="color: #ef656a;">(</span>c3 . <span style="color: #3dbbb0;">(</span>c6 . 60<span style="color: #3dbbb0;">)</span><span style="color: #ef656a;">)</span>
-    <span style="color: #ef656a;">(</span>c3 . <span style="color: #3dbbb0;">(</span>c4 . 70<span style="color: #3dbbb0;">)</span><span style="color: #ef656a;">)</span>
-    <span style="color: #ef656a;">(</span>c4 . <span style="color: #3dbbb0;">(</span>c5 . 110<span style="color: #3dbbb0;">)</span><span style="color: #ef656a;">)</span>
-    <span style="color: #ef656a;">(</span>c4 . <span style="color: #3dbbb0;">(</span>c14 . 50<span style="color: #3dbbb0;">)</span><span style="color: #ef656a;">)</span>
-    <span style="color: #ef656a;">(</span>c5 . <span style="color: #3dbbb0;">(</span>c14 . 90<span style="color: #3dbbb0;">)</span><span style="color: #ef656a;">)</span>
-    <span style="color: #ef656a;">(</span>c5 . <span style="color: #3dbbb0;">(</span>c12 . 80<span style="color: #3dbbb0;">)</span><span style="color: #ef656a;">)</span>
-    <span style="color: #ef656a;">(</span>c5 . <span style="color: #3dbbb0;">(</span>c8 . 100<span style="color: #3dbbb0;">)</span><span style="color: #ef656a;">)</span>
-    <span style="color: #ef656a;">(</span>c7 . <span style="color: #3dbbb0;">(</span>c9 . 180<span style="color: #3dbbb0;">)</span><span style="color: #ef656a;">)</span>
-    <span style="color: #ef656a;">(</span>c9 . <span style="color: #3dbbb0;">(</span>c12 . 140<span style="color: #3dbbb0;">)</span><span style="color: #ef656a;">)</span>
-    <span style="color: #ef656a;">(</span>c10 . <span style="color: #3dbbb0;">(</span>c9 . 150<span style="color: #3dbbb0;">)</span><span style="color: #ef656a;">)</span>
-    <span style="color: #ef656a;">(</span>c10 . <span style="color: #3dbbb0;">(</span>c17 . 200<span style="color: #3dbbb0;">)</span><span style="color: #ef656a;">)</span>
-    <span style="color: #ef656a;">(</span>c11 . <span style="color: #3dbbb0;">(</span>c12 . 240<span style="color: #3dbbb0;">)</span><span style="color: #ef656a;">)</span>
-    <span style="color: #ef656a;">(</span>c12 . <span style="color: #3dbbb0;">(</span>c15 . 130<span style="color: #3dbbb0;">)</span><span style="color: #ef656a;">)</span>
-    <span style="color: #ef656a;">(</span>c13 . <span style="color: #3dbbb0;">(</span>c14 . 130<span style="color: #3dbbb0;">)</span><span style="color: #ef656a;">)</span>
-    <span style="color: #ef656a;">(</span>c15 . <span style="color: #3dbbb0;">(</span>c17 . 130<span style="color: #3dbbb0;">)</span><span style="color: #ef656a;">)</span>
-    <span style="color: #ef656a;">(</span>c16 . <span style="color: #3dbbb0;">(</span>c8 . 100<span style="color: #3dbbb0;">)</span><span style="color: #ef656a;">)</span><span style="color: #64aa0f;">)</span><span style="color: #d0730f;">)</span>
-<span style="color: #d0730f;">(</span><span style="color: #c48702; font-weight: bold;">defparameter</span> <span style="color: #6fafff;">*straight-line-distances*</span>
-  '<span style="color: #64aa0f;">(</span><span style="color: #ef656a;">(</span>c1 . 200<span style="color: #ef656a;">)</span>
-    <span style="color: #ef656a;">(</span>c2 . 210<span style="color: #ef656a;">)</span>
-    <span style="color: #ef656a;">(</span>c3 . 220<span style="color: #ef656a;">)</span>
-    <span style="color: #ef656a;">(</span>c4 . 250<span style="color: #ef656a;">)</span>
-    <span style="color: #ef656a;">(</span>c5 . 190<span style="color: #ef656a;">)</span>
-    <span style="color: #ef656a;">(</span>c6 . 80<span style="color: #ef656a;">)</span>
-    <span style="color: #ef656a;">(</span>c7 . 50<span style="color: #ef656a;">)</span>
-    <span style="color: #ef656a;">(</span>c8 . 20<span style="color: #ef656a;">)</span>
-    <span style="color: #ef656a;">(</span>c9 . 0<span style="color: #ef656a;">)</span>
-    <span style="color: #ef656a;">(</span>c10 . 20<span style="color: #ef656a;">)</span>
-    <span style="color: #ef656a;">(</span>c11 . 10<span style="color: #ef656a;">)</span>
-    <span style="color: #ef656a;">(</span>c12 . 20<span style="color: #ef656a;">)</span>
-    <span style="color: #ef656a;">(</span>c13 . 60<span style="color: #ef656a;">)</span>
-    <span style="color: #ef656a;">(</span>c14 . 170<span style="color: #ef656a;">)</span>
-    <span style="color: #ef656a;">(</span>c15 . 100<span style="color: #ef656a;">)</span>
-    <span style="color: #ef656a;">(</span>c16 . 60<span style="color: #ef656a;">)</span>
-    <span style="color: #ef656a;">(</span>c17 . 80<span style="color: #ef656a;">)</span><span style="color: #64aa0f;">)</span><span style="color: #d0730f;">)</span>
+<pre class="src src-lisp">(<span style="font-weight: bold;">defparameter</span> <span style="font-weight: bold; font-style: italic;">*graph*</span>
+  #((c1 . (c2 . 90))
+    (c2 . (c7 . 150))
+    (c2 . (c3 . 100))
+    (c3 . (c6 . 60))
+    (c3 . (c4 . 70))
+    (c4 . (c5 . 110))
+    (c4 . (c14 . 50))
+    (c5 . (c14 . 90))
+    (c5 . (c12 . 80))
+    (c5 . (c8 . 100))
+    (c7 . (c9 . 180))
+    (c9 . (c12 . 140))
+    (c10 . (c9 . 150))
+    (c10 . (c17 . 200))
+    (c11 . (c12 . 240))
+    (c12 . (c15 . 130))
+    (c13 . (c14 . 130))
+    (c15 . (c17 . 130))
+    (c16 . (c8 . 100))))
+(<span style="font-weight: bold;">defparameter</span> <span style="font-weight: bold; font-style: italic;">*straight-line-distances*</span>
+  '((c1 . 200)
+    (c2 . 210)
+    (c3 . 220)
+    (c4 . 250)
+    (c5 . 190)
+    (c6 . 80)
+    (c7 . 50)
+    (c8 . 20)
+    (c9 . 0)
+    (c10 . 20)
+    (c11 . 10)
+    (c12 . 20)
+    (c13 . 60)
+    (c14 . 170)
+    (c15 . 100)
+    (c16 . 60)
+    (c17 . 80)))
 </pre>
 </div>
 <p>
 i generated an image for the graph with tikz<br />
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #d0730f;">(</span>generate-graph-tikz *graph*<span style="color: #d0730f;">)</span>
+<pre class="src src-lisp">(generate-graph-tikz *graph*)
 </pre>
 </div>
 
-<pre class="example" id="org52cd47b">
+<pre class="example" id="org8b8198f">
 \tikz\graph[spring electrical layout,node distance=50] {
 C1 -- C2,
 C2 -- C7,
@@ -146,11 +146,11 @@ result image (used the parameters <code>spring electrical layout,node distance=5
 time to apply the algorithm:<br />
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #d0730f;">(</span>a-star *graph*
+<pre class="src src-lisp">(a-star *graph*
         'c14
         'c9
-        <span style="color: #64aa0f;">(</span><span style="color: #c48702; font-weight: bold;">lambda</span> <span style="color: #ef656a;">(</span>node<span style="color: #ef656a;">)</span> <span style="color: #cf9f7f; font-style: italic;">;; </span><span style="color: #cf9f7f; font-style: italic;">heuristic function</span>
-          <span style="color: #ef656a;">(</span>cdr <span style="color: #3dbbb0;">(</span>assoc node *straight-line-distances*<span style="color: #3dbbb0;">)</span><span style="color: #ef656a;">)</span><span style="color: #64aa0f;">)</span><span style="color: #d0730f;">)</span>
+        (<span style="font-weight: bold;">lambda</span> (node) <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">heuristic function</span>
+          (cdr (assoc node *straight-line-distances*))))
 </pre>
 </div>
 
@@ -164,64 +164,64 @@ basically this says that we go the path <code>c9 -&gt; c10 -&gt; c17 -&gt; c15 -
 but i feel like taking this a bit further and generating a tree of the decisions that were made during the algorithm, so i edited the algorithm:<br />
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #d0730f;">(</span><span style="color: #c48702; font-weight: bold;">defun</span> <span style="color: #3dbbb0;">a-star</span> <span style="color: #64aa0f;">(</span>graph src dest heuristic-function<span style="color: #64aa0f;">)</span>
-  <span style="color: #5f9f6f; font-style: italic;">"modified function to output the tree of the decision making process"</span>
-  <span style="color: #64aa0f;">(</span>format t <span style="color: #f06a3f;">"\\begin{forest}~%"</span><span style="color: #64aa0f;">)</span>
-  <span style="color: #64aa0f;">(</span>a-star-helper graph src nil dest 0 heuristic-function<span style="color: #64aa0f;">)</span>
-  <span style="color: #64aa0f;">(</span>format t <span style="color: #f06a3f;">"~%\\end{forest}"</span><span style="color: #64aa0f;">)</span><span style="color: #d0730f;">)</span>
+<pre class="src src-lisp">(<span style="font-weight: bold;">defun</span> <span style="font-weight: bold;">a-star</span> (graph src dest heuristic-function)
+  <span style="font-style: italic;">"modified function to output the tree of the decision making process"</span>
+  (format t <span style="font-style: italic;">"\\begin{forest}~%"</span>)
+  (a-star-helper graph src nil dest 0 heuristic-function)
+  (format t <span style="font-style: italic;">"~%\\end{forest}"</span>))
 
-<span style="color: #d0730f;">(</span><span style="color: #c48702; font-weight: bold;">defun</span> <span style="color: #3dbbb0;">a-star-helper</span> <span style="color: #64aa0f;">(</span>graph node parent dest cost heuristic-function<span style="color: #64aa0f;">)</span>
-  <span style="color: #5f9f6f; font-style: italic;">"modified function to output the tree of the decision making process"</span>
-  <span style="color: #64aa0f;">(</span><span style="color: #c48702; font-weight: bold;">let</span> <span style="color: #ef656a;">(</span><span style="color: #3dbbb0;">(</span>frontier <span style="color: #df8f6f;">(</span>adjacent-edges graph node<span style="color: #df8f6f;">)</span><span style="color: #3dbbb0;">)</span><span style="color: #ef656a;">)</span>
-    <span style="color: #ef656a;">(</span>sort frontier
-          <span style="color: #3dbbb0;">(</span><span style="color: #c48702; font-weight: bold;">lambda</span> <span style="color: #df8f6f;">(</span>edge1 edge2<span style="color: #df8f6f;">)</span>
-            <span style="color: #df8f6f;">(</span><span style="color: #c48702; font-weight: bold;">let*</span> <span style="color: #379cf6;">(</span><span style="color: #ff7a7f;">(</span>next1 <span style="color: #2fa526;">(</span><span style="color: #c48702; font-weight: bold;">cond</span> <span style="color: #c48702;">(</span><span style="color: #d0730f;">(</span>eq <span style="color: #64aa0f;">(</span>edge-dest edge1<span style="color: #64aa0f;">)</span> node<span style="color: #d0730f;">)</span> <span style="color: #d0730f;">(</span>edge-src edge1<span style="color: #d0730f;">)</span><span style="color: #c48702;">)</span>
-                                <span style="color: #c48702;">(</span><span style="color: #d0730f;">(</span>eq <span style="color: #64aa0f;">(</span>edge-src edge1<span style="color: #64aa0f;">)</span> node<span style="color: #d0730f;">)</span> <span style="color: #d0730f;">(</span>edge-dest edge1<span style="color: #d0730f;">)</span><span style="color: #c48702;">)</span><span style="color: #2fa526;">)</span><span style="color: #ff7a7f;">)</span>
-                   <span style="color: #ff7a7f;">(</span>next2 <span style="color: #2fa526;">(</span><span style="color: #c48702; font-weight: bold;">cond</span> <span style="color: #c48702;">(</span><span style="color: #d0730f;">(</span>eq <span style="color: #64aa0f;">(</span>edge-dest edge2<span style="color: #64aa0f;">)</span> node<span style="color: #d0730f;">)</span> <span style="color: #d0730f;">(</span>edge-src edge2<span style="color: #d0730f;">)</span><span style="color: #c48702;">)</span>
-                                <span style="color: #c48702;">(</span><span style="color: #d0730f;">(</span>eq <span style="color: #64aa0f;">(</span>edge-src edge2<span style="color: #64aa0f;">)</span> node<span style="color: #d0730f;">)</span> <span style="color: #d0730f;">(</span>edge-dest edge2<span style="color: #d0730f;">)</span><span style="color: #c48702;">)</span><span style="color: #2fa526;">)</span><span style="color: #ff7a7f;">)</span>
-                   <span style="color: #ff7a7f;">(</span>cost1 <span style="color: #2fa526;">(</span>+ <span style="color: #c48702;">(</span>edge-weight edge1<span style="color: #c48702;">)</span> <span style="color: #c48702;">(</span>funcall heuristic-function next1<span style="color: #c48702;">)</span><span style="color: #2fa526;">)</span><span style="color: #ff7a7f;">)</span>
-                   <span style="color: #ff7a7f;">(</span>cost2 <span style="color: #2fa526;">(</span>+ <span style="color: #c48702;">(</span>edge-weight edge2<span style="color: #c48702;">)</span> <span style="color: #c48702;">(</span>funcall heuristic-function next2<span style="color: #c48702;">)</span><span style="color: #2fa526;">)</span><span style="color: #ff7a7f;">)</span><span style="color: #379cf6;">)</span>
-              <span style="color: #379cf6;">(</span>&lt; cost1 cost2<span style="color: #379cf6;">)</span><span style="color: #df8f6f;">)</span><span style="color: #3dbbb0;">)</span><span style="color: #ef656a;">)</span>
-    <span style="color: #ef656a;">(</span>format t <span style="color: #f06a3f;">"[~A"</span> node<span style="color: #ef656a;">)</span>
-    <span style="color: #ef656a;">(</span><span style="color: #c48702; font-weight: bold;">loop</span> for edge in frontier do
-      <span style="color: #3dbbb0;">(</span>format t <span style="color: #f06a3f;">"[~A]"</span> <span style="color: #df8f6f;">(</span><span style="color: #c48702; font-weight: bold;">cond</span> <span style="color: #379cf6;">(</span><span style="color: #ff7a7f;">(</span>eq <span style="color: #2fa526;">(</span>edge-dest edge<span style="color: #2fa526;">)</span> node<span style="color: #ff7a7f;">)</span> <span style="color: #ff7a7f;">(</span>edge-src edge<span style="color: #ff7a7f;">)</span><span style="color: #379cf6;">)</span>
-                             <span style="color: #379cf6;">(</span><span style="color: #ff7a7f;">(</span>eq <span style="color: #2fa526;">(</span>edge-src edge<span style="color: #2fa526;">)</span> node<span style="color: #ff7a7f;">)</span> <span style="color: #ff7a7f;">(</span>edge-dest edge<span style="color: #ff7a7f;">)</span><span style="color: #379cf6;">)</span><span style="color: #df8f6f;">)</span><span style="color: #3dbbb0;">)</span><span style="color: #ef656a;">)</span>
-    <span style="color: #ef656a;">(</span><span style="color: #c48702; font-weight: bold;">loop</span> while frontier do
-      <span style="color: #cf9f7f; font-style: italic;">;; </span><span style="color: #cf9f7f; font-style: italic;">grab the node with the least cost from the frontier</span>
-      <span style="color: #3dbbb0;">(</span><span style="color: #c48702; font-weight: bold;">let*</span> <span style="color: #df8f6f;">(</span><span style="color: #379cf6;">(</span>edge <span style="color: #ff7a7f;">(</span>car frontier<span style="color: #ff7a7f;">)</span><span style="color: #379cf6;">)</span>
-             <span style="color: #379cf6;">(</span>next <span style="color: #ff7a7f;">(</span><span style="color: #c48702; font-weight: bold;">cond</span> <span style="color: #2fa526;">(</span><span style="color: #c48702;">(</span>eq <span style="color: #d0730f;">(</span>edge-dest edge<span style="color: #d0730f;">)</span> node<span style="color: #c48702;">)</span> <span style="color: #c48702;">(</span>edge-src edge<span style="color: #c48702;">)</span><span style="color: #2fa526;">)</span>
-                         <span style="color: #2fa526;">(</span><span style="color: #c48702;">(</span>eq <span style="color: #d0730f;">(</span>edge-src edge<span style="color: #d0730f;">)</span> node<span style="color: #c48702;">)</span> <span style="color: #c48702;">(</span>edge-dest edge<span style="color: #c48702;">)</span><span style="color: #2fa526;">)</span><span style="color: #ff7a7f;">)</span><span style="color: #379cf6;">)</span><span style="color: #df8f6f;">)</span>
-        <span style="color: #df8f6f;">(</span><span style="color: #c48702; font-weight: bold;">if</span> <span style="color: #379cf6;">(</span>eq next dest<span style="color: #379cf6;">)</span>
-            <span style="color: #379cf6;">(</span><span style="color: #c48702; font-weight: bold;">progn</span>
-              <span style="color: #ff7a7f;">(</span>format t <span style="color: #f06a3f;">"]"</span><span style="color: #ff7a7f;">)</span>
-              <span style="color: #ff7a7f;">(</span><span style="color: #c48702; font-weight: bold;">return-from</span> a-star-helper <span style="color: #2fa526;">(</span>cons dest nil<span style="color: #2fa526;">)</span><span style="color: #ff7a7f;">)</span><span style="color: #379cf6;">)</span> <span style="color: #cf9f7f; font-style: italic;">;; </span><span style="color: #cf9f7f; font-style: italic;">arrived at destination</span>
-            <span style="color: #379cf6;">(</span><span style="color: #c48702; font-weight: bold;">if</span> <span style="color: #ff7a7f;">(</span>eq next parent<span style="color: #ff7a7f;">)</span>
-                <span style="color: #ff7a7f;">(</span>pop frontier<span style="color: #ff7a7f;">)</span> <span style="color: #cf9f7f; font-style: italic;">;; </span><span style="color: #cf9f7f; font-style: italic;">dont go back to parent!, get rid of that edge</span>
-                <span style="color: #ff7a7f;">(</span><span style="color: #c48702; font-weight: bold;">let</span> <span style="color: #2fa526;">(</span><span style="color: #c48702;">(</span>new-path <span style="color: #d0730f;">(</span>a-star-helper graph
+(<span style="font-weight: bold;">defun</span> <span style="font-weight: bold;">a-star-helper</span> (graph node parent dest cost heuristic-function)
+  <span style="font-style: italic;">"modified function to output the tree of the decision making process"</span>
+  (<span style="font-weight: bold;">let</span> ((frontier (adjacent-edges graph node)))
+    (sort frontier
+          (<span style="font-weight: bold;">lambda</span> (edge1 edge2)
+            (<span style="font-weight: bold;">let*</span> ((next1 (<span style="font-weight: bold;">cond</span> ((eq (edge-dest edge1) node) (edge-src edge1))
+                                ((eq (edge-src edge1) node) (edge-dest edge1))))
+                   (next2 (<span style="font-weight: bold;">cond</span> ((eq (edge-dest edge2) node) (edge-src edge2))
+                                ((eq (edge-src edge2) node) (edge-dest edge2))))
+                   (cost1 (+ (edge-weight edge1) (funcall heuristic-function next1)))
+                   (cost2 (+ (edge-weight edge2) (funcall heuristic-function next2))))
+              (&lt; cost1 cost2))))
+    (format t <span style="font-style: italic;">"[~A"</span> node)
+    (<span style="font-weight: bold;">loop</span> for edge in frontier do
+      (format t <span style="font-style: italic;">"[~A]"</span> (<span style="font-weight: bold;">cond</span> ((eq (edge-dest edge) node) (edge-src edge))
+                             ((eq (edge-src edge) node) (edge-dest edge)))))
+    (<span style="font-weight: bold;">loop</span> while frontier do
+      <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">grab the node with the least cost from the frontier</span>
+      (<span style="font-weight: bold;">let*</span> ((edge (car frontier))
+             (next (<span style="font-weight: bold;">cond</span> ((eq (edge-dest edge) node) (edge-src edge))
+                         ((eq (edge-src edge) node) (edge-dest edge)))))
+        (<span style="font-weight: bold;">if</span> (eq next dest)
+            (<span style="font-weight: bold;">progn</span>
+              (format t <span style="font-style: italic;">"]"</span>)
+              (<span style="font-weight: bold;">return-from</span> a-star-helper (cons dest nil))) <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">arrived at destination</span>
+            (<span style="font-weight: bold;">if</span> (eq next parent)
+                (pop frontier) <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">dont go back to parent!, get rid of that edge</span>
+                (<span style="font-weight: bold;">let</span> ((new-path (a-star-helper graph
                                                next
                                                node
                                                dest
-                                               <span style="color: #64aa0f;">(</span>+ cost <span style="color: #ef656a;">(</span>edge-weight edge<span style="color: #ef656a;">)</span><span style="color: #64aa0f;">)</span>
-                                               heuristic-function<span style="color: #d0730f;">)</span><span style="color: #c48702;">)</span><span style="color: #2fa526;">)</span>
-                  <span style="color: #2fa526;">(</span><span style="color: #c48702; font-weight: bold;">if</span> new-path
-                      <span style="color: #c48702;">(</span><span style="color: #c48702; font-weight: bold;">progn</span>
-                        <span style="color: #d0730f;">(</span>format t <span style="color: #f06a3f;">"]"</span> node<span style="color: #d0730f;">)</span>
-                        <span style="color: #d0730f;">(</span><span style="color: #c48702; font-weight: bold;">return-from</span> a-star-helper <span style="color: #64aa0f;">(</span>cons node new-path<span style="color: #64aa0f;">)</span><span style="color: #d0730f;">)</span><span style="color: #c48702;">)</span> <span style="color: #cf9f7f; font-style: italic;">;; </span><span style="color: #cf9f7f; font-style: italic;">keep returning, we're done</span>
-                      <span style="color: #c48702;">(</span>pop frontier<span style="color: #c48702;">)</span><span style="color: #2fa526;">)</span><span style="color: #ff7a7f;">)</span><span style="color: #379cf6;">)</span><span style="color: #df8f6f;">)</span><span style="color: #3dbbb0;">)</span><span style="color: #ef656a;">)</span> <span style="color: #cf9f7f; font-style: italic;">;; </span><span style="color: #cf9f7f; font-style: italic;">subpath hit a dead end, pop it and continue looping</span>
-    <span style="color: #cf9f7f; font-style: italic;">;; </span><span style="color: #cf9f7f; font-style: italic;">we exhausted the frontier, we hit a dead end, return false/empty list</span>
-    <span style="color: #ef656a;">(</span>format t <span style="color: #f06a3f;">"]"</span><span style="color: #ef656a;">)</span>
-    nil<span style="color: #64aa0f;">)</span><span style="color: #d0730f;">)</span>
+                                               (+ cost (edge-weight edge))
+                                               heuristic-function)))
+                  (<span style="font-weight: bold;">if</span> new-path
+                      (<span style="font-weight: bold;">progn</span>
+                        (format t <span style="font-style: italic;">"]"</span> node)
+                        (<span style="font-weight: bold;">return-from</span> a-star-helper (cons node new-path))) <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">keep returning, we're done</span>
+                      (pop frontier))))))) <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">subpath hit a dead end, pop it and continue looping</span>
+    <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">we exhausted the frontier, we hit a dead end, return false/empty list</span>
+    (format t <span style="font-style: italic;">"]"</span>)
+    nil))
 </pre>
 </div>
 <p>
 usage:<br />
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #d0730f;">(</span>a-star *graph*
+<pre class="src src-lisp">(a-star *graph*
         'c14
         'c9
-        <span style="color: #64aa0f;">(</span><span style="color: #c48702; font-weight: bold;">lambda</span> <span style="color: #ef656a;">(</span>node<span style="color: #ef656a;">)</span> <span style="color: #cf9f7f; font-style: italic;">;; </span><span style="color: #cf9f7f; font-style: italic;">heuristic function</span>
-          <span style="color: #ef656a;">(</span>cdr <span style="color: #3dbbb0;">(</span>assoc node *straight-line-distances*<span style="color: #3dbbb0;">)</span><span style="color: #ef656a;">)</span><span style="color: #64aa0f;">)</span><span style="color: #d0730f;">)</span>
+        (<span style="font-weight: bold;">lambda</span> (node) <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">heuristic function</span>
+          (cdr (assoc node *straight-line-distances*))))
 </pre>
 </div>
 
@@ -230,7 +230,7 @@ usage:<br />
 <span class="equation">
 
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='3.319335 -176.504298 356.430431 173.185903' style="max-height: 17.7381em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='3.319335 -176.504298 356.430431 173.185903' style="max-height: 17.7873em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g2-17' d='m4.742217-3.287671c0-2.042341-.9066-3.447073-2.211706-3.447073c-.547945 0-.966376 .169365-1.334994 .518057c-.577833 .557908-.956413 1.703611-.956413 2.86924c0 1.085928 .328767 2.251557 .797011 2.809465c.368618 .438356 .876712 .67746 1.454545 .67746c.508095 0 .936488-.169365 1.295143-.518057c.577833-.547945 .956413-1.703611 .956413-2.909091zm-.956413 .019925c0 2.082192-.438356 3.148194-1.295143 3.148194s-1.295143-1.066002-1.295143-3.138232c0-2.11208 .448319-3.217933 1.305106-3.217933c.836862 0 1.285181 1.125778 1.285181 3.20797z'/>
 <path id='g2-18' d='m3.92528 0v-.14944c-.787049-.009963-.946451-.109589-.946451-.587796v-5.977584l-.079701-.019925l-1.793275 .9066v.139477c.119552-.049813 .229141-.089664 .268991-.109589c.179328-.069738 .348692-.109589 .448319-.109589c.209215 0 .298879 .14944 .298879 .468244v4.513076c0 .328767-.079701 .557908-.239103 .647572c-.14944 .089664-.288917 .119552-.707347 .129514v.14944h2.749689z'/>
