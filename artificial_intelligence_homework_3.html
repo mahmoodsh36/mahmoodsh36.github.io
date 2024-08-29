@@ -44,32 +44,32 @@ using <a href="/working_with_graphs_in_common_lisp.html#1691879374">common lisp 
 </ul><p>
 first we define the graph:<br /></p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp">(<span style="font-weight: bold;">defparameter</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span><span style="color: #fb4933;">defparameter</span>
     *mygraph*
-  (make-graph
-   <span style="font-weight: bold;">:adjacency-list</span>
-   '((a . ((b . nil) (c . nil) (d . nil))) <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">3 edges connected to A</span>
-     (b . ((c . nil) (j . nil) (e . nil)))
-     (c . ((f . nil)))
-     (l . ((m . nil) (e . nil) (g . nil) (d . nil)))
-     (d . ((g . nil)))
-     (j . ((i . nil) (g . nil)))
-     (m . ((f . nil) (n . nil)))
-     (e . ((h . nil) (g . nil)))
-     (g . ((i . nil) (f . nil) (o . nil)))
-     (f . ((o . nil) (i . nil)))
-     (i . ((k . nil) (n . nil)))
-     (o . ((p . nil) (h . nil)))
-     (h . ((k . nil)))
-     (n . ((k . nil) (p . nil)))
-     (p . ((k . nil)))
-     (k . nil))))
+  <span style="color: #b16286;">(</span>make-graph
+   <span style="color: #fe8019;">:adjacency-list</span>
+   '<span style="color: #8ec07c;">(</span><span style="color: #d65d0e;">(</span>a . <span style="color: #458588;">(</span><span style="color: #b16286;">(</span>b . nil<span style="color: #b16286;">)</span> <span style="color: #b16286;">(</span>c . nil<span style="color: #b16286;">)</span> <span style="color: #b16286;">(</span>d . nil<span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">3 edges connected to A</span>
+     <span style="color: #d65d0e;">(</span>b . <span style="color: #458588;">(</span><span style="color: #b16286;">(</span>c . nil<span style="color: #b16286;">)</span> <span style="color: #b16286;">(</span>j . nil<span style="color: #b16286;">)</span> <span style="color: #b16286;">(</span>e . nil<span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span>
+     <span style="color: #d65d0e;">(</span>c . <span style="color: #458588;">(</span><span style="color: #b16286;">(</span>f . nil<span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span>
+     <span style="color: #d65d0e;">(</span>l . <span style="color: #458588;">(</span><span style="color: #b16286;">(</span>m . nil<span style="color: #b16286;">)</span> <span style="color: #b16286;">(</span>e . nil<span style="color: #b16286;">)</span> <span style="color: #b16286;">(</span>g . nil<span style="color: #b16286;">)</span> <span style="color: #b16286;">(</span>d . nil<span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span>
+     <span style="color: #d65d0e;">(</span>d . <span style="color: #458588;">(</span><span style="color: #b16286;">(</span>g . nil<span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span>
+     <span style="color: #d65d0e;">(</span>j . <span style="color: #458588;">(</span><span style="color: #b16286;">(</span>i . nil<span style="color: #b16286;">)</span> <span style="color: #b16286;">(</span>g . nil<span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span>
+     <span style="color: #d65d0e;">(</span>m . <span style="color: #458588;">(</span><span style="color: #b16286;">(</span>f . nil<span style="color: #b16286;">)</span> <span style="color: #b16286;">(</span>n . nil<span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span>
+     <span style="color: #d65d0e;">(</span>e . <span style="color: #458588;">(</span><span style="color: #b16286;">(</span>h . nil<span style="color: #b16286;">)</span> <span style="color: #b16286;">(</span>g . nil<span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span>
+     <span style="color: #d65d0e;">(</span>g . <span style="color: #458588;">(</span><span style="color: #b16286;">(</span>i . nil<span style="color: #b16286;">)</span> <span style="color: #b16286;">(</span>f . nil<span style="color: #b16286;">)</span> <span style="color: #b16286;">(</span>o . nil<span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span>
+     <span style="color: #d65d0e;">(</span>f . <span style="color: #458588;">(</span><span style="color: #b16286;">(</span>o . nil<span style="color: #b16286;">)</span> <span style="color: #b16286;">(</span>i . nil<span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span>
+     <span style="color: #d65d0e;">(</span>i . <span style="color: #458588;">(</span><span style="color: #b16286;">(</span>k . nil<span style="color: #b16286;">)</span> <span style="color: #b16286;">(</span>n . nil<span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span>
+     <span style="color: #d65d0e;">(</span>o . <span style="color: #458588;">(</span><span style="color: #b16286;">(</span>p . nil<span style="color: #b16286;">)</span> <span style="color: #b16286;">(</span>h . nil<span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span>
+     <span style="color: #d65d0e;">(</span>h . <span style="color: #458588;">(</span><span style="color: #b16286;">(</span>k . nil<span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span>
+     <span style="color: #d65d0e;">(</span>n . <span style="color: #458588;">(</span><span style="color: #b16286;">(</span>k . nil<span style="color: #b16286;">)</span> <span style="color: #b16286;">(</span>p . nil<span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span>
+     <span style="color: #d65d0e;">(</span>p . <span style="color: #458588;">(</span><span style="color: #b16286;">(</span>k . nil<span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span>
+     <span style="color: #d65d0e;">(</span>k . nil<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 </pre>
 </div>
 <p>
 visualize it with tikz:<br /></p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp">(graph-generate-tikz *mygraph* <span style="font-weight: bold;">:node-distance</span> 80)
+<pre class="src src-lisp"><span style="color: #458588;">(</span>graph-generate-tikz *mygraph* <span style="color: #fe8019;">:node-distance</span> 80<span style="color: #458588;">)</span>
 </pre>
 </div>
 
@@ -83,174 +83,174 @@ visualize it with tikz:<br /></p>
 
 <p>
 a constraint satisfaction problem is defined by its variables, domains and contrains<br />
-since i had written the problem in its constraint graph form, i had to write a function to convert it into its &quot;original&quot; form, its variables, domains and it defines the constraint of neighbors not having the same color, which is from the map coloring problem (so this method is not really general, but specific to this problem):<br /></p>
+since i had written the problem in its constraint graph form, i had to write a function to convert it into its "original" form, its variables, domains and it defines the constraint of neighbors not having the same color, which is from the map coloring problem (so this method is not really general, but specific to this problem):<br /></p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp">(<span style="font-weight: bold;">defstruct</span> <span style="font-weight: bold; text-decoration: underline;">constraint-satisfaction-problem</span>
-  variables domains constraints)
+<pre class="src src-lisp"><span style="color: #458588;">(</span><span style="color: #fb4933;">defstruct</span> <span style="color: #d3869b;">constraint-satisfaction-problem</span>
+  variables domains constraints<span style="color: #458588;">)</span>
 
-(<span style="font-weight: bold;">defun</span> <span style="font-weight: bold;">parse-color-map-constraint-graph</span> (g)
-  <span style="font-style: italic;">&quot;input g is the constraint graph of the map coloring problem, the function assumes the vector 'values-assoc-list' represents the values of variables, it should take the form '((var1 value1) (var2 value2)) which allows it to be used as an association list&quot;</span>
-  (<span style="font-weight: bold;">let</span> ((variables)
-        (domains)
-        (constraints))
-    (setf variables (map 'list #'car (graph-adjacency-list g)))
-    <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">each domain's variable is just a list of the symbols r,g,b,a representing the 3 colors and the alpha value (in this case alpha is just another &quot;color&quot; tho...)</span>
-    (setf domains (make-array (length variables) <span style="font-weight: bold;">:initial-element</span> '(r g b a)))
-    (setf
+<span style="color: #458588;">(</span><span style="color: #fb4933;">defun</span> <span style="color: #fabd2f;">parse-color-map-constraint-graph</span> <span style="color: #b16286;">(</span>g<span style="color: #b16286;">)</span>
+  <span style="color: #b8bb26;">"input g is the constraint graph of the map coloring problem, the function assumes the vector 'values-assoc-list' represents the values of variables, it should take the form '((var1 value1) (var2 value2)) which allows it to be used as an association list"</span>
+  <span style="color: #b16286;">(</span><span style="color: #fb4933;">let</span> <span style="color: #8ec07c;">(</span><span style="color: #d65d0e;">(</span>variables<span style="color: #d65d0e;">)</span>
+        <span style="color: #d65d0e;">(</span>domains<span style="color: #d65d0e;">)</span>
+        <span style="color: #d65d0e;">(</span>constraints<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>setf variables <span style="color: #d65d0e;">(</span>map 'list #'car <span style="color: #458588;">(</span>graph-adjacency-list g<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+    <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">each domain's variable is just a list of the symbols r,g,b,a representing the 3 colors and the alpha value (in this case alpha is just another "color" tho...)</span>
+    <span style="color: #8ec07c;">(</span>setf domains <span style="color: #d65d0e;">(</span>make-array <span style="color: #458588;">(</span>length variables<span style="color: #458588;">)</span> <span style="color: #fe8019;">:initial-element</span> '<span style="color: #458588;">(</span>r g b a<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>setf
      constraints
-     (list
-      (<span style="font-weight: bold;">lambda</span> (csp gr values-assoc-list) <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">one constraint, no equal values for neighboring states</span>
-        (<span style="font-weight: bold;">let</span> ((wrong nil))
-          (<span style="font-weight: bold;">loop</span> for entry in (graph-adjacency-list g) do
-            (<span style="font-weight: bold;">let</span> ((source-vertex (car entry))
-                  (edges (cdr entry)))
-              (<span style="font-weight: bold;">loop</span> for edge in edges do
-                (<span style="font-weight: bold;">let</span> ((dest-vertex (edge-dest edge)))
-                  (<span style="font-weight: bold;">when</span> (and (assoc source-vertex values-assoc-list)
-                             (assoc dest-vertex values-assoc-list))
-                    (setf wrong
-                          (or wrong
-                              (equal (cdr (assoc source-vertex values-assoc-list))
-                                     (cdr (assoc dest-vertex values-assoc-list))))))))))
-          (not wrong)))))
-    <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">return those values</span>
-    (make-constraint-satisfaction-problem
-     <span style="font-weight: bold;">:variables</span> variables
-     <span style="font-weight: bold;">:domains</span> domains
-     <span style="font-weight: bold;">:constraints</span> constraints)))
+     <span style="color: #d65d0e;">(</span>list
+      <span style="color: #458588;">(</span><span style="color: #fb4933;">lambda</span> <span style="color: #b16286;">(</span>csp gr values-assoc-list<span style="color: #b16286;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">one constraint, no equal values for neighboring states</span>
+        <span style="color: #b16286;">(</span><span style="color: #fb4933;">let</span> <span style="color: #8ec07c;">(</span><span style="color: #d65d0e;">(</span>wrong nil<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+          <span style="color: #8ec07c;">(</span><span style="color: #fb4933;">loop</span> for entry in <span style="color: #d65d0e;">(</span>graph-adjacency-list g<span style="color: #d65d0e;">)</span> do
+            <span style="color: #d65d0e;">(</span><span style="color: #fb4933;">let</span> <span style="color: #458588;">(</span><span style="color: #458588;">(</span>source-vertex <span style="color: #b16286;">(</span>car entry<span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
+                  <span style="color: #458588;">(</span>edges <span style="color: #b16286;">(</span>cdr entry<span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #458588;">)</span>
+              <span style="color: #458588;">(</span><span style="color: #fb4933;">loop</span> for edge in edges do
+                <span style="color: #458588;">(</span><span style="color: #fb4933;">let</span> <span style="color: #b16286;">(</span><span style="color: #8ec07c;">(</span>dest-vertex <span style="color: #d65d0e;">(</span>edge-dest edge<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span>
+                  <span style="color: #b16286;">(</span><span style="color: #fb4933;">when</span> <span style="color: #8ec07c;">(</span>and <span style="color: #d65d0e;">(</span>assoc source-vertex values-assoc-list<span style="color: #d65d0e;">)</span>
+                             <span style="color: #d65d0e;">(</span>assoc dest-vertex values-assoc-list<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+                    <span style="color: #8ec07c;">(</span>setf wrong
+                          <span style="color: #d65d0e;">(</span>or wrong
+                              <span style="color: #458588;">(</span>equal <span style="color: #b16286;">(</span>cdr <span style="color: #8ec07c;">(</span>assoc source-vertex values-assoc-list<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span>
+                                     <span style="color: #b16286;">(</span>cdr <span style="color: #8ec07c;">(</span>assoc dest-vertex values-assoc-list<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+          <span style="color: #8ec07c;">(</span>not wrong<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+    <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">return those values</span>
+    <span style="color: #8ec07c;">(</span>make-constraint-satisfaction-problem
+     <span style="color: #fe8019;">:variables</span> variables
+     <span style="color: #fe8019;">:domains</span> domains
+     <span style="color: #fe8019;">:constraints</span> constraints<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 </pre>
 </div>
 <p>
 here i implement a generalized algorithm for constraint satisfaction problem solving:<br /></p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp">(<span style="font-weight: bold;">defun</span> <span style="font-weight: bold;">solve-csp-with-graph</span> (csp gr variable-ordering-heuristics
-                             <span style="font-weight: bold; text-decoration: underline;">&amp;optional</span> (values-alist nil))
-  <span style="font-style: italic;">&quot;`</span><span style="font-weight: bold; font-style: italic; text-decoration: underline;">csp</span><span style="font-style: italic;">' is the constraint satisfaction problem, `</span><span style="font-weight: bold; font-style: italic; text-decoration: underline;">gr</span><span style="font-style: italic;">' is the constraint graph, variable-ordering-heuristics are heuristics to decide which variable to pick, applied in order on each branching step until one returns a variable to pick, if no heuristics pick a variable the first nonvisited one will be picked (unless no variables are left with options in which case the function terminates), this doesnt support value ordering heuristics, cuz my homework didnt ask for it :( and i cba, this function may modify the domains during forward checking inference&quot;</span>
-  (<span style="font-weight: bold;">with-slots</span> (variables domains constraints) csp
-    (<span style="font-weight: bold;">let*</span> ((unvisited-vars (set-diff
+<pre class="src src-lisp"><span style="color: #458588;">(</span><span style="color: #fb4933;">defun</span> <span style="color: #fabd2f;">solve-csp-with-graph</span> <span style="color: #b16286;">(</span>csp gr variable-ordering-heuristics
+                             <span style="color: #d3869b;">&optional</span> <span style="color: #8ec07c;">(</span>values-alist nil<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span>
+  <span style="color: #b8bb26;">"`</span><span style="color: #d3869b;">csp</span><span style="color: #b8bb26;">' is the constraint satisfaction problem, `</span><span style="color: #d3869b;">gr</span><span style="color: #b8bb26;">' is the constraint graph, variable-ordering-heuristics are heuristics to decide which variable to pick, applied in order on each branching step until one returns a variable to pick, if no heuristics pick a variable the first nonvisited one will be picked (unless no variables are left with options in which case the function terminates), this doesnt support value ordering heuristics, cuz my homework didnt ask for it :( and i cba, this function may modify the domains during forward checking inference"</span>
+  <span style="color: #b16286;">(</span><span style="color: #fb4933;">with-slots</span> <span style="color: #8ec07c;">(</span>variables domains constraints<span style="color: #8ec07c;">)</span> csp
+    <span style="color: #8ec07c;">(</span><span style="color: #fb4933;">let*</span> <span style="color: #d65d0e;">(</span><span style="color: #458588;">(</span>unvisited-vars <span style="color: #b16286;">(</span>set-diff
                             variables
-                            (mapcar #'car values-alist)
-                            <span style="font-weight: bold;">:test</span> #'equal))
-           (unvisited-reduced-vars unvisited-vars))
-      (<span style="font-weight: bold;">let</span> ((next-var nil))
-        <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">apply the heuristics in order, the reduced list of variables returned by every heuristic is passed to the next heuristic which applies its own reductions and passes it on to the next heuristic, and so on..</span>
-        (<span style="font-weight: bold;">loop</span> for heuristic in variable-ordering-heuristics if (not next-var)
-              do (setf unvisited-reduced-vars (funcall heuristic csp gr unvisited-reduced-vars)))
-        <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">last heuristic, choose the leftmost variable in the reduced list of variables, which could be just a list of one item if the preceding heuristics reduced it enough, eitherway, we grab the leftmost variable in the list</span>
-        (setf next-var (car unvisited-reduced-vars))
-        (<span style="font-weight: bold;">when</span> (not next-var)
-          (<span style="font-weight: bold;">return-from</span> solve-csp-with-graph values-alist)) <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">no vars left</span>
-        <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">handle the variable we picked</span>
-        (<span style="font-weight: bold;">let*</span> ((variable-index (position next-var variables))
-               (domain (elt domains variable-index)))
-          (<span style="font-weight: bold;">when</span> (not domain) <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">no values left for variable, we hit a deadend</span>
-<span style="font-weight: bold; font-style: italic;">;;            </span><span style="font-weight: bold; font-style: italic;">(format t &quot;~A has no available values, we hit a deadend, propagating back~%&quot; next-var)</span>
-            (<span style="font-weight: bold;">return-from</span> solve-csp-with-graph nil))
-          <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">no need to check legality of picking a value, since we're doing forward checking and pruning the domains beforehand</span>
-          (<span style="font-weight: bold;">loop</span> for value in domain do
-            (<span style="font-weight: bold;">let</span> ((domain-removed-values-alist nil) <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">store the modifications done to the domains so we may undo them if needed</span>
-                  (new-values-alist (append values-alist (list (cons next-var value)))))
-              (<span style="font-weight: bold;">loop</span> for neighbor-var in (graph-vertex-neighbors gr next-var) do
-                <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">apply forward checking and modify the domains of connected variables accordingly</span>
-                (<span style="font-weight: bold;">let*</span> ((neighbor-var-idx (position neighbor-var variables))
-                       (neighbor-var-domain (elt domains neighbor-var-idx)))
-                  (<span style="font-weight: bold;">loop</span> for neighbor-var-value in neighbor-var-domain do
-                    (<span style="font-weight: bold;">loop</span> for constraint in constraints do
-                      (<span style="font-weight: bold;">let*</span> ((hypothetical-values-alist (cons (cons neighbor-var
-                                                                    neighbor-var-value)
-                                                              new-values-alist))
-                             (legal (funcall constraint csp gr hypothetical-values-alist)))
-                        (<span style="font-weight: bold;">when</span> (not legal)
-                          (setf domain-removed-values-alist
-                                (cons (cons neighbor-var-idx
-                                            value)
-                                      domain-removed-values-alist))
-                          (setf (elt domains neighbor-var-idx)
-                                (remove value neighbor-var-domain))))))))
-<span style="font-weight: bold; font-style: italic;">;;             </span><span style="font-weight: bold; font-style: italic;">(format t &quot;chose variable ~A with value ~A~%&quot; next-var value)</span>
-<span style="font-weight: bold; font-style: italic;">;;             </span><span style="font-weight: bold; font-style: italic;">(format t</span>
-<span style="font-weight: bold; font-style: italic;">;;                     </span><span style="font-weight: bold; font-style: italic;">&quot;after forward checking for ~A, domains: ~A~%&quot;</span>
-<span style="font-weight: bold; font-style: italic;">;;                      </span><span style="font-weight: bold; font-style: italic;">next-var</span>
-<span style="font-weight: bold; font-style: italic;">;;                      </span><span style="font-weight: bold; font-style: italic;">(mapcar (lambda (var)</span>
-<span style="font-weight: bold; font-style: italic;">;;                                </span><span style="font-weight: bold; font-style: italic;">(if (assoc var new-values-alist)</span>
-<span style="font-weight: bold; font-style: italic;">;;                                    </span><span style="font-weight: bold; font-style: italic;">(format nil &quot;~A=~A&quot; var (cdr (assoc var new-values-alist)))</span>
-<span style="font-weight: bold; font-style: italic;">;;                                    </span><span style="font-weight: bold; font-style: italic;">(format nil &quot;~A\\(\\in\\)~A&quot; var (elt domains (position var variables)))))</span>
-<span style="font-weight: bold; font-style: italic;">;;                              </span><span style="font-weight: bold; font-style: italic;">variables))</span>
-              (<span style="font-weight: bold;">let</span> ((propped-values-alist
-                      (solve-csp-with-graph csp
+                            <span style="color: #8ec07c;">(</span>mapcar #'car values-alist<span style="color: #8ec07c;">)</span>
+                            <span style="color: #fe8019;">:test</span> #'equal<span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
+           <span style="color: #458588;">(</span>unvisited-reduced-vars unvisited-vars<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span>
+      <span style="color: #d65d0e;">(</span><span style="color: #fb4933;">let</span> <span style="color: #458588;">(</span><span style="color: #b16286;">(</span>next-var nil<span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
+        <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">apply the heuristics in order, the reduced list of variables returned by every heuristic is passed to the next heuristic which applies its own reductions and passes it on to the next heuristic, and so on..</span>
+        <span style="color: #458588;">(</span><span style="color: #fb4933;">loop</span> for heuristic in variable-ordering-heuristics if <span style="color: #b16286;">(</span>not next-var<span style="color: #b16286;">)</span>
+              do <span style="color: #b16286;">(</span>setf unvisited-reduced-vars <span style="color: #8ec07c;">(</span>funcall heuristic csp gr unvisited-reduced-vars<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
+        <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">last heuristic, choose the leftmost variable in the reduced list of variables, which could be just a list of one item if the preceding heuristics reduced it enough, eitherway, we grab the leftmost variable in the list</span>
+        <span style="color: #458588;">(</span>setf next-var <span style="color: #b16286;">(</span>car unvisited-reduced-vars<span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
+        <span style="color: #458588;">(</span><span style="color: #fb4933;">when</span> <span style="color: #b16286;">(</span>not next-var<span style="color: #b16286;">)</span>
+          <span style="color: #b16286;">(</span><span style="color: #fb4933;">return-from</span> solve-csp-with-graph values-alist<span style="color: #b16286;">)</span><span style="color: #458588;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">no vars left</span>
+        <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">handle the variable we picked</span>
+        <span style="color: #458588;">(</span><span style="color: #fb4933;">let*</span> <span style="color: #b16286;">(</span><span style="color: #8ec07c;">(</span>variable-index <span style="color: #d65d0e;">(</span>position next-var variables<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+               <span style="color: #8ec07c;">(</span>domain <span style="color: #d65d0e;">(</span>elt domains variable-index<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span>
+          <span style="color: #b16286;">(</span><span style="color: #fb4933;">when</span> <span style="color: #8ec07c;">(</span>not domain<span style="color: #8ec07c;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">no values left for variable, we hit a deadend</span>
+<span style="color: #7c6f64;">;;            </span><span style="color: #7c6f64;">(format t "~A has no available values, we hit a deadend, propagating back~%" next-var)</span>
+            <span style="color: #8ec07c;">(</span><span style="color: #fb4933;">return-from</span> solve-csp-with-graph nil<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span>
+          <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">no need to check legality of picking a value, since we're doing forward checking and pruning the domains beforehand</span>
+          <span style="color: #b16286;">(</span><span style="color: #fb4933;">loop</span> for value in domain do
+            <span style="color: #8ec07c;">(</span><span style="color: #fb4933;">let</span> <span style="color: #d65d0e;">(</span><span style="color: #458588;">(</span>domain-removed-values-alist nil<span style="color: #458588;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">store the modifications done to the domains so we may undo them if needed</span>
+                  <span style="color: #458588;">(</span>new-values-alist <span style="color: #458588;">(</span>append values-alist <span style="color: #b16286;">(</span>list <span style="color: #8ec07c;">(</span>cons next-var value<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span>
+              <span style="color: #d65d0e;">(</span><span style="color: #fb4933;">loop</span> for neighbor-var in <span style="color: #458588;">(</span>graph-vertex-neighbors gr next-var<span style="color: #458588;">)</span> do
+                <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">apply forward checking and modify the domains of connected variables accordingly</span>
+                <span style="color: #458588;">(</span><span style="color: #fb4933;">let*</span> <span style="color: #458588;">(</span><span style="color: #b16286;">(</span>neighbor-var-idx <span style="color: #8ec07c;">(</span>position neighbor-var variables<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span>
+                       <span style="color: #b16286;">(</span>neighbor-var-domain <span style="color: #8ec07c;">(</span>elt domains neighbor-var-idx<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
+                  <span style="color: #458588;">(</span><span style="color: #fb4933;">loop</span> for neighbor-var-value in neighbor-var-domain do
+                    <span style="color: #b16286;">(</span><span style="color: #fb4933;">loop</span> for constraint in constraints do
+                      <span style="color: #8ec07c;">(</span><span style="color: #fb4933;">let*</span> <span style="color: #d65d0e;">(</span><span style="color: #458588;">(</span>hypothetical-values-alist <span style="color: #b16286;">(</span>cons <span style="color: #8ec07c;">(</span>cons neighbor-var
+                                                                    neighbor-var-value<span style="color: #8ec07c;">)</span>
+                                                              new-values-alist<span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
+                             <span style="color: #458588;">(</span>legal <span style="color: #b16286;">(</span>funcall constraint csp gr hypothetical-values-alist<span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span>
+                        <span style="color: #d65d0e;">(</span><span style="color: #fb4933;">when</span> <span style="color: #458588;">(</span>not legal<span style="color: #458588;">)</span>
+                          <span style="color: #458588;">(</span>setf domain-removed-values-alist
+                                <span style="color: #b16286;">(</span>cons <span style="color: #8ec07c;">(</span>cons neighbor-var-idx
+                                            value<span style="color: #8ec07c;">)</span>
+                                      domain-removed-values-alist<span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
+                          <span style="color: #458588;">(</span>setf <span style="color: #b16286;">(</span>elt domains neighbor-var-idx<span style="color: #b16286;">)</span>
+                                <span style="color: #b16286;">(</span>remove value neighbor-var-domain<span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span>
+<span style="color: #7c6f64;">;;             </span><span style="color: #7c6f64;">(format t "chose variable ~A with value ~A~%" next-var value)</span>
+<span style="color: #7c6f64;">;;             </span><span style="color: #7c6f64;">(format t</span>
+<span style="color: #7c6f64;">;;                     </span><span style="color: #7c6f64;">"after forward checking for ~A, domains: ~A~%"</span>
+<span style="color: #7c6f64;">;;                      </span><span style="color: #7c6f64;">next-var</span>
+<span style="color: #7c6f64;">;;                      </span><span style="color: #7c6f64;">(mapcar (lambda (var)</span>
+<span style="color: #7c6f64;">;;                                </span><span style="color: #7c6f64;">(if (assoc var new-values-alist)</span>
+<span style="color: #7c6f64;">;;                                    </span><span style="color: #7c6f64;">(format nil "~A=~A" var (cdr (assoc var new-values-alist)))</span>
+<span style="color: #7c6f64;">;;                                    </span><span style="color: #7c6f64;">(format nil "~A\\(\\in\\)~A" var (elt domains (position var variables)))))</span>
+<span style="color: #7c6f64;">;;                              </span><span style="color: #7c6f64;">variables))</span>
+              <span style="color: #d65d0e;">(</span><span style="color: #fb4933;">let</span> <span style="color: #458588;">(</span><span style="color: #458588;">(</span>propped-values-alist
+                      <span style="color: #b16286;">(</span>solve-csp-with-graph csp
                                             gr
                                             variable-ordering-heuristics
-                                            new-values-alist)))
-                (<span style="font-weight: bold;">if</span> propped-values-alist
-                    (<span style="font-weight: bold;">return-from</span> solve-csp-with-graph propped-values-alist)
-                    <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">we hit a deadend somewhere, loop to the next value, but undo modifications</span>
-                    (<span style="font-weight: bold;">loop</span> for removed-value-entry in domain-removed-values-alist do
-                      (<span style="font-weight: bold;">let</span> ((modified-var-idx (car removed-value-entry)) <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">the index of the var/domain that was modified</span>
-                            (removed-value (cdr removed-value-entry))) <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">the value that was removed</span>
-                        (setf (elt domains modified-var-idx)
-                              (cons removed-value (elt domains modified-var-idx))))))))))))))
+                                            new-values-alist<span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #458588;">)</span>
+                <span style="color: #458588;">(</span><span style="color: #fb4933;">if</span> propped-values-alist
+                    <span style="color: #458588;">(</span><span style="color: #fb4933;">return-from</span> solve-csp-with-graph propped-values-alist<span style="color: #458588;">)</span>
+                    <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">we hit a deadend somewhere, loop to the next value, but undo modifications</span>
+                    <span style="color: #458588;">(</span><span style="color: #fb4933;">loop</span> for removed-value-entry in domain-removed-values-alist do
+                      <span style="color: #b16286;">(</span><span style="color: #fb4933;">let</span> <span style="color: #8ec07c;">(</span><span style="color: #d65d0e;">(</span>modified-var-idx <span style="color: #458588;">(</span>car removed-value-entry<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">the index of the var/domain that was modified</span>
+                            <span style="color: #d65d0e;">(</span>removed-value <span style="color: #458588;">(</span>cdr removed-value-entry<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">the value that was removed</span>
+                        <span style="color: #8ec07c;">(</span>setf <span style="color: #d65d0e;">(</span>elt domains modified-var-idx<span style="color: #d65d0e;">)</span>
+                              <span style="color: #d65d0e;">(</span>cons removed-value <span style="color: #458588;">(</span>elt domains modified-var-idx<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 
-<span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">this could be implementing by looping through all variables once for each variable 'x' to apply the constraint functions and check how many other variables 'x' constraints, this would take O(n^2), here it takes O(n) because we're just using the constraint graph and can get the number of edges directly</span>
-(<span style="font-weight: bold;">defun</span> <span style="font-weight: bold;">least-constraining-variable-heuristic</span> (csp gr variable-list)
-  <span style="font-style: italic;">&quot;checks which variable applies the least constraints on others, only return it if no other variable applies the same number of constraints&quot;</span>
-  (<span style="font-weight: bold;">multiple-value-bind</span> (var var-idx)
-      (argmin
+<span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">this could be implementing by looping through all variables once for each variable 'x' to apply the constraint functions and check how many other variables 'x' constraints, this would take O(n^2), here it takes O(n) because we're just using the constraint graph and can get the number of edges directly</span>
+<span style="color: #458588;">(</span><span style="color: #fb4933;">defun</span> <span style="color: #fabd2f;">least-constraining-variable-heuristic</span> <span style="color: #b16286;">(</span>csp gr variable-list<span style="color: #b16286;">)</span>
+  <span style="color: #b8bb26;">"checks which variable applies the least constraints on others, only return it if no other variable applies the same number of constraints"</span>
+  <span style="color: #b16286;">(</span><span style="color: #fb4933;">multiple-value-bind</span> <span style="color: #8ec07c;">(</span>var var-idx<span style="color: #8ec07c;">)</span>
+      <span style="color: #8ec07c;">(</span>argmin
        variable-list
-       <span style="font-weight: bold;">:key</span> (<span style="font-weight: bold;">lambda</span> (variable)
-              (length (graph-vertex-neighbors gr variable))))
-    (<span style="font-weight: bold;">let</span> ((args-to-return)) <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">list of the args that are argmin</span>
-      (<span style="font-weight: bold;">loop</span> for other-var in variable-list do
-        (<span style="font-weight: bold;">when</span> (equal (length (graph-vertex-neighbors gr other-var))
-                     (length (graph-vertex-neighbors gr var)))
-          (setf args-to-return (cons other-var args-to-return))))
-      args-to-return)))
+       <span style="color: #fe8019;">:key</span> <span style="color: #d65d0e;">(</span><span style="color: #fb4933;">lambda</span> <span style="color: #458588;">(</span>variable<span style="color: #458588;">)</span>
+              <span style="color: #458588;">(</span>length <span style="color: #b16286;">(</span>graph-vertex-neighbors gr variable<span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span><span style="color: #fb4933;">let</span> <span style="color: #d65d0e;">(</span><span style="color: #458588;">(</span>args-to-return<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">list of the args that are argmin</span>
+      <span style="color: #d65d0e;">(</span><span style="color: #fb4933;">loop</span> for other-var in variable-list do
+        <span style="color: #458588;">(</span><span style="color: #fb4933;">when</span> <span style="color: #b16286;">(</span>equal <span style="color: #8ec07c;">(</span>length <span style="color: #d65d0e;">(</span>graph-vertex-neighbors gr other-var<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+                     <span style="color: #8ec07c;">(</span>length <span style="color: #d65d0e;">(</span>graph-vertex-neighbors gr var<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span>
+          <span style="color: #b16286;">(</span>setf args-to-return <span style="color: #8ec07c;">(</span>cons other-var args-to-return<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span>
+      args-to-return<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 
-(<span style="font-weight: bold;">defun</span> <span style="font-weight: bold;">most-constrained-variable-heuristic</span> (csp gr variable-list)
-  <span style="font-style: italic;">&quot;checks which variable has the least possible values (most constrained)&quot;</span>
-  (<span style="font-weight: bold;">with-slots</span> (domains variables) csp
-    (<span style="font-weight: bold;">multiple-value-bind</span> (var var-idx)
-        (argmax
+<span style="color: #458588;">(</span><span style="color: #fb4933;">defun</span> <span style="color: #fabd2f;">most-constrained-variable-heuristic</span> <span style="color: #b16286;">(</span>csp gr variable-list<span style="color: #b16286;">)</span>
+  <span style="color: #b8bb26;">"checks which variable has the least possible values (most constrained)"</span>
+  <span style="color: #b16286;">(</span><span style="color: #fb4933;">with-slots</span> <span style="color: #8ec07c;">(</span>domains variables<span style="color: #8ec07c;">)</span> csp
+    <span style="color: #8ec07c;">(</span><span style="color: #fb4933;">multiple-value-bind</span> <span style="color: #d65d0e;">(</span>var var-idx<span style="color: #d65d0e;">)</span>
+        <span style="color: #d65d0e;">(</span>argmax
          variable-list
-         <span style="font-weight: bold;">:key</span> (<span style="font-weight: bold;">lambda</span> (variable)
-                (<span style="font-weight: bold;">let</span> ((domain (elt domains (position variable variables))))
-                  (length domain))))
-      (<span style="font-weight: bold;">let</span> ((args-to-return)) <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">list of the args that are argmin</span>
-        (<span style="font-weight: bold;">loop</span> for other-var in variable-list do
-          (<span style="font-weight: bold;">when</span> (equal (length (elt domains (position other-var variables)))
-                       (length (elt domains (position var variables))))
-            (setf args-to-return (cons other-var args-to-return))))
-        args-to-return))))
+         <span style="color: #fe8019;">:key</span> <span style="color: #458588;">(</span><span style="color: #fb4933;">lambda</span> <span style="color: #b16286;">(</span>variable<span style="color: #b16286;">)</span>
+                <span style="color: #b16286;">(</span><span style="color: #fb4933;">let</span> <span style="color: #8ec07c;">(</span><span style="color: #d65d0e;">(</span>domain <span style="color: #458588;">(</span>elt domains <span style="color: #458588;">(</span>position variable variables<span style="color: #458588;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+                  <span style="color: #8ec07c;">(</span>length domain<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span>
+      <span style="color: #d65d0e;">(</span><span style="color: #fb4933;">let</span> <span style="color: #458588;">(</span><span style="color: #b16286;">(</span>args-to-return<span style="color: #b16286;">)</span><span style="color: #458588;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">list of the args that are argmin</span>
+        <span style="color: #458588;">(</span><span style="color: #fb4933;">loop</span> for other-var in variable-list do
+          <span style="color: #b16286;">(</span><span style="color: #fb4933;">when</span> <span style="color: #8ec07c;">(</span>equal <span style="color: #d65d0e;">(</span>length <span style="color: #458588;">(</span>elt domains <span style="color: #458588;">(</span>position other-var variables<span style="color: #458588;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span>
+                       <span style="color: #d65d0e;">(</span>length <span style="color: #458588;">(</span>elt domains <span style="color: #458588;">(</span>position var variables<span style="color: #458588;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+            <span style="color: #8ec07c;">(</span>setf args-to-return <span style="color: #d65d0e;">(</span>cons other-var args-to-return<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
+        args-to-return<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 
-(<span style="font-weight: bold;">defun</span> <span style="font-weight: bold;">least-constrained-variable-heuristic</span> (csp gr variable-list)
-  <span style="font-style: italic;">&quot;checks which variable has the least possible values (most constrained)&quot;</span>
-  (<span style="font-weight: bold;">with-slots</span> (domains variables) csp
-    (<span style="font-weight: bold;">multiple-value-bind</span> (var var-idx)
-        (argmin
+<span style="color: #458588;">(</span><span style="color: #fb4933;">defun</span> <span style="color: #fabd2f;">least-constrained-variable-heuristic</span> <span style="color: #b16286;">(</span>csp gr variable-list<span style="color: #b16286;">)</span>
+  <span style="color: #b8bb26;">"checks which variable has the least possible values (most constrained)"</span>
+  <span style="color: #b16286;">(</span><span style="color: #fb4933;">with-slots</span> <span style="color: #8ec07c;">(</span>domains variables<span style="color: #8ec07c;">)</span> csp
+    <span style="color: #8ec07c;">(</span><span style="color: #fb4933;">multiple-value-bind</span> <span style="color: #d65d0e;">(</span>var var-idx<span style="color: #d65d0e;">)</span>
+        <span style="color: #d65d0e;">(</span>argmin
          variable-list
-         <span style="font-weight: bold;">:key</span> (<span style="font-weight: bold;">lambda</span> (variable)
-                (<span style="font-weight: bold;">let</span> ((domain (elt domains (position variable variables))))
-                  (length domain))))
-      (<span style="font-weight: bold;">let</span> ((args-to-return)) <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">list of the args that are argmin</span>
-        (<span style="font-weight: bold;">loop</span> for other-var in variable-list do
-          (<span style="font-weight: bold;">when</span> (equal (length (elt domains (position other-var variables)))
-                       (length (elt domains (position var variables))))
-            (setf args-to-return (cons other-var args-to-return))))
-        args-to-return))))
+         <span style="color: #fe8019;">:key</span> <span style="color: #458588;">(</span><span style="color: #fb4933;">lambda</span> <span style="color: #b16286;">(</span>variable<span style="color: #b16286;">)</span>
+                <span style="color: #b16286;">(</span><span style="color: #fb4933;">let</span> <span style="color: #8ec07c;">(</span><span style="color: #d65d0e;">(</span>domain <span style="color: #458588;">(</span>elt domains <span style="color: #458588;">(</span>position variable variables<span style="color: #458588;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+                  <span style="color: #8ec07c;">(</span>length domain<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span>
+      <span style="color: #d65d0e;">(</span><span style="color: #fb4933;">let</span> <span style="color: #458588;">(</span><span style="color: #b16286;">(</span>args-to-return<span style="color: #b16286;">)</span><span style="color: #458588;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">list of the args that are argmin</span>
+        <span style="color: #458588;">(</span><span style="color: #fb4933;">loop</span> for other-var in variable-list do
+          <span style="color: #b16286;">(</span><span style="color: #fb4933;">when</span> <span style="color: #8ec07c;">(</span>equal <span style="color: #d65d0e;">(</span>length <span style="color: #458588;">(</span>elt domains <span style="color: #458588;">(</span>position other-var variables<span style="color: #458588;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span>
+                       <span style="color: #d65d0e;">(</span>length <span style="color: #458588;">(</span>elt domains <span style="color: #458588;">(</span>position var variables<span style="color: #458588;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+            <span style="color: #8ec07c;">(</span>setf args-to-return <span style="color: #d65d0e;">(</span>cons other-var args-to-return<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
+        args-to-return<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 </pre>
 </div>
 
 <p>
 applying the algorithm:<br /></p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp">(<span style="font-weight: bold;">defun</span> <span style="font-weight: bold;">solve</span> ()
-  (solve-csp-with-graph
-   (PARSE-COLOR-MAP-CONSTRAINT-GRAPH *mygraph*)
+<pre class="src src-lisp"><span style="color: #458588;">(</span><span style="color: #fb4933;">defun</span> <span style="color: #fabd2f;">solve</span> <span style="color: #b16286;">()</span>
+  <span style="color: #b16286;">(</span>solve-csp-with-graph
+   <span style="color: #8ec07c;">(</span>PARSE-COLOR-MAP-CONSTRAINT-GRAPH *mygraph*<span style="color: #8ec07c;">)</span>
    *mygraph*
-   (list #'least-constraining-variable-heuristic #'most-constrained-variable-heuristic)))
+   <span style="color: #8ec07c;">(</span>list #'least-constraining-variable-heuristic #'most-constrained-variable-heuristic<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 </pre>
 </div>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp">(solve)
+<pre class="src src-lisp"><span style="color: #458588;">(</span>solve<span style="color: #458588;">)</span>
 </pre>
 </div>
 
@@ -262,18 +262,18 @@ applying the algorithm:<br /></p>
 <p>
 visualizing the constraint graph with the colors we obtained by solving the problem:<br /></p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp">(<span style="font-weight: bold;">let</span> ((values-assoc-list (solve)))
-  (graph-generate-tikz
+<pre class="src src-lisp"><span style="color: #458588;">(</span><span style="color: #fb4933;">let</span> <span style="color: #b16286;">(</span><span style="color: #8ec07c;">(</span>values-assoc-list <span style="color: #d65d0e;">(</span>solve<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span>
+  <span style="color: #b16286;">(</span>graph-generate-tikz
    *mygraph*
-   <span style="font-weight: bold;">:node-distance</span> 80
-   <span style="font-weight: bold;">:format-function</span> (<span style="font-weight: bold;">lambda</span> (variable)
-                      (format nil <span style="font-style: italic;">&quot;~A ~A&quot;</span> variable
-                              (<span style="font-weight: bold;">case</span> (cdr (assoc variable values-assoc-list))
-                                (r <span style="font-style: italic;">&quot;[red]&quot;</span>)
-                                (g <span style="font-style: italic;">&quot;[green]&quot;</span>)
-                                (b <span style="font-style: italic;">&quot;[blue]&quot;</span>)
-                                (a <span style="font-style: italic;">&quot;[orange]&quot;</span>)
-                                (otherwise <span style="font-style: italic;">&quot;&quot;</span>)))))) <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">otherwise for NIL, or use (nil), nil alone doesnt work with case</span>
+   <span style="color: #fe8019;">:node-distance</span> 80
+   <span style="color: #fe8019;">:format-function</span> <span style="color: #8ec07c;">(</span><span style="color: #fb4933;">lambda</span> <span style="color: #d65d0e;">(</span>variable<span style="color: #d65d0e;">)</span>
+                      <span style="color: #d65d0e;">(</span>format nil <span style="color: #b8bb26;">"~A ~A"</span> variable
+                              <span style="color: #458588;">(</span><span style="color: #fb4933;">case</span> <span style="color: #b16286;">(</span>cdr <span style="color: #8ec07c;">(</span>assoc variable values-assoc-list<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span>
+                                <span style="color: #b16286;">(</span>r <span style="color: #b8bb26;">"[red]"</span><span style="color: #b16286;">)</span>
+                                <span style="color: #b16286;">(</span>g <span style="color: #b8bb26;">"[green]"</span><span style="color: #b16286;">)</span>
+                                <span style="color: #b16286;">(</span>b <span style="color: #b8bb26;">"[blue]"</span><span style="color: #b16286;">)</span>
+                                <span style="color: #b16286;">(</span>a <span style="color: #b8bb26;">"[orange]"</span><span style="color: #b16286;">)</span>
+                                <span style="color: #b16286;">(</span>otherwise <span style="color: #b8bb26;">""</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">otherwise for NIL, or use (nil), nil alone doesnt work with case</span>
 </pre>
 </div>
 
@@ -289,7 +289,7 @@ visualizing the constraint graph with the colors we obtained by solving the prob
 showing the inference/decision steps (i went back and modified the algorithm to print stuff)<br />
 this just shows the domain of variables at each step<br /></p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp">(solve)
+<pre class="src src-lisp"><span style="color: #458588;">(</span>solve<span style="color: #458588;">)</span>
 </pre>
 </div>
 
