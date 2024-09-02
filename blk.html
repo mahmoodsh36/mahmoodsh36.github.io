@@ -29,17 +29,17 @@
 </div><h1 class="main-title">blk</h1><span class="desc">text navigation on your terms</span><span class='date'>2024-04-14</span>
 </div>
 <div id="content" class="content">
-<div id="outline-container-orge1d376f" class="outline-2">
-<h2 id="orge1d376f">introduction</h2>
-<div class="outline-text-2" id="text-orge1d376f">
+<div id="outline-container-org69dcae7" class="outline-2">
+<h2 id="org69dcae7">introduction</h2>
+<div class="outline-text-2" id="text-org69dcae7">
 <p>
 <a href="https://github.com/mahmoodsh36/blk">blk</a> tries to generalize the idea of creating and navigating titles of text files, as well as making links from one file to another, or one block to another (possibly in different files). if you have used org-roam, denote, or other similar tools like obsidian and logseq, you would know that inserting links between two files (or nodes, as they're usually called) and navigating them is a must-have feature for note-taking, with <code>blk</code>, instead of restricting links to specific elements of text, such as a file or a heading, we can insert links to arbitrary forms of text, be it links to an org heading (or markdown heading), or a code block in an org file, or even links to python functions, elisp functions, or an html element (by its id).<br />
 </p>
 </div>
 </div>
-<div id="outline-container-orgcc466d3" class="outline-2">
-<h2 id="orgcc466d3">motivation</h2>
-<div class="outline-text-2" id="text-orgcc466d3">
+<div id="outline-container-orgb84f518" class="outline-2">
+<h2 id="orgb84f518">motivation</h2>
+<div class="outline-text-2" id="text-orgb84f518">
 <p>
 most note-taking packages introduce rules or syntaxes of their own, for example, <code>org-roam</code> inserts something akin to the following text to identify headers and files (which, by the way, <code>blk</code> knows how to handle):<br />
 </p>
@@ -170,18 +170,18 @@ to expand the transclusion we can use <code>M-x org-transclusion-mode</code>.<br
 </p>
 </div>
 </div>
-<div id="outline-container-orgf59bbb8" class="outline-2">
-<h2 id="orgf59bbb8">main features</h2>
-<div class="outline-text-2" id="text-orgf59bbb8">
+<div id="outline-container-orgab9bd2b" class="outline-2">
+<h2 id="orgab9bd2b">main features</h2>
+<div class="outline-text-2" id="text-orgab9bd2b">
 <ul class="org-ul">
 <li>linking to any type of text, without having to worry about filenames or the location of the text itself.<br /></li>
 <li>navigating text elements by their titles, including support for outline navigation, e.g. the outline for an org src block: <code>file/heading/block</code>.<br /></li>
 <li>support for alises to any title, so that any text element can be navigated to by its "main" title or one of its aliases (this includes org files, for an example).<br /></li>
 </ul>
 </div>
-<div id="outline-container-org43a8372" class="outline-3">
-<h3 id="org43a8372">org-mode specific features</h3>
-<div class="outline-text-3" id="text-org43a8372">
+<div id="outline-container-org131b763" class="outline-3">
+<h3 id="org131b763">org-mode specific features</h3>
+<div class="outline-text-3" id="text-org131b763">
 <ul class="org-ul">
 <li>links to org-mode special blocks.<br /></li>
 <li>links to an arbitrary point in any org-mode file defined by <code>&lt;&lt;id-here&gt;&gt;</code> (cross-file target links).<br /></li>
@@ -190,9 +190,9 @@ to expand the transclusion we can use <code>M-x org-transclusion-mode</code>.<br
 </div>
 </div>
 </div>
-<div id="outline-container-org1c912bf" class="outline-2">
-<h2 id="org1c912bf">basic setup</h2>
-<div class="outline-text-2" id="text-org1c912bf">
+<div id="outline-container-org81eb9d7" class="outline-2">
+<h2 id="org81eb9d7">basic setup</h2>
+<div class="outline-text-2" id="text-org81eb9d7">
 <div class="org-src-container" data-language="emacs-lisp">
 <pre class="src src-emacs-lisp"><span style="color: #458588;">(</span><span style="color: #fb4933;">use-package</span> <span style="color: #d3869b;">blk</span>
   <span style="color: #fe8019;">:straight</span> <span style="color: #b16286;">(</span>blk <span style="color: #fe8019;">:host</span> github <span style="color: #fe8019;">:repo</span> <span style="color: #b8bb26;">"mahmoodsh36/blk"</span><span style="color: #b16286;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">replace with :quelpa if needed</span>
@@ -233,13 +233,13 @@ if you want the transclusion functionality, you have to enable it after installi
 </div>
 </div>
 </div>
-<div id="outline-container-org08a64d6" class="outline-2">
-<h2 id="org08a64d6">demonstration of features</h2>
-<div class="outline-text-2" id="text-org08a64d6">
+<div id="outline-container-org0f42339" class="outline-2">
+<h2 id="org0f42339">demonstration of features</h2>
+<div class="outline-text-2" id="text-org0f42339">
 </div>
-<div id="outline-container-org51deb0d" class="outline-3">
-<h3 id="org51deb0d">org-mode files</h3>
-<div class="outline-text-3" id="text-org51deb0d">
+<div id="outline-container-org87b1dfc" class="outline-3">
+<h3 id="org87b1dfc">org-mode files</h3>
+<div class="outline-text-3" id="text-org87b1dfc">
 <p>
 by default, blk has rules in place to recognize org-mode files that are titled and id'd in the following manner (the usual way):<br />
 </p>
@@ -275,9 +275,9 @@ so that the file can be navigated to either by the main title, or its aliases.<b
 </p>
 </div>
 </div>
-<div id="outline-container-org4268866" class="outline-3">
-<h3 id="org4268866">org-mode blocks</h3>
-<div class="outline-text-3" id="text-org4268866">
+<div id="outline-container-org904417d" class="outline-3">
+<h3 id="org904417d">org-mode blocks</h3>
+<div class="outline-text-3" id="text-org904417d">
 <p>
 blk has rules in place to recognize org-mode special-blocks (or src-blocks) that are written in the following way:<br />
 </p>
@@ -313,9 +313,9 @@ so that the block can be navigated to either by the main title, or its aliases.<
 </p>
 </div>
 </div>
-<div id="outline-container-org67f957e" class="outline-3">
-<h3 id="org67f957e">org-mode headers</h3>
-<div class="outline-text-3" id="text-org67f957e">
+<div id="outline-container-org0554168" class="outline-3">
+<h3 id="org0554168">org-mode headers</h3>
+<div class="outline-text-3" id="text-org0554168">
 <p>
 again, this is just the usual way, the id is created by <code>org-id-get-create</code> and the title is inserted manually:<br />
 </p>
@@ -328,9 +328,9 @@ again, this is just the usual way, the id is created by <code>org-id-get-create<
 </div>
 </div>
 </div>
-<div id="outline-container-org1432349" class="outline-3">
-<h3 id="org1432349">org-mode named targets</h3>
-<div class="outline-text-3" id="text-org1432349">
+<div id="outline-container-org211c306" class="outline-3">
+<h3 id="org211c306">org-mode named targets</h3>
+<div class="outline-text-3" id="text-org211c306">
 <p>
 a named target is a link to a specific location in text, the location is identified in the following way:<br />
 </p>
@@ -343,9 +343,9 @@ a link to the target can be inserted using <code>[[blk:target]]</code>.<br />
 </p>
 </div>
 </div>
-<div id="outline-container-orgaaf94a3" class="outline-3">
-<h3 id="orgaaf94a3">markdown headers</h3>
-<div class="outline-text-3" id="text-orgaaf94a3">
+<div id="outline-container-org350d481" class="outline-3">
+<h3 id="org350d481">markdown headers</h3>
+<div class="outline-text-3" id="text-org350d481">
 <p>
 a markdown header isnt identified (by default) but can be navigated to by its title, the reason for this is that i didnt find a common way to identify markdown headers.<br />
 </p>
@@ -358,9 +358,9 @@ notice that you can always just insert a link using the title (if <code>blk-trea
 </p>
 </div>
 </div>
-<div id="outline-container-orgc140009" class="outline-3">
-<h3 id="orgc140009">linking to an elisp function</h3>
-<div class="outline-text-3" id="text-orgc140009">
+<div id="outline-container-org69c4479" class="outline-3">
+<h3 id="org69c4479">linking to an elisp function</h3>
+<div class="outline-text-3" id="text-org69c4479">
 <div class="org-src-container" data-language="emacs-lisp">
 <pre class="src src-emacs-lisp"><span style="color: #458588;">(</span><span style="color: #fb4933;">defun</span> <span style="color: #fabd2f;">my-function</span> <span style="color: #b16286;">()</span>
   <span style="color: #458588;">)</span>
@@ -371,9 +371,9 @@ as usual, a link can be inserted using <code>[[blk:my-function][link description
 </p>
 </div>
 </div>
-<div id="outline-container-org0c9c1c2" class="outline-3">
-<h3 id="org0c9c1c2">latex labels</h3>
-<div class="outline-text-3" id="text-org0c9c1c2">
+<div id="outline-container-org3305c4d" class="outline-3">
+<h3 id="org3305c4d">latex labels</h3>
+<div class="outline-text-3" id="text-org3305c4d">
 <p>
 a block of latex can be identified by its <code>\label</code> (both in <code>.org</code> and <code>.tex</code> files):<br />
 </p>
@@ -398,9 +398,9 @@ a link is inserted using <code>[[blk:my-equation][my description]]</code>.<br />
 </p>
 </div>
 </div>
-<div id="outline-container-orgce0581b" class="outline-3">
-<h3 id="orgce0581b">outline navigation</h3>
-<div class="outline-text-3" id="text-orgce0581b">
+<div id="outline-container-org6d72fae" class="outline-3">
+<h3 id="org6d72fae">outline navigation</h3>
+<div class="outline-text-3" id="text-org6d72fae">
 <p>
 (poorly-phrased,) the <b>grouping</b> feature allows to group certain rules together to form "outlines", which are titles of nodes that are in the same file, that form an "outline" or a "path" to the target.<br />
 consider an org-mode file with the following contents:<br />
@@ -426,9 +426,9 @@ when invoking <code>blk-find</code>, this is what we are presented with:<br />
 </p>
 </div>
 </div>
-<div id="outline-container-org6605b61" class="outline-3">
-<h3 id="org6605b61">latex transclusions</h3>
-<div class="outline-text-3" id="text-org6605b61">
+<div id="outline-container-org5070883" class="outline-3">
+<h3 id="org5070883">latex transclusions</h3>
+<div class="outline-text-3" id="text-org5070883">
 <p>
 
 <video controls muted>
@@ -439,9 +439,9 @@ your browser does not support the video tag.
 </div>
 </div>
 </div>
-<div id="outline-container-org9ba1988" class="outline-2">
-<h2 id="org9ba1988">writing custom rules</h2>
-<div class="outline-text-2" id="text-org9ba1988">
+<div id="outline-container-org43e6602" class="outline-2">
+<h2 id="org43e6602">writing custom rules</h2>
+<div class="outline-text-2" id="text-org43e6602">
 <p>
 when im taking notes in math, what i like to do is write the following:<br />
 </p>
@@ -507,9 +507,9 @@ Each entry should be a plist representing the data of a pattern:
 </div>
 </div>
 </div>
-<div id="outline-container-orgfecc45f" class="outline-2">
-<h2 id="orgfecc45f">different greppers</h2>
-<div class="outline-text-2" id="text-orgfecc45f">
+<div id="outline-container-org2dfd316" class="outline-2">
+<h2 id="org2dfd316">different greppers</h2>
+<div class="outline-text-2" id="text-org2dfd316">
 <p>
 the greppers available for use are currently the standard <code>grep</code> or <code>ripgrep</code> (<code>rg</code>), or <code>emacs</code> itself. only use emacs as the grepper if you really are trying to avoid the dependency of an external grepper as it is an order of magnitude slower than the other options, though it is good to note that the plus side of using emacs as the grepper is that it is aware of unsaved changes to buffers since it greps those instead of the files themselves when they're already opened in buffers.<br />
 for each grepper a different table of patterns is defined, the grepper is chosen by setting the variable <code>blk-grepper</code> and defaults to <code>rg</code> and falls back to <code>grep</code> if <code>rg</code> isnt installed, and falls back to using emacs if <code>grep</code> isnt found aswell.<br />
@@ -563,17 +563,17 @@ the rules that are passed to the grepper are stored in <code>blk-patterns</code>
 </p>
 </div>
 </div>
-<div id="outline-container-org68172b3" class="outline-2">
-<h2 id="org68172b3">dumping the data</h2>
-<div class="outline-text-2" id="text-org68172b3">
+<div id="outline-container-orgd920cf5" class="outline-2">
+<h2 id="orgd920cf5">dumping the data</h2>
+<div class="outline-text-2" id="text-orgd920cf5">
 <p>
 <code>blk</code> provides the function <code>blk-all-to-json</code> to dump the data that it gathers from files into a json file, for external use.<br />
 </p>
 </div>
 </div>
-<div id="outline-container-org244ceb9" class="outline-2">
-<h2 id="org244ceb9">variables for customization</h2>
-<div class="outline-text-2" id="text-org244ceb9">
+<div id="outline-container-orga2defaf" class="outline-2">
+<h2 id="orga2defaf">variables for customization</h2>
+<div class="outline-text-2" id="text-orga2defaf">
 <p>
 the following variables can be used to change some behaviors in the package.<br />
 </p>
