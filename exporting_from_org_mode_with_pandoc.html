@@ -29,17 +29,17 @@
 </div><h1 class="main-title">exporting from org mode with pandoc</h1><span class='date'>2023-12-07</span>
 </div>
 <div id="content" class="content">
-<div id="outline-container-org9e39295" class="outline-2">
-<h2 id="org9e39295">motivation</h2>
-<div class="outline-text-2" id="text-org9e39295">
+<div id="outline-container-org40a165f" class="outline-2">
+<h2 id="org40a165f">motivation</h2>
+<div class="outline-text-2" id="text-org40a165f">
 <p>
 the need for an emacs-independent exporting of notes arose from the fact that i was using org version 9.7-pre in which exporting functionality is basically broken.<br />
 </p>
 </div>
 </div>
-<div id="outline-container-org6fcd0bb" class="outline-2">
-<h2 id="org6fcd0bb">pandoc</h2>
-<div class="outline-text-2" id="text-org6fcd0bb">
+<div id="outline-container-org65a5cc5" class="outline-2">
+<h2 id="org65a5cc5">pandoc</h2>
+<div class="outline-text-2" id="text-org65a5cc5">
 <p>
 because i didnt want to reinvent the wheel, i landed on using pandoc, it has a huge community and i trust it to maintain org-mode parsability in the long run. there are some missing features in pandoc exporting which is why im writing this.<br />
 a starting point would be the following command:<br />
@@ -50,9 +50,9 @@ a starting point would be the following command:<br />
 </div>
 </div>
 </div>
-<div id="outline-container-org3a29793" class="outline-2">
-<h2 id="org3a29793">custom css</h2>
-<div class="outline-text-2" id="text-org3a29793">
+<div id="outline-container-orgec5c372" class="outline-2">
+<h2 id="orgec5c372">custom css</h2>
+<div class="outline-text-2" id="text-orgec5c372">
 <p>
 if you have a css file that you'd like included, use the <code>--css</code> argument<br />
 </p>
@@ -65,9 +65,9 @@ if you have a css file that you'd like included, use the <code>--css</code> argu
 </div>
 </div>
 </div>
-<div id="outline-container-org4f12ef5" class="outline-2">
-<h2 id="org4f12ef5">custom html preamble/postamble</h2>
-<div class="outline-text-2" id="text-org4f12ef5">
+<div id="outline-container-org05c30d2" class="outline-2">
+<h2 id="org05c30d2">custom html preamble/postamble</h2>
+<div class="outline-text-2" id="text-org05c30d2">
 <p>
 or more generally, if you have an html file you'd like included in the header, use the <code>--include-in-header</code> argument<br />
 </p>
@@ -81,9 +81,9 @@ or more generally, if you have an html file you'd like included in the header, u
 </div>
 </div>
 </div>
-<div id="outline-container-org4aac5cd" class="outline-2">
-<h2 id="org4aac5cd">bibliography</h2>
-<div class="outline-text-2" id="text-org4aac5cd">
+<div id="outline-container-orgd054431" class="outline-2">
+<h2 id="orgd054431">bibliography</h2>
+<div class="outline-text-2" id="text-orgd054431">
 <p>
 if you have a bibliography file you want pandoc to use to handle citations, you can make use of the <code>--bibliography</code>, <code>--biblatex</code>, <code>--citeproc</code> arguments<br />
 </p>
@@ -98,9 +98,9 @@ if you have a bibliography file you want pandoc to use to handle citations, you 
 </div>
 </div>
 </div>
-<div id="outline-container-org83da9c9" class="outline-2">
-<h2 id="org83da9c9">latex rendering</h2>
-<div class="outline-text-2" id="text-org83da9c9">
+<div id="outline-container-org0aa3020" class="outline-2">
+<h2 id="org0aa3020">latex rendering</h2>
+<div class="outline-text-2" id="text-org0aa3020">
 <p>
 pandoc supports multiple ways of handling latex snippets, it can use <code>mathjax</code> with the <code>--mathjax</code> argument, a better option for full latex support is rendering them with <code>dvisvgm</code>, using this lua filter that makes use of pandoc's filter api, which is a modified version of <a href="https://github.com/oltolm/pandoc-latex-math">https://github.com/oltolm/pandoc-latex-math</a><br />
 </p>
@@ -254,9 +254,9 @@ assuming this script is written in a file <code>tex.lua</code>, to use this filt
 </div>
 </div>
 </div>
-<div id="outline-container-orga5235b3" class="outline-2">
-<h2 id="orga5235b3">internal links</h2>
-<div class="outline-text-2" id="text-orga5235b3">
+<div id="outline-container-orgf5a0b0e" class="outline-2">
+<h2 id="orgf5a0b0e">internal links</h2>
+<div class="outline-text-2" id="text-orgf5a0b0e">
 <p>
 consider the following org mode snippet:<br />
 </p>
@@ -329,17 +329,17 @@ assuming this code is placed in the file <code>internal_links.lua</code>, our sh
 </div>
 </div>
 </div>
-<div id="outline-container-orgb3ca637" class="outline-2">
-<h2 id="orgb3ca637">org-roam links</h2>
-<div class="outline-text-2" id="text-orgb3ca637">
+<div id="outline-container-orgfe22c4f" class="outline-2">
+<h2 id="orgfe22c4f">org-roam links</h2>
+<div class="outline-text-2" id="text-orgfe22c4f">
 <p>
 pandoc on its own has no context of org-roam links, but org-roam stores everything it needs to operate in <code>~/.emacs.d/org-roam.db</code>, this file is automatically updated if the option <code>org-roam-db-autosync-mode</code> is set to <code>t</code>, this way other programs can be used to query information from org-roam without needing to visit the org files themselves.<br />
 based on this fact the following filter that is a modified version of <a href="https://www.amoradi.org/20210730173543.html">https://www.amoradi.org/20210730173543.html</a> is used:<br />
 </p>
 <div class="org-src-container" data-language="python">
-<pre class="src src-python"><span style="color: #7c6f64;">#!/usr/bin/env python3.10</span>
+<pre class="src src-python"><span style="color: #7c6f64;">#</span><span style="color: #7c6f64;">!/usr/bin/env python3.10</span>
 
-<span style="color: #7c6f64;"># source: https://www.amoradi.org/20210730173543.html</span>
+<span style="color: #7c6f64;"># </span><span style="color: #7c6f64;">source: https://www.amoradi.org/20210730173543.html</span>
 
 <span style="color: #fb4933;">import</span> panflute <span style="color: #fb4933;">as</span> pf
 <span style="color: #fb4933;">import</span> sqlite3
@@ -353,30 +353,30 @@ based on this fact the following filter that is a modified version of <a href="h
 
 <span style="color: #83a598;">db</span> = <span style="color: #d3869b;">None</span>
 
-<span style="color: #fb4933;">def</span> <span style="color: #fabd2f;">sanitize_link</span><span style="color: #458588;">(</span><span style="color: #83a598;">elem</span>, <span style="color: #83a598;">doc</span><span style="color: #458588;">)</span>:
+<span style="color: #fb4933;">def</span> <span style="color: #fabd2f;">sanitize_link</span><span style="color: #458588;">(</span>elem, doc<span style="color: #458588;">)</span>:
     <span style="color: #fb4933;">if</span> <span style="color: #fe8019;">type</span><span style="color: #458588;">(</span>elem<span style="color: #458588;">)</span> != pf.Link:
         <span style="color: #fb4933;">return</span> <span style="color: #d3869b;">None</span>
 
     <span style="color: #fb4933;">if</span> <span style="color: #fb4933;">not</span> elem.url.startswith<span style="color: #458588;">(</span><span style="color: #b8bb26;">"id:"</span><span style="color: #458588;">)</span>:
         <span style="color: #fb4933;">return</span> <span style="color: #d3869b;">None</span>
 
-    <span style="color: #83a598;">file_id</span> = elem.url.split<span style="color: #458588;">(</span><span style="color: #b8bb26;">":"</span><span style="color: #458588;">)[</span><span style="color: #d3869b;">1</span><span style="color: #458588;">]</span>
+    <span style="color: #83a598;">file_id</span> = elem.url.split<span style="color: #458588;">(</span><span style="color: #b8bb26;">":"</span><span style="color: #458588;">)[</span>1<span style="color: #458588;">]</span>
 
     <span style="color: #83a598;">cur</span> = db.cursor<span style="color: #458588;">()</span>
-    cur.execute<span style="color: #458588;">(</span>f<span style="color: #b8bb26;">"select id, file, title from nodes where id = '</span><span style="font-weight: bold;">\"</span>{file_id}<span style="font-weight: bold;">\"</span><span style="color: #b8bb26;">';"</span><span style="color: #458588;">)</span>
+    cur.execute<span style="color: #458588;">(</span>f<span style="color: #b8bb26;">"select id, file, title from nodes where id = '\"</span>{file_id}<span style="color: #b8bb26;">\"';"</span><span style="color: #458588;">)</span>
     <span style="color: #83a598;">data</span> = cur.fetchone<span style="color: #458588;">()</span>
 
-    <span style="color: #7c6f64;"># data contains string that are quoted, we need to remove the quotes</span>
-    <span style="color: #83a598;">file_id</span> = data<span style="color: #458588;">[</span><span style="color: #d3869b;">0</span><span style="color: #458588;">][</span><span style="color: #d3869b;">1</span>:-<span style="color: #d3869b;">1</span><span style="color: #458588;">]</span>
-    <span style="color: #83a598;">file_name</span> = urllib.parse.quote<span style="color: #458588;">(</span>os.path.splitext<span style="color: #b16286;">(</span>os.path.basename<span style="color: #8ec07c;">(</span>data<span style="color: #d65d0e;">[</span><span style="color: #d3869b;">1</span><span style="color: #d65d0e;">][</span><span style="color: #d3869b;">1</span>:-<span style="color: #d3869b;">1</span><span style="color: #d65d0e;">]</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)[</span><span style="color: #d3869b;">0</span><span style="color: #b16286;">]</span><span style="color: #458588;">)</span>
+    <span style="color: #7c6f64;"># </span><span style="color: #7c6f64;">data contains string that are quoted, we need to remove the quotes</span>
+    <span style="color: #83a598;">file_id</span> = data<span style="color: #458588;">[</span>0<span style="color: #458588;">][</span>1:-1<span style="color: #458588;">]</span>
+    <span style="color: #83a598;">file_name</span> = urllib.parse.quote<span style="color: #458588;">(</span>os.path.splitext<span style="color: #b16286;">(</span>os.path.basename<span style="color: #8ec07c;">(</span>data<span style="color: #d65d0e;">[</span>1<span style="color: #d65d0e;">][</span>1:-1<span style="color: #d65d0e;">]</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)[</span>0<span style="color: #b16286;">]</span><span style="color: #458588;">)</span>
 
     elem.<span style="color: #83a598;">url</span> = f<span style="color: #b8bb26;">"</span>{file_name}<span style="color: #b8bb26;">.html"</span>
     <span style="color: #fb4933;">return</span> elem
 
-<span style="color: #fb4933;">def</span> <span style="color: #fabd2f;">main</span><span style="color: #458588;">(</span><span style="color: #83a598;">doc</span>=<span style="color: #d3869b;">None</span><span style="color: #458588;">)</span>:
+<span style="color: #fb4933;">def</span> <span style="color: #fabd2f;">main</span><span style="color: #458588;">(</span>doc=<span style="color: #d3869b;">None</span><span style="color: #458588;">)</span>:
     <span style="color: #fb4933;">return</span> pf.run_filter<span style="color: #458588;">(</span>sanitize_link, doc=doc<span style="color: #458588;">)</span>
 
-<span style="color: #fb4933;">if</span> __name__ == <span style="color: #b8bb26;">"__main__"</span>:
+<span style="color: #fb4933;">if</span> <span style="color: #fe8019;">__name__</span> == <span style="color: #b8bb26;">"__main__"</span>:
     <span style="color: #83a598;">db</span> = sqlite3.connect<span style="color: #458588;">(</span>os.path.expanduser<span style="color: #b16286;">(</span>ORG_ROAM_DB_PATH<span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
     main<span style="color: #458588;">()</span>
 </pre>

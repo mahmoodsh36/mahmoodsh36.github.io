@@ -29,9 +29,9 @@
 </div><h1 class="main-title">common lisp</h1><span class='date'>2023-02-24</span>
 </div>
 <div id="content" class="content">
-<html><body><div id="outline-container-org6875fb5" class="outline-2">
-<h2 id="org6875fb5">for loop</h2>
-<div class="outline-text-2" id="text-org6875fb5">
+<html><body><div id="outline-container-org6c0097e" class="outline-2">
+<h2 id="org6c0097e">for loop</h2>
+<div class="outline-text-2" id="text-org6c0097e">
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #458588;">(</span><span style="color: #fb4933;">loop</span> for x in '<span style="color: #b16286;">(</span>1 2 3<span style="color: #b16286;">)</span>
       collect x<span style="color: #458588;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">returns list</span>
@@ -41,9 +41,9 @@
 </div>
 </div>
 </div>
-<div id="outline-container-org88c508f" class="outline-2">
-<h2 id="org88c508f">functions</h2>
-<div class="outline-text-2" id="text-org88c508f">
+<div id="outline-container-org97b71fd" class="outline-2">
+<h2 id="org97b71fd">functions</h2>
+<div class="outline-text-2" id="text-org97b71fd">
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #458588;">(</span><span style="color: #fb4933;">defun</span> <span style="color: #fabd2f;"><name></span> <span style="color: #b16286;">(</span>list of arguments<span style="color: #b16286;">)</span>
   <span style="color: #b8bb26;">"docstring"</span>
@@ -52,9 +52,9 @@
 </div>
 </div>
 </div>
-<div id="outline-container-orgadd579d" class="outline-2">
-<h2 id="orgadd579d">plist</h2>
-<div class="outline-text-2" id="text-orgadd579d">
+<div id="outline-container-orgbd485b2" class="outline-2">
+<h2 id="orgbd485b2">plist</h2>
+<div class="outline-text-2" id="text-orgbd485b2">
 <p>
 defining a plist<br /></p>
 <div class="org-src-container" data-language="lisp">
@@ -82,27 +82,27 @@ get a list of the attributes<br /></p>
 </div>
 </div>
 </div>
-<div id="outline-container-org81b1ae9" class="outline-2">
-<h2 id="org81b1ae9">unbind variable</h2>
-<div class="outline-text-2" id="text-org81b1ae9">
+<div id="outline-container-orgfac140a" class="outline-2">
+<h2 id="orgfac140a">unbind variable</h2>
+<div class="outline-text-2" id="text-orgfac140a">
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #458588;">(</span>makunbound 'foo<span style="color: #458588;">)</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgca65c63" class="outline-2">
-<h2 id="orgca65c63">undefine funciton</h2>
-<div class="outline-text-2" id="text-orgca65c63">
+<div id="outline-container-org12d5498" class="outline-2">
+<h2 id="org12d5498">undefine funciton</h2>
+<div class="outline-text-2" id="text-org12d5498">
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #458588;">(</span>fmakunbound 'function<span style="color: #458588;">)</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgfc809b6" class="outline-2">
-<h2 id="orgfc809b6">quicklisp</h2>
-<div class="outline-text-2" id="text-orgfc809b6">
+<div id="outline-container-orgb53a2c0" class="outline-2">
+<h2 id="orgb53a2c0">quicklisp</h2>
+<div class="outline-text-2" id="text-orgb53a2c0">
 <p>
 need to install it manually afaik<br /></p>
 <div class="org-src-container" data-language="bash">
@@ -127,9 +127,9 @@ then to install a package in sbcl:<br /></p>
 this will install the package if it doesnt exist, and if it exists it just loads it<br /></p>
 </div>
 </div>
-<div id="outline-container-org3ad50fe" class="outline-2">
-<h2 id="org3ad50fe">classes</h2>
-<div class="outline-text-2" id="text-org3ad50fe">
+<div id="outline-container-org03d5750" class="outline-2">
+<h2 id="org03d5750">classes</h2>
+<div class="outline-text-2" id="text-org03d5750">
 <p>
 example class:<br /></p>
 <div class="org-src-container" data-language="lisp">
@@ -185,9 +185,9 @@ the following syntax is used to define a function for a class, note that the fun
 </div>
 </div>
 </div>
-<div id="outline-container-org0d60a31" class="outline-2">
-<h2 id="org0d60a31">structs</h2>
-<div class="outline-text-2" id="text-org0d60a31">
+<div id="outline-container-org3916a7f" class="outline-2">
+<h2 id="org3916a7f">structs</h2>
+<div class="outline-text-2" id="text-org3916a7f">
 <p>
 structs are basically simpler classes with default functions/initializers/etc<br /></p>
 <div class="org-src-container" data-language="lisp">
@@ -202,9 +202,9 @@ structs are basically simpler classes with default functions/initializers/etc<br
 </div>
 </div>
 </div>
-<div id="outline-container-org7d6e2a4" class="outline-2">
-<h2 id="org7d6e2a4">arrays/matrices</h2>
-<div class="outline-text-2" id="text-org7d6e2a4">
+<div id="outline-container-orgadb9bd3" class="outline-2">
+<h2 id="orgadb9bd3">arrays/matrices</h2>
+<div class="outline-text-2" id="text-orgadb9bd3">
 <p>
 to create an array:<br /></p>
 <div class="org-src-container" data-language="lisp">
@@ -326,9 +326,9 @@ fill array manually:<br /></p>
 </div>
 </div>
 </div>
-<div id="outline-container-org413448c" class="outline-2">
-<h2 id="org413448c">vectors</h2>
-<div class="outline-text-2" id="text-org413448c">
+<div id="outline-container-org9554214" class="outline-2">
+<h2 id="org9554214">vectors</h2>
+<div class="outline-text-2" id="text-org9554214">
 <p>
 create vector<br /></p>
 <div class="org-src-container" data-language="lisp">
@@ -368,9 +368,9 @@ we can have nested vectors<br /></p>
 </pre>
 </div>
 </div>
-<div id="outline-container-org0ed7757" class="outline-2">
-<h2 id="org0ed7757">multithreading</h2>
-<div class="outline-text-2" id="text-org0ed7757">
+<div id="outline-container-orgbc5828c" class="outline-2">
+<h2 id="orgbc5828c">multithreading</h2>
+<div class="outline-text-2" id="text-orgbc5828c">
 <p>
 in sbcl <code>sb-thread:make-thread</code> takes a function to call in a newly created thread.<br /></p>
 <div class="org-src-container" data-language="lisp">
@@ -388,9 +388,9 @@ although notice that this is special to sbcl.<br />
 the <a href="https://github.com/lmj/lparallel">lparallel</a> library works great on multiple CL implementations, more on lparallel at <a href="https://lparallel.org/page/2/">https://lparallel.org/page/2/</a><br /></p>
 </div>
 </div>
-<div id="outline-container-org9bf61cd" class="outline-2">
-<h2 id="org9bf61cd">macros</h2>
-<div class="outline-text-2" id="text-org9bf61cd">
+<div id="outline-container-org5fc84e2" class="outline-2">
+<h2 id="org5fc84e2">macros</h2>
+<div class="outline-text-2" id="text-org5fc84e2">
 <p>
 simple macro from <a href="https://lispcookbook.github.io/cl-cookbook/macros.html">https://lispcookbook.github.io/cl-cookbook/macros.html</a>:<br /></p>
 <div class="org-src-container" data-language="lisp">
@@ -449,9 +449,9 @@ CL-USER> <span style="color: #458588;">(</span><span style="color: #fb4933;">wit
 </div>
 </div>
 </div>
-<div id="outline-container-orgf379900" class="outline-2">
-<h2 id="orgf379900">reader macros</h2>
-<div class="outline-text-2" id="text-orgf379900">
+<div id="outline-container-orgeebcae8" class="outline-2">
+<h2 id="orgeebcae8">reader macros</h2>
+<div class="outline-text-2" id="text-orgeebcae8">
 <p>
 the <code>#+</code> and <code>#-</code> <b>reader macros</b> are pretty nice for commenting out sexps. they allow ignoring the following sexp, if the given symbol isn't/is found in <code>*FEATURES*</code>. Just pick a symbol not in <code>*FEATURES*</code>, and use it with <code>#+</code> like this:<br /></p>
 <div class="org-src-container" data-language="lisp">
@@ -464,18 +464,18 @@ the <code>#+</code> and <code>#-</code> <b>reader macros</b> are pretty nice for
 Now, the function definition will be ignored (unless NIL is in <code>*FEATURES*</code>, which is not very likely).<br /></p>
 </div>
 </div>
-<div id="outline-container-orgc5f65c8" class="outline-2">
-<h2 id="orgc5f65c8">use double-floats by default</h2>
-<div class="outline-text-2" id="text-orgc5f65c8">
+<div id="outline-container-orgddf5e61" class="outline-2">
+<h2 id="orgddf5e61">use double-floats by default</h2>
+<div class="outline-text-2" id="text-orgddf5e61">
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #458588;">(</span>setf *read-default-float-format* 'double-float<span style="color: #458588;">)</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org6d06b89" class="outline-2">
-<h2 id="org6d06b89">enforce garbage collection</h2>
-<div class="outline-text-2" id="text-org6d06b89">
+<div id="outline-container-org02936e3" class="outline-2">
+<h2 id="org02936e3">enforce garbage collection</h2>
+<div class="outline-text-2" id="text-org02936e3">
 <p>
 running<br /></p>
 <div class="org-src-container" data-language="lisp">
@@ -486,9 +486,9 @@ running<br /></p>
 invokes the garbage collector<br /></p>
 </div>
 </div>
-<div id="outline-container-org16a76c8" class="outline-2">
-<h2 id="org16a76c8">checking equalities</h2>
-<div class="outline-text-2" id="text-org16a76c8">
+<div id="outline-container-org1643dae" class="outline-2">
+<h2 id="org1643dae">checking equalities</h2>
+<div class="outline-text-2" id="text-org1643dae">
 <p>
 some equality tests may return results that are implementation-specific, i dont list those here, i only wrote the ones that are supposed to work on any cl implementation<br />
 string equality:<br /></p>
@@ -544,9 +544,9 @@ uppercase and lowercase letters in strings are considered by <code>equal</code> 
 </div>
 </div>
 </div>
-<div id="outline-container-orge4b9f8b" class="outline-2">
-<h2 id="orge4b9f8b">alist</h2>
-<div class="outline-text-2" id="text-orge4b9f8b">
+<div id="outline-container-org88e0fe6" class="outline-2">
+<h2 id="org88e0fe6">alist</h2>
+<div class="outline-text-2" id="text-org88e0fe6">
 <p>
 we can append new pairs to an alist using <code>push</code> (there are many other ways):<br /></p>
 <div class="org-src-container" data-language="lisp">
@@ -561,9 +561,9 @@ we can append new pairs to an alist using <code>push</code> (there are many othe
 </pre>
 </div>
 </div>
-<div id="outline-container-orgb990747" class="outline-2">
-<h2 id="orgb990747">resources</h2>
-<div class="outline-text-2" id="text-orgb990747">
+<div id="outline-container-org16270ed" class="outline-2">
+<h2 id="org16270ed">resources</h2>
+<div class="outline-text-2" id="text-org16270ed">
 <p>
 <a href="https://lisp-journey.gitlab.io/blog/common-lisp-macros-by-example-tutorial">https://lisp-journey.gitlab.io/blog/common-lisp-macros-by-example-tutorial</a><br /><a href="https://taeric.github.io/CodeAsData.html">https://taeric.github.io/CodeAsData.html</a><br /><a href="https://github.com/ghollisjr/cl-ana">https://github.com/ghollisjr/cl-ana</a><br /><a href="https://github.com/marcoheisig/Petalisp">https://github.com/marcoheisig/Petalisp</a></p>
 </div>
