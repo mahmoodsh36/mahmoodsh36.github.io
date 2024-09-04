@@ -33,14 +33,14 @@
 emacs can lookup words in dictionaries, the simplest usage is through the function <code>dictionary-search</code> and confirming with <code>y</code> when emacs asks you whether to use <code>dict.org</code> (the website), i have this bound as a key:<br />
 </p>
 <div class="org-src-container" data-language="emacs-lisp">
-<pre class="src src-emacs-lisp"><span style="color: #458588;">(</span>general-define-key <span style="color: #fe8019;">:states</span> '<span style="color: #b16286;">(</span>normal motion<span style="color: #b16286;">)</span> <span style="color: #fe8019;">:keymaps</span> 'override <span style="color: #b8bb26;">"SPC s a"</span> 'dictionary-search<span style="color: #458588;">)</span>
+<pre class="src src-emacs-lisp"><span style="color: #d0730f;">(</span>general-define-key <span style="color: #ff7a7f; font-weight: bold;">:states</span> '<span style="color: #64aa0f;">(</span>normal motion<span style="color: #64aa0f;">)</span> <span style="color: #ff7a7f; font-weight: bold;">:keymaps</span> 'override <span style="color: #f06a3f;">"SPC s a"</span> 'dictionary-search<span style="color: #d0730f;">)</span>
 </pre>
 </div>
 <p>
 you can also force it to use <code>dict.org</code> without confirmation:<br />
 </p>
 <div class="org-src-container" data-language="emacs-lisp">
-<pre class="src src-emacs-lisp"><span style="color: #458588;">(</span><span style="color: #fb4933;">setq</span> dictionary-server <span style="color: #b8bb26;">"dict.org"</span><span style="color: #458588;">)</span>
+<pre class="src src-emacs-lisp"><span style="color: #d0730f;">(</span><span style="color: #c48702; font-weight: bold;">setq</span> dictionary-server <span style="color: #f06a3f;">"dict.org"</span><span style="color: #d0730f;">)</span>
 </pre>
 </div>
 <p>
@@ -48,7 +48,7 @@ or if you want to run a local dictionary server, on arch linux you'd need:<br />
 </p>
 <div class="org-src-container" data-language="bash">
 <pre class="src src-bash">sudo pacman -S dictd
-yay -S dict-gcide dict-wn dict-moby-thesaurus <span style="color: #7c6f64;"># </span><span style="color: #7c6f64;">dicts only available in aur</span>
+yay -S dict-gcide dict-wn dict-moby-thesaurus <span style="color: #cf9f7f; font-style: italic;"># </span><span style="color: #cf9f7f; font-style: italic;">dicts only available in aur</span>
 sudo systemctl enable dictd
 </pre>
 </div>
