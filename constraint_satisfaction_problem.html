@@ -90,18 +90,18 @@ CSPs deal with assignments of values to variables,
 
 </div><div class="fancy-after">(taken from Peter Norvig, Stuart J. Russell, 2020 chapter 6.1)
 </div></div>
-<div id="outline-container-orgd94d7a3" class="outline-2">
-<h2 id="orgd94d7a3">constraint propagation</h2>
-<div class="outline-text-2" id="text-orgd94d7a3">
+<div id="outline-container-org332860b" class="outline-2">
+<h2 id="org332860b">constraint propagation</h2>
+<div class="outline-text-2" id="text-org332860b">
 <p>
 an atomic state space search algorithm makes progress in only one way: by expanding a node to visit the successors. in a constraint graph, a CSP algorithm has choices. it can generate successors by choosing a new variable assignment, or it can do a specific type of inference called <b>constraint propagation</b>: using the constraints to reduce the number of legal values for a variable, which in turn can reduce the legal values for another variable, and so on. the idea is that this will leave fewer choices to consider when we make the next choice of a variable assignment.<br />
 constraint propagation may be intertwined with search, or it may be done as a preprocessing step, before search starts. sometimes this preprocessing can solve the whole problem, so no search is required at all.<br />
 the key idea is <b>local consistency</b>. if we treat each variable as a node in a graph and each binary constraint (constarint between two variables) as an edge, then the process of enforcing local consistency in each part of the graph causes inconsistent values to be eliminated throughout the graph.<br /></p>
 </div>
 </div>
-<div id="outline-container-org9230416" class="outline-2">
-<h2 id="org9230416">variable ordering with heursitics</h2>
-<div class="outline-text-2" id="text-org9230416">
+<div id="outline-container-orgc57b3b9" class="outline-2">
+<h2 id="orgc57b3b9">variable ordering with heursitics</h2>
+<div class="outline-text-2" id="text-orgc57b3b9">
 <p>
 when branching on a variable, i.e. going through its incident edges to its neighboring vertices (recall that vertices represent variables in a constraint graph), there are multiple strategies to decide on the order of branching, each with its own benefits and downsides, some of which are:<br /></p>
 <ul class="org-ul"><li>the simplest strategy is using the order in which they're layed out in memory (non optimal)<br /></li>
@@ -114,16 +114,16 @@ when branching on a variable, i.e. going through its incident edges to its neigh
 <li>the <b>degree heuristic</b>: this heuristic attempts to reduce the branching factor on future choices by selecting the variable that is involved in the largest number of constraints on other unassigned variables. this is analogous to a <b>most remaining values</b> or a <b>least constrained variable</b> heuristic.<br /></li>
 </ul></div>
 </div>
-<div id="outline-container-orgbdb775f" class="outline-2">
-<h2 id="orgbdb775f">value ordering</h2>
-<div class="outline-text-2" id="text-orgbdb775f">
+<div id="outline-container-orgc7cbdb3" class="outline-2">
+<h2 id="orgc7cbdb3">value ordering</h2>
+<div class="outline-text-2" id="text-orgc7cbdb3">
 <p>
 once a variable has been selected for the branching step, the algorithm must decide on the order in which to examine its possible values, the <b>least-constraining-value</b> heuristic is effective for this. it prefers the value that rules out the fewest choices for the neighboring variables in the constraint graph.<br /></p>
 </div>
 </div>
-<div id="outline-container-org686a50b" class="outline-2">
-<h2 id="org686a50b">inference</h2>
-<div class="outline-text-2" id="text-org686a50b">
+<div id="outline-container-orgd085e66" class="outline-2">
+<h2 id="orgd085e66">inference</h2>
+<div class="outline-text-2" id="text-orgd085e66">
 <p>
 inference can be effective during the course of a search: every time we make a choice of a value for a variable, we have a brand-new opportunity to infer new domain reductions on the neighboring variables.<br />
 one of the simplest forms of inference is called <b>forward checking</b>. whenever a variable 

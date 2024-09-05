@@ -34,9 +34,9 @@
 some information was quoted from <a href="https://machinelearningmastery.com/how-to-develop-a-generative-adversarial-network-for-an-mnist-handwritten-digits-from-scratch-in-keras/">this great article</a> (the code was rewritten in pytorch and alot of things differ though!).<br /></p>
 
 </div><div class="fancy-after"></div></div>
-<div id="outline-container-org5855a23" class="outline-2">
-<h2 id="org5855a23">essential packages</h2>
-<div class="outline-text-2" id="text-org5855a23">
+<div id="outline-container-org56d94ab" class="outline-2">
+<h2 id="org56d94ab">essential packages</h2>
+<div class="outline-text-2" id="text-org56d94ab">
 <p>
 we need to import some essential packages:<br /></p>
 <div class="org-src-container" data-language="python">
@@ -57,9 +57,9 @@ here, if the machine we're using has a cuda-supported gpu available, we use that
 </div>
 </div>
 </div>
-<div id="outline-container-org1a7ecd2" class="outline-2">
-<h2 id="org1a7ecd2">load the data</h2>
-<div class="outline-text-2" id="text-org1a7ecd2">
+<div id="outline-container-org84daddb" class="outline-2">
+<h2 id="org84daddb">load the data</h2>
+<div class="outline-text-2" id="text-org84daddb">
 <p>
 we start by loading the mnist dataset (the 28x28 images of hand-written digits), we use the <code>torchvision</code> package from <code>pypi</code> which provides various datasets for <a href="/machine_learning.html#1677361099">machine learning</a><br /></p>
 <div class="org-src-container" data-language="python">
@@ -124,14 +124,14 @@ gen_images_img<span style="color: #d0730f;">(</span>train_x<span style="color: #
 </div>
 
 
-<div id="orgaf00301" class="figure">
+<div id="orgca8d6a9" class="figure">
 <p><img src="/zuBb2Oa.png" /><br /></p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgf83a10b" class="outline-2">
-<h2 id="orgf83a10b">discriminator</h2>
-<div class="outline-text-2" id="text-orgf83a10b">
+<div id="outline-container-org694f789" class="outline-2">
+<h2 id="org694f789">discriminator</h2>
+<div class="outline-text-2" id="text-org694f789">
 <p>
 the discriminator model must take a sample image from our dataset as input and output a classification, a prediction as to whether the sample is real or fake. or perhaps the likelihood of the sample being real, which means the discriminator does binary classification.<br />
 pytorch makes defining neural nets easy by inheriting from <code>nn.Module</code>, here, since we're dealing with images, we use <a href="/convolutional_neural_network.html#1684594232">convolutional layer</a>s, in combinations with dropout layers which arent "mandatory" but they help improve results, the last layers are a <a href="/convolutional_neural_network.html#1684594232">flatten layer</a> and a linear layer, the output for a single image would be a float in the range 0-1.<br /></p>
@@ -190,7 +190,7 @@ summary<span style="color: #d0730f;">(</span>Discriminator<span style="color: #6
 </pre>
 </div>
 
-<pre class="example" id="org567e759">
+<pre class="example" id="org84df89b">
 ----------------------------------------------------------------
         Layer (type)               Output Shape         Param #
 ================================================================
@@ -260,9 +260,9 @@ before: torch.Size([60000, 28, 28])
 after: torch.Size([60000, 1, 28, 28])
 </pre>
 </div>
-<div id="outline-container-orgef1e88d" class="outline-3">
-<h3 id="orgef1e88d">training the discriminator</h3>
-<div class="outline-text-3" id="text-orgef1e88d">
+<div id="outline-container-orge4acb80" class="outline-3">
+<h3 id="orge4acb80">training the discriminator</h3>
+<div class="outline-text-3" id="text-orge4acb80">
 <p>
 we could systematically enumerate all samples in the training dataset, and that is a good approach, but good training via stochastic gradient descent requires that the training dataset be shuffled prior to each epoch. a simpler approach is to select random samples of images from the training dataset.<br />
 the <code>generate_real_samples_for_discriminator()</code> function below takes the training dataset as an argument and selects a random subset of images; it also returns class labels for the images, specifically a class label of 1, to indicate that the images are real.<br /></p>
@@ -366,7 +366,7 @@ f
 </div>
 
 
-<div id="org996dea5" class="figure">
+<div id="orge85ee73" class="figure">
 <p><img src="/ar1T72O.svg" /><br /></p>
 </div>
 
@@ -375,9 +375,9 @@ as we can see, the loss gradually declines which means the discriminator (theore
 </div>
 </div>
 </div>
-<div id="outline-container-org7415525" class="outline-2">
-<h2 id="org7415525">generator</h2>
-<div class="outline-text-2" id="text-org7415525">
+<div id="outline-container-org697fd8a" class="outline-2">
+<h2 id="org697fd8a">generator</h2>
+<div class="outline-text-2" id="text-org697fd8a">
 <p>
 the generator model is responsible for creating new, fake but plausible images of handwritten digits. it does so by taking a point from the latent space as input and outputting a tensor representing a grayscale image.<br />
 the latent space is an arbitrarily defined finite vector space. it has no meaning, but by drawing points from this space and feeding them to the generator model during training, the generator model will assign meaning to the latent points and, in turn, to the latent space. at the end of training, the latent vector space would have an internal structure that is a compressed representation of the output space (the MNIST image dataset), that only the generator knows how to turn into plausible images that fool the discriminator.<br />
@@ -433,7 +433,7 @@ summary<span style="color: #d0730f;">(</span>Generator<span style="color: #64aa0
 </pre>
 </div>
 
-<pre class="example" id="orgf5868b8">
+<pre class="example" id="orgde32af1">
 ----------------------------------------------------------------
         Layer (type)               Output Shape         Param #
 ================================================================
@@ -486,13 +486,13 @@ gen_images_img<span style="color: #d0730f;">(</span>X.reshape<span style="color:
 </div>
 
 
-<div id="org7fa865f" class="figure">
+<div id="org60c2120" class="figure">
 <p><img src="/dUD33Ha.png" /><br /></p>
 </div>
 </div>
-<div id="outline-container-org0d77a9e" class="outline-3">
-<h3 id="org0d77a9e">training the generator</h3>
-<div class="outline-text-3" id="text-org0d77a9e">
+<div id="outline-container-orgd4b46e3" class="outline-3">
+<h3 id="orgd4b46e3">training the generator</h3>
+<div class="outline-text-3" id="text-orgd4b46e3">
 <p>
 to train the generator, we need to attach it to the discriminator in a sequential manner, such that the output of the generator would be forwarded to the discriminator for classification, the discriminator would determine whether the data generated by the generator passes as a real image. this is why the training of disciminator beforehand to classify real data from fake ones is cruical, otherwise the generator wouldnt learn (this is one approach, another is described later).<br />
 during the training of the generator, we may want to freeze the parameters of the discriminator, because we wouldnt want the discriminator training and overfitting on fake data.<br />
@@ -567,7 +567,7 @@ f
 </div>
 
 
-<div id="orgd49433e" class="figure">
+<div id="orgee62905" class="figure">
 <p><img src="/YMD1rgW.png" /><br /></p>
 </div>
 
@@ -691,17 +691,17 @@ but the results are interesting, even after the first epoch, we can see that the
 </div>
 </div>
 </div>
-<div id="outline-container-orga487c37" class="outline-2">
-<h2 id="orga487c37">performance evaluation</h2>
-<div class="outline-text-2" id="text-orga487c37">
+<div id="outline-container-org69b52d7" class="outline-2">
+<h2 id="org69b52d7">performance evaluation</h2>
+<div class="outline-text-2" id="text-org69b52d7">
 <p>
 generally, there are no objective ways to evaluate the performance of a GAN model. we cannot calculate this objective error score for generated images. it might be possible in the case of MNIST images because the images are so well constrained, but in general, it is not possible (yet).<br />
 instead, images must be subjectively evaluated for quality by a human agent. this means that we cannot know when to stop training without looking at examples of generated images. in turn, the adversarial nature of the training process means that the generator is changing after every batch, meaning that once "good enough" images can be generated, the subjective quality of the images may then begin to vary, improve, or even degrade with subsequent updates.<br /></p>
 </div>
 </div>
-<div id="outline-container-org0e3ec9c" class="outline-2">
-<h2 id="org0e3ec9c">latent output space visualization</h2>
-<div class="outline-text-2" id="text-org0e3ec9c">
+<div id="outline-container-org7b084f1" class="outline-2">
+<h2 id="org7b084f1">latent output space visualization</h2>
+<div class="outline-text-2" id="text-org7b084f1">
 <p>
 while we cant visualize dimensions higher than 3d, and while computer screens are 2d, we can still try to explore higher dimensions by "navigating" them and projecting the results. by navigation i mean choosing an axis and "hovering" over its possible values while holding the other variables constant, to see how the changes to the variable that corresponds to the axis we chose affect the space we project.<br /></p>
 
