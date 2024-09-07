@@ -31,9 +31,9 @@
 <div id="content" class="content">
 <html><body><p>
 some math utilities for <a href="/common_lisp.html#1677249560">common lisp</a><br /></p>
-<div id="outline-container-orgea03dd7" class="outline-2">
-<h2 id="orgea03dd7">essential functions</h2>
-<div class="outline-text-2" id="text-orgea03dd7">
+<div id="outline-container-orge62d03e" class="outline-2">
+<h2 id="orge62d03e">essential functions</h2>
+<div class="outline-text-2" id="text-orge62d03e">
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp" id="src-math-functions"><span style="color: #d0730f;">(</span><span style="color: #c48702; font-weight: bold;">defun</span> <span style="color: #3dbbb0;">sigmoid</span> <span style="color: #64aa0f;">(</span>x<span style="color: #64aa0f;">)</span>
   <span style="color: #64aa0f;">(</span><span style="color: #c48702; font-weight: bold;">cond</span> <span style="color: #ef656a;">(</span><span style="color: #3dbbb0;">(</span>< x -70<span style="color: #3dbbb0;">)</span> 0<span style="color: #ef656a;">)</span> <span style="color: #cf9f7f; font-style: italic;">;; </span><span style="color: #cf9f7f; font-style: italic;">to avoid float overflow</span>
@@ -54,10 +54,14 @@ some math utilities for <a href="/common_lisp.html#1677249560">common lisp</a><b
 </div>
 </div>
 </div>
-<div id="outline-container-orgb8985e5" class="outline-2">
-<h2 id="orgb8985e5">vectors</h2>
-<div class="outline-text-2" id="text-orgb8985e5">
-<div class="fancy-container"><div class="fancy-before">note: </div><div class="fancy-block note" data-before="note: " data-after="">
+<div id="outline-container-org6fbe7f9" class="outline-2">
+<h2 id="org6fbe7f9">vectors</h2>
+<div class="outline-text-2" id="text-org6fbe7f9">
+<div class="fancy-container"><div class="fancy-before"><p>
+note: </p>
+</div><div class="fancy-block note" data-before="&lt;p&gt;
+note: &lt;/p&gt;
+" data-after="">
 <p>
 these functions work, but some use lists and some do redundant operations, they need efficiency improvement<br /></p>
 
@@ -99,9 +103,9 @@ these functions work, but some use lists and some do redundant operations, they 
 </div>
 </div>
 </div>
-<div id="outline-container-orgde83a15" class="outline-2">
-<h2 id="orgde83a15">matrices</h2>
-<div class="outline-text-2" id="text-orgde83a15">
+<div id="outline-container-orge0681b8" class="outline-2">
+<h2 id="orge0681b8">matrices</h2>
+<div class="outline-text-2" id="text-orge0681b8">
 <p>
 im using arrays for matrices, which use different functions than vectors/lists<br />
 matrix multiplication:<br /></p>
@@ -175,9 +179,9 @@ matrix multiplication:<br /></p>
 </pre>
 </div>
 </div>
-<div id="outline-container-orga71d025" class="outline-3">
-<h3 id="orga71d025">matrix multiplication implementation comparison between lists and arrays</h3>
-<div class="outline-text-3" id="text-orga71d025">
+<div id="outline-container-org2858d1f" class="outline-3">
+<h3 id="org2858d1f">matrix multiplication implementation comparison between lists and arrays</h3>
+<div class="outline-text-3" id="text-org2858d1f">
 <p>
 with lists:<br /></p>
 <div class="org-src-container" data-language="lisp">
@@ -218,9 +222,9 @@ with arrays:<br /></p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgd707f0a" class="outline-3">
-<h3 id="orgd707f0a">2d transformation matrices</h3>
-<div class="outline-text-3" id="text-orgd707f0a">
+<div id="outline-container-org8118567" class="outline-3">
+<h3 id="org8118567">2d transformation matrices</h3>
+<div class="outline-text-3" id="text-org8118567">
 <p>
 linearly mapping a grid to another:<br /></p>
 <div class="org-src-container" data-language="lisp">
@@ -259,9 +263,9 @@ example usage:<br /></p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgbadddbf" class="outline-2">
-<h2 id="orgbadddbf">linearly mapping discrete range onto another</h2>
-<div class="outline-text-2" id="text-orgbadddbf">
+<div id="outline-container-org5f4ef56" class="outline-2">
+<h2 id="org5f4ef56">linearly mapping discrete range onto another</h2>
+<div class="outline-text-2" id="text-org5f4ef56">
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp" id="src-map-num"><span style="color: #d0730f;">(</span><span style="color: #c48702; font-weight: bold;">defun</span> <span style="color: #3dbbb0;">map-num</span> <span style="color: #64aa0f;">(</span>num src-min src-max dest-min dest-max<span style="color: #64aa0f;">)</span>
   <span style="color: #5f9f6f; font-style: italic;">"(map-num 0.5 -1 1 -50 50) => 25.0"</span>
@@ -270,9 +274,9 @@ example usage:<br /></p>
 </div>
 </div>
 </div>
-<div id="outline-container-org18cf397" class="outline-2">
-<h2 id="org18cf397">sets</h2>
-<div class="outline-text-2" id="text-org18cf397">
+<div id="outline-container-org4f899e6" class="outline-2">
+<h2 id="org4f899e6">sets</h2>
+<div class="outline-text-2" id="text-org4f899e6">
 <p>
 a good resource <a href="https://www.cs.cmu.edu/Groups/AI/html/cltl/clm/node152.html">https://www.cs.cmu.edu/Groups/AI/html/cltl/clm/node152.html</a><br />
 the builtin <code>set-difference</code> sometimes reverses the lists it returns for some reason and its bothersome, e.g.:<br /></p>
@@ -319,9 +323,9 @@ check for set equality:<br /></p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgf4c0da2" class="outline-2">
-<h2 id="orgf4c0da2">combinatorics</h2>
-<div class="outline-text-2" id="text-orgf4c0da2">
+<div id="outline-container-org66c9114" class="outline-2">
+<h2 id="org66c9114">combinatorics</h2>
+<div class="outline-text-2" id="text-org66c9114">
 <p>
 generating variations:<br /></p>
 <div class="org-src-container" data-language="lisp">

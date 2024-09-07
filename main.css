@@ -124,6 +124,12 @@ pre {
     background-color: var(--tertiary-background);
     transform: rotate(45deg);
 }
+/* org inserts data-before into a paragraph which results in odd alignment, fix it */
+.fancy-container p {
+    display: inline;
+    margin: 0px;
+    padding: 0px;
+}
 
 
 a {
