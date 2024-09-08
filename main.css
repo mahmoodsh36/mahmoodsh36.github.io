@@ -79,6 +79,10 @@ html, body {
 /*     white-space: nowrap; */
 /*     text-overflow: ellipsis; */
 /* } */
+.collage .card-image:hover {
+    border-color: blue;
+    cursor: pointer;
+}
 .card-title {
     color: rgb(175, 39, 39);
 }
