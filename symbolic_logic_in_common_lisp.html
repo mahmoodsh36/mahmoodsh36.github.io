@@ -32,11 +32,11 @@
 <p>
 logic programming in <a href="/common_lisp.html#1677249560">common lisp</a><br />
 </p>
-<div id="outline-container-orga52b45b" class="outline-2">
-<h2 id="orga52b45b">logical statements</h2>
-<div class="outline-text-2" id="text-orga52b45b">
+<div id="outline-container-orga51a655" class="outline-2">
+<h2 id="orga51a655">logical statements</h2>
+<div class="outline-text-2" id="text-orga51a655">
 <p>
-we make use of the symbolic capabilities of lisp, we use quoting and symbols to represent logical statements, e.g. given the following knowledge base of horn clauses:<br />
+we make use of the symbolic capabilities of lisp, we use quoting and symbols to represent logical <a href="/statement.html#1680360699">statement</a>s, e.g. given the following knowledge base of horn clauses:<br />
 </p>
 
 <div class="equation-container">
@@ -119,8 +119,8 @@ in lisp we could write it as:<br />
 
 <p>
 the choice of the symbols <code>implies, and</code> could vary, but essentially we should write code that deals properly with these symbols based on their names. other symbols we may use are <code>or, iff</code>.<br />
-so a knowledge base is just a (nested) list of propositions.<br />
-what about predicates? e.g. statements like 
+so a knowledge base is just a (nested) list of <a href="/statement.html#1680360699">proposition</a>s.<br />
+what about <a href="/predicate.html#1686127735">predicate</a>s? e.g. statements like 
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.259023 -7.043584 60.33367 9.056034' style="max-height: 0.9843em; vertical-align: -0.2418em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -218,9 +218,9 @@ how about substitutions? how do we represent for example the substitution
 </pre>
 </div>
 </div>
-<div id="outline-container-org424e806" class="outline-2">
-<h2 id="org424e806">early inference engines</h2>
-<div class="outline-text-2" id="text-org424e806">
+<div id="outline-container-org7f13764" class="outline-2">
+<h2 id="org7f13764">early <a href="/inference_engine.html#1695332120">inference engine</a>s</h2>
+<div class="outline-text-2" id="text-org7f13764">
 <p>
 imma start off with the unification algorithm, this one differs a bit from the pseudocode version, as it doesnt apply the <b>occur check</b> and doesnt distinguish between a compound statement or a list of expressions, as they are only used to represent predicates<br />
 </p>
@@ -282,7 +282,7 @@ a test:<br />
 
 
 <p>
-next up, we need to implement forward chaining and backward chaining which take in a knowledge base of statements which are definite clauses and do algorithmic inference, this code makes use of <a href="/common_lisp_math_utils.html#1683135667">common lisp math utils</a><br />
+next up, we need to implement <a href="/forward_chaining.html#1695126755">forward chaining</a> and <a href="/backward_chaining.html#1695127100">backward chaining</a> which take in a knowledge base of statements which are definite clauses and do algorithmic inference, this code makes use of <a href="/common_lisp_math_utils.html#1683135667">common lisp math utils</a><br />
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #d0730f;">(</span><span style="color: #c48702; font-weight: bold;">defun</span> <span style="color: #3dbbb0;">find-variables-in-statement</span> <span style="color: #64aa0f;">(</span>statement<span style="color: #64aa0f;">)</span>
@@ -1085,7 +1085,7 @@ example usage:<br />
 </div>
 
 <p>
-the backward chaining algorithm (we dont implement it as a generator here):<br />
+the <a href="/backward_chaining.html#1695127100">backward chaining</a> algorithm (we dont implement it as a generator here):<br />
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #d0730f;">(</span><span style="color: #c48702; font-weight: bold;">defun</span> <span style="color: #3dbbb0;">backward-chaining</span> <span style="color: #64aa0f;">(</span>knowledge-base query<span style="color: #64aa0f;">)</span>
