@@ -31,29 +31,29 @@
 <div id="content" class="content">
 <html><body><p>
 mongodb is a document-based database.<br /></p>
-<div id="outline-container-org0853abf" class="outline-2">
-<h2 id="org0853abf">mongosh</h2>
-<div class="outline-text-2" id="text-org0853abf">
+<div id="outline-container-org60b595b" class="outline-2">
+<h2 id="org60b595b">mongosh</h2>
+<div class="outline-text-2" id="text-org60b595b">
 <p>
 shell for mongodb<br /></p>
 </div>
 </div>
-<div id="outline-container-orgd71a87c" class="outline-2">
-<h2 id="orgd71a87c">books</h2>
-<div class="outline-text-2" id="text-orgd71a87c">
+<div id="outline-container-org42b0f6f" class="outline-2">
+<h2 id="org42b0f6f">books</h2>
+<div class="outline-text-2" id="text-org42b0f6f">
 <ul class="org-ul"><li>mongodb the definitive guide 3rd edition<br /></li>
 </ul></div>
 </div>
-<div id="outline-container-org078bdbe" class="outline-2">
-<h2 id="org078bdbe">resources</h2>
-<div class="outline-text-2" id="text-org078bdbe">
+<div id="outline-container-org07e3064" class="outline-2">
+<h2 id="org07e3064">resources</h2>
+<div class="outline-text-2" id="text-org07e3064">
 <ul class="org-ul"><li><a href="/big_data_course_homework_2.html#1723761089.8391755">big data course homework 2</a><br /></li>
 <li><a href="/big_data_course_homework_3.html#1724923065.0962608">big data course homework 3</a><br /></li>
 </ul></div>
 </div>
-<div id="outline-container-org55a1b33" class="outline-2">
-<h2 id="org55a1b33">import data</h2>
-<div class="outline-text-2" id="text-org55a1b33">
+<div id="outline-container-org6a14c29" class="outline-2">
+<h2 id="org6a14c29">import data</h2>
+<div class="outline-text-2" id="text-org6a14c29">
 <p>
 the commandline tool <code>mongoimport</code> can import json files, example:<br /></p>
 <div class="org-src-container" data-language="mongodb">
@@ -64,9 +64,9 @@ the commandline tool <code>mongoimport</code> can import json files, example:<br
 if the file contains line-separated objects, drop the <code>--jsonArray</code> parameter.<br /></p>
 </div>
 </div>
-<div id="outline-container-org4fae82b" class="outline-2">
-<h2 id="org4fae82b">create database</h2>
-<div class="outline-text-2" id="text-org4fae82b">
+<div id="outline-container-org4b2aa53" class="outline-2">
+<h2 id="org4b2aa53">create database</h2>
+<div class="outline-text-2" id="text-org4b2aa53">
 <div class="fancy-container"><div class="fancy-before"></div><div class="fancy-block dummy" data-before="" data-after="">
 <p>
 there is no "create" command in the MongoDB Shell. in order to create a database, you will first need to switch the context to a non-existing database using the use command:<br /></p>
@@ -80,16 +80,16 @@ MongoDB only creates the database when you first store data in that database. th
 </div><div class="fancy-after"></div></div>
 </div>
 </div>
-<div id="outline-container-orgd4c8fdd" class="outline-2">
-<h2 id="orgd4c8fdd">create collection</h2>
-<div class="outline-text-2" id="text-orgd4c8fdd">
+<div id="outline-container-org20c4974" class="outline-2">
+<h2 id="org20c4974">create collection</h2>
+<div class="outline-text-2" id="text-org20c4974">
 <p>
 collections are automatically created as you add documents.<br /></p>
 </div>
 </div>
-<div id="outline-container-org83fd9f8" class="outline-2">
-<h2 id="org83fd9f8">fetch entries</h2>
-<div class="outline-text-2" id="text-org83fd9f8">
+<div id="outline-container-orgde8f0b2" class="outline-2">
+<h2 id="orgde8f0b2">fetch entries</h2>
+<div class="outline-text-2" id="text-orgde8f0b2">
 <p>
 to fetch collection entries use<br /></p>
 <div class="org-src-container" data-language="mongodb">
@@ -100,9 +100,9 @@ db.students.find({'_id': 1}).pretty()
 </div>
 </div>
 </div>
-<div id="outline-container-orgbc4053f" class="outline-2">
-<h2 id="orgbc4053f">delete entries</h2>
-<div class="outline-text-2" id="text-orgbc4053f">
+<div id="outline-container-org5f3faaa" class="outline-2">
+<h2 id="org5f3faaa">delete entries</h2>
+<div class="outline-text-2" id="text-org5f3faaa">
 <div class="org-src-container" data-language="mongodb">
 <pre class="src src-mongodb">db.<collection>.deleteMany([{<dict>, <dict>, ...}])
 db.<collection>.deleteOne(<dict>)
@@ -110,9 +110,9 @@ db.<collection>.deleteOne(<dict>)
 </div>
 </div>
 </div>
-<div id="outline-container-org653890b" class="outline-2">
-<h2 id="org653890b">insert entries</h2>
-<div class="outline-text-2" id="text-org653890b">
+<div id="outline-container-orge386ac6" class="outline-2">
+<h2 id="orge386ac6">insert entries</h2>
+<div class="outline-text-2" id="text-orge386ac6">
 <div class="org-src-container" data-language="mongodb">
 <pre class="src src-mongodb">db.<collection>.insertOne({<dict>})
 db.<collection>.insertMany([{<dict>, <dict>, ...}])
@@ -121,9 +121,9 @@ db.students.insertMany((function(num) { mylist=[]; for (let i = 0; i < num; ++i)
 </div>
 </div>
 </div>
-<div id="outline-container-org9fe0f38" class="outline-2">
-<h2 id="org9fe0f38">aggregation</h2>
-<div class="outline-text-2" id="text-org9fe0f38">
+<div id="outline-container-org0b7cfac" class="outline-2">
+<h2 id="org0b7cfac">aggregation</h2>
+<div class="outline-text-2" id="text-org0b7cfac">
 <div class="fancy-container"><div class="fancy-before"></div><div class="fancy-block dummy" data-before="" data-after="(taken from Shannon Bradshaw, Eoin Brazil &amp; Kristina Chodorow, 2019 chapter 7)
 ">
 <div class="org-src-container" data-language="mongodb">
@@ -158,9 +158,9 @@ more operations that can be added to aggregation pipelines can be found at <a hr
 </div></div>
 </div>
 </div>
-<div id="outline-container-orga7a5324" class="outline-2">
-<h2 id="orga7a5324">grouping aggregation</h2>
-<div class="outline-text-2" id="text-orga7a5324">
+<div id="outline-container-org2cb8bdf" class="outline-2">
+<h2 id="org2cb8bdf">grouping aggregation</h2>
+<div class="outline-text-2" id="text-org2cb8bdf">
 <p>
 <a href="https://stackoverflow.com/questions/61804268/what-is-root-in-mongodb-aggregate-and-how-it-works">https://stackoverflow.com/questions/61804268/what-is-root-in-mongodb-aggregate-and-how-it-works</a><br />
 consider the following aggregation pipeline:<br /></p>
