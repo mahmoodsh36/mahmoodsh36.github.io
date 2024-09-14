@@ -29,25 +29,53 @@
 </div><h1 class="main-title">sql operations</h1><span class="desc">a set of common [[blk:1702389696][sql]] operations</span><span class='date'>2023-12-12</span>
 </div>
 <div id="content" class="content">
-<html><body><div id="outline-container-orge951eb5" class="outline-2">
-<h2 id="orge951eb5">list databases</h2>
-<div class="outline-text-2" id="text-orge951eb5">
+<div id="outline-container-orgbccddfd" class="outline-2">
+<h2 id="orgbccddfd">list databases</h2>
+<div class="outline-text-2" id="text-orgbccddfd">
 <div class="org-src-container" data-language="sql">
 <pre class="src src-sql"><span style="color: #cf9f7f; font-style: italic;">-- </span><span style="color: #cf9f7f; font-style: italic;">show databases; -- for mysql</span>
 \l <span style="color: #cf9f7f; font-style: italic;">-- </span><span style="color: #cf9f7f; font-style: italic;">for postgresql</span>
 </pre>
 </div>
 
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"><colgroup><col class="org-left" /><col class="org-left" /><col class="org-left" /><col class="org-left" /><col class="org-left" /><col class="org-left" /><col class="org-left" /><col class="org-left" /><col class="org-left" /></colgroup><thead><tr><th scope="col" class="org-left">List of databases</th>
-<th scope="col" class="org-left"> </th>
-<th scope="col" class="org-left"> </th>
-<th scope="col" class="org-left"> </th>
-<th scope="col" class="org-left"> </th>
-<th scope="col" class="org-left"> </th>
-<th scope="col" class="org-left"> </th>
-<th scope="col" class="org-left"> </th>
-<th scope="col" class="org-left"> </th>
-</tr></thead><tbody><tr><td class="org-left">Name</td>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">List of databases</th>
+<th scope="col" class="org-left">&#xa0;</th>
+<th scope="col" class="org-left">&#xa0;</th>
+<th scope="col" class="org-left">&#xa0;</th>
+<th scope="col" class="org-left">&#xa0;</th>
+<th scope="col" class="org-left">&#xa0;</th>
+<th scope="col" class="org-left">&#xa0;</th>
+<th scope="col" class="org-left">&#xa0;</th>
+<th scope="col" class="org-left">&#xa0;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Name</td>
 <td class="org-left">Owner</td>
 <td class="org-left">Encoding</td>
 <td class="org-left">Locale Provider</td>
@@ -56,129 +84,155 @@
 <td class="org-left">ICU Locale</td>
 <td class="org-left">ICU Rules</td>
 <td class="org-left">Access privileges</td>
-</tr><tr><td class="org-left">mahmooz</td>
+</tr>
+
+<tr>
+<td class="org-left">mahmooz</td>
 <td class="org-left">mahmooz</td>
 <td class="org-left">UTF8</td>
 <td class="org-left">libc</td>
 <td class="org-left">en_US.UTF-8</td>
 <td class="org-left">en_US.UTF-8</td>
-<td class="org-left"> </td>
-<td class="org-left"> </td>
-<td class="org-left"> </td>
-</tr><tr><td class="org-left">postgres</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">postgres</td>
 <td class="org-left">postgres</td>
 <td class="org-left">UTF8</td>
 <td class="org-left">libc</td>
 <td class="org-left">en_US.UTF-8</td>
 <td class="org-left">en_US.UTF-8</td>
-<td class="org-left"> </td>
-<td class="org-left"> </td>
-<td class="org-left"> </td>
-</tr><tr><td class="org-left">template0</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">template0</td>
 <td class="org-left">postgres</td>
 <td class="org-left">UTF8</td>
 <td class="org-left">libc</td>
 <td class="org-left">en_US.UTF-8</td>
 <td class="org-left">en_US.UTF-8</td>
-<td class="org-left"> </td>
-<td class="org-left"> </td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">=c/postgres</td>
-</tr><tr><td class="org-left">postgres=CTc/postgres</td>
-<td class="org-left"> </td>
-<td class="org-left"> </td>
-<td class="org-left"> </td>
-<td class="org-left"> </td>
-<td class="org-left"> </td>
-<td class="org-left"> </td>
-<td class="org-left"> </td>
-<td class="org-left"> </td>
-</tr><tr><td class="org-left">template1</td>
+</tr>
+
+<tr>
+<td class="org-left">postgres=CTc/postgres</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">template1</td>
 <td class="org-left">postgres</td>
 <td class="org-left">UTF8</td>
 <td class="org-left">libc</td>
 <td class="org-left">en_US.UTF-8</td>
 <td class="org-left">en_US.UTF-8</td>
-<td class="org-left"> </td>
-<td class="org-left"> </td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">=c/postgres</td>
-</tr><tr><td class="org-left">postgres=CTc/postgres</td>
-<td class="org-left"> </td>
-<td class="org-left"> </td>
-<td class="org-left"> </td>
-<td class="org-left"> </td>
-<td class="org-left"> </td>
-<td class="org-left"> </td>
-<td class="org-left"> </td>
-<td class="org-left"> </td>
-</tr></tbody></table></div>
+</tr>
+
+<tr>
+<td class="org-left">postgres=CTc/postgres</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div id="outline-container-orgf7b1160" class="outline-2">
-<h2 id="orgf7b1160">deleting a database</h2>
-<div class="outline-text-2" id="text-orgf7b1160">
+</div>
+<div id="outline-container-orgec9146f" class="outline-2">
+<h2 id="orgec9146f">deleting a database</h2>
+<div class="outline-text-2" id="text-orgec9146f">
 <div class="org-src-container" data-language="sql">
-<pre class="src src-sql"><span style="color: #c48702; font-weight: bold;">drop</span> databsae <dbname>;
+<pre class="src src-sql"><span style="color: #c48702; font-weight: bold;">drop</span> databsae &lt;dbname&gt;;
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgf803aa9" class="outline-2">
-<h2 id="orgf803aa9">creating databases</h2>
-<div class="outline-text-2" id="text-orgf803aa9">
+<div id="outline-container-org6dbf72a" class="outline-2">
+<h2 id="org6dbf72a">creating databases</h2>
+<div class="outline-text-2" id="text-org6dbf72a">
 <div class="org-src-container" data-language="sql">
-<pre class="src src-sql"><span style="color: #c48702; font-weight: bold;">create</span> database <dbname>;
+<pre class="src src-sql"><span style="color: #c48702; font-weight: bold;">create</span> database &lt;dbname&gt;;
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgae32062" class="outline-2">
-<h2 id="orgae32062">describe database</h2>
-<div class="outline-text-2" id="text-orgae32062">
+<div id="outline-container-org4c79fc7" class="outline-2">
+<h2 id="org4c79fc7">describe database</h2>
+<div class="outline-text-2" id="text-org4c79fc7">
 <div class="org-src-container" data-language="sql">
 <pre class="src src-sql"><span style="color: #c48702; font-weight: bold;">describe</span> sys;
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org50f4992" class="outline-2">
-<h2 id="org50f4992">schema</h2>
-<div class="outline-text-2" id="text-org50f4992">
-<div class="fancy-container"><div class="fancy-before"></div><div class="fancy-block dummy" data-before="" data-after="(Ramez Elmasri, Shamkant B. Navathe, 2015 chapter 6.1.1 schema and catalog concepts in sql)
+<div id="outline-container-org6902bbc" class="outline-2">
+<h2 id="org6902bbc">schema</h2>
+<div class="outline-text-2" id="text-org6902bbc">
+<div class="fancy-block dummy" data-before="" data-after="(Ramez Elmasri, Shamkant B. Navathe, 2015 chapter 6.1.1 schema and catalog concepts in sql)
 ">
 <p>
-an example of creating a schema (usually called a database), a schema called <code>COMPANY</code> owned by the user with authorization identifier <code>Jsmith</code>. note that each statement in SQL ends with a semicolon.<br /></p>
+an example of creating a schema (usually called a database), a schema called <code>COMPANY</code> owned by the user with authorization identifier <code>Jsmith</code>. note that each statement in SQL ends with a semicolon.<br />
+</p>
 <div class="org-src-container" data-language="sql">
 <pre class="src src-sql"><span style="color: #c48702; font-weight: bold;">CREATE</span> <span style="color: #c48702; font-weight: bold;">SCHEMA</span> COMPANY <span style="color: #c48702; font-weight: bold;">AUTHORIZATION</span> <span style="color: #f06a3f;">'Jsmith'</span>;
 </pre>
 </div>
 <p>
-in general, not all users are authorized to create schemas and schema elements. the privilege to create schemas, tables, and other constructs must be explicitly granted to the relevant user accounts by the system administrator or DBA.<br /></p>
+in general, not all users are authorized to create schemas and schema elements. the privilege to create schemas, tables, and other constructs must be explicitly granted to the relevant user accounts by the system administrator or DBA.<br />
+</p>
 
-</div><div class="fancy-after">(Ramez Elmasri, Shamkant B. Navathe, 2015 chapter 6.1.1 schema and catalog concepts in sql)
-</div></div>
 </div>
 </div>
-<div id="outline-container-org038d118" class="outline-2">
-<h2 id="org038d118">create table</h2>
-<div class="outline-text-2" id="text-org038d118">
-<div class="fancy-container"><div class="fancy-before"></div><div class="fancy-block dummy" data-before="" data-after="(Ramez Elmasri, Shamkant B. Navathe, 2015 chapter 6.1.2 the create table command in sql)
+</div>
+<div id="outline-container-org03ef37e" class="outline-2">
+<h2 id="org03ef37e">create table</h2>
+<div class="outline-text-2" id="text-org03ef37e">
+<div class="fancy-block dummy" data-before="" data-after="(Ramez Elmasri, Shamkant B. Navathe, 2015 chapter 6.1.2 the create table command in sql)
 ">
 <p>
 the <code>CREATE TABLE</code> command is used to specify a new relation by giving it a name and specifying its attributes and initial constraints. the attributes are specified first, and each attribute is given a name, a data type to specify its domain of values, and possibly attribute constraints, such as <code>NOT NULL</code>. the key, entity integrity, and referential integrity constraints can be specified within the <code>CREATE TABLE</code> statement after the attributes are declared, or they can be added later using the <code>ALTER TABLE</code> command.<br />
-typically, the sql schema (usually called database) in which the relations are declared is implicitly specified in the environment in which the <code>CREATE TABLE</code> statements are executed. alternatively, we can explicitly attach the schema name to the relation name, separated by a period. for example, by writing<br /></p>
+typically, the sql schema (usually called database) in which the relations are declared is implicitly specified in the environment in which the <code>CREATE TABLE</code> statements are executed. alternatively, we can explicitly attach the schema name to the relation name, separated by a period. for example, by writing<br />
+</p>
 <div class="org-src-container" data-language="sql">
 <pre class="src src-sql"><span style="color: #c48702; font-weight: bold;">CREATE</span> <span style="color: #c48702; font-weight: bold;">TABLE</span> <span style="color: #3dbbb0;">COMPANY.EMPLOYEE</span>
 </pre>
 </div>
 <p>
-rather than<br /></p>
+rather than<br />
+</p>
 <div class="org-src-container" data-language="sql">
 <pre class="src src-sql"><span style="color: #c48702; font-weight: bold;">CREATE</span> <span style="color: #c48702; font-weight: bold;">TABLE</span> <span style="color: #3dbbb0;">EMPLOYEE</span>
 </pre>
 </div>
 <p>
-the relations declared through <code>CREATE TABLE</code> statements are called <i>base tables</i> (or base relations); this means that the table and its rows are actually created and stored as a file by the dbms.<br /></p>
+the relations declared through <code>CREATE TABLE</code> statements are called <i>base tables</i> (or base relations); this means that the table and its rows are actually created and stored as a file by the dbms.<br />
+</p>
 <p>
-an example schema declaration<br /></p>
+an example schema declaration<br />
+</p>
 <div class="org-src-container" data-language="sql">
 <pre class="src src-sql"><span style="color: #c48702; font-weight: bold;">CREATE</span> <span style="color: #c48702; font-weight: bold;">TABLE</span> <span style="color: #3dbbb0;">EMPLOYEE</span>
  <span style="color: #d0730f;">(</span>Fname      <span style="color: #2fa526;">VARCHAR</span><span style="color: #64aa0f;">(</span>15<span style="color: #64aa0f;">)</span>   <span style="color: #c48702; font-weight: bold;">NOT</span> <span style="color: #c48702; font-weight: bold;">NULL</span>,
@@ -231,44 +285,49 @@ an example schema declaration<br /></p>
 </pre>
 </div>
 
-</div><div class="fancy-after">(Ramez Elmasri, Shamkant B. Navathe, 2015 chapter 6.1.2 the create table command in sql)
-</div></div>
 </div>
 </div>
-<div id="outline-container-orgd0545d3" class="outline-2">
-<h2 id="orgd0545d3">select-from-where</h2>
-<div class="outline-text-2" id="text-orgd0545d3">
-<div class="fancy-container"><div class="fancy-before"></div><div class="fancy-block dummy" data-before="" data-after="(Ramez Elmasri, Shamkant B. Navathe, 2015 chapter 6.3.1 the select-from-where structure of basic sql queries)
+</div>
+<div id="outline-container-org1b1a58a" class="outline-2">
+<h2 id="org1b1a58a">select-from-where</h2>
+<div class="outline-text-2" id="text-org1b1a58a">
+<div class="fancy-block dummy" data-before="" data-after="(Ramez Elmasri, Shamkant B. Navathe, 2015 chapter 6.3.1 the select-from-where structure of basic sql queries)
 ">
 <p>
-the basic form of the <i>SELECT</i> statement, sometimes called a <i>mapping</i> or a <i>select-from-where</i> block, is formed of the three clauses <i>SELECT</i>, <i>FROM</i>, and <i>WHERE</i> and has the following form:<br /></p>
+the basic form of the <i>SELECT</i> statement, sometimes called a <i>mapping</i> or a <i>select-from-where</i> block, is formed of the three clauses <i>SELECT</i>, <i>FROM</i>, and <i>WHERE</i> and has the following form:<br />
+</p>
 <div class="org-src-container" data-language="sql">
-<pre class="src src-sql"><span style="color: #c48702; font-weight: bold;">SELECT</span> <attribute list>
-<span style="color: #c48702; font-weight: bold;">FROM</span>   <<span style="color: #c48702; font-weight: bold;">table</span> list>
-<span style="color: #c48702; font-weight: bold;">WHERE</span>  <condition>;
+<pre class="src src-sql"><span style="color: #c48702; font-weight: bold;">SELECT</span> &lt;attribute list&gt;
+<span style="color: #c48702; font-weight: bold;">FROM</span>   &lt;<span style="color: #c48702; font-weight: bold;">table</span> list&gt;
+<span style="color: #c48702; font-weight: bold;">WHERE</span>  &lt;condition&gt;;
 </pre>
 </div>
 <p>
-where<br /></p>
-<ul class="org-ul"><li><code><attribute list></code> is a list of attribute names whose values are to be retrieved by the query.<br /></li>
-<li><code><table list></code> is a list of the relation names required to process the query.<br /></li>
-<li><code><condition></code> is a conditional expression that identifies the tuples to be retrieved by the query.<br /></li>
-</ul></div><div class="fancy-after">(Ramez Elmasri, Shamkant B. Navathe, 2015 chapter 6.3.1 the select-from-where structure of basic sql queries)
-</div></div>
+where<br />
+</p>
+<ul class="org-ul">
+<li><code>&lt;attribute list&gt;</code> is a list of attribute names whose values are to be retrieved by the query.<br /></li>
+<li><code>&lt;table list&gt;</code> is a list of the relation names required to process the query.<br /></li>
+<li><code>&lt;condition&gt;</code> is a conditional expression that identifies the tuples to be retrieved by the query.<br /></li>
+</ul>
+
 </div>
 </div>
-<div id="outline-container-org938fb15" class="outline-2">
-<h2 id="org938fb15">ordering of query results</h2>
-<div class="outline-text-2" id="text-org938fb15">
+</div>
+<div id="outline-container-org18c67c2" class="outline-2">
+<h2 id="org18c67c2">ordering of query results</h2>
+<div class="outline-text-2" id="text-org18c67c2">
 <p>
-the order by operator<br /></p>
+the order by operator<br />
+</p>
 </div>
 </div>
-<div id="outline-container-org981141d" class="outline-2">
-<h2 id="org981141d">alter table</h2>
+<div id="outline-container-orga2e4124" class="outline-2">
+<h2 id="orga2e4124">alter table</h2>
 </div>
-<div id="outline-container-orgcc9264b" class="outline-2">
-<h2 id="orgcc9264b">update</h2>
-</div></body></html></div>
+<div id="outline-container-orgd5cffdb" class="outline-2">
+<h2 id="orgd5cffdb">update</h2>
+</div>
+</div>
 </body>
 </html>

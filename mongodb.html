@@ -29,102 +29,115 @@
 </div><h1 class="main-title">mongodb</h1><span class='date'>2024-08-17</span>
 </div>
 <div id="content" class="content">
-<html><body><p>
-mongodb is a document-based database.<br /></p>
-<div id="outline-container-org5d9e107" class="outline-2">
-<h2 id="org5d9e107">mongosh</h2>
-<div class="outline-text-2" id="text-org5d9e107">
 <p>
-shell for mongodb<br /></p>
+mongodb is a document-based database.<br />
+</p>
+<div id="outline-container-orgd340e26" class="outline-2">
+<h2 id="orgd340e26">mongosh</h2>
+<div class="outline-text-2" id="text-orgd340e26">
+<p>
+shell for mongodb<br />
+</p>
 </div>
 </div>
-<div id="outline-container-orgcf740cb" class="outline-2">
-<h2 id="orgcf740cb">books</h2>
-<div class="outline-text-2" id="text-orgcf740cb">
-<ul class="org-ul"><li>mongodb the definitive guide 3rd edition<br /></li>
-</ul></div>
+<div id="outline-container-orgf060ed1" class="outline-2">
+<h2 id="orgf060ed1">books</h2>
+<div class="outline-text-2" id="text-orgf060ed1">
+<ul class="org-ul">
+<li>mongodb the definitive guide 3rd edition<br /></li>
+</ul>
 </div>
-<div id="outline-container-orgd15c6cf" class="outline-2">
-<h2 id="orgd15c6cf">resources</h2>
-<div class="outline-text-2" id="text-orgd15c6cf">
-<ul class="org-ul"><li><a href="/big_data_course_homework_2.html#1723761089.8391755">big data course homework 2</a><br /></li>
+</div>
+<div id="outline-container-orged0f445" class="outline-2">
+<h2 id="orged0f445">resources</h2>
+<div class="outline-text-2" id="text-orged0f445">
+<ul class="org-ul">
+<li><a href="/big_data_course_homework_2.html#1723761089.8391755">big data course homework 2</a><br /></li>
 <li><a href="/big_data_course_homework_3.html#1724923065.0962608">big data course homework 3</a><br /></li>
-</ul></div>
+</ul>
 </div>
-<div id="outline-container-org26620a0" class="outline-2">
-<h2 id="org26620a0">import data</h2>
-<div class="outline-text-2" id="text-org26620a0">
+</div>
+<div id="outline-container-orgd1b2343" class="outline-2">
+<h2 id="orgd1b2343">import data</h2>
+<div class="outline-text-2" id="text-orgd1b2343">
 <p>
-the commandline tool <code>mongoimport</code> can import json files, example:<br /></p>
+the commandline tool <code>mongoimport</code> can import json files, example:<br />
+</p>
 <div class="org-src-container" data-language="mongodb">
 <pre class="src src-mongodb">mongoimport --db dbName --collection collectionName --file fileName.json --jsonArray
 </pre>
 </div>
 <p>
-if the file contains line-separated objects, drop the <code>--jsonArray</code> parameter.<br /></p>
+if the file contains line-separated objects, drop the <code>--jsonArray</code> parameter.<br />
+</p>
 </div>
 </div>
-<div id="outline-container-orga9d9aae" class="outline-2">
-<h2 id="orga9d9aae">create database</h2>
-<div class="outline-text-2" id="text-orga9d9aae">
-<div class="fancy-container"><div class="fancy-before"></div><div class="fancy-block dummy" data-before="" data-after="">
+<div id="outline-container-orgc7b9ddb" class="outline-2">
+<h2 id="orgc7b9ddb">create database</h2>
+<div class="outline-text-2" id="text-orgc7b9ddb">
+<div class="fancy-block dummy" data-before="" data-after="">
 <p>
-there is no "create" command in the MongoDB Shell. in order to create a database, you will first need to switch the context to a non-existing database using the use command:<br /></p>
+there is no "create" command in the MongoDB Shell. in order to create a database, you will first need to switch the context to a non-existing database using the use command:<br />
+</p>
 <div class="org-src-container" data-language="mongodb">
 <pre class="src src-mongodb">use myshinynewdb
 </pre>
 </div>
 <p>
-MongoDB only creates the database when you first store data in that database. this data could be a collection or a document.<br /><a href="https://www.mongodb.com/resources/products/fundamentals/create-database">https://www.mongodb.com/resources/products/fundamentals/create-database</a><br /></p>
+MongoDB only creates the database when you first store data in that database. this data could be a collection or a document.<br />
+<a href="https://www.mongodb.com/resources/products/fundamentals/create-database">https://www.mongodb.com/resources/products/fundamentals/create-database</a><br />
+</p>
 
-</div><div class="fancy-after"></div></div>
 </div>
 </div>
-<div id="outline-container-org43c05e1" class="outline-2">
-<h2 id="org43c05e1">create collection</h2>
-<div class="outline-text-2" id="text-org43c05e1">
+</div>
+<div id="outline-container-org36e7ca4" class="outline-2">
+<h2 id="org36e7ca4">create collection</h2>
+<div class="outline-text-2" id="text-org36e7ca4">
 <p>
-collections are automatically created as you add documents.<br /></p>
+collections are automatically created as you add documents.<br />
+</p>
 </div>
 </div>
-<div id="outline-container-org2f73b3c" class="outline-2">
-<h2 id="org2f73b3c">fetch entries</h2>
-<div class="outline-text-2" id="text-org2f73b3c">
+<div id="outline-container-org292aa0c" class="outline-2">
+<h2 id="org292aa0c">fetch entries</h2>
+<div class="outline-text-2" id="text-org292aa0c">
 <p>
-to fetch collection entries use<br /></p>
+to fetch collection entries use<br />
+</p>
 <div class="org-src-container" data-language="mongodb">
-<pre class="src src-mongodb">db.<collection>.find()
-db.<collection>.find({<dict>})
+<pre class="src src-mongodb">db.&lt;collection&gt;.find()
+db.&lt;collection&gt;.find({&lt;dict&gt;})
 db.students.find({'_id': 1}).pretty()
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org8c732cd" class="outline-2">
-<h2 id="org8c732cd">delete entries</h2>
-<div class="outline-text-2" id="text-org8c732cd">
+<div id="outline-container-orgd24cd99" class="outline-2">
+<h2 id="orgd24cd99">delete entries</h2>
+<div class="outline-text-2" id="text-orgd24cd99">
 <div class="org-src-container" data-language="mongodb">
-<pre class="src src-mongodb">db.<collection>.deleteMany([{<dict>, <dict>, ...}])
-db.<collection>.deleteOne(<dict>)
+<pre class="src src-mongodb">db.&lt;collection&gt;.deleteMany([{&lt;dict&gt;, &lt;dict&gt;, ...}])
+db.&lt;collection&gt;.deleteOne(&lt;dict&gt;)
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org0c53093" class="outline-2">
-<h2 id="org0c53093">insert entries</h2>
-<div class="outline-text-2" id="text-org0c53093">
+<div id="outline-container-orgccb9ed3" class="outline-2">
+<h2 id="orgccb9ed3">insert entries</h2>
+<div class="outline-text-2" id="text-orgccb9ed3">
 <div class="org-src-container" data-language="mongodb">
-<pre class="src src-mongodb">db.<collection>.insertOne({<dict>})
-db.<collection>.insertMany([{<dict>, <dict>, ...}])
-db.students.insertMany((function(num) { mylist=[]; for (let i = 0; i < num; ++i) mylist.push({'_id': i, 'name': {'first': 'mahmood'+i, 'last': 'sheikh'}, 'bdate': new Date('2002-1-1'+i), 'courses': [{'ccode': '0', 'cname': 'algebra', 'grade': 10*i}], 'phones': ['052338801'+i, '052449912'+i], 'major': 'computer science', ...(i > 5) && {'minor': 'math'}}); return mylist; })(10));
+<pre class="src src-mongodb">db.&lt;collection&gt;.insertOne({&lt;dict&gt;})
+db.&lt;collection&gt;.insertMany([{&lt;dict&gt;, &lt;dict&gt;, ...}])
+db.students.insertMany((function(num) { mylist=[]; for (let i = 0; i &lt; num; ++i) mylist.push({'_id': i, 'name': {'first': 'mahmood'+i, 'last': 'sheikh'}, 'bdate': new Date('2002-1-1'+i), 'courses': [{'ccode': '0', 'cname': 'algebra', 'grade': 10*i}], 'phones': ['052338801'+i, '052449912'+i], 'major': 'computer science', ...(i &gt; 5) &amp;&amp; {'minor': 'math'}}); return mylist; })(10));
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org567024d" class="outline-2">
-<h2 id="org567024d">aggregation</h2>
-<div class="outline-text-2" id="text-org567024d">
-<div class="fancy-container"><div class="fancy-before"></div><div class="fancy-block dummy" data-before="" data-after="(taken from Shannon Bradshaw, Eoin Brazil &amp; Kristina Chodorow, 2019 chapter 7)
+<div id="outline-container-org6fd6f7a" class="outline-2">
+<h2 id="org6fd6f7a">aggregation</h2>
+<div class="outline-text-2" id="text-org6fd6f7a">
+<div class="fancy-block dummy" data-before="" data-after="(taken from Shannon Bradshaw, Eoin Brazil &amp; Kristina Chodorow, 2019 chapter 7)
 ">
 <div class="org-src-container" data-language="mongodb">
 <pre class="src src-mongodb">db.companies.aggregate([
@@ -133,13 +146,15 @@ db.students.insertMany((function(num) { mylist=[]; for (let i = 0; i < num; ++i)
 </pre>
 </div>
 <p>
-this is equivalent to the following operation using find:<br /></p>
+this is equivalent to the following operation using find:<br />
+</p>
 <div class="org-src-container" data-language="mongodb">
 <pre class="src src-mongodb">db.companies.find({founded_year: 2004})
 </pre>
 </div>
 <p>
-now let's add a project stage to our pipeline to reduce the output to just a few fields per document. we'll exclude the "_id" field, but include "name" and "founded_year". our pipeline will be as follows:<br /></p>
+now let's add a project stage to our pipeline to reduce the output to just a few fields per document. we'll exclude the "_id" field, but include "name" and "founded_year". our pipeline will be as follows:<br />
+</p>
 <div class="org-src-container" data-language="mongodb">
 <pre class="src src-mongodb">db.companies.aggregate([
   {$match: {founded_year: 2004}},
@@ -152,18 +167,19 @@ now let's add a project stage to our pipeline to reduce the output to just a few
 </pre>
 </div>
 <p>
-more operations that can be added to aggregation pipelines can be found at <a href="https://www.mongodb.com/docs/manual/reference/operator/aggregation/">https://www.mongodb.com/docs/manual/reference/operator/aggregation/</a> and <a href="https://www.mongodb.com/docs/manual/reference/operator/aggregation-pipeline/">https://www.mongodb.com/docs/manual/reference/operator/aggregation-pipeline/</a>.<br /></p>
+more operations that can be added to aggregation pipelines can be found at <a href="https://www.mongodb.com/docs/manual/reference/operator/aggregation/">https://www.mongodb.com/docs/manual/reference/operator/aggregation/</a> and <a href="https://www.mongodb.com/docs/manual/reference/operator/aggregation-pipeline/">https://www.mongodb.com/docs/manual/reference/operator/aggregation-pipeline/</a>.<br />
+</p>
 
-</div><div class="fancy-after">(taken from Shannon Bradshaw, Eoin Brazil & Kristina Chodorow, 2019 chapter 7)
-</div></div>
 </div>
 </div>
-<div id="outline-container-org809cf66" class="outline-2">
-<h2 id="org809cf66">grouping aggregation</h2>
-<div class="outline-text-2" id="text-org809cf66">
+</div>
+<div id="outline-container-org6deec46" class="outline-2">
+<h2 id="org6deec46">grouping aggregation</h2>
+<div class="outline-text-2" id="text-org6deec46">
 <p>
 <a href="https://stackoverflow.com/questions/61804268/what-is-root-in-mongodb-aggregate-and-how-it-works">https://stackoverflow.com/questions/61804268/what-is-root-in-mongodb-aggregate-and-how-it-works</a><br />
-consider the following aggregation pipeline:<br /></p>
+consider the following aggregation pipeline:<br />
+</p>
 <div class="org-src-container" data-language="mongodb">
 <pre class="src src-mongodb">db.collection.aggregate([{
     $group: {
@@ -176,6 +192,7 @@ consider the following aggregation pipeline:<br /></p>
 <p>
 this causes entries to be grouped by the field <code>history</code>, and <code>items: {$push: '$$ROOT'}</code> for the entries to be grouped into a subcollection name <code>items</code>, see <a href="https://www.mongodb.com/docs/manual/reference/aggregation-variables/">https://www.mongodb.com/docs/manual/reference/aggregation-variables/</a> about <code>$$ROOT</code>.</p>
 </div>
-</div></body></html></div>
+</div>
+</div>
 </body>
 </html>

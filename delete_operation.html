@@ -29,14 +29,15 @@
 </div><h1 class="main-title">delete operation</h1><span class='date'>2024-02-08</span>
 </div>
 <div id="content" class="content">
-<html><body><div class="fancy-container"><div class="fancy-before"></div><div class="fancy-block dummy" data-before="" data-after="(Ramez Elmasri, Shamkant B. Navathe, 2015 chapter 5.3.2 the delete operation)
+<div class="fancy-block dummy" data-before="" data-after="(Ramez Elmasri, Shamkant B. Navathe, 2015 chapter 5.3.2 the delete operation)
 ">
 <p>
 the <i>Delete</i> operation can violate only referential integrity. this occurs if the tuple being deleted is referenced by foreign keys from other tuples in the database. to specify deletion, a condition on the attributes of the relation selects the tuple (or tuples) to be deleted. here are some examples.<br />
 several options are available if a deletion operation causes a violation. the first option, called <i>restrict</i>, is to reject the deletion. the second option, called <i>cascade</i>, is to attempt to cascade (or propagate) the deletion by deleting tuples that reference the tuple that is being deleted. a third option, called <i>set null</i> or <i>set default</i>, is to modify the referencing attribute values that cause the violation; each such value is either set to <i>NULL</i> or changed to reference another default valid tuple. notice that if a referencing attribute that causes a violation is part of the primary key, it cannot be set to <i>NULL</i>; otherwise, it would violate entity integrity.<br />
-in general, when a referential integrity constraint is specified in the DDL, the DBMS will allow the database designer to specify which of the options applies in case of a violation of the constraint.<br /></p>
+in general, when a referential integrity constraint is specified in the DDL, the DBMS will allow the database designer to specify which of the options applies in case of a violation of the constraint.<br />
+</p>
 
-</div><div class="fancy-after">(Ramez Elmasri, Shamkant B. Navathe, 2015 chapter 5.3.2 the delete operation)
-</div></div></body></html></div>
+</div>
+</div>
 </body>
 </html>

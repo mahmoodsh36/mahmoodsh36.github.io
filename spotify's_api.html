@@ -29,9 +29,9 @@
 </div><h1 class="main-title">spotify's api</h1><span class="desc">writing code for spotify's web api</span><span class='date'>2023-10-08</span>
 </div>
 <div id="content" class="content">
-<div id="outline-container-org80b6620" class="outline-2">
-<h2 id="org80b6620">getting an access token for the api</h2>
-<div class="outline-text-2" id="text-org80b6620">
+<div id="outline-container-orgf7b4362" class="outline-2">
+<h2 id="orgf7b4362">getting an access token for the api</h2>
+<div class="outline-text-2" id="text-orgf7b4362">
 <ol class="org-ol">
 <li>head over to <a href="https://developer.spotify.com/dashboard">spotify's developer dashboard</a><br /></li>
 <li>click the <code>Create app</code> button<br /></li>
@@ -42,9 +42,9 @@
 </ol>
 </div>
 </div>
-<div id="outline-container-org4ef33fb" class="outline-2">
-<h2 id="org4ef33fb">api authorization</h2>
-<div class="outline-text-2" id="text-org4ef33fb">
+<div id="outline-container-orgbea009f" class="outline-2">
+<h2 id="orgbea009f">api authorization</h2>
+<div class="outline-text-2" id="text-orgbea009f">
 <p>
 first, we need to gain access "keys" (so we can make requests to various api backends/routes), and because we need to read private data of the user, we need to use <a href="https://developer.spotify.com/documentation/web-api/tutorials/code-flow">Authorization Code Flow</a><br />
 so first step is getting an <code>auth code</code> which we can then use to fetch a <code>refresh token</code> which in turn we can use to fetch an <code>access token</code> with which we can make make requests to almost any of spotify's api backends<br />
@@ -123,8 +123,8 @@ AQAi4IB-FWWHGM20nQ5UkCfqLzupzkhXAdhQ_Z6MQ9SPRavN_vgUw8h91Zm9kJSuY9QXCLA_3GbE4L0P
 even though the refresh token api route also returns an access token, such tokens are only valid for one hour, so we need to write a function to fetch a "refreshed" access token for when it expires:<br />
 </p>
 <div class="org-src-container" data-language="python">
-<pre class="src src-python"><span style="color: #c48702; font-weight: bold;">def</span> <span style="color: #3dbbb0;">fetch_access_token</span><span style="color: #d0730f;">(</span><span style="color: #6fafff;">refresh_token</span><span style="color: #d0730f;">)</span>:
-    <span style="color: #cf9f7f; font-style: italic;"># spotify requires base64 encoding in this form</span>
+<pre class="src src-python"><span style="color: #c48702; font-weight: bold;">def</span> <span style="color: #3dbbb0;">fetch_access_token</span><span style="color: #d0730f;">(</span>refresh_token<span style="color: #d0730f;">)</span>:
+    <span style="color: #cf9f7f; font-style: italic;"># </span><span style="color: #cf9f7f; font-style: italic;">spotify requires base64 encoding in this form</span>
     <span style="color: #6fafff;">auth</span> = <span style="color: #f06a3f;">'Basic '</span> + base64.b64encode<span style="color: #d0730f;">(</span>f<span style="color: #f06a3f;">'</span>{CLIENT_ID}<span style="color: #f06a3f;">:</span>{CLIENT_SECRET}<span style="color: #f06a3f;">'</span>.encode<span style="color: #64aa0f;">()</span><span style="color: #d0730f;">)</span>.decode<span style="color: #d0730f;">()</span>
     <span style="color: #6fafff;">r</span> = requests.post<span style="color: #d0730f;">(</span><span style="color: #f06a3f;">"https://accounts.spotify.com/api/token"</span>,
                       headers = <span style="color: #64aa0f;">{</span><span style="color: #f06a3f;">'Content-Type'</span>: <span style="color: #f06a3f;">'application/x-www-form-urlencoded'</span>,
@@ -145,14 +145,14 @@ BQDLhfDBmXx-rTS378MgNs4DjCG6Fm2I8v7F6yFpI8tw4SqX6O4XJv-lV6vTMAdVHOGTo59aDInXWXz6
 </pre>
 </div>
 </div>
-<div id="outline-container-org0da0227" class="outline-2">
-<h2 id="org0da0227">api requests</h2>
-<div class="outline-text-2" id="text-org0da0227">
+<div id="outline-container-org2209c91" class="outline-2">
+<h2 id="org2209c91">api requests</h2>
+<div class="outline-text-2" id="text-org2209c91">
 <p>
 with this access token we can now make requests to other routes of spotifys web api, e.g. to the <a href="https://developer.spotify.com/documentation/web-api/reference/search">/search route</a>:<br />
 </p>
 <div class="org-src-container" data-language="python">
-<pre class="src src-python"><span style="color: #c48702; font-weight: bold;">def</span> <span style="color: #3dbbb0;">search</span><span style="color: #d0730f;">(</span><span style="color: #6fafff;">query</span>, <span style="color: #6fafff;">access_token</span>, <span style="color: #6fafff;">object_type</span>=<span style="color: #f06a3f;">'album'</span><span style="color: #d0730f;">)</span>:
+<pre class="src src-python"><span style="color: #c48702; font-weight: bold;">def</span> <span style="color: #3dbbb0;">search</span><span style="color: #d0730f;">(</span>query, access_token, object_type=<span style="color: #f06a3f;">'album'</span><span style="color: #d0730f;">)</span>:
     <span style="color: #6fafff;">auth</span> = f<span style="color: #f06a3f;">'Bearer </span>{access_token}<span style="color: #f06a3f;">'</span>
     <span style="color: #6fafff;">r</span> = requests.get<span style="color: #d0730f;">(</span><span style="color: #f06a3f;">'https://api.spotify.com/v1/search'</span>,
                      params = <span style="color: #64aa0f;">{</span><span style="color: #f06a3f;">'type'</span>: object_type,
@@ -183,14 +183,14 @@ this function fetches your entire spotify library into an array of tracks:<br />
 <div class="org-src-container" data-language="python">
 <pre class="src src-python"><span style="color: #c48702; font-weight: bold;">import</span> time
 
-<span style="color: #c48702; font-weight: bold;">def</span> <span style="color: #3dbbb0;">fetch_library</span><span style="color: #d0730f;">(</span><span style="color: #6fafff;">access_token</span>, <span style="color: #6fafff;">tracks</span>=<span style="color: #64aa0f;">[]</span>, <span style="color: #6fafff;">url</span>=<span style="color: #f06a3f;">"https://api.spotify.com/v1/me/tracks?limit=50"</span><span style="color: #d0730f;">)</span>:
+<span style="color: #c48702; font-weight: bold;">def</span> <span style="color: #3dbbb0;">fetch_library</span><span style="color: #d0730f;">(</span>access_token, tracks=<span style="color: #64aa0f;">[]</span>, url=<span style="color: #f06a3f;">"https://api.spotify.com/v1/me/tracks?limit=50"</span><span style="color: #d0730f;">)</span>:
     <span style="color: #6fafff;">r</span> = requests.get<span style="color: #d0730f;">(</span>url, headers=<span style="color: #64aa0f;">{</span><span style="color: #f06a3f;">'Authorization'</span>: <span style="color: #f06a3f;">'Bearer '</span> + access_token<span style="color: #64aa0f;">}</span><span style="color: #d0730f;">)</span>
-    <span style="color: #c48702; font-weight: bold;">if</span> r.status_code != 200: <span style="color: #cf9f7f; font-style: italic;"># we've hit rate limit</span>
-        <span style="color: #cf9f7f; font-style: italic;"># time.sleep(1)</span>
-        <span style="color: #cf9f7f; font-style: italic;"># fetch_library(access_token, tracks, url)</span>
+    <span style="color: #c48702; font-weight: bold;">if</span> r.status_code != 200: <span style="color: #cf9f7f; font-style: italic;"># </span><span style="color: #cf9f7f; font-style: italic;">we've hit rate limit</span>
+        <span style="color: #cf9f7f; font-style: italic;"># </span><span style="color: #cf9f7f; font-style: italic;">time.sleep(1)</span>
+        <span style="color: #cf9f7f; font-style: italic;"># </span><span style="color: #cf9f7f; font-style: italic;">fetch_library(access_token, tracks, url)</span>
         <span style="color: #c48702; font-weight: bold;">return</span>
     <span style="color: #6fafff;">r_data</span> = r.json<span style="color: #d0730f;">()</span>
-    <span style="color: #c48702; font-weight: bold;">for</span> <span style="color: #6fafff;">item</span> <span style="color: #c48702; font-weight: bold;">in</span> r_data<span style="color: #d0730f;">[</span><span style="color: #f06a3f;">'items'</span><span style="color: #d0730f;">]</span>:
+    <span style="color: #c48702; font-weight: bold;">for</span> item <span style="color: #c48702; font-weight: bold;">in</span> r_data<span style="color: #d0730f;">[</span><span style="color: #f06a3f;">'items'</span><span style="color: #d0730f;">]</span>:
         <span style="color: #6fafff;">track</span> = item<span style="color: #d0730f;">[</span><span style="color: #f06a3f;">'track'</span><span style="color: #d0730f;">]</span>
         <span style="color: #6fafff;">data</span> = <span style="color: #d0730f;">{</span>
             <span style="color: #f06a3f;">'id'</span>: track<span style="color: #64aa0f;">[</span><span style="color: #f06a3f;">'id'</span><span style="color: #64aa0f;">]</span>,
@@ -218,9 +218,9 @@ example usage:<br />
 </div>
 </div>
 </div>
-<div id="outline-container-org4d709e0" class="outline-2">
-<h2 id="org4d709e0">downloading with spotdl</h2>
-<div class="outline-text-2" id="text-org4d709e0">
+<div id="outline-container-orged22c7b" class="outline-2">
+<h2 id="orged22c7b">downloading with spotdl</h2>
+<div class="outline-text-2" id="text-orged22c7b">
 <p>
 now that we have our beloved tracks library in <code>tracks.json</code> we can use a tool like <code>spotdl</code> to download our music for offline listening (independently from spotify)<br />
 this script downloads all tracks using the metadata in <code>tracks.json</code>:<br />
@@ -230,20 +230,20 @@ this script downloads all tracks using the metadata in <code>tracks.json</code>:
 <span style="color: #c48702; font-weight: bold;">import</span> os
 <span style="color: #c48702; font-weight: bold;">from</span> multiprocessing <span style="color: #c48702; font-weight: bold;">import</span> Pool
 
-<span style="color: #c48702; font-weight: bold;">def</span> <span style="color: #3dbbb0;">download_track</span><span style="color: #d0730f;">(</span><span style="color: #6fafff;">track_id</span><span style="color: #d0730f;">)</span>:
+<span style="color: #c48702; font-weight: bold;">def</span> <span style="color: #3dbbb0;">download_track</span><span style="color: #d0730f;">(</span>track_id<span style="color: #d0730f;">)</span>:
     <span style="color: #6fafff;">COMMAND</span> = <span style="color: #f06a3f;">"spotdl download 'https://open.spotify.com/track/"</span> + track_id + <span style="color: #f06a3f;">"' --output '{artist}/{album}/{title}--{track-id}' --print-errors --save-errors errors.spotdl --save-file saved.spotdl --no-cache --lyrics --m3u '{list}' --max-retries 3 --add-unavailable --force-update-metadata --generate-lrc"</span>
     os.system<span style="color: #d0730f;">(</span>COMMAND<span style="color: #d0730f;">)</span>
 
-<span style="color: #cf9f7f; font-style: italic;"># i think using ThreadPoolExecutor wouldve been a better option here</span>
-<span style="color: #c48702; font-weight: bold;">def</span> <span style="color: #3dbbb0;">download_all</span><span style="color: #d0730f;">(</span><span style="color: #6fafff;">tracks</span><span style="color: #d0730f;">)</span>:
+<span style="color: #cf9f7f; font-style: italic;"># </span><span style="color: #cf9f7f; font-style: italic;">i think using ThreadPoolExecutor wouldve been a better option here</span>
+<span style="color: #c48702; font-weight: bold;">def</span> <span style="color: #3dbbb0;">download_all</span><span style="color: #d0730f;">(</span>tracks<span style="color: #d0730f;">)</span>:
     <span style="color: #6fafff;">track_idx</span> = 0
     <span style="color: #6fafff;">POOL_SIZE</span> = 10
     <span style="color: #c48702; font-weight: bold;">while</span> <span style="color: #64aa0f;">True</span>:
         <span style="color: #c48702; font-weight: bold;">with</span> Pool<span style="color: #d0730f;">(</span>POOL_SIZE<span style="color: #d0730f;">)</span> <span style="color: #c48702; font-weight: bold;">as</span> pool:
-            pool.map<span style="color: #d0730f;">(</span>download_track,
+            pool.<span style="color: #ff7a7f; font-weight: bold;">map</span><span style="color: #d0730f;">(</span>download_track,
                     <span style="color: #64aa0f;">[</span>track<span style="color: #ef656a;">[</span><span style="color: #f06a3f;">'id'</span><span style="color: #ef656a;">]</span> <span style="color: #c48702; font-weight: bold;">for</span> track <span style="color: #c48702; font-weight: bold;">in</span> tracks<span style="color: #ef656a;">[</span>track_idx:track_idx+POOL_SIZE<span style="color: #ef656a;">]</span><span style="color: #64aa0f;">]</span><span style="color: #d0730f;">)</span>
             <span style="color: #6fafff;">track_idx</span> = track_idx + POOL_SIZE
-            <span style="color: #c48702; font-weight: bold;">if</span> track_idx &gt;= <span style="color: #ff7a7f; font-weight: bold;">len</span><span style="color: #d0730f;">(</span>tracks<span style="color: #d0730f;">)</span>: <span style="color: #cf9f7f; font-style: italic;"># we're done</span>
+            <span style="color: #c48702; font-weight: bold;">if</span> track_idx &gt;= <span style="color: #ff7a7f; font-weight: bold;">len</span><span style="color: #d0730f;">(</span>tracks<span style="color: #d0730f;">)</span>: <span style="color: #cf9f7f; font-style: italic;"># </span><span style="color: #cf9f7f; font-style: italic;">we're done</span>
                 <span style="color: #c48702; font-weight: bold;">return</span>
 
 <span style="color: #c48702; font-weight: bold;">with</span> <span style="color: #ff7a7f; font-weight: bold;">open</span><span style="color: #d0730f;">(</span><span style="color: #f06a3f;">'tracks.json'</span><span style="color: #d0730f;">)</span> <span style="color: #c48702; font-weight: bold;">as</span> data_file:
@@ -260,20 +260,20 @@ a similar script but to download the albums along with the tracks:<br />
 <span style="color: #c48702; font-weight: bold;">import</span> os
 <span style="color: #c48702; font-weight: bold;">from</span> multiprocessing <span style="color: #c48702; font-weight: bold;">import</span> Pool
 
-<span style="color: #c48702; font-weight: bold;">def</span> <span style="color: #3dbbb0;">download_album_by_track_id</span><span style="color: #d0730f;">(</span><span style="color: #6fafff;">track_id</span><span style="color: #d0730f;">)</span>:
+<span style="color: #c48702; font-weight: bold;">def</span> <span style="color: #3dbbb0;">download_album_by_track_id</span><span style="color: #d0730f;">(</span>track_id<span style="color: #d0730f;">)</span>:
     <span style="color: #6fafff;">COMMAND</span> = <span style="color: #f06a3f;">"spotdl download 'https://open.spotify.com/track/"</span> + track_id + <span style="color: #f06a3f;">"' --output '{artist}/{album}/{title}--{track-id}' --print-errors --save-errors errors.spotdl --save-file saved.spotdl --no-cache --lyrics --m3u '{list}' --max-retries 3 --add-unavailable --force-update-metadata --generate-lrc --fetch-albums"</span>
     os.system<span style="color: #d0730f;">(</span>COMMAND<span style="color: #d0730f;">)</span>
 
-<span style="color: #cf9f7f; font-style: italic;"># i think using ThreadPoolExecutor wouldve been a better option here</span>
-<span style="color: #c48702; font-weight: bold;">def</span> <span style="color: #3dbbb0;">download_all</span><span style="color: #d0730f;">(</span><span style="color: #6fafff;">tracks</span><span style="color: #d0730f;">)</span>:
+<span style="color: #cf9f7f; font-style: italic;"># </span><span style="color: #cf9f7f; font-style: italic;">i think using ThreadPoolExecutor wouldve been a better option here</span>
+<span style="color: #c48702; font-weight: bold;">def</span> <span style="color: #3dbbb0;">download_all</span><span style="color: #d0730f;">(</span>tracks<span style="color: #d0730f;">)</span>:
     <span style="color: #6fafff;">track_idx</span> = 0
     <span style="color: #6fafff;">POOL_SIZE</span> = 10
     <span style="color: #c48702; font-weight: bold;">while</span> <span style="color: #64aa0f;">True</span>:
         <span style="color: #c48702; font-weight: bold;">with</span> Pool<span style="color: #d0730f;">(</span>POOL_SIZE<span style="color: #d0730f;">)</span> <span style="color: #c48702; font-weight: bold;">as</span> pool:
-            pool.map<span style="color: #d0730f;">(</span>download_album_by_track_id,
+            pool.<span style="color: #ff7a7f; font-weight: bold;">map</span><span style="color: #d0730f;">(</span>download_album_by_track_id,
                     <span style="color: #64aa0f;">[</span>track<span style="color: #ef656a;">[</span><span style="color: #f06a3f;">'id'</span><span style="color: #ef656a;">]</span> <span style="color: #c48702; font-weight: bold;">for</span> track <span style="color: #c48702; font-weight: bold;">in</span> tracks<span style="color: #ef656a;">[</span>track_idx:track_idx+POOL_SIZE<span style="color: #ef656a;">]</span><span style="color: #64aa0f;">]</span><span style="color: #d0730f;">)</span>
             <span style="color: #6fafff;">track_idx</span> = track_idx + POOL_SIZE
-            <span style="color: #c48702; font-weight: bold;">if</span> track_idx &gt;= <span style="color: #ff7a7f; font-weight: bold;">len</span><span style="color: #d0730f;">(</span>tracks<span style="color: #d0730f;">)</span>: <span style="color: #cf9f7f; font-style: italic;"># we're done</span>
+            <span style="color: #c48702; font-weight: bold;">if</span> track_idx &gt;= <span style="color: #ff7a7f; font-weight: bold;">len</span><span style="color: #d0730f;">(</span>tracks<span style="color: #d0730f;">)</span>: <span style="color: #cf9f7f; font-style: italic;"># </span><span style="color: #cf9f7f; font-style: italic;">we're done</span>
                 <span style="color: #c48702; font-weight: bold;">return</span>
 
 <span style="color: #c48702; font-weight: bold;">with</span> <span style="color: #ff7a7f; font-weight: bold;">open</span><span style="color: #d0730f;">(</span><span style="color: #f06a3f;">'tracks.json'</span><span style="color: #d0730f;">)</span> <span style="color: #c48702; font-weight: bold;">as</span> data_file:
