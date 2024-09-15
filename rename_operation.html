@@ -35,7 +35,7 @@
 in general, for most queries, we need to apply several <a href="/relational_algebra.html#1702391772">relational algebra</a> operations one after the other. either we can write the operations as a single relational algebra expression by nesting the operations, or we can apply one operation at a time and create intermediate result relations. in the latter case, we must give names to the relations that hold the intermediate results. for example, to retrieve the first name, last name, and salary of all employees who work in department number 5, we must apply a <a href="/select.html#1704740086">select</a> and a <a href="/project_operation.html#1704791629">project</a> operation. we can write a single <a href="/relational_algebra.html#1702391772">relational algebra</a> expression, also known as an in-line expression, as follows:<br />
 <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='224.100951 -10.12342 163.529163 10.12342' style="max-height: 1.4789em; display: block" class="org-latex org-latex-block">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='224.100951 -10.12342 163.529163 10.12342' style="max-height: 1.5281em; display: block" class="org-latex org-latex-block">
 <defs>
 <use id='g7-38' xlink:href='#g0-38' transform='scale(1.369862)'/>
 <use id='g7-45' xlink:href='#g0-45' transform='scale(1.369862)'/>
@@ -114,7 +114,7 @@ in general, for most queries, we need to apply several <a href="/relational_alge
 </svg><br />
 alternatively, we can explicitly show the sequence of operations, giving a name to each intermediate relation, and using the assignment operation, denoted by <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -4.483186 10.201745 4.483186' style="max-height: 0.4459em; vertical-align: --0.0000em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -4.483186 10.201745 4.483186' style="max-height: 0.4951em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <use id='g2-32' xlink:href='#g1-32' transform='scale(1.369862)'/>
 <path id='g1-32' d='m6.996367-1.665455v-.407273h-5.760002l.865455-1.047273l-.225455-.24l-1.425455 1.498182l1.425455 1.483637l.225455-.24l-.865455-1.047273h5.760002z'/>
@@ -131,7 +131,7 @@ alternatively, we can explicitly show the sequence of operations, giving a name 
 <span class="equation">
 <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='214.017138 -21.987544 183.467628 25.067381' style="max-height: 2.9988em; vertical-align: -0.3528em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='214.017138 -21.987544 183.467628 25.067381' style="max-height: 3.0480em; vertical-align: -0.4020em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g6-61' d='m4.014547-2.400001v-.407273h-3.723638v.407273h3.723638zm0 1.476364v-.407273h-3.723638v.407273h3.723638z'/>
 <path id='g4-99' d='m5.190535-4.393524h-3.447073c-.916563 0-1.464508 1.09589-1.544209 1.285181h.109589c.049813-.069738 .418431-.557908 .936488-.557908h.518057l-.697385 2.102117c-.219178 .657534-1.036115 .687422-1.036115 1.364882v.049813c0 .169365 .129514 .259029 .368618 .259029c.37858 0 .737235-.239103 1.225405-1.653798l.727273-2.122042h1.006227l-.488169 2.141968c-.069738 .288917-.109589 .537983-.109589 .737235v.089664c0 .428394 .298879 .806974 .787049 .806974c.229141 0 .498132-.069738 .498132-.398506v-.039851c0-.587796-.597758-.508095-.597758-1.066002c0-.079701 .009963-.169365 .039851-.278954l.488169-1.992528h1.046077l.169365-.727273z'/>
@@ -258,7 +258,7 @@ it is sometimes simpler to break down a complex sequence of operations by specif
 <span class="equation">
 <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='179.788014 -21.987544 251.925891 25.067381' style="max-height: 2.9988em; vertical-align: -0.3528em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='179.788014 -21.987544 251.925891 25.067381' style="max-height: 3.0480em; vertical-align: -0.4020em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g6-61' d='m4.014547-2.400001v-.407273h-3.723638v.407273h3.723638zm0 1.476364v-.407273h-3.723638v.407273h3.723638z'/>
 <path id='g4-39' d='m5.648817 0v-.159402c-.438356-.029888-.637609-.199253-.826899-.71731l-.926526-2.440847c.767123-.169365 1.09589-.308842 1.454545-.627646c.328767-.288917 .508095-.67746 .508095-1.125778c0-.926526-.727273-1.43462-2.072229-1.43462h-2.470735v.159402c.418431 .059776 .468244 .069738 .577833 .139477c.069738 .049813 .129514 .169365 .129514 .278954c0 .119552-.039851 .358655-.119552 .627646l-1.225405 4.403487c-.179328 .587796-.239103 .647572-.806974 .737235v.159402h2.430884v-.159402c-.617684-.079701-.67746-.119552-.67746-.468244c0-.099626 .019925-.199253 .119552-.56787l.557908-2.082192l.647572 .049813l1.225405 3.227895h1.474471zm-.836862-5.090909c0 .986301-.637609 1.494396-1.882939 1.494396c-.179328 0-.259029-.009963-.508095-.049813l.647572-2.281445c.059776-.209215 .18929-.278954 .508095-.278954c.826899 0 1.235367 .368618 1.235367 1.115816z'/>
@@ -427,7 +427,7 @@ we can also define a formal RENAME operation&#x2013;which can rename either the 
 </svg> is denoted by any of the following three forms:<br />
 <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='192.761778 -10.103308 226.496393 10.143308' style="max-height: 1.4770em; display: block" class="org-latex org-latex-block">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='192.761778 -10.103308 226.496393 10.143308' style="max-height: 1.5262em; display: block" class="org-latex org-latex-block">
 <defs>
 <use id='g7-80' xlink:href='#g0-80' transform='scale(1.369862)'/>
 <use id='g7-83' xlink:href='#g0-83' transform='scale(1.369862)'/>
@@ -500,7 +500,7 @@ we can also define a formal RENAME operation&#x2013;which can rename either the 
 </svg><br />
 where the symbol <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.518046 -4.363634 5.061025 6.425898' style="max-height: 0.6277em; vertical-align: -0.2033em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.518046 -4.363634 5.061025 6.425898' style="max-height: 0.6769em; vertical-align: -0.2525em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g4-100' d='m4.811955-2.889166c0-.438356-.259029-1.504359-1.534247-1.504359c-1.39477 0-2.371108 .976339-2.759651 2.620174l-.418431 1.783313c-.069738 .318804-.318804 1.255293-.727273 2.052304h1.006227l.637609-2.321295h.009963c0 .009963 .239103 .368618 1.016189 .368618c1.534247 0 2.769614-1.524284 2.769614-2.998755zm-.757161 .019925c0 .737235-.418431 2.709838-1.793275 2.709838c-.86675 0-.936488-1.006227-.936488-1.215442c0-.757161 .398506-2.779577 1.793275-2.779577c.846824 0 .936488 .886675 .936488 1.285181z'/>
 </defs>
@@ -522,7 +522,7 @@ where the symbol <?xml version='1.0' encoding='UTF-8'?>
 </g>
 </svg> is the new relation name, and <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.388527 -6.605231 58.246334 8.165066' style="max-height: 0.7928em; vertical-align: -0.1524em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.388527 -6.605231 58.246334 8.165066' style="max-height: 0.8420em; vertical-align: -0.2015em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g3-61' d='m3.890911-.756364l-.116364-.094545c-.065455 .065455-.101818 .130909-.167273 .189091c-.232727 .269091-.349091 .385455-.465455 .385455c-.08 0-.138182-.050909-.138182-.116364c0-.058182 .021818-.196364 .101818-.458182l.334546-1.498182c.036364-.174546 .072727-.312727 .065455-.414546c-.007273-.261818-.174546-.443637-.494546-.443637c-.523637 0-1.069091 .429091-1.832728 1.600001l.509091-1.585455l-.08-.014545l-1.33091 .225455l.007273 .116364c.429091 .007273 .538182 .050909 .538182 .196364c.007273 .043636 0 .087273-.007273 .123636l-.698182 2.545456h.632728c.341818-1.149091 .414546-1.309091 .756364-1.803637c.458182-.676364 .872728-1.032728 1.178182-1.032728c.123636 0 .152727 .08 .16 .210909c0 .087273-.036364 .290909-.101818 .552728l-.290909 1.200001c-.094545 .378182-.116364 .472727-.116364 .545455c.014545 .276364 .138182 .392727 .414546 .392727c.378182 0 .581818-.145455 1.141819-.821819z'/>
 <path id='g5-49' d='m2.865456 0v-.109091c-.574546-.007273-.690909-.08-.690909-.429091v-4.363638l-.058182-.014545l-1.309091 .661818v.101818c.087273-.036364 .167273-.065455 .196364-.08c.130909-.050909 .254546-.08 .327273-.08c.152727 0 .218182 .109091 .218182 .341818v3.294547c0 .24-.058182 .407273-.174546 .472727c-.109091 .065455-.210909 .087273-.516364 .094545v.109091h2.007274z'/>
@@ -560,7 +560,7 @@ where the symbol <?xml version='1.0' encoding='UTF-8'?>
 </g>
 </svg> are <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.498132 -7.043584 71.277038 9.056034' style="max-height: 0.8859em; vertical-align: -0.1926em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.498132 -7.043584 71.277038 9.056034' style="max-height: 0.9351em; vertical-align: -0.2418em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g3-61' d='m3.890911-.756364l-.116364-.094545c-.065455 .065455-.101818 .130909-.167273 .189091c-.232727 .269091-.349091 .385455-.465455 .385455c-.08 0-.138182-.050909-.138182-.116364c0-.058182 .021818-.196364 .101818-.458182l.334546-1.498182c.036364-.174546 .072727-.312727 .065455-.414546c-.007273-.261818-.174546-.443637-.494546-.443637c-.523637 0-1.069091 .429091-1.832728 1.600001l.509091-1.585455l-.08-.014545l-1.33091 .225455l.007273 .116364c.429091 .007273 .538182 .050909 .538182 .196364c.007273 .043636 0 .087273-.007273 .123636l-.698182 2.545456h.632728c.341818-1.149091 .414546-1.309091 .756364-1.803637c.458182-.676364 .872728-1.032728 1.178182-1.032728c.123636 0 .152727 .08 .16 .210909c0 .087273-.036364 .290909-.101818 .552728l-.290909 1.200001c-.094545 .378182-.116364 .472727-.116364 .545455c.014545 .276364 .138182 .392727 .414546 .392727c.378182 0 .581818-.145455 1.141819-.821819z'/>
 <path id='g4-22' d='m5.618929 0v-.159402c-.56787-.049813-.637609-.129514-.757161-.856787l-.936488-5.638854h-.259029l-2.889166 4.98132c-.787049 1.325031-.886675 1.43462-1.285181 1.514321v.159402h1.863014v-.159402c-.508095-.049813-.587796-.099626-.587796-.348692c0-.18929 .029888-.278954 .199253-.617684l.56787-1.125778h2.191781l.199253 1.305106c.009963 .089664 .019925 .179328 .019925 .259029c0 .37858-.139477 .468244-.777086 .52802v.159402h2.450809zm-1.942715-2.610212h-1.932752l1.494396-2.590286l.438356 2.590286z'/>
@@ -594,7 +594,7 @@ where the symbol <?xml version='1.0' encoding='UTF-8'?>
 </g>
 </svg> in that order, then each <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.747183 -6.605231 8.464261 8.165066' style="max-height: 0.9122em; vertical-align: -0.2015em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.747183 -6.605231 8.464261 8.165066' style="max-height: 0.8631em; vertical-align: -0.2015em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g6-56' d='m1.941819-.749091l-.109091-.08c-.341818 .414546-.523637 .567273-.661818 .567273c-.072727 0-.138182-.050909-.145455-.109091c0-.116364 .08-.334546 .123636-.48l.589091-2.341819l.043636-.014545c-.858182 .138182-1.032728 .16-1.367273 .181818v.116364c.450909 .007273 .516364 .029091 .523637 .174546c0 .058182-.021818 .181818-.058182 .32l-.327273 1.287273c-.116364 .436364-.16 .647273-.16 .792728c.014545 .269091 .152727 .414546 .4 .414546c.4 0 .698182-.218182 1.149091-.829091zm.218182-3.534547c-.007273-.210909-.196364-.392727-.421818-.392727s-.392727 .16-.385455 .385455c.007273 .232727 .181818 .385455 .421818 .385455c.218182 0 .392727-.174546 .385455-.378182z'/>
 <use id='g7-22' xlink:href='#g1-22' transform='scale(1.111111)'/>
@@ -608,7 +608,7 @@ where the symbol <?xml version='1.0' encoding='UTF-8'?>
 </g>
 </svg> is renamed as <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.388527 -6.605231 8.563894 8.165066' style="max-height: 0.7928em; vertical-align: -0.1524em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.388527 -6.605231 8.563894 8.165066' style="max-height: 0.8420em; vertical-align: -0.2015em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g3-56' d='m1.941819-.749091l-.109091-.08c-.341818 .414546-.523637 .567273-.661818 .567273c-.072727 0-.138182-.050909-.145455-.109091c0-.116364 .08-.334546 .123636-.48l.589091-2.341819l.043636-.014545c-.858182 .138182-1.032728 .16-1.367273 .181818v.116364c.450909 .007273 .516364 .029091 .523637 .174546c0 .058182-.021818 .181818-.058182 .32l-.327273 1.287273c-.116364 .436364-.16 .647273-.16 .792728c.014545 .269091 .152727 .414546 .4 .414546c.4 0 .698182-.218182 1.149091-.829091zm.218182-3.534547c-.007273-.210909-.196364-.392727-.421818-.392727s-.392727 .16-.385455 .385455c.007273 .232727 .181818 .385455 .421818 .385455c.218182 0 .392727-.174546 .385455-.378182z'/>
 <path id='g4-23' d='m5.369863-1.992528c0-.727273-.308842-1.09589-1.255293-1.504359c.707347-.169365 .996264-.288917 1.315068-.56787c.278954-.239103 .428394-.56787 .428394-.976339c0-.946451-.707347-1.464508-1.992528-1.464508h-2.570361v.159402c.627646 .049813 .767123 .119552 .767123 .408468c0 .14944-.039851 .388543-.109589 .637609l-1.225405 4.403487c-.179328 .577833-.249066 .637609-.806974 .737235v.159402h2.809465c1.564134 0 2.6401-.806974 2.6401-1.992528zm-1.075965-.039851c0 1.075965-.737235 1.733499-1.952677 1.733499c-.418431 0-.637609-.139477-.637609-.418431c0-.129514 .119552-.597758 .348692-1.39477l.318804-1.185554c.627646 0 1.05604 .039851 1.255293 .119552c.418431 .159402 .667497 .597758 .667497 1.145704zm.557908-3.098381c0 1.026152-.667497 1.514321-2.042341 1.514321h-.33873l.647572-2.311333c.059776-.219178 .179328-.278954 .56787-.278954c.806974 0 1.165629 .33873 1.165629 1.075965z'/>

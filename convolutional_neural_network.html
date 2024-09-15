@@ -33,49 +33,49 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org9f939f2">citations</a></li>
-<li><a href="#orgbb7d7af">motivation</a></li>
-<li><a href="#org60d36c3">convolutional layers</a>
+<li><a href="#org078398b">citations</a></li>
+<li><a href="#org886865f">motivation</a></li>
+<li><a href="#orgd1c53d4">convolutional layers</a>
 <ul>
-<li><a href="#org0a0a407">convolution</a></li>
+<li><a href="#org0faa680">convolution</a></li>
 </ul>
 </li>
-<li><a href="#orgab11727">pooling layers and downsampling</a></li>
-<li><a href="#org3ccdd8c">flatten layer</a></li>
-<li><a href="#orgc240117">fully connected convolutional layers</a></li>
-<li><a href="#orgdd2dcb0">full example</a></li>
-<li><a href="#org38ec101">architecture</a>
+<li><a href="#orge920fe5">pooling layers and downsampling</a></li>
+<li><a href="#orge5c0843">flatten layer</a></li>
+<li><a href="#orgd6a57cc">fully connected convolutional layers</a></li>
+<li><a href="#orgcaa0da9">full example</a></li>
+<li><a href="#org835cc8c">architecture</a>
 <ul>
-<li><a href="#orgd06762f">LeNet-5</a></li>
+<li><a href="#org00f252e">LeNet-5</a></li>
 </ul>
 </li>
-<li><a href="#org068625a">common lisp implementation</a>
+<li><a href="#orgdec6206">common lisp implementation</a>
 <ul>
-<li><a href="#orgcf872f5">an abstract structure for networks</a></li>
-<li><a href="#org0c57239">convolutional layer</a></li>
-<li><a href="#orgdcc418f">pooling layer</a></li>
-<li><a href="#org4442df9">flatten layer</a></li>
-<li><a href="#orgb4ed17c">dense layer</a></li>
-<li><a href="#org313e495">test code</a></li>
-<li><a href="#org3531d7d">convolutional layer backprop</a></li>
-<li><a href="#org0c3c33c">pooling layer backprop</a></li>
-<li><a href="#org29e9228">flatten layer backprop</a></li>
-<li><a href="#org55ce9d0">test code</a></li>
-<li><a href="#orgeb5a3a8">printing/formatting networks</a></li>
-<li><a href="#orgd151ed3">full pass propagation and training</a></li>
-<li><a href="#org496114f">test code</a></li>
-<li><a href="#org8e0e8e3">backprop optimization</a></li>
-<li><a href="#org14094a6">distributed training</a></li>
-<li><a href="#orgb8526d4">analyzing accuracy and loss</a></li>
-<li><a href="#org7103ccb">saving parameters to disk</a></li>
+<li><a href="#org2fbeadb">an abstract structure for networks</a></li>
+<li><a href="#orga2786bd">convolutional layer</a></li>
+<li><a href="#orga412965">pooling layer</a></li>
+<li><a href="#org5cd9dd6">flatten layer</a></li>
+<li><a href="#orgd214b45">dense layer</a></li>
+<li><a href="#orgf88407d">test code</a></li>
+<li><a href="#org3793ac0">convolutional layer backprop</a></li>
+<li><a href="#org99f4d46">pooling layer backprop</a></li>
+<li><a href="#org5024446">flatten layer backprop</a></li>
+<li><a href="#org553e008">test code</a></li>
+<li><a href="#org1e4a8c4">printing/formatting networks</a></li>
+<li><a href="#org2780754">full pass propagation and training</a></li>
+<li><a href="#org4833895">test code</a></li>
+<li><a href="#org903b1f3">backprop optimization</a></li>
+<li><a href="#org6b44a4d">distributed training</a></li>
+<li><a href="#org8bd67a8">analyzing accuracy and loss</a></li>
+<li><a href="#org09d1cde">saving parameters to disk</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org9f939f2" class="outline-2">
-<h2 id="org9f939f2">citations</h2>
-<div class="outline-text-2" id="text-org9f939f2">
+<div id="outline-container-org078398b" class="outline-2">
+<h2 id="org078398b">citations</h2>
+<div class="outline-text-2" id="text-org078398b">
 <ul class="org-ul">
 <li>(Peter Norvig, Stuart J. Russell, 2020)<br /></li>
 <li>(Jianxin Wu, 2017)<br /></li>
@@ -86,9 +86,9 @@ and countless other resources that helped me form a good understanding of the to
 </p>
 </div>
 </div>
-<div id="outline-container-orgbb7d7af" class="outline-2">
-<h2 id="orgbb7d7af">motivation</h2>
-<div class="outline-text-2" id="text-orgbb7d7af">
+<div id="outline-container-org886865f" class="outline-2">
+<h2 id="org886865f">motivation</h2>
+<div class="outline-text-2" id="text-org886865f">
 <p>
 an image cannot be thought of as a simple <a href="/vector.html#1703224357">vector</a> of input pixel values, primarily because <b>adjacency of pixels in an image matters</b>. simple <a href="/feedforward_neural_network.html#1683060983">multilayer perceptrons</a> arent suited for images because adjacent neurons in the same layer arent really connected or affected by each other, which isnt the case in images.<br />
 consider an input image with <?xml version='1.0' encoding='UTF-8'?>
@@ -119,7 +119,7 @@ these considerations suggest that we should construct the first hidden layer so 
 so far, so good. but we are missing another important property of images: roughly speaking, anything that is detectable in one small, local region of the image&#x2013;perhaps an eye or a blade of grass&#x2013;would look the same if it appeared in another small, local region of the image. in other words, we expect image data to exhibit approximate <b>spatial invariance</b>, at least at small to moderate scales. we don’t necessarily expect the top halves of photos to look like bottom halves, so there is a scale beyond which spatial invariance no longer holds.<br />
 local spatial invariance can be achieved by constraining the <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.039844 -6.884184 2.779579 6.973846' style="max-height: 0.7697em; vertical-align: -0.0590em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.039844 -6.884184 2.779579 6.973846' style="max-height: 0.6762em; vertical-align: -0.0147em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g9-59' d='m2.400996-1.135741l-.129514-.089664c-.089664 .109589-.179328 .229141-.259029 .33873c-.328767 .418431-.508095 .56787-.687422 .56787c-.099626 0-.14944-.059776-.14944-.179328c0-.099626 .049813-.298879 .099626-.488169l1.504359-5.768369l-.049813-.049813c-.587796 .129514-.966376 .199253-1.554172 .268991v.159402h.169365c.308842 0 .508095 .089664 .508095 .229141c0 .029888-.009963 .099626-.039851 .179328l-1.364882 5.260274c-.029888 .099626-.039851 .179328-.039851 .259029c0 .368618 .169365 .557908 .488169 .557908c.518057 0 .856787-.288917 1.504359-1.24533z'/>
 </defs>
@@ -130,7 +130,7 @@ local spatial invariance can be achieved by constraining the <?xml version='1.0'
 </g>
 </svg> weights connecting a local region to a unit in the hidden layer to be the same for each hidden unit. (that is, for hidden units <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='-.199265 -6.316312 2.769613 6.405974' style="max-height: 0.7290em; vertical-align: -0.0590em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='-.199265 -6.316312 2.769613 6.405974' style="max-height: 0.6798em; vertical-align: -0.0590em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g9-56' d='m2.34122-1.026152l-.129514-.109589c-.428394 .56787-.647572 .777086-.816936 .777086c-.079701 0-.159402-.069738-.159402-.14944c0-.159402 .099626-.458281 .159402-.657534l.876712-3.20797l-.029888-.019925c-1.006227 .18929-1.205479 .219178-1.594022 .249066v.159402c.537983 .009963 .627646 .039851 .627646 .239103c0 .079701-.029888 .249066-.089664 .438356l-.478207 1.763387c-.159402 .597758-.219178 .886675-.219178 1.085928c0 .368618 .159402 .56787 .458281 .56787c.468244 0 .826899-.298879 1.39477-1.135741zm.408468-4.83188c0-.288917-.229141-.547945-.498132-.547945s-.468244 .219178-.468244 .52802c0 .318804 .18929 .52802 .478207 .52802c.259029 0 .488169-.229141 .488169-.508095z'/>
 </defs>
@@ -267,9 +267,9 @@ usually an image is stored in memory as a 2d array (or matrix), each cell contai
 </p>
 </div>
 </div>
-<div id="outline-container-org60d36c3" class="outline-2">
-<h2 id="org60d36c3">convolutional layers</h2>
-<div class="outline-text-2" id="text-org60d36c3">
+<div id="outline-container-orgd1c53d4" class="outline-2">
+<h2 id="orgd1c53d4">convolutional layers</h2>
+<div class="outline-text-2" id="text-orgd1c53d4">
 <p>
 a convolutional neural network is one that contains spatially local connections, at least in the early layers which we call <b>convolutional layers</b>, and has patterns of weights that are replicated across the units in each layer. a pattern of weights that is replicated across multiple local regions is called a <b>kernel</b> which is applied with a <a href="/convolution.html#1686612708">convolution</a>.<br />
 in practice, multiple kernels are learned at each convolutional layer, suppose the input to the <?xml version='1.0' encoding='UTF-8'?>
@@ -323,7 +323,7 @@ in practice, multiple kernels are learned at each convolutional layer, suppose t
 </g>
 </svg> (<?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='-.259038 -6.605231 9.026153 6.804489' style="max-height: 0.7569em; vertical-align: -0.0673em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='-.259038 -6.605231 9.026153 6.804489' style="max-height: 0.6585em; vertical-align: -0.0181em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g5-44' d='m9.026152-6.346202v-.159402h-1.843088v.159402c.547945 .049813 .647572 .119552 .647572 .398506c0 .169365-.069738 .398506-.209215 .667497l-1.863014 3.666252l-.398506-4.004981l-.009963-.139477c0-.408468 .14944-.537983 .67746-.587796v-.159402h-2.371108v.159402c.577833 .019925 .67746 .089664 .747198 .577833l.089664 .687422l-1.713574 3.466999l-.438356-4.044832l-.009963-.139477c0-.388543 .119552-.478207 .727273-.547945v-.159402h-2.351183v.159402c.318804 .039851 .408468 .069738 .508095 .14944c.119552 .119552 .159402 .288917 .278954 1.225405l.617684 5.150685h.18929l2.211706-4.523039h.049813l.498132 4.523039h.199253l3.01868-5.808219c.268991-.508095 .368618-.597758 .747198-.71731z'/>
 </defs>
@@ -510,9 +510,9 @@ at the first layer, the image is stored as a tensor of order 3 of <b>depth</b> <
 </svg>, each layer of this tensor is basically a matrix we call a <b>feature map</b> or <b>channel</b>, so at each layer, the image is stored as nested layers of feature maps, it might be easier to take the input to the first layer as an example, which can be thought of as a set of 3 feature maps of RGB values.<br />
 </p>
 </div>
-<div id="outline-container-org0a0a407" class="outline-3">
-<h3 id="org0a0a407">convolution</h3>
-<div class="outline-text-3" id="text-org0a0a407">
+<div id="outline-container-org0faa680" class="outline-3">
+<h3 id="org0faa680">convolution</h3>
+<div class="outline-text-3" id="text-org0faa680">
 <div class="fancy-block definition" data-before="&lt;p&gt;
 definition: convolution&lt;/p&gt;
 " data-after="(Maria Vakalopoulou, Stergios Christodoulidis, Ninon Burgos, Olivier Colliot, Vincent Lepetit. Deep learning: basics and convolutional neural networks (CNN). Olivier Colliot. Machine Learning for Brain Disorders, Springer, In press. hal-03957224, 2023)
@@ -634,7 +634,7 @@ for two functions <?xml version='1.0' encoding='UTF-8'?>
 </g>
 </svg>, the discrete convolution of <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='1.73349 -6.884184 4.224157 8.946448' style="max-height: 0.9141em; vertical-align: -0.2525em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='1.73349 -6.884184 4.224157 8.946448' style="max-height: 0.8698em; vertical-align: -0.2083em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g4-53' d='m4.224159-6.107098c0-.368618-.368618-.647572-.856787-.647572c-.478207 0-.856787 .209215-1.215442 .647572c-.308842 .398506-.518057 .86675-.816936 1.843088h-.916563l-.069738 .318804h.896638l-.876712 4.184309c-.229141 1.075965-.547945 1.613948-.966376 1.613948c-.119552 0-.199253-.069738-.199253-.159402c0-.039851 .009963-.059776 .039851-.109589c.039851-.059776 .049813-.099626 .049813-.159402c0-.209215-.179328-.37858-.388543-.37858s-.368618 .179328-.368618 .408468c0 .348692 .33873 .607721 .787049 .607721c.886675 0 1.574097-.976339 1.992528-2.819427l.71731-3.188045h1.085928l.059776-.318804h-1.075965c.288917-1.574097 .657534-2.271482 1.215442-2.271482c.139477 0 .219178 .049813 .219178 .129514c0 0-.009963 .049813-.039851 .089664c-.049813 .079701-.059776 .129514-.059776 .209215c0 .239103 .14944 .398506 .368618 .398506c.229141 0 .418431-.179328 .418431-.398506z'/>
 </defs>
@@ -645,7 +645,7 @@ for two functions <?xml version='1.0' encoding='UTF-8'?>
 </g>
 </svg> and <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.059758 -4.363634 4.98132 6.405974' style="max-height: 0.7261em; vertical-align: -0.2525em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.059758 -4.363634 4.98132 6.405974' style="max-height: 0.6326em; vertical-align: -0.2083em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g9-54' d='m3.845579 .597758c-.009963-.627646-.488169-1.066002-1.444583-1.315068c-.438356-.109589-.697385-.268991-.697385-.418431s.229141-.408468 .358655-.408468c0 0 .039851 0 .069738 .009963c.079701 .019925 .219178 .029888 .308842 .029888c.9066 0 1.823163-.797011 1.823163-1.574097c0-.169365-.029888-.358655-.089664-.56787h.498132l-.009963-.388543h-.607721c-.029888 0-.079701-.019925-.159402-.079701c-.268991-.179328-.597758-.278954-.976339-.278954c-1.105853 0-1.992528 .767123-1.992528 1.703611c.009963 .518057 .229141 .816936 .797011 1.075965c-.577833 .398506-.757161 .597758-.757161 .836862c0 .129514 .089664 .249066 .278954 .388543c-.956413 .627646-1.155666 .836862-1.155666 1.275218c0 .71731 .647572 1.165629 1.673724 1.165629c1.255293 0 2.082192-.587796 2.082192-1.454545zm-.597758 .298879c0 .537983-.56787 .936488-1.334994 .936488c-.797011 0-1.275218-.37858-1.275218-1.016189c0-.239103 .049813-.408468 .209215-.597758c.129514-.169365 .547945-.498132 .627646-.498132c0 0 .029888 .009963 .049813 .019925l.288917 .089664c1.05604 .328767 1.424658 .607721 1.43462 1.066002zm-.069738-3.237858c-.219178 .408468-.52802 .627646-.86675 .627646c-.388543 0-.597758-.288917-.597758-.767123c0-.9066 .557908-1.693649 1.195517-1.693649c.368618 0 .557908 .239103 .56787 .707347c0 .348692-.119552 .787049-.298879 1.125778z'/>
 </defs>
@@ -1863,9 +1863,9 @@ lemma: derivative property of convolutions&lt;/p&gt;
 </div>
 </div>
 </div>
-<div id="outline-container-orgab11727" class="outline-2">
-<h2 id="orgab11727">pooling layers and downsampling</h2>
-<div class="outline-text-2" id="text-orgab11727">
+<div id="outline-container-orge920fe5" class="outline-2">
+<h2 id="orge920fe5">pooling layers and downsampling</h2>
+<div class="outline-text-2" id="text-orge920fe5">
 <p>
 a pooling layer in a neural network summarizes a set of adjacent units from the preceding pooling layer with a single value. pooling works just like a convolution layer, with a kernel size l and stride <?xml version='1.0' encoding='UTF-8'?>
 
@@ -1982,7 +1982,7 @@ typically, no activation function is associated with the pooling layer. there ar
 <p>
 if the goal is to classify the image into one of <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.109574 -4.363634 4.423415 4.453296' style="max-height: 0.5325em; vertical-align: -0.0590em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.109574 -4.363634 4.423415 4.453296' style="max-height: 0.4833em; vertical-align: -0.0590em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g9-50' d='m3.646326-.956413l-.159402-.099626c-.547945 .587796-.936488 .806974-1.424658 .806974c-.56787 0-.9066-.418431-.9066-1.135741c0-.846824 .348692-1.733499 .9066-2.321295c.288917-.298879 .687422-.478207 1.085928-.478207c.229141 0 .368618 .079701 .368618 .199253c0 .049813-.009963 .099626-.059776 .18929c-.069738 .129514-.089664 .18929-.089664 .288917c0 .239103 .14944 .37858 .388543 .37858c.278954 0 .478207-.18929 .478207-.458281c0-.468244-.438356-.806974-1.046077-.806974c-1.494396 0-2.889166 1.454545-2.889166 3.008717c0 .946451 .537983 1.494396 1.464508 1.494396c.747198 0 1.275218-.298879 1.882939-1.066002z'/>
 </defs>
@@ -1993,7 +1993,7 @@ if the goal is to classify the image into one of <?xml version='1.0' encoding='U
 </g>
 </svg> categories, then the final layer of the network will be a softmax with <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.109574 -4.363634 4.423415 4.453296' style="max-height: 0.5325em; vertical-align: -0.0590em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.109574 -4.363634 4.423415 4.453296' style="max-height: 0.4833em; vertical-align: -0.0590em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g9-50' d='m3.646326-.956413l-.159402-.099626c-.547945 .587796-.936488 .806974-1.424658 .806974c-.56787 0-.9066-.418431-.9066-1.135741c0-.846824 .348692-1.733499 .9066-2.321295c.288917-.298879 .687422-.478207 1.085928-.478207c.229141 0 .368618 .079701 .368618 .199253c0 .049813-.009963 .099626-.059776 .18929c-.069738 .129514-.089664 .18929-.089664 .288917c0 .239103 .14944 .37858 .388543 .37858c.278954 0 .478207-.18929 .478207-.458281c0-.468244-.438356-.806974-1.046077-.806974c-1.494396 0-2.889166 1.454545-2.889166 3.008717c0 .946451 .537983 1.494396 1.464508 1.494396c.747198 0 1.275218-.298879 1.882939-1.066002z'/>
 </defs>
@@ -2081,7 +2081,7 @@ let <?xml version='1.0' encoding='UTF-8'?>
 </g>
 </svg> and <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='-.259038 -6.605231 9.026153 6.804489' style="max-height: 0.7569em; vertical-align: -0.0673em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='-.259038 -6.605231 9.026153 6.804489' style="max-height: 0.6585em; vertical-align: -0.0181em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g5-44' d='m9.026152-6.346202v-.159402h-1.843088v.159402c.547945 .049813 .647572 .119552 .647572 .398506c0 .169365-.069738 .398506-.209215 .667497l-1.863014 3.666252l-.398506-4.004981l-.009963-.139477c0-.408468 .14944-.537983 .67746-.587796v-.159402h-2.371108v.159402c.577833 .019925 .67746 .089664 .747198 .577833l.089664 .687422l-1.713574 3.466999l-.438356-4.044832l-.009963-.139477c0-.388543 .119552-.478207 .727273-.547945v-.159402h-2.351183v.159402c.318804 .039851 .408468 .069738 .508095 .14944c.119552 .119552 .159402 .288917 .278954 1.225405l.617684 5.150685h.18929l2.211706-4.523039h.049813l.498132 4.523039h.199253l3.01868-5.808219c.268991-.508095 .368618-.597758 .747198-.71731z'/>
 </defs>
@@ -2955,17 +2955,17 @@ translating these conditions into equations, we get:<br />
 </div>
 </div>
 </div>
-<div id="outline-container-org3ccdd8c" class="outline-2">
-<h2 id="org3ccdd8c">flatten layer</h2>
-<div class="outline-text-2" id="text-org3ccdd8c">
+<div id="outline-container-orge5c0843" class="outline-2">
+<h2 id="orge5c0843">flatten layer</h2>
+<div class="outline-text-2" id="text-orge5c0843">
 <p>
 a layer that takes a tensor and vectorizes or <b>flattens</b> it, turning it into a 1d vector, it doesnt need any parameters.<br />
 </p>
 </div>
 </div>
-<div id="outline-container-orgc240117" class="outline-2">
-<h2 id="orgc240117">fully connected convolutional layers</h2>
-<div class="outline-text-2" id="text-orgc240117">
+<div id="outline-container-orgd6a57cc" class="outline-2">
+<h2 id="orgd6a57cc">fully connected convolutional layers</h2>
+<div class="outline-text-2" id="text-orgd6a57cc">
 <p>
 suppose the input of a layer <?xml version='1.0' encoding='UTF-8'?>
 
@@ -3345,9 +3345,9 @@ notice that here <?xml version='1.0' encoding='UTF-8'?>
 </p>
 </div>
 </div>
-<div id="outline-container-orgdd2dcb0" class="outline-2">
-<h2 id="orgdd2dcb0">full example</h2>
-<div class="outline-text-2" id="text-orgdd2dcb0">
+<div id="outline-container-orgcaa0da9" class="outline-2">
+<h2 id="orgcaa0da9">full example</h2>
+<div class="outline-text-2" id="text-orgcaa0da9">
 <p>
 consider the following network:<br />
 <img src="/net.png" /><br />
@@ -3734,7 +3734,7 @@ the parameters are:<br />
 </g>
 </svg>, <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='-.259038 -6.605231 9.026153 6.804489' style="max-height: 0.7569em; vertical-align: -0.0673em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='-.259038 -6.605231 9.026153 6.804489' style="max-height: 0.6585em; vertical-align: -0.0181em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g5-44' d='m9.026152-6.346202v-.159402h-1.843088v.159402c.547945 .049813 .647572 .119552 .647572 .398506c0 .169365-.069738 .398506-.209215 .667497l-1.863014 3.666252l-.398506-4.004981l-.009963-.139477c0-.408468 .14944-.537983 .67746-.587796v-.159402h-2.371108v.159402c.577833 .019925 .67746 .089664 .747198 .577833l.089664 .687422l-1.713574 3.466999l-.438356-4.044832l-.009963-.139477c0-.388543 .119552-.478207 .727273-.547945v-.159402h-2.351183v.159402c.318804 .039851 .408468 .069738 .508095 .14944c.119552 .119552 .159402 .288917 .278954 1.225405l.617684 5.150685h.18929l2.211706-4.523039h.049813l.498132 4.523039h.199253l3.01868-5.808219c.268991-.508095 .368618-.597758 .747198-.71731z'/>
 </defs>
@@ -9500,13 +9500,13 @@ furthermore, here the expression <a href="/convolutional_neural_network.html#eq-
 </div>
 </div>
 </div>
-<div id="outline-container-org38ec101" class="outline-2">
-<h2 id="org38ec101">architecture</h2>
-<div class="outline-text-2" id="text-org38ec101">
+<div id="outline-container-org835cc8c" class="outline-2">
+<h2 id="org835cc8c">architecture</h2>
+<div class="outline-text-2" id="text-org835cc8c">
 </div>
-<div id="outline-container-orgd06762f" class="outline-3">
-<h3 id="orgd06762f">LeNet-5</h3>
-<div class="outline-text-3" id="text-orgd06762f">
+<div id="outline-container-org00f252e" class="outline-3">
+<h3 id="org00f252e">LeNet-5</h3>
+<div class="outline-text-3" id="text-org00f252e">
 <p>
 the <b>lenet-5</b> one of the earliest and most basic CNN architecture.<br />
 it consists of 7 layers. the first layer consists of an input image with dimensions of 32x32. it is convolved with 6 filters of size 5x5 resulting in dimension of 28x28x6. the second layer is a pooling operation with a filter of size 2×2 and stride of 2. hence the resulting image dimension will be 14x14x6.<br />
@@ -9530,13 +9530,13 @@ lenet5 basic architecture<br />
 </div>
 </div>
 </div>
-<div id="outline-container-org068625a" class="outline-2">
-<h2 id="org068625a">common lisp implementation</h2>
-<div class="outline-text-2" id="text-org068625a">
+<div id="outline-container-orgdec6206" class="outline-2">
+<h2 id="orgdec6206">common lisp implementation</h2>
+<div class="outline-text-2" id="text-orgdec6206">
 </div>
-<div id="outline-container-orgcf872f5" class="outline-3">
-<h3 id="orgcf872f5">an abstract structure for networks</h3>
-<div class="outline-text-3" id="text-orgcf872f5">
+<div id="outline-container-org2fbeadb" class="outline-3">
+<h3 id="org2fbeadb">an abstract structure for networks</h3>
+<div class="outline-text-3" id="text-org2fbeadb">
 <p>
 after having studied cnn's, i realized that i need a more flexible data structure for networks than what i had in <a href="/feedforward_neural_network.html#1683060983">simple feedforward networks</a>, because with simple perceptrons i only used one type of layer, with cnn's we need to be able to build networks with arbitrary layers, so i dropped my previous progress and started over:<br />
 </p>
@@ -9583,9 +9583,9 @@ after having studied cnn's, i realized that i need a more flexible data structur
 </div>
 </div>
 </div>
-<div id="outline-container-org0c57239" class="outline-3">
-<h3 id="org0c57239">convolutional layer</h3>
-<div class="outline-text-3" id="text-org0c57239">
+<div id="outline-container-orga2786bd" class="outline-3">
+<h3 id="orga2786bd">convolutional layer</h3>
+<div class="outline-text-3" id="text-orga2786bd">
 <p>
 we use the relu by default to reduce the risk of a vanishing gradient.<br />
 </p>
@@ -9696,9 +9696,9 @@ time to implement different types of layers, starting with convolutional layer:<
 </div>
 </div>
 </div>
-<div id="outline-container-orgdcc418f" class="outline-3">
-<h3 id="orgdcc418f">pooling layer</h3>
-<div class="outline-text-3" id="text-orgdcc418f">
+<div id="outline-container-orga412965" class="outline-3">
+<h3 id="orga412965">pooling layer</h3>
+<div class="outline-text-3" id="text-orga412965">
 <p>
 pooling layer:<br />
 </p>
@@ -9751,9 +9751,9 @@ pooling layer:<br />
 </div>
 </div>
 </div>
-<div id="outline-container-org4442df9" class="outline-3">
-<h3 id="org4442df9">flatten layer</h3>
-<div class="outline-text-3" id="text-org4442df9">
+<div id="outline-container-org5cd9dd6" class="outline-3">
+<h3 id="org5cd9dd6">flatten layer</h3>
+<div class="outline-text-3" id="text-org5cd9dd6">
 <p>
 a flatten layer, which is used to reduce dimensionality to 1d (to vectorize the input tensor), and doesnt have any parameters:<br />
 </p>
@@ -9768,9 +9768,9 @@ a flatten layer, which is used to reduce dimensionality to 1d (to vectorize the 
 </div>
 </div>
 </div>
-<div id="outline-container-orgb4ed17c" class="outline-3">
-<h3 id="orgb4ed17c">dense layer</h3>
-<div class="outline-text-3" id="text-orgb4ed17c">
+<div id="outline-container-orgd214b45" class="outline-3">
+<h3 id="orgd214b45">dense layer</h3>
+<div class="outline-text-3" id="text-orgd214b45">
 <p>
 a dense layer, or a fully connected layer:<br />
 </p>
@@ -9798,9 +9798,9 @@ a dense layer, or a fully connected layer:<br />
 </div>
 </div>
 </div>
-<div id="outline-container-org313e495" class="outline-3">
-<h3 id="org313e495">test code</h3>
-<div class="outline-text-3" id="text-org313e495">
+<div id="outline-container-orgf88407d" class="outline-3">
+<h3 id="orgf88407d">test code</h3>
+<div class="outline-text-3" id="text-orgf88407d">
 <p>
 feedforwarding test in convolutional layers, with an (randomly generated) input image of depth 3 (3 channels), width 6 and height 6 (in the code columns and rows, respectively), like in <a href="/convolutional_neural_network.html#fig-convlayer">fig-convlayer</a>:<br />
 </p>
@@ -9937,9 +9937,9 @@ we got 10 values out, as expected (the size of the output layer is 10)<br />
 </p>
 </div>
 </div>
-<div id="outline-container-org3531d7d" class="outline-3">
-<h3 id="org3531d7d">convolutional layer backprop</h3>
-<div class="outline-text-3" id="text-org3531d7d">
+<div id="outline-container-org3793ac0" class="outline-3">
+<h3 id="org3793ac0">convolutional layer backprop</h3>
+<div class="outline-text-3" id="text-org3793ac0">
 <p>
 its time to implement backpropagation!<br />
 a table of the variables in the code and their counterparts in the math formulas:<br />
@@ -10339,9 +10339,9 @@ i had to go back and edit the definition of the <code>pooling-layer</code> class
 </p>
 </div>
 </div>
-<div id="outline-container-org0c3c33c" class="outline-3">
-<h3 id="org0c3c33c">pooling layer backprop</h3>
-<div class="outline-text-3" id="text-org0c3c33c">
+<div id="outline-container-org99f4d46" class="outline-3">
+<h3 id="org99f4d46">pooling layer backprop</h3>
+<div class="outline-text-3" id="text-org99f4d46">
 <p>
 backprop for pooling layer:<br />
 </p>
@@ -10390,9 +10390,9 @@ backprop for pooling layer:<br />
 </div>
 </div>
 </div>
-<div id="outline-container-org29e9228" class="outline-3">
-<h3 id="org29e9228">flatten layer backprop</h3>
-<div class="outline-text-3" id="text-org29e9228">
+<div id="outline-container-org5024446" class="outline-3">
+<h3 id="org5024446">flatten layer backprop</h3>
+<div class="outline-text-3" id="text-org5024446">
 <p>
 backprop for flatten layers is probably the simplest, we only need to reshape the deltas and pass them on:<br />
 </p>
@@ -10404,9 +10404,9 @@ backprop for flatten layers is probably the simplest, we only need to reshape th
 </div>
 </div>
 </div>
-<div id="outline-container-org55ce9d0" class="outline-3">
-<h3 id="org55ce9d0">test code</h3>
-<div class="outline-text-3" id="text-org55ce9d0">
+<div id="outline-container-org553e008" class="outline-3">
+<h3 id="org553e008">test code</h3>
+<div class="outline-text-3" id="text-org553e008">
 <p>
 time for a simple propbackward test:<br />
 </p>
@@ -10448,9 +10448,9 @@ although there are some things that can be improved (i think im doing unnecessar
 </p>
 </div>
 </div>
-<div id="outline-container-orgeb5a3a8" class="outline-3">
-<h3 id="orgeb5a3a8">printing/formatting networks</h3>
-<div class="outline-text-3" id="text-orgeb5a3a8">
+<div id="outline-container-org1e4a8c4" class="outline-3">
+<h3 id="org1e4a8c4">printing/formatting networks</h3>
+<div class="outline-text-3" id="text-org1e4a8c4">
 <p>
 it would help to be able to inspect a network and see for example how many parameters it has so we implement a <code>print-object</code> function:<br />
 </p>
@@ -10501,9 +10501,9 @@ total network weights: 61470&gt;
 </div>
 </div>
 </div>
-<div id="outline-container-orgd151ed3" class="outline-3">
-<h3 id="orgd151ed3">full pass propagation and training</h3>
-<div class="outline-text-3" id="text-orgd151ed3">
+<div id="outline-container-org2780754" class="outline-3">
+<h3 id="org2780754">full pass propagation and training</h3>
+<div class="outline-text-3" id="text-org2780754">
 <p>
 now we need a function that takes a set of examples and trains a network<br />
 </p>
@@ -10523,9 +10523,9 @@ now we need a function that takes a set of examples and trains a network<br />
 </div>
 </div>
 </div>
-<div id="outline-container-org496114f" class="outline-3">
-<h3 id="org496114f">test code</h3>
-<div class="outline-text-3" id="text-org496114f">
+<div id="outline-container-org4833895" class="outline-3">
+<h3 id="org4833895">test code</h3>
+<div class="outline-text-3" id="text-org4833895">
 <p>
 lets try a simple example:<br />
 </p>
@@ -10583,9 +10583,9 @@ i gave training on mnist with cnn a shot and tackled the issue of a vanishing gr
 </p>
 </div>
 </div>
-<div id="outline-container-org8e0e8e3" class="outline-3">
-<h3 id="org8e0e8e3">backprop optimization</h3>
-<div class="outline-text-3" id="text-org8e0e8e3">
+<div id="outline-container-org903b1f3" class="outline-3">
+<h3 id="org903b1f3">backprop optimization</h3>
+<div class="outline-text-3" id="text-org903b1f3">
 <div class="any" id="any:optimization1">
 <p>
 if we reconsider the equations <a href="/convolutional_neural_network.html#eq-convnet-weight-delta">eq-convnet-weight-delta</a>, we'll find that we're doing alot of redundant work, as mentioned in <a href="/convolutional_neural_network.html#not-convnet-I-indicies">not-convnet-I-indicies</a>, there are indicies we're iterating over that we have to ignore, so we could cut them out of the loop which will tremendously reduce the number of iterations.<br />
@@ -11757,7 +11757,7 @@ what the equations <?xml version='1.0' encoding='UTF-8'?>
 </g>
 </svg> as its a free variable and doesnt depend on others), combining that with <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='-.199265 -6.316312 2.769613 6.405974' style="max-height: 0.7290em; vertical-align: -0.0590em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='-.199265 -6.316312 2.769613 6.405974' style="max-height: 0.6798em; vertical-align: -0.0590em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g9-56' d='m2.34122-1.026152l-.129514-.109589c-.428394 .56787-.647572 .777086-.816936 .777086c-.079701 0-.159402-.069738-.159402-.14944c0-.159402 .099626-.458281 .159402-.657534l.876712-3.20797l-.029888-.019925c-1.006227 .18929-1.205479 .219178-1.594022 .249066v.159402c.537983 .009963 .627646 .039851 .627646 .239103c0 .079701-.029888 .249066-.089664 .438356l-.478207 1.763387c-.159402 .597758-.219178 .886675-.219178 1.085928c0 .368618 .159402 .56787 .458281 .56787c.468244 0 .826899-.298879 1.39477-1.135741zm.408468-4.83188c0-.288917-.229141-.547945-.498132-.547945s-.468244 .219178-.468244 .52802c0 .318804 .18929 .52802 .478207 .52802c.259029 0 .488169-.229141 .488169-.508095z'/>
 </defs>
@@ -11768,7 +11768,7 @@ what the equations <?xml version='1.0' encoding='UTF-8'?>
 </g>
 </svg>, which depends on the then-constant <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='-.029902 -4.363634 4.98132 4.453296' style="max-height: 0.4833em; vertical-align: -0.0590em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='-.029902 -4.363634 4.98132 4.453296' style="max-height: 0.5325em; vertical-align: -0.0590em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g3-68' d='m4.732254-1.075965l-.139477-.089664c-.52802 .657534-.667497 .787049-.826899 .787049c-.069738 0-.109589-.059776-.109589-.169365c0-.059776 0-.059776 .18929-.777086l.787049-2.978829h-.737235c-.537983 1.474471-.647572 1.713574-1.09589 2.430884c-.597758 .946451-1.085928 1.454545-1.404732 1.454545c-.129514 0-.209215-.099626-.209215-.249066c0-.039851 0-.059776 .009963-.089664l.9066-3.616438l-.029888-.019925c-.56787 .129514-.926526 .199253-1.494396 .268991v.139477c.37858 0 .398506 .009963 .488169 .059776c.059776 .019925 .109589 .109589 .109589 .179328c0 .079701-.049813 .33873-.139477 .667497l-.368618 1.414695c-.18929 .727273-.249066 1.036115-.249066 1.225405c0 .368618 .179328 .547945 .52802 .547945c.707347 0 1.235367-.537983 2.381071-2.460772c-.298879 1.09589-.448319 1.743462-.448319 1.96264c0 .308842 .179328 .478207 .478207 .478207c.468244 0 .687422-.18929 1.374844-1.165629z'/>
 </defs>
@@ -12817,9 +12817,9 @@ after coming up with this, i had to go back and edit the backpropagation functio
 </div>
 </div>
 </div>
-<div id="outline-container-org14094a6" class="outline-3">
-<h3 id="org14094a6">distributed training</h3>
-<div class="outline-text-3" id="text-org14094a6">
+<div id="outline-container-org6b44a4d" class="outline-3">
+<h3 id="org6b44a4d">distributed training</h3>
+<div class="outline-text-3" id="text-org6b44a4d">
 <p>
 perhaps distributed training would help, so i decided to work on a simple multithreaded solution before going for a gpu solution.<br />
 here implement distributed training by data parallelism with the help of <a href="/common_lisp_lparallel.html#1691677477">lparallel</a>, two packages are needed, <code>lparallel</code> and <code>serapeum</code>, both installable from <a href="/common_lisp.html#1677249560">quicklisp</a>.<br />
@@ -12952,9 +12952,9 @@ although cpu multithreading can speed up training, a gpu is still alot faster in
 </p>
 </div>
 </div>
-<div id="outline-container-orgb8526d4" class="outline-3">
-<h3 id="orgb8526d4">analyzing accuracy and loss</h3>
-<div class="outline-text-3" id="text-orgb8526d4">
+<div id="outline-container-org8bd67a8" class="outline-3">
+<h3 id="org8bd67a8">analyzing accuracy and loss</h3>
+<div class="outline-text-3" id="text-org8bd67a8">
 <p>
 we also need a function to get the total error of the network:<br />
 </p>
@@ -12974,9 +12974,9 @@ we also need a function to get the total error of the network:<br />
 </div>
 </div>
 </div>
-<div id="outline-container-org7103ccb" class="outline-3">
-<h3 id="org7103ccb">saving parameters to disk</h3>
-<div class="outline-text-3" id="text-org7103ccb">
+<div id="outline-container-org09d1cde" class="outline-3">
+<h3 id="org09d1cde">saving parameters to disk</h3>
+<div class="outline-text-3" id="text-org09d1cde">
 <p>
 we may also want to save the weights of a network to a file for later reloading:<br />
 </p>

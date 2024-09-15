@@ -33,9 +33,9 @@
 (Peter Norvig, Stuart J. Russell, 2020 section 7.5.4)<br />
 a family of inference algorithms<br />
 </p>
-<div id="outline-container-org46ec35a" class="outline-2">
-<h2 id="org46ec35a">propositional logic chaining</h2>
-<div class="outline-text-2" id="text-org46ec35a">
+<div id="outline-container-org279aa4d" class="outline-2">
+<h2 id="org279aa4d">propositional logic chaining</h2>
+<div class="outline-text-2" id="text-org279aa4d">
 <p>
 the forward-chaining algorithm <?xml version='1.0' encoding='UTF-8'?>
 
@@ -1171,9 +1171,9 @@ the <a href="/backward_chaining.html#1695127100">backward chaining</a> algorithm
 </p>
 </div>
 </div>
-<div id="outline-container-org65e7321" class="outline-2">
-<h2 id="org65e7321">first-order logic chaining</h2>
-<div class="outline-text-2" id="text-org65e7321">
+<div id="outline-container-org88c6261" class="outline-2">
+<h2 id="org88c6261">first-order logic chaining</h2>
+<div class="outline-text-2" id="text-org88c6261">
 <p>
 <a href="/forward_chaining.html#fig-forward-chaining-3">fig-forward-chaining-3</a> shows a simple forward chaining inference algorithm for first-order logic. starting from the known facts, it triggers all the rules whose premises are satisfied, adding their conclusions to the known facts. the process repeats until the query is answered (assuming that just one answer is required) or no new facts are added. notice that a fact is not "new" if it is just a renaming of a known fact—-a sentence is a renaming of another if they are identical except for the names of the variables. for example, <?xml version='1.0' encoding='UTF-8'?>
 
@@ -3208,7 +3208,7 @@ first, which values are eligible for the variable <?xml version='1.0' encoding='
 </g>
 </svg>. finally, we should also consider the empty substitution, <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.579083 6.943956 5.668745' style="max-height: 0.6658em; vertical-align: -0.0536em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.579083 6.943956 5.668745' style="max-height: 0.6166em; vertical-align: -0.0536em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <use id='g6-156' xlink:href='#g5-156' transform='scale(1.369862)'/>
 <path id='g5-156' d='m4.618184-1.992728c0-.56-.218182-1.069091-.574546-1.440001l.370909-.414546l-.24-.232727l-.385455 .421818c-.349091-.269091-.778182-.421818-1.25091-.421818c-1.156364 0-2.087274 .930909-2.087274 2.087274c0 .545455 .210909 1.047273 .567273 1.425455l-.385455 .421818l.24 .232727l.392727-.429091c.349091 .269091 .792728 .429091 1.272728 .429091c1.149091 0 2.080001-.930909 2.080001-2.080001zm-.327273 0c0 .967273-.785455 1.752728-1.752728 1.752728c-.4 0-.763637-.130909-1.054546-.349091l2.341819-2.603637c.290909 .312727 .465455 .734546 .465455 1.200001zm-.72-1.425455l-2.334546 2.603637c-.283636-.312727-.458182-.727273-.458182-1.178182c0-.974546 .785455-1.760001 1.760001-1.760001c.385455 0 .741818 .123636 1.032728 .334546z'/>
@@ -3221,7 +3221,7 @@ first, which values are eligible for the variable <?xml version='1.0' encoding='
 </svg>.<br />
 for each combination of variables we need to generate all variations of constants such that <b>repetition is allowed and order matters</b>, repetition should be allowed because different variables shuold be able to hold the same constant value, and order should matter because it matters which variable gets substituted by which constant value. the total number of variations for a combination of variables of length <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='-.199265 -6.316312 2.769613 6.405974' style="max-height: 0.7290em; vertical-align: -0.0590em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='-.199265 -6.316312 2.769613 6.405974' style="max-height: 0.6798em; vertical-align: -0.0590em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g9-56' d='m2.34122-1.026152l-.129514-.109589c-.428394 .56787-.647572 .777086-.816936 .777086c-.079701 0-.159402-.069738-.159402-.14944c0-.159402 .099626-.458281 .159402-.657534l.876712-3.20797l-.029888-.019925c-1.006227 .18929-1.205479 .219178-1.594022 .249066v.159402c.537983 .009963 .627646 .039851 .627646 .239103c0 .079701-.029888 .249066-.089664 .438356l-.478207 1.763387c-.159402 .597758-.219178 .886675-.219178 1.085928c0 .368618 .159402 .56787 .458281 .56787c.468244 0 .826899-.298879 1.39477-1.135741zm.408468-4.83188c0-.288917-.229141-.547945-.498132-.547945s-.468244 .219178-.468244 .52802c0 .318804 .18929 .52802 .478207 .52802c.259029 0 .488169-.229141 .488169-.508095z'/>
 </defs>
