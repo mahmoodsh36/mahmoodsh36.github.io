@@ -37,9 +37,9 @@ load it using <a href="/common_lisp.html#1677249560">quicklisp</a>:<br />
 <pre class="src src-lisp"><span style="color: #d0730f;">(</span>ql:quickload <span style="color: #ff7a7f; font-weight: bold;">:cl-cuda</span><span style="color: #d0730f;">)</span>
 </pre>
 </div>
-<div id="outline-container-orgb58f2af" class="outline-2">
-<h2 id="orgb58f2af">arch linux setup</h2>
-<div class="outline-text-2" id="text-orgb58f2af">
+<div id="outline-container-orgf23df30" class="outline-2">
+<h2 id="orgf23df30">arch linux setup</h2>
+<div class="outline-text-2" id="text-orgf23df30">
 <p>
 i had to install <code>cuda</code> for the <code>nvcc</code> compiler and more, and <code>nvidia</code> for the gpu driver, at first you may have to use <code>/opt/cuda/bin/nvcc</code> until you reboot or extend your $PATH.<br />
 to check which nvidia driver is in use run:<br />
@@ -54,13 +54,13 @@ if you have installed the <code>nvidia</code> package and your os still uses <co
 </p>
 </div>
 </div>
-<div id="outline-container-org3817990" class="outline-2">
-<h2 id="org3817990">essential concepts</h2>
-<div class="outline-text-2" id="text-org3817990">
+<div id="outline-container-orgdfc92b0" class="outline-2">
+<h2 id="orgdfc92b0">essential concepts</h2>
+<div class="outline-text-2" id="text-orgdfc92b0">
 </div>
-<div id="outline-container-org3ca246e" class="outline-3">
-<h3 id="org3ca246e">threads</h3>
-<div class="outline-text-3" id="text-org3ca246e">
+<div id="outline-container-org13f3f37" class="outline-3">
+<h3 id="org13f3f37">threads</h3>
+<div class="outline-text-3" id="text-org13f3f37">
 <p>
 mostly from <a href="https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#programming-model">https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#programming-model</a>.<br />
 i also read the examples from the cl-cuda's source code.<br />
@@ -74,9 +74,9 @@ for efficient cooperation, the shared memory is expected to be a low-latency mem
 </p>
 </div>
 </div>
-<div id="outline-container-orgc6ed389" class="outline-3">
-<h3 id="orgc6ed389">memory</h3>
-<div class="outline-text-3" id="text-orgc6ed389">
+<div id="outline-container-org29bc13a" class="outline-3">
+<h3 id="org29bc13a">memory</h3>
+<div class="outline-text-3" id="text-org29bc13a">
 <p>
 CUDA threads may access data from multiple memory spaces during their execution. each thread has private <b>local memory</b>. each thread block has <b>shared memory</b> visible to all threads of the block and with the same lifetime as the block. thread blocks in a thread block cluster can perform read, write, and atomics operations on each other’s shared memory. all threads have access to the same <b>global memory</b>.<br />
 there are also two additional read-only memory spaces accessible by all threads: the constant and texture memory spaces. the global, constant, and texture memory spaces are optimized for different memory usages. texture memory also offers different addressing modes, as well as data filtering, for some specific data formats.<br />
@@ -87,9 +87,9 @@ unified memory provides managed memory to bridge the host and device memory spac
 </p>
 </div>
 </div>
-<div id="outline-container-org9149c7e" class="outline-3">
-<h3 id="org9149c7e">device memory</h3>
-<div class="outline-text-3" id="text-org9149c7e">
+<div id="outline-container-org1ee2d2c" class="outline-3">
+<h3 id="org1ee2d2c">device memory</h3>
+<div class="outline-text-3" id="text-org1ee2d2c">
 <p>
 the CUDA programming model assumes a system composed of a host and a device, each with their own separate memory. kernels operate out of device memory, so the runtime provides functions to allocate, deallocate, and copy device memory, as well as transfer data between host memory and device memory.<br />
 device memory can be allocated either as linear memory or as <b>CUDA arrays</b>.<br />
@@ -99,9 +99,9 @@ CUDA arrays are opaque memory layouts optimized for texture fetching.<br />
 </div>
 </div>
 </div>
-<div id="outline-container-org697b369" class="outline-2">
-<h2 id="org697b369">code</h2>
-<div class="outline-text-2" id="text-org697b369">
+<div id="outline-container-orgf0b52cd" class="outline-2">
+<h2 id="orgf0b52cd">code</h2>
+<div class="outline-text-2" id="text-orgf0b52cd">
 <p>
 see connect to remote common lisp repl with sly/slime for connecting to a remote common lisp repl with <a href="/emacs.html#1707341556">emacs</a>.<br />
 </p>
@@ -114,9 +114,9 @@ notice that when working cl-cuda the data that we're passing to the gpu is gonna
 
 </div>
 </div>
-<div id="outline-container-org7da572d" class="outline-3">
-<h3 id="org7da572d">cuda vector addition</h3>
-<div class="outline-text-3" id="text-org7da572d">
+<div id="outline-container-org4fa76d5" class="outline-3">
+<h3 id="org4fa76d5">cuda vector addition</h3>
+<div class="outline-text-3" id="text-org4fa76d5">
 <p>
 we start with the vectorAdd example, a simple example in C, stolen from <a href="https://github.com/NVIDIA/cuda-samples/blob/master/Samples/0_Introduction/vectorAdd/vectorAdd.cu">https://github.com/NVIDIA/cuda-samples/blob/master/Samples/0_Introduction/vectorAdd/vectorAdd.cu</a> and modified to reduce boilerplate code.<br />
 the syntax for calling a kernel in c++ is <code>vector&lt;&lt;&lt; blocks per grid, threads per block &gt;&gt;&gt;(arg1,arg2,...)</code>.<br />
@@ -222,15 +222,15 @@ similar same code but in cl:<br />
 </div>
 </div>
 </div>
-<div id="outline-container-orgae1a6ee" class="outline-3">
-<h3 id="orgae1a6ee">cuda matrix multiplication</h3>
-<div class="outline-text-3" id="text-orgae1a6ee">
+<div id="outline-container-orgf8315a0" class="outline-3">
+<h3 id="orgf8315a0">cuda matrix multiplication</h3>
+<div class="outline-text-3" id="text-orgf8315a0">
 <p>
 mostly taken from <a href="https://docs.nvidia.com/deeplearning/performance/dl-performance-matrix-multiplication/index.html">https://docs.nvidia.com/deeplearning/performance/dl-performance-matrix-multiplication/index.html</a> and <a href="https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#programming-model">https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#programming-model</a>.<br />
 before implementing matrix multiplication for the <b>gpu</b> we need to consider some things.<br />
 the product of two matrices <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.747183 -6.605231 54.804462 8.194154' style="max-height: 0.9190em; vertical-align: -0.2083em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.747183 -6.605231 54.804462 8.194154' style="max-height: 0.8698em; vertical-align: -0.2083em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g0-2' d='m4.218184-.254546l-1.621819-1.614546l1.621819-1.621819l-.290909-.290909l-1.614546 1.621819l-1.614546-1.621819l-.290909 .290909l1.614546 1.621819l-1.614546 1.614546l.290909 .290909l1.614546-1.621819l1.614546 1.621819l.290909-.290909z'/>
 <path id='g2-32' d='m5.076366 0l-.007273-.116364c-.516364-.043636-.56-.065455-.8-.407273l-1.498182-2.203637l2.392728-1.643637c.24-.152727 .407273-.232727 .596364-.261818v-.116364h-1.760001v.116364l.225455 .021818c.203636 .014545 .283636 .058182 .283636 .138182c.007273 .174546-.312727 .450909-1.149091 .974546l-1.243637 .778182l.378182-1.374546c.109091-.363637 .334546-.509091 .821819-.538182v-.116364h-2.305456v.116364c.523637 .043636 .647273 .101818 .654546 .312727c0 .109091-.007273 .254546-.072727 .450909l-.872728 3.214547c-.130909 .436364-.189091 .472727-.676364 .538182l.007273 .116364h2.087274l-.007273-.116364c-.523637-.050909-.596364-.094545-.603637-.32c0-.08 0-.130909 .050909-.283636l.043636-.152727l.450909-1.658183l1.054546 1.512728c.218182 .298182 .334546 .552728 .334546 .690909c.007273 .109091-.109091 .167273-.385455 .189091l-.254546 .021818l.007273 .116364h2.247274z'/>
@@ -255,7 +255,7 @@ the product of two matrices <?xml version='1.0' encoding='UTF-8'?>
 </g>
 </svg> results in a matrix <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='-.159406 -6.605231 26.095954 8.194154' style="max-height: 0.9190em; vertical-align: -0.2083em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='-.159406 -6.605231 26.095954 8.194154' style="max-height: 0.8698em; vertical-align: -0.2083em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g0-2' d='m4.218184-.254546l-1.621819-1.614546l1.621819-1.621819l-.290909-.290909l-1.614546 1.621819l-1.614546-1.621819l-.290909 .290909l1.614546 1.621819l-1.614546 1.614546l.290909 .290909l1.614546-1.621819l1.614546 1.621819l.290909-.290909z'/>
 <path id='g2-34' d='m5.963639 0l-.007273-.116364c-.567273-.043636-.647273-.08-.654546-.312727c-.007273-.123636 .007273-.210909 .08-.443637l.974546-3.22182c.145455-.436364 .181818-.472727 .690909-.538182v-.116364h-1.381819l-2.676365 3.585456l-.574546-3.585456h-1.541819v.116364c.421818 .021818 .625455 .101818 .632728 .269091c0 .058182-.036364 .167273-.072727 .298182l-.058182 .218182c-.254546 .923637-.494546 1.861819-.741818 2.785456c-.225455 .756364-.349091 .901819-.785455 .945455l.007273 .116364h1.65091l-.007273-.116364c-.429091-.029091-.589091-.116364-.596364-.32c0-.08 .029091-.254546 .058182-.385455l.821819-3.076365l.610909 3.898183h.138182l3.003638-4.080002l-1.04 3.418183c-.116364 .385455-.276364 .494546-.821819 .545455l.007273 .116364h2.283637z'/>
@@ -272,7 +272,7 @@ the product of two matrices <?xml version='1.0' encoding='UTF-8'?>
 </g>
 </svg> which contains <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.498132 -6.605231 23.795074 6.744708' style="max-height: 0.7569em; vertical-align: -0.0673em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.498132 -6.605231 23.795074 6.744708' style="max-height: 0.7077em; vertical-align: -0.0673em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <use id='g1-1' xlink:href='#g0-1' transform='scale(1.369862)'/>
 <path id='g0-1' d='m1.316364-1.861819c0-.225455-.189091-.414546-.407273-.414546s-.4 .181818-.4 .414546c0 .276364 .247273 .392727 .4 .392727s.407273-.123636 .407273-.392727z'/>
@@ -288,7 +288,7 @@ the product of two matrices <?xml version='1.0' encoding='UTF-8'?>
 </g>
 </svg> values, each of which is a dot product of K-element <a href="/vector.html#1703224357">vector</a>s. thus a total of <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.498132 -6.605231 38.464371 6.744708' style="max-height: 0.7569em; vertical-align: -0.0673em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.498132 -6.605231 38.464371 6.744708' style="max-height: 0.7077em; vertical-align: -0.0673em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <use id='g1-1' xlink:href='#g0-1' transform='scale(1.369862)'/>
 <path id='g0-1' d='m1.316364-1.861819c0-.225455-.189091-.414546-.407273-.414546s-.4 .181818-.4 .414546c0 .276364 .247273 .392727 .4 .392727s.407273-.123636 .407273-.392727z'/>
@@ -307,7 +307,7 @@ the product of two matrices <?xml version='1.0' encoding='UTF-8'?>
 </g>
 </svg> fused multiply-adds are needed to compute the product. each FMA is 2 operations, a (scalar) multiplication and an addition, so a total of <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.729763 51.061449 6.869239' style="max-height: 0.7780em; vertical-align: -0.0673em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.729763 51.061449 6.869239' style="max-height: 0.7288em; vertical-align: -0.0673em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g3-32' d='m6.156912 0v-.159402c-.627646-.059776-.687422-.089664-.966376-.557908l-1.733499-3.01868l2.988792-2.251557c.288917-.209215 .508095-.318804 .747198-.358655v-.159402h-2.211706v.159402l.268991 .029888c.239103 .019925 .33873 .079701 .33873 .18929c0 .239103-.547945 .767123-1.43462 1.39477l-1.514321 1.05604l.52802-1.932752c.14944-.498132 .418431-.697385 1.006227-.737235v-.159402h-2.719801v.159402c.627646 .059776 .767123 .139477 .767123 .428394c0 .14944-.029888 .348692-.109589 .617684l-1.225405 4.403487c-.179328 .597758-.229141 .647572-.816936 .737235v.159402h2.470735v-.159402c-.627646-.069738-.71731-.129514-.71731-.438356c0-.109589 .009963-.179328 .079701-.388543l.059776-.209215l.617684-2.271482l1.205479 2.072229c.239103 .408468 .37858 .757161 .37858 .946451c0 .14944-.139477 .229141-.458281 .259029l-.288917 .029888v.159402h2.739726z'/>
 <path id='g3-34' d='m7.312578 0v-.159402c-.67746-.059776-.767123-.109589-.767123-.428394c0-.169365 .019925-.288917 .109589-.607721l1.225405-4.41345c.179328-.597758 .229141-.647572 .816936-.737235v-.159402h-1.663761l-3.347447 4.911582l-.547945-4.911582h-1.803238v.159402c.498132 .029888 .737235 .139477 .737235 .368618c0 .079701-.039851 .229141-.099626 .408468l-.089664 .298879l-.029888 .109589l-1.05604 3.706102c-.308842 1.036115-.458281 1.235367-.976339 1.295143v.159402h1.972603v-.159402c-.508095-.039851-.707347-.159402-.707347-.438356c0-.109589 .039851-.348692 .089664-.52802l1.175592-4.313823l.607721 5.439601h.169365l3.755915-5.589041l-1.285181 4.682441c-.159402 .52802-.358655 .67746-1.006227 .747198v.159402h2.719801z'/>
