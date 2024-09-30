@@ -26,6 +26,14 @@
   <div id="darkModeToggle" onclick="toggleDarkMode()">
     &#9680; <!-- Circle with left half black -->
   </div>
+</div>
+<div class="toc">
+  <span class="toc-title-container">
+    <a class='feather' data-feather='menu'></a>
+    <span class="toc-title">table of contents</span>
+  </span>
+  <div class="toc-list">
+  </div>
 </div><h1 class="main-title">database course homework 3</h1><span class='date'>2024-01-11</span>
 </div>
 <div id="content" class="content">
@@ -45,13 +53,13 @@ i used postgresql to do this homework.<br />
 </p>
 
 </div>
-<div id="outline-container-orgb4203c1" class="outline-2">
-<h2 id="orgb4203c1">sample data</h2>
-<div class="outline-text-2" id="text-orgb4203c1">
+<div id="outline-container-org65a9621" class="outline-2">
+<h2 id="org65a9621">sample data</h2>
+<div class="outline-text-2" id="text-org65a9621">
 <p>
 here i insert some dummy data for testing<br />
 </p>
-<div class="org-src-container" data-language="sql">
+<div class="org-src-container">
 <pre class="src src-sql"><span style="color: #cf9f7f; font-style: italic;">-- </span><span style="color: #cf9f7f; font-style: italic;">customers</span>
 <span style="color: #c48702; font-weight: bold;">INSERT</span> <span style="color: #c48702; font-weight: bold;">INTO</span> customer <span style="color: #d0730f;">(</span>first_name, family_name, customer_id, hometown, street, house_number, phone_number, customer_type<span style="color: #d0730f;">)</span>
             <span style="color: #c48702; font-weight: bold;">VALUES</span><span style="color: #d0730f;">(</span><span style="color: #f06a3f;">'some'</span>, <span style="color: #f06a3f;">'one'</span>, <span style="color: #f06a3f;">'111'</span>, <span style="color: #f06a3f;">'netanya'</span>, <span style="color: #f06a3f;">'hertzel'</span>, <span style="color: #f06a3f;">'22'</span>, <span style="color: #f06a3f;">'503344556'</span>, <span style="color: #f06a3f;">'private'</span><span style="color: #d0730f;">)</span>;
@@ -140,9 +148,9 @@ here i insert some dummy data for testing<br />
 </table>
 </div>
 </div>
-<div id="outline-container-org31a846c" class="outline-2">
-<h2 id="org31a846c">homework problem set</h2>
-<div class="outline-text-2" id="text-org31a846c">
+<div id="outline-container-orgd6a500b" class="outline-2">
+<h2 id="orgd6a500b">homework problem set</h2>
+<div class="outline-text-2" id="text-orgd6a500b">
 <div class="fancy-block problem" data-before="&lt;p&gt;
 problem: &lt;/p&gt;
 " data-after="">
@@ -160,7 +168,7 @@ return all customers, show first name, last name, id, hometown, street, house nu
 <div class="fancy-block solution" data-before="&lt;p&gt;
 solution: &lt;/p&gt;
 " data-after="">
-<div class="org-src-container" data-language="sql">
+<div class="org-src-container">
 <pre class="src src-sql"><span style="color: #c48702; font-weight: bold;">SELECT</span> * <span style="color: #c48702; font-weight: bold;">FROM</span> customer;
 </pre>
 </div>
@@ -245,7 +253,7 @@ return the name of owners (first name and last name), id, phone number and ids.<
 <div class="fancy-block solution" data-before="&lt;p&gt;
 solution: &lt;/p&gt;
 " data-after="">
-<div class="org-src-container" data-language="sql">
+<div class="org-src-container">
 <pre class="src src-sql"><span style="color: #c48702; font-weight: bold;">SELECT</span>
   CONCAT<span style="color: #d0730f;">(</span>c.first_name, <span style="color: #f06a3f;">' '</span>, c.family_name<span style="color: #d0730f;">)</span> <span style="color: #c48702; font-weight: bold;">AS</span> <span style="color: #c48702; font-weight: bold;">name</span>, c.customer_id, c.phone_number
 <span style="color: #c48702; font-weight: bold;">FROM</span> customer c
@@ -291,7 +299,7 @@ return the name of a worker (first name and last name) that has done the mainten
 <div class="fancy-block solution" data-before="&lt;p&gt;
 solution: &lt;/p&gt;
 " data-after="">
-<div class="org-src-container" data-language="sql">
+<div class="org-src-container">
 <pre class="src src-sql"><span style="color: #c48702; font-weight: bold;">SELECT</span>
   CONCAT<span style="color: #d0730f;">(</span>c.first_name, <span style="color: #f06a3f;">' '</span>, c.family_name<span style="color: #d0730f;">)</span> <span style="color: #c48702; font-weight: bold;">AS</span> <span style="color: #c48702; font-weight: bold;">name</span>, <span style="color: #c48702; font-weight: bold;">m</span>.car_number, <span style="color: #c48702; font-weight: bold;">m</span>.garage_name, <span style="color: #c48702; font-weight: bold;">m</span>.maintenance_date
 <span style="color: #c48702; font-weight: bold;">FROM</span> customer c
@@ -383,7 +391,7 @@ return for each car its car number, car type, manufacturing company name, produc
 <div class="fancy-block solution" data-before="&lt;p&gt;
 solution: &lt;/p&gt;
 " data-after="">
-<div class="org-src-container" data-language="sql">
+<div class="org-src-container">
 <pre class="src src-sql"><span style="color: #c48702; font-weight: bold;">SELECT</span>
   car_number, car_type, company, production_year, engine_number, kilometers
 <span style="color: #c48702; font-weight: bold;">FROM</span> car
@@ -441,7 +449,7 @@ return the garage name and maintenance dates and the number of cars that a garag
 <div class="fancy-block solution" data-before="&lt;p&gt;
 solution: &lt;/p&gt;
 " data-after="">
-<div class="org-src-container" data-language="sql">
+<div class="org-src-container">
 <pre class="src src-sql"><span style="color: #c48702; font-weight: bold;">SELECT</span> g.garage_name, maintenance_date, num
 <span style="color: #c48702; font-weight: bold;">FROM</span>
 <span style="color: #d0730f;">(</span>
@@ -510,7 +518,7 @@ solution: &lt;/p&gt;
 <p>
 the writing is ambiguous, but i will assume we're talking about the number of maintenances in the years 2015, 2019 only.<br />
 </p>
-<div class="org-src-container" data-language="sql">
+<div class="org-src-container">
 <pre class="src src-sql"><span style="color: #c48702; font-weight: bold;">SELECT</span> garage_name, <span style="color: #ff7a7f; font-weight: bold;">COUNT</span><span style="color: #d0730f;">(</span>*<span style="color: #d0730f;">)</span> <span style="color: #c48702; font-weight: bold;">as</span> num
 <span style="color: #c48702; font-weight: bold;">FROM</span> car_maintenance
 <span style="color: #c48702; font-weight: bold;">WHERE</span> <span style="color: #d0730f;">(</span>2015 = <span style="color: #ff7a7f; font-weight: bold;">EXTRACT</span><span style="color: #64aa0f;">(</span><span style="color: #c48702; font-weight: bold;">year</span> <span style="color: #c48702; font-weight: bold;">FROM</span> maintenance_date<span style="color: #64aa0f;">)</span> <span style="color: #c48702; font-weight: bold;">OR</span> <span style="color: #ff7a7f; font-weight: bold;">EXTRACT</span><span style="color: #64aa0f;">(</span><span style="color: #c48702; font-weight: bold;">year</span> <span style="color: #c48702; font-weight: bold;">FROM</span> maintenance_date<span style="color: #64aa0f;">)</span> = 2019<span style="color: #d0730f;">)</span>
@@ -548,7 +556,7 @@ return the name of the owner of the car (first and last name) and all the mainte
 <div class="fancy-block solution" data-before="&lt;p&gt;
 solution: &lt;/p&gt;
 " data-after="">
-<div class="org-src-container" data-language="sql">
+<div class="org-src-container">
 <pre class="src src-sql"><span style="color: #c48702; font-weight: bold;">SELECT</span> <span style="color: #c48702; font-weight: bold;">m</span>.garage_name, CONCAT<span style="color: #d0730f;">(</span>c.first_name, <span style="color: #f06a3f;">' '</span>, c.family_name<span style="color: #d0730f;">)</span> <span style="color: #c48702; font-weight: bold;">AS</span> customer_name, w.car_number, <span style="color: #c48702; font-weight: bold;">m</span>.maintenance_type, <span style="color: #c48702; font-weight: bold;">m</span>.maintenance_date
 <span style="color: #c48702; font-weight: bold;">FROM</span> customer c
 <span style="color: #c48702; font-weight: bold;">INNER</span> <span style="color: #c48702; font-weight: bold;">JOIN</span> car_owner <span style="color: #c48702; font-weight: bold;">AS</span> w <span style="color: #c48702; font-weight: bold;">ON</span> w.customer_id = c.customer_id
@@ -644,7 +652,7 @@ return the name of the garage, the name of the part and the number of parts repl
 <div class="fancy-block solution" data-before="&lt;p&gt;
 solution: &lt;/p&gt;
 " data-after="">
-<div class="org-src-container" data-language="sql">
+<div class="org-src-container">
 <pre class="src src-sql"><span style="color: #c48702; font-weight: bold;">select</span> g.garage_name, r.part_name, g.num
 <span style="color: #c48702; font-weight: bold;">from</span>
 <span style="color: #d0730f;">(</span>
@@ -697,7 +705,7 @@ show the id and the names of the customers (first and last name) and the number 
 <div class="fancy-block solution" data-before="&lt;p&gt;
 solution: &lt;/p&gt;
 " data-after="">
-<div class="org-src-container" data-language="sql">
+<div class="org-src-container">
 <pre class="src src-sql"><span style="color: #c48702; font-weight: bold;">SELECT</span> CONCAT<span style="color: #d0730f;">(</span>c.first_name, <span style="color: #f06a3f;">' '</span>, c.family_name<span style="color: #d0730f;">)</span> <span style="color: #c48702; font-weight: bold;">AS</span> customer_name, <span style="color: #ff7a7f; font-weight: bold;">COUNT</span><span style="color: #d0730f;">(</span>*<span style="color: #d0730f;">)</span> <span style="color: #c48702; font-weight: bold;">as</span> num
 <span style="color: #c48702; font-weight: bold;">FROM</span> customer c
 <span style="color: #c48702; font-weight: bold;">INNER</span> <span style="color: #c48702; font-weight: bold;">JOIN</span> car_owner <span style="color: #c48702; font-weight: bold;">AS</span> o <span style="color: #c48702; font-weight: bold;">ON</span> o.customer_id = c.customer_id
@@ -741,7 +749,7 @@ show the customers names (first and last name) and the distance travelled in tot
 <div class="fancy-block solution" data-before="&lt;p&gt;
 solution: &lt;/p&gt;
 " data-after="">
-<div class="org-src-container" data-language="sql">
+<div class="org-src-container">
 <pre class="src src-sql"><span style="color: #c48702; font-weight: bold;">SELECT</span> CONCAT<span style="color: #d0730f;">(</span>c.first_name, <span style="color: #f06a3f;">' '</span>, c.family_name<span style="color: #d0730f;">)</span> <span style="color: #c48702; font-weight: bold;">AS</span> customer_name, <span style="color: #ff7a7f; font-weight: bold;">SUM</span><span style="color: #d0730f;">(</span>kilometers<span style="color: #d0730f;">)</span> <span style="color: #c48702; font-weight: bold;">as</span> num
 <span style="color: #c48702; font-weight: bold;">FROM</span> customer c
 <span style="color: #c48702; font-weight: bold;">INNER</span> <span style="color: #c48702; font-weight: bold;">JOIN</span> car_owner <span style="color: #c48702; font-weight: bold;">AS</span> o <span style="color: #c48702; font-weight: bold;">ON</span> o.customer_id = c.customer_id

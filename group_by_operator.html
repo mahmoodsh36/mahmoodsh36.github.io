@@ -26,6 +26,14 @@
   <div id="darkModeToggle" onclick="toggleDarkMode()">
     &#9680; <!-- Circle with left half black -->
   </div>
+</div>
+<div class="toc">
+  <span class="toc-title-container">
+    <a class='feather' data-feather='menu'></a>
+    <span class="toc-title">table of contents</span>
+  </span>
+  <div class="toc-list">
+  </div>
 </div><h1 class="main-title">group by operator</h1><span class='date'>2024-01-26</span>
 </div>
 <div id="content" class="content">
@@ -37,7 +45,7 @@ in many cases we want to apply an aggregate function operation to subgroups of t
 sometimes we want to retrieve the values of these functions only for groups that satisfy certain conditions. SQL provides a <code>HAVING</code> clause, which can appear in conjunction with a GROUP BY clause, for this purpose. HAVING provides a condition on the summary information regarding the group of tuples associated with each value of the grouping attributes. only the groups that satisfy the condition are retrieved in the result of the query.<br />
 for each project on which more than two employees work, retrieve the project number, the project name, and the number of employees who work on the project.<br />
 </p>
-<div class="org-src-container" data-language="sql">
+<div class="org-src-container">
 <pre class="src src-sql"><span style="color: #c48702; font-weight: bold;">SELECT</span>
   Pnumber, Pname, <span style="color: #ff7a7f; font-weight: bold;">COUNT</span> <span style="color: #d0730f;">(</span>*<span style="color: #d0730f;">)</span>
 <span style="color: #c48702; font-weight: bold;">FROM</span>

@@ -26,6 +26,14 @@
   <div id="darkModeToggle" onclick="toggleDarkMode()">
     &#9680; <!-- Circle with left half black -->
   </div>
+</div>
+<div class="toc">
+  <span class="toc-title-container">
+    <a class='feather' data-feather='menu'></a>
+    <span class="toc-title">table of contents</span>
+  </span>
+  <div class="toc-list">
+  </div>
 </div><h1 class="main-title">blk</h1><span class="desc">text navigation on your terms</span><span class='date'>2024-04-14</span>
 </div>
 <div id="content" class="content">
@@ -33,54 +41,54 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orga46ad79">introduction</a></li>
-<li><a href="#orgda7f990">motivation</a></li>
-<li><a href="#org3c41beb">main features</a>
+<li><a href="#org692e178">introduction</a></li>
+<li><a href="#orgcba38fd">motivation</a></li>
+<li><a href="#orgeff8836">main features</a>
 <ul>
-<li><a href="#orgb7cd120">org-mode specific features</a></li>
+<li><a href="#org8fdd60c">org-mode specific features</a></li>
 </ul>
 </li>
-<li><a href="#org3cd8250">basic setup</a></li>
-<li><a href="#org78f953e">demonstration of features</a>
+<li><a href="#orga6d6006">basic setup</a></li>
+<li><a href="#orgc5310e1">demonstration of features</a>
 <ul>
-<li><a href="#org6bb7735">org-mode files</a></li>
-<li><a href="#org0b8335c">org-mode blocks</a></li>
-<li><a href="#org61d3e03">org-mode headers</a></li>
-<li><a href="#orgb0d8c95">org-mode named targets</a></li>
-<li><a href="#org8e9dd40">markdown headers</a></li>
-<li><a href="#org6f5436e">linking to an elisp function</a></li>
-<li><a href="#orgb3c4853">latex labels</a></li>
-<li><a href="#orgae23939">outline navigation</a></li>
-<li><a href="#org813fdb9">latex transclusions</a></li>
+<li><a href="#orgf08946b">org-mode files</a></li>
+<li><a href="#orgc49872b">org-mode blocks</a></li>
+<li><a href="#org705016b">org-mode headers</a></li>
+<li><a href="#orga6b9a12">org-mode named targets</a></li>
+<li><a href="#org29760b4">markdown headers</a></li>
+<li><a href="#org99442a1">linking to an elisp function</a></li>
+<li><a href="#orgde25824">latex labels</a></li>
+<li><a href="#org91f6db6">outline navigation</a></li>
+<li><a href="#org4a2200a">latex transclusions</a></li>
 </ul>
 </li>
-<li><a href="#orgc74a7fc">writing custom rules</a></li>
-<li><a href="#org9a3b2e3">different greppers</a></li>
-<li><a href="#org46fcfa6">dumping the data</a></li>
-<li><a href="#org1b0f1c4">variables for customization</a></li>
-<li><a href="#org894e70a">known issues</a>
+<li><a href="#orgec011a7">writing custom rules</a></li>
+<li><a href="#org6918961">different greppers</a></li>
+<li><a href="#org227f197">dumping the data</a></li>
+<li><a href="#org6fb9a43">variables for customization</a></li>
+<li><a href="#orgdd64744">known issues</a>
 <ul>
-<li><a href="#orgc291d8d">blk-grepper-grep doesnt handle whitespaces in filepaths</a></li>
+<li><a href="#orgd767e3c">blk-grepper-grep doesnt handle whitespaces in filepaths</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orga46ad79" class="outline-2">
-<h2 id="orga46ad79">introduction</h2>
-<div class="outline-text-2" id="text-orga46ad79">
+<div id="outline-container-org692e178" class="outline-2">
+<h2 id="org692e178">introduction</h2>
+<div class="outline-text-2" id="text-org692e178">
 <p>
 <a href="https://github.com/mahmoodsh36/blk">blk</a> tries to generalize the idea of creating and navigating titles of text files, as well as making links from one file to another, or one block to another (possibly in different files). if you have used org-roam, denote, or other similar tools like obsidian and logseq, you would know that inserting links between two files (or nodes, as they're usually called) and navigating them is a must-have feature for note-taking, with <code>blk</code>, instead of restricting links to specific elements of text, such as a file or a heading, we can insert links to arbitrary forms of text, be it links to an org heading (or markdown heading), or a code block in an org file, or even links to python functions, elisp functions, or an html element (by its id).<br />
 </p>
 </div>
 </div>
-<div id="outline-container-orgda7f990" class="outline-2">
-<h2 id="orgda7f990">motivation</h2>
-<div class="outline-text-2" id="text-orgda7f990">
+<div id="outline-container-orgcba38fd" class="outline-2">
+<h2 id="orgcba38fd">motivation</h2>
+<div class="outline-text-2" id="text-orgcba38fd">
 <p>
 most note-taking packages introduce rules or syntaxes of their own, for example, <code>org-roam</code> inserts something akin to the following text to identify headers and files (which, by the way, <code>blk</code> knows how to handle):<br />
 </p>
-<div class="org-src-container" data-language="org">
+<div class="org-src-container">
 <pre class="src src-org">:PROPERTIES:
 :ID: &lt;some-random-id-here&gt;
 :END:
@@ -89,7 +97,7 @@ most note-taking packages introduce rules or syntaxes of their own, for example,
 <p>
 while this may be sufficient for most, it wasnt flexible enough for my use case, what if i wanted to identify a specific code block by a unique string like <code>org-roam</code> does for headers and files? what if i wanted to identify a list item? say i wanted to write down the axioms of a vector space and i do it in the following manner in my <code>org-mode</code> file:<br />
 </p>
-<div class="org-src-container" data-language="org">
+<div class="org-src-container">
 <pre class="src src-org"><span style="color: #c48702; font-weight: bold;">#+begin_definition</span>
 a /vector space/ is a set that satisfies the following axioms:
 - closure of addition,
@@ -102,7 +110,7 @@ a /vector space/ is a set that satisfies the following axioms:
 <p>
 so far, so good. but what if i wanted to write the following text in another org file:<br />
 </p>
-<div class="org-src-container" data-language="org">
+<div class="org-src-container">
 <pre class="src src-org">consider the second axiom of vector spaces, we..
 </pre>
 </div>
@@ -110,7 +118,7 @@ so far, so good. but what if i wanted to write the following text in another org
 shouldnt the text <b>second axiom</b> be clickable, and shouldnt it redirect the user to the third axiom of the definition we have above when clicked? an <code>org-roam</code> user would most likely insert a link to the header or the file containing the definition, but this isnt precise enough. first, it doesnt send the user to the axiom itself. second, the file <i>may</i> contain other text which would make finding the axiom the text refers to even less trivial.<br />
 to accommodate this, <code>blk</code> <i>suggests</i> the following syntax:<br />
 </p>
-<div class="org-src-container" data-language="org">
+<div class="org-src-container">
 <pre class="src src-org"><span style="color: #c48702; font-weight: bold;">#+begin_definition</span>
 a vector space is a set that satisfies the following axioms:
 - closure of addition,
@@ -123,14 +131,14 @@ a vector space is a set that satisfies the following axioms:
 <p>
 this is what the org mode documentation refers to as a <a href="https://orgmode.org/manual/Radio-Targets.html">named target</a>. org mode by default allows linking to a named target using the text <code>[[named-target-here]]</code>, so for the target above, we would write:<br />
 </p>
-<div class="org-src-container" data-language="org">
+<div class="org-src-container">
 <pre class="src src-org">consider the <span style="color: #c48702; font-weight: bold;">[[vecspace-axiom-2][second axiom]]</span> of vector spaces, we..
 </pre>
 </div>
 <p>
 but as one might guess, this only works when the both the definition and the link exist in the same file, what <code>blk</code> suggests is simply the following:<br />
 </p>
-<div class="org-src-container" data-language="org">
+<div class="org-src-container">
 <pre class="src src-org">consider the <span style="color: #c48702; font-weight: bold;">[[blk:vecspace-axiom-2][second axiom]]</span> of vector spaces, we..
 </pre>
 </div>
@@ -138,7 +146,7 @@ but as one might guess, this only works when the both the definition and the lin
 this way, no matter where you place the link, it would work, in another org file, in another markdown file, or in any other type of text file you would want (as long as a rule is defined for it, the predefined rules should cover some common use-cases such as this).<br />
 again, so far so good, but the text <b>vecspace-axiom-2</b> acts as an "id" and may be hard to remember each time you want to pull up the definition of a vector space. so again, to accommodate this, blk suggest to rewrite the definition block as the following:<br />
 </p>
-<div class="org-src-container" data-language="org">
+<div class="org-src-container">
 <pre class="src src-org"><span style="color: #c48702; font-weight: bold;">#+name</span>: vecspace
 <span style="color: #c48702; font-weight: bold;">#+begin_definition</span> <span style="color: #c48702; font-weight: bold;">:title</span> vector space
 a vector space is a set that satisfies the following axioms:
@@ -152,7 +160,7 @@ a vector space is a set that satisfies the following axioms:
 <p>
 better yet, the <code>#+name</code> property can be written on the same line as the <code>title</code> property:<br />
 </p>
-<div class="org-src-container" data-language="org">
+<div class="org-src-container">
 <pre class="src src-org"><span style="color: #c48702; font-weight: bold;">#+begin_definition</span> <span style="color: #c48702; font-weight: bold;">:title</span> vector space <span style="color: #c48702; font-weight: bold;">:name</span> vecspace
 a vector space is a set that satisfies the following axioms:
 - closure of addition,
@@ -165,14 +173,14 @@ a vector space is a set that satisfies the following axioms:
 <p>
 in both cases, <code>blk-find</code> can be invoked, and the user can navigate to the definition by its title "vector space", and if the user wants, they can even rewrite the cross-reference of the text we considered before to link to the definition too, in the following manner:<br />
 </p>
-<div class="org-src-container" data-language="org">
+<div class="org-src-container">
 <pre class="src src-org">consider the <span style="color: #c48702; font-weight: bold;">[[blk:vecspace-axiom-2][second axiom]]</span> of <span style="color: #c48702; font-weight: bold;">[[blk:vecspace][vector space]]</span>s, we..
 </pre>
 </div>
 <p>
 or, if the user enables <code>blk-treat-titles-as-ids</code> (set to <code>t</code>), they can write the following:<br />
 </p>
-<div class="org-src-container" data-language="org">
+<div class="org-src-container">
 <pre class="src src-org">consider the <span style="color: #c48702; font-weight: bold;">[[blk:vecspace-axiom-2][second axiom]]</span> of <span style="color: #c48702; font-weight: bold;">[[blk:vector space]]</span>s, we..
 </pre>
 </div>
@@ -180,7 +188,7 @@ or, if the user enables <code>blk-treat-titles-as-ids</code> (set to <code>t</co
 when opened, both links would redirect to the second axiom, and the definition, respectively. (notice that the keywords <code>:title</code> and <code>:name</code> are supported for any type of block, not only <code>#+begin_definition</code> blocks, so we can use them for a <code>#+begin_theorem</code>, for example.)<br />
 again, so far so good. but what if we want to write some code that makes heavy use of mathematics, and for some reason we wanted to refer to the definition of a vector space in our code, how would we do this? simple enough:<br />
 </p>
-<div class="org-src-container" data-language="emacs-lisp">
+<div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #d0730f;">(</span><span style="color: #c48702; font-weight: bold;">defun</span> <span style="color: #3dbbb0;">my-function</span> <span style="color: #64aa0f;">()</span>
   <span style="color: #5f9f6f; font-style: italic;">"this function does the following etc... refer to the definition of a [[blk:vector space]]"</span>
   <span style="color: #64aa0f;">(</span>message <span style="color: #f06a3f;">"magic!"</span><span style="color: #64aa0f;">)</span><span style="color: #d0730f;">)</span>
@@ -191,7 +199,7 @@ as expected, when the function <code>blk-open-at-point</code> is invoked at the 
 notice that for this to work, blk has to find the mentioned files in the directories listed in the variable <code>blk-directories</code> (it would search recursively if <code>blk-search-recursively</code> is set to <code>t</code>).<br />
 we can take things even further and use transclusions. say we want to not just <b>link</b> to the definition, but to insert it into the current document, without having to copy it from the other file and paste it into the current document, which would mean that modifiying one of them would cause the other to be "outdated", this is done using <code>blk</code>'s integration with <code>org-transclusion</code>:<br />
 </p>
-<div class="org-src-container" data-language="org">
+<div class="org-src-container">
 <pre class="src src-org">consider the following definition of a vector space:
 <span style="color: #c48702; font-weight: bold;">#+transclude</span>: <span style="color: #c48702; font-weight: bold;">[[blk:vecspace]]</span>
 </pre>
@@ -207,18 +215,18 @@ your browser does not support the video tag.
 </p>
 </div>
 </div>
-<div id="outline-container-org3c41beb" class="outline-2">
-<h2 id="org3c41beb">main features</h2>
-<div class="outline-text-2" id="text-org3c41beb">
+<div id="outline-container-orgeff8836" class="outline-2">
+<h2 id="orgeff8836">main features</h2>
+<div class="outline-text-2" id="text-orgeff8836">
 <ul class="org-ul">
 <li>linking to any type of text, without having to worry about filenames or the location of the text itself.<br /></li>
 <li>navigating text elements by their titles, including support for outline navigation, e.g. the outline for an org src block: <code>file/heading/block</code>.<br /></li>
 <li>support for alises to any title, so that any text element can be navigated to by its "main" title or one of its aliases (this includes org files, for an example).<br /></li>
 </ul>
 </div>
-<div id="outline-container-orgb7cd120" class="outline-3">
-<h3 id="orgb7cd120">org-mode specific features</h3>
-<div class="outline-text-3" id="text-orgb7cd120">
+<div id="outline-container-org8fdd60c" class="outline-3">
+<h3 id="org8fdd60c">org-mode specific features</h3>
+<div class="outline-text-3" id="text-org8fdd60c">
 <ul class="org-ul">
 <li>links to org-mode special blocks.<br /></li>
 <li>links to an arbitrary point in any org-mode file defined by <code>&lt;&lt;&lt;id-here&gt;&gt;&gt;</code> (cross-file target links).<br /></li>
@@ -227,10 +235,10 @@ your browser does not support the video tag.
 </div>
 </div>
 </div>
-<div id="outline-container-org3cd8250" class="outline-2">
-<h2 id="org3cd8250">basic setup</h2>
-<div class="outline-text-2" id="text-org3cd8250">
-<div class="org-src-container" data-language="emacs-lisp">
+<div id="outline-container-orga6d6006" class="outline-2">
+<h2 id="orga6d6006">basic setup</h2>
+<div class="outline-text-2" id="text-orga6d6006">
+<div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #d0730f;">(</span><span style="color: #c48702; font-weight: bold;">use-package</span> blk
   <span style="color: #ff7a7f; font-weight: bold;">:straight</span> <span style="color: #64aa0f;">(</span>blk <span style="color: #ff7a7f; font-weight: bold;">:host</span> github <span style="color: #ff7a7f; font-weight: bold;">:repo</span> <span style="color: #f06a3f;">"mahmoodsh36/blk"</span><span style="color: #64aa0f;">)</span> <span style="color: #cf9f7f; font-style: italic;">;; </span><span style="color: #cf9f7f; font-style: italic;">replace with :quelpa if needed</span>
   <span style="color: #ff7a7f; font-weight: bold;">:after</span> <span style="color: #64aa0f;">(</span>org<span style="color: #64aa0f;">)</span>
@@ -248,7 +256,7 @@ your browser does not support the video tag.
 <p>
 if you want the transclusion functionality, you have to enable it after installing org-transclusion:<br />
 </p>
-<div class="org-src-container" data-language="emacs-lisp">
+<div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #d0730f;">(</span><span style="color: #c48702; font-weight: bold;">use-package</span> org-transclusion
   <span style="color: #ff7a7f; font-weight: bold;">:config</span>
   <span style="color: #64aa0f;">(</span>add-hook 'org-mode-hook #'org-transclusion-mode<span style="color: #64aa0f;">)</span><span style="color: #d0730f;">)</span>
@@ -270,17 +278,17 @@ if you want the transclusion functionality, you have to enable it after installi
 </div>
 </div>
 </div>
-<div id="outline-container-org78f953e" class="outline-2">
-<h2 id="org78f953e">demonstration of features</h2>
-<div class="outline-text-2" id="text-org78f953e">
+<div id="outline-container-orgc5310e1" class="outline-2">
+<h2 id="orgc5310e1">demonstration of features</h2>
+<div class="outline-text-2" id="text-orgc5310e1">
 </div>
-<div id="outline-container-org6bb7735" class="outline-3">
-<h3 id="org6bb7735">org-mode files</h3>
-<div class="outline-text-3" id="text-org6bb7735">
+<div id="outline-container-orgf08946b" class="outline-3">
+<h3 id="orgf08946b">org-mode files</h3>
+<div class="outline-text-3" id="text-orgf08946b">
 <p>
 by default, blk has rules in place to recognize org-mode files that are titled and id'd in the following manner (the usual way):<br />
 </p>
-<div class="org-src-container" data-language="org">
+<div class="org-src-container">
 <pre class="src src-org">:PROPERTIES:
 :ID:       0e7165f6-27e8-4e56-a342-b00572b7fff2
 :END:
@@ -291,7 +299,7 @@ by default, blk has rules in place to recognize org-mode files that are titled a
 this kind of id is inserted (as usual, but not necessarily), by <code>org-id-get-create</code>.<br />
 or, as an alternative (as inspired by the package <code>denote</code>):<br />
 </p>
-<div class="org-src-container" data-language="org">
+<div class="org-src-container">
 <pre class="src src-org"><span style="color: #c48702; font-weight: bold;">#+title</span>: my-title-here
 <span style="color: #c48702; font-weight: bold;">#+identifier</span>: my-id-here
 </pre>
@@ -300,7 +308,7 @@ or, as an alternative (as inspired by the package <code>denote</code>):<br />
 so a link to such an org file would have the format <code>[[blk:my-id-here]]</code> or <code>[[blk:my-id-here][link description here]]</code>.<br />
 in addition, the title of an org-file can have an alias:<br />
 </p>
-<div class="org-src-container" data-language="org">
+<div class="org-src-container">
 <pre class="src src-org"><span style="color: #c48702; font-weight: bold;">#+title</span>: my-title-here
 <span style="color: #c48702; font-weight: bold;">#+identifier</span>: my-id-here
 <span style="color: #c48702; font-weight: bold;">#+alias</span>: my-second-title-here
@@ -312,13 +320,13 @@ so that the file can be navigated to either by the main title, or its aliases.<b
 </p>
 </div>
 </div>
-<div id="outline-container-org0b8335c" class="outline-3">
-<h3 id="org0b8335c">org-mode blocks</h3>
-<div class="outline-text-3" id="text-org0b8335c">
+<div id="outline-container-orgc49872b" class="outline-3">
+<h3 id="orgc49872b">org-mode blocks</h3>
+<div class="outline-text-3" id="text-orgc49872b">
 <p>
 blk has rules in place to recognize org-mode special-blocks (or src-blocks) that are written in the following way:<br />
 </p>
-<div class="org-src-container" data-language="org">
+<div class="org-src-container">
 <pre class="src src-org"><span style="color: #c48702; font-weight: bold;">#+begin_blockname</span> <span style="color: #c48702; font-weight: bold;">:name</span> my-block <span style="color: #c48702; font-weight: bold;">:title</span> my title
 this is my block
 <span style="color: #c48702; font-weight: bold;">#+end_blockname</span>
@@ -328,7 +336,7 @@ this is my block
 where <code>blockname</code> in <code>begin_blockname</code> and <code>end_blockname</code> is replaced by any other value.<br />
 or, as an alternative (this aligns with how org-babel identifies src blocks):<br />
 </p>
-<div class="org-src-container" data-language="org">
+<div class="org-src-container">
 <pre class="src src-org"><span style="color: #c48702; font-weight: bold;">#+name</span>: my-block
 <span style="color: #c48702; font-weight: bold;">#+begin_blockname</span> <span style="color: #c48702; font-weight: bold;">:title</span> my title
 this is my block
@@ -339,7 +347,7 @@ this is my block
 so a link to such a block would have the format <code>[[blk:my-block]]</code> or <code>[[blk:my-block][link description here]]</code>.<br />
 in addition, the title of an org-block can have an alias:<br />
 </p>
-<div class="org-src-container" data-language="org">
+<div class="org-src-container">
 <pre class="src src-org"><span style="color: #c48702; font-weight: bold;">#+begin_blockname</span> <span style="color: #c48702; font-weight: bold;">:name</span> my-block <span style="color: #c48702; font-weight: bold;">:title</span> my title <span style="color: #c48702; font-weight: bold;">:alias</span> my second title
 this is my block
 <span style="color: #c48702; font-weight: bold;">#+end_blockname</span>
@@ -350,13 +358,13 @@ so that the block can be navigated to either by the main title, or its aliases.<
 </p>
 </div>
 </div>
-<div id="outline-container-org61d3e03" class="outline-3">
-<h3 id="org61d3e03">org-mode headers</h3>
-<div class="outline-text-3" id="text-org61d3e03">
+<div id="outline-container-org705016b" class="outline-3">
+<h3 id="org705016b">org-mode headers</h3>
+<div class="outline-text-3" id="text-org705016b">
 <p>
 again, this is just the usual way, the id is created by <code>org-id-get-create</code> and the title is inserted manually:<br />
 </p>
-<div class="org-src-container" data-language="org">
+<div class="org-src-container">
 <pre class="src src-org"><span style="color: #64aa0f; font-weight: bold;">* my header title</span>
 :PROPERTIES:
 :ID:       0e7165f6-27e8-4e56-a342-b00572b7fff2
@@ -365,13 +373,13 @@ again, this is just the usual way, the id is created by <code>org-id-get-create<
 </div>
 </div>
 </div>
-<div id="outline-container-orgb0d8c95" class="outline-3">
-<h3 id="orgb0d8c95">org-mode named targets</h3>
-<div class="outline-text-3" id="text-orgb0d8c95">
+<div id="outline-container-orga6b9a12" class="outline-3">
+<h3 id="orga6b9a12">org-mode named targets</h3>
+<div class="outline-text-3" id="text-orga6b9a12">
 <p>
 a named target is a link to a specific location in text, the location is identified in the following way:<br />
 </p>
-<div class="org-src-container" data-language="org">
+<div class="org-src-container">
 <pre class="src src-org">this is my very long sentence that has a <span style="color: #c48702; font-weight: bold;">&lt;&lt;&lt;target&gt;&gt;&gt;</span> in it.
 </pre>
 </div>
@@ -380,13 +388,13 @@ a link to the target can be inserted using <code>[[blk:target]]</code>.<br />
 </p>
 </div>
 </div>
-<div id="outline-container-org8e9dd40" class="outline-3">
-<h3 id="org8e9dd40">markdown headers</h3>
-<div class="outline-text-3" id="text-org8e9dd40">
+<div id="outline-container-org29760b4" class="outline-3">
+<h3 id="org29760b4">markdown headers</h3>
+<div class="outline-text-3" id="text-org29760b4">
 <p>
 a markdown header isnt identified (by default) but can be navigated to by its title, the reason for this is that i didnt find a common way to identify markdown headers.<br />
 </p>
-<div class="org-src-container" data-language="markdown">
+<div class="org-src-container">
 <pre class="src src-markdown"><span style="color: #887c8a;"># </span><span style="color: #64aa0f; font-weight: bold;">my markdown header</span>
 </pre>
 </div>
@@ -395,10 +403,10 @@ notice that you can always just insert a link using the title (if <code>blk-trea
 </p>
 </div>
 </div>
-<div id="outline-container-org6f5436e" class="outline-3">
-<h3 id="org6f5436e">linking to an elisp function</h3>
-<div class="outline-text-3" id="text-org6f5436e">
-<div class="org-src-container" data-language="emacs-lisp">
+<div id="outline-container-org99442a1" class="outline-3">
+<h3 id="org99442a1">linking to an elisp function</h3>
+<div class="outline-text-3" id="text-org99442a1">
+<div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #d0730f;">(</span><span style="color: #c48702; font-weight: bold;">defun</span> <span style="color: #3dbbb0;">my-function</span> <span style="color: #64aa0f;">()</span>
   <span style="color: #d0730f;">)</span>
 </pre>
@@ -408,13 +416,13 @@ as usual, a link can be inserted using <code>[[blk:my-function][link description
 </p>
 </div>
 </div>
-<div id="outline-container-orgb3c4853" class="outline-3">
-<h3 id="orgb3c4853">latex labels</h3>
-<div class="outline-text-3" id="text-orgb3c4853">
+<div id="outline-container-orgde25824" class="outline-3">
+<h3 id="orgde25824">latex labels</h3>
+<div class="outline-text-3" id="text-orgde25824">
 <p>
 a block of latex can be identified by its <code>\label</code> (both in <code>.org</code> and <code>.tex</code> files):<br />
 </p>
-<div class="org-src-container" data-language="org">
+<div class="org-src-container">
 <pre class="src src-org"><span style="color: #f06a3f;">\begin{equation}\label{my-equation}</span>
 <span style="color: #f06a3f;">  f(x) := \sqrt{x} + 1</span>
 <span style="color: #f06a3f;">\end{equation}</span>
@@ -423,7 +431,7 @@ a block of latex can be identified by its <code>\label</code> (both in <code>.or
 <p>
 or, as an alternative (in org-mode files), we can also use:<br />
 </p>
-<div class="org-src-container" data-language="org">
+<div class="org-src-container">
 <pre class="src src-org"><span style="color: #c48702; font-weight: bold;">#+name</span>: my-equation
 <span style="color: #f06a3f;">\begin{equation}</span>
 <span style="color: #f06a3f;">  f(x) := \sqrt{x} + 1</span>
@@ -435,14 +443,14 @@ a link is inserted using <code>[[blk:my-equation][my description]]</code>.<br />
 </p>
 </div>
 </div>
-<div id="outline-container-orgae23939" class="outline-3">
-<h3 id="orgae23939">outline navigation</h3>
-<div class="outline-text-3" id="text-orgae23939">
+<div id="outline-container-org91f6db6" class="outline-3">
+<h3 id="org91f6db6">outline navigation</h3>
+<div class="outline-text-3" id="text-org91f6db6">
 <p>
 (poorly-phrased,) the <b>grouping</b> feature allows to group certain rules together to form "outlines", which are titles of nodes that are in the same file, that form an "outline" or a "path" to the target.<br />
 consider an org-mode file with the following contents:<br />
 </p>
-<div class="org-src-container" data-language="org">
+<div class="org-src-container">
 <pre class="src src-org">:PROPERTIES:
 :ID:       35265ce3-3226-46f6-b690-2f5630a3b9f0
 :END:
@@ -463,9 +471,9 @@ when invoking <code>blk-find</code>, this is what we are presented with:<br />
 </p>
 </div>
 </div>
-<div id="outline-container-org813fdb9" class="outline-3">
-<h3 id="org813fdb9">latex transclusions</h3>
-<div class="outline-text-3" id="text-org813fdb9">
+<div id="outline-container-org4a2200a" class="outline-3">
+<h3 id="org4a2200a">latex transclusions</h3>
+<div class="outline-text-3" id="text-org4a2200a">
 <p>
 
 <video controls muted>
@@ -476,13 +484,13 @@ your browser does not support the video tag.
 </div>
 </div>
 </div>
-<div id="outline-container-orgc74a7fc" class="outline-2">
-<h2 id="orgc74a7fc">writing custom rules</h2>
-<div class="outline-text-2" id="text-orgc74a7fc">
+<div id="outline-container-orgec011a7" class="outline-2">
+<h2 id="orgec011a7">writing custom rules</h2>
+<div class="outline-text-2" id="text-orgec011a7">
 <p>
 when im taking notes in math, what i like to do is write the following:<br />
 </p>
-<div class="org-src-container" data-language="org">
+<div class="org-src-container">
 <pre class="src src-org"><span style="color: #c48702; font-weight: bold;">#+begin_definition</span> <span style="color: #c48702; font-weight: bold;">:name</span> def-comp-func <span style="color: #c48702; font-weight: bold;">:defines</span> computable function <span style="color: #c48702; font-weight: bold;">:alias</span> partially computable function
 a /computable function/ is any function that is a member of the class of mu-recursive functions.
 <span style="color: #c48702; font-weight: bold;">#+end_definition</span>
@@ -492,7 +500,7 @@ a /computable function/ is any function that is a member of the class of mu-recu
 in my mind, <code>:defines</code> tells me what this block defines, <code>:alias</code> tells me that the following value is an alternative name to what <code>:defines</code> has, and <code>:name</code> is supposed to give the block a unique string it is identified by.<br />
 now, with the rules pre-defined in <code>blk.el</code>, it would be possible to use the keyword <code>:title</code> and have <code>blk</code> recognize it, but not <code>:defines</code>. to have blk recognize this new keyword, we add the following rule, which is a modified version of the rule <code>blk-rg-org-file-rule</code> from <code>blk.el</code>:<br />
 </p>
-<div class="org-src-container" data-language="emacs-lisp">
+<div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #d0730f;">(</span>add-to-list
  'blk-patterns
  <span style="color: #64aa0f;">(</span>list <span style="color: #ff7a7f; font-weight: bold;">:title</span> <span style="color: #f06a3f;">"definition"</span>
@@ -507,7 +515,7 @@ notice that this assumes that <code>blk-grepper</code> is set to <code>blk-grepp
 the value provided to <code>:anchor-regex</code> may look scary to someone who isnt very familiar with unix regex, but its really just a regex passed to the grepper to identify the keywords we're aiming for.<br />
 the roles of the keywords in the list above are described in the docstring of <code>blk-patterns</code>:<br />
 </p>
-<div class="org-src-container" data-language="emacs-lisp">
+<div class="org-src-container">
 <pre class="src src-emacs-lisp">The list of patterns to use with the blk grepper.
 Each entry should be a plist representing the data of a pattern:
   <span style="color: #ff7a7f; font-weight: bold;">:title</span> is the title/type of the pattern <span style="color: #d0730f;">(</span>used for completing-read<span style="color: #d0730f;">)</span>.
@@ -544,9 +552,9 @@ Each entry should be a plist representing the data of a pattern:
 </div>
 </div>
 </div>
-<div id="outline-container-org9a3b2e3" class="outline-2">
-<h2 id="org9a3b2e3">different greppers</h2>
-<div class="outline-text-2" id="text-org9a3b2e3">
+<div id="outline-container-org6918961" class="outline-2">
+<h2 id="org6918961">different greppers</h2>
+<div class="outline-text-2" id="text-org6918961">
 <p>
 the greppers available for use are currently the standard <code>grep</code> or <code>ripgrep</code> (<code>rg</code>), or <code>emacs</code> itself. only use emacs as the grepper if you really are trying to avoid the dependency of an external grepper as it is an order of magnitude slower than the other options, though it is good to note that the plus side of using emacs as the grepper is that it is aware of unsaved changes to buffers since it greps those instead of the files themselves when they're already opened in buffers.<br />
 for each grepper a different table of patterns is defined, the grepper is chosen by setting the variable <code>blk-grepper</code> and defaults to <code>rg</code> and falls back to <code>grep</code> if <code>rg</code> isnt installed, and falls back to using emacs if <code>grep</code> isnt found aswell.<br />
@@ -554,43 +562,43 @@ for each grepper a different table of patterns is defined, the grepper is chosen
 <ul class="org-ul">
 <li><code>blk-grepper-rg</code> <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.190535 19.019824 5.190535' style="max-height: 0.5407em; vertical-align: -0.0536em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -3.655041 18.264938 2.328761' style="max-height: 0.4579em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
-<path id='g0-40' d='m9.58406-1.265255v-.557908h-7.521793l-.597758-.727273l.607721-.737235h7.511831v-.557908h-7.043587l.757161-.926526l-.278954-.308842l-2.400996 2.520548l2.400996 2.510585l.278954-.288917l-.757161-.926526h7.043587z'/>
-<path id='g0-41' d='m9.58406-2.560399l-2.400996-2.520548l-.278954 .308842l.757161 .926526h-7.043587v.557908h7.511831l.607721 .737235l-.597758 .727273h-7.521793v.557908h7.043587l-.757161 .926526l.278954 .288917l2.400996-2.510585z'/>
+<path id='g0-40' d='m9.39477-1.524284c0-.199253-.18929-.199253-.33873-.199253h-6.136986c-.159402 0-.179328 0-.308842-.099626c-.468244-.348692-.936488-.577833-1.135741-.667497c.209215-.089664 .667497-.318804 1.145704-.667497c.119552-.099626 .139477-.099626 .298879-.099626h6.136986c.14944 0 .33873 0 .33873-.199253s-.18929-.199253-.328767-.199253h-5.877958c.806974-.876712 .996264-1.424658 .996264-1.454545c0-.119552-.109589-.119552-.199253-.119552c-.14944 0-.14944 .009963-.249066 .18929c-.508095 .966376-1.424658 1.972603-2.998755 2.420922c-.119552 .029888-.169365 .049813-.169365 .129514s.049813 .099626 .159402 .129514c1.594022 .448319 2.49066 1.454545 2.978829 2.361146c.109589 .18929 .109589 .209215 .129514 .219178c.039851 .029888 .089664 .029888 .14944 .029888c.089664 0 .199253 0 .199253-.119552c0 0-.18929-.56787-.996264-1.454545h5.877958c.139477 0 .328767 0 .328767-.199253z'/>
+<path id='g0-41' d='m9.384807-2.49066c0-.079701-.049813-.099626-.159402-.129514c-1.594022-.448319-2.49066-1.454545-2.978829-2.361146c-.109589-.18929-.109589-.209215-.129514-.219178c-.039851-.029888-.089664-.029888-.14944-.029888c-.089664 0-.199253 0-.199253 .119552c0 0 .18929 .56787 .996264 1.454545h-5.877958c-.139477 0-.328767 0-.328767 .199253s.18929 .199253 .33873 .199253h6.136986c.159402 0 .179328 0 .308842 .099626c.468244 .348692 .936488 .577833 1.135741 .667497c-.209215 .089664-.667497 .318804-1.145704 .667497c-.119552 .099626-.139477 .099626-.298879 .099626h-6.136986c-.14944 0-.33873 0-.33873 .199253s.18929 .199253 .328767 .199253h5.877958c-.806974 .876712-.996264 1.424658-.996264 1.454545c0 .119552 .109589 .119552 .199253 .119552c.14944 0 .14944-.009963 .249066-.18929c.508095-.966376 1.424658-1.972603 2.998755-2.420922c.119552-.029888 .169365-.049813 .169365-.129514z'/>
 </defs>
-<g id='page3'>
+<g id='page1'>
 <g fill='currentColor'>
 <use x='0' y='0' xlink:href='#g0-40'/>
-<use x='8.818079' y='0' xlink:href='#g0-41'/>
+<use x='8.302269' y='0' xlink:href='#g0-41'/>
 </g>
 </g>
 </svg> <code>blk-rg-patterns</code><br /></li>
 <li><code>blk-grepper-grep</code> <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.190535 19.019824 5.190535' style="max-height: 0.5407em; vertical-align: -0.0536em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -3.655041 18.264938 2.328761' style="max-height: 0.4579em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
-<path id='g0-40' d='m9.58406-1.265255v-.557908h-7.521793l-.597758-.727273l.607721-.737235h7.511831v-.557908h-7.043587l.757161-.926526l-.278954-.308842l-2.400996 2.520548l2.400996 2.510585l.278954-.288917l-.757161-.926526h7.043587z'/>
-<path id='g0-41' d='m9.58406-2.560399l-2.400996-2.520548l-.278954 .308842l.757161 .926526h-7.043587v.557908h7.511831l.607721 .737235l-.597758 .727273h-7.521793v.557908h7.043587l-.757161 .926526l.278954 .288917l2.400996-2.510585z'/>
+<path id='g0-40' d='m9.39477-1.524284c0-.199253-.18929-.199253-.33873-.199253h-6.136986c-.159402 0-.179328 0-.308842-.099626c-.468244-.348692-.936488-.577833-1.135741-.667497c.209215-.089664 .667497-.318804 1.145704-.667497c.119552-.099626 .139477-.099626 .298879-.099626h6.136986c.14944 0 .33873 0 .33873-.199253s-.18929-.199253-.328767-.199253h-5.877958c.806974-.876712 .996264-1.424658 .996264-1.454545c0-.119552-.109589-.119552-.199253-.119552c-.14944 0-.14944 .009963-.249066 .18929c-.508095 .966376-1.424658 1.972603-2.998755 2.420922c-.119552 .029888-.169365 .049813-.169365 .129514s.049813 .099626 .159402 .129514c1.594022 .448319 2.49066 1.454545 2.978829 2.361146c.109589 .18929 .109589 .209215 .129514 .219178c.039851 .029888 .089664 .029888 .14944 .029888c.089664 0 .199253 0 .199253-.119552c0 0-.18929-.56787-.996264-1.454545h5.877958c.139477 0 .328767 0 .328767-.199253z'/>
+<path id='g0-41' d='m9.384807-2.49066c0-.079701-.049813-.099626-.159402-.129514c-1.594022-.448319-2.49066-1.454545-2.978829-2.361146c-.109589-.18929-.109589-.209215-.129514-.219178c-.039851-.029888-.089664-.029888-.14944-.029888c-.089664 0-.199253 0-.199253 .119552c0 0 .18929 .56787 .996264 1.454545h-5.877958c-.139477 0-.328767 0-.328767 .199253s.18929 .199253 .33873 .199253h6.136986c.159402 0 .179328 0 .308842 .099626c.468244 .348692 .936488 .577833 1.135741 .667497c-.209215 .089664-.667497 .318804-1.145704 .667497c-.119552 .099626-.139477 .099626-.298879 .099626h-6.136986c-.14944 0-.33873 0-.33873 .199253s.18929 .199253 .328767 .199253h5.877958c-.806974 .876712-.996264 1.424658-.996264 1.454545c0 .119552 .109589 .119552 .199253 .119552c.14944 0 .14944-.009963 .249066-.18929c.508095-.966376 1.424658-1.972603 2.998755-2.420922c.119552-.029888 .169365-.049813 .169365-.129514z'/>
 </defs>
-<g id='page3'>
+<g id='page1'>
 <g fill='currentColor'>
 <use x='0' y='0' xlink:href='#g0-40'/>
-<use x='8.818079' y='0' xlink:href='#g0-41'/>
+<use x='8.302269' y='0' xlink:href='#g0-41'/>
 </g>
 </g>
 </svg> <code>blk-grep-patterns</code><br /></li>
 <li><code>blk-grepper-emacs</code> <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.190535 19.019824 5.190535' style="max-height: 0.5407em; vertical-align: -0.0536em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -3.655041 18.264938 2.328761' style="max-height: 0.4579em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
-<path id='g0-40' d='m9.58406-1.265255v-.557908h-7.521793l-.597758-.727273l.607721-.737235h7.511831v-.557908h-7.043587l.757161-.926526l-.278954-.308842l-2.400996 2.520548l2.400996 2.510585l.278954-.288917l-.757161-.926526h7.043587z'/>
-<path id='g0-41' d='m9.58406-2.560399l-2.400996-2.520548l-.278954 .308842l.757161 .926526h-7.043587v.557908h7.511831l.607721 .737235l-.597758 .727273h-7.521793v.557908h7.043587l-.757161 .926526l.278954 .288917l2.400996-2.510585z'/>
+<path id='g0-40' d='m9.39477-1.524284c0-.199253-.18929-.199253-.33873-.199253h-6.136986c-.159402 0-.179328 0-.308842-.099626c-.468244-.348692-.936488-.577833-1.135741-.667497c.209215-.089664 .667497-.318804 1.145704-.667497c.119552-.099626 .139477-.099626 .298879-.099626h6.136986c.14944 0 .33873 0 .33873-.199253s-.18929-.199253-.328767-.199253h-5.877958c.806974-.876712 .996264-1.424658 .996264-1.454545c0-.119552-.109589-.119552-.199253-.119552c-.14944 0-.14944 .009963-.249066 .18929c-.508095 .966376-1.424658 1.972603-2.998755 2.420922c-.119552 .029888-.169365 .049813-.169365 .129514s.049813 .099626 .159402 .129514c1.594022 .448319 2.49066 1.454545 2.978829 2.361146c.109589 .18929 .109589 .209215 .129514 .219178c.039851 .029888 .089664 .029888 .14944 .029888c.089664 0 .199253 0 .199253-.119552c0 0-.18929-.56787-.996264-1.454545h5.877958c.139477 0 .328767 0 .328767-.199253z'/>
+<path id='g0-41' d='m9.384807-2.49066c0-.079701-.049813-.099626-.159402-.129514c-1.594022-.448319-2.49066-1.454545-2.978829-2.361146c-.109589-.18929-.109589-.209215-.129514-.219178c-.039851-.029888-.089664-.029888-.14944-.029888c-.089664 0-.199253 0-.199253 .119552c0 0 .18929 .56787 .996264 1.454545h-5.877958c-.139477 0-.328767 0-.328767 .199253s.18929 .199253 .33873 .199253h6.136986c.159402 0 .179328 0 .308842 .099626c.468244 .348692 .936488 .577833 1.135741 .667497c-.209215 .089664-.667497 .318804-1.145704 .667497c-.119552 .099626-.139477 .099626-.298879 .099626h-6.136986c-.14944 0-.33873 0-.33873 .199253s.18929 .199253 .328767 .199253h5.877958c-.806974 .876712-.996264 1.424658-.996264 1.454545c0 .119552 .109589 .119552 .199253 .119552c.14944 0 .14944-.009963 .249066-.18929c.508095-.966376 1.424658-1.972603 2.998755-2.420922c.119552-.029888 .169365-.049813 .169365-.129514z'/>
 </defs>
-<g id='page3'>
+<g id='page1'>
 <g fill='currentColor'>
 <use x='0' y='0' xlink:href='#g0-40'/>
-<use x='8.818079' y='0' xlink:href='#g0-41'/>
+<use x='8.302269' y='0' xlink:href='#g0-41'/>
 </g>
 </g>
 </svg> <code>blk-emacs-patterns</code><br /></li>
@@ -600,17 +608,17 @@ the rules that are passed to the grepper are stored in <code>blk-patterns</code>
 </p>
 </div>
 </div>
-<div id="outline-container-org46fcfa6" class="outline-2">
-<h2 id="org46fcfa6">dumping the data</h2>
-<div class="outline-text-2" id="text-org46fcfa6">
+<div id="outline-container-org227f197" class="outline-2">
+<h2 id="org227f197">dumping the data</h2>
+<div class="outline-text-2" id="text-org227f197">
 <p>
 <code>blk</code> provides the function <code>blk-all-to-json</code> to dump the data that it gathers from files into a json file, for external use.<br />
 </p>
 </div>
 </div>
-<div id="outline-container-org1b0f1c4" class="outline-2">
-<h2 id="org1b0f1c4">variables for customization</h2>
-<div class="outline-text-2" id="text-org1b0f1c4">
+<div id="outline-container-org6fb9a43" class="outline-2">
+<h2 id="org6fb9a43">variables for customization</h2>
+<div class="outline-text-2" id="text-org6fb9a43">
 <p>
 the following variables can be used to change some behaviors in the package.<br />
 </p>
@@ -667,17 +675,17 @@ the following variables can be used to change some behaviors in the package.<br 
 </table>
 </div>
 </div>
-<div id="outline-container-org894e70a" class="outline-2">
-<h2 id="org894e70a">known issues</h2>
-<div class="outline-text-2" id="text-org894e70a">
+<div id="outline-container-orgdd64744" class="outline-2">
+<h2 id="orgdd64744">known issues</h2>
+<div class="outline-text-2" id="text-orgdd64744">
 </div>
-<div id="outline-container-orgc291d8d" class="outline-3">
-<h3 id="orgc291d8d">blk-grepper-grep doesnt handle whitespaces in filepaths</h3>
-<div class="outline-text-3" id="text-orgc291d8d">
+<div id="outline-container-orgd767e3c" class="outline-3">
+<h3 id="orgd767e3c">blk-grepper-grep doesnt handle whitespaces in filepaths</h3>
+<div class="outline-text-3" id="text-orgd767e3c">
 <p>
 when using <code>blk-grepper-grep</code>, i.e., when <code>blk-grepper</code> is set to <code>blk-grepper-grep</code>, blk fails to work and simply errors out if one of the files resulting from glob expansions contains a space. this happens because we expand the globs "manually" in the shell command without quoting the filenames, which is done because <code>gnu grep</code> doesnt handle globs like <code>rg</code> can. this can be easily addressed by modifying the shell command defined in <code>blk-grepper-grep</code>, but it would overcompliate the shell command. for now i suggest using <code>blk-grepper-rg</code> (until i decide how to fix this):<br />
 </p>
-<div class="org-src-container" data-language="emacs-lisp">
+<div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #d0730f;">(</span><span style="color: #c48702; font-weight: bold;">setq</span> blk-grepper blk-grepper-rg<span style="color: #d0730f;">)</span>
 </pre>
 </div>

@@ -26,6 +26,14 @@
   <div id="darkModeToggle" onclick="toggleDarkMode()">
     &#9680; <!-- Circle with left half black -->
   </div>
+</div>
+<div class="toc">
+  <span class="toc-title-container">
+    <a class='feather' data-feather='menu'></a>
+    <span class="toc-title">table of contents</span>
+  </span>
+  <div class="toc-list">
+  </div>
 </div><h1 class="main-title">database course homework 1</h1><span class='date'>2023-12-09</span>
 </div>
 <div id="content" class="content">
@@ -64,18 +72,18 @@ write ddl commands to define a schema with the proper constraints (primary keys,
 here, i make use of mariadb, im on nixos (a flavor of linux), and have it installed.<br />
 creating the database:<br />
 </p>
-<div class="org-src-container" data-language="sql">
+<div class="org-src-container">
 <pre class="src src-sql"><span style="color: #c48702; font-weight: bold;">create</span> database homework1
 </pre>
 </div>
 <p>
 line used for deleting the database (for testing):<br />
 </p>
-<div class="org-src-container" data-language="sql">
+<div class="org-src-container">
 <pre class="src src-sql"><span style="color: #c48702; font-weight: bold;">drop</span> database homework1;
 </pre>
 </div>
-<div class="org-src-container" data-language="sql">
+<div class="org-src-container">
 <pre class="src src-sql"><span style="color: #c48702; font-weight: bold;">drop</span> <span style="color: #c48702; font-weight: bold;">table</span> <span style="color: #3dbbb0;">if</span> <span style="color: #c48702; font-weight: bold;">exists</span> customer <span style="color: #c48702; font-weight: bold;">cascade</span>;
 <span style="color: #c48702; font-weight: bold;">drop</span> <span style="color: #c48702; font-weight: bold;">table</span> <span style="color: #3dbbb0;">if</span> <span style="color: #c48702; font-weight: bold;">exists</span> car <span style="color: #c48702; font-weight: bold;">cascade</span>;
 <span style="color: #c48702; font-weight: bold;">drop</span> <span style="color: #c48702; font-weight: bold;">table</span> <span style="color: #3dbbb0;">if</span> <span style="color: #c48702; font-weight: bold;">exists</span> car_owner <span style="color: #c48702; font-weight: bold;">cascade</span>;
@@ -87,10 +95,10 @@ line used for deleting the database (for testing):<br />
 <p>
 creating the tables:<br />
 </p>
-<div id="outline-container-org6be3286" class="outline-2">
-<h2 id="org6be3286">schema</h2>
-<div class="outline-text-2" id="text-org6be3286">
-<div class="org-src-container" data-language="sql">
+<div id="outline-container-orgc3ba8fe" class="outline-2">
+<h2 id="orgc3ba8fe">schema</h2>
+<div class="outline-text-2" id="text-orgc3ba8fe">
+<div class="org-src-container">
 <pre class="src src-sql" id="src-database-homework-schema"><span style="color: #c48702; font-weight: bold;">CREATE</span> <span style="color: #c48702; font-weight: bold;">TABLE</span> <span style="color: #3dbbb0;">customer</span> <span style="color: #d0730f;">(</span>
   first_name    <span style="color: #2fa526;">VARCHAR</span><span style="color: #64aa0f;">(</span>22<span style="color: #64aa0f;">)</span> <span style="color: #c48702; font-weight: bold;">NOT</span> <span style="color: #c48702; font-weight: bold;">NULL</span>,
   family_name   <span style="color: #2fa526;">VARCHAR</span><span style="color: #64aa0f;">(</span>22<span style="color: #64aa0f;">)</span> <span style="color: #c48702; font-weight: bold;">NOT</span> <span style="color: #c48702; font-weight: bold;">NULL</span>,
@@ -168,7 +176,7 @@ creating the tables:<br />
 <p>
 some tests to make sure the database works as expected:<br />
 </p>
-<div class="org-src-container" data-language="sql">
+<div class="org-src-container">
 <pre class="src src-sql"><span style="color: #c48702; font-weight: bold;">describe</span> car;
 </pre>
 </div>
@@ -265,7 +273,7 @@ some tests to make sure the database works as expected:<br />
 </tbody>
 </table>
 
-<div class="org-src-container" data-language="sql">
+<div class="org-src-container">
 <pre class="src src-sql"><span style="color: #c48702; font-weight: bold;">describe</span> replaced_part
 </pre>
 </div>
@@ -317,7 +325,7 @@ some tests to make sure the database works as expected:<br />
 </tbody>
 </table>
 
-<div class="org-src-container" data-language="sql">
+<div class="org-src-container">
 <pre class="src src-sql"><span style="color: #c48702; font-weight: bold;">describe</span> car_owner;
 </pre>
 </div>
@@ -387,7 +395,7 @@ some tests to make sure the database works as expected:<br />
 </tbody>
 </table>
 
-<div class="org-src-container" data-language="sql">
+<div class="org-src-container">
 <pre class="src src-sql"><span style="color: #c48702; font-weight: bold;">describe</span> garage;
 </pre>
 </div>
@@ -484,7 +492,7 @@ some tests to make sure the database works as expected:<br />
 </tbody>
 </table>
 
-<div class="org-src-container" data-language="sql">
+<div class="org-src-container">
 <pre class="src src-sql"><span style="color: #c48702; font-weight: bold;">describe</span> car_maintenance
 </pre>
 </div>
@@ -572,7 +580,7 @@ some tests to make sure the database works as expected:<br />
 </tbody>
 </table>
 
-<div class="org-src-container" data-language="sql">
+<div class="org-src-container">
 <pre class="src src-sql"><span style="color: #c48702; font-weight: bold;">describe</span> customer
 </pre>
 </div>

@@ -26,37 +26,45 @@
   <div id="darkModeToggle" onclick="toggleDarkMode()">
     &#9680; <!-- Circle with left half black -->
   </div>
+</div>
+<div class="toc">
+  <span class="toc-title-container">
+    <a class='feather' data-feather='menu'></a>
+    <span class="toc-title">table of contents</span>
+  </span>
+  <div class="toc-list">
+  </div>
 </div><h1 class="main-title">exporting from org mode with pandoc</h1><span class='date'>2023-12-07</span>
 </div>
 <div id="content" class="content">
-<div id="outline-container-orgfa216aa" class="outline-2">
-<h2 id="orgfa216aa">motivation</h2>
-<div class="outline-text-2" id="text-orgfa216aa">
+<div id="outline-container-org15f3e81" class="outline-2">
+<h2 id="org15f3e81">motivation</h2>
+<div class="outline-text-2" id="text-org15f3e81">
 <p>
 the need for an emacs-independent exporting of notes arose from the fact that i was using org version 9.7-pre in which exporting functionality is basically broken.<br />
 </p>
 </div>
 </div>
-<div id="outline-container-orgf94cefd" class="outline-2">
-<h2 id="orgf94cefd">pandoc</h2>
-<div class="outline-text-2" id="text-orgf94cefd">
+<div id="outline-container-orgad8488d" class="outline-2">
+<h2 id="orgad8488d">pandoc</h2>
+<div class="outline-text-2" id="text-orgad8488d">
 <p>
 because i didnt want to reinvent the wheel, i landed on using pandoc, it has a huge community and i trust it to maintain org-mode parsability in the long run. there are some missing features in pandoc exporting which is why im writing this.<br />
 a starting point would be the following command:<br />
 </p>
-<div class="org-src-container" data-language="sh">
+<div class="org-src-container">
 <pre class="src src-sh">pandoc infile.org --standalone --output outfile.html
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgc70c9f4" class="outline-2">
-<h2 id="orgc70c9f4">custom css</h2>
-<div class="outline-text-2" id="text-orgc70c9f4">
+<div id="outline-container-orgb3d766f" class="outline-2">
+<h2 id="orgb3d766f">custom css</h2>
+<div class="outline-text-2" id="text-orgb3d766f">
 <p>
 if you have a css file that you'd like included, use the <code>--css</code> argument<br />
 </p>
-<div class="org-src-container" data-language="sh">
+<div class="org-src-container">
 <pre class="src src-sh">pandoc infile.org<span style="color: #f06a3f;">\</span>
        --standalone<span style="color: #f06a3f;">\</span>
        --output outfile.html<span style="color: #f06a3f;">\</span>
@@ -65,13 +73,13 @@ if you have a css file that you'd like included, use the <code>--css</code> argu
 </div>
 </div>
 </div>
-<div id="outline-container-org7265f53" class="outline-2">
-<h2 id="org7265f53">custom html preamble/postamble</h2>
-<div class="outline-text-2" id="text-org7265f53">
+<div id="outline-container-orgec98e2f" class="outline-2">
+<h2 id="orgec98e2f">custom html preamble/postamble</h2>
+<div class="outline-text-2" id="text-orgec98e2f">
 <p>
 or more generally, if you have an html file you'd like included in the header, use the <code>--include-in-header</code> argument<br />
 </p>
-<div class="org-src-container" data-language="sh">
+<div class="org-src-container">
 <pre class="src src-sh">pandoc infile.org<span style="color: #f06a3f;">\</span>
        --standalone<span style="color: #f06a3f;">\</span>
        --output outfile.html<span style="color: #f06a3f;">\</span>
@@ -81,13 +89,13 @@ or more generally, if you have an html file you'd like included in the header, u
 </div>
 </div>
 </div>
-<div id="outline-container-orge5ece0d" class="outline-2">
-<h2 id="orge5ece0d">bibliography</h2>
-<div class="outline-text-2" id="text-orge5ece0d">
+<div id="outline-container-org22ab0ab" class="outline-2">
+<h2 id="org22ab0ab">bibliography</h2>
+<div class="outline-text-2" id="text-org22ab0ab">
 <p>
 if you have a bibliography file you want pandoc to use to handle citations, you can make use of the <code>--bibliography</code>, <code>--biblatex</code>, <code>--citeproc</code> arguments<br />
 </p>
-<div class="org-src-container" data-language="sh">
+<div class="org-src-container">
 <pre class="src src-sh">pandoc infile.org<span style="color: #f06a3f;">\</span>
        --standalone<span style="color: #f06a3f;">\</span>
        --include-in-header=header.html<span style="color: #f06a3f;">\</span>
@@ -98,13 +106,13 @@ if you have a bibliography file you want pandoc to use to handle citations, you 
 </div>
 </div>
 </div>
-<div id="outline-container-org82594d0" class="outline-2">
-<h2 id="org82594d0">latex rendering</h2>
-<div class="outline-text-2" id="text-org82594d0">
+<div id="outline-container-orgbaf764a" class="outline-2">
+<h2 id="orgbaf764a">latex rendering</h2>
+<div class="outline-text-2" id="text-orgbaf764a">
 <p>
 pandoc supports multiple ways of handling latex snippets, it can use <code>mathjax</code> with the <code>--mathjax</code> argument, a better option for full latex support is rendering them with <code>dvisvgm</code>, using this lua filter that makes use of pandoc's filter api, which is a modified version of <a href="https://github.com/oltolm/pandoc-latex-math">https://github.com/oltolm/pandoc-latex-math</a><br />
 </p>
-<div class="org-src-container" data-language="lua">
+<div class="org-src-container">
 <pre class="src src-lua"><span style="color: #cf9f7f; font-style: italic;">--- </span><span style="color: #cf9f7f; font-style: italic;">source: https://github.com/oltolm/pandoc-latex-math</span>
 
 <span style="color: #c48702; font-weight: bold;">local</span> <span style="color: #6fafff;">system</span> = <span style="color: #ff7a7f; font-weight: bold;">require</span><span style="color: #d0730f;">(</span><span style="color: #f06a3f;">"pandoc.system"</span><span style="color: #d0730f;">)</span>
@@ -242,7 +250,7 @@ pandoc supports multiple ways of handling latex snippets, it can use <code>mathj
 <p>
 assuming this script is written in a file <code>tex.lua</code>, to use this filter, our command becomes:<br />
 </p>
-<div class="org-src-container" data-language="sh">
+<div class="org-src-container">
 <pre class="src src-sh">pandoc infile.org<span style="color: #f06a3f;">\</span>
        --standalone<span style="color: #f06a3f;">\</span>
        --include-in-header=header.html<span style="color: #f06a3f;">\</span>
@@ -254,16 +262,16 @@ assuming this script is written in a file <code>tex.lua</code>, to use this filt
 </div>
 </div>
 </div>
-<div id="outline-container-orgabc2a59" class="outline-2">
-<h2 id="orgabc2a59">internal links</h2>
-<div class="outline-text-2" id="text-orgabc2a59">
+<div id="outline-container-orgf54162c" class="outline-2">
+<h2 id="orgf54162c">internal links</h2>
+<div class="outline-text-2" id="text-orgf54162c">
 <p>
 consider the following org mode snippet:<br />
 </p>
-<div class="org-src-container" data-language="org">
+<div class="org-src-container">
 <pre class="src src-org"><span style="color: #c48702; font-weight: bold;">#+name</span>: my-def
 <span style="color: #c48702; font-weight: bold;">#+begin_definition</span>
-we define a set <img src="../../../../tmp/org-latex-preview/org-tex-f233675207716c9f707a18b7825c1af0be94535c.svg" alt="\(A\)" /> to be any unordered collection of objects
+we define a set <img src="../../.cache/org-persist/f7/39647e-2788-4588-a3e2-0294c0dc4e9a-03e1db4e7a1479301e4b997d3fb45c5b.svg" alt="\(A\)" /> to be any unordered collection of objects
 <span style="color: #c48702; font-weight: bold;">#+end_definition</span>
 
 by <span style="color: #c48702; font-weight: bold;">[[my-def][this definition]]</span>, the object {1,2,3} is a set.
@@ -273,10 +281,10 @@ by <span style="color: #c48702; font-weight: bold;">[[my-def][this definition]]<
 although pandoc does expectedly render the definition block as a div with class <code>definition</code>, the link <code>[[my-def][this definition]]</code> doesnt get rendered properly by pandoc, neither does the <code>#+name</code> property.<br />
 after some messing around, i found that pandoc does handle the <code>attr_html</code> property of org blocks properly, e.g.<br />
 </p>
-<div class="org-src-container" data-language="org">
+<div class="org-src-container">
 <pre class="src src-org"><span style="color: #c48702; font-weight: bold;">#+attr_html</span>: <span style="color: #c48702; font-weight: bold;">:id</span> my-def
 <span style="color: #c48702; font-weight: bold;">#+begin_definition</span>
-we define a set <img src="../../../../tmp/org-latex-preview/org-tex-f233675207716c9f707a18b7825c1af0be94535c.svg" alt="\(A\)" /> to be any unordered collection of objects
+we define a set <img src="../../.cache/org-persist/f7/39647e-2788-4588-a3e2-0294c0dc4e9a-03e1db4e7a1479301e4b997d3fb45c5b.svg" alt="\(A\)" /> to be any unordered collection of objects
 <span style="color: #c48702; font-weight: bold;">#+end_definition</span>
 
 by <span style="color: #c48702; font-weight: bold;">[[my-def][this definition]]</span>, the object {1,2,3} is a set.
@@ -285,7 +293,7 @@ by <span style="color: #c48702; font-weight: bold;">[[my-def][this definition]]<
 <p>
 results in the definition div having the id <code>my-def</code>, but we wouldnt want to modify our org files just to make them compatible with pandoc, instead we can do something "hacky" by modifying the stream before piping it into pandoc<br />
 </p>
-<div class="org-src-container" data-language="sh">
+<div class="org-src-container">
 <pre class="src src-sh">sed <span style="color: #f06a3f;">'s/#+name:/#+attr_html: :id/'</span> infile.org |<span style="color: #f06a3f;">\</span>
     pandoc --from org<span style="color: #f06a3f;">\</span>
            --to html5<span style="color: #f06a3f;">\</span>
@@ -300,7 +308,7 @@ results in the definition div having the id <code>my-def</code>, but we wouldnt 
 <p>
 this way, the <code>#+name</code> property of the block becomes the <code>id</code> of its corresponding html block, but this still doesnt fix the link issue, since links get rendered as <code>span</code>'s and not proper links, to fix this we can use the following lua filter:<br />
 </p>
-<div class="org-src-container" data-language="lua">
+<div class="org-src-container">
 <pre class="src src-lua"><span style="color: #c48702; font-weight: bold;">function</span> <span style="color: #3dbbb0;">Span</span><span style="color: #d0730f;">(</span><span style="color: #6fafff;">span</span><span style="color: #d0730f;">)</span>
   <span style="color: #cf9f7f; font-style: italic;">-- </span><span style="color: #cf9f7f; font-style: italic;">print(dump(elem))</span>
   <span style="color: #c48702; font-weight: bold;">if</span> span.classes:includes <span style="color: #f06a3f;">'spurious-link'</span> <span style="color: #c48702; font-weight: bold;">then</span>
@@ -314,7 +322,7 @@ this way, the <code>#+name</code> property of the block becomes the <code>id</co
 <p>
 assuming this code is placed in the file <code>internal_links.lua</code>, our shell command becomes:<br />
 </p>
-<div class="org-src-container" data-language="sh">
+<div class="org-src-container">
 <pre class="src src-sh">sed <span style="color: #f06a3f;">'s/#+name:/#+attr_html: :id/'</span> infile.org |<span style="color: #f06a3f;">\</span>
     pandoc --from org<span style="color: #f06a3f;">\</span>
            --to html5<span style="color: #f06a3f;">\</span>
@@ -329,14 +337,14 @@ assuming this code is placed in the file <code>internal_links.lua</code>, our sh
 </div>
 </div>
 </div>
-<div id="outline-container-org7c42516" class="outline-2">
-<h2 id="org7c42516">org-roam links</h2>
-<div class="outline-text-2" id="text-org7c42516">
+<div id="outline-container-org1d3191a" class="outline-2">
+<h2 id="org1d3191a">org-roam links</h2>
+<div class="outline-text-2" id="text-org1d3191a">
 <p>
 pandoc on its own has no context of org-roam links, but org-roam stores everything it needs to operate in <code>~/.emacs.d/org-roam.db</code>, this file is automatically updated if the option <code>org-roam-db-autosync-mode</code> is set to <code>t</code>, this way other programs can be used to query information from org-roam without needing to visit the org files themselves.<br />
 based on this fact the following filter that is a modified version of <a href="https://www.amoradi.org/20210730173543.html">https://www.amoradi.org/20210730173543.html</a> is used:<br />
 </p>
-<div class="org-src-container" data-language="python">
+<div class="org-src-container">
 <pre class="src src-python"><span style="color: #cf9f7f; font-style: italic;">#</span><span style="color: #cf9f7f; font-style: italic;">!/usr/bin/env python3.10</span>
 
 <span style="color: #cf9f7f; font-style: italic;"># </span><span style="color: #cf9f7f; font-style: italic;">source: https://www.amoradi.org/20210730173543.html</span>
@@ -384,7 +392,7 @@ based on this fact the following filter that is a modified version of <a href="h
 <p>
 assuming the <code>panflute</code> python package is installed globally, and that this snippet is placed in the file <code>roam_links.py</code>, our exporting shell command becomes:<br />
 </p>
-<div class="org-src-container" data-language="sh">
+<div class="org-src-container">
 <pre class="src src-sh">sed <span style="color: #f06a3f;">'s/#+name:/#+attr_html: :id/'</span> infile.org |<span style="color: #f06a3f;">\</span>
     pandoc --from org<span style="color: #f06a3f;">\</span>
            --to html5<span style="color: #f06a3f;">\</span>

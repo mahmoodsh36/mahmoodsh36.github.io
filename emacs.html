@@ -26,20 +26,37 @@
   <div id="darkModeToggle" onclick="toggleDarkMode()">
     &#9680; <!-- Circle with left half black -->
   </div>
+</div>
+<div class="toc">
+  <span class="toc-title-container">
+    <a class='feather' data-feather='menu'></a>
+    <span class="toc-title">table of contents</span>
+  </span>
+  <div class="toc-list">
+  </div>
 </div><h1 class="main-title">emacs</h1><span class='date'>2024-02-07</span>
 </div>
 <div id="content" class="content">
 <p>
 somewhere i read, "emacs takes a lifetime to learn, the sooner you start, the longer it'll take."<br />
 </p>
-<div id="outline-container-orgf92b2d4" class="outline-2">
-<h2 id="orgf92b2d4">nodes</h2>
-<div class="outline-text-2" id="text-orgf92b2d4">
+<div id="outline-container-orgd019abe" class="outline-2">
+<h2 id="orgd019abe">nodes</h2>
+<div class="outline-text-2" id="text-orgd019abe">
 <ul class="org-ul">
 <li><a href="/blk.html#1713104680">blk, text navigation on your terms</a><br /></li>
 <li><a href="/exporting_from_org_mode_with_pandoc.html#1701951478">exporting from org mode with pandoc</a><br /></li>
 <li><a href="/dictionary_in_emacs.html#1689353403">dictionary in emacs</a><br /></li>
 </ul>
+</div>
+</div>
+<div id="outline-container-org01b34e3" class="outline-2">
+<h2 id="org01b34e3">emacs' input methods</h2>
+<div class="outline-text-2" id="text-org01b34e3">
+<p>
+emacs' input methods allow to enter specific characters in a more sensible way. for example to enter unicode symbols that are easily recognized by latex but it would be hard to remember their unicode codes we can use <code>M-x set-input-method</code> and choose <code>TeX</code>, then we can simply type <code>\sum</code> to get <code>∑</code>. to return to the default input method use <code>M-x set-input-method</code> and choose <code>rfc1345</code>.<br />
+<code>M-x activate-transient-input-method</code> can be used to temporarily change the current input method to insert a single character, it will auto-deactivate the method and return to the previous input method automatically once a single character is recognized and inserted.<br />
+see <a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Select-Input-Method.html">https://www.gnu.org/software/emacs/manual/html_node/emacs/Select-Input-Method.html</a></p>
 </div>
 </div>
 </div>
