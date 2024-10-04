@@ -40,16 +40,16 @@
 <p>
 working with <a href="/graph.html#1678745451">graph</a>s in <a href="/common_lisp.html#1677249560">common lisp</a><br />
 </p>
-<div id="outline-container-org06e9622" class="outline-2">
-<h2 id="org06e9622">my initial approach</h2>
-<div class="outline-text-2" id="text-org06e9622">
+<div id="outline-container-orgd07fb97" class="outline-2">
+<h2 id="orgd07fb97">my initial approach</h2>
+<div class="outline-text-2" id="text-orgd07fb97">
 <p>
 for simplicity ill represent a <a href="/graph.html#1678745451">graph</a> as a list of cons's, if we are dealing with a weighted graph, we use the second item in the cons as a cons with the first item being the node and the second being the weight<br />
 i implemented the helper functions <code>node-weight</code> and <code>node</code> for this purpose<br />
 an edge is written/stored in the format <code>'(&lt;src&gt; . (&lt;dest&gt; . &lt;weight&gt;))</code> or simply <code>'(&lt;src&gt; . &lt;dest&gt;)</code> if it has no weight<br />
 but what about a directed graph? maybe thats to worry about later (maybe just this structure but use <code>'(node1 . node2)</code> and <code>'(node2 . node1)</code> for bidirectional edges and pass an argument to functions that specifies whether graphs are directed so they have to respect the order of the cons)<br />
 </p>
-<div class="org-src-container">
+<div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #d0730f;">(</span><span style="color: #c48702; font-weight: bold;">defun</span> <span style="color: #3dbbb0;">edge-weight</span> <span style="color: #64aa0f;">(</span>e<span style="color: #64aa0f;">)</span>
   <span style="color: #5f9f6f; font-style: italic;">"get the weight of an edge"</span>
   <span style="color: #64aa0f;">(</span><span style="color: #c48702; font-weight: bold;">let</span> <span style="color: #ef656a;">(</span><span style="color: #3dbbb0;">(</span>dest-cons <span style="color: #df8f6f;">(</span>cdr e<span style="color: #df8f6f;">)</span><span style="color: #3dbbb0;">)</span><span style="color: #ef656a;">)</span>
@@ -71,7 +71,7 @@ but what about a directed graph? maybe thats to worry about later (maybe just th
 <p>
 example:<br />
 </p>
-<div class="org-src-container">
+<div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #d0730f;">(</span><span style="color: #c48702; font-weight: bold;">let</span> <span style="color: #64aa0f;">(</span><span style="color: #ef656a;">(</span>mygraph #<span style="color: #3dbbb0;">(</span><span style="color: #df8f6f;">(</span>0 . a<span style="color: #df8f6f;">)</span> <span style="color: #df8f6f;">(</span>a . 2<span style="color: #df8f6f;">)</span> <span style="color: #df8f6f;">(</span>1 . <span style="color: #379cf6;">(</span>3 . 4<span style="color: #379cf6;">)</span><span style="color: #df8f6f;">)</span> <span style="color: #df8f6f;">(</span>3 . |b|<span style="color: #df8f6f;">)</span><span style="color: #3dbbb0;">)</span><span style="color: #ef656a;">)</span><span style="color: #64aa0f;">)</span>
   <span style="color: #64aa0f;">(</span>map nil
        <span style="color: #ef656a;">(</span><span style="color: #c48702; font-weight: bold;">lambda</span> <span style="color: #3dbbb0;">(</span>mycons<span style="color: #3dbbb0;">)</span>
@@ -91,7 +91,7 @@ A -&gt; 2
 <p>
 a function to produce the tikz for a graph to be drawn using <a href="https://tikz.dev/tikz-graphs">https://tikz.dev/tikz-graphs</a> with force-based algorithms (<a href="https://tikz.dev/gd-force">https://tikz.dev/gd-force</a>)<br />
 </p>
-<div class="org-src-container">
+<div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #d0730f;">(</span><span style="color: #c48702; font-weight: bold;">defun</span> <span style="color: #3dbbb0;">generate-graph-tikz</span> <span style="color: #64aa0f;">(</span>g<span style="color: #64aa0f;">)</span>
   <span style="color: #64aa0f;">(</span>format t <span style="color: #f06a3f;">"\\tikz\\graph[spring layout] {~%"</span><span style="color: #64aa0f;">)</span>
   <span style="color: #64aa0f;">(</span>map nil
@@ -104,7 +104,7 @@ a function to produce the tikz for a graph to be drawn using <a href="https://ti
 <p>
 example usage:<br />
 </p>
-<div class="org-src-container">
+<div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #d0730f;">(</span>generate-graph-tikz #<span style="color: #64aa0f;">(</span><span style="color: #ef656a;">(</span>0 1<span style="color: #ef656a;">)</span> <span style="color: #ef656a;">(</span>1 2<span style="color: #ef656a;">)</span> <span style="color: #ef656a;">(</span>1 3<span style="color: #ef656a;">)</span> <span style="color: #ef656a;">(</span>0 5<span style="color: #ef656a;">)</span><span style="color: #64aa0f;">)</span><span style="color: #d0730f;">)</span> 
 </pre>
 </div>
@@ -122,7 +122,7 @@ example usage:<br />
 <p>
 this could be placed in a tex file like so:<br />
 </p>
-<div class="org-src-container">
+<div class="org-src-container" data-language="org">
 <pre class="src src-org">% on arch linux you need the texlive-luatex package
 % you might also need the following line
 % \RequirePackage{luatex85} % needed to make 'standalone' work with lualatex
@@ -146,14 +146,14 @@ this could be placed in a tex file like so:<br />
 <p>
 and compiled to <code>dvi</code> with<br />
 </p>
-<div class="org-src-container">
+<div class="org-src-container" data-language="bash">
 <pre class="src src-bash">lualatex --output-format=dvi &lt;yourfile&gt;.tex
 </pre>
 </div>
 <p>
 a <code>yourfile.dvi</code> will be generated, use <code>dvisvgm</code> to convert that to an <code>svg</code>:<br />
 </p>
-<div class="org-src-container">
+<div class="org-src-container" data-language="bash">
 <pre class="src src-bash">dvisvgm yourfile
 </pre>
 </div>
@@ -161,7 +161,7 @@ a <code>yourfile.dvi</code> will be generated, use <code>dvisvgm</code> to conve
 this will generate an svg image<br />
 an implementation of <a href="/A*_algorithm.html#1691868569">A* algorithm</a>:<br />
 </p>
-<div class="org-src-container">
+<div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #d0730f;">(</span><span style="color: #c48702; font-weight: bold;">defun</span> <span style="color: #3dbbb0;">a-star</span> <span style="color: #64aa0f;">(</span>graph src dest heuristic-function<span style="color: #64aa0f;">)</span>
   <span style="color: #5f9f6f; font-style: italic;">"a (naive?) implementation of A* search algorithm, solely written to avoid doing homework manually"</span>
   <span style="color: #64aa0f;">(</span>a-star-helper graph src nil dest 0 heuristic-function<span style="color: #64aa0f;">)</span><span style="color: #d0730f;">)</span>
@@ -223,16 +223,16 @@ an implementation of <a href="/A*_algorithm.html#1691868569">A* algorithm</a>:<b
 </div>
 </div>
 </div>
-<div id="outline-container-org8740866" class="outline-2">
-<h2 id="org8740866">adjacency list implementation</h2>
-<div class="outline-text-2" id="text-org8740866">
+<div id="outline-container-orgecc9506" class="outline-2">
+<h2 id="orgecc9506">adjacency list implementation</h2>
+<div class="outline-text-2" id="text-orgecc9506">
 <p>
 an adjancy list is list of linked lists, where each linked list stores a vertex and its outgoing edges, this makes representing directed graphs simple, so i decided to rewrite my code and to this approach<br />
 a vertex stores a list of edges, an "edge" stores the destination vertex and the weight (if the graph is directed we can tell which direction an edge because its source and destination vertex are determined already in the structure, so its direction must be from the source to the destination), here, an edge need not store its source vertex because the source vertex links to it already, if a function expects to receive a list of edges, not an adjacency list, then perhaps a list could be used in the form <code>'(source dest weight)</code>.<br />
 whether a graph is directed or not is not implemented (currently) in code logic, it depends on the programmers intentions with the graph, this code only provides the necessary abstraction, perhaps a type <code>graph</code> can be implemented to store a boolean of whether the graph is directed or not, or each edge would store a boolean to denote whether its actually directed from the source to the destination or not<br />
 implementation of basic functions:<br />
 </p>
-<div class="org-src-container">
+<div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #d0730f;">(</span><span style="color: #c48702; font-weight: bold;">defun</span> <span style="color: #3dbbb0;">edge-dest</span> <span style="color: #64aa0f;">(</span>e<span style="color: #64aa0f;">)</span>
   <span style="color: #64aa0f;">(</span>car e<span style="color: #64aa0f;">)</span><span style="color: #d0730f;">)</span>
 
@@ -247,7 +247,7 @@ implementation of basic functions:<br />
 <p>
 perhaps we should make a graph class to provide a more "abstract interface":<br />
 </p>
-<div class="org-src-container">
+<div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #d0730f;">(</span><span style="color: #c48702; font-weight: bold;">defclass</span> <span style="color: #2fa526;">graph</span> <span style="color: #64aa0f;">()</span>
   <span style="color: #64aa0f;">(</span><span style="color: #ef656a;">(</span>adjacency-list
     <span style="color: #ff7a7f; font-weight: bold;">:initform</span> nil
@@ -262,7 +262,7 @@ perhaps we should make a graph class to provide a more "abstract interface":<br 
 <p>
 example construction of a graph:<br />
 </p>
-<div class="org-src-container">
+<div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #d0730f;">(</span><span style="color: #c48702; font-weight: bold;">defmethod</span> <span style="color: #3dbbb0;">print-object</span> <span style="color: #64aa0f;">(</span><span style="color: #ef656a;">(</span>gr graph<span style="color: #ef656a;">)</span> stream<span style="color: #64aa0f;">)</span>
   <span style="color: #64aa0f;">(</span>print-unreadable-object <span style="color: #ef656a;">(</span>gr stream <span style="color: #ff7a7f; font-weight: bold;">:type</span> t<span style="color: #ef656a;">)</span>
     <span style="color: #ef656a;">(</span>format t <span style="color: #f06a3f;">"source-&gt;destination,weight~%"</span><span style="color: #ef656a;">)</span>
@@ -282,7 +282,7 @@ example construction of a graph:<br />
 <p>
 example usage:<br />
 </p>
-<div class="org-src-container">
+<div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #cf9f7f; font-style: italic;">;; </span><span style="color: #cf9f7f; font-style: italic;">or equivalently, #((0 (a . 5) (3 . 9)) (a (2 . nil)) (1 (3 . 4)) (3 (|b| . 5)))</span>
 <span style="color: #d0730f;">(</span><span style="color: #c48702; font-weight: bold;">let*</span> <span style="color: #64aa0f;">(</span><span style="color: #ef656a;">(</span>adjacency-list '<span style="color: #3dbbb0;">(</span><span style="color: #df8f6f;">(</span>0 . <span style="color: #379cf6;">(</span><span style="color: #ff7a7f;">(</span>a . 5<span style="color: #ff7a7f;">)</span> <span style="color: #ff7a7f;">(</span>3 . 9<span style="color: #ff7a7f;">)</span><span style="color: #379cf6;">)</span><span style="color: #df8f6f;">)</span> <span style="color: #df8f6f;">(</span>a . <span style="color: #379cf6;">(</span><span style="color: #ff7a7f;">(</span>2 . nil<span style="color: #ff7a7f;">)</span><span style="color: #379cf6;">)</span><span style="color: #df8f6f;">)</span>
                          <span style="color: #df8f6f;">(</span>1 . <span style="color: #379cf6;">(</span><span style="color: #ff7a7f;">(</span>3 . 4<span style="color: #ff7a7f;">)</span><span style="color: #379cf6;">)</span><span style="color: #df8f6f;">)</span> <span style="color: #df8f6f;">(</span>3 . <span style="color: #379cf6;">(</span><span style="color: #ff7a7f;">(</span>|b| . 5<span style="color: #ff7a7f;">)</span><span style="color: #379cf6;">)</span><span style="color: #df8f6f;">)</span><span style="color: #3dbbb0;">)</span><span style="color: #ef656a;">)</span>
@@ -305,7 +305,7 @@ A -&gt; 2, 0
 <p>
 generating graph diagrams with tikz:<br />
 </p>
-<div class="org-src-container">
+<div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #d0730f;">(</span><span style="color: #c48702; font-weight: bold;">defmethod</span> <span style="color: #3dbbb0;">graph-generate-tikz</span> <span style="color: #64aa0f;">(</span><span style="color: #ef656a;">(</span>g graph<span style="color: #ef656a;">)</span> <span style="color: #2fa526;">&amp;key</span> <span style="color: #ef656a;">(</span>node-distance 50<span style="color: #ef656a;">)</span>
                                             <span style="color: #ef656a;">(</span>format-function #'identity<span style="color: #ef656a;">)</span>
                                             <span style="color: #ef656a;">(</span>should-print t<span style="color: #ef656a;">)</span>
@@ -357,7 +357,7 @@ generating graph diagrams with tikz:<br />
 <p>
 example usage:<br />
 </p>
-<div class="org-src-container">
+<div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #d0730f;">(</span><span style="color: #c48702; font-weight: bold;">let</span> <span style="color: #64aa0f;">(</span><span style="color: #ef656a;">(</span>mygraph <span style="color: #3dbbb0;">(</span>make-graph <span style="color: #ff7a7f; font-weight: bold;">:adjacency-list</span>
                            '<span style="color: #df8f6f;">(</span><span style="color: #379cf6;">(</span>1 . <span style="color: #ff7a7f;">(</span><span style="color: #2fa526;">(</span>3 . 2<span style="color: #2fa526;">)</span><span style="color: #ff7a7f;">)</span><span style="color: #379cf6;">)</span>
                              <span style="color: #379cf6;">(</span>3 . <span style="color: #ff7a7f;">(</span><span style="color: #2fa526;">(</span>b . 9<span style="color: #2fa526;">)</span><span style="color: #ff7a7f;">)</span><span style="color: #379cf6;">)</span>
@@ -375,7 +375,7 @@ example usage:<br />
 <span class="equation">
 <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='3.318755 -125.633455 145.47083 122.313771' style="max-height: 12.7340em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='3.318755 -125.633455 145.47083 122.313771' style="max-height: 12.6853em; vertical-align: -0.0005em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g0-34' d='m6.485679-1.823163c0-.86675-.816936-1.613948-1.92279-1.733499c.966376-.18929 1.653798-.826899 1.653798-1.564134c0-.86675-.916563-1.683686-2.211706-1.683686h-3.646326v.308842h.239103c.767123 0 .787049 .109589 .787049 .468244v5.250311c0 .358655-.019925 .468244-.787049 .468244h-.239103v.308842h3.905355c1.325031 0 2.221669-.886675 2.221669-1.823163zm-1.235367-3.297634c0 .637609-.488169 1.474471-1.594022 1.474471h-1.444583v-2.450809c0-.328767 .019925-.398506 .488169-.398506h1.235367c.966376 0 1.315068 .846824 1.315068 1.374844zm.239103 3.287671c0 .707347-.518057 1.524284-1.544209 1.524284h-1.24533c-.468244 0-.488169-.069738-.488169-.398506v-2.719801h1.872976c.986301 0 1.404732 .926526 1.404732 1.594022z'/>
 <path id='g0-42' d='m6.625156-2.321295c0-.099626 0-.169365-.129514-.169365c-.109589 0-.109589 .059776-.119552 .159402c-.079701 1.424658-1.145704 2.241594-2.231631 2.241594c-.607721 0-2.560399-.33873-2.560399-3.307597c0-2.978829 1.942715-3.317559 2.550436-3.317559c1.085928 0 1.972603 .9066 2.171856 2.361146c.019925 .139477 .019925 .169365 .159402 .169365c.159402 0 .159402-.029888 .159402-.239103v-2.361146c0-.169365 0-.239103-.109589-.239103c-.039851 0-.079701 0-.159402 .119552l-.498132 .737235c-.368618-.358655-.876712-.856787-1.833126-.856787c-1.863014 0-3.466999 1.58406-3.466999 3.616438c0 2.062267 1.613948 3.626401 3.466999 3.626401c1.62391 0 2.600249-1.384807 2.600249-2.540473z'/>
@@ -444,7 +444,7 @@ example usage:<br />
 <p>
 a function to get all edges that are indicent to a specific vertex:<br />
 </p>
-<div class="org-src-container">
+<div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #d0730f;">(</span><span style="color: #c48702; font-weight: bold;">defmethod</span> <span style="color: #3dbbb0;">graph-vertex-neighbors</span> <span style="color: #64aa0f;">(</span><span style="color: #ef656a;">(</span>g graph<span style="color: #ef656a;">)</span> vertex<span style="color: #64aa0f;">)</span>
   <span style="color: #64aa0f;">(</span><span style="color: #c48702; font-weight: bold;">with-slots</span> <span style="color: #ef656a;">(</span>adjacency-list<span style="color: #ef656a;">)</span> g
     <span style="color: #ef656a;">(</span><span style="color: #c48702; font-weight: bold;">let</span> <span style="color: #3dbbb0;">(</span><span style="color: #df8f6f;">(</span>neighbors nil<span style="color: #df8f6f;">)</span><span style="color: #3dbbb0;">)</span>
@@ -463,7 +463,7 @@ a function to get all edges that are indicent to a specific vertex:<br />
 <p>
 some simple utility functions for graphs:<br />
 </p>
-<div class="org-src-container">
+<div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #d0730f;">(</span><span style="color: #c48702; font-weight: bold;">defmethod</span> <span style="color: #3dbbb0;">graph-add-edge</span> <span style="color: #64aa0f;">(</span><span style="color: #ef656a;">(</span>g graph<span style="color: #ef656a;">)</span> src dest <span style="color: #2fa526;">&amp;optional</span> <span style="color: #ef656a;">(</span>weight nil<span style="color: #ef656a;">)</span><span style="color: #64aa0f;">)</span>
   <span style="color: #64aa0f;">(</span><span style="color: #c48702; font-weight: bold;">let</span> <span style="color: #ef656a;">(</span><span style="color: #3dbbb0;">(</span>vertex-list <span style="color: #df8f6f;">(</span>assoc src <span style="color: #379cf6;">(</span>graph-adjacency-list g<span style="color: #379cf6;">)</span><span style="color: #df8f6f;">)</span><span style="color: #3dbbb0;">)</span><span style="color: #ef656a;">)</span> <span style="color: #cf9f7f; font-style: italic;">;; </span><span style="color: #cf9f7f; font-style: italic;">the list that stores the edges for the source vertex `</span><span style="color: #64aa0f; font-style: italic;">src</span><span style="color: #cf9f7f; font-style: italic;">'</span>
     <span style="color: #ef656a;">(</span><span style="color: #c48702; font-weight: bold;">if</span> vertex-list
