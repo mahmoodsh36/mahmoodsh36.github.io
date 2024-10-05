@@ -57,16 +57,16 @@ a connection to the tunnel can be opened using the command<br />
 <p>
 note that <code>localuser</code> would be the user of <code>local2</code> (not the remote machine) that you want ssh to use.<br />
 </p>
-<div id="outline-container-orgcb0f661" class="outline-2">
-<h2 id="orgcb0f661">connection refused</h2>
-<div class="outline-text-2" id="text-orgcb0f661">
+<div id="outline-container-org71758bf" class="outline-2">
+<h2 id="org71758bf">connection refused</h2>
+<div class="outline-text-2" id="text-org71758bf">
 <div class="fancy-block dummy" data-before="" data-after="&lt;p&gt;
 &lt;a href=&quot;https://serverfault.com/questions/478171/reverse-ssh-tunnel-connexion-refused&quot;&gt;https://serverfault.com/questions/478171/reverse-ssh-tunnel-connexion-refused&lt;/a&gt;&lt;/p&gt;
 ">
 <p>
 by default tunnel endpoints only listen on 127.0.0.1, so they can't be accessed from other machines. to change this you may need to add this to <code>/etc/ssh/sshd_config</code> on the server:<br />
 </p>
-<div class="literal" id="org74d2fa5">
+<div class="literal" id="orgfcd6575">
 <p>
 GatewayPorts clientspecified<br />
 </p>
@@ -79,9 +79,9 @@ this is also the reason we use the address <code>*:5000:*:22</code>, the star is
 </p>
 </div>
 </div>
-<div id="outline-container-org7ad94ed" class="outline-2">
-<h2 id="org7ad94ed">using ipv6</h2>
-<div class="outline-text-2" id="text-org7ad94ed">
+<div id="outline-container-orga29b7d5" class="outline-2">
+<h2 id="orga29b7d5">using ipv6</h2>
+<div class="outline-text-2" id="text-orga29b7d5">
 <p>
 if you're using ipv6 you need to make sure its enabled on all machines. <code>vim /etc/sysctl.conf</code> and make sure you have the following:<br />
 </p>
@@ -99,9 +99,9 @@ the ipv6 equivalent for <code>localhost</code> is <code>::1</code>. so, for exam
 </div>
 </div>
 </div>
-<div id="outline-container-orga46d697" class="outline-2">
-<h2 id="orga46d697">systemd service</h2>
-<div class="outline-text-2" id="text-orga46d697">
+<div id="outline-container-org89f4b21" class="outline-2">
+<h2 id="org89f4b21">systemd service</h2>
+<div class="outline-text-2" id="text-org89f4b21">
 <p>
 an example systemd service that i use to automatically open an ssh tunnel for a linux server:<br />
 </p>

@@ -38,13 +38,13 @@
 </div>
 <div id="content" class="content">
 <p>
-working with <a href="/graph.html#1678745451">graph</a>s in <a href="/common_lisp.html#1677249560">common lisp</a><br />
+working with <a href="/graph.html">graph</a>s in <a href="/common_lisp.html">common lisp</a><br />
 </p>
-<div id="outline-container-orgd07fb97" class="outline-2">
-<h2 id="orgd07fb97">my initial approach</h2>
-<div class="outline-text-2" id="text-orgd07fb97">
+<div id="outline-container-org0967575" class="outline-2">
+<h2 id="org0967575">my initial approach</h2>
+<div class="outline-text-2" id="text-org0967575">
 <p>
-for simplicity ill represent a <a href="/graph.html#1678745451">graph</a> as a list of cons's, if we are dealing with a weighted graph, we use the second item in the cons as a cons with the first item being the node and the second being the weight<br />
+for simplicity ill represent a <a href="/graph.html">graph</a> as a list of cons's, if we are dealing with a weighted graph, we use the second item in the cons as a cons with the first item being the node and the second being the weight<br />
 i implemented the helper functions <code>node-weight</code> and <code>node</code> for this purpose<br />
 an edge is written/stored in the format <code>'(&lt;src&gt; . (&lt;dest&gt; . &lt;weight&gt;))</code> or simply <code>'(&lt;src&gt; . &lt;dest&gt;)</code> if it has no weight<br />
 but what about a directed graph? maybe thats to worry about later (maybe just this structure but use <code>'(node1 . node2)</code> and <code>'(node2 . node1)</code> for bidirectional edges and pass an argument to functions that specifies whether graphs are directed so they have to respect the order of the cons)<br />
@@ -159,7 +159,7 @@ a <code>yourfile.dvi</code> will be generated, use <code>dvisvgm</code> to conve
 </div>
 <p>
 this will generate an svg image<br />
-an implementation of <a href="/A*_algorithm.html#1691868569">A* algorithm</a>:<br />
+an implementation of <a href="/A*_algorithm.html">A* algorithm</a>:<br />
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #d0730f;">(</span><span style="color: #c48702; font-weight: bold;">defun</span> <span style="color: #3dbbb0;">a-star</span> <span style="color: #64aa0f;">(</span>graph src dest heuristic-function<span style="color: #64aa0f;">)</span>
@@ -223,9 +223,9 @@ an implementation of <a href="/A*_algorithm.html#1691868569">A* algorithm</a>:<b
 </div>
 </div>
 </div>
-<div id="outline-container-orgecc9506" class="outline-2">
-<h2 id="orgecc9506">adjacency list implementation</h2>
-<div class="outline-text-2" id="text-orgecc9506">
+<div id="outline-container-orgb511fe3" class="outline-2">
+<h2 id="orgb511fe3">adjacency list implementation</h2>
+<div class="outline-text-2" id="text-orgb511fe3">
 <p>
 an adjancy list is list of linked lists, where each linked list stores a vertex and its outgoing edges, this makes representing directed graphs simple, so i decided to rewrite my code and to this approach<br />
 a vertex stores a list of edges, an "edge" stores the destination vertex and the weight (if the graph is directed we can tell which direction an edge because its source and destination vertex are determined already in the structure, so its direction must be from the source to the destination), here, an edge need not store its source vertex because the source vertex links to it already, if a function expects to receive a list of edges, not an adjacency list, then perhaps a list could be used in the form <code>'(source dest weight)</code>.<br />

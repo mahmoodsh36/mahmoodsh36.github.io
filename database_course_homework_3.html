@@ -39,27 +39,27 @@
 <div id="content" class="content">
 <div class="fancy-block note" data-before="&lt;p&gt;
 note: &lt;/p&gt;
-" data-after="">
+">
 <p>
-this homework depends on the database built in <a href="/database_course_homework_1.html#1702107387">database course homework 1</a>.<br />
+this homework depends on the database built in <a href="/database_course_homework_1.html">database course homework 1</a>.<br />
 </p>
 
 </div>
 <div class="fancy-block note" data-before="&lt;p&gt;
 note: &lt;/p&gt;
-" data-after="">
+">
 <p>
 i used postgresql to do this homework.<br />
 </p>
 
 </div>
-<div id="outline-container-org65a9621" class="outline-2">
-<h2 id="org65a9621">sample data</h2>
-<div class="outline-text-2" id="text-org65a9621">
+<div id="outline-container-org78d0a9c" class="outline-2">
+<h2 id="org78d0a9c">sample data</h2>
+<div class="outline-text-2" id="text-org78d0a9c">
 <p>
 here i insert some dummy data for testing<br />
 </p>
-<div class="org-src-container">
+<div class="org-src-container" data-language="sql">
 <pre class="src src-sql"><span style="color: #cf9f7f; font-style: italic;">-- </span><span style="color: #cf9f7f; font-style: italic;">customers</span>
 <span style="color: #c48702; font-weight: bold;">INSERT</span> <span style="color: #c48702; font-weight: bold;">INTO</span> customer <span style="color: #d0730f;">(</span>first_name, family_name, customer_id, hometown, street, house_number, phone_number, customer_type<span style="color: #d0730f;">)</span>
             <span style="color: #c48702; font-weight: bold;">VALUES</span><span style="color: #d0730f;">(</span><span style="color: #f06a3f;">'some'</span>, <span style="color: #f06a3f;">'one'</span>, <span style="color: #f06a3f;">'111'</span>, <span style="color: #f06a3f;">'netanya'</span>, <span style="color: #f06a3f;">'hertzel'</span>, <span style="color: #f06a3f;">'22'</span>, <span style="color: #f06a3f;">'503344556'</span>, <span style="color: #f06a3f;">'private'</span><span style="color: #d0730f;">)</span>;
@@ -148,18 +148,18 @@ here i insert some dummy data for testing<br />
 </table>
 </div>
 </div>
-<div id="outline-container-orgd6a500b" class="outline-2">
-<h2 id="orgd6a500b">homework problem set</h2>
-<div class="outline-text-2" id="text-orgd6a500b">
+<div id="outline-container-org222b5c8" class="outline-2">
+<h2 id="org222b5c8">homework problem set</h2>
+<div class="outline-text-2" id="text-org222b5c8">
 <div class="fancy-block problem" data-before="&lt;p&gt;
 problem: &lt;/p&gt;
-" data-after="">
+">
 <p>
 write each of the following queries<br />
 </p>
 <div class="fancy-block subproblem" data-before="&lt;p&gt;
 subproblem: &lt;/p&gt;
-" data-after="">
+">
 <p>
 return all customers, show first name, last name, id, hometown, street, house number, phone number.<br />
 </p>
@@ -167,8 +167,8 @@ return all customers, show first name, last name, id, hometown, street, house nu
 </div>
 <div class="fancy-block solution" data-before="&lt;p&gt;
 solution: &lt;/p&gt;
-" data-after="">
-<div class="org-src-container">
+">
+<div class="org-src-container" data-language="sql">
 <pre class="src src-sql"><span style="color: #c48702; font-weight: bold;">SELECT</span> * <span style="color: #c48702; font-weight: bold;">FROM</span> customer;
 </pre>
 </div>
@@ -244,7 +244,7 @@ solution: &lt;/p&gt;
 </div>
 <div class="fancy-block subproblem" data-before="&lt;p&gt;
 subproblem: &lt;/p&gt;
-" data-after="">
+">
 <p>
 return the name of owners (first name and last name), id, phone number and ids.<br />
 </p>
@@ -252,8 +252,8 @@ return the name of owners (first name and last name), id, phone number and ids.<
 </div>
 <div class="fancy-block solution" data-before="&lt;p&gt;
 solution: &lt;/p&gt;
-" data-after="">
-<div class="org-src-container">
+">
+<div class="org-src-container" data-language="sql">
 <pre class="src src-sql"><span style="color: #c48702; font-weight: bold;">SELECT</span>
   CONCAT<span style="color: #d0730f;">(</span>c.first_name, <span style="color: #f06a3f;">' '</span>, c.family_name<span style="color: #d0730f;">)</span> <span style="color: #c48702; font-weight: bold;">AS</span> <span style="color: #c48702; font-weight: bold;">name</span>, c.customer_id, c.phone_number
 <span style="color: #c48702; font-weight: bold;">FROM</span> customer c
@@ -290,7 +290,7 @@ solution: &lt;/p&gt;
 </div>
 <div class="fancy-block subproblem" data-before="&lt;p&gt;
 subproblem: &lt;/p&gt;
-" data-after="">
+">
 <p>
 return the name of a worker (first name and last name) that has done the maintenance, car number, garage name, maintenance date and maintenance type.<br />
 </p>
@@ -298,8 +298,8 @@ return the name of a worker (first name and last name) that has done the mainten
 </div>
 <div class="fancy-block solution" data-before="&lt;p&gt;
 solution: &lt;/p&gt;
-" data-after="">
-<div class="org-src-container">
+">
+<div class="org-src-container" data-language="sql">
 <pre class="src src-sql"><span style="color: #c48702; font-weight: bold;">SELECT</span>
   CONCAT<span style="color: #d0730f;">(</span>c.first_name, <span style="color: #f06a3f;">' '</span>, c.family_name<span style="color: #d0730f;">)</span> <span style="color: #c48702; font-weight: bold;">AS</span> <span style="color: #c48702; font-weight: bold;">name</span>, <span style="color: #c48702; font-weight: bold;">m</span>.car_number, <span style="color: #c48702; font-weight: bold;">m</span>.garage_name, <span style="color: #c48702; font-weight: bold;">m</span>.maintenance_date
 <span style="color: #c48702; font-weight: bold;">FROM</span> customer c
@@ -382,7 +382,7 @@ solution: &lt;/p&gt;
 </div>
 <div class="fancy-block subproblem" data-before="&lt;p&gt;
 subproblem: &lt;/p&gt;
-" data-after="">
+">
 <p>
 return for each car its car number, car type, manufacturing company name, production year, engine number, miles travelled only for cars whose engine number contains the digit 6 and the car is in a cancelled status.<br />
 </p>
@@ -390,8 +390,8 @@ return for each car its car number, car type, manufacturing company name, produc
 </div>
 <div class="fancy-block solution" data-before="&lt;p&gt;
 solution: &lt;/p&gt;
-" data-after="">
-<div class="org-src-container">
+">
+<div class="org-src-container" data-language="sql">
 <pre class="src src-sql"><span style="color: #c48702; font-weight: bold;">SELECT</span>
   car_number, car_type, company, production_year, engine_number, kilometers
 <span style="color: #c48702; font-weight: bold;">FROM</span> car
@@ -440,7 +440,7 @@ solution: &lt;/p&gt;
 </div>
 <div class="fancy-block subproblem" data-before="&lt;p&gt;
 subproblem: &lt;/p&gt;
-" data-after="">
+">
 <p>
 return the garage name and maintenance dates and the number of cars that a garage had done maintenance for in the year 2018 and in the year 2020, sorted according to the garage name.<br />
 </p>
@@ -448,8 +448,8 @@ return the garage name and maintenance dates and the number of cars that a garag
 </div>
 <div class="fancy-block solution" data-before="&lt;p&gt;
 solution: &lt;/p&gt;
-" data-after="">
-<div class="org-src-container">
+">
+<div class="org-src-container" data-language="sql">
 <pre class="src src-sql"><span style="color: #c48702; font-weight: bold;">SELECT</span> g.garage_name, maintenance_date, num
 <span style="color: #c48702; font-weight: bold;">FROM</span>
 <span style="color: #d0730f;">(</span>
@@ -506,7 +506,7 @@ solution: &lt;/p&gt;
 </div>
 <div class="fancy-block subproblem" data-before="&lt;p&gt;
 subproblem: &lt;/p&gt;
-" data-after="">
+">
 <p>
 return the names of garages that have done more than 3 maintenances in the year 2015 and in the year 2019. show the names of the garages and the number of maintenances in descending order, such that the garage that has done the most maintenances appears first.<br />
 </p>
@@ -514,11 +514,11 @@ return the names of garages that have done more than 3 maintenances in the year 
 </div>
 <div class="fancy-block solution" data-before="&lt;p&gt;
 solution: &lt;/p&gt;
-" data-after="">
+">
 <p>
 the writing is ambiguous, but i will assume we're talking about the number of maintenances in the years 2015, 2019 only.<br />
 </p>
-<div class="org-src-container">
+<div class="org-src-container" data-language="sql">
 <pre class="src src-sql"><span style="color: #c48702; font-weight: bold;">SELECT</span> garage_name, <span style="color: #ff7a7f; font-weight: bold;">COUNT</span><span style="color: #d0730f;">(</span>*<span style="color: #d0730f;">)</span> <span style="color: #c48702; font-weight: bold;">as</span> num
 <span style="color: #c48702; font-weight: bold;">FROM</span> car_maintenance
 <span style="color: #c48702; font-weight: bold;">WHERE</span> <span style="color: #d0730f;">(</span>2015 = <span style="color: #ff7a7f; font-weight: bold;">EXTRACT</span><span style="color: #64aa0f;">(</span><span style="color: #c48702; font-weight: bold;">year</span> <span style="color: #c48702; font-weight: bold;">FROM</span> maintenance_date<span style="color: #64aa0f;">)</span> <span style="color: #c48702; font-weight: bold;">OR</span> <span style="color: #ff7a7f; font-weight: bold;">EXTRACT</span><span style="color: #64aa0f;">(</span><span style="color: #c48702; font-weight: bold;">year</span> <span style="color: #c48702; font-weight: bold;">FROM</span> maintenance_date<span style="color: #64aa0f;">)</span> = 2019<span style="color: #d0730f;">)</span>
@@ -547,7 +547,7 @@ the writing is ambiguous, but i will assume we're talking about the number of ma
 </div>
 <div class="fancy-block subproblem" data-before="&lt;p&gt;
 subproblem: &lt;/p&gt;
-" data-after="">
+">
 <p>
 return the name of the owner of the car (first and last name) and all the maintenances (car number, maintenance type, maintenance date and garage name) of which the date is between 01/01/2015 and 31/12/2020 sorted by the customer name and the maintenance date.<br />
 </p>
@@ -555,8 +555,8 @@ return the name of the owner of the car (first and last name) and all the mainte
 </div>
 <div class="fancy-block solution" data-before="&lt;p&gt;
 solution: &lt;/p&gt;
-" data-after="">
-<div class="org-src-container">
+">
+<div class="org-src-container" data-language="sql">
 <pre class="src src-sql"><span style="color: #c48702; font-weight: bold;">SELECT</span> <span style="color: #c48702; font-weight: bold;">m</span>.garage_name, CONCAT<span style="color: #d0730f;">(</span>c.first_name, <span style="color: #f06a3f;">' '</span>, c.family_name<span style="color: #d0730f;">)</span> <span style="color: #c48702; font-weight: bold;">AS</span> customer_name, w.car_number, <span style="color: #c48702; font-weight: bold;">m</span>.maintenance_type, <span style="color: #c48702; font-weight: bold;">m</span>.maintenance_date
 <span style="color: #c48702; font-weight: bold;">FROM</span> customer c
 <span style="color: #c48702; font-weight: bold;">INNER</span> <span style="color: #c48702; font-weight: bold;">JOIN</span> car_owner <span style="color: #c48702; font-weight: bold;">AS</span> w <span style="color: #c48702; font-weight: bold;">ON</span> w.customer_id = c.customer_id
@@ -643,7 +643,7 @@ solution: &lt;/p&gt;
 </div>
 <div class="fancy-block subproblem" data-before="&lt;p&gt;
 subproblem: &lt;/p&gt;
-" data-after="">
+">
 <p>
 return the name of the garage, the name of the part and the number of parts replaced, sorted by the name of the garage.<br />
 </p>
@@ -651,8 +651,8 @@ return the name of the garage, the name of the part and the number of parts repl
 </div>
 <div class="fancy-block solution" data-before="&lt;p&gt;
 solution: &lt;/p&gt;
-" data-after="">
-<div class="org-src-container">
+">
+<div class="org-src-container" data-language="sql">
 <pre class="src src-sql"><span style="color: #c48702; font-weight: bold;">select</span> g.garage_name, r.part_name, g.num
 <span style="color: #c48702; font-weight: bold;">from</span>
 <span style="color: #d0730f;">(</span>
@@ -696,7 +696,7 @@ solution: &lt;/p&gt;
 </div>
 <div class="fancy-block subproblem" data-before="&lt;p&gt;
 subproblem: &lt;/p&gt;
-" data-after="">
+">
 <p>
 show the id and the names of the customers (first and last name) and the number of cars of type honda that they have owned, only if there is more than one car that belongs to the customer.<br />
 </p>
@@ -704,8 +704,8 @@ show the id and the names of the customers (first and last name) and the number 
 </div>
 <div class="fancy-block solution" data-before="&lt;p&gt;
 solution: &lt;/p&gt;
-" data-after="">
-<div class="org-src-container">
+">
+<div class="org-src-container" data-language="sql">
 <pre class="src src-sql"><span style="color: #c48702; font-weight: bold;">SELECT</span> CONCAT<span style="color: #d0730f;">(</span>c.first_name, <span style="color: #f06a3f;">' '</span>, c.family_name<span style="color: #d0730f;">)</span> <span style="color: #c48702; font-weight: bold;">AS</span> customer_name, <span style="color: #ff7a7f; font-weight: bold;">COUNT</span><span style="color: #d0730f;">(</span>*<span style="color: #d0730f;">)</span> <span style="color: #c48702; font-weight: bold;">as</span> num
 <span style="color: #c48702; font-weight: bold;">FROM</span> customer c
 <span style="color: #c48702; font-weight: bold;">INNER</span> <span style="color: #c48702; font-weight: bold;">JOIN</span> car_owner <span style="color: #c48702; font-weight: bold;">AS</span> o <span style="color: #c48702; font-weight: bold;">ON</span> o.customer_id = c.customer_id
@@ -740,7 +740,7 @@ solution: &lt;/p&gt;
 </div>
 <div class="fancy-block subproblem" data-before="&lt;p&gt;
 subproblem: &lt;/p&gt;
-" data-after="">
+">
 <p>
 show the customers names (first and last name) and the distance travelled in total by all the cars that they own, sorted from the biggest to the smallest.<br />
 </p>
@@ -748,8 +748,8 @@ show the customers names (first and last name) and the distance travelled in tot
 </div>
 <div class="fancy-block solution" data-before="&lt;p&gt;
 solution: &lt;/p&gt;
-" data-after="">
-<div class="org-src-container">
+">
+<div class="org-src-container" data-language="sql">
 <pre class="src src-sql"><span style="color: #c48702; font-weight: bold;">SELECT</span> CONCAT<span style="color: #d0730f;">(</span>c.first_name, <span style="color: #f06a3f;">' '</span>, c.family_name<span style="color: #d0730f;">)</span> <span style="color: #c48702; font-weight: bold;">AS</span> customer_name, <span style="color: #ff7a7f; font-weight: bold;">SUM</span><span style="color: #d0730f;">(</span>kilometers<span style="color: #d0730f;">)</span> <span style="color: #c48702; font-weight: bold;">as</span> num
 <span style="color: #c48702; font-weight: bold;">FROM</span> customer c
 <span style="color: #c48702; font-weight: bold;">INNER</span> <span style="color: #c48702; font-weight: bold;">JOIN</span> car_owner <span style="color: #c48702; font-weight: bold;">AS</span> o <span style="color: #c48702; font-weight: bold;">ON</span> o.customer_id = c.customer_id

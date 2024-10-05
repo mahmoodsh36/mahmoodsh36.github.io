@@ -41,7 +41,7 @@
 (Ramez Elmasri, Shamkant B. Navathe, 2015 chapter 8.1.3 sequences of operations and the RENAME operation)&lt;/p&gt;
 ">
 <p>
-in general, for most queries, we need to apply several <a href="/relational_algebra.html#1702391772">relational algebra</a> operations one after the other. either we can write the operations as a single relational algebra expression by nesting the operations, or we can apply one operation at a time and create intermediate result relations. in the latter case, we must give names to the relations that hold the intermediate results. for example, to retrieve the first name, last name, and salary of all employees who work in department number 5, we must apply a <a href="/select.html#1704740086">select</a> and a <a href="/project_operation.html#1704791629">project</a> operation. we can write a single <a href="/relational_algebra.html#1702391772">relational algebra</a> expression, also known as an in-line expression, as follows:<br />
+in general, for most queries, we need to apply several <a href="/relational_algebra.html">relational algebra</a> operations one after the other. either we can write the operations as a single relational algebra expression by nesting the operations, or we can apply one operation at a time and create intermediate result relations. in the latter case, we must give names to the relations that hold the intermediate results. for example, to retrieve the first name, last name, and salary of all employees who work in department number 5, we must apply a <a href="/select.html">select</a> and a <a href="/project_operation.html">project</a> operation. we can write a single <a href="/relational_algebra.html">relational algebra</a> expression, also known as an in-line expression, as follows:<br />
 <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='92.354826 -10.38902 182.494099 10.389026' style="max-height: 1.5613em; display: block" class="org-latex org-latex-block">
@@ -376,7 +376,7 @@ it is sometimes simpler to break down a complex sequence of operations by specif
 </span>
 </div>
 <p>
-if no renaming is applied, the names of the attributes in the resulting relation of a <a href="/select.html#1704740086">select</a> operation are the same as those in the original relation and in the same order. for a <a href="/project_operation.html#1704791629">project</a> operation with no renaming, the resulting relation has the same attribute names as those in the projection list and in the same order in which they appear in the list.<br />
+if no renaming is applied, the names of the attributes in the resulting relation of a <a href="/select.html">select</a> operation are the same as those in the original relation and in the same order. for a <a href="/project_operation.html">project</a> operation with no renaming, the resulting relation has the same attribute names as those in the projection list and in the same order in which they appear in the list.<br />
 we can also define a formal RENAME operation&#x2013;which can rename either the relation name or the attribute names, or both&#x2013;as a unary operator. the general RENAME operation when applied to a relation <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.807795 7.641499 6.807795' style="max-height: 0.7680em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
@@ -392,11 +392,11 @@ we can also define a formal RENAME operation&#x2013;which can rename either the 
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -4.289468 5.979925 4.289468' style="max-height: 0.5203em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
-<path id='g4-110' d='m5.688667-1.424658c0-.099626-.089664-.099626-.119552-.099626c-.099626 0-.099626 .029888-.14944 .179328c-.199253 .67746-.52802 1.235367-1.016189 1.235367c-.169365 0-.239103-.099626-.239103-.328767c0-.249066 .089664-.488169 .179328-.707347c.18929-.52802 .607721-1.62391 .607721-2.191781c0-.667497-.428394-1.066002-1.145704-1.066002c-.896638 0-1.384807 .637609-1.554172 .86675c-.049813-.557908-.458281-.86675-.916563-.86675s-.647572 .388543-.747198 .56787c-.159402 .33873-.298879 .926526-.298879 .966376c0 .099626 .119552 .099626 .119552 .099626c.099626 0 .109589-.009963 .169365-.229141c.169365-.707347 .368618-1.185554 .727273-1.185554c.199253 0 .308842 .129514 .308842 .458281c0 .209215-.029888 .318804-.159402 .836862l-.577833 2.30137c-.029888 .14944-.089664 .37858-.089664 .428394c0 .179328 .139477 .268991 .288917 .268991c.119552 0 .298879-.079701 .368618-.278954c.009963-.019925 .129514-.488169 .18929-.737235l.219178-.896638c.059776-.219178 .119552-.438356 .169365-.667497l.129514-.498132c.14944-.308842 .67746-1.215442 1.62391-1.215442c.448319 0 .537983 .368618 .537983 .697385c0 .617684-.488169 1.892902-.647572 2.321295c-.089664 .229141-.099626 .348692-.099626 .458281c0 .468244 .348692 .816936 .816936 .816936c.936488 0 1.305106-1.454545 1.305106-1.534247z'/>
+<path id='g9-110' d='m5.688667-1.424658c0-.099626-.089664-.099626-.119552-.099626c-.099626 0-.099626 .029888-.14944 .179328c-.199253 .67746-.52802 1.235367-1.016189 1.235367c-.169365 0-.239103-.099626-.239103-.328767c0-.249066 .089664-.488169 .179328-.707347c.18929-.52802 .607721-1.62391 .607721-2.191781c0-.667497-.428394-1.066002-1.145704-1.066002c-.896638 0-1.384807 .637609-1.554172 .86675c-.049813-.557908-.458281-.86675-.916563-.86675s-.647572 .388543-.747198 .56787c-.159402 .33873-.298879 .926526-.298879 .966376c0 .099626 .119552 .099626 .119552 .099626c.099626 0 .109589-.009963 .169365-.229141c.169365-.707347 .368618-1.185554 .727273-1.185554c.199253 0 .308842 .129514 .308842 .458281c0 .209215-.029888 .318804-.159402 .836862l-.577833 2.30137c-.029888 .14944-.089664 .37858-.089664 .428394c0 .179328 .139477 .268991 .288917 .268991c.119552 0 .298879-.079701 .368618-.278954c.009963-.019925 .129514-.488169 .18929-.737235l.219178-.896638c.059776-.219178 .119552-.438356 .169365-.667497l.129514-.498132c.14944-.308842 .67746-1.215442 1.62391-1.215442c.448319 0 .537983 .368618 .537983 .697385c0 .617684-.488169 1.892902-.647572 2.321295c-.089664 .229141-.099626 .348692-.099626 .458281c0 .468244 .348692 .816936 .816936 .816936c.936488 0 1.305106-1.454545 1.305106-1.534247z'/>
 </defs>
-<g id='page110'>
+<g id='page1'>
 <g fill='currentColor'>
-<use x='0' y='0' xlink:href='#g4-110'/>
+<use x='0' y='0' xlink:href='#g9-110'/>
 </g>
 </g>
 </svg> is denoted by any of the following three forms:<br />
@@ -590,7 +590,7 @@ where the symbol <?xml version='1.0' encoding='UTF-8'?>
 </g>
 </g>
 </svg>.<br />
-in <a href="/sql.html#1702389696">sql</a>, a single query typically represents a complex relational algebra expression. renaming in SQL is accomplished by aliasing using <code>AS</code>, as in the following example:<br />
+in <a href="/sql.html">sql</a>, a single query typically represents a complex relational algebra expression. renaming in SQL is accomplished by aliasing using <code>AS</code>, as in the following example:<br />
 </p>
 <div class="org-src-container" data-language="sql">
 <pre class="src src-sql"><span style="color: #c48702; font-weight: bold;">SELECT</span> E.Fname <span style="color: #c48702; font-weight: bold;">AS</span> First_name, E.Lname <span style="color: #c48702; font-weight: bold;">AS</span> Last_name, E.Salary <span style="color: #c48702; font-weight: bold;">AS</span> Salary

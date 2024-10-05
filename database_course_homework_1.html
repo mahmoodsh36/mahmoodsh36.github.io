@@ -38,7 +38,7 @@
 </div>
 <div id="content" class="content">
 <p>
-a car company wants to setup a <a href="/database.html#1702131837">database</a> to store its customers data, data about their cars and garages that it has and the deals it has made, the following tables are needed:<br />
+a car company wants to setup a <a href="/database.html">database</a> to store its customers data, data about their cars and garages that it has and the deals it has made, the following tables are needed:<br />
 </p>
 <ul class="org-ul">
 <li><b>Customer</b>: first name, family name, id, town address, street, house number, phone number, and customer type.<br /></li>
@@ -62,7 +62,7 @@ the following constraints on the data need to be applied:<br />
 </ul>
 <div class="fancy-block task" data-before="&lt;p&gt;
 task: &lt;/p&gt;
-" data-after="">
+">
 <p>
 write ddl commands to define a schema with the proper constraints (primary keys, foreign keys, data types and length, additional tests and constraints stemmed by the requirements. every string field should be a varchar2 of length 22.<br />
 </p>
@@ -72,18 +72,18 @@ write ddl commands to define a schema with the proper constraints (primary keys,
 here, i make use of mariadb, im on nixos (a flavor of linux), and have it installed.<br />
 creating the database:<br />
 </p>
-<div class="org-src-container">
+<div class="org-src-container" data-language="sql">
 <pre class="src src-sql"><span style="color: #c48702; font-weight: bold;">create</span> database homework1
 </pre>
 </div>
 <p>
 line used for deleting the database (for testing):<br />
 </p>
-<div class="org-src-container">
+<div class="org-src-container" data-language="sql">
 <pre class="src src-sql"><span style="color: #c48702; font-weight: bold;">drop</span> database homework1;
 </pre>
 </div>
-<div class="org-src-container">
+<div class="org-src-container" data-language="sql">
 <pre class="src src-sql"><span style="color: #c48702; font-weight: bold;">drop</span> <span style="color: #c48702; font-weight: bold;">table</span> <span style="color: #3dbbb0;">if</span> <span style="color: #c48702; font-weight: bold;">exists</span> customer <span style="color: #c48702; font-weight: bold;">cascade</span>;
 <span style="color: #c48702; font-weight: bold;">drop</span> <span style="color: #c48702; font-weight: bold;">table</span> <span style="color: #3dbbb0;">if</span> <span style="color: #c48702; font-weight: bold;">exists</span> car <span style="color: #c48702; font-weight: bold;">cascade</span>;
 <span style="color: #c48702; font-weight: bold;">drop</span> <span style="color: #c48702; font-weight: bold;">table</span> <span style="color: #3dbbb0;">if</span> <span style="color: #c48702; font-weight: bold;">exists</span> car_owner <span style="color: #c48702; font-weight: bold;">cascade</span>;
@@ -95,10 +95,10 @@ line used for deleting the database (for testing):<br />
 <p>
 creating the tables:<br />
 </p>
-<div id="outline-container-orgc3ba8fe" class="outline-2">
-<h2 id="orgc3ba8fe">schema</h2>
-<div class="outline-text-2" id="text-orgc3ba8fe">
-<div class="org-src-container">
+<div id="outline-container-orgcdafb00" class="outline-2">
+<h2 id="orgcdafb00">schema</h2>
+<div class="outline-text-2" id="text-orgcdafb00">
+<div class="org-src-container" data-language="sql">
 <pre class="src src-sql" id="src-database-homework-schema"><span style="color: #c48702; font-weight: bold;">CREATE</span> <span style="color: #c48702; font-weight: bold;">TABLE</span> <span style="color: #3dbbb0;">customer</span> <span style="color: #d0730f;">(</span>
   first_name    <span style="color: #2fa526;">VARCHAR</span><span style="color: #64aa0f;">(</span>22<span style="color: #64aa0f;">)</span> <span style="color: #c48702; font-weight: bold;">NOT</span> <span style="color: #c48702; font-weight: bold;">NULL</span>,
   family_name   <span style="color: #2fa526;">VARCHAR</span><span style="color: #64aa0f;">(</span>22<span style="color: #64aa0f;">)</span> <span style="color: #c48702; font-weight: bold;">NOT</span> <span style="color: #c48702; font-weight: bold;">NULL</span>,
@@ -176,7 +176,7 @@ creating the tables:<br />
 <p>
 some tests to make sure the database works as expected:<br />
 </p>
-<div class="org-src-container">
+<div class="org-src-container" data-language="sql">
 <pre class="src src-sql"><span style="color: #c48702; font-weight: bold;">describe</span> car;
 </pre>
 </div>
@@ -273,7 +273,7 @@ some tests to make sure the database works as expected:<br />
 </tbody>
 </table>
 
-<div class="org-src-container">
+<div class="org-src-container" data-language="sql">
 <pre class="src src-sql"><span style="color: #c48702; font-weight: bold;">describe</span> replaced_part
 </pre>
 </div>
@@ -325,7 +325,7 @@ some tests to make sure the database works as expected:<br />
 </tbody>
 </table>
 
-<div class="org-src-container">
+<div class="org-src-container" data-language="sql">
 <pre class="src src-sql"><span style="color: #c48702; font-weight: bold;">describe</span> car_owner;
 </pre>
 </div>
@@ -395,7 +395,7 @@ some tests to make sure the database works as expected:<br />
 </tbody>
 </table>
 
-<div class="org-src-container">
+<div class="org-src-container" data-language="sql">
 <pre class="src src-sql"><span style="color: #c48702; font-weight: bold;">describe</span> garage;
 </pre>
 </div>
@@ -492,7 +492,7 @@ some tests to make sure the database works as expected:<br />
 </tbody>
 </table>
 
-<div class="org-src-container">
+<div class="org-src-container" data-language="sql">
 <pre class="src src-sql"><span style="color: #c48702; font-weight: bold;">describe</span> car_maintenance
 </pre>
 </div>
@@ -580,7 +580,7 @@ some tests to make sure the database works as expected:<br />
 </tbody>
 </table>
 
-<div class="org-src-container">
+<div class="org-src-container" data-language="sql">
 <pre class="src src-sql"><span style="color: #c48702; font-weight: bold;">describe</span> customer
 </pre>
 </div>

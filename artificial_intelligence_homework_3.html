@@ -39,28 +39,28 @@
 <div id="content" class="content">
 <div class="fancy-block note" data-before="&lt;p&gt;
 note: &lt;/p&gt;
-" data-after="">
+">
 <p>
 scroll to the end if you're only interested in the solution and the steps in raw text..<br />
 </p>
 
 </div>
 <p>
-homework on <a href="/constraint_satisfaction_problem.html#1692705570">constraint satisfaction problem</a><br />
-using <a href="/working_with_graphs_in_common_lisp.html#1691879374">common lisp graphs</a><br />
-<a href="/graph.html#1678745451">graph</a> image from homework:<br />
+homework on <a href="/constraint_satisfaction_problem.html">constraint satisfaction problem</a><br />
+using <a href="/working_with_graphs_in_common_lisp.html">common lisp graphs</a><br />
+<a href="/graph.html">graph</a> image from homework:<br />
 <img src="/Tue_Aug_22_08:26:06_PM_IDT_2023.png" /><br />
 </p>
 <ul class="org-ul">
 <li>gotta solve this as an <b>rgba map coloring problem</b><br /></li>
 <li>make use of forward checking<br /></li>
-<li>variable ordering heuristic: prioritize <a href="/graph.html#1678745451">vertices</a> that are the least constraining (least edges, least constraints on others) to most constraining (most edges), in case of a draw, use the variable with the most remaining colors (least constrained), if there is another tie, choose the leftmost vertex in the constraint graph<br /></li>
+<li>variable ordering heuristic: prioritize <a href="/graph.html">vertices</a> that are the least constraining (least edges, least constraints on others) to most constraining (most edges), in case of a draw, use the variable with the most remaining colors (least constrained), if there is another tie, choose the leftmost vertex in the constraint graph<br /></li>
 <li>no value ordering heuristics<br /></li>
 </ul>
 <p>
 first we define the graph:<br />
 </p>
-<div class="org-src-container">
+<div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #d0730f;">(</span><span style="color: #c48702; font-weight: bold;">defparameter</span>
     *mygraph*
   <span style="color: #64aa0f;">(</span>make-graph
@@ -86,7 +86,7 @@ first we define the graph:<br />
 <p>
 visualize it with tikz:<br />
 </p>
-<div class="org-src-container">
+<div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #d0730f;">(</span>graph-generate-tikz *mygraph* <span style="color: #ff7a7f; font-weight: bold;">:node-distance</span> 80<span style="color: #d0730f;">)</span>
 </pre>
 </div>
@@ -208,7 +208,7 @@ visualize it with tikz:<br />
 a constraint satisfaction problem is defined by its variables, domains and contrains<br />
 since i had written the problem in its constraint graph form, i had to write a function to convert it into its "original" form, its variables, domains and it defines the constraint of neighbors not having the same color, which is from the map coloring problem (so this method is not really general, but specific to this problem):<br />
 </p>
-<div class="org-src-container">
+<div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #d0730f;">(</span><span style="color: #c48702; font-weight: bold;">defstruct</span> <span style="color: #2fa526;">constraint-satisfaction-problem</span>
   variables domains constraints<span style="color: #d0730f;">)</span>
 
@@ -247,7 +247,7 @@ since i had written the problem in its constraint graph form, i had to write a f
 <p>
 here i implement a generalized algorithm for constraint satisfaction problem solving:<br />
 </p>
-<div class="org-src-container">
+<div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #d0730f;">(</span><span style="color: #c48702; font-weight: bold;">defun</span> <span style="color: #3dbbb0;">solve-csp-with-graph</span> <span style="color: #64aa0f;">(</span>csp gr variable-ordering-heuristics
                              <span style="color: #2fa526;">&amp;optional</span> <span style="color: #ef656a;">(</span>values-alist nil<span style="color: #ef656a;">)</span><span style="color: #64aa0f;">)</span>
   <span style="color: #5f9f6f; font-style: italic;">"`</span><span style="color: #64aa0f; font-style: italic;">csp</span><span style="color: #5f9f6f; font-style: italic;">' is the constraint satisfaction problem, `</span><span style="color: #64aa0f; font-style: italic;">gr</span><span style="color: #5f9f6f; font-style: italic;">' is the constraint graph, variable-ordering-heuristics are heuristics to decide which variable to pick, applied in order on each branching step until one returns a variable to pick, if no heuristics pick a variable the first nonvisited one will be picked (unless no variables are left with options in which case the function terminates), this doesnt support value ordering heuristics, cuz my homework didnt ask for it :( and i cba, this function may modify the domains during forward checking inference"</span>
@@ -367,7 +367,7 @@ here i implement a generalized algorithm for constraint satisfaction problem sol
 <p>
 applying the algorithm:<br />
 </p>
-<div class="org-src-container">
+<div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #d0730f;">(</span><span style="color: #c48702; font-weight: bold;">defun</span> <span style="color: #3dbbb0;">solve</span> <span style="color: #64aa0f;">()</span>
   <span style="color: #64aa0f;">(</span>solve-csp-with-graph
    <span style="color: #ef656a;">(</span>PARSE-COLOR-MAP-CONSTRAINT-GRAPH *mygraph*<span style="color: #ef656a;">)</span>
@@ -375,7 +375,7 @@ applying the algorithm:<br />
    <span style="color: #ef656a;">(</span>list #'least-constraining-variable-heuristic #'most-constrained-variable-heuristic<span style="color: #ef656a;">)</span><span style="color: #64aa0f;">)</span><span style="color: #d0730f;">)</span>
 </pre>
 </div>
-<div class="org-src-container">
+<div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #d0730f;">(</span>solve<span style="color: #d0730f;">)</span>
 </pre>
 </div>
@@ -388,7 +388,7 @@ applying the algorithm:<br />
 <p>
 visualizing the constraint graph with the colors we obtained by solving the problem:<br />
 </p>
-<div class="org-src-container">
+<div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #d0730f;">(</span><span style="color: #c48702; font-weight: bold;">let</span> <span style="color: #64aa0f;">(</span><span style="color: #ef656a;">(</span>values-assoc-list <span style="color: #3dbbb0;">(</span>solve<span style="color: #3dbbb0;">)</span><span style="color: #ef656a;">)</span><span style="color: #64aa0f;">)</span>
   <span style="color: #64aa0f;">(</span>graph-generate-tikz
    *mygraph*
@@ -519,7 +519,7 @@ visualizing the constraint graph with the colors we obtained by solving the prob
 showing the inference/decision steps (i went back and modified the algorithm to print stuff)<br />
 this just shows the domain of variables at each step<br />
 </p>
-<div class="org-src-container">
+<div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #d0730f;">(</span>solve<span style="color: #d0730f;">)</span>
 </pre>
 </div>

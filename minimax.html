@@ -37,12 +37,13 @@
 </div><h1 class="main-title">minimax</h1><span class='date'>2023-08-17</span>
 </div>
 <div id="content" class="content">
-<div class="fancy-block dummy" data-before="" data-after="(Peter Norvig, Stuart J. Russell, 2020)
+<div class="fancy-block dummy" data-before="" data-after="&lt;p&gt;
+(Peter Norvig, Stuart J. Russell, 2020)&lt;/p&gt;
 ">
 <p>
 in a two player zero-sum game, we call the two players <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.290162 19.656289 5.290162' style="max-height: 0.5204em; vertical-align: -0.0000em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.290162 19.656289 5.290162' style="max-height: 0.6187em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <use id='g3-28' xlink:href='#g2-28' transform='scale(1.428571)'/>
 <use id='g3-75' xlink:href='#g2-75' transform='scale(1.428571)'/>
@@ -60,7 +61,7 @@ in a two player zero-sum game, we call the two players <?xml version='1.0' encod
 </g>
 </svg> and <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.120797 16.557908 5.120797' style="max-height: 0.5037em; vertical-align: -0.0000em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.120797 16.557908 5.120797' style="max-height: 0.6021em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <use id='g3-66' xlink:href='#g2-66' transform='scale(1.428571)'/>
 <use id='g3-75' xlink:href='#g2-75' transform='scale(1.428571)'/>
@@ -79,7 +80,7 @@ in a two player zero-sum game, we call the two players <?xml version='1.0' encod
 </svg>.<br />
 <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.290162 19.656289 5.290162' style="max-height: 0.5204em; vertical-align: -0.0000em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.290162 19.656289 5.290162' style="max-height: 0.6187em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <use id='g3-28' xlink:href='#g2-28' transform='scale(1.428571)'/>
 <use id='g3-75' xlink:href='#g2-75' transform='scale(1.428571)'/>
@@ -96,9 +97,9 @@ in a two player zero-sum game, we call the two players <?xml version='1.0' encod
 </g>
 </g>
 </svg> moves first, and then the players take turns moving until the game is over. at the end of the game, points are awarded to the winning player and penalties are given to the loser.<br />
-given a <a href="/game_tree.html#1692223852">game tree</a>, the optimal strategy can be determined by working out the <i>minimax value</i> of each state in the tree, which we write as <?xml version='1.0' encoding='UTF-8'?>
+given a <a href="/game_tree.html">game tree</a>, the optimal strategy can be determined by working out the <i>minimax value</i> of each state in the tree, which we write as <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -7.47198 54.052841 9.96264' style="max-height: 0.9800em; vertical-align: -0.2450em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -7.47198 54.052841 9.96264' style="max-height: 1.0784em; vertical-align: -0.2942em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g8-115' d='m3.945205-1.544209c0-.358655-.18929-.607721-.308842-.727273c-.268991-.278954-.557908-.328767-.996264-.418431c-.358655-.079701-.757161-.14944-.757161-.597758c0-.288917 .239103-.896638 1.115816-.896638c.249066 0 .747198 .069738 .896638 .458281c-.278954 .009963-.478207 .229141-.478207 .448319c0 .139477 .089664 .288917 .308842 .288917s.458281-.169365 .458281-.557908c0-.448319-.428394-.856787-1.185554-.856787c-1.315068 0-1.683686 1.016189-1.683686 1.454545c0 .777086 .737235 .926526 1.026152 .986301c.518057 .099626 1.036115 .209215 1.036115 .757161c0 .259029-.229141 1.09589-1.424658 1.09589c-.139477 0-.9066 0-1.135741-.52802c.37858 .049813 .627646-.249066 .627646-.52802c0-.229141-.159402-.348692-.368618-.348692c-.259029 0-.557908 .209215-.557908 .657534c0 .56787 .56787 .966376 1.424658 .966376c1.613948 0 2.002491-1.205479 2.002491-1.653798z'/>
 <path id='g10-40' d='m3.297634 2.391034c0-.029888 0-.049813-.169365-.219178c-1.24533-1.255293-1.564134-3.138232-1.564134-4.662516c0-1.733499 .37858-3.466999 1.603985-4.712329c.129514-.119552 .129514-.139477 .129514-.169365c0-.069738-.039851-.099626-.099626-.099626c-.099626 0-.996264 .67746-1.58406 1.942715c-.508095 1.09589-.627646 2.201743-.627646 3.038605c0 .777086 .109589 1.982565 .657534 3.108344c.597758 1.225405 1.454545 1.872976 1.554172 1.872976c.059776 0 .099626-.029888 .099626-.099626z'/>
@@ -133,7 +134,7 @@ given a <a href="/game_tree.html#1692223852">game tree</a>, the optimal strategy
 </svg> and is defined as:<br />
 <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='8.959003 -47.821159 348.090227 47.821159' style="max-height: 4.8021em; display: block" class="org-latex org-latex-block">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='8.959003 -47.821159 348.090227 47.821159' style="max-height: 4.9004em; display: block" class="org-latex org-latex-block">
 <defs>
 <path id='g9-40' d='m2.615193 1.652802c0-.041843-.020922-.055791-.069738-.104608c-.927522-.836862-1.26924-2.022416-1.26924-3.291656c0-1.882939 .718306-2.803487 1.290162-3.319552c.027895-.027895 .048817-.048817 .048817-.083686c0-.083686-.083686-.083686-.139477-.083686c-1.325031 .934496-1.673724 2.412951-1.673724 3.47995c0 .983313 .292902 2.510585 1.673724 3.486924c.055791 0 .139477 0 .139477-.083686z'/>
 <path id='g9-41' d='m2.30137-1.743462c0-.983313-.292902-2.510585-1.673724-3.486924c-.048817 0-.132503 0-.132503 .083686c0 .034869 .020922 .055791 .062765 .104608c.599751 .550934 1.26924 1.492403 1.26924 3.291656c0 1.457534-.4533 2.559402-1.206476 3.242839c-.118555 .118555-.125529 .125529-.125529 .160399s.020922 .083686 .09066 .083686c.083686 0 .746202-.460274 1.206476-1.332005c.306849-.578829 .509091-1.332005 .509091-2.147945z'/>
@@ -354,7 +355,7 @@ given a <a href="/game_tree.html#1692223852">game tree</a>, the optimal strategy
 </svg><br />
 where <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.804483 45.569115 6.94396' style="max-height: 0.6831em; vertical-align: -0.0137em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.804483 45.569115 6.94396' style="max-height: 0.7814em; vertical-align: -0.0629em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <use id='g3-50' xlink:href='#g2-50' transform='scale(1.428571)'/>
 <use id='g3-64' xlink:href='#g2-64' transform='scale(1.428571)'/>
@@ -382,7 +383,7 @@ where <?xml version='1.0' encoding='UTF-8'?>
 </g>
 </svg> returns the player whose turn it is in a given state of the game and <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.804483 59.536737 6.94396' style="max-height: 0.6831em; vertical-align: -0.0137em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.804483 59.536737 6.94396' style="max-height: 0.7814em; vertical-align: -0.0629em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <use id='g3-28' xlink:href='#g2-28' transform='scale(1.428571)'/>
 <use id='g3-50' xlink:href='#g2-50' transform='scale(1.428571)'/>
@@ -422,7 +423,7 @@ where <?xml version='1.0' encoding='UTF-8'?>
 <use x='54.425903' y='0' xlink:href='#g3-72'/>
 </g>
 </g>
-</svg> is a <a href="/predicate.html#1686127735">predicate</a> that returns whether a state is a terminal state.<br />
+</svg> is a <a href="/predicate.html">predicate</a> that returns whether a state is a terminal state.<br />
 with this definition the <b>minimax search algorithm</b> is implemented:<br />
 </p>
 
@@ -430,7 +431,7 @@ with this definition the <b>minimax search algorithm</b> is implemented:<br />
 <span class="equation">
 <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.938467 -319.234207 275.247144 317.791619' style="max-height: 32.2745em; vertical-align: -0.4900em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='.938467 -319.234207 275.247144 317.791619' style="max-height: 32.3728em; vertical-align: -0.5392em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g10-40' d='m3.297634 2.391034c0-.029888 0-.049813-.169365-.219178c-1.24533-1.255293-1.564134-3.138232-1.564134-4.662516c0-1.733499 .37858-3.466999 1.603985-4.712329c.129514-.119552 .129514-.139477 .129514-.169365c0-.069738-.039851-.099626-.099626-.099626c-.099626 0-.996264 .67746-1.58406 1.942715c-.508095 1.09589-.627646 2.201743-.627646 3.038605c0 .777086 .109589 1.982565 .657534 3.108344c.597758 1.225405 1.454545 1.872976 1.554172 1.872976c.059776 0 .099626-.029888 .099626-.099626z'/>
 <path id='g10-41' d='m2.879203-2.49066c0-.777086-.109589-1.982565-.657534-3.108344c-.597758-1.225405-1.454545-1.872976-1.554172-1.872976c-.059776 0-.099626 .039851-.099626 .099626c0 .029888 0 .049813 .18929 .229141c.976339 .986301 1.544209 2.570361 1.544209 4.652553c0 1.703611-.368618 3.457036-1.603985 4.712329c-.129514 .119552-.129514 .139477-.129514 .169365c0 .059776 .039851 .099626 .099626 .099626c.099626 0 .996264-.67746 1.58406-1.942715c.508095-1.09589 .627646-2.201743 .627646-3.038605z'/>
@@ -1144,7 +1145,7 @@ with this definition the <b>minimax search algorithm</b> is implemented:<br />
 <p>
 <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.290162 19.656289 5.290162' style="max-height: 0.5204em; vertical-align: -0.0000em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.290162 19.656289 5.290162' style="max-height: 0.6187em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <use id='g3-28' xlink:href='#g2-28' transform='scale(1.428571)'/>
 <use id='g3-75' xlink:href='#g2-75' transform='scale(1.428571)'/>
@@ -1162,7 +1163,7 @@ with this definition the <b>minimax search algorithm</b> is implemented:<br />
 </g>
 </svg> does its best to maximze the value of <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.290162 39.222914 5.290162' style="max-height: 0.5204em; vertical-align: -0.0000em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.290162 39.222914 5.290162' style="max-height: 0.6187em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <use id='g3-28' xlink:href='#g2-28' transform='scale(1.428571)'/>
 <use id='g3-66' xlink:href='#g2-66' transform='scale(1.428571)'/>
@@ -1188,7 +1189,7 @@ with this definition the <b>minimax search algorithm</b> is implemented:<br />
 </g>
 </svg> (the utility at an arbitrary state) and assumes that <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.120797 16.557908 5.120797' style="max-height: 0.5037em; vertical-align: -0.0000em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.120797 16.557908 5.120797' style="max-height: 0.6021em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <use id='g3-66' xlink:href='#g2-66' transform='scale(1.428571)'/>
 <use id='g3-75' xlink:href='#g2-75' transform='scale(1.428571)'/>
@@ -1206,7 +1207,7 @@ with this definition the <b>minimax search algorithm</b> is implemented:<br />
 </g>
 </svg> does its best at minimizing it, similarly, <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.120797 16.557908 5.120797' style="max-height: 0.5037em; vertical-align: -0.0000em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.120797 16.557908 5.120797' style="max-height: 0.6021em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <use id='g3-66' xlink:href='#g2-66' transform='scale(1.428571)'/>
 <use id='g3-75' xlink:href='#g2-75' transform='scale(1.428571)'/>
@@ -1224,7 +1225,7 @@ with this definition the <b>minimax search algorithm</b> is implemented:<br />
 </g>
 </svg> does its best to minimize the value of <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.290162 39.222914 5.290162' style="max-height: 0.5204em; vertical-align: -0.0000em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.290162 39.222914 5.290162' style="max-height: 0.6187em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <use id='g3-28' xlink:href='#g2-28' transform='scale(1.428571)'/>
 <use id='g3-66' xlink:href='#g2-66' transform='scale(1.428571)'/>
@@ -1250,7 +1251,7 @@ with this definition the <b>minimax search algorithm</b> is implemented:<br />
 </g>
 </svg> and assumes <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.290162 19.656289 5.290162' style="max-height: 0.5204em; vertical-align: -0.0000em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.290162 19.656289 5.290162' style="max-height: 0.6187em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <use id='g3-28' xlink:href='#g2-28' transform='scale(1.428571)'/>
 <use id='g3-75' xlink:href='#g2-75' transform='scale(1.428571)'/>
@@ -1268,7 +1269,7 @@ with this definition the <b>minimax search algorithm</b> is implemented:<br />
 </g>
 </svg> does its best at maximizing it, if <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.120797 16.557908 5.120797' style="max-height: 0.5037em; vertical-align: -0.0000em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.120797 16.557908 5.120797' style="max-height: 0.6021em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <use id='g3-66' xlink:href='#g2-66' transform='scale(1.428571)'/>
 <use id='g3-75' xlink:href='#g2-75' transform='scale(1.428571)'/>
@@ -1286,7 +1287,7 @@ with this definition the <b>minimax search algorithm</b> is implemented:<br />
 </g>
 </svg> does not play optimally, then <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.290162 19.656289 5.290162' style="max-height: 0.5204em; vertical-align: -0.0000em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.290162 19.656289 5.290162' style="max-height: 0.6187em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <use id='g3-28' xlink:href='#g2-28' transform='scale(1.428571)'/>
 <use id='g3-75' xlink:href='#g2-75' transform='scale(1.428571)'/>
@@ -1304,7 +1305,7 @@ with this definition the <b>minimax search algorithm</b> is implemented:<br />
 </g>
 </svg> will do at least as well as against an optimal player. however, that does not mean that it is always best to play the minimax optimal move when facing a suboptimal opponent. consider a situation where optimal play by both sides will lead to a draw, but there is one risky move for <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.290162 19.656289 5.290162' style="max-height: 0.5204em; vertical-align: -0.0000em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.290162 19.656289 5.290162' style="max-height: 0.6187em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <use id='g3-28' xlink:href='#g2-28' transform='scale(1.428571)'/>
 <use id='g3-75' xlink:href='#g2-75' transform='scale(1.428571)'/>
@@ -1322,7 +1323,7 @@ with this definition the <b>minimax search algorithm</b> is implemented:<br />
 </g>
 </svg> that leads to a state in which there are 10 possible response moves by <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.120797 16.557908 5.120797' style="max-height: 0.5037em; vertical-align: -0.0000em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.120797 16.557908 5.120797' style="max-height: 0.6021em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <use id='g3-66' xlink:href='#g2-66' transform='scale(1.428571)'/>
 <use id='g3-75' xlink:href='#g2-75' transform='scale(1.428571)'/>
@@ -1340,7 +1341,7 @@ with this definition the <b>minimax search algorithm</b> is implemented:<br />
 </g>
 </svg> that all seem reasonable, but 9 of them are a loss for <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.120797 16.557908 5.120797' style="max-height: 0.5037em; vertical-align: -0.0000em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.120797 16.557908 5.120797' style="max-height: 0.6021em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <use id='g3-66' xlink:href='#g2-66' transform='scale(1.428571)'/>
 <use id='g3-75' xlink:href='#g2-75' transform='scale(1.428571)'/>
@@ -1358,7 +1359,7 @@ with this definition the <b>minimax search algorithm</b> is implemented:<br />
 </g>
 </svg> and one is a loss for <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.290162 19.656289 5.290162' style="max-height: 0.5204em; vertical-align: -0.0000em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.290162 19.656289 5.290162' style="max-height: 0.6187em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <use id='g3-28' xlink:href='#g2-28' transform='scale(1.428571)'/>
 <use id='g3-75' xlink:href='#g2-75' transform='scale(1.428571)'/>
@@ -1376,7 +1377,7 @@ with this definition the <b>minimax search algorithm</b> is implemented:<br />
 </g>
 </svg>. if <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.290162 19.656289 5.290162' style="max-height: 0.5204em; vertical-align: -0.0000em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.290162 19.656289 5.290162' style="max-height: 0.6187em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <use id='g3-28' xlink:href='#g2-28' transform='scale(1.428571)'/>
 <use id='g3-75' xlink:href='#g2-75' transform='scale(1.428571)'/>
@@ -1394,7 +1395,7 @@ with this definition the <b>minimax search algorithm</b> is implemented:<br />
 </g>
 </svg> believes that <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.120797 16.557908 5.120797' style="max-height: 0.5037em; vertical-align: -0.0000em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.120797 16.557908 5.120797' style="max-height: 0.6021em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <use id='g3-66' xlink:href='#g2-66' transform='scale(1.428571)'/>
 <use id='g3-75' xlink:href='#g2-75' transform='scale(1.428571)'/>
@@ -1412,7 +1413,7 @@ with this definition the <b>minimax search algorithm</b> is implemented:<br />
 </g>
 </svg> does not have sufficient computational power to discover the optimal move, <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.290162 19.656289 5.290162' style="max-height: 0.5204em; vertical-align: -0.0000em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.290162 19.656289 5.290162' style="max-height: 0.6187em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <use id='g3-28' xlink:href='#g2-28' transform='scale(1.428571)'/>
 <use id='g3-75' xlink:href='#g2-75' transform='scale(1.428571)'/>
@@ -1429,13 +1430,13 @@ with this definition the <b>minimax search algorithm</b> is implemented:<br />
 </g>
 </g>
 </svg> might want to try the risky move, on the grounds that a 9/10 chance of a win is better than a certain draw.<br />
-the minimax algorithm performs a complete <a href="/depth-first_search.html#1685398897">depth-first search</a> of the game tree. if the maximum depth of the tree is <?xml version='1.0' encoding='UTF-8'?>
+the minimax algorithm performs a complete <a href="/depth-first_search.html">depth-first search</a> of the game tree. if the maximum depth of the tree is <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -4.289468 8.747334 4.289468' style="max-height: 0.5203em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g4-109' d='m8.448319-1.424658c0-.099626-.089664-.099626-.119552-.099626c-.099626 0-.099626 .029888-.14944 .179328c-.14944 .52802-.468244 1.235367-1.016189 1.235367c-.169365 0-.239103-.099626-.239103-.328767c0-.249066 .089664-.488169 .179328-.707347c.18929-.518057 .607721-1.62391 .607721-2.191781c0-.647572-.398506-1.066002-1.145704-1.066002s-1.255293 .438356-1.62391 .966376c-.009963-.129514-.039851-.468244-.318804-.707347c-.249066-.209215-.56787-.259029-.816936-.259029c-.896638 0-1.384807 .637609-1.554172 .86675c-.049813-.56787-.468244-.86675-.916563-.86675c-.458281 0-.647572 .388543-.737235 .56787c-.179328 .348692-.308842 .936488-.308842 .966376c0 .099626 .119552 .099626 .119552 .099626c.099626 0 .109589-.009963 .169365-.229141c.169365-.707347 .368618-1.185554 .727273-1.185554c.159402 0 .308842 .079701 .308842 .458281c0 .209215-.029888 .318804-.159402 .836862l-.577833 2.30137c-.029888 .14944-.089664 .37858-.089664 .428394c0 .179328 .139477 .268991 .288917 .268991c.119552 0 .298879-.079701 .368618-.278954c.009963-.019925 .129514-.488169 .18929-.737235l.219178-.896638c.059776-.219178 .119552-.438356 .169365-.667497l.129514-.498132c.14944-.308842 .67746-1.215442 1.62391-1.215442c.448319 0 .537983 .368618 .537983 .697385c0 .249066-.069738 .52802-.14944 .826899l-.278954 1.155666c-.099626 .368618-.109589 .428394-.199253 .757161c-.039851 .199253-.129514 .537983-.129514 .587796c0 .179328 .139477 .268991 .288917 .268991c.308842 0 .368618-.249066 .448319-.56787l.597758-2.400996c.029888-.129514 .557908-1.325031 1.643836-1.325031c.428394 0 .537983 .33873 .537983 .697385c0 .56787-.418431 1.703611-.617684 2.231631c-.089664 .239103-.129514 .348692-.129514 .547945c0 .468244 .348692 .816936 .816936 .816936c.936488 0 1.305106-1.454545 1.305106-1.534247z'/>
 </defs>
-<g id='page88'>
+<g id='page92'>
 <g fill='currentColor'>
 <use x='0' y='0' xlink:href='#g4-109'/>
 </g>
@@ -1453,7 +1454,7 @@ the minimax algorithm performs a complete <a href="/depth-first_search.html#1685
 </g>
 </svg> legal moves at each point, then the time complexity of the minimax algorithm is <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -7.47198 27.468342 9.96264' style="max-height: 0.9800em; vertical-align: -0.2450em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -7.47198 27.468342 9.96264' style="max-height: 1.0784em; vertical-align: -0.2942em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g7-109' d='m6.729763-.99726c0-.09066-.09066-.09066-.111582-.09066c-.097634 0-.104608 .041843-.132503 .118555c-.160399 .557908-.460274 .843836-.739228 .843836c-.146451 0-.174346-.097634-.174346-.244085c0-.160399 .034869-.251059 .160399-.564882c.083686-.216189 .369614-.955417 .369614-1.345953c0-.111582 0-.404483-.258032-.606725c-.118555-.09066-.320797-.188294-.648568-.188294c-.627646 0-1.011208 .411457-1.234371 .704359c-.055791-.592777-.550934-.704359-.9066-.704359c-.578829 0-.969365 .355666-1.17858 .63462c-.048817-.481196-.460274-.63462-.746202-.63462c-.299875 0-.460274 .216189-.550934 .376588c-.153425 .258032-.251059 .655542-.251059 .690411c0 .09066 .097634 .09066 .118555 .09066c.097634 0 .104608-.020922 .153425-.209215c.104608-.411457 .237111-.753176 .509091-.753176c.18132 0 .230137 .153425 .230137 .341719c0 .132503-.062765 .390535-.111582 .578829l-.153425 .627646l-.223163 .892653c-.027895 .09066-.069738 .265006-.069738 .285928c0 .153425 .125529 .223163 .237111 .223163c.125529 0 .237111-.09066 .27198-.153425s.09066-.285928 .125529-.432379l.153425-.627646c.041843-.153425 .083686-.306849 .118555-.467248c.076712-.285928 .09066-.341719 .292902-.627646c.195268-.278954 .523039-.641594 1.046077-.641594c.404483 0 .411457 .355666 .411457 .488169c0 .174346-.020922 .265006-.118555 .655542l-.292902 1.171606c-.034869 .139477-.097634 .376588-.097634 .411457c0 .153425 .125529 .223163 .237111 .223163c.125529 0 .237111-.09066 .27198-.153425s.09066-.285928 .125529-.432379l.153425-.627646c.041843-.153425 .083686-.306849 .118555-.467248c.076712-.299875 .076712-.313823 .216189-.530012c.223163-.341719 .571856-.739228 1.115816-.739228c.390535 0 .411457 .320797 .411457 .488169c0 .418431-.299875 1.192528-.411457 1.48543c-.076712 .195268-.104608 .258032-.104608 .376588c0 .369614 .306849 .599751 .662516 .599751c.697385 0 1.004234-.962391 1.004234-1.066999z'/>
 <path id='g10-40' d='m3.297634 2.391034c0-.029888 0-.049813-.169365-.219178c-1.24533-1.255293-1.564134-3.138232-1.564134-4.662516c0-1.733499 .37858-3.466999 1.603985-4.712329c.129514-.119552 .129514-.139477 .129514-.169365c0-.069738-.039851-.099626-.099626-.099626c-.099626 0-.996264 .67746-1.58406 1.942715c-.508095 1.09589-.627646 2.201743-.627646 3.038605c0 .777086 .109589 1.982565 .657534 3.108344c.597758 1.225405 1.454545 1.872976 1.554172 1.872976c.059776 0 .099626-.029888 .099626-.099626z'/>
@@ -1472,7 +1473,7 @@ the minimax algorithm performs a complete <a href="/depth-first_search.html#1685
 </g>
 </svg>. the space complexity is <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -7.47198 28.647939 9.96264' style="max-height: 0.9800em; vertical-align: -0.2450em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -7.47198 28.647939 9.96264' style="max-height: 1.0784em; vertical-align: -0.2942em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g10-40' d='m3.297634 2.391034c0-.029888 0-.049813-.169365-.219178c-1.24533-1.255293-1.564134-3.138232-1.564134-4.662516c0-1.733499 .37858-3.466999 1.603985-4.712329c.129514-.119552 .129514-.139477 .129514-.169365c0-.069738-.039851-.099626-.099626-.099626c-.099626 0-.996264 .67746-1.58406 1.942715c-.508095 1.09589-.627646 2.201743-.627646 3.038605c0 .777086 .109589 1.982565 .657534 3.108344c.597758 1.225405 1.454545 1.872976 1.554172 1.872976c.059776 0 .099626-.029888 .099626-.099626z'/>
 <path id='g10-41' d='m2.879203-2.49066c0-.777086-.109589-1.982565-.657534-3.108344c-.597758-1.225405-1.454545-1.872976-1.554172-1.872976c-.059776 0-.099626 .039851-.099626 .099626c0 .029888 0 .049813 .18929 .229141c.976339 .986301 1.544209 2.570361 1.544209 4.652553c0 1.703611-.368618 3.457036-1.603985 4.712329c-.129514 .119552-.129514 .139477-.129514 .169365c0 .059776 .039851 .099626 .099626 .099626c.099626 0 .996264-.67746 1.58406-1.942715c.508095-1.09589 .627646-2.201743 .627646-3.038605z'/>
@@ -1491,7 +1492,7 @@ the minimax algorithm performs a complete <a href="/depth-first_search.html#1685
 </g>
 </svg> for an algorithm that generates all actions at once, or <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -7.47198 24.372305 9.96264' style="max-height: 0.9800em; vertical-align: -0.2450em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -7.47198 24.372305 9.96264' style="max-height: 1.0784em; vertical-align: -0.2942em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g10-40' d='m3.297634 2.391034c0-.029888 0-.049813-.169365-.219178c-1.24533-1.255293-1.564134-3.138232-1.564134-4.662516c0-1.733499 .37858-3.466999 1.603985-4.712329c.129514-.119552 .129514-.139477 .129514-.169365c0-.069738-.039851-.099626-.099626-.099626c-.099626 0-.996264 .67746-1.58406 1.942715c-.508095 1.09589-.627646 2.201743-.627646 3.038605c0 .777086 .109589 1.982565 .657534 3.108344c.597758 1.225405 1.454545 1.872976 1.554172 1.872976c.059776 0 .099626-.029888 .099626-.099626z'/>
 <path id='g10-41' d='m2.879203-2.49066c0-.777086-.109589-1.982565-.657534-3.108344c-.597758-1.225405-1.454545-1.872976-1.554172-1.872976c-.059776 0-.099626 .039851-.099626 .099626c0 .029888 0 .049813 .18929 .229141c.976339 .986301 1.544209 2.570361 1.544209 4.652553c0 1.703611-.368618 3.457036-1.603985 4.712329c-.129514 .119552-.129514 .139477-.129514 .169365c0 .059776 .039851 .099626 .099626 .099626c.099626 0 .996264-.67746 1.58406-1.942715c.508095-1.09589 .627646-2.201743 .627646-3.038605z'/>
@@ -1509,7 +1510,7 @@ the minimax algorithm performs a complete <a href="/depth-first_search.html#1685
 </svg> for an algorithm that generates actions one at a time.<br />
 to extend this idea to multiplayer games, we associate with each node in the game tree a vector which holds the values of <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.804483 41.633873 6.804483' style="max-height: 0.6694em; vertical-align: -0.0000em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.804483 41.633873 6.804483' style="max-height: 0.7677em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <use id='g3-28' xlink:href='#g2-28' transform='scale(1.428571)'/>
 <use id='g3-66' xlink:href='#g2-66' transform='scale(1.428571)'/>
@@ -1541,7 +1542,7 @@ to extend this idea to multiplayer games, we associate with each node in the gam
 </div>
 <div class="fancy-block note" data-before="&lt;p&gt;
 note: &lt;/p&gt;
-" data-after="">
+">
 <p>
 the definition depends on the utility values we define for max, so the algorithm does depend on the narrative we take that max is our guy, we want him to win, we dont care what min refers to themselves they're trying to minimize max's utility after all, they could adopt a minimax algorithm on their side which maximizes their utility which in turn could minimize our utility but that shouldnt matter much we're doing our best anyway and our definition of minimax wouldnt change<br />
 in the definition we clearly write utility(state,max), its dependent on the utility of max at the terminal states of the game, these are our destinations<br />

@@ -39,24 +39,24 @@
 <div id="content" class="content">
 <div class="fancy-block note" data-before="&lt;p&gt;
 note: &lt;/p&gt;
-" data-after="">
+">
 <p>
 the notation i used is more similar to the one in elmasri's book than the one used in practice lectures, but it shouldnt matter (hopefully to you too).<br />
 </p>
 
 </div>
 <p>
-using the same schema as in <a href="/database_course_homework_1.html#1702107387">homework 1</a><br />
+using the same schema as in <a href="/database_course_homework_1.html">homework 1</a><br />
 </p>
 <div class="fancy-block problem" data-before="&lt;p&gt;
 problem: &lt;/p&gt;
-" data-after="">
+">
 <p>
-write the following queries in <a href="/relational_algebra.html#1702391772">relational algebra</a><br />
+write the following queries in <a href="/relational_algebra.html">relational algebra</a><br />
 </p>
 <div class="fancy-block subproblem" data-before="&lt;p&gt;
 subproblem: &lt;/p&gt;
-" data-after="">
+">
 <p>
 retrieve id and phone number of the customers whose first name is "almog"<br />
 </p>
@@ -64,7 +64,7 @@ retrieve id and phone number of the customers whose first name is "almog"<br />
 </div>
 <div class="fancy-block solution" data-before="&lt;p&gt;
 solution: &lt;/p&gt;
-" data-after="">
+">
 <p>
 relational algera version<br />
 </p>
@@ -171,7 +171,7 @@ relational algera version<br />
 <p>
 sql version<br />
 </p>
-<div class="org-src-container">
+<div class="org-src-container" data-language="sql">
 <pre class="src src-sql"><span style="color: #c48702; font-weight: bold;">SELECT</span> id, phone_number <span style="color: #c48702; font-weight: bold;">FROM</span> customer <span style="color: #c48702; font-weight: bold;">WHERE</span> first_name = "almog"
 </pre>
 </div>
@@ -179,7 +179,7 @@ sql version<br />
 </div>
 <div class="fancy-block subproblem" data-before="&lt;p&gt;
 subproblem: &lt;/p&gt;
-" data-after="">
+">
 <p>
 retrieve the id and location (city, street, and house number) of the customers that have cars<br />
 </p>
@@ -187,9 +187,9 @@ retrieve the id and location (city, street, and house number) of the customers t
 </div>
 <div class="fancy-block solution" data-before="&lt;p&gt;
 solution: &lt;/p&gt;
-" data-after="">
+">
 <p>
-we use a semi join and then a <a href="/project_operation.html#1704791629">project operation</a><br />
+we use a semi join and then a <a href="/project_operation.html">project operation</a><br />
 </p>
 
 <div class="equation-container">
@@ -369,7 +369,7 @@ we use a semi join and then a <a href="/project_operation.html#1704791629">proje
 assuming the customer id attribute has the same name in all relations.<br />
 sql version:<br />
 </p>
-<div class="org-src-container">
+<div class="org-src-container" data-language="sql">
 <pre class="src src-sql"><span style="color: #c48702; font-weight: bold;">SELECT</span> id, hometown, street, house_number
 <span style="color: #c48702; font-weight: bold;">FROM</span>   customer c
 <span style="color: #c48702; font-weight: bold;">WHERE</span>  c.id <span style="color: #c48702; font-weight: bold;">IN</span> <span style="color: #d0730f;">(</span><span style="color: #c48702; font-weight: bold;">SELECT</span> customer_id
@@ -383,7 +383,7 @@ sql version:<br />
 </div>
 <div class="fancy-block subproblem" data-before="&lt;p&gt;
 subproblem: &lt;/p&gt;
-" data-after="">
+">
 <p>
 retrieve the id and customer name (first and last name) of customers that have more than 2 cars<br />
 </p>
@@ -391,7 +391,7 @@ retrieve the id and customer name (first and last name) of customers that have m
 </div>
 <div class="fancy-block solution" data-before="&lt;p&gt;
 solution: &lt;/p&gt;
-" data-after="">
+">
 
 <div class="equation-container">
 <span class="equation">
@@ -660,7 +660,7 @@ solution: &lt;/p&gt;
 </div>
 <div class="fancy-block subproblem" data-before="&lt;p&gt;
 subproblem: &lt;/p&gt;
-" data-after="">
+">
 <p>
 retrieve the ids and customer names of all customers and the numbers of cars that belong to them, if the end date of the car ownership has ended it shouldnt be retrieved.<br />
 </p>
@@ -668,7 +668,7 @@ retrieve the ids and customer names of all customers and the numbers of cars tha
 </div>
 <div class="fancy-block solution" data-before="&lt;p&gt;
 solution: &lt;/p&gt;
-" data-after="">
+">
 <p>
 i assume the goal is to retrieve the entries of the car numbers and not the number of cars, hopefully thats what you meant because the original text is ambiguous.<br />
 an outer join is needed here to make sure all customers are considered even if they dont own cars<br />
@@ -828,7 +828,7 @@ an outer join is needed here to make sure all customers are considered even if t
 </div>
 <div class="fancy-block subproblem" data-before="&lt;p&gt;
 subproblem: &lt;/p&gt;
-" data-after="">
+">
 <p>
 retrieve the garage name, car number, maintenace date and maintenance type in which the part "plug" or "gear oil" was replaced<br />
 </p>
@@ -836,7 +836,7 @@ retrieve the garage name, car number, maintenace date and maintenance type in wh
 </div>
 <div class="fancy-block solution" data-before="&lt;p&gt;
 solution: &lt;/p&gt;
-" data-after="">
+">
 
 <div class="equation-container">
 <span class="equation">
@@ -1126,7 +1126,7 @@ solution: &lt;/p&gt;
 </div>
 <div class="fancy-block subproblem" data-before="&lt;p&gt;
 subproblem: &lt;/p&gt;
-" data-after="">
+">
 <p>
 retrieve car number, car type, car manufacturing company, and production date of cars that have gone through every kind of maintenance<br />
 </p>
@@ -1134,7 +1134,7 @@ retrieve car number, car type, car manufacturing company, and production date of
 </div>
 <div class="fancy-block solution" data-before="&lt;p&gt;
 solution: &lt;/p&gt;
-" data-after="">
+">
 <p>
 this is the naive solution, i cant think of a better one<br />
 </p>
@@ -1457,7 +1457,7 @@ this is the naive solution, i cant think of a better one<br />
 </div>
 <div class="fancy-block subproblem" data-before="&lt;p&gt;
 subproblem: &lt;/p&gt;
-" data-after="">
+">
 <p>
 retrieve the first name, last name and phone number of the customers that have garages in their local town<br />
 </p>
@@ -1465,7 +1465,7 @@ retrieve the first name, last name and phone number of the customers that have g
 </div>
 <div class="fancy-block solution" data-before="&lt;p&gt;
 solution: &lt;/p&gt;
-" data-after="">
+">
 
 <div class="equation-container">
 <span class="equation">
@@ -1594,7 +1594,7 @@ solution: &lt;/p&gt;
 </div>
 <div class="fancy-block subproblem" data-before="&lt;p&gt;
 subproblem: &lt;/p&gt;
-" data-after="">
+">
 <p>
 retrieve the name of the garage that has done the most maintenances<br />
 </p>
@@ -1602,7 +1602,7 @@ retrieve the name of the garage that has done the most maintenances<br />
 </div>
 <div class="fancy-block solution" data-before="&lt;p&gt;
 solution: &lt;/p&gt;
-" data-after="">
+">
 
 <div class="equation-container">
 <span class="equation">
@@ -1852,7 +1852,7 @@ solution: &lt;/p&gt;
 </div>
 <div class="fancy-block subproblem" data-before="&lt;p&gt;
 subproblem: &lt;/p&gt;
-" data-after="">
+">
 <p>
 retrieve the details of customers (first name, last name and phone number), the number and manufacturing company name of the motorcycle for the customers that have a motorcycle and have done maintenance in tel aviv<br />
 </p>
@@ -1860,7 +1860,7 @@ retrieve the details of customers (first name, last name and phone number), the 
 </div>
 <div class="fancy-block solution" data-before="&lt;p&gt;
 solution: &lt;/p&gt;
-" data-after="">
+">
 
 <div class="equation-container">
 <span class="equation">
@@ -2259,7 +2259,7 @@ solution: &lt;/p&gt;
 </div>
 <div class="fancy-block subproblem" data-before="&lt;p&gt;
 subproblem: &lt;/p&gt;
-" data-after="">
+">
 <p>
 retrieve the id, first name and last name of all customers. in addition add a field called "ownership" with the following value:<br />
 </p>
@@ -2272,7 +2272,7 @@ retrieve the id, first name and last name of all customers. in addition add a fi
 </div>
 <div class="fancy-block solution" data-before="&lt;p&gt;
 solution: &lt;/p&gt;
-" data-after="">
+">
 <p>
 we use outer joins<br />
 </p>

@@ -41,7 +41,7 @@
 (Ramez Elmasri, Shamkant B. Navathe, 2015 chapter 8.1.2 the PROJECT operation)&lt;/p&gt;
 ">
 <p>
-if we think of a relation as a table, the <a href="/select.html#1704740086">SELECT operation</a> chooses some of the rows from the table while discarding other rows. the PROJECT operation, on the other hand, selects certain columns from the table and discards the other columns. if we are interested in only certain attributes of a relation, we use the PROJECT operation to project the relation over these attributes only. therefore, the result of the PROJECT operation can be visualized as a vertical partition of the relation into two relations:<br />
+if we think of a relation as a table, the <a href="/select.html">SELECT operation</a> chooses some of the rows from the table while discarding other rows. the PROJECT operation, on the other hand, selects certain columns from the table and discards the other columns. if we are interested in only certain attributes of a relation, we use the PROJECT operation to project the relation over these attributes only. therefore, the result of the PROJECT operation can be visualized as a vertical partition of the relation into two relations:<br />
 one has the needed columns (attributes) and contains the result of the operation, and the other contains the discarded columns. for example, to list each employee's first and last name and salary, we can use the PROJECT operation as follows:<br />
 <?xml version='1.0' encoding='UTF-8'?>
 
@@ -180,7 +180,7 @@ where <?xml version='1.0' encoding='UTF-8'?>
 <use x='0' y='0' xlink:href='#g4-82'/>
 </g>
 </g>
-</svg> is, in general, a <a href="/relational_algebra.html#1702391772">relational algebra</a> expression whose result is a relation, which in the simplest case is just the name of a database relation. the result of the project operation has only the attributes specified in &lt;attribute list&gt; in the same order as they appear in the list. hence, its <b>degree</b> is equal to the number of attributes in &lt;attribute list&gt;.<br />
+</svg> is, in general, a <a href="/relational_algebra.html">relational algebra</a> expression whose result is a relation, which in the simplest case is just the name of a database relation. the result of the project operation has only the attributes specified in &lt;attribute list&gt; in the same order as they appear in the list. hence, its <b>degree</b> is equal to the number of attributes in &lt;attribute list&gt;.<br />
 if the attribute list includes only nonkey attributes of <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.807795 7.641499 6.807795' style="max-height: 0.7680em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
@@ -343,7 +343,7 @@ the number of tuples in a relation resulting from a PROJECT operation is always 
 </g>
 </svg><br />
 as long as &lt;list2&gt; contains the attributes in &lt;list1&gt;; otherwise; the left-hand side is an incorrect expression. it is also noteworthy that commutativity does not hold on PROJECT.<br />
-In <a href="/sql.html#1702389696">sql</a>, the PROJECT attribute list is specified in the SELECT clause of a query. for example, the following operation:<br />
+In <a href="/sql.html">sql</a>, the PROJECT attribute list is specified in the SELECT clause of a query. for example, the following operation:<br />
 <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='129.784533 -10.38902 107.634656 10.389026' style="max-height: 1.5613em; display: block" class="org-latex org-latex-block">
