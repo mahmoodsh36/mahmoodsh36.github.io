@@ -42,21 +42,21 @@
 it is available via <a href="/common_lisp.html">quicklisp</a>:<br />
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #d0730f;">(</span>ql:quickload <span style="color: #ff7a7f; font-weight: bold;">:lparallel</span><span style="color: #d0730f;">)</span>
+<pre class="src src-lisp"><span style="color: #deb07a;">(</span>ql:quickload <span style="color: #e3b0c0; font-weight: bold;">:lparallel</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
 <p>
 to get the number of cores we have to use the <code>serapeum</code> package:<br />
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #d0730f;">(</span>ql:quickload <span style="color: #ff7a7f; font-weight: bold;">:serapeum</span><span style="color: #d0730f;">)</span>
+<pre class="src src-lisp"><span style="color: #deb07a;">(</span>ql:quickload <span style="color: #e3b0c0; font-weight: bold;">:serapeum</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
 <p>
 usage:<br />
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #d0730f;">(</span>serapeum:count-cpus<span style="color: #d0730f;">)</span>
+<pre class="src src-lisp"><span style="color: #deb07a;">(</span>serapeum:count-cpus<span style="color: #deb07a;">)</span>
 </pre>
 </div>
 
@@ -71,7 +71,7 @@ the implementation uses a group of worker threads. it is intended to be efficien
 kernel-related operations are applied to the current kernel, stored in <b>kernel</b>. a kernel is typically created with<br />
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #d0730f;">(</span>setf lparallel:*kernel* <span style="color: #64aa0f;">(</span>lparallel:make-kernel &lt;N&gt;<span style="color: #64aa0f;">)</span><span style="color: #d0730f;">)</span>
+<pre class="src src-lisp"><span style="color: #deb07a;">(</span>setf lparallel:*kernel* <span style="color: #ffaacf;">(</span>lparallel:make-kernel &lt;N&gt;<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
 <p>
@@ -80,9 +80,9 @@ in most circumstances a kernel should exist for the lifetime of the Lisp process
 a <b>task</b> is a function designator together with arguments to the function. to execute a task, (1) create a channel, (2) submit the task through the channel, and (3) receive the result from the channel.<br />
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #d0730f;">(</span><span style="color: #c48702; font-weight: bold;">let</span> <span style="color: #64aa0f;">(</span><span style="color: #ef656a;">(</span>channel <span style="color: #3dbbb0;">(</span>lparallel:make-channel<span style="color: #3dbbb0;">)</span><span style="color: #ef656a;">)</span><span style="color: #64aa0f;">)</span>
-  <span style="color: #64aa0f;">(</span>lparallel:submit-task channel '+ 3 4<span style="color: #64aa0f;">)</span>
-  <span style="color: #64aa0f;">(</span>lparallel:receive-result channel<span style="color: #64aa0f;">)</span><span style="color: #d0730f;">)</span>
+<pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">let</span> <span style="color: #ffaacf;">(</span><span style="color: #80aadf;">(</span>channel <span style="color: #e47980;">(</span>lparallel:make-channel<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span>
+  <span style="color: #ffaacf;">(</span>lparallel:submit-task channel '+ 3 4<span style="color: #ffaacf;">)</span>
+  <span style="color: #ffaacf;">(</span>lparallel:receive-result channel<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
 
@@ -97,11 +97,11 @@ multiple tasks may be submitted on the same channel, though the results are not 
 some examples:<br />
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #d0730f;">(</span><span style="color: #c48702; font-weight: bold;">let</span> <span style="color: #64aa0f;">(</span><span style="color: #ef656a;">(</span>channel <span style="color: #3dbbb0;">(</span>lparallel:make-channel<span style="color: #3dbbb0;">)</span><span style="color: #ef656a;">)</span><span style="color: #64aa0f;">)</span>
-  <span style="color: #64aa0f;">(</span>lparallel:submit-task channel '+ 3 4<span style="color: #64aa0f;">)</span>
-  <span style="color: #64aa0f;">(</span>lparallel:submit-task channel <span style="color: #ef656a;">(</span><span style="color: #c48702; font-weight: bold;">lambda</span> <span style="color: #3dbbb0;">()</span> <span style="color: #3dbbb0;">(</span>+ 5 6<span style="color: #3dbbb0;">)</span><span style="color: #ef656a;">)</span><span style="color: #64aa0f;">)</span>
-  <span style="color: #64aa0f;">(</span>list <span style="color: #ef656a;">(</span>lparallel:receive-result channel<span style="color: #ef656a;">)</span>
-        <span style="color: #ef656a;">(</span>lparallel:receive-result channel<span style="color: #ef656a;">)</span><span style="color: #64aa0f;">)</span><span style="color: #d0730f;">)</span>
+<pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">let</span> <span style="color: #ffaacf;">(</span><span style="color: #80aadf;">(</span>channel <span style="color: #e47980;">(</span>lparallel:make-channel<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span>
+  <span style="color: #ffaacf;">(</span>lparallel:submit-task channel '+ 3 4<span style="color: #ffaacf;">)</span>
+  <span style="color: #ffaacf;">(</span>lparallel:submit-task channel <span style="color: #80aadf;">(</span><span style="color: #deb07a; font-weight: bold;">lambda</span> <span style="color: #e47980;">()</span> <span style="color: #e47980;">(</span>+ 5 6<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span>
+  <span style="color: #ffaacf;">(</span>list <span style="color: #80aadf;">(</span>lparallel:receive-result channel<span style="color: #80aadf;">)</span>
+        <span style="color: #80aadf;">(</span>lparallel:receive-result channel<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
 
@@ -122,13 +122,13 @@ some examples:<br />
 </table>
 
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #d0730f;">(</span><span style="color: #c48702; font-weight: bold;">let</span> <span style="color: #64aa0f;">(</span><span style="color: #ef656a;">(</span>channel <span style="color: #3dbbb0;">(</span>lparallel:make-channel<span style="color: #3dbbb0;">)</span><span style="color: #ef656a;">)</span><span style="color: #64aa0f;">)</span>
-  <span style="color: #64aa0f;">(</span>lparallel:submit-task channel #'sleep 1<span style="color: #64aa0f;">)</span>
-  <span style="color: #64aa0f;">(</span>lparallel:submit-task channel <span style="color: #ef656a;">(</span><span style="color: #c48702; font-weight: bold;">lambda</span> <span style="color: #3dbbb0;">()</span> <span style="color: #3dbbb0;">(</span>sleep 3<span style="color: #3dbbb0;">)</span> <span style="color: #3dbbb0;">(</span>+ 7 6<span style="color: #3dbbb0;">)</span><span style="color: #ef656a;">)</span><span style="color: #64aa0f;">)</span>
-  <span style="color: #64aa0f;">(</span>lparallel:submit-task channel <span style="color: #ef656a;">(</span><span style="color: #c48702; font-weight: bold;">lambda</span> <span style="color: #3dbbb0;">()</span> <span style="color: #3dbbb0;">(</span>+ 4 6<span style="color: #3dbbb0;">)</span><span style="color: #ef656a;">)</span><span style="color: #64aa0f;">)</span>
-  <span style="color: #64aa0f;">(</span>print <span style="color: #ef656a;">(</span>lparallel:receive-result channel<span style="color: #ef656a;">)</span><span style="color: #64aa0f;">)</span>
-  <span style="color: #64aa0f;">(</span>print <span style="color: #ef656a;">(</span>lparallel:receive-result channel<span style="color: #ef656a;">)</span><span style="color: #64aa0f;">)</span>
-  <span style="color: #64aa0f;">(</span>print <span style="color: #ef656a;">(</span>lparallel:receive-result channel<span style="color: #ef656a;">)</span><span style="color: #64aa0f;">)</span><span style="color: #d0730f;">)</span>
+<pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">let</span> <span style="color: #ffaacf;">(</span><span style="color: #80aadf;">(</span>channel <span style="color: #e47980;">(</span>lparallel:make-channel<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span>
+  <span style="color: #ffaacf;">(</span>lparallel:submit-task channel #'sleep 1<span style="color: #ffaacf;">)</span>
+  <span style="color: #ffaacf;">(</span>lparallel:submit-task channel <span style="color: #80aadf;">(</span><span style="color: #deb07a; font-weight: bold;">lambda</span> <span style="color: #e47980;">()</span> <span style="color: #e47980;">(</span>sleep 3<span style="color: #e47980;">)</span> <span style="color: #e47980;">(</span>+ 7 6<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span>
+  <span style="color: #ffaacf;">(</span>lparallel:submit-task channel <span style="color: #80aadf;">(</span><span style="color: #deb07a; font-weight: bold;">lambda</span> <span style="color: #e47980;">()</span> <span style="color: #e47980;">(</span>+ 4 6<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span>
+  <span style="color: #ffaacf;">(</span>print <span style="color: #80aadf;">(</span>lparallel:receive-result channel<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span>
+  <span style="color: #ffaacf;">(</span>print <span style="color: #80aadf;">(</span>lparallel:receive-result channel<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span>
+  <span style="color: #ffaacf;">(</span>print <span style="color: #80aadf;">(</span>lparallel:receive-result channel<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
 
@@ -144,30 +144,30 @@ NIL
 this would take full advantage of 3 cores if the kernel was created with 3+ workers (dont run it!):<br />
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #d0730f;">(</span><span style="color: #c48702; font-weight: bold;">let</span> <span style="color: #64aa0f;">(</span><span style="color: #ef656a;">(</span>channel <span style="color: #3dbbb0;">(</span>lparallel:make-channel<span style="color: #3dbbb0;">)</span><span style="color: #ef656a;">)</span><span style="color: #64aa0f;">)</span>
-  <span style="color: #64aa0f;">(</span>lparallel:submit-task channel <span style="color: #ef656a;">(</span><span style="color: #c48702; font-weight: bold;">lambda</span> <span style="color: #3dbbb0;">()</span> <span style="color: #3dbbb0;">(</span><span style="color: #c48702; font-weight: bold;">loop</span><span style="color: #3dbbb0;">)</span><span style="color: #ef656a;">)</span><span style="color: #64aa0f;">)</span>
-  <span style="color: #64aa0f;">(</span>lparallel:submit-task channel <span style="color: #ef656a;">(</span><span style="color: #c48702; font-weight: bold;">lambda</span> <span style="color: #3dbbb0;">()</span> <span style="color: #3dbbb0;">(</span><span style="color: #c48702; font-weight: bold;">loop</span><span style="color: #3dbbb0;">)</span><span style="color: #ef656a;">)</span><span style="color: #64aa0f;">)</span>
-  <span style="color: #64aa0f;">(</span>lparallel:submit-task channel <span style="color: #ef656a;">(</span><span style="color: #c48702; font-weight: bold;">lambda</span> <span style="color: #3dbbb0;">()</span> <span style="color: #3dbbb0;">(</span><span style="color: #c48702; font-weight: bold;">loop</span><span style="color: #3dbbb0;">)</span><span style="color: #ef656a;">)</span><span style="color: #64aa0f;">)</span>
-  <span style="color: #64aa0f;">(</span>print <span style="color: #ef656a;">(</span>lparallel:receive-result channel<span style="color: #ef656a;">)</span><span style="color: #64aa0f;">)</span><span style="color: #d0730f;">)</span>
+<pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">let</span> <span style="color: #ffaacf;">(</span><span style="color: #80aadf;">(</span>channel <span style="color: #e47980;">(</span>lparallel:make-channel<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span>
+  <span style="color: #ffaacf;">(</span>lparallel:submit-task channel <span style="color: #80aadf;">(</span><span style="color: #deb07a; font-weight: bold;">lambda</span> <span style="color: #e47980;">()</span> <span style="color: #e47980;">(</span><span style="color: #deb07a; font-weight: bold;">loop</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span>
+  <span style="color: #ffaacf;">(</span>lparallel:submit-task channel <span style="color: #80aadf;">(</span><span style="color: #deb07a; font-weight: bold;">lambda</span> <span style="color: #e47980;">()</span> <span style="color: #e47980;">(</span><span style="color: #deb07a; font-weight: bold;">loop</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span>
+  <span style="color: #ffaacf;">(</span>lparallel:submit-task channel <span style="color: #80aadf;">(</span><span style="color: #deb07a; font-weight: bold;">lambda</span> <span style="color: #e47980;">()</span> <span style="color: #e47980;">(</span><span style="color: #deb07a; font-weight: bold;">loop</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span>
+  <span style="color: #ffaacf;">(</span>print <span style="color: #80aadf;">(</span>lparallel:receive-result channel<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
 <p>
 note that a kernel will not be garbage collected until <code>end-kernel</code> is called.<br />
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #d0730f;">(</span>lparallel:end-kernel<span style="color: #d0730f;">)</span>
+<pre class="src src-lisp"><span style="color: #deb07a;">(</span>lparallel:end-kernel<span style="color: #deb07a;">)</span>
 </pre>
 </div>
-<div id="outline-container-org27cb91b" class="outline-2">
-<h2 id="org27cb91b">plet</h2>
-<div class="outline-text-2" id="text-org27cb91b">
+<div id="outline-container-orgbcb8d2c" class="outline-2">
+<h2 id="orgbcb8d2c">plet</h2>
+<div class="outline-text-2" id="text-orgbcb8d2c">
 <p>
 plet might be the simplest construct that lparallel offers for asynchronous computation, consider the following example:<br />
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #d0730f;">(</span>lparallel:plet <span style="color: #64aa0f;">(</span><span style="color: #ef656a;">(</span>a <span style="color: #3dbbb0;">(</span><span style="color: #c48702; font-weight: bold;">progn</span> <span style="color: #df8f6f;">(</span>sleep 1<span style="color: #df8f6f;">)</span> 9<span style="color: #3dbbb0;">)</span><span style="color: #ef656a;">)</span><span style="color: #64aa0f;">)</span>
-  <span style="color: #64aa0f;">(</span>print <span style="color: #f06a3f;">"this runs instantly"</span><span style="color: #64aa0f;">)</span>
-  <span style="color: #64aa0f;">(</span>print a<span style="color: #64aa0f;">)</span><span style="color: #d0730f;">)</span> <span style="color: #cf9f7f; font-style: italic;">; =&gt; 9</span>
+<pre class="src src-lisp"><span style="color: #deb07a;">(</span>lparallel:plet <span style="color: #ffaacf;">(</span><span style="color: #80aadf;">(</span>a <span style="color: #e47980;">(</span><span style="color: #deb07a; font-weight: bold;">progn</span> <span style="color: #d0b0ff;">(</span>sleep 1<span style="color: #d0b0ff;">)</span> 9<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span>
+  <span style="color: #ffaacf;">(</span>print <span style="color: #f3a0a0;">"this runs instantly"</span><span style="color: #ffaacf;">)</span>
+  <span style="color: #ffaacf;">(</span>print a<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span> <span style="color: #a0a0cf; font-style: italic;">; =&gt; 9</span>
 </pre>
 </div>
 <p>
@@ -175,10 +175,10 @@ once <code>my-slow-function</code> is done running, the returned value, 9, will 
 although notice that, the whole sexp does pause and doesnt execute asynchronously, consider this example:<br />
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #d0730f;">(</span>lparallel:plet <span style="color: #64aa0f;">(</span><span style="color: #ef656a;">(</span>a <span style="color: #3dbbb0;">(</span><span style="color: #c48702; font-weight: bold;">progn</span> <span style="color: #df8f6f;">(</span>sleep 1<span style="color: #df8f6f;">)</span> 9<span style="color: #3dbbb0;">)</span><span style="color: #ef656a;">)</span><span style="color: #64aa0f;">)</span>
-  <span style="color: #64aa0f;">(</span>format t <span style="color: #f06a3f;">"hi~%"</span><span style="color: #64aa0f;">)</span>
-  <span style="color: #64aa0f;">(</span>format t <span style="color: #f06a3f;">"~A~%"</span> a<span style="color: #64aa0f;">)</span><span style="color: #d0730f;">)</span>
-<span style="color: #d0730f;">(</span>format t <span style="color: #f06a3f;">"~A~%"</span> 10<span style="color: #d0730f;">)</span>
+<pre class="src src-lisp"><span style="color: #deb07a;">(</span>lparallel:plet <span style="color: #ffaacf;">(</span><span style="color: #80aadf;">(</span>a <span style="color: #e47980;">(</span><span style="color: #deb07a; font-weight: bold;">progn</span> <span style="color: #d0b0ff;">(</span>sleep 1<span style="color: #d0b0ff;">)</span> 9<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span>
+  <span style="color: #ffaacf;">(</span>format t <span style="color: #f3a0a0;">"hi~%"</span><span style="color: #ffaacf;">)</span>
+  <span style="color: #ffaacf;">(</span>format t <span style="color: #f3a0a0;">"~A~%"</span> a<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<span style="color: #deb07a;">(</span>format t <span style="color: #f3a0a0;">"~A~%"</span> 10<span style="color: #deb07a;">)</span>
 </pre>
 </div>
 
@@ -193,31 +193,31 @@ the next sexp after <code>plet</code> doesnt run until <code>plet</code> is done
 </p>
 </div>
 </div>
-<div id="outline-container-orgbc472b7" class="outline-2">
-<h2 id="orgbc472b7">promise</h2>
-<div class="outline-text-2" id="text-orgbc472b7">
+<div id="outline-container-org93681f3" class="outline-2">
+<h2 id="org93681f3">promise</h2>
+<div class="outline-text-2" id="text-org93681f3">
 <p>
 promises and futures are also useful<br />
 a <code>promise</code> is a "promise" that needs to be <code>fulfill</code>'ed, <code>fullfilledp</code> checks whether a promise has been fulfilled, <code>fulfill</code> turns a promise into a fulfilled one, and attaches the second argument as its return value, <code>force</code> returns the value returned by a promise<br />
 example:<br />
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #d0730f;">(</span><span style="color: #c48702; font-weight: bold;">let</span> <span style="color: #64aa0f;">(</span><span style="color: #ef656a;">(</span>p <span style="color: #3dbbb0;">(</span>lparallel:promise<span style="color: #3dbbb0;">)</span><span style="color: #ef656a;">)</span><span style="color: #64aa0f;">)</span>
-  <span style="color: #64aa0f;">(</span>lparallel:fulfilledp p<span style="color: #64aa0f;">)</span> <span style="color: #cf9f7f; font-style: italic;">; =&gt; nil</span>
-  <span style="color: #64aa0f;">(</span>lparallel:fulfill p 3<span style="color: #64aa0f;">)</span>
-  <span style="color: #64aa0f;">(</span>lparallel:fulfilledp p<span style="color: #64aa0f;">)</span> <span style="color: #cf9f7f; font-style: italic;">; =&gt; t</span>
-  <span style="color: #64aa0f;">(</span>lparallel:force p<span style="color: #64aa0f;">)</span><span style="color: #d0730f;">)</span> <span style="color: #cf9f7f; font-style: italic;">; =&gt; 3</span>
+<pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">let</span> <span style="color: #ffaacf;">(</span><span style="color: #80aadf;">(</span>p <span style="color: #e47980;">(</span>lparallel:promise<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span>
+  <span style="color: #ffaacf;">(</span>lparallel:fulfilledp p<span style="color: #ffaacf;">)</span> <span style="color: #a0a0cf; font-style: italic;">; =&gt; nil</span>
+  <span style="color: #ffaacf;">(</span>lparallel:fulfill p 3<span style="color: #ffaacf;">)</span>
+  <span style="color: #ffaacf;">(</span>lparallel:fulfilledp p<span style="color: #ffaacf;">)</span> <span style="color: #a0a0cf; font-style: italic;">; =&gt; t</span>
+  <span style="color: #ffaacf;">(</span>lparallel:force p<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span> <span style="color: #a0a0cf; font-style: italic;">; =&gt; 3</span>
 </pre>
 </div>
 <p>
 a <code>future</code> is a <code>promise</code> which is fulfilled in parallel, it takes forms to execute asynchronously, <code>fulfilledp</code> is used to check whether a future is done executing the forms, and <code>force</code> is used to get the result of the execution, if the promise (the future) is not yet fulfilled (hasnt done executing), the call to <code>force</code> block execution until it is, example:<br />
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #d0730f;">(</span><span style="color: #c48702; font-weight: bold;">let</span> <span style="color: #64aa0f;">(</span><span style="color: #ef656a;">(</span>f <span style="color: #3dbbb0;">(</span>lparallel:future <span style="color: #df8f6f;">(</span>sleep 0.2<span style="color: #df8f6f;">)</span> <span style="color: #df8f6f;">(</span>+ 3 4<span style="color: #df8f6f;">)</span><span style="color: #3dbbb0;">)</span><span style="color: #ef656a;">)</span><span style="color: #64aa0f;">)</span>
-  <span style="color: #64aa0f;">(</span>lparallel:fulfilledp f<span style="color: #64aa0f;">)</span> <span style="color: #cf9f7f; font-style: italic;">; =&gt; nil</span>
-  <span style="color: #64aa0f;">(</span>sleep 0.4<span style="color: #64aa0f;">)</span>
-  <span style="color: #64aa0f;">(</span>lparallel:fulfilledp f<span style="color: #64aa0f;">)</span> <span style="color: #cf9f7f; font-style: italic;">; =&gt; t</span>
-  <span style="color: #64aa0f;">(</span>lparallel:force f<span style="color: #64aa0f;">)</span><span style="color: #d0730f;">)</span> <span style="color: #cf9f7f; font-style: italic;">; =&gt; 7</span>
+<pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">let</span> <span style="color: #ffaacf;">(</span><span style="color: #80aadf;">(</span>f <span style="color: #e47980;">(</span>lparallel:future <span style="color: #d0b0ff;">(</span>sleep 0.2<span style="color: #d0b0ff;">)</span> <span style="color: #d0b0ff;">(</span>+ 3 4<span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span>
+  <span style="color: #ffaacf;">(</span>lparallel:fulfilledp f<span style="color: #ffaacf;">)</span> <span style="color: #a0a0cf; font-style: italic;">; =&gt; nil</span>
+  <span style="color: #ffaacf;">(</span>sleep 0.4<span style="color: #ffaacf;">)</span>
+  <span style="color: #ffaacf;">(</span>lparallel:fulfilledp f<span style="color: #ffaacf;">)</span> <span style="color: #a0a0cf; font-style: italic;">; =&gt; t</span>
+  <span style="color: #ffaacf;">(</span>lparallel:force f<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span> <span style="color: #a0a0cf; font-style: italic;">; =&gt; 7</span>
 </pre>
 </div>
 </div>

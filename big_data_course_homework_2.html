@@ -64,7 +64,7 @@ create a collection named <code>students</code>.<br />
 
 </div>
 <div class="org-src-container" data-language="mongo">
-<pre class="src src-mongo">db.createCollection<span style="color: #d0730f;">(</span><span style="color: #f06a3f;">'students'</span><span style="color: #d0730f;">)</span>
+<pre class="src src-mongo">db.createCollection<span style="color: #deb07a;">(</span><span style="color: #f3a0a0;">'students'</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
 <div class="fancy-block task" data-before="&lt;p&gt;
@@ -101,11 +101,11 @@ note that not every student has a secondary field of study.<br />
 
 </div>
 <div class="org-src-container" data-language="mongo">
-<pre class="src src-mongo">db.students.insertMany<span style="color: #d0730f;">(</span><span style="color: #64aa0f;">(</span><span style="color: #c48702; font-weight: bold;">function</span><span style="color: #ef656a;">(</span><span style="color: #6fafff;">num</span><span style="color: #ef656a;">)</span> <span style="color: #ef656a;">{</span> mylist=<span style="color: #3dbbb0;">[]</span>; <span style="color: #c48702; font-weight: bold;">for</span> <span style="color: #3dbbb0;">(</span><span style="color: #c48702; font-weight: bold;">let</span> <span style="color: #6fafff;">i</span> = 0; i &lt; num; ++i<span style="color: #3dbbb0;">)</span> mylist.push<span style="color: #3dbbb0;">(</span><span style="color: #df8f6f;">{</span><span style="color: #f06a3f;">'_id'</span>: i, <span style="color: #f06a3f;">'name'</span>: <span style="color: #379cf6;">{</span><span style="color: #f06a3f;">'first'</span>: <span style="color: #f06a3f;">'mahmood'</span>+i, <span style="color: #f06a3f;">'last'</span>: <span style="color: #f06a3f;">'sheikh'</span><span style="color: #379cf6;">}</span>, <span style="color: #f06a3f;">'bdate'</span>: <span style="color: #c48702; font-weight: bold;">new</span> <span style="color: #2fa526;">Date</span><span style="color: #379cf6;">(</span><span style="color: #f06a3f;">'2002-1-1'</span>+i<span style="color: #379cf6;">)</span>, <span style="color: #f06a3f;">'courses'</span>: <span style="color: #379cf6;">[</span><span style="color: #ff7a7f;">{</span><span style="color: #f06a3f;">'ccode'</span>: <span style="color: #f06a3f;">'0'</span>, <span style="color: #f06a3f;">'cname'</span>: <span style="color: #f06a3f;">'algebra'</span>, <span style="color: #f06a3f;">'grade'</span>: 10*i<span style="color: #ff7a7f;">}</span><span style="color: #379cf6;">]</span>, <span style="color: #f06a3f;">'phones'</span>: <span style="color: #379cf6;">[</span><span style="color: #f06a3f;">'052338801'</span>+i, <span style="color: #f06a3f;">'052449912'</span>+i<span style="color: #379cf6;">]</span>, <span style="color: #f06a3f;">'major'</span>: <span style="color: #f06a3f;">'computer science'</span>, ...<span style="color: #379cf6;">(</span>i &gt; 5<span style="color: #379cf6;">)</span> &amp;&amp; <span style="color: #379cf6;">{</span><span style="color: #f06a3f;">'minor'</span>: <span style="color: #f06a3f;">'math'</span><span style="color: #379cf6;">}</span><span style="color: #df8f6f;">}</span><span style="color: #3dbbb0;">)</span>; <span style="color: #c48702; font-weight: bold;">return</span> mylist; <span style="color: #ef656a;">}</span><span style="color: #64aa0f;">)(</span>10<span style="color: #64aa0f;">)</span><span style="color: #d0730f;">)</span>;
+<pre class="src src-mongo">db.students.insertMany<span style="color: #deb07a;">(</span><span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">function</span><span style="color: #80aadf;">(</span><span style="color: #ffaacf;">num</span><span style="color: #80aadf;">)</span> <span style="color: #80aadf;">{</span> mylist=<span style="color: #e47980;">[]</span>; <span style="color: #deb07a; font-weight: bold;">for</span> <span style="color: #e47980;">(</span><span style="color: #deb07a; font-weight: bold;">let</span> <span style="color: #ffaacf;">i</span> = 0; i &lt; num; ++i<span style="color: #e47980;">)</span> mylist.push<span style="color: #e47980;">(</span><span style="color: #d0b0ff;">{</span><span style="color: #f3a0a0;">'_id'</span>: i, <span style="color: #f3a0a0;">'name'</span>: <span style="color: #3fc489;">{</span><span style="color: #f3a0a0;">'first'</span>: <span style="color: #f3a0a0;">'mahmood'</span>+i, <span style="color: #f3a0a0;">'last'</span>: <span style="color: #f3a0a0;">'sheikh'</span><span style="color: #3fc489;">}</span>, <span style="color: #f3a0a0;">'bdate'</span>: <span style="color: #deb07a; font-weight: bold;">new</span> <span style="color: #a9c99f;">Date</span><span style="color: #3fc489;">(</span><span style="color: #f3a0a0;">'2002-1-1'</span>+i<span style="color: #3fc489;">)</span>, <span style="color: #f3a0a0;">'courses'</span>: <span style="color: #3fc489;">[</span><span style="color: #6fb3c0;">{</span><span style="color: #f3a0a0;">'ccode'</span>: <span style="color: #f3a0a0;">'0'</span>, <span style="color: #f3a0a0;">'cname'</span>: <span style="color: #f3a0a0;">'algebra'</span>, <span style="color: #f3a0a0;">'grade'</span>: 10*i<span style="color: #6fb3c0;">}</span><span style="color: #3fc489;">]</span>, <span style="color: #f3a0a0;">'phones'</span>: <span style="color: #3fc489;">[</span><span style="color: #f3a0a0;">'052338801'</span>+i, <span style="color: #f3a0a0;">'052449912'</span>+i<span style="color: #3fc489;">]</span>, <span style="color: #f3a0a0;">'major'</span>: <span style="color: #f3a0a0;">'computer science'</span>, ...<span style="color: #3fc489;">(</span>i &gt; 5<span style="color: #3fc489;">)</span> &amp;&amp; <span style="color: #3fc489;">{</span><span style="color: #f3a0a0;">'minor'</span>: <span style="color: #f3a0a0;">'math'</span><span style="color: #3fc489;">}</span><span style="color: #d0b0ff;">}</span><span style="color: #e47980;">)</span>; <span style="color: #deb07a; font-weight: bold;">return</span> mylist; <span style="color: #80aadf;">}</span><span style="color: #ffaacf;">)(</span>10<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>;
 </pre>
 </div>
 
-<pre class="example" id="org52d9c54">
+<pre class="example" id="org54de958">
 {
 	"acknowledged" : true,
 	"insertedIds" : [
@@ -131,11 +131,11 @@ write a command that shows all the students with all the data on them.<br />
 
 </div>
 <div class="org-src-container" data-language="mongo">
-<pre class="src src-mongo">db.students.find<span style="color: #d0730f;">()</span>.pretty<span style="color: #d0730f;">()</span>
+<pre class="src src-mongo">db.students.find<span style="color: #deb07a;">()</span>.pretty<span style="color: #deb07a;">()</span>
 </pre>
 </div>
 
-<pre class="example" id="org01b6021">
+<pre class="example" id="orgb9fff49">
 {
 	"_id" : 0,
 	"name" : {
@@ -350,11 +350,11 @@ for each student, show their name and the names of the courses they study, witho
 
 </div>
 <div class="org-src-container" data-language="mongo">
-<pre class="src src-mongo">db.students.find<span style="color: #d0730f;">(</span><span style="color: #64aa0f;">{}</span>, <span style="color: #64aa0f;">{</span><span style="color: #f06a3f;">'_id'</span>: 0, <span style="color: #f06a3f;">'courses.ccode'</span>: 0, <span style="color: #f06a3f;">'courses.grade'</span>: 0, <span style="color: #f06a3f;">'bdate'</span>: 0, <span style="color: #f06a3f;">'major'</span>: 0, <span style="color: #f06a3f;">'minor'</span>: 0, <span style="color: #f06a3f;">'phones'</span>: 0<span style="color: #64aa0f;">}</span><span style="color: #d0730f;">)</span>.pretty<span style="color: #d0730f;">()</span>
+<pre class="src src-mongo">db.students.find<span style="color: #deb07a;">(</span><span style="color: #ffaacf;">{}</span>, <span style="color: #ffaacf;">{</span><span style="color: #f3a0a0;">'_id'</span>: 0, <span style="color: #f3a0a0;">'courses.ccode'</span>: 0, <span style="color: #f3a0a0;">'courses.grade'</span>: 0, <span style="color: #f3a0a0;">'bdate'</span>: 0, <span style="color: #f3a0a0;">'major'</span>: 0, <span style="color: #f3a0a0;">'minor'</span>: 0, <span style="color: #f3a0a0;">'phones'</span>: 0<span style="color: #ffaacf;">}</span><span style="color: #deb07a;">)</span>.pretty<span style="color: #deb07a;">()</span>
 </pre>
 </div>
 
-<pre class="example" id="org415c56f">
+<pre class="example" id="orge6bbc0a">
 {
 	"name" : {
 		"first" : "mahmood0",
@@ -475,11 +475,11 @@ show all students, for each student, show their id, a new field named <code>full
 
 </div>
 <div class="org-src-container" data-language="mongo">
-<pre class="src src-mongo">db.students.find<span style="color: #d0730f;">(</span><span style="color: #64aa0f;">{}</span>, <span style="color: #64aa0f;">{</span><span style="color: #f06a3f;">'full name'</span>: <span style="color: #ef656a;">{</span>$concat: <span style="color: #3dbbb0;">[</span><span style="color: #f06a3f;">'$name.first'</span>, <span style="color: #f06a3f;">' '</span>, <span style="color: #f06a3f;">'$name.last'</span><span style="color: #3dbbb0;">]</span><span style="color: #ef656a;">}</span>, <span style="color: #f06a3f;">'year'</span>: <span style="color: #ef656a;">{</span>$dateToString: <span style="color: #3dbbb0;">{</span><span style="color: #f06a3f;">'date'</span>: <span style="color: #f06a3f;">'$bdate'</span>, <span style="color: #f06a3f;">'format'</span>: <span style="color: #f06a3f;">'%Y'</span><span style="color: #3dbbb0;">}</span><span style="color: #ef656a;">}</span>, <span style="color: #f06a3f;">'age'</span>: <span style="color: #ef656a;">{</span>$toInt: <span style="color: #3dbbb0;">{</span>$divide: <span style="color: #df8f6f;">[</span><span style="color: #379cf6;">{</span>$subtract: <span style="color: #ff7a7f;">[</span><span style="color: #f06a3f;">'$$NOW'</span>, <span style="color: #f06a3f;">'$bdate'</span><span style="color: #ff7a7f;">]</span><span style="color: #379cf6;">}</span>, 1000*60*60*24*365<span style="color: #df8f6f;">]</span><span style="color: #3dbbb0;">}</span><span style="color: #ef656a;">}</span>, <span style="color: #f06a3f;">'#courses'</span>: <span style="color: #ef656a;">{</span>$size: <span style="color: #f06a3f;">'$courses'</span><span style="color: #ef656a;">}</span>, <span style="color: #f06a3f;">'phones'</span>: <span style="color: #ef656a;">{</span>$slice: 1<span style="color: #ef656a;">}</span><span style="color: #64aa0f;">}</span><span style="color: #d0730f;">)</span>.pretty<span style="color: #d0730f;">()</span>
+<pre class="src src-mongo">db.students.find<span style="color: #deb07a;">(</span><span style="color: #ffaacf;">{}</span>, <span style="color: #ffaacf;">{</span><span style="color: #f3a0a0;">'full name'</span>: <span style="color: #80aadf;">{</span>$concat: <span style="color: #e47980;">[</span><span style="color: #f3a0a0;">'$name.first'</span>, <span style="color: #f3a0a0;">' '</span>, <span style="color: #f3a0a0;">'$name.last'</span><span style="color: #e47980;">]</span><span style="color: #80aadf;">}</span>, <span style="color: #f3a0a0;">'year'</span>: <span style="color: #80aadf;">{</span>$dateToString: <span style="color: #e47980;">{</span><span style="color: #f3a0a0;">'date'</span>: <span style="color: #f3a0a0;">'$bdate'</span>, <span style="color: #f3a0a0;">'format'</span>: <span style="color: #f3a0a0;">'%Y'</span><span style="color: #e47980;">}</span><span style="color: #80aadf;">}</span>, <span style="color: #f3a0a0;">'age'</span>: <span style="color: #80aadf;">{</span>$toInt: <span style="color: #e47980;">{</span>$divide: <span style="color: #d0b0ff;">[</span><span style="color: #3fc489;">{</span>$subtract: <span style="color: #6fb3c0;">[</span><span style="color: #f3a0a0;">'$$NOW'</span>, <span style="color: #f3a0a0;">'$bdate'</span><span style="color: #6fb3c0;">]</span><span style="color: #3fc489;">}</span>, 1000*60*60*24*365<span style="color: #d0b0ff;">]</span><span style="color: #e47980;">}</span><span style="color: #80aadf;">}</span>, <span style="color: #f3a0a0;">'#courses'</span>: <span style="color: #80aadf;">{</span>$size: <span style="color: #f3a0a0;">'$courses'</span><span style="color: #80aadf;">}</span>, <span style="color: #f3a0a0;">'phones'</span>: <span style="color: #80aadf;">{</span>$slice: 1<span style="color: #80aadf;">}</span><span style="color: #ffaacf;">}</span><span style="color: #deb07a;">)</span>.pretty<span style="color: #deb07a;">()</span>
 </pre>
 </div>
 
-<pre class="example" id="org71ae44b">
+<pre class="example" id="org97269d9">
 {
 	"_id" : 0,
 	"phones" : [
@@ -590,11 +590,11 @@ show all students, for each student show their id, the number of courses they're
 
 </div>
 <div class="org-src-container" data-language="mongo">
-<pre class="src src-mongo">db.students.find<span style="color: #d0730f;">(</span><span style="color: #64aa0f;">{}</span>, <span style="color: #64aa0f;">{</span><span style="color: #f06a3f;">'full name'</span>: <span style="color: #ef656a;">{</span>$concat: <span style="color: #3dbbb0;">[</span><span style="color: #f06a3f;">'$name.first'</span>, <span style="color: #f06a3f;">' '</span>, <span style="color: #f06a3f;">'$name.last'</span><span style="color: #3dbbb0;">]</span><span style="color: #ef656a;">}</span>, <span style="color: #f06a3f;">'#courses'</span>: <span style="color: #ef656a;">{</span>$size: <span style="color: #f06a3f;">'$courses'</span><span style="color: #ef656a;">}</span>, <span style="color: #f06a3f;">'#phones'</span>: <span style="color: #ef656a;">{</span>$size: <span style="color: #f06a3f;">'$phones'</span><span style="color: #ef656a;">}</span>, <span style="color: #f06a3f;">'field of study'</span>: <span style="color: #ef656a;">{</span>$cond: <span style="color: #3dbbb0;">[</span><span style="color: #df8f6f;">{</span>$eq: <span style="color: #379cf6;">[</span><span style="color: #f06a3f;">"$minor"</span>, <span style="color: #64aa0f;">undefined</span><span style="color: #379cf6;">]</span><span style="color: #df8f6f;">}</span>, <span style="color: #f06a3f;">"$major"</span>, <span style="color: #df8f6f;">{</span>$concat: <span style="color: #379cf6;">[</span><span style="color: #f06a3f;">"$major"</span>, <span style="color: #f06a3f;">"/"</span>, <span style="color: #f06a3f;">"$minor"</span><span style="color: #379cf6;">]</span><span style="color: #df8f6f;">}</span><span style="color: #3dbbb0;">]</span><span style="color: #ef656a;">}</span><span style="color: #64aa0f;">}</span><span style="color: #d0730f;">)</span>.pretty<span style="color: #d0730f;">()</span>
+<pre class="src src-mongo">db.students.find<span style="color: #deb07a;">(</span><span style="color: #ffaacf;">{}</span>, <span style="color: #ffaacf;">{</span><span style="color: #f3a0a0;">'full name'</span>: <span style="color: #80aadf;">{</span>$concat: <span style="color: #e47980;">[</span><span style="color: #f3a0a0;">'$name.first'</span>, <span style="color: #f3a0a0;">' '</span>, <span style="color: #f3a0a0;">'$name.last'</span><span style="color: #e47980;">]</span><span style="color: #80aadf;">}</span>, <span style="color: #f3a0a0;">'#courses'</span>: <span style="color: #80aadf;">{</span>$size: <span style="color: #f3a0a0;">'$courses'</span><span style="color: #80aadf;">}</span>, <span style="color: #f3a0a0;">'#phones'</span>: <span style="color: #80aadf;">{</span>$size: <span style="color: #f3a0a0;">'$phones'</span><span style="color: #80aadf;">}</span>, <span style="color: #f3a0a0;">'field of study'</span>: <span style="color: #80aadf;">{</span>$cond: <span style="color: #e47980;">[</span><span style="color: #d0b0ff;">{</span>$eq: <span style="color: #3fc489;">[</span><span style="color: #f3a0a0;">"$minor"</span>, <span style="color: #80aadf;">undefined</span><span style="color: #3fc489;">]</span><span style="color: #d0b0ff;">}</span>, <span style="color: #f3a0a0;">"$major"</span>, <span style="color: #d0b0ff;">{</span>$concat: <span style="color: #3fc489;">[</span><span style="color: #f3a0a0;">"$major"</span>, <span style="color: #f3a0a0;">"/"</span>, <span style="color: #f3a0a0;">"$minor"</span><span style="color: #3fc489;">]</span><span style="color: #d0b0ff;">}</span><span style="color: #e47980;">]</span><span style="color: #80aadf;">}</span><span style="color: #ffaacf;">}</span><span style="color: #deb07a;">)</span>.pretty<span style="color: #deb07a;">()</span>
 </pre>
 </div>
 
-<pre class="example" id="org501a539">
+<pre class="example" id="org632a772">
 {
 	"_id" : 0,
 	"full name" : "mahmood0 sheikh",
@@ -675,11 +675,11 @@ show the details of the students with a specific id of your choice.<br />
 
 </div>
 <div class="org-src-container" data-language="mongo">
-<pre class="src src-mongo">db.students.find<span style="color: #d0730f;">(</span><span style="color: #64aa0f;">{</span><span style="color: #f06a3f;">'_id'</span>: 1<span style="color: #64aa0f;">}</span><span style="color: #d0730f;">)</span>.pretty<span style="color: #d0730f;">()</span>
+<pre class="src src-mongo">db.students.find<span style="color: #deb07a;">(</span><span style="color: #ffaacf;">{</span><span style="color: #f3a0a0;">'_id'</span>: 1<span style="color: #ffaacf;">}</span><span style="color: #deb07a;">)</span>.pretty<span style="color: #deb07a;">()</span>
 </pre>
 </div>
 
-<pre class="example" id="org8b88305">
+<pre class="example" id="orgda0d89c">
 {
 	"_id" : 1,
 	"name" : {
@@ -711,11 +711,11 @@ show the details of all the students except one with a specific id of your choic
 
 </div>
 <div class="org-src-container" data-language="mongo">
-<pre class="src src-mongo">db.students.find<span style="color: #d0730f;">(</span><span style="color: #64aa0f;">{</span><span style="color: #f06a3f;">'_id'</span>: <span style="color: #ef656a;">{</span>$ne: 3<span style="color: #ef656a;">}</span><span style="color: #64aa0f;">}</span><span style="color: #d0730f;">)</span>.pretty<span style="color: #d0730f;">()</span>
+<pre class="src src-mongo">db.students.find<span style="color: #deb07a;">(</span><span style="color: #ffaacf;">{</span><span style="color: #f3a0a0;">'_id'</span>: <span style="color: #80aadf;">{</span>$ne: 3<span style="color: #80aadf;">}</span><span style="color: #ffaacf;">}</span><span style="color: #deb07a;">)</span>.pretty<span style="color: #deb07a;">()</span>
 </pre>
 </div>
 
-<pre class="example" id="org1b6273a">
+<pre class="example" id="org9ccf91e">
 {
 	"_id" : 0,
 	"name" : {
@@ -910,11 +910,11 @@ show the details of 3 students with specific ids of your choice.<br />
 
 </div>
 <div class="org-src-container" data-language="mongo">
-<pre class="src src-mongo">db.students.find<span style="color: #d0730f;">(</span><span style="color: #64aa0f;">{</span><span style="color: #f06a3f;">'_id'</span>: <span style="color: #ef656a;">{</span>$nin: <span style="color: #3dbbb0;">[</span>1, 2, 3<span style="color: #3dbbb0;">]</span><span style="color: #ef656a;">}</span><span style="color: #64aa0f;">}</span><span style="color: #d0730f;">)</span>.pretty<span style="color: #d0730f;">()</span>
+<pre class="src src-mongo">db.students.find<span style="color: #deb07a;">(</span><span style="color: #ffaacf;">{</span><span style="color: #f3a0a0;">'_id'</span>: <span style="color: #80aadf;">{</span>$nin: <span style="color: #e47980;">[</span>1, 2, 3<span style="color: #e47980;">]</span><span style="color: #80aadf;">}</span><span style="color: #ffaacf;">}</span><span style="color: #deb07a;">)</span>.pretty<span style="color: #deb07a;">()</span>
 </pre>
 </div>
 
-<pre class="example" id="org72067d8">
+<pre class="example" id="org078178b">
 {
 	"_id" : 0,
 	"name" : {
@@ -1069,11 +1069,11 @@ show the details of the students whose date of birth is within the span of two d
 
 </div>
 <div class="org-src-container" data-language="mongo">
-<pre class="src src-mongo">db.students.find<span style="color: #d0730f;">(</span><span style="color: #64aa0f;">{</span>bdate: <span style="color: #ef656a;">{</span>$gte: <span style="color: #c48702; font-weight: bold;">new</span> <span style="color: #2fa526;">Date</span><span style="color: #3dbbb0;">(</span><span style="color: #f06a3f;">"2000-01-01"</span><span style="color: #3dbbb0;">)</span>, $lte: <span style="color: #c48702; font-weight: bold;">new</span> <span style="color: #2fa526;">Date</span><span style="color: #3dbbb0;">(</span><span style="color: #f06a3f;">"2005-01-01"</span><span style="color: #3dbbb0;">)</span><span style="color: #ef656a;">}</span><span style="color: #64aa0f;">}</span><span style="color: #d0730f;">)</span>;
+<pre class="src src-mongo">db.students.find<span style="color: #deb07a;">(</span><span style="color: #ffaacf;">{</span>bdate: <span style="color: #80aadf;">{</span>$gte: <span style="color: #deb07a; font-weight: bold;">new</span> <span style="color: #a9c99f;">Date</span><span style="color: #e47980;">(</span><span style="color: #f3a0a0;">"2000-01-01"</span><span style="color: #e47980;">)</span>, $lte: <span style="color: #deb07a; font-weight: bold;">new</span> <span style="color: #a9c99f;">Date</span><span style="color: #e47980;">(</span><span style="color: #f3a0a0;">"2005-01-01"</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">}</span><span style="color: #ffaacf;">}</span><span style="color: #deb07a;">)</span>;
 </pre>
 </div>
 
-<pre class="example" id="org874d41b">
+<pre class="example" id="org77069f4">
 { "_id" : 0, "name" : { "first" : "mahmood0", "last" : "sheikh" }, "bdate" : ISODate("2002-01-10T00:00:00Z"), "courses" : [ { "ccode" : "0", "cname" : "algebra", "grade" : 0 } ], "phones" : [ "0523388010", "0524499120" ], "major" : "computer science" }
 { "_id" : 1, "name" : { "first" : "mahmood1", "last" : "sheikh" }, "bdate" : ISODate("2002-01-11T00:00:00Z"), "courses" : [ { "ccode" : "0", "cname" : "algebra", "grade" : 10 } ], "phones" : [ "0523388011", "0524499121" ], "major" : "computer science" }
 { "_id" : 2, "name" : { "first" : "mahmood2", "last" : "sheikh" }, "bdate" : ISODate("2002-01-12T00:00:00Z"), "courses" : [ { "ccode" : "0", "cname" : "algebra", "grade" : 20 } ], "phones" : [ "0523388012", "0524499122" ], "major" : "computer science" }
@@ -1094,11 +1094,11 @@ show all the students that are in a specific course of your choice.<br />
 
 </div>
 <div class="org-src-container" data-language="mongo">
-<pre class="src src-mongo">db.students.find<span style="color: #d0730f;">(</span><span style="color: #64aa0f;">{</span><span style="color: #f06a3f;">"courses.cname"</span>: <span style="color: #f06a3f;">"algebra"</span><span style="color: #64aa0f;">}</span><span style="color: #d0730f;">)</span>;
+<pre class="src src-mongo">db.students.find<span style="color: #deb07a;">(</span><span style="color: #ffaacf;">{</span><span style="color: #f3a0a0;">"courses.cname"</span>: <span style="color: #f3a0a0;">"algebra"</span><span style="color: #ffaacf;">}</span><span style="color: #deb07a;">)</span>;
 </pre>
 </div>
 
-<pre class="example" id="org5ef1c85">
+<pre class="example" id="org05f797e">
 { "_id" : 0, "name" : { "first" : "mahmood0", "last" : "sheikh" }, "bdate" : ISODate("2002-01-10T00:00:00Z"), "courses" : [ { "ccode" : "0", "cname" : "algebra", "grade" : 0 } ], "phones" : [ "0523388010", "0524499120" ], "major" : "computer science" }
 { "_id" : 1, "name" : { "first" : "mahmood1", "last" : "sheikh" }, "bdate" : ISODate("2002-01-11T00:00:00Z"), "courses" : [ { "ccode" : "0", "cname" : "algebra", "grade" : 10 } ], "phones" : [ "0523388011", "0524499121" ], "major" : "computer science" }
 { "_id" : 2, "name" : { "first" : "mahmood2", "last" : "sheikh" }, "bdate" : ISODate("2002-01-12T00:00:00Z"), "courses" : [ { "ccode" : "0", "cname" : "algebra", "grade" : 20 } ], "phones" : [ "0523388012", "0524499122" ], "major" : "computer science" }
@@ -1119,7 +1119,7 @@ show all the students that are in a specific course of your choice whose grades 
 
 </div>
 <div class="org-src-container" data-language="mongo">
-<pre class="src src-mongo">db.students.find<span style="color: #d0730f;">(</span><span style="color: #64aa0f;">{</span><span style="color: #f06a3f;">"courses.cname"</span>: <span style="color: #f06a3f;">"algebra"</span>, <span style="color: #f06a3f;">"courses.grade"</span>: <span style="color: #ef656a;">{</span>$gt: 70<span style="color: #ef656a;">}</span><span style="color: #64aa0f;">}</span><span style="color: #d0730f;">)</span>;
+<pre class="src src-mongo">db.students.find<span style="color: #deb07a;">(</span><span style="color: #ffaacf;">{</span><span style="color: #f3a0a0;">"courses.cname"</span>: <span style="color: #f3a0a0;">"algebra"</span>, <span style="color: #f3a0a0;">"courses.grade"</span>: <span style="color: #80aadf;">{</span>$gt: 70<span style="color: #80aadf;">}</span><span style="color: #ffaacf;">}</span><span style="color: #deb07a;">)</span>;
 </pre>
 </div>
 
@@ -1137,11 +1137,11 @@ show all the students with only one phone number.<br />
 
 </div>
 <div class="org-src-container" data-language="mongo">
-<pre class="src src-mongo">db.students.find<span style="color: #d0730f;">(</span><span style="color: #64aa0f;">{</span><span style="color: #f06a3f;">"phones"</span>: <span style="color: #ef656a;">{</span><span style="color: #f06a3f;">"$size"</span>: 2<span style="color: #ef656a;">}</span><span style="color: #64aa0f;">}</span><span style="color: #d0730f;">)</span>;
+<pre class="src src-mongo">db.students.find<span style="color: #deb07a;">(</span><span style="color: #ffaacf;">{</span><span style="color: #f3a0a0;">"phones"</span>: <span style="color: #80aadf;">{</span><span style="color: #f3a0a0;">"$size"</span>: 2<span style="color: #80aadf;">}</span><span style="color: #ffaacf;">}</span><span style="color: #deb07a;">)</span>;
 </pre>
 </div>
 
-<pre class="example" id="org06f7e80">
+<pre class="example" id="org33d889c">
 { "_id" : 0, "name" : { "first" : "mahmood0", "last" : "sheikh" }, "bdate" : ISODate("2002-01-10T00:00:00Z"), "courses" : [ { "ccode" : "0", "cname" : "algebra", "grade" : 0 } ], "phones" : [ "0523388010", "0524499120" ], "major" : "computer science" }
 { "_id" : 1, "name" : { "first" : "mahmood1", "last" : "sheikh" }, "bdate" : ISODate("2002-01-11T00:00:00Z"), "courses" : [ { "ccode" : "0", "cname" : "algebra", "grade" : 10 } ], "phones" : [ "0523388011", "0524499121" ], "major" : "computer science" }
 { "_id" : 2, "name" : { "first" : "mahmood2", "last" : "sheikh" }, "bdate" : ISODate("2002-01-12T00:00:00Z"), "courses" : [ { "ccode" : "0", "cname" : "algebra", "grade" : 20 } ], "phones" : [ "0523388012", "0524499122" ], "major" : "computer science" }
@@ -1162,7 +1162,7 @@ show the student with a specific phone number of your choice.<br />
 
 </div>
 <div class="org-src-container" data-language="mongo">
-<pre class="src src-mongo">db.students.find<span style="color: #d0730f;">(</span><span style="color: #64aa0f;">{</span><span style="color: #f06a3f;">"phones"</span>: <span style="color: #f06a3f;">"0524499128"</span><span style="color: #64aa0f;">}</span><span style="color: #d0730f;">)</span>;
+<pre class="src src-mongo">db.students.find<span style="color: #deb07a;">(</span><span style="color: #ffaacf;">{</span><span style="color: #f3a0a0;">"phones"</span>: <span style="color: #f3a0a0;">"0524499128"</span><span style="color: #ffaacf;">}</span><span style="color: #deb07a;">)</span>;
 </pre>
 </div>
 
@@ -1179,7 +1179,7 @@ show the number of students that are in a collection by storing the results in a
 
 </div>
 <div class="org-src-container" data-language="mongo">
-<pre class="src src-mongo"><span style="color: #c48702; font-weight: bold;">var</span> <span style="color: #6fafff;">myCursor</span> = db.students.find<span style="color: #d0730f;">(</span><span style="color: #64aa0f;">{}</span><span style="color: #d0730f;">)</span>; myCursor.count<span style="color: #d0730f;">()</span>
+<pre class="src src-mongo"><span style="color: #deb07a; font-weight: bold;">var</span> <span style="color: #ffaacf;">myCursor</span> = db.students.find<span style="color: #deb07a;">(</span><span style="color: #ffaacf;">{}</span><span style="color: #deb07a;">)</span>; myCursor.count<span style="color: #deb07a;">()</span>
 </pre>
 </div>
 
