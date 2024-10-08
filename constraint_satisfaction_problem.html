@@ -502,9 +502,9 @@ CSPs deal with assignments of values to variables, <?xml version='1.0' encoding=
 </p>
 
 </div>
-<div id="outline-container-org6fc5506" class="outline-2">
-<h2 id="org6fc5506">constraint propagation</h2>
-<div class="outline-text-2" id="text-org6fc5506">
+<div id="outline-container-orgd073823" class="outline-2">
+<h2 id="orgd073823">constraint propagation</h2>
+<div class="outline-text-2" id="text-orgd073823">
 <p>
 an <a href="/state_space_search.html">atomic state space search</a> algorithm makes progress in only one way: by expanding a node to visit the successors. in a <a href="/constraint_graph.html">constraint graph</a>, a CSP algorithm has choices. it can generate successors by choosing a new variable assignment, or it can do a specific type of inference called <b>constraint propagation</b>: using the constraints to reduce the number of legal values for a variable, which in turn can reduce the legal values for another variable, and so on. the idea is that this will leave fewer choices to consider when we make the next choice of a variable assignment.<br />
 constraint propagation may be intertwined with search, or it may be done as a preprocessing step, before search starts. sometimes this preprocessing can solve the whole problem, so no search is required at all.<br />
@@ -512,9 +512,9 @@ the key idea is <b>local consistency</b>. if we treat each variable as a node in
 </p>
 </div>
 </div>
-<div id="outline-container-org2cbe7fd" class="outline-2">
-<h2 id="org2cbe7fd">variable ordering with heursitics</h2>
-<div class="outline-text-2" id="text-org2cbe7fd">
+<div id="outline-container-orgeae90a4" class="outline-2">
+<h2 id="orgeae90a4">variable ordering with heursitics</h2>
+<div class="outline-text-2" id="text-orgeae90a4">
 <p>
 when branching on a variable, i.e. going through its <a href="/incident.html">incident</a> edges to its neighboring vertices (recall that vertices represent variables in a constraint graph), there are multiple strategies to decide on the order of branching, each with its own benefits and downsides, some of which are:<br />
 </p>
@@ -548,17 +548,17 @@ when branching on a variable, i.e. going through its <a href="/incident.html">in
 </ul>
 </div>
 </div>
-<div id="outline-container-orge1570e7" class="outline-2">
-<h2 id="orge1570e7">value ordering</h2>
-<div class="outline-text-2" id="text-orge1570e7">
+<div id="outline-container-orgb4d8840" class="outline-2">
+<h2 id="orgb4d8840">value ordering</h2>
+<div class="outline-text-2" id="text-orgb4d8840">
 <p>
 once a variable has been selected for the branching step, the algorithm must decide on the order in which to examine its possible values, the <b>least-constraining-value</b> heuristic is effective for this. it prefers the value that rules out the fewest choices for the neighboring variables in the constraint graph.<br />
 </p>
 </div>
 </div>
-<div id="outline-container-org228e0f8" class="outline-2">
-<h2 id="org228e0f8">inference</h2>
-<div class="outline-text-2" id="text-org228e0f8">
+<div id="outline-container-org1c4d2d2" class="outline-2">
+<h2 id="org1c4d2d2">inference</h2>
+<div class="outline-text-2" id="text-org1c4d2d2">
 <p>
 inference can be effective during the course of a search: every time we make a choice of a value for a variable, we have a brand-new opportunity to infer new domain reductions on the neighboring variables.<br />
 one of the simplest forms of inference is called <b>forward checking</b>. whenever a variable <?xml version='1.0' encoding='UTF-8'?>

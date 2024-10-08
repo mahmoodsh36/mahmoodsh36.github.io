@@ -51,18 +51,18 @@ the <code>psql</code> program's <code>\l</code> meta-command and <code>-l</code>
 </p>
 
 </div>
-<div id="outline-container-org4161421" class="outline-2">
-<h2 id="org4161421">database creation</h2>
-<div class="outline-text-2" id="text-org4161421">
+<div id="outline-container-org952c0da" class="outline-2">
+<h2 id="org952c0da">database creation</h2>
+<div class="outline-text-2" id="text-org952c0da">
 <p>
 create database &lt;name&gt;<br />
 <a href="https://www.postgresql.org/docs/current/sql-createdatabase.html">https://www.postgresql.org/docs/current/sql-createdatabase.html</a><br />
 </p>
 </div>
 </div>
-<div id="outline-container-org557bb77" class="outline-2">
-<h2 id="org557bb77">list databases</h2>
-<div class="outline-text-2" id="text-org557bb77">
+<div id="outline-container-orge3597d6" class="outline-2">
+<h2 id="orge3597d6">list databases</h2>
+<div class="outline-text-2" id="text-orge3597d6">
 <p>
 <?xml version='1.0' encoding='UTF-8'?>
 
@@ -79,9 +79,9 @@ create database &lt;name&gt;<br />
 </p>
 </div>
 </div>
-<div id="outline-container-org0929740" class="outline-2">
-<h2 id="org0929740">ERROR:  template database "template1" has a collation version mismatch</h2>
-<div class="outline-text-2" id="text-org0929740">
+<div id="outline-container-org02e93d1" class="outline-2">
+<h2 id="org02e93d1">ERROR:  template database "template1" has a collation version mismatch</h2>
+<div class="outline-text-2" id="text-org02e93d1">
 <div class="fancy-block dummy" data-before="">
 <p>
 sudo -u postgres psql<br />
@@ -92,9 +92,9 @@ alter database template1 refresh collation version;<br />
 </div>
 </div>
 </div>
-<div id="outline-container-org4ed12f8" class="outline-2">
-<h2 id="org4ed12f8">execute sql file</h2>
-<div class="outline-text-2" id="text-org4ed12f8">
+<div id="outline-container-org553c477" class="outline-2">
+<h2 id="org553c477">execute sql file</h2>
+<div class="outline-text-2" id="text-org553c477">
 <div class="fancy-block dummy" data-before="">
 <p>
 psql &#x2013;username=&lt;db_user_name&gt; databasename &lt; myfile.sql<br />
