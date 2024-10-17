@@ -60,14 +60,15 @@ the following constraints on the data need to be applied:<br />
 <li>car maintenances: the number of a maintenance is automatic, types of maintenances are 10000-maintenance/accident/spoilage/proactive. the id of a responsible worker is from the customer list.<br /></li>
 <li>replaced parts: the table contains the parts that were replaced during maintenance.<br /></li>
 </ul>
-<div class="fancy-block task" data-before="&lt;p&gt;
+<div test="test" class="fancy-block task" data-before="&lt;p&gt;
 task: &lt;/p&gt;
-">
+" id="def-inr-prod" data-id="def-inr-prod">
 <p>
 write <a href="/data_definition_language.html">ddl</a> commands to define a <a href="/schema.html">schema</a> with the proper constraints (primary keys, foreign keys, data types and length, additional tests and constraints stemmed by the requirements. every string field should be a varchar2 of length 22.<br />
 </p>
 
 </div>
+
 <p>
 here, i make use of mariadb, im on nixos (a flavor of linux), and have it installed.<br />
 creating the database:<br />
@@ -76,6 +77,7 @@ creating the database:<br />
 <pre class="src src-sql"><span style="color: #deb07a; font-weight: bold;">create</span> database homework1
 </pre>
 </div>
+
 <p>
 line used for deleting the database (for testing):<br />
 </p>
@@ -83,6 +85,7 @@ line used for deleting the database (for testing):<br />
 <pre class="src src-sql"><span style="color: #deb07a; font-weight: bold;">drop</span> database homework1;
 </pre>
 </div>
+
 <div class="org-src-container" data-language="sql">
 <pre class="src src-sql"><span style="color: #deb07a; font-weight: bold;">drop</span> <span style="color: #deb07a; font-weight: bold;">table</span> <span style="color: #8fcfd0;">if</span> <span style="color: #deb07a; font-weight: bold;">exists</span> customer <span style="color: #deb07a; font-weight: bold;">cascade</span>;
 <span style="color: #deb07a; font-weight: bold;">drop</span> <span style="color: #deb07a; font-weight: bold;">table</span> <span style="color: #8fcfd0;">if</span> <span style="color: #deb07a; font-weight: bold;">exists</span> car <span style="color: #deb07a; font-weight: bold;">cascade</span>;
@@ -92,12 +95,13 @@ line used for deleting the database (for testing):<br />
 <span style="color: #deb07a; font-weight: bold;">drop</span> <span style="color: #deb07a; font-weight: bold;">table</span> <span style="color: #8fcfd0;">if</span> <span style="color: #deb07a; font-weight: bold;">exists</span> replaced_part <span style="color: #deb07a; font-weight: bold;">cascade</span>;
 </pre>
 </div>
+
 <p>
 creating the tables:<br />
 </p>
-<div id="outline-container-org3089984" class="outline-2">
-<h2 id="org3089984">schema</h2>
-<div class="outline-text-2" id="text-org3089984">
+<div id="outline-container-orgd016bc8" class="outline-2">
+<h2 id="orgd016bc8">schema</h2>
+<div class="outline-text-2" id="text-orgd016bc8">
 <div class="org-src-container" data-language="sql">
 <pre class="src src-sql" id="src-database-homework-schema"><span style="color: #deb07a; font-weight: bold;">CREATE</span> <span style="color: #deb07a; font-weight: bold;">TABLE</span> <span style="color: #8fcfd0;">customer</span> <span style="color: #deb07a;">(</span>
   first_name    <span style="color: #a9c99f;">VARCHAR</span><span style="color: #ffaacf;">(</span>22<span style="color: #ffaacf;">)</span> <span style="color: #deb07a; font-weight: bold;">NOT</span> <span style="color: #deb07a; font-weight: bold;">NULL</span>,
@@ -173,6 +177,7 @@ creating the tables:<br />
 <span style="color: #deb07a;">)</span>;
 </pre>
 </div>
+
 <p>
 some tests to make sure the database works as expected:<br />
 </p>
@@ -180,6 +185,7 @@ some tests to make sure the database works as expected:<br />
 <pre class="src src-sql"><span style="color: #deb07a; font-weight: bold;">describe</span> car;
 </pre>
 </div>
+
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -278,6 +284,7 @@ some tests to make sure the database works as expected:<br />
 </pre>
 </div>
 
+
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -329,6 +336,7 @@ some tests to make sure the database works as expected:<br />
 <pre class="src src-sql"><span style="color: #deb07a; font-weight: bold;">describe</span> car_owner;
 </pre>
 </div>
+
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -399,6 +407,7 @@ some tests to make sure the database works as expected:<br />
 <pre class="src src-sql"><span style="color: #deb07a; font-weight: bold;">describe</span> garage;
 </pre>
 </div>
+
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -497,6 +506,7 @@ some tests to make sure the database works as expected:<br />
 </pre>
 </div>
 
+
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -584,6 +594,7 @@ some tests to make sure the database works as expected:<br />
 <pre class="src src-sql"><span style="color: #deb07a; font-weight: bold;">describe</span> customer
 </pre>
 </div>
+
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 

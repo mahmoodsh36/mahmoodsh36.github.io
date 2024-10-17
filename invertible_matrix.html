@@ -37,8 +37,8 @@
 </div><h1 class="main-title">invertible matrix</h1><span class='date'>2024-02-05</span>
 </div>
 <div id="content" class="content">
-<div class="fancy-block dummy" data-before="">
-<div class="fancy-block definition" data-before="&lt;p&gt;
+<div test="test" class="fancy-block dummy" data-before="" id="def-mat-inv" data-id="def-mat-inv">
+<div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: left matrix inverse&lt;/p&gt;
 " data-after="&lt;p&gt;
 (taken from john h. hubbard, barbara burke hubbard, 2015 definition 1.2.11)&lt;/p&gt;
@@ -46,7 +46,7 @@ definition: left matrix inverse&lt;/p&gt;
 <p>
 let <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.831633 8.66152 6.831633' style="max-height: 0.6720em; vertical-align: --0.0000em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.831633 8.66152 6.831633' style="max-height: 0.7212em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g0-65' d='m8.239103 0v-.468244h-.966376l-2.550436-6.22665c-.109589-.259029-.229141-.259029-.398506-.259029c-.278954 0-.318804 .079701-.388543 .259029l-2.470735 5.997509c-.059776 .14944-.089664 .229141-.846824 .229141h-.209215v.468244l1.165629-.029888c.388543 0 .946451 0 1.315068 .029888v-.468244c0 0-.886675 0-.886675-.129514l.039851-.119552l.498132-1.205479h2.669988l.597758 1.454545h-.946451v.468244c.37858-.029888 1.325031-.029888 1.753425-.029888c.398506 0 1.275218 0 1.62391 .029888zm-3.227895-2.391034h-2.271482l1.135741-2.769614l1.135741 2.769614z'/>
 </defs>
@@ -59,11 +59,11 @@ let <?xml version='1.0' encoding='UTF-8'?>
 </g>
 </svg> be a <a href="/matrix.html#def-matrix">matrix</a>. if there is a matrix <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.831633 8.149932 6.831633' style="max-height: 0.6720em; vertical-align: -0.0000em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.831633 8.149932 6.831633' style="max-height: 0.7212em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g0-66' d='m7.501868-1.853051c0-.956413-.856787-1.62391-2.042341-1.713574c1.075965-.18929 1.723537-.787049 1.723537-1.554172c0-.916563-.86675-1.713574-2.470735-1.713574h-4.323786v.468244h1.075965v5.897883h-1.075965v.468244h4.622665c1.653798 0 2.49066-.876712 2.49066-1.853051zm-1.733499-3.267746c0 .767123-.478207 1.384807-1.444583 1.384807h-1.554172v-2.630137h1.8132c1.006227 0 1.185554 .787049 1.185554 1.24533zm.268991 3.257783c0 .119552 0 1.39477-1.43462 1.39477h-1.833126v-2.909091h1.932752c.199253 0 .667497 0 1.006227 .428394c.328767 .418431 .328767 .976339 .328767 1.085928z'/>
 </defs>
-<g id='page1'>
+<g id='page2'>
 <g class='fancy-button' data-ref='blk:def-matrix' pointer-events='bounding-box'>
 <g fill='#ff8000'>
 <use x='0' y='0' xlink:href='#g0-66'/>
@@ -72,7 +72,7 @@ let <?xml version='1.0' encoding='UTF-8'?>
 </g>
 </svg> such that <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.831633 47.723147 7.66186' style="max-height: 0.7537em; vertical-align: -0.0817em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.831633 47.723147 7.66186' style="max-height: 0.8029em; vertical-align: -0.1309em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g4-61' d='m7.183064-3.457036c0-.199253-.18929-.199253-.328767-.199253h-5.967621c-.139477 0-.328767 0-.328767 .199253s.18929 .199253 .33873 .199253h5.947696c.14944 0 .33873 0 .33873-.199253zm0 1.932752c0-.199253-.18929-.199253-.33873-.199253h-5.947696c-.14944 0-.33873 0-.33873 .199253s.18929 .199253 .328767 .199253h5.967621c.139477 0 .328767 0 .328767-.199253z'/>
 <path id='g2-10' d='m7.183064-2.49066c0-1.843088-1.504359-3.317559-3.307597-3.317559c-1.843088 0-3.317559 1.504359-3.317559 3.317559c0 1.843088 1.504359 3.317559 3.307597 3.317559c1.843088 0 3.317559-1.504359 3.317559-3.317559zm-1.235367-2.261519l-2.072229 2.082192l-2.082192-2.072229c.508095-.468244 1.24533-.816936 2.072229-.816936c.737235 0 1.474471 .268991 2.082192 .806974zm-2.251557 2.261519l-2.082192 2.082192c-.557908-.627646-.806974-1.374844-.806974-2.082192c0-.797011 .308842-1.524284 .806974-2.082192l2.082192 2.082192zm3.237858 0c0 .797011-.308842 1.524284-.806974 2.082192l-2.082192-2.082192l2.072229-2.082192c.398506 .418431 .816936 1.155666 .816936 2.082192zm-.986301 2.251557c-.508095 .468244-1.24533 .816936-2.072229 .816936c-.737235 0-1.474471-.268991-2.082192-.806974l2.072229-2.082192l2.082192 2.072229z'/>
@@ -80,7 +80,7 @@ let <?xml version='1.0' encoding='UTF-8'?>
 <path id='g0-66' d='m7.501868-1.853051c0-.956413-.856787-1.62391-2.042341-1.713574c1.075965-.18929 1.723537-.787049 1.723537-1.554172c0-.916563-.86675-1.713574-2.470735-1.713574h-4.323786v.468244h1.075965v5.897883h-1.075965v.468244h4.622665c1.653798 0 2.49066-.876712 2.49066-1.853051zm-1.733499-3.267746c0 .767123-.478207 1.384807-1.444583 1.384807h-1.554172v-2.630137h1.8132c1.006227 0 1.185554 .787049 1.185554 1.24533zm.268991 3.257783c0 .119552 0 1.39477-1.43462 1.39477h-1.833126v-2.909091h1.932752c.199253 0 .667497 0 1.006227 .428394c.328767 .418431 .328767 .976339 .328767 1.085928z'/>
 <path id='g0-73' d='m4.014944 0v-.468244h-1.135741v-5.897883h1.135741v-.468244c-.408468 .029888-1.384807 .029888-1.843088 .029888s-1.43462 0-1.843088-.029888v.468244h1.135741v5.897883h-1.135741v.468244c.408468-.029888 1.384807-.029888 1.843088-.029888s1.43462 0 1.843088 .029888z'/>
 </defs>
-<g id='page2'>
+<g id='page3'>
 <g class='fancy-button' data-ref='blk:def-matrix' pointer-events='bounding-box'>
 <g fill='#ff8000'>
 <use x='0' y='0' xlink:href='#g0-66'/>
@@ -96,7 +96,9 @@ let <?xml version='1.0' encoding='UTF-8'?>
 <use x='21.433327' y='0' xlink:href='#g0-65'/>
 </g>
 </g>
+<g fill='currentColor'>
 <use x='32.862179' y='0' xlink:href='#g4-61'/>
+</g>
 <g class='fancy-button' data-ref='blk:def-id-mat' pointer-events='bounding-box'>
 <g class='fancy-button' data-ref='blk:def-matrix' pointer-events='bounding-box'>
 <g fill='#ff8000'>
@@ -107,11 +109,11 @@ let <?xml version='1.0' encoding='UTF-8'?>
 </g>
 </svg>, then <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.831633 8.149932 6.831633' style="max-height: 0.6720em; vertical-align: -0.0000em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.831633 8.149932 6.831633' style="max-height: 0.7212em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g0-66' d='m7.501868-1.853051c0-.956413-.856787-1.62391-2.042341-1.713574c1.075965-.18929 1.723537-.787049 1.723537-1.554172c0-.916563-.86675-1.713574-2.470735-1.713574h-4.323786v.468244h1.075965v5.897883h-1.075965v.468244h4.622665c1.653798 0 2.49066-.876712 2.49066-1.853051zm-1.733499-3.267746c0 .767123-.478207 1.384807-1.444583 1.384807h-1.554172v-2.630137h1.8132c1.006227 0 1.185554 .787049 1.185554 1.24533zm.268991 3.257783c0 .119552 0 1.39477-1.43462 1.39477h-1.833126v-2.909091h1.932752c.199253 0 .667497 0 1.006227 .428394c.328767 .418431 .328767 .976339 .328767 1.085928z'/>
 </defs>
-<g id='page1'>
+<g id='page2'>
 <g class='fancy-button' data-ref='blk:def-matrix' pointer-events='bounding-box'>
 <g fill='#ff8000'>
 <use x='0' y='0' xlink:href='#g0-66'/>
@@ -120,7 +122,7 @@ let <?xml version='1.0' encoding='UTF-8'?>
 </g>
 </svg> is a <i>left inverse</i> of <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.831633 8.66152 6.831633' style="max-height: 0.6720em; vertical-align: --0.0000em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.831633 8.66152 6.831633' style="max-height: 0.7212em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g0-65' d='m8.239103 0v-.468244h-.966376l-2.550436-6.22665c-.109589-.259029-.229141-.259029-.398506-.259029c-.278954 0-.318804 .079701-.388543 .259029l-2.470735 5.997509c-.059776 .14944-.089664 .229141-.846824 .229141h-.209215v.468244l1.165629-.029888c.388543 0 .946451 0 1.315068 .029888v-.468244c0 0-.886675 0-.886675-.129514l.039851-.119552l.498132-1.205479h2.669988l.597758 1.454545h-.946451v.468244c.37858-.029888 1.325031-.029888 1.753425-.029888c.398506 0 1.275218 0 1.62391 .029888zm-3.227895-2.391034h-2.271482l1.135741-2.769614l1.135741 2.769614z'/>
 </defs>
@@ -135,7 +137,8 @@ let <?xml version='1.0' encoding='UTF-8'?>
 </p>
 
 </div>
-<div class="fancy-block definition" data-before="&lt;p&gt;
+
+<div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: right matrix inverse&lt;/p&gt;
 " data-after="&lt;p&gt;
 (taken from john h. hubbard, barbara burke hubbard, 2015 definition 1.2.11)&lt;/p&gt;
@@ -143,7 +146,7 @@ definition: right matrix inverse&lt;/p&gt;
 <p>
 let <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.831633 8.66152 6.831633' style="max-height: 0.6720em; vertical-align: --0.0000em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.831633 8.66152 6.831633' style="max-height: 0.7212em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g0-65' d='m8.239103 0v-.468244h-.966376l-2.550436-6.22665c-.109589-.259029-.229141-.259029-.398506-.259029c-.278954 0-.318804 .079701-.388543 .259029l-2.470735 5.997509c-.059776 .14944-.089664 .229141-.846824 .229141h-.209215v.468244l1.165629-.029888c.388543 0 .946451 0 1.315068 .029888v-.468244c0 0-.886675 0-.886675-.129514l.039851-.119552l.498132-1.205479h2.669988l.597758 1.454545h-.946451v.468244c.37858-.029888 1.325031-.029888 1.753425-.029888c.398506 0 1.275218 0 1.62391 .029888zm-3.227895-2.391034h-2.271482l1.135741-2.769614l1.135741 2.769614z'/>
 </defs>
@@ -156,11 +159,11 @@ let <?xml version='1.0' encoding='UTF-8'?>
 </g>
 </svg> be a <a href="/matrix.html#def-matrix">matrix</a>. if there is a matrix <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.831633 8.274967 6.831633' style="max-height: 0.6720em; vertical-align: -0.0000em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.831633 8.274967 6.831633' style="max-height: 0.7212em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g0-67' d='m7.631382-2.261519c0-.199253-.069738-.209215-.239103-.209215c-.129514 0-.219178 0-.229141 .169365c-.069738 1.334994-1.275218 1.942715-2.281445 1.942715c-.777086 0-1.613948-.239103-2.132005-.846824c-.468244-.56787-.587796-1.315068-.587796-2.211706c0-.557908 .029888-1.633873 .657534-2.291407c.647572-.657534 1.514321-.767123 2.032379-.767123c1.075965 0 2.022416 .757161 2.241594 2.022416c.029888 .18929 .039851 .209215 .268991 .209215c.259029 0 .268991-.019925 .268991-.278954v-2.141968c0-.18929 0-.278954-.179328-.278954c-.089664 0-.109589 .019925-.18929 .089664l-.657534 .587796c-.617684-.498132-1.285181-.67746-1.96264-.67746c-2.480697 0-4.004981 1.484433-4.004981 3.526775s1.524284 3.526775 4.004981 3.526775c1.863014 0 2.988792-1.225405 2.988792-2.371108z'/>
 </defs>
-<g id='page4'>
+<g id='page7'>
 <g class='fancy-button' data-ref='blk:def-matrix' pointer-events='bounding-box'>
 <g fill='#ff8000'>
 <use x='0' y='0' xlink:href='#g0-67'/>
@@ -169,7 +172,7 @@ let <?xml version='1.0' encoding='UTF-8'?>
 </g>
 </svg> such that <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.831633 47.848182 7.66186' style="max-height: 0.7537em; vertical-align: -0.0817em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.831633 47.848182 7.66186' style="max-height: 0.8029em; vertical-align: -0.1309em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g4-61' d='m7.183064-3.457036c0-.199253-.18929-.199253-.328767-.199253h-5.967621c-.139477 0-.328767 0-.328767 .199253s.18929 .199253 .33873 .199253h5.947696c.14944 0 .33873 0 .33873-.199253zm0 1.932752c0-.199253-.18929-.199253-.33873-.199253h-5.947696c-.14944 0-.33873 0-.33873 .199253s.18929 .199253 .328767 .199253h5.967621c.139477 0 .328767 0 .328767-.199253z'/>
 <path id='g2-10' d='m7.183064-2.49066c0-1.843088-1.504359-3.317559-3.307597-3.317559c-1.843088 0-3.317559 1.504359-3.317559 3.317559c0 1.843088 1.504359 3.317559 3.307597 3.317559c1.843088 0 3.317559-1.504359 3.317559-3.317559zm-1.235367-2.261519l-2.072229 2.082192l-2.082192-2.072229c.508095-.468244 1.24533-.816936 2.072229-.816936c.737235 0 1.474471 .268991 2.082192 .806974zm-2.251557 2.261519l-2.082192 2.082192c-.557908-.627646-.806974-1.374844-.806974-2.082192c0-.797011 .308842-1.524284 .806974-2.082192l2.082192 2.082192zm3.237858 0c0 .797011-.308842 1.524284-.806974 2.082192l-2.082192-2.082192l2.072229-2.082192c.398506 .418431 .816936 1.155666 .816936 2.082192zm-.986301 2.251557c-.508095 .468244-1.24533 .816936-2.072229 .816936c-.737235 0-1.474471-.268991-2.082192-.806974l2.072229-2.082192l2.082192 2.072229z'/>
@@ -177,7 +180,7 @@ let <?xml version='1.0' encoding='UTF-8'?>
 <path id='g0-67' d='m7.631382-2.261519c0-.199253-.069738-.209215-.239103-.209215c-.129514 0-.219178 0-.229141 .169365c-.069738 1.334994-1.275218 1.942715-2.281445 1.942715c-.777086 0-1.613948-.239103-2.132005-.846824c-.468244-.56787-.587796-1.315068-.587796-2.211706c0-.557908 .029888-1.633873 .657534-2.291407c.647572-.657534 1.514321-.767123 2.032379-.767123c1.075965 0 2.022416 .757161 2.241594 2.022416c.029888 .18929 .039851 .209215 .268991 .209215c.259029 0 .268991-.019925 .268991-.278954v-2.141968c0-.18929 0-.278954-.179328-.278954c-.089664 0-.109589 .019925-.18929 .089664l-.657534 .587796c-.617684-.498132-1.285181-.67746-1.96264-.67746c-2.480697 0-4.004981 1.484433-4.004981 3.526775s1.524284 3.526775 4.004981 3.526775c1.863014 0 2.988792-1.225405 2.988792-2.371108z'/>
 <path id='g0-73' d='m4.014944 0v-.468244h-1.135741v-5.897883h1.135741v-.468244c-.408468 .029888-1.384807 .029888-1.843088 .029888s-1.43462 0-1.843088-.029888v.468244h1.135741v5.897883h-1.135741v.468244c.408468-.029888 1.384807-.029888 1.843088-.029888s1.43462 0 1.843088 .029888z'/>
 </defs>
-<g id='page5'>
+<g id='page8'>
 <g class='fancy-button' data-ref='blk:def-matrix' pointer-events='bounding-box'>
 <g fill='#ff8000'>
 <use x='0' y='0' xlink:href='#g0-65'/>
@@ -193,7 +196,9 @@ let <?xml version='1.0' encoding='UTF-8'?>
 <use x='21.944928' y='0' xlink:href='#g0-67'/>
 </g>
 </g>
+<g fill='currentColor'>
 <use x='32.987214' y='0' xlink:href='#g4-61'/>
+</g>
 <g class='fancy-button' data-ref='blk:def-id-mat' pointer-events='bounding-box'>
 <g class='fancy-button' data-ref='blk:def-matrix' pointer-events='bounding-box'>
 <g fill='#ff8000'>
@@ -204,11 +209,11 @@ let <?xml version='1.0' encoding='UTF-8'?>
 </g>
 </svg>, then <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.831633 8.274967 6.831633' style="max-height: 0.6720em; vertical-align: -0.0000em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.831633 8.274967 6.831633' style="max-height: 0.7212em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g0-67' d='m7.631382-2.261519c0-.199253-.069738-.209215-.239103-.209215c-.129514 0-.219178 0-.229141 .169365c-.069738 1.334994-1.275218 1.942715-2.281445 1.942715c-.777086 0-1.613948-.239103-2.132005-.846824c-.468244-.56787-.587796-1.315068-.587796-2.211706c0-.557908 .029888-1.633873 .657534-2.291407c.647572-.657534 1.514321-.767123 2.032379-.767123c1.075965 0 2.022416 .757161 2.241594 2.022416c.029888 .18929 .039851 .209215 .268991 .209215c.259029 0 .268991-.019925 .268991-.278954v-2.141968c0-.18929 0-.278954-.179328-.278954c-.089664 0-.109589 .019925-.18929 .089664l-.657534 .587796c-.617684-.498132-1.285181-.67746-1.96264-.67746c-2.480697 0-4.004981 1.484433-4.004981 3.526775s1.524284 3.526775 4.004981 3.526775c1.863014 0 2.988792-1.225405 2.988792-2.371108z'/>
 </defs>
-<g id='page4'>
+<g id='page7'>
 <g class='fancy-button' data-ref='blk:def-matrix' pointer-events='bounding-box'>
 <g fill='#ff8000'>
 <use x='0' y='0' xlink:href='#g0-67'/>
@@ -217,7 +222,7 @@ let <?xml version='1.0' encoding='UTF-8'?>
 </g>
 </svg> is a <i>right inverse</i> of <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.831633 8.66152 6.831633' style="max-height: 0.6720em; vertical-align: --0.0000em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.831633 8.66152 6.831633' style="max-height: 0.7212em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g0-65' d='m8.239103 0v-.468244h-.966376l-2.550436-6.22665c-.109589-.259029-.229141-.259029-.398506-.259029c-.278954 0-.318804 .079701-.388543 .259029l-2.470735 5.997509c-.059776 .14944-.089664 .229141-.846824 .229141h-.209215v.468244l1.165629-.029888c.388543 0 .946451 0 1.315068 .029888v-.468244c0 0-.886675 0-.886675-.129514l.039851-.119552l.498132-1.205479h2.669988l.597758 1.454545h-.946451v.468244c.37858-.029888 1.325031-.029888 1.753425-.029888c.398506 0 1.275218 0 1.62391 .029888zm-3.227895-2.391034h-2.271482l1.135741-2.769614l1.135741 2.769614z'/>
 </defs>
@@ -232,7 +237,8 @@ let <?xml version='1.0' encoding='UTF-8'?>
 </p>
 
 </div>
-<div class="fancy-block definition" data-before="&lt;p&gt;
+
+<div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: invertible matrix&lt;/p&gt;
 " data-after="&lt;p&gt;
 (taken from john h. hubbard, barbara burke hubbard, 2015 definition 1.2.13 invertible matrix)&lt;/p&gt;
@@ -242,7 +248,8 @@ an <i>invertible matrix</i> is a <a href="/matrix.html#def-matrix">matrix</a> th
 </p>
 
 </div>
-<div class="fancy-block definition" data-before="&lt;p&gt;
+
+<div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: matrix inverse&lt;/p&gt;
 " data-after="&lt;p&gt;
 (taken from john h. hubbard, barbara burke hubbard, 2015 proposition and definition 1.2.14 matrix inverse)&lt;/p&gt;
@@ -250,7 +257,7 @@ definition: matrix inverse&lt;/p&gt;
 <p>
 if a matrix <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.831633 8.66152 6.831633' style="max-height: 0.6720em; vertical-align: --0.0000em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.831633 8.66152 6.831633' style="max-height: 0.7212em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g0-65' d='m8.239103 0v-.468244h-.966376l-2.550436-6.22665c-.109589-.259029-.229141-.259029-.398506-.259029c-.278954 0-.318804 .079701-.388543 .259029l-2.470735 5.997509c-.059776 .14944-.089664 .229141-.846824 .229141h-.209215v.468244l1.165629-.029888c.388543 0 .946451 0 1.315068 .029888v-.468244c0 0-.886675 0-.886675-.129514l.039851-.119552l.498132-1.205479h2.669988l.597758 1.454545h-.946451v.468244c.37858-.029888 1.325031-.029888 1.753425-.029888c.398506 0 1.275218 0 1.62391 .029888zm-3.227895-2.391034h-2.271482l1.135741-2.769614l1.135741 2.769614z'/>
 </defs>
@@ -274,13 +281,13 @@ if a matrix <?xml version='1.0' encoding='UTF-8'?>
 </g>
 </svg> and is denoted <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -8.862809 18.8593 8.862809' style="max-height: 0.8718em; vertical-align: -0.0000em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -8.862809 18.8593 8.862809' style="max-height: 0.9210em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
-<path id='g1-0' d='m5.467497-1.743462c0-.174346-.160399-.174346-.258032-.174346h-4.198257c-.097634 0-.258032 0-.258032 .174346c0 .167372 .167372 .167372 .258032 .167372h4.198257c.09066 0 .258032 0 .258032-.167372z'/>
 <path id='g3-49' d='m3.29863 0v-.251059h-.265006c-.697385 0-.697385-.09066-.697385-.320797v-3.863512c0-.188294-.013948-.195268-.209215-.195268c-.446326 .439352-1.080946 .446326-1.366874 .446326v.251059c.167372 0 .627646 0 1.011208-.195268v3.556663c0 .230137 0 .320797-.697385 .320797h-.265006v.251059l1.241345-.027895l1.248319 .027895z'/>
+<path id='g1-0' d='m5.467497-1.743462c0-.174346-.160399-.174346-.258032-.174346h-4.198257c-.097634 0-.258032 0-.258032 .174346c0 .167372 .167372 .167372 .258032 .167372h4.198257c.09066 0 .258032 0 .258032-.167372z'/>
 <path id='g0-65' d='m8.239103 0v-.468244h-.966376l-2.550436-6.22665c-.109589-.259029-.229141-.259029-.398506-.259029c-.278954 0-.318804 .079701-.388543 .259029l-2.470735 5.997509c-.059776 .14944-.089664 .229141-.846824 .229141h-.209215v.468244l1.165629-.029888c.388543 0 .946451 0 1.315068 .029888v-.468244c0 0-.886675 0-.886675-.129514l.039851-.119552l.498132-1.205479h2.669988l.597758 1.454545h-.946451v.468244c.37858-.029888 1.325031-.029888 1.753425-.029888c.398506 0 1.275218 0 1.62391 .029888zm-3.227895-2.391034h-2.271482l1.135741-2.769614l1.135741 2.769614z'/>
 </defs>
-<g id='page7'>
+<g id='page12'>
 <g class='fancy-button' data-ref='blk:def-matrix' pointer-events='bounding-box'>
 <g fill='#ff8000'>
 <use x='0' y='0' xlink:href='#g0-65'/>
@@ -297,6 +304,7 @@ if a matrix <?xml version='1.0' encoding='UTF-8'?>
 </p>
 
 </div>
+
 <p>
 (taken from john h. hubbard, barbara burke hubbard, 2015 chapter 1 vectors, matrices and derivatives)<br />
 </p>

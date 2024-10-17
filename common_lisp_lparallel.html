@@ -45,6 +45,7 @@ it is available via <a href="/common_lisp.html">quicklisp</a>:<br />
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span>ql:quickload <span style="color: #e3b0c0; font-weight: bold;">:lparallel</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 <p>
 to get the number of cores we have to use the <code>serapeum</code> package:<br />
 </p>
@@ -52,6 +53,7 @@ to get the number of cores we have to use the <code>serapeum</code> package:<br 
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span>ql:quickload <span style="color: #e3b0c0; font-weight: bold;">:serapeum</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 <p>
 usage:<br />
 </p>
@@ -59,6 +61,7 @@ usage:<br />
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span>serapeum:count-cpus<span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 
 <pre class="example">
 16
@@ -74,6 +77,7 @@ kernel-related operations are applied to the current kernel, stored in <b>kernel
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span>setf lparallel:*kernel* <span style="color: #ffaacf;">(</span>lparallel:make-kernel &lt;N&gt;<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 <p>
 where <code>N</code> is the number of <b>worker threads</b>, which ideally would be equal to the number of cores obtained using <code>(serapeum:count-cpus)</code>.<br />
 in most circumstances a kernel should exist for the lifetime of the Lisp process. multiple kernels are possible, and setting the current kernel is done in the expected manner by dynamically binding <b>kernel</b> (with <code>let</code>, for example).<br />
@@ -85,6 +89,7 @@ a <b>task</b> is a function designator together with arguments to the function. 
   <span style="color: #ffaacf;">(</span>lparallel:receive-result channel<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 
 <pre class="example">
 7
@@ -104,6 +109,7 @@ some examples:<br />
         <span style="color: #80aadf;">(</span>lparallel:receive-result channel<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -132,6 +138,7 @@ some examples:<br />
 </pre>
 </div>
 
+
 <pre class="example">
 
 10 
@@ -151,6 +158,7 @@ this would take full advantage of 3 cores if the kernel was created with 3+ work
   <span style="color: #ffaacf;">(</span>print <span style="color: #80aadf;">(</span>lparallel:receive-result channel<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 <p>
 note that a kernel will not be garbage collected until <code>end-kernel</code> is called.<br />
 </p>
@@ -158,9 +166,9 @@ note that a kernel will not be garbage collected until <code>end-kernel</code> i
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span>lparallel:end-kernel<span style="color: #deb07a;">)</span>
 </pre>
 </div>
-<div id="outline-container-org9e39239" class="outline-2">
-<h2 id="org9e39239">plet</h2>
-<div class="outline-text-2" id="text-org9e39239">
+<div id="outline-container-orgd2da781" class="outline-2">
+<h2 id="orgd2da781">plet</h2>
+<div class="outline-text-2" id="text-orgd2da781">
 <p>
 plet might be the simplest construct that lparallel offers for asynchronous computation, consider the following example:<br />
 </p>
@@ -170,6 +178,7 @@ plet might be the simplest construct that lparallel offers for asynchronous comp
   <span style="color: #ffaacf;">(</span>print a<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span> <span style="color: #a0a0cf; font-style: italic;">; =&gt; 9</span>
 </pre>
 </div>
+
 <p>
 once <code>my-slow-function</code> is done running, the returned value, 9, will be in <code>a</code> and the form <code>(print a)</code> would be executed, but until then, execution hangs on <code>(print a)</code>, notice that the first print statement is executed instantly because it doesnt depend on a variable (the variable <code>a</code>, in this case) that was defined using <code>plet</code>, which depends on a task to finish executing<br />
 although notice that, the whole sexp does pause and doesnt execute asynchronously, consider this example:<br />
@@ -182,6 +191,7 @@ although notice that, the whole sexp does pause and doesnt execute asynchronousl
 </pre>
 </div>
 
+
 <pre class="example">
 hi
 9
@@ -193,9 +203,9 @@ the next sexp after <code>plet</code> doesnt run until <code>plet</code> is done
 </p>
 </div>
 </div>
-<div id="outline-container-org11d5558" class="outline-2">
-<h2 id="org11d5558">promise</h2>
-<div class="outline-text-2" id="text-org11d5558">
+<div id="outline-container-org68ff961" class="outline-2">
+<h2 id="org68ff961">promise</h2>
+<div class="outline-text-2" id="text-org68ff961">
 <p>
 promises and futures are also useful<br />
 a <code>promise</code> is a "promise" that needs to be <code>fulfill</code>'ed, <code>fullfilledp</code> checks whether a promise has been fulfilled, <code>fulfill</code> turns a promise into a fulfilled one, and attaches the second argument as its return value, <code>force</code> returns the value returned by a promise<br />
@@ -209,6 +219,7 @@ example:<br />
   <span style="color: #ffaacf;">(</span>lparallel:force p<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span> <span style="color: #a0a0cf; font-style: italic;">; =&gt; 3</span>
 </pre>
 </div>
+
 <p>
 a <code>future</code> is a <code>promise</code> which is fulfilled in parallel, it takes forms to execute asynchronously, <code>fulfilledp</code> is used to check whether a future is done executing the forms, and <code>force</code> is used to get the result of the execution, if the promise (the future) is not yet fulfilled (hasnt done executing), the call to <code>force</code> block execution until it is, example:<br />
 </p>

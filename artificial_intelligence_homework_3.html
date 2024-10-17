@@ -37,14 +37,15 @@
 </div><h1 class="main-title">artificial intelligence homework 3</h1><span class="desc">homework on constraint satisfaction problems</span><span class='date'>2023-08-18</span>
 </div>
 <div id="content" class="content">
-<div class="fancy-block note" data-before="&lt;p&gt;
+<div test="test" class="fancy-block note" data-before="&lt;p&gt;
 note: &lt;/p&gt;
-">
+" id="def-hyperparam" data-id="def-hyperparam">
 <p>
 scroll to the end if you're only interested in the solution and the steps in raw text..<br />
 </p>
 
 </div>
+
 <p>
 homework on <a href="/constraint_satisfaction_problem.html">constraint satisfaction problem</a><br />
 using <a href="/working_with_graphs_in_common_lisp.html">common lisp graphs</a><br />
@@ -83,6 +84,7 @@ first we define the graph:<br />
      <span style="color: #e47980;">(</span>k . nil<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 <p>
 visualize it with tikz:<br />
 </p>
@@ -90,6 +92,7 @@ visualize it with tikz:<br />
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span>graph-generate-tikz *mygraph* <span style="color: #e3b0c0; font-weight: bold;">:node-distance</span> 80<span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 
 
 <div class="equation-container">
@@ -202,6 +205,7 @@ visualize it with tikz:<br />
 </g>
 </svg>
 </span>
+<span class="caption"></span>
 </div>
 
 <p>
@@ -244,6 +248,7 @@ since i had written the problem in its <a href="/constraint_graph.html">constrai
      <span style="color: #e3b0c0; font-weight: bold;">:constraints</span> constraints<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 <p>
 here i implement a generalized algorithm for constraint satisfaction problem solving:<br />
 </p>
@@ -364,6 +369,7 @@ here i implement a generalized algorithm for constraint satisfaction problem sol
 </pre>
 </div>
 
+
 <p>
 applying the algorithm:<br />
 </p>
@@ -375,10 +381,12 @@ applying the algorithm:<br />
    <span style="color: #80aadf;">(</span>list #'least-constraining-variable-heuristic #'most-constrained-variable-heuristic<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span>solve<span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 
 <pre class="example">
 ((A . R) (J . R) (M . R) (H . R) (P . R) (C . G) (D . G) (E . G) (O . G) (N . B) (B . B) (L . B) (K . A) (F . B) (I . G) (G . A))
@@ -403,6 +411,7 @@ visualizing the constraint graph with the colors we obtained by solving the prob
                                 <span style="color: #3fc489;">(</span>otherwise <span style="color: #f3a0a0;">""</span><span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">otherwise for NIL, or use (nil), nil alone doesnt work with case</span>
 </pre>
 </div>
+
 
 
 <div class="equation-container">
@@ -513,6 +522,7 @@ visualizing the constraint graph with the colors we obtained by solving the prob
 </g>
 </svg>
 </span>
+<span class="caption"></span>
 </div>
 
 <p>
@@ -523,6 +533,7 @@ this just shows the domain of variables at each step<br />
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span>solve<span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 
 <p>
 chose variable A with value R<br />

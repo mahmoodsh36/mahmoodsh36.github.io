@@ -40,9 +40,9 @@
 <p>
 a collection of utility functions for <a href="/common_lisp.html">common lisp</a>.<br />
 </p>
-<div id="outline-container-org017dc50" class="outline-2">
-<h2 id="org017dc50">arrays</h2>
-<div class="outline-text-2" id="text-org017dc50">
+<div id="outline-container-org5c42d0a" class="outline-2">
+<h2 id="org5c42d0a">arrays</h2>
+<div class="outline-text-2" id="text-org5c42d0a">
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp" id="src-array-dims"><span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">(defun array-width (2d-array)</span>
 <span style="color: #a0a0cf; font-style: italic;">;;   </span><span style="color: #a0a0cf; font-style: italic;">(car (cdr (array-dimensions 2d-array))))</span>
@@ -61,6 +61,7 @@ a collection of utility functions for <a href="/common_lisp.html">common lisp</a
   <span style="color: #ffaacf;">(</span>array-total-size arr<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 <p>
 turn multidimensional (nested) list into array:<br />
 </p>
@@ -74,6 +75,7 @@ turn multidimensional (nested) list into array:<br />
               <span style="color: #e3b0c0; font-weight: bold;">:initial-contents</span> list<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 <p>
 turn multidimensional array into a list:<br />
 </p>
@@ -91,6 +93,7 @@ turn multidimensional array into a list:<br />
       <span style="color: #e47980;">(</span>recurse 0<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 <p>
 to generate an array with random elements of arbitrary dimensions:<br />
 </p>
@@ -113,6 +116,7 @@ to generate an array with random elements of arbitrary dimensions:<br />
       <span style="color: #80aadf;">(</span>list-&gt;array <span style="color: #e47980;">(</span>random-list dims min max<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 <p>
 the following utility functions are similar to <code>map</code> but for arrays:<br />
 we sometimes may wanna iterate through a multidimensional array and do an action on each of its indicies, the following utility functions helps do that easily, without nesting loops, although notice that this function iterates through every cell in the array, so it may not be what you want (efficiency wise) if you only want to apply something to only a portion of the array<br />
@@ -141,6 +145,7 @@ we sometimes may wanna iterate through a multidimensional array and do an action
   <span style="color: #ffaacf;">(</span>apply #'aref <span style="color: #80aadf;">(</span>cons arr idx-list<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 <p>
 a utility function to copy a subarray of an array<br />
 </p>
@@ -181,6 +186,7 @@ a utility function to copy a subarray of an array<br />
             <span style="color: #e47980;">(</span>apply #'aref <span style="color: #d0b0ff;">(</span>cons a a-indicies<span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 <p>
 a utility that copies the n-th element of an array, which is an array itself:<br />
 </p>
@@ -201,6 +207,7 @@ a utility that copies the n-th element of an array, which is an array itself:<br
                 <span style="color: #e3b0c0; font-weight: bold;">:displaced-index-offset</span> <span style="color: #e47980;">(</span>* idx <span style="color: #d0b0ff;">(</span>reduce #'* new-dims<span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 <p>
 a utility function to copy a subarray into an array<br />
 </p>
@@ -236,6 +243,7 @@ a utility function to copy a subarray into an array<br />
             <span style="color: #e47980;">(</span>apply #'aref <span style="color: #d0b0ff;">(</span>cons b b-indicies<span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 <p>
 a utility function to copy an array into anothers highest dimension<br />
 </p>
@@ -248,6 +256,7 @@ a utility function to copy an array into anothers highest dimension<br />
    <span style="color: #80aadf;">(</span>append <span style="color: #e47980;">(</span>list idx<span style="color: #e47980;">)</span> <span style="color: #e47980;">(</span>make-list <span style="color: #d0b0ff;">(</span>length <span style="color: #3fc489;">(</span>array-dimensions other-arr<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span> <span style="color: #e3b0c0; font-weight: bold;">:initial-element</span> 0<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 <p>
 vectorizing an array (turning it into a 1d vector) is pretty simple:<br />
 </p>
@@ -257,6 +266,7 @@ vectorizing an array (turning it into a 1d vector) is pretty simple:<br />
   <span style="color: #ffaacf;">(</span>make-array <span style="color: #80aadf;">(</span>list <span style="color: #e47980;">(</span>array-total-size arr<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span> <span style="color: #e3b0c0; font-weight: bold;">:displaced-to</span> arr<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 <p>
 a function that refers the row-major index of a cell of an array (shamelessly stolen from <a href="https://groups.google.com/g/comp.lang.lisp/c/CM3MQkyOTHk?pli=1">https://groups.google.com/g/comp.lang.lisp/c/CM3MQkyOTHk?pli=1</a>):<br />
 </p>
@@ -286,6 +296,7 @@ a function that refers the row-major index of a cell of an array (shamelessly st
           <span style="color: #e3b0c0; font-weight: bold;">:from-end</span> t<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 <p>
 a function to simply copy/clone an array/tensor:<br />
 </p>
@@ -295,6 +306,7 @@ a function to simply copy/clone an array/tensor:<br />
     <span style="color: #80aadf;">(</span>copy-into-array new-arr arr<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 <p>
 reducing an array with a function:<br />
 </p>
@@ -306,9 +318,9 @@ reducing an array with a function:<br />
 </div>
 </div>
 </div>
-<div id="outline-container-org94a9c11" class="outline-2">
-<h2 id="org94a9c11">sequences</h2>
-<div class="outline-text-2" id="text-org94a9c11">
+<div id="outline-container-orgd2992b1" class="outline-2">
+<h2 id="orgd2992b1">sequences</h2>
+<div class="outline-text-2" id="text-orgd2992b1">
 <p>
 a function to get the last element in a list (or any sequence):<br />
 </p>
@@ -318,6 +330,7 @@ a function to get the last element in a list (or any sequence):<br />
   <span style="color: #ffaacf;">(</span>elt seq <span style="color: #80aadf;">(</span>1- <span style="color: #e47980;">(</span>length seq<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 <p>
 converting nested lists to nested vectors:<br />
 </p>
@@ -335,6 +348,7 @@ converting nested lists to nested vectors:<br />
   <span style="color: #ffaacf;">(</span>print <span style="color: #80aadf;">(</span>list-&gt;vector mylist<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">=&gt; #(#(1 2) 3 4) </span>
 </pre>
 </div>
+
 <p>
 or this shorter one:<br />
 </p>
@@ -344,6 +358,7 @@ or this shorter one:<br />
       <span style="color: #80aadf;">(</span>map 'vector #'list-&gt;vector list<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 <p>
 get the type of a sequence (<code>type-of</code> is unreliable):<br />
 </p>
@@ -356,6 +371,7 @@ get the type of a sequence (<code>type-of</code> is unreliable):<br />
     <span style="color: #80aadf;">(</span>list 'list<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 <p>
 a concatenate function that acts with respect to the sequence type:<br />
 </p>
@@ -376,6 +392,7 @@ a concatenate function that acts with respect to the sequence type:<br />
   <span style="color: #ffaacf;">(</span>funcall #'concatenate-type-aware seqs<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 <p>
 delete nth element of a sequence:<br />
 </p>
@@ -385,6 +402,7 @@ delete nth element of a sequence:<br />
   <span style="color: #ffaacf;">(</span>remove-if <span style="color: #80aadf;">(</span><span style="color: #deb07a; font-weight: bold;">lambda</span> <span style="color: #e47980;">(</span>_<span style="color: #e47980;">)</span> t<span style="color: #80aadf;">)</span> seq <span style="color: #e3b0c0; font-weight: bold;">:start</span> n <span style="color: #e3b0c0; font-weight: bold;">:count</span> 1<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 <p>
 split a sequence into <a href="/singleton.html">singleton</a> sequences (of the same type as the original sequence)<br />
 </p>
@@ -397,9 +415,9 @@ split a sequence into <a href="/singleton.html">singleton</a> sequences (of the 
 </div>
 </div>
 </div>
-<div id="outline-container-org5742991" class="outline-2">
-<h2 id="org5742991">argmin and argmax</h2>
-<div class="outline-text-2" id="text-org5742991">
+<div id="outline-container-org0453753" class="outline-2">
+<h2 id="org0453753">argmin and argmax</h2>
+<div class="outline-text-2" id="text-org0453753">
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp" id="src-argmin-argmax"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">argmax</span> <span style="color: #ffaacf;">(</span>s <span style="color: #a9c99f;">&amp;key</span> <span style="color: #80aadf;">(</span>key #'identity<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span>
   <span style="color: #caa89f; font-style: italic;">"returns value,index of element in sequence s that maximizes the key function"</span>
@@ -418,9 +436,9 @@ split a sequence into <a href="/singleton.html">singleton</a> sequences (of the 
 </div>
 </div>
 </div>
-<div id="outline-container-org98ac348" class="outline-2">
-<h2 id="org98ac348">open url in browser</h2>
-<div class="outline-text-2" id="text-org98ac348">
+<div id="outline-container-org0f9c0e4" class="outline-2">
+<h2 id="org0f9c0e4">open url in browser</h2>
+<div class="outline-text-2" id="text-org0f9c0e4">
 <p>
 open a url by its default browser/app on macos/windows/linux<br />
 </p>

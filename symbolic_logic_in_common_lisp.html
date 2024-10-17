@@ -40,9 +40,9 @@
 <p>
 <a href="/logic_programming.html">logic programming</a> in <a href="/common_lisp.html">common lisp</a><br />
 </p>
-<div id="outline-container-orgbaa780e" class="outline-2">
-<h2 id="orgbaa780e">logical statements</h2>
-<div class="outline-text-2" id="text-orgbaa780e">
+<div id="outline-container-orgc2f68ff" class="outline-2">
+<h2 id="orgc2f68ff">logical statements</h2>
+<div class="outline-text-2" id="text-orgc2f68ff">
 <p>
 we make use of the symbolic capabilities of lisp, we use quoting and symbols to represent logical <a href="/statement.html">statement</a>s, e.g. given the following <a href="/knowledge_base.html">knowledge base</a> of <a href="/horn_clause.html">horn clause</a>s:<br />
 </p>
@@ -102,6 +102,7 @@ we make use of the symbolic capabilities of lisp, we use quoting and symbols to 
 </g>
 </svg>
 </span>
+<span class="caption"></span>
 </div>
 <p>
 in lisp we could write it as:<br />
@@ -118,6 +119,7 @@ in lisp we could write it as:<br />
 *kb*
 </pre>
 </div>
+
 
 <pre class="example">
 ((IMPLIES P Q) (IMPLIES (AND L M) P) (IMPLIES (AND B L) M)
@@ -171,6 +173,7 @@ in our previous example, this doesnt make much difference as we were dealing wit
 </pre>
 </div>
 
+
 <pre class="example">
 ((PERSON JOHN) (IMPLIES (PERSON ?X) (HUMAN ?X))
  (IMPLIES (AND (NOT (WIDOWER ?X)) (FATHER ?X)) (MARRIED ?X)))
@@ -221,14 +224,15 @@ how about substitutions? how do we represent for example the substitution <?xml 
 </pre>
 </div>
 
+
 <pre class="example">
 ((?Y . VAL2) (?X . VAL1))
 </pre>
 </div>
 </div>
-<div id="outline-container-org8cb7098" class="outline-2">
-<h2 id="org8cb7098">early <a href="/inference_engine.html">inference engine</a>s</h2>
-<div class="outline-text-2" id="text-org8cb7098">
+<div id="outline-container-orgd000a59" class="outline-2">
+<h2 id="orgd000a59">early <a href="/inference_engine.html">inference engine</a>s</h2>
+<div class="outline-text-2" id="text-orgd000a59">
 <p>
 imma start off with the <a href="/unification.html">unification</a> algorithm, this one differs a bit from the pseudocode version, as it doesnt apply the <b>occur check</b> and doesnt distinguish between a compound statement or a list of expressions, as they are only used to represent predicates<br />
 </p>
@@ -276,6 +280,7 @@ imma start off with the <a href="/unification.html">unification</a> algorithm, t
   <span style="color: #ffaacf;">(</span>not <span style="color: #80aadf;">(</span>eq unify-out 'failure<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 <p>
 a test:<br />
 </p>
@@ -283,6 +288,7 @@ a test:<br />
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span>unify '<span style="color: #ffaacf;">(</span>person john<span style="color: #ffaacf;">)</span> '<span style="color: #ffaacf;">(</span>person ?x<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 
 <pre class="example">
 ((?X . JOHN))
@@ -425,6 +431,7 @@ next up, we need to implement <a href="/forward_chaining.html">forward chaining<
             <span style="color: #3fc489;">(</span><span style="color: #deb07a; font-weight: bold;">return-from</span> forward-chaining <span style="color: #6fb3c0;">(</span>values nil inference-alist-list<span style="color: #6fb3c0;">)</span><span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 <p>
 example usage:<br />
 </p>
@@ -448,6 +455,7 @@ example usage:<br />
       kb2<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 <p>
 some functions (that do their best) to "unpack" a knowledge base by unpacking conjunctions and implications into multiple smaller statements that are easier to deal with (there isnt much we can do when the precedent of an implication is a <a href="/logical_connective.html">logical connective</a>)<br />
 </p>
@@ -478,6 +486,7 @@ some functions (that do their best) to "unpack" a knowledge base by unpacking co
     new-kb<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 <p>
 a function to generate a graph from a knowledge base, see <a href="/working_with_graphs_in_common_lisp.html">common lisp graphs</a>:<br />
 </p>
@@ -499,6 +508,7 @@ a function to generate a graph from a knowledge base, see <a href="/working_with
     g<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 <p>
 example usage:<br />
 </p>
@@ -536,10 +546,12 @@ example usage:<br />
        <span style="color: #e3b0c0; font-weight: bold;">:directed</span> t<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span>forward-chaining-test-2<span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 
 
 <div class="equation-container">
@@ -820,6 +832,7 @@ example usage:<br />
 </g>
 </svg>
 </span>
+<span class="caption"></span>
 </div>
 
 <p>
@@ -846,6 +859,7 @@ functions to generate a graph from the forward chaining process (see <a href="/w
     g<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">forward-chaining-generate-tikz-graph</span> <span style="color: #ffaacf;">(</span>inference-alist-list<span style="color: #ffaacf;">)</span>
   <span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">let*</span> <span style="color: #80aadf;">(</span><span style="color: #e47980;">(</span>g <span style="color: #d0b0ff;">(</span>forward-chaining-generate-inference-graph inference-alist-list<span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span>
@@ -884,6 +898,7 @@ functions to generate a graph from the forward chaining process (see <a href="/w
      <span style="color: #e3b0c0; font-weight: bold;">:directed</span> t<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 <p>
 example usage:<br />
 </p>
@@ -904,10 +919,12 @@ example usage:<br />
       <span style="color: #e47980;">(</span>forward-chaining-generate-tikz-graph inference-alist-list<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span>forward-chaining-test-3<span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 
 
 <div class="equation-container">
@@ -1090,6 +1107,7 @@ example usage:<br />
 </g>
 </svg>
 </span>
+<span class="caption"></span>
 </div>
 
 <p>

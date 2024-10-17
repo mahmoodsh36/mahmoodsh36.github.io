@@ -47,6 +47,7 @@ using <a href="/common_lisp.html">quicklisp</a><br />
 <span style="color: #deb07a;">(</span>ql:quickload <span style="color: #e3b0c0; font-weight: bold;">:cl-opengl</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 <p>
 here im implementing an abstraction layer over opengl/sdl2 to be able to render things like math functions easily<br />
 we need a generic way to represent objects that are renderable onto a window so we use the generic function <code>render</code> and implement it in the various classes<br />
@@ -250,6 +251,7 @@ we need a generic way to represent objects that are renderable onto a window so 
                <span style="color: #d0b0ff;">(</span>setf prev-point new-point<span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 <p>
 example usage:<br />
 </p>
@@ -278,6 +280,7 @@ example usage:<br />
   <span style="color: #ffaacf;">(</span>sb-thread:make-thread <span style="color: #80aadf;">(</span><span style="color: #deb07a; font-weight: bold;">lambda</span> <span style="color: #e47980;">()</span> <span style="color: #e47980;">(</span>window-run *win*<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 <p>
 we can create objects and add them dynamically to the window:<br />
 </p>
@@ -289,6 +292,7 @@ we can create objects and add them dynamically to the window:<br />
                            <span style="color: #e47980;">(</span>make-point-2d <span style="color: #e3b0c0; font-weight: bold;">:x</span> <span style="color: #d0b0ff;">(</span>/ <span style="color: #3fc489;">(</span>random 10<span style="color: #3fc489;">)</span> 10<span style="color: #d0b0ff;">)</span> <span style="color: #e3b0c0; font-weight: bold;">:y</span> <span style="color: #d0b0ff;">(</span>/ <span style="color: #3fc489;">(</span>random 10<span style="color: #3fc489;">)</span> 10<span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 <p>
 rendering text wasnt as simple as i expected, i ended up using <b>freetype</b> because thats what most webpages seemed to promote. the library <code>cl-freetype2</code> provides freetype bindings for sbcl, example usage is here <a href="https://github.com/rpav/cl-freetype2/blob/master/doc/example.md">https://github.com/rpav/cl-freetype2/blob/master/doc/example.md</a><br />
 </p>
@@ -296,6 +300,7 @@ rendering text wasnt as simple as i expected, i ended up using <b>freetype</b> b
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span>ql:quickload <span style="color: #e3b0c0; font-weight: bold;">:cl-freetype2</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 <p>
 toy around with it to make sure it works:<br />
 </p>
@@ -314,6 +319,7 @@ toy around with it to make sure it works:<br />
   <span style="color: #ffaacf;">(</span>print <span style="color: #80aadf;">(</span>ft2:bitmap-to-array bitmap<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 <p>
 it was hard to figure things out as this was my first time rendering text at such a low level and couldnt find proper documentation for <code>cl-freetype2</code>, had to browse through the source code<br />
 i tried to adapt the code from <a href="http://3bb.cc/tutorials/cl-opengl/textures.html">http://3bb.cc/tutorials/cl-opengl/textures.html</a>:<br />
@@ -357,12 +363,13 @@ i tried to adapt the code from <a href="http://3bb.cc/tutorials/cl-opengl/textur
   <span style="color: #ffaacf;">(</span>window-run *win*<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 <p>
 couldn't get this to work so i gave up and decided to use raylib since it provides more features than sdl2 (on its own, for example sdl2 doesnt have a way to draw a line with a specific thickness) and i wouldnt even have to deal with opengl<br />
 </p>
-<div id="outline-container-orgae6d29e" class="outline-2">
-<h2 id="orgae6d29e">cl-raylib</h2>
-<div class="outline-text-2" id="text-orgae6d29e">
+<div id="outline-container-orgf80c875" class="outline-2">
+<h2 id="orgf80c875">cl-raylib</h2>
+<div class="outline-text-2" id="text-orgf80c875">
 <p>
 on <code>arch linux</code> had to install it using <code>pacman</code> (<code>raylib</code>)<br />
 <code>cl-raylib</code> is currently not on quicklist so you gotta fetch it manually:<br />
@@ -371,11 +378,13 @@ on <code>arch linux</code> had to install it using <code>pacman</code> (<code>ra
 <pre class="src src-bash">git clone https://github.com/longlene/cl-raylib.git ~/.quicklisp/local-projects/cl-raylib
 </pre>
 </div>
+
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span>ql:quickload <span style="color: #e3b0c0; font-weight: bold;">:cl-raylib</span><span style="color: #deb07a;">)</span>
 <span style="color: #deb07a;">(</span>ql:quickload <span style="color: #e3b0c0; font-weight: bold;">:3d-vectors</span><span style="color: #deb07a;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">we need this library to work with cl-raylib..</span>
 </pre>
 </div>
+
 <p>
 its pretty simple to get started with:<br />
 </p>
@@ -393,6 +402,7 @@ its pretty simple to get started with:<br />
              <span style="color: #3fc489;">(</span>raylib:draw-text <span style="color: #f3a0a0;">"Congrats! You created your first window!"</span> 190 200 20 raylib:+lightgray+<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 <p>
 we need some way to say whether an object is renderable or not, to discriminate renderable objects and prevent an attempt to render other objects, we use cl's <code>defgeneric</code> and construct some basic renderable types:<br />
 </p>
@@ -408,6 +418,7 @@ we need some way to say whether an object is renderable or not, to discriminate 
   p1 p2 <span style="color: #ffaacf;">(</span>color <span style="color: #80aadf;">(</span>make-rgb <span style="color: #e3b0c0; font-weight: bold;">:r</span> 0 <span style="color: #e3b0c0; font-weight: bold;">:b</span> 0 <span style="color: #e3b0c0; font-weight: bold;">:g</span> 0<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span> <span style="color: #ffaacf;">(</span>width 1.0<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defgeneric</span> <span style="color: #8fcfd0;">render</span> <span style="color: #ffaacf;">(</span>obj<span style="color: #ffaacf;">)</span>
   <span style="color: #ffaacf;">(</span><span style="color: #e3b0c0; font-weight: bold;">:documentation</span> <span style="color: #caa89f; font-style: italic;">"a function to render an object"</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
@@ -431,6 +442,7 @@ we need some way to say whether an object is renderable or not, to discriminate 
       <span style="color: #d0b0ff;">(</span>rgb-b color<span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 <p>
 we present the basic code for opening a window and drawing to it:<br />
 </p>
@@ -466,6 +478,7 @@ we present the basic code for opening a window and drawing to it:<br />
   <span style="color: #ffaacf;">(</span>push renderable <span style="color: #80aadf;">(</span>window-renderables win<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 <p>
 example usage:<br />
 </p>
@@ -478,6 +491,7 @@ example usage:<br />
   <span style="color: #ffaacf;">(</span>window-run *win*<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 <p>
 we need to implement math plotting functionality, but..<br />
 unfortunately raylib doesnt allow matrix manipulation (atleast for 2d cameras)<br />
@@ -510,6 +524,7 @@ consider the following macro:<br />
      ,@body<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 <p>
 in the simple case it works fine but not in others:<br />
 </p>
@@ -524,6 +539,7 @@ CL-USER&gt; <span style="color: #deb07a;">(</span><span style="color: #deb07a; f
 1/10 <span style="color: #deb07a;">(</span>0.1, 10%<span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 <p>
 this works in a <code>lexical</code> scope, calling an outer function that makes a call to <code>point-2d-x</code> wouldnt work as we want because its not shadowed <code>dynamically</code><br />
 this can be done, but its already ugly as it is and uglier approaches isnt something im looking for<br />
@@ -568,6 +584,7 @@ so i just decided to pass rendering parameters around, i.e. each function receiv
         <span style="color: #3fc489;">(</span>rgb-b color<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 <p>
 i wanted a simple way to draw continuous and discrete math functions, so i thought about implementing an <code>axis</code> object first, which would hold these plots and pass the proper transformation matrix to them, plus it would take care of actually rendering the axes on the screen<br />
 here im <a href="/2d_transformations.html">linearly mapping grids</a> using the transformation matrix for it<br />
@@ -738,6 +755,7 @@ here im <a href="/2d_transformations.html">linearly mapping grids</a> using the 
                <span style="color: #d0b0ff;">(</span>setf prev-point new-point<span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 <p>
 example usage:<br />
 </p>
@@ -760,6 +778,7 @@ example usage:<br />
   <span style="color: #ffaacf;">(</span>sb-thread:make-thread <span style="color: #80aadf;">(</span><span style="color: #deb07a; font-weight: bold;">lambda</span> <span style="color: #e47980;">()</span> <span style="color: #e47980;">(</span>window-run *win*<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 <p>
 hmmm, im very tempted to try and visualize the <a href="/mandelbrot.html">mandelbrot</a> now, so lets do it, im thinking about just writing the mandelbrot as a function and map it to every pixel on the screen, maybe the function would return a value in 0-255 that describes how "bright" a point is? and we'd just turn it into an rgb? i think that'd do<br />
 </p>
@@ -814,6 +833,7 @@ hmmm, im very tempted to try and visualize the <a href="/mandelbrot.html">mandel
   <span style="color: #ffaacf;">(</span>sb-thread:make-thread <span style="color: #80aadf;">(</span><span style="color: #deb07a; font-weight: bold;">lambda</span> <span style="color: #e47980;">()</span> <span style="color: #e47980;">(</span>window-run *win*<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 <p>
 use <code>(mandelbrot-test)</code> to run this (obviously)<br />
 she's pretty but slow as fuck<br />

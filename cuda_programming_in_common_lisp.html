@@ -45,9 +45,9 @@ load it using <a href="/common_lisp.html">quicklisp</a>:<br />
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span>ql:quickload <span style="color: #e3b0c0; font-weight: bold;">:cl-cuda</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
-<div id="outline-container-org04628ef" class="outline-2">
-<h2 id="org04628ef">arch linux setup</h2>
-<div class="outline-text-2" id="text-org04628ef">
+<div id="outline-container-orgf98b0f6" class="outline-2">
+<h2 id="orgf98b0f6">arch linux setup</h2>
+<div class="outline-text-2" id="text-orgf98b0f6">
 <p>
 i had to install <code>cuda</code> for the <code>nvcc</code> compiler and more, and <code>nvidia</code> for the gpu driver, at first you may have to use <code>/opt/cuda/bin/nvcc</code> until you reboot or extend your $PATH.<br />
 to check which nvidia driver is in use run:<br />
@@ -62,13 +62,13 @@ if you have installed the <code>nvidia</code> package and your os still uses <co
 </p>
 </div>
 </div>
-<div id="outline-container-orgab8d25a" class="outline-2">
-<h2 id="orgab8d25a">essential concepts</h2>
-<div class="outline-text-2" id="text-orgab8d25a">
+<div id="outline-container-orga56432f" class="outline-2">
+<h2 id="orga56432f">essential concepts</h2>
+<div class="outline-text-2" id="text-orga56432f">
 </div>
-<div id="outline-container-org83512da" class="outline-3">
-<h3 id="org83512da">threads</h3>
-<div class="outline-text-3" id="text-org83512da">
+<div id="outline-container-orga7ad58b" class="outline-3">
+<h3 id="orga7ad58b">threads</h3>
+<div class="outline-text-3" id="text-orga7ad58b">
 <p>
 mostly from <a href="https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#programming-model">https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#programming-model</a>.<br />
 i also read the examples from the cl-cuda's source code.<br />
@@ -82,9 +82,9 @@ for efficient cooperation, the shared memory is expected to be a low-latency mem
 </p>
 </div>
 </div>
-<div id="outline-container-org6c00742" class="outline-3">
-<h3 id="org6c00742">memory</h3>
-<div class="outline-text-3" id="text-org6c00742">
+<div id="outline-container-org30e0185" class="outline-3">
+<h3 id="org30e0185">memory</h3>
+<div class="outline-text-3" id="text-org30e0185">
 <p>
 CUDA threads may access data from multiple memory spaces during their execution. each thread has private <b>local memory</b>. each thread block has <b>shared memory</b> visible to all threads of the block and with the same lifetime as the block. thread blocks in a thread block cluster can perform read, write, and atomics operations on each other’s shared memory. all threads have access to the same <b>global memory</b>.<br />
 there are also two additional read-only memory spaces accessible by all threads: the constant and texture memory spaces. the global, constant, and texture memory spaces are optimized for different memory usages. texture memory also offers different addressing modes, as well as data filtering, for some specific data formats.<br />
@@ -95,9 +95,9 @@ unified memory provides managed memory to bridge the host and device memory spac
 </p>
 </div>
 </div>
-<div id="outline-container-org9735bb7" class="outline-3">
-<h3 id="org9735bb7">device memory</h3>
-<div class="outline-text-3" id="text-org9735bb7">
+<div id="outline-container-org8b84657" class="outline-3">
+<h3 id="org8b84657">device memory</h3>
+<div class="outline-text-3" id="text-org8b84657">
 <p>
 the CUDA programming model assumes a system composed of a host and a device, each with their own separate memory. kernels operate out of device memory, so the runtime provides functions to allocate, deallocate, and copy device memory, as well as transfer data between host memory and device memory.<br />
 device memory can be allocated either as linear memory or as <b>CUDA arrays</b>.<br />
@@ -107,24 +107,24 @@ CUDA arrays are opaque memory layouts optimized for texture fetching.<br />
 </div>
 </div>
 </div>
-<div id="outline-container-orgcc7a622" class="outline-2">
-<h2 id="orgcc7a622">code</h2>
-<div class="outline-text-2" id="text-orgcc7a622">
+<div id="outline-container-org5e1a83a" class="outline-2">
+<h2 id="org5e1a83a">code</h2>
+<div class="outline-text-2" id="text-org5e1a83a">
 <p>
 see <a href="/connect_to_remote_common_lisp_repl_with_sly_slime.html">connect to remote common lisp repl with sly/slime</a> for connecting to a remote common lisp repl with <a href="/emacs.html">emacs</a>.<br />
 </p>
-<div class="fancy-block note" data-before="&lt;p&gt;
+<div test="test" class="fancy-block note" data-before="&lt;p&gt;
 note: &lt;/p&gt;
-">
+" id="blk-softmax" data-id="blk-softmax">
 <p>
 notice that when working cl-cuda the data that we're passing to the gpu is gonna be duplicated (because its a binding from cl to C and uses whats called foreign memory), i never considered how bad that is, atleast in this case, as mostly when doing gpu calculations we're ofcourse passing lots of data and then copying it back, and the maximum amount of memory that i can use is already cut in half, if i have 16gb of memory i already know i cant use more than 8gb of that, thats pretty horrible (assuming i have a gpu with ~16gb memory), i can have my way around this, e.g. free memory from sbcl as it gets copied to C, but that'd be much more complexity than i wanna have to deal with<br />
 </p>
 
 </div>
 </div>
-<div id="outline-container-org23a78a2" class="outline-3">
-<h3 id="org23a78a2">cuda vector addition</h3>
-<div class="outline-text-3" id="text-org23a78a2">
+<div id="outline-container-orgd486946" class="outline-3">
+<h3 id="orgd486946">cuda vector addition</h3>
+<div class="outline-text-3" id="text-orgd486946">
 <p>
 we start with the vectorAdd example, a simple example in C, stolen from <a href="https://github.com/NVIDIA/cuda-samples/blob/master/Samples/0_Introduction/vectorAdd/vectorAdd.cu">https://github.com/NVIDIA/cuda-samples/blob/master/Samples/0_Introduction/vectorAdd/vectorAdd.cu</a> and modified to reduce boilerplate code.<br />
 the syntax for calling a kernel in c++ is <code>vector&lt;&lt;&lt; blocks per grid, threads per block &gt;&gt;&gt;(arg1,arg2,...)</code>.<br />
@@ -192,6 +192,7 @@ __global__ <span style="color: #a9c99f;">void</span> <span style="color: #8fcfd0
 <span style="color: #deb07a;">}</span>
 </pre>
 </div>
+
 <p>
 compile with <code>nvcc &lt;name&gt;.cu -o vector_add</code> and run with <code>./vector_add</code>.<br />
 similar same code but in cl:<br />
@@ -230,15 +231,15 @@ similar same code but in cl:<br />
 </div>
 </div>
 </div>
-<div id="outline-container-org8372b11" class="outline-3">
-<h3 id="org8372b11">cuda matrix multiplication</h3>
-<div class="outline-text-3" id="text-org8372b11">
+<div id="outline-container-org1771381" class="outline-3">
+<h3 id="org1771381">cuda matrix multiplication</h3>
+<div class="outline-text-3" id="text-org1771381">
 <p>
 mostly taken from <a href="https://docs.nvidia.com/deeplearning/performance/dl-performance-matrix-multiplication/index.html">https://docs.nvidia.com/deeplearning/performance/dl-performance-matrix-multiplication/index.html</a> and <a href="https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#programming-model">https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#programming-model</a>.<br />
 before implementing matrix multiplication for the <b>gpu</b> we need to consider some things.<br />
 the product of two matrices <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.807795 62.177088 9.132406' style="max-height: 0.8983em; vertical-align: -0.2287em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.807795 62.177088 9.132406' style="max-height: 0.9967em; vertical-align: -0.2779em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g0-2' d='m4.979328-.055791c0-.062765-.020922-.083686-.09066-.153425l-1.534247-1.534247l1.534247-1.54122c.069738-.069738 .09066-.09066 .09066-.153425c0-.118555-.097634-.174346-.167372-.174346s-.09066 .020922-.160399 .09066l-1.54122 1.534247l-1.534247-1.534247c-.076712-.076712-.118555-.09066-.160399-.09066c-.097634 0-.174346 .076712-.174346 .174346c0 .062765 .027895 .09066 .09066 .153425l1.534247 1.534247l-1.534247 1.54122c-.062765 .062765-.09066 .09066-.09066 .153425c0 .104608 .076712 .174346 .174346 .174346c.062765 0 .09066-.027895 .153425-.09066l1.54122-1.534247l1.54122 1.534247c.069738 .069738 .09066 .09066 .160399 .09066s.167372-.055791 .167372-.174346z'/>
 <path id='g2-75' d='m5.802242-.146451c0-.104608-.09066-.104608-.160399-.104608c-.125529 0-.341719-.006974-.460274-.230137l-1.192528-2.322291l-.041843-.083686c0 0 .006974-.020922 .167372-.132503l.704359-.495143c.920548-.648568 1.352927-.955417 1.84807-.99726c.076712-.006974 .160399-.013948 .160399-.153425c0-.055791-.048817-.09066-.09066-.09066c-.146451 0-.327771 .020922-.481196 .020922c-.188294 0-.655542-.027895-.843836-.027895c-.041843 0-.146451 0-.146451 .153425c0 0 0 .09066 .104608 .097634c.083686 .006974 .174346 .020922 .174346 .097634c0 .125529-.216189 .278954-.306849 .341719l-2.908095 2.050311l.550934-2.196762c.062765-.237111 .069738-.292902 .613699-.292902c.111582 0 .209215 0 .209215-.146451c0-.062765-.041843-.104608-.111582-.104608c-.202242 0-.711333 .027895-.913574 .027895c-.118555 0-.36264 0-.481196-.006974c-.139477-.006974-.306849-.020922-.439352-.020922c-.041843 0-.146451 0-.146451 .153425c0 .097634 .076712 .097634 .230137 .097634c.111582 0 .139477 0 .265006 .013948c.139477 .013948 .153425 .027895 .153425 .097634c0 0 0 .048817-.027895 .153425l-.927522 3.703113c-.055791 .237111-.069738 .292902-.613699 .292902c-.125529 0-.209215 0-.209215 .153425c0 0 0 .097634 .111582 .097634c.202242 0 .704359-.027895 .9066-.027895c.118555 0 .36264 0 .481196 .006974c.139477 .006974 .313823 .020922 .446326 .020922c.041843 0 .146451 0 .146451-.153425c0-.097634-.083686-.097634-.223163-.097634c0 0-.139477 0-.265006-.013948c-.160399-.013948-.160399-.034869-.160399-.104608c0-.055791 .069738-.313823 .327771-1.338979l1.157659-.81594l1.011208 1.959651c.048817 .09066 .048817 .097634 .048817 .132503c0 .160399-.195268 .18132-.320797 .18132c-.083686 0-.18132 0-.18132 .153425c0 0 .006974 .097634 .118555 .097634c.195268 0 .697385-.027895 .892653-.027895c.209215 0 .488169 .027895 .683437 .027895c.09066 0 .139477-.048817 .139477-.146451z'/>
@@ -263,7 +264,7 @@ the product of two matrices <?xml version='1.0' encoding='UTF-8'?>
 </g>
 </svg> results in a matrix <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.807795 28.750587 9.132406' style="max-height: 0.8983em; vertical-align: -0.2287em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.807795 28.750587 9.132406' style="max-height: 0.9967em; vertical-align: -0.2779em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g0-2' d='m4.979328-.055791c0-.062765-.020922-.083686-.09066-.153425l-1.534247-1.534247l1.534247-1.54122c.069738-.069738 .09066-.09066 .09066-.153425c0-.118555-.097634-.174346-.167372-.174346s-.09066 .020922-.160399 .09066l-1.54122 1.534247l-1.534247-1.534247c-.076712-.076712-.118555-.09066-.160399-.09066c-.097634 0-.174346 .076712-.174346 .174346c0 .062765 .027895 .09066 .09066 .153425l1.534247 1.534247l-1.534247 1.54122c-.062765 .062765-.09066 .09066-.09066 .153425c0 .104608 .076712 .174346 .174346 .174346c.062765 0 .09066-.027895 .153425-.09066l1.54122-1.534247l1.54122 1.534247c.069738 .069738 .09066 .09066 .160399 .09066s.167372-.055791 .167372-.174346z'/>
 <path id='g2-77' d='m7.950187-4.658531c0-.104608-.083686-.104608-.209215-.104608h-.948443c-.202242 0-.209215 .006974-.299875 .139477l-2.691905 3.975093l-.690411-3.926276c-.034869-.18132-.034869-.188294-.244085-.188294h-.99726c-.139477 0-.230137 0-.230137 .153425c0 .097634 .083686 .097634 .237111 .097634c.111582 0 .139477 0 .265006 .013948c.139477 .013948 .153425 .027895 .153425 .097634c0 0 0 .048817-.027895 .153425l-.878705 3.500872c-.062765 .237111-.167372 .474222-.72528 .495143c-.055791 0-.146451 .006974-.146451 .153425c0 0 .006974 .097634 .104608 .097634c.209215 0 .502117-.027895 .72528-.027895c.167372 0 .571856 .027895 .739228 .027895c.034869 0 .139477 0 .139477-.153425c0-.09066-.09066-.097634-.153425-.097634c-.446326-.013948-.446326-.195268-.446326-.292902c0-.027895 0-.062765 .027895-.174346l.927522-3.710087h.006974l.746202 4.2401c.020922 .125529 .034869 .188294 .139477 .188294c.097634 0 .153425-.076712 .202242-.153425l2.929016-4.344707l.006974 .006974l-.983313 3.947198c-.055791 .237111-.069738 .292902-.613699 .292902c-.125529 0-.209215 0-.209215 .153425c0 0 0 .097634 .111582 .097634c.132503 0 .292902-.020922 .432379-.020922l.439352-.006974c.195268 0 .690411 .027895 .885679 .027895c.041843 0 .146451 0 .146451-.153425c0-.097634-.083686-.097634-.223163-.097634c0 0-.139477 0-.265006-.013948c-.160399-.013948-.160399-.034869-.160399-.104608c0-.041843 .020922-.111582 .027895-.153425l.920548-3.675218c.062765-.258032 .076712-.313823 .592777-.313823c.146451 0 .237111 0 .237111-.146451z'/>
@@ -280,7 +281,7 @@ the product of two matrices <?xml version='1.0' encoding='UTF-8'?>
 </g>
 </svg> which contains <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.807795 27.037387 6.807795' style="max-height: 0.6697em; vertical-align: --0.0000em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.807795 27.037387 6.807795' style="max-height: 0.7680em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g1-1' d='m1.912827-2.49066c0-.288917-.239103-.52802-.52802-.52802s-.52802 .239103-.52802 .52802s.239103 .52802 .52802 .52802s.52802-.239103 .52802-.52802z'/>
 <path id='g3-77' d='m8.777086-.199253c0-.109589-.089664-.109589-.278954-.109589c-.368618 0-.647572 0-.647572-.179328c0-.039851 0-.059776 .049813-.239103l1.325031-5.310087c.089664-.358655 .109589-.458281 .856787-.458281c.229141 0 .318804 0 .318804-.199253c0-.109589-.099626-.109589-.268991-.109589h-1.315068c-.259029 0-.268991 0-.388543 .18929l-3.636364 5.678705l-.777086-5.638854c-.029888-.229141-.049813-.229141-.308842-.229141h-1.364882c-.18929 0-.298879 0-.298879 .18929c0 .119552 .089664 .119552 .288917 .119552c.129514 0 .308842 .009963 .428394 .019925c.159402 .019925 .219178 .049813 .219178 .159402c0 .039851-.009963 .069738-.039851 .18929l-1.265255 5.070984c-.099626 .398506-.268991 .71731-1.075965 .747198c-.049813 0-.179328 .009963-.179328 .18929c0 .089664 .059776 .119552 .139477 .119552c.318804 0 .667497-.029888 .996264-.029888c.33873 0 .697385 .029888 1.026152 .029888c.049813 0 .179328 0 .179328-.199253c0-.109589-.109589-.109589-.179328-.109589c-.56787-.009963-.67746-.209215-.67746-.438356c0-.069738 .009963-.119552 .039851-.229141l1.354919-5.429639h.009963l.856787 6.176837c.019925 .119552 .029888 .229141 .14944 .229141c.109589 0 .169365-.109589 .219178-.179328l4.024907-6.306351h.009963l-1.424658 5.708593c-.099626 .388543-.119552 .468244-.9066 .468244c-.169365 0-.278954 0-.278954 .18929c0 .119552 .119552 .119552 .14944 .119552l1.235367-.029888c.408468 0 .836862 .029888 1.24533 .029888c.059776 0 .18929 0 .18929-.199253z'/>
@@ -295,7 +296,7 @@ the product of two matrices <?xml version='1.0' encoding='UTF-8'?>
 </g>
 </svg> values, each of which is a <a href="/dot_product.html">dot product</a> of K-element <a href="/vector.html">vector</a>s. thus a total of <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.807795 43.406457 6.807795' style="max-height: 0.6697em; vertical-align: --0.0000em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.807795 43.406457 6.807795' style="max-height: 0.7680em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g1-1' d='m1.912827-2.49066c0-.288917-.239103-.52802-.52802-.52802s-.52802 .239103-.52802 .52802s.239103 .52802 .52802 .52802s.52802-.239103 .52802-.52802z'/>
 <path id='g3-75' d='m7.372354-.199253c0-.109589-.109589-.109589-.199253-.109589c-.408468-.009963-.537983-.099626-.687422-.448319l-1.414695-3.267746c-.009963-.029888-.049813-.109589-.049813-.139477c0 0 .179328-.14944 .288917-.229141l1.743462-1.344956c.936488-.687422 1.325031-.727273 1.62391-.757161c.079701-.009963 .179328-.019925 .179328-.199253c0-.039851-.029888-.109589-.109589-.109589c-.219178 0-.468244 .029888-.707347 .029888c-.358655 0-.747198-.029888-1.105853-.029888c-.069738 0-.18929 0-.18929 .199253c0 .069738 .049813 .099626 .119552 .109589c.219178 .019925 .308842 .069738 .308842 .209215c0 .179328-.298879 .408468-.358655 .458281l-3.88543 2.988792l.797011-3.198007c.089664-.358655 .109589-.458281 .836862-.458281c.249066 0 .33873 0 .33873-.199253c0-.089664-.079701-.109589-.139477-.109589l-1.275218 .029888l-1.285181-.029888c-.069738 0-.199253 0-.199253 .18929c0 .119552 .089664 .119552 .288917 .119552c.129514 0 .308842 .009963 .428394 .019925c.159402 .019925 .219178 .049813 .219178 .159402c0 .039851-.009963 .069738-.039851 .18929l-1.334994 5.349938c-.099626 .388543-.119552 .468244-.9066 .468244c-.169365 0-.278954 0-.278954 .18929c0 .119552 .119552 .119552 .14944 .119552l1.265255-.029888l.637609 .009963c.219178 0 .438356 .019925 .647572 .019925c.069738 0 .199253 0 .199253-.199253c0-.109589-.089664-.109589-.278954-.109589c-.368618 0-.647572 0-.647572-.179328c0-.069738 .059776-.288917 .089664-.438356l.398506-1.564134l1.484433-1.155666l1.155666 2.67995c.119552 .268991 .119552 .288917 .119552 .348692c0 .298879-.428394 .308842-.518057 .308842c-.109589 0-.219178 0-.219178 .199253c0 .109589 .139477 .109589 .139477 .109589c.398506 0 .816936-.029888 1.215442-.029888c.219178 0 .757161 .029888 .976339 .029888c.049813 0 .179328 0 .179328-.199253z'/>
@@ -313,7 +314,7 @@ the product of two matrices <?xml version='1.0' encoding='UTF-8'?>
 </g>
 </svg> <a href="/fma.html">fused multiply-add</a>s are needed to compute the product. each FMA is 2 operations, a (scalar) multiplication and an addition, so a total of <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.807795 55.582917 6.807795' style="max-height: 0.6697em; vertical-align: --0.0000em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.807795 55.582917 6.807795' style="max-height: 0.7680em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g3-75' d='m7.372354-.199253c0-.109589-.109589-.109589-.199253-.109589c-.408468-.009963-.537983-.099626-.687422-.448319l-1.414695-3.267746c-.009963-.029888-.049813-.109589-.049813-.139477c0 0 .179328-.14944 .288917-.229141l1.743462-1.344956c.936488-.687422 1.325031-.727273 1.62391-.757161c.079701-.009963 .179328-.019925 .179328-.199253c0-.039851-.029888-.109589-.109589-.109589c-.219178 0-.468244 .029888-.707347 .029888c-.358655 0-.747198-.029888-1.105853-.029888c-.069738 0-.18929 0-.18929 .199253c0 .069738 .049813 .099626 .119552 .109589c.219178 .019925 .308842 .069738 .308842 .209215c0 .179328-.298879 .408468-.358655 .458281l-3.88543 2.988792l.797011-3.198007c.089664-.358655 .109589-.458281 .836862-.458281c.249066 0 .33873 0 .33873-.199253c0-.089664-.079701-.109589-.139477-.109589l-1.275218 .029888l-1.285181-.029888c-.069738 0-.199253 0-.199253 .18929c0 .119552 .089664 .119552 .288917 .119552c.129514 0 .308842 .009963 .428394 .019925c.159402 .019925 .219178 .049813 .219178 .159402c0 .039851-.009963 .069738-.039851 .18929l-1.334994 5.349938c-.099626 .388543-.119552 .468244-.9066 .468244c-.169365 0-.278954 0-.278954 .18929c0 .119552 .119552 .119552 .14944 .119552l1.265255-.029888l.637609 .009963c.219178 0 .438356 .019925 .647572 .019925c.069738 0 .199253 0 .199253-.199253c0-.109589-.089664-.109589-.278954-.109589c-.368618 0-.647572 0-.647572-.179328c0-.069738 .059776-.288917 .089664-.438356l.398506-1.564134l1.484433-1.155666l1.155666 2.67995c.119552 .268991 .119552 .288917 .119552 .348692c0 .298879-.428394 .308842-.518057 .308842c-.109589 0-.219178 0-.219178 .199253c0 .109589 .139477 .109589 .139477 .109589c.398506 0 .816936-.029888 1.215442-.029888c.219178 0 .757161 .029888 .976339 .029888c.049813 0 .179328 0 .179328-.199253z'/>
 <path id='g3-77' d='m8.777086-.199253c0-.109589-.089664-.109589-.278954-.109589c-.368618 0-.647572 0-.647572-.179328c0-.039851 0-.059776 .049813-.239103l1.325031-5.310087c.089664-.358655 .109589-.458281 .856787-.458281c.229141 0 .318804 0 .318804-.199253c0-.109589-.099626-.109589-.268991-.109589h-1.315068c-.259029 0-.268991 0-.388543 .18929l-3.636364 5.678705l-.777086-5.638854c-.029888-.229141-.049813-.229141-.308842-.229141h-1.364882c-.18929 0-.298879 0-.298879 .18929c0 .119552 .089664 .119552 .288917 .119552c.129514 0 .308842 .009963 .428394 .019925c.159402 .019925 .219178 .049813 .219178 .159402c0 .039851-.009963 .069738-.039851 .18929l-1.265255 5.070984c-.099626 .398506-.268991 .71731-1.075965 .747198c-.049813 0-.179328 .009963-.179328 .18929c0 .089664 .059776 .119552 .139477 .119552c.318804 0 .667497-.029888 .996264-.029888c.33873 0 .697385 .029888 1.026152 .029888c.049813 0 .179328 0 .179328-.199253c0-.109589-.109589-.109589-.179328-.109589c-.56787-.009963-.67746-.209215-.67746-.438356c0-.069738 .009963-.119552 .039851-.229141l1.354919-5.429639h.009963l.856787 6.176837c.019925 .119552 .029888 .229141 .14944 .229141c.109589 0 .169365-.109589 .219178-.179328l4.024907-6.306351h.009963l-1.424658 5.708593c-.099626 .388543-.119552 .468244-.9066 .468244c-.169365 0-.278954 0-.278954 .18929c0 .119552 .119552 .119552 .14944 .119552l1.235367-.029888c.408468 0 .836862 .029888 1.24533 .029888c.059776 0 .18929 0 .18929-.199253z'/>
@@ -334,7 +335,7 @@ the product of two matrices <?xml version='1.0' encoding='UTF-8'?>
 </g>
 </svg> <a href="/flops.html">flops</a> are required, if we were to consider <a href="/gemm.html">gemm</a>, the parameters <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.918502 16.998747 8.855684' style="max-height: 0.9695em; vertical-align: -0.2397em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.918502 16.998747 8.855684' style="max-height: 0.8711em; vertical-align: -0.1905em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g4-11' d='m5.867995-.597758c0-.069738-.059776-.099626-.119552-.099626c-.069738 0-.099626 .029888-.129514 .099626c-.179328 .488169-.557908 .488169-.557908 .488169c-.308842 0-.308842-.777086-.308842-1.016189c0-.209215 0-.229141 .099626-.348692c.936488-1.175592 1.145704-2.34122 1.145704-2.34122s-.009963-.099626-.119552-.099626c-.099626 0-.099626 .029888-.14944 .209215c-.179328 .627646-.508095 1.384807-.976339 1.972603v-.617684c0-1.564134-.926526-2.052304-1.663761-2.052304c-1.364882 0-2.67995 1.424658-2.67995 2.82939c0 .926526 .597758 1.683686 1.613948 1.683686c.627646 0 1.344956-.229141 2.102117-.836862c.129514 .52802 .458281 .836862 .9066 .836862c.52802 0 .836862-.547945 .836862-.707347zm-1.783313-.388543c-.876712 .767123-1.643836 .876712-2.042341 .876712c-.597758 0-.896638-.448319-.896638-1.085928c0-.488169 .259029-1.564134 .577833-2.072229c.468244-.727273 1.006227-.916563 1.354919-.916563c.986301 0 .986301 1.305106 .986301 2.082192c0 .368618 0 .946451 .019925 1.115816z'/>
 <path id='g4-12' d='m5.210461-1.853051c.049813-.219178 .079701-.438356 .079701-.637609c0-.398506-.099626-.767123-.298879-1.075965c-.119552-.169365-.259029-.318804-.428394-.428394c.099626-.059776 .199253-.119552 .298879-.199253c.398506-.298879 .697385-.707347 .806974-1.155666c.029888-.129514 .049813-.249066 .049813-.368618c0-.308842-.109589-.597758-.288917-.816936c-.268991-.318804-.687422-.498132-1.155666-.498132c-1.195517 0-2.102117 1.364882-2.440847 2.719801l-1.534247 6.127024c0 .079701 .039851 .119552 .099626 .119552h.049813c.049813 0 .089664-.029888 .099626-.069738l.67746-2.729763c.169365 .577833 .627646 .976339 1.305106 .976339c.56787 0 1.175592-.18929 1.693649-.56787c.478207-.358655 .846824-.86675 .986301-1.39477zm-.657534-.049813c-.119552 .458281-.33873 .926526-.727273 1.275218c-.37858 .328767-.846824 .518057-1.285181 .518057c-.71731 0-1.125778-.547945-1.125778-1.255293c0-.159402 .019925-.318804 .059776-.488169l.597758-2.410959c.318804-1.255293 1.09589-2.540473 2.191781-2.540473c.33873 0 .617684 .139477 .777086 .398506c.089664 .14944 .119552 .318804 .119552 .508095c0 .159402-.019925 .328767-.069738 .498132c-.089664 .37858-.268991 .757161-.577833 1.046077c-.079701 .069738-.169365 .139477-.259029 .18929c-.199253-.079701-.428394-.129514-.667497-.129514c-.358655 0-.777086 0-.846824 .268991c-.009963 .019925-.009963 .069738-.009963 .069738c0 .239103 .408468 .239103 .757161 .239103c.249066 0 .498132-.039851 .747198-.129514c.129514 .099626 .229141 .229141 .298879 .388543c.099626 .209215 .139477 .438356 .139477 .687422c0 .278954-.049813 .577833-.119552 .86675zm-.617684-2.11208c-.14944 .049813-.298879 .079701-.438356 .079701c-.219178 0-.52802 0-.518057-.039851c.029888-.089664 .358655-.089664 .597758-.089664c.129514 0 .249066 .019925 .358655 .049813z'/>
@@ -439,6 +440,7 @@ __global__ <span style="color: #a9c99f;">void</span> <span style="color: #8fcfd0
 <span style="color: #deb07a;">}</span>
 </pre>
 </div>
+
 <p>
 to divide the work with shared memory we load submatrices into each thread block so that threads of each block can operate on the respective submatrix.<br />
 <img src="/matrix-multiplication-with-shared-memory.png" /><br />
@@ -567,6 +569,7 @@ __global__ <span style="color: #a9c99f;">void</span> <span style="color: #8fcfd0
 <span style="color: #deb07a;">}</span>
 </pre>
 </div>
+
 <p>
 some points to consider before implementating in lisp:<br />
 </p>
@@ -650,6 +653,7 @@ some points to consider before implementating in lisp:<br />
       <span style="color: #e47980;">(</span>cuda-matrix-mul mat1 mat2<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 <p>
 that took some effort, i had to hard-code the block size because as it compiles to C the variable isnt defined as a constant which it has to be because i'd get this error if i were to replace the number 16 with the variable <code>block-size</code>:<br />
 </p>
@@ -659,6 +663,7 @@ that took some effort, i had to hard-code the block size because as it compiles 
                         <span style="color: #deb07a; font-weight: bold;">__attribute__</span><span style="color: #deb07a;">(</span><span style="color: #ffaacf;">(</span>shared<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span> <span style="color: #a9c99f;">float</span> <span style="color: #ffaacf;">arr1_sub</span><span style="color: #deb07a;">[</span>block_size<span style="color: #deb07a;">][</span>block_size<span style="color: #deb07a;">]</span>;
 </pre>
 </div>
+
 <p>
 kernels are very limtied in terms of functionality, not everything can be used in kernels, almost everything is translated to C.<br />
 now a small benchmark to test this against my previous cpu solution:<br />
@@ -694,6 +699,7 @@ now a small benchmark to test this against my previous cpu solution:<br />
 <span style="color: #a0a0cf; font-style: italic;">;;   </span><span style="color: #a0a0cf; font-style: italic;">14,155,824 bytes consed</span>
 </pre>
 </div>
+
 <p>
 the values dont even scale linearly, the gpu version is much faster, a benchmark figure here would be a good idea but im too lazy to bother with that atm.</p>
 </div>

@@ -37,9 +37,9 @@
 </div><h1 class="main-title">semi join</h1><span class='date'>2024-01-10</span>
 </div>
 <div id="content" class="content">
-<div class="fancy-block dummy" data-before="" data-after="&lt;p&gt;
+<div test="test" class="fancy-block dummy" data-before="" data-after="&lt;p&gt;
 (Ramez Elmasri, Shamkant B. Navathe, 2015 chapter 18.1.1 additional operators semi-join and anti-join)&lt;/p&gt;
-">
+" id="def-link-list" data-id="def-link-list">
 <p>
 the semantics of semi-join are as follows: a row of <code>T1</code> is returned as soon as <code>T1.X</code> finds a match with any value of <code>T2.Y</code> without searching for further matches. this is in contrast to finding all possible matches in <a href="/inner_join.html">inner join</a>.<br />
 consider the following schema:<br />
@@ -49,6 +49,7 @@ consider the following schema:<br />
 DEPARTMENT <span style="color: #deb07a;">(</span>Dnumber, Dname, Dmgrssn, Zipcode<span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 <p>
 where a department is located in a specific zip code.<br />
 let us consider the following query:<br />
@@ -61,6 +62,7 @@ let us consider the following query:<br />
                     <span style="color: #deb07a; font-weight: bold;">WHERE</span>  E.Salary &gt; 200000<span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 <p>
 here we have a nested query which is joined by the connector <code>IN</code>.<br />
 to remove the nested query:<br />
@@ -71,6 +73,7 @@ to remove the nested query:<br />
  <span style="color: #deb07a; font-weight: bold;">WHERE</span>  E.Salary &gt; 200000<span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 <p>
 is called as unnesting. it leads to the following query with an operation called <i>semi-join</i>, which we show with a non-standard notation "S=" below:<br />
 </p>
@@ -80,6 +83,7 @@ is called as unnesting. it leads to the following query with an operation called
 <span style="color: #deb07a; font-weight: bold;">WHERE</span> D.Dnumber S= E.Dno <span style="color: #deb07a; font-weight: bold;">and</span> E.Salary &gt; 200000;
 </pre>
 </div>
+
 <p>
 the above query is counting the number of departments that have employees who make more than $200,000 annually. here, the operation is to find the department whose <code>Dnumber</code> attribute matches the value(s) for the <code>Dno</code> attribute of <code>Employee</code> with that high salary.<br />
 in algebra, alternate notations exist. one common notation is <?xml version='1.0' encoding='UTF-8'?>

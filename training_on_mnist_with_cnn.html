@@ -45,6 +45,7 @@ load the dataset (replace <code>train-data-file</code> and <code>test-data-file<
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span>ql:quickload <span style="color: #f3a0a0;">"cl-csv"</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">parse-mylist</span> <span style="color: #ffaacf;">(</span>mylist<span style="color: #ffaacf;">)</span>
   <span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">let*</span> <span style="color: #80aadf;">(</span><span style="color: #e47980;">(</span>digit <span style="color: #d0b0ff;">(</span>parse-integer <span style="color: #3fc489;">(</span>car mylist<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">digit is at the beginning of the list</span>
@@ -64,6 +65,7 @@ load the dataset (replace <code>train-data-file</code> and <code>test-data-file<
   <span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">defparameter</span> <span style="color: #ffaacf;">*mnist-test-data*</span> <span style="color: #80aadf;">(</span>map 'vector #'parse-mylist <span style="color: #e47980;">(</span>cdr *mnist-test-data*<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 <p>
 note that i had to normalize the pixel value from 1-255 to 0-1, otherwise i couldnt train the network, all the deltas were turning into 0<br />
 each image is of size 28x28, we can use the following architecture:<br />
@@ -92,6 +94,7 @@ each image is of size 28x28, we can use the following architecture:<br />
      <span style="color: #e3b0c0; font-weight: bold;">:learning-rate</span> 0.02<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 <p>
 example usage:<br />
 </p>
@@ -102,6 +105,7 @@ example usage:<br />
 *mnist-network*
 </pre>
 </div>
+
 
 <pre class="example">
 #&lt;NETWORK 
@@ -150,6 +154,7 @@ because at the time (<span class="timestamp-wrapper"><span class="timestamp">&lt
     <span style="color: #80aadf;">(</span>format t <span style="color: #f3a0a0;">"~%out layer: ~A"</span> <span style="color: #e47980;">(</span>car <span style="color: #d0b0ff;">(</span>car <span style="color: #3fc489;">(</span>network-feedforward *mnist-network* <span style="color: #6fb3c0;">(</span>car <span style="color: #c0b24f;">(</span>elt *MNIST-TRAIN-DATA* 0<span style="color: #c0b24f;">)</span><span style="color: #6fb3c0;">)</span><span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
+
 <p>
 eventually, after alot debugging of my code, simplified network did converge and overfit, so the next task was to train it on the actual dataset and not just a single image<br />
 </p>

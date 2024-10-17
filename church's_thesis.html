@@ -37,9 +37,9 @@
 </div><h1 class="main-title">church's thesis</h1><span class='date'>2024-03-09</span>
 </div>
 <div id="content" class="content">
-<div class="fancy-block dummy" data-before="" data-after="&lt;p&gt;
+<div test="test" class="fancy-block dummy" data-before="" data-after="&lt;p&gt;
 (;taken fromsee Dexter C. Kozen, 1997 lecture 28 turing machines and effective computability)&lt;/p&gt;
-">
+" id="def-primitive-recursive" data-id="def-primitive-recursive">
 <p>
 <a href="/turing_machine.html">TM</a>s were invented in the 1930s, long before real computers appeared. they came at a time when mathematicians were trying to come to grips with the notion of effective computation. they knew various algorithms for computing things effectively, but they weren't quite sure how to define "effectively computable" in a general way that would allow them to distinguish between the computable and the noncomputable. several alternative formalisms evolved, each with its own peculiarities, in the attempt to nail down this notion:<br />
 </p>
@@ -63,7 +63,9 @@
 <path id='g0-21' d='m5.459527 .009963c0-.029888-.019925-.049813-.049813-.089664c-.099626-.109589-.159402-.259029-.229141-.458281l-2.032379-5.668742c-.209215-.577833-.747198-.707347-1.215442-.707347c-.049813 0-.179328 0-.179328 .109589c0 .079701 .089664 .099626 .089664 .099626c.328767 .059776 .398506 .119552 .647572 .797011l.966376 2.709838l-2.749689 2.729763c-.119552 .119552-.179328 .179328-.179328 .308842c0 .169365 .139477 .288917 .298879 .288917s.249066-.109589 .328767-.209215l2.400996-2.82939c.408468 1.046077 .886675 2.570361 1.046077 2.799502c.159402 .219178 .259029 .219178 .52802 .219178h.219178c.099626-.009963 .109589-.069738 .109589-.099626z'/>
 </defs>
 <g id='page1'>
+<g fill='currentColor'>
 <use x='0' y='0' xlink:href='#g0-21'/>
+</g>
 </g>
 </svg> calculus</a> (Alonzo Church); and<br /></li>
 <li>combinatory logic (Moses Schonfinkel, Haskell B. Curry).<br /></li>
@@ -85,7 +87,9 @@ all of these systems embody the idea of effective computation in one form or ano
 <path id='g0-21' d='m5.459527 .009963c0-.029888-.019925-.049813-.049813-.089664c-.099626-.109589-.159402-.259029-.229141-.458281l-2.032379-5.668742c-.209215-.577833-.747198-.707347-1.215442-.707347c-.049813 0-.179328 0-.179328 .109589c0 .079701 .089664 .099626 .089664 .099626c.328767 .059776 .398506 .119552 .647572 .797011l.966376 2.709838l-2.749689 2.729763c-.119552 .119552-.179328 .179328-.179328 .308842c0 .169365 .139477 .288917 .298879 .288917s.249066-.109589 .328767-.209215l2.400996-2.82939c.408468 1.046077 .886675 2.570361 1.046077 2.799502c.159402 .219178 .259029 .219178 .52802 .219178h.219178c.099626-.009963 .109589-.069738 .109589-.099626z'/>
 </defs>
 <g id='page1'>
+<g fill='currentColor'>
 <use x='0' y='0' xlink:href='#g0-21'/>
+</g>
 </g>
 </svg>-calculus manipulates <?xml version='1.0' encoding='UTF-8'?>
 
@@ -94,7 +98,9 @@ all of these systems embody the idea of effective computation in one form or ano
 <path id='g0-21' d='m5.459527 .009963c0-.029888-.019925-.049813-.049813-.089664c-.099626-.109589-.159402-.259029-.229141-.458281l-2.032379-5.668742c-.209215-.577833-.747198-.707347-1.215442-.707347c-.049813 0-.179328 0-.179328 .109589c0 .079701 .089664 .099626 .089664 .099626c.328767 .059776 .398506 .119552 .647572 .797011l.966376 2.709838l-2.749689 2.729763c-.119552 .119552-.179328 .179328-.179328 .308842c0 .169365 .139477 .288917 .298879 .288917s.249066-.109589 .328767-.209215l2.400996-2.82939c.408468 1.046077 .886675 2.570361 1.046077 2.799502c.159402 .219178 .259029 .219178 .52802 .219178h.219178c.099626-.009963 .109589-.069738 .109589-.099626z'/>
 </defs>
 <g id='page1'>
+<g fill='currentColor'>
 <use x='0' y='0' xlink:href='#g0-21'/>
+</g>
 </g>
 </svg>-terms, and combinatory logic manipulates terms built from combinator symbols. however, there are natural translations between all these different types of data.<br />
 because these vastly dissimilar formalisms are all computationally equivalent, the common notion of computability that they embody is extremely robust, which is to say that it is invariant under fairly radical perturbations in the model. all these mathematicians with their pet systems turned out to be looking at the same thing from different angles. this was too striking to be mere coincidence. they soon came to the realization that the commonality among all these systems must be the elusive notion of effective computability that they had sought for so long. computability is not just Turing machines, nor the <?xml version='1.0' encoding='UTF-8'?>
@@ -104,7 +110,9 @@ because these vastly dissimilar formalisms are all computationally equivalent, t
 <path id='g0-21' d='m5.459527 .009963c0-.029888-.019925-.049813-.049813-.089664c-.099626-.109589-.159402-.259029-.229141-.458281l-2.032379-5.668742c-.209215-.577833-.747198-.707347-1.215442-.707347c-.049813 0-.179328 0-.179328 .109589c0 .079701 .089664 .099626 .089664 .099626c.328767 .059776 .398506 .119552 .647572 .797011l.966376 2.709838l-2.749689 2.729763c-.119552 .119552-.179328 .179328-.179328 .308842c0 .169365 .139477 .288917 .298879 .288917s.249066-.109589 .328767-.209215l2.400996-2.82939c.408468 1.046077 .886675 2.570361 1.046077 2.799502c.159402 .219178 .259029 .219178 .52802 .219178h.219178c.099626-.009963 .109589-.069738 .109589-.099626z'/>
 </defs>
 <g id='page1'>
+<g fill='currentColor'>
 <use x='0' y='0' xlink:href='#g0-21'/>
+</g>
 </g>
 </svg>-calculus, nor the <?xml version='1.0' encoding='UTF-8'?>
 
@@ -121,14 +129,15 @@ probably the most compelling development leading to the acceptance of Church's t
 </p>
 
 </div>
+
 <p>
 (robert i. soare, 2016) calls it <i>turing's theorem</i>:<br />
 </p>
-<div class="fancy-block theorem" data-before="&lt;p&gt;
+<div test="test" class="fancy-block theorem" data-before="&lt;p&gt;
 theorem: turing's theorem&lt;/p&gt;
 " data-after="&lt;p&gt;
 (taken from robert i. soare, 2016 theorem 1.3.1)&lt;/p&gt;
-">
+" id="def-primitive-recursive" data-id="def-primitive-recursive">
 <p>
 a <a href="/function.html">function</a> is <i>effectively calculable</i> by a human being iff it can be computed by a <a href="/turing_machine.html">turing machine</a>.<br />
 </p>
