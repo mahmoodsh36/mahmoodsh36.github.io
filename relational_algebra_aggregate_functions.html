@@ -41,7 +41,10 @@
 (Ramez Elmasri, Shamkant B. Navathe, 2015 chapter 8.4.2 aggregate functions and grouping)&lt;/p&gt;
 " id="the-reglang-is-cfg-lang" data-id="the-reglang-is-cfg-lang">
 <p>
-another type of request that cannot be expressed in the basic <a href="/relational_algebra.html">relational algebra</a> is to specify mathematical <a href="/aggregate_function.html">aggregate function</a>s on collections of values from the <a href="/database.html">database</a><br />
+another type of request that cannot be expressed in the basic <a href="/relational_algebra.html">relational algebra</a> is to specify mathematical <a href="/aggregate_function.html">aggregate function</a>s on collections of values from the <a href="/database.html">database</a>
+</p>
+
+<p>
 we can define an <i>AGGREGATE FUNCTION</i> operation, using the symbol <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.807795 6.517251 7.776396' style="max-height: 0.8141em; vertical-align: -0.1445em; display: inline-block" class="org-latex org-latex-inline">
@@ -53,7 +56,7 @@ we can define an <i>AGGREGATE FUNCTION</i> operation, using the symbol <?xml ver
 <use x='0' y='0' xlink:href='#g1-71'/>
 </g>
 </g>
-</svg>, to specify these types of requests as follows:<br />
+</svg>, to specify these types of requests as follows:
 <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='103.945227 -10.395997 159.313271 10.396' style="max-height: 1.5128em; display: block" class="org-latex org-latex-block">
@@ -124,7 +127,7 @@ we can define an <i>AGGREGATE FUNCTION</i> operation, using the symbol <?xml ver
 <use x='260.49109' y='-2.924017' xlink:href='#g3-59'/>
 </g>
 </g>
-</svg><br />
+</svg>
 where &lt;grouping attributes&gt; is a list of attributes of the relation specified in <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.807795 7.641499 6.807795' style="max-height: 0.7680em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
@@ -158,7 +161,7 @@ where &lt;grouping attributes&gt; is a list of attributes of the relation specif
 <use x='0' y='0' xlink:href='#g4-82'/>
 </g>
 </g>
-</svg> where each group is identified by the grouping attributes. for example, to retrieve each department number, the number of employees in the department, and their average salary, while renaming the resulting attributes as indicated below, we write:<br />
+</svg> where each group is identified by the grouping attributes. for example, to retrieve each department number, the number of employees in the department, and their average salary, while renaming the resulting attributes as indicated below, we write:
 <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='5.146153 -11.014269 356.911437 11.014269' style="max-height: 1.5736em; display: block" class="org-latex org-latex-block">
@@ -283,7 +286,7 @@ where &lt;grouping attributes&gt; is a list of attributes of the relation specif
 <use x='359.290182' y='-3.542289' xlink:href='#g3-58'/>
 </g>
 </g>
-</svg><br />
+</svg>
 in this preceding example, we specified a list of attribute names&#x2013;between parentheses in the <a href="/rename_operation.html">rename operation</a>&#x2013;for the resulting relation <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.807795 7.641499 6.807795' style="max-height: 0.7680em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
@@ -340,7 +343,7 @@ in this preceding example, we specified a list of attribute names&#x2013;between
 <use x='97.759012' y='0' xlink:href='#g1-105'/>
 </g>
 </g>
-</svg>. for example,<br />
+</svg>. for example,
 <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='87.997494 -10.435431 191.208737 10.435437' style="max-height: 1.5167em; display: block" class="org-latex org-latex-block">
@@ -413,8 +416,8 @@ in this preceding example, we specified a list of attribute names&#x2013;between
 <use x='275.331752' y='-2.963451' xlink:href='#g5-41'/>
 </g>
 </g>
-</svg>.<br />
-if no grouping attributes are specified, the functions are applied to all the tuples in the relation, so the resulting relation has a single tuple only. for example<br />
+</svg>.
+if no grouping attributes are specified, the functions are applied to all the tuples in the relation, so the resulting relation has a single tuple only. for example
 <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='95.42963 -10.435431 176.344465 10.435437' style="max-height: 1.5167em; display: block" class="org-latex org-latex-block">
@@ -483,8 +486,8 @@ if no grouping attributes are specified, the functions are applied to all the tu
 <use x='267.899616' y='-2.963451' xlink:href='#g5-41'/>
 </g>
 </g>
-</svg>.<br />
-it is important to note that, in general, duplicates are not eliminated when an aggregate function is applied; this way, the normal interpretation of functions such as SUM and AVERAGE is computed. however, NULL values are not considered in the aggregation. it is worth emphasizing that the result of applying an aggregate function is a relation, not a scalar number&#x2013;even if it has a single value. this makes the relational algebra a closed mathematical system.<br />
+</svg>.
+it is important to note that, in general, duplicates are not eliminated when an aggregate function is applied; this way, the normal interpretation of functions such as SUM and AVERAGE is computed. however, NULL values are not considered in the aggregation. it is worth emphasizing that the result of applying an aggregate function is a relation, not a scalar number&#x2013;even if it has a single value. this makes the relational algebra a closed mathematical system.
 </p>
 
 </div>

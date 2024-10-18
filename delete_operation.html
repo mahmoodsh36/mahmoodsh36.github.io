@@ -41,9 +41,15 @@
 (Ramez Elmasri, Shamkant B. Navathe, 2015 chapter 5.3.2 the delete operation)&lt;/p&gt;
 " id="def-prob-spc" data-id="def-prob-spc">
 <p>
-the <i>Delete</i> operation can violate only <a href="/referential_integrity.html">referential integrity</a>. this occurs if the tuple being deleted is referenced by foreign keys from other tuples in the database. to specify deletion, a condition on the attributes of the <a href="/relation.html">relation</a> selects the <a href="/tuple.html">tuple</a> (or tuples) to be deleted. here are some examples.<br />
-several options are available if a deletion operation causes a violation. the first option, called <i>restrict</i>, is to reject the deletion. the second option, called <i>cascade</i>, is to attempt to cascade (or propagate) the deletion by deleting tuples that reference the tuple that is being deleted. a third option, called <i>set null</i> or <i>set default</i>, is to modify the referencing attribute values that cause the violation; each such value is either set to <i>NULL</i> or changed to reference another default valid tuple. notice that if a referencing attribute that causes a violation is part of the primary key, it cannot be set to <i>NULL</i>; otherwise, it would violate entity integrity.<br />
-in general, when a referential integrity constraint is specified in the <a href="/data_definition_language.html">DDL</a>, the <a href="/database_management_system.html">DBMS</a> will allow the database designer to specify which of the options applies in case of a violation of the constraint.<br />
+the <i>Delete</i> operation can violate only <a href="/referential_integrity.html">referential integrity</a>. this occurs if the tuple being deleted is referenced by foreign keys from other tuples in the database. to specify deletion, a condition on the attributes of the <a href="/relation.html">relation</a> selects the <a href="/tuple.html">tuple</a> (or tuples) to be deleted. here are some examples.
+</p>
+
+<p>
+several options are available if a deletion operation causes a violation. the first option, called <i>restrict</i>, is to reject the deletion. the second option, called <i>cascade</i>, is to attempt to cascade (or propagate) the deletion by deleting tuples that reference the tuple that is being deleted. a third option, called <i>set null</i> or <i>set default</i>, is to modify the referencing attribute values that cause the violation; each such value is either set to <i>NULL</i> or changed to reference another default valid tuple. notice that if a referencing attribute that causes a violation is part of the primary key, it cannot be set to <i>NULL</i>; otherwise, it would violate entity integrity.
+</p>
+
+<p>
+in general, when a referential integrity constraint is specified in the <a href="/data_definition_language.html">DDL</a>, the <a href="/database_management_system.html">DBMS</a> will allow the database designer to specify which of the options applies in case of a violation of the constraint.
 </p>
 
 </div>

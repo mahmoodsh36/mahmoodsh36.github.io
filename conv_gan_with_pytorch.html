@@ -41,15 +41,15 @@
 note: &lt;/p&gt;
 " id="def-card" data-id="def-card">
 <p>
-some information was quoted from <a href="https://machinelearningmastery.com/how-to-develop-a-generative-adversarial-network-for-an-mnist-handwritten-digits-from-scratch-in-keras/">this great article</a> (the code was rewritten in pytorch and alot of things differ though!).<br />
+some information was quoted from <a href="https://machinelearningmastery.com/how-to-develop-a-generative-adversarial-network-for-an-mnist-handwritten-digits-from-scratch-in-keras/">this great article</a> (the code was rewritten in pytorch and alot of things differ though!).
 </p>
 
 </div>
-<div id="outline-container-orgc03c716" class="outline-2">
-<h2 id="orgc03c716">essential packages</h2>
-<div class="outline-text-2" id="text-orgc03c716">
+<div id="outline-container-org8467164" class="outline-2">
+<h2 id="org8467164">essential packages</h2>
+<div class="outline-text-2" id="text-org8467164">
 <p>
-we need to import some essential packages:<br />
+we need to import some essential packages:
 </p>
 <div class="org-src-container" data-language="python">
 <pre class="src src-python" id="src-essential-imports"><span style="color: #a0a0cf; font-style: italic;"># </span><span style="color: #a0a0cf; font-style: italic;">&lt;&lt;src-activate-venv()&gt;&gt;</span>
@@ -62,8 +62,11 @@ torch.manual_seed<span style="color: #deb07a;">(</span>0<span style="color: #deb
 </div>
 
 <p>
-it's common <code>PyTorch</code> practice to initialize a variable, usually named <code>device</code>, that will hold the device we're training on (CPU or GPU).<br />
-here, if the machine we're using has a cuda-supported gpu available, we use that, otherwise we use the cpu, this variable stores our choice and is used later to pass data to the training device, if we're training on the cpu, there would be no point in copying the data from the cpu memory to another block of cpu memory, but it would still work.<br />
+it's common <code>PyTorch</code> practice to initialize a variable, usually named <code>device</code>, that will hold the device we're training on (CPU or GPU).
+</p>
+
+<p>
+here, if the machine we're using has a cuda-supported gpu available, we use that, otherwise we use the cpu, this variable stores our choice and is used later to pass data to the training device, if we're training on the cpu, there would be no point in copying the data from the cpu memory to another block of cpu memory, but it would still work.
 </p>
 <div class="org-src-container" data-language="python">
 <pre class="src src-python" id="src-pytorch-init"><span style="color: #ffaacf;">device</span> = torch.device<span style="color: #deb07a;">(</span><span style="color: #f3a0a0;">"cuda:0"</span> <span style="color: #deb07a; font-weight: bold;">if</span> torch.cuda.is_available<span style="color: #ffaacf;">()</span> <span style="color: #deb07a; font-weight: bold;">else</span> <span style="color: #f3a0a0;">"cpu"</span><span style="color: #deb07a;">)</span>
@@ -71,11 +74,11 @@ here, if the machine we're using has a cuda-supported gpu available, we use that
 </div>
 </div>
 </div>
-<div id="outline-container-orgd67e150" class="outline-2">
-<h2 id="orgd67e150">load the data</h2>
-<div class="outline-text-2" id="text-orgd67e150">
+<div id="outline-container-org79e6090" class="outline-2">
+<h2 id="org79e6090">load the data</h2>
+<div class="outline-text-2" id="text-org79e6090">
 <p>
-we start by loading the mnist dataset (the 28x28 images of hand-written digits), we use the <code>torchvision</code> package from <code>pypi</code> which provides various datasets for <a href="/machine_learning.html">machine learning</a><br />
+we start by loading the mnist dataset (the 28x28 images of hand-written digits), we use the <code>torchvision</code> package from <code>pypi</code> which provides various datasets for <a href="/machine_learning.html">machine learning</a>
 </p>
 <div class="org-src-container" data-language="python">
 <pre class="src src-python" id="src-load-dataset"><span style="color: #a0a0cf; font-style: italic;"># </span><span style="color: #a0a0cf; font-style: italic;">&lt;&lt;src-essential-imports()&gt;&gt;</span>
@@ -110,7 +113,7 @@ label: 7
 
 
 <p>
-the function <code>gen_images_img</code> below is used to easily display a number of images in a grid layout:<br />
+the function <code>gen_images_img</code> below is used to easily display a number of images in a grid layout:
 </p>
 <div class="org-src-container" data-language="python">
 <pre class="src src-python" id="src-gen-images-img"><span style="color: #a0a0cf; font-style: italic;"># </span><span style="color: #a0a0cf; font-style: italic;">generate an image of images and write it to a file</span>
@@ -133,7 +136,7 @@ the function <code>gen_images_img</code> below is used to easily display a numbe
 </div>
 
 <p>
-example usage of the function:<br />
+example usage of the function:
 </p>
 <div class="org-src-container" data-language="python">
 <pre class="src src-python"><span style="color: #a0a0cf; font-style: italic;"># </span><span style="color: #a0a0cf; font-style: italic;">&lt;&lt;src-load-dataset()&gt;&gt;</span>
@@ -144,18 +147,21 @@ gen_images_img<span style="color: #deb07a;">(</span>train_x<span style="color: #
 
 
 
-<div id="org15c99bb" class="figure">
-<p><img src="/zuBb2Oa.png" /><br />
+<div id="org22db516" class="figure">
+<p><img src="/zuBb2Oa.png" />
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgcdba14d" class="outline-2">
-<h2 id="orgcdba14d">discriminator</h2>
-<div class="outline-text-2" id="text-orgcdba14d">
+<div id="outline-container-orga1684d5" class="outline-2">
+<h2 id="orga1684d5">discriminator</h2>
+<div class="outline-text-2" id="text-orga1684d5">
 <p>
-the discriminator model must take a sample image from our dataset as input and output a classification, a prediction as to whether the sample is real or fake. or perhaps the likelihood of the sample being real, which means the discriminator does <a href="/boolean_classification.html">binary classification</a>.<br />
-pytorch makes defining neural nets easy by inheriting from <code>nn.Module</code>, here, since we're dealing with images, we use <a href="/convolutional_neural_network.html">convolutional layer</a>s, in combinations with <a href="/dropout.html">dropout layers</a> which arent "mandatory" but they help improve results, the last layers are a <a href="/convolutional_neural_network.html">flatten layer</a> and a linear layer, the output for a single image would be a float in the range 0-1.<br />
+the discriminator model must take a sample image from our dataset as input and output a classification, a prediction as to whether the sample is real or fake. or perhaps the likelihood of the sample being real, which means the discriminator does <a href="/boolean_classification.html">binary classification</a>.
+</p>
+
+<p>
+pytorch makes defining neural nets easy by inheriting from <code>nn.Module</code>, here, since we're dealing with images, we use <a href="/convolutional_neural_network.html">convolutional layer</a>s, in combinations with <a href="/dropout.html">dropout layers</a> which arent "mandatory" but they help improve results, the last layers are a <a href="/convolutional_neural_network.html">flatten layer</a> and a linear layer, the output for a single image would be a float in the range 0-1.
 </p>
 <div class="org-src-container" data-language="python">
 <pre class="src src-python" id="src-discriminator"><span style="color: #a0a0cf; font-style: italic;"># </span><span style="color: #a0a0cf; font-style: italic;">&lt;&lt;src-essential-imports()&gt;&gt;</span>
@@ -185,7 +191,7 @@ pytorch makes defining neural nets easy by inheriting from <code>nn.Module</code
 </div>
 
 <p>
-because the module inherits from <code>nn.Module</code>, it already is printable and aware of its layers and parameters:<br />
+because the module inherits from <code>nn.Module</code>, it already is printable and aware of its layers and parameters:
 </p>
 <div class="org-src-container" data-language="python">
 <pre class="src src-python"><span style="color: #a0a0cf; font-style: italic;"># </span><span style="color: #a0a0cf; font-style: italic;">&lt;&lt;src-discriminator()&gt;&gt;</span>
@@ -207,7 +213,7 @@ Discriminator(
 
 
 <p>
-compare the output above to the <code>torch-summary</code> package from <code>pypi</code> which provides the summary function in a similar fashion to the <code>keras</code> library:<br />
+compare the output above to the <code>torch-summary</code> package from <code>pypi</code> which provides the summary function in a similar fashion to the <code>keras</code> library:
 </p>
 <div class="org-src-container" data-language="python">
 <pre class="src src-python" id="src-discriminator-summary"><span style="color: #a0a0cf; font-style: italic;"># </span><span style="color: #a0a0cf; font-style: italic;">&lt;&lt;src-discriminator()&gt;&gt;</span>
@@ -217,7 +223,7 @@ summary<span style="color: #deb07a;">(</span>Discriminator<span style="color: #f
 </div>
 
 
-<pre class="example" id="org74430b9">
+<pre class="example" id="orgd53db9c">
 ----------------------------------------------------------------
         Layer (type)               Output Shape         Param #
 ================================================================
@@ -241,7 +247,7 @@ Estimated Total Size (MB): 0.37
 
 
 <p>
-a simple feed-forwarding test with a random tensor:<br />
+a simple feed-forwarding test with a random tensor:
 </p>
 <div class="org-src-container" data-language="python">
 <pre class="src src-python"><span style="color: #a0a0cf; font-style: italic;"># </span><span style="color: #a0a0cf; font-style: italic;">&lt;&lt;src-discriminator()&gt;&gt;</span>
@@ -260,9 +266,15 @@ tensor([[0.4682]], grad_fn=&lt;SigmoidBackward0&gt;)
 
 
 <p>
-the output tensor is simple a one-element (batched) tensor, as expected.<br />
-we could start training this model with real examples with a class label of one (for real) and randomly generated samples with a class label of zero (for fake).<br />
-we prepare the inputs and the desired outputs (x's and y's) of the network and copy them to the device that is used for training (could be gpu or cpu depending on the machine)<br />
+the output tensor is simple a one-element (batched) tensor, as expected.
+</p>
+
+<p>
+we could start training this model with real examples with a class label of one (for real) and randomly generated samples with a class label of zero (for fake).
+</p>
+
+<p>
+we prepare the inputs and the desired outputs (x's and y's) of the network and copy them to the device that is used for training (could be gpu or cpu depending on the machine)
 </p>
 <div class="org-src-container" data-language="python">
 <pre class="src src-python" id="src-make-training-tensors"><span style="color: #a0a0cf; font-style: italic;"># </span><span style="color: #a0a0cf; font-style: italic;">&lt;&lt;src-load-dataset()&gt;&gt;</span>
@@ -293,7 +305,7 @@ as the values in the original images range from 0 to 255 (for grayscale colors),
 <use x='17.207629' y='0' xlink:href='#g7-93'/>
 </g>
 </g>
-</svg> which is easier to work with, this is standard practice in ML. we also need to expand the dimensions of the images into 3d because our models expect 3d tensors and the mnist dataset only contains 2d greyscaled images, so a batch of images would be of 4 dimensions:<br />
+</svg> which is easier to work with, this is standard practice in ML. we also need to expand the dimensions of the images into 3d because our models expect 3d tensors and the mnist dataset only contains 2d greyscaled images, so a batch of images would be of 4 dimensions:
 </p>
 <div class="org-src-container" data-language="python">
 <pre class="src src-python" id="src-normalize-training-tensors"><span style="color: #a0a0cf; font-style: italic;"># </span><span style="color: #a0a0cf; font-style: italic;">&lt;&lt;src-make-training-tensors()&gt;&gt;</span>
@@ -311,12 +323,15 @@ before: torch.Size([60000, 28, 28])
 after: torch.Size([60000, 1, 28, 28])
 </pre>
 </div>
-<div id="outline-container-org17a180f" class="outline-3">
-<h3 id="org17a180f">training the discriminator</h3>
-<div class="outline-text-3" id="text-org17a180f">
+<div id="outline-container-org012cba4" class="outline-3">
+<h3 id="org012cba4">training the discriminator</h3>
+<div class="outline-text-3" id="text-org012cba4">
 <p>
-we could systematically enumerate all samples in the training dataset, and that is a good approach, but good training via <a href="/stochastic_gradient_descent.html">stochastic gradient descent</a> requires that the training dataset be shuffled prior to each epoch. a simpler approach is to select random samples of images from the training dataset.<br />
-the <code>generate_real_samples_for_discriminator()</code> function below takes the training dataset as an argument and selects a random subset of images; it also returns class labels for the images, specifically a class label of 1, to indicate that the images are real.<br />
+we could systematically enumerate all samples in the training dataset, and that is a good approach, but good training via <a href="/stochastic_gradient_descent.html">stochastic gradient descent</a> requires that the training dataset be shuffled prior to each epoch. a simpler approach is to select random samples of images from the training dataset.
+</p>
+
+<p>
+the <code>generate_real_samples_for_discriminator()</code> function below takes the training dataset as an argument and selects a random subset of images; it also returns class labels for the images, specifically a class label of 1, to indicate that the images are real.
 </p>
 <div class="org-src-container" data-language="python">
 <pre class="src src-python" id="src-gen-real-samples"><span style="color: #deb07a; font-weight: bold;">def</span> <span style="color: #8fcfd0;">generate_real_samples_for_discriminator</span><span style="color: #deb07a;">(</span>dataset, n_samples<span style="color: #deb07a;">)</span>:
@@ -328,8 +343,11 @@ the <code>generate_real_samples_for_discriminator()</code> function below takes 
 </div>
 
 <p>
-we also need a source of fake images. we can generate images comprised of random pixel values, specifically random pixel values in the range <code>[0,1]</code> like our normalized real images.<br />
-the <code>generate_fake_samples_for_discriminator()</code> function below implements this behavior and generates images of random pixel values and their associated class label of 0, for fake.<br />
+we also need a source of fake images. we can generate images comprised of random pixel values, specifically random pixel values in the range <code>[0,1]</code> like our normalized real images.
+</p>
+
+<p>
+the <code>generate_fake_samples_for_discriminator()</code> function below implements this behavior and generates images of random pixel values and their associated class label of 0, for fake.
 </p>
 <div class="org-src-container" data-language="python">
 <pre class="src src-python" id="src-gen-fake-samples-for-discriminator"><span style="color: #deb07a; font-weight: bold;">def</span> <span style="color: #8fcfd0;">generate_fake_samples_for_discriminator</span><span style="color: #deb07a;">(</span>n_samples<span style="color: #deb07a;">)</span>:
@@ -340,10 +358,19 @@ the <code>generate_fake_samples_for_discriminator()</code> function below implem
 </div>
 
 <p>
-finally, we need to train the discriminator model. this involves repeatedly retrieving samples of real images and samples of generated (fake) images and updating the model for a fixed number of iterations.<br />
-we will ignore the idea of epochs for now (e.g. complete passes through the training dataset) and fit the discriminator model for a fixed number of batches. the model will learn to discriminate between real and fake images rapidly and it doesnt take many batches before it learns to discriminate perfectly.<br />
-the <code>train_discriminator()</code> function implements this, using a batch size of 256 images where 128 are real and 128 are fake each iteration.<br />
-we update the discriminator separately for real and fake examples so that we can calculate the accuracy of the model on each sample prior to the update. this gives insight into how the discriminator model is performing over time. we also use the <a href="/python.html">matplotlib</a> library to plot the loss over time.<br />
+finally, we need to train the discriminator model. this involves repeatedly retrieving samples of real images and samples of generated (fake) images and updating the model for a fixed number of iterations.
+</p>
+
+<p>
+we will ignore the idea of epochs for now (e.g. complete passes through the training dataset) and fit the discriminator model for a fixed number of batches. the model will learn to discriminate between real and fake images rapidly and it doesnt take many batches before it learns to discriminate perfectly.
+</p>
+
+<p>
+the <code>train_discriminator()</code> function implements this, using a batch size of 256 images where 128 are real and 128 are fake each iteration.
+</p>
+
+<p>
+we update the discriminator separately for real and fake examples so that we can calculate the accuracy of the model on each sample prior to the update. this gives insight into how the discriminator model is performing over time. we also use the <a href="/python.html">matplotlib</a> library to plot the loss over time.
 </p>
 <div class="org-src-container" data-language="python">
 <pre class="src src-python" id="src-train-discriminator"><span style="color: #a0a0cf; font-style: italic;"># </span><span style="color: #a0a0cf; font-style: italic;">&lt;&lt;src-normalize-training-tensors()&gt;&gt;</span>
@@ -405,7 +432,7 @@ we update the discriminator separately for real and fake examples so that we can
 </div>
 
 <p>
-an example run of the function:<br />
+an example run of the function:
 </p>
 <div class="org-src-container" data-language="python">
 <pre class="src src-python"><span style="color: #a0a0cf; font-style: italic;"># </span><span style="color: #a0a0cf; font-style: italic;">&lt;&lt;src-train-discriminator()&gt;&gt;</span>
@@ -425,36 +452,59 @@ f
 
 
 
-<div id="org0441747" class="figure">
-<p><img src="/ar1T72O.svg" /><br />
+<div id="org768be3b" class="figure">
+<p><img src="/ar1T72O.svg" />
 </p>
 </div>
 
+
 <p>
-as we can see, the loss gradually declines which means the discriminator (theoretically) gets better at recognizing fake images from real ones.<br />
+as we can see, the loss gradually declines which means the discriminator (theoretically) gets better at recognizing fake images from real ones.
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org4bbd7c0" class="outline-2">
-<h2 id="org4bbd7c0">generator</h2>
-<div class="outline-text-2" id="text-org4bbd7c0">
+<div id="outline-container-org2dda04f" class="outline-2">
+<h2 id="org2dda04f">generator</h2>
+<div class="outline-text-2" id="text-org2dda04f">
 <p>
-the generator model is responsible for creating new, fake but plausible images of handwritten digits. it does so by taking a point from the <a href="/latent_space.html">latent space</a> as input and outputting a tensor representing a grayscale image.<br />
-the latent space is an arbitrarily defined <a href="/finite_set.html">finite</a> <a href="/vector_space.html">vector space</a>. it has no meaning, but by drawing points from this space and feeding them to the generator model during training, the generator model will assign meaning to the latent points and, in turn, to the latent space. at the end of training, the latent vector space would have an internal structure that is a compressed representation of the output space (the MNIST image dataset), that only the generator knows how to turn into plausible images that fool the discriminator.<br />
-in our case, developing a generator model requires that we transform a vector from the latent space to a 2D array with 28x28 values that represent a grayscale image. there are a number of ways to achieve this but there is one approach that has proven effective in deep <a href="/convolutional_generative_adversarial_network.html">convolutional generative adversarial network</a>. it involves two main elements:<br />
+the generator model is responsible for creating new, fake but plausible images of handwritten digits. it does so by taking a point from the <a href="/latent_space.html">latent space</a> as input and outputting a tensor representing a grayscale image.
 </p>
+
+<p>
+the latent space is an arbitrarily defined <a href="/finite_set.html">finite</a> <a href="/vector_space.html">vector space</a>. it has no meaning, but by drawing points from this space and feeding them to the generator model during training, the generator model will assign meaning to the latent points and, in turn, to the latent space. at the end of training, the latent vector space would have an internal structure that is a compressed representation of the output space (the MNIST image dataset), that only the generator knows how to turn into plausible images that fool the discriminator.
+</p>
+
+<p>
+in our case, developing a generator model requires that we transform a vector from the latent space to a 2D array with 28x28 values that represent a grayscale image. there are a number of ways to achieve this but there is one approach that has proven effective in deep <a href="/convolutional_generative_adversarial_network.html">convolutional generative adversarial network</a>. it involves two main elements:
+</p>
+
 <ul class="org-ul">
-<li>first, we use a <a href="/convolutional_neural_network.html">dense layer</a> as the first hidden layer that has enough nodes to represent a low-resolution version of the output image. specifically, an image half the size (one quarter the area) of the output image.<br /></li>
-<li>second, we dont just want one low-resolution version of the image; we want many parallel versions or interpretations of the input. this is a pattern in convolutional neural networks where we have many parallel filters resulting in multiple parallel activation maps, called <a href="/feature_map.html">feature map</a>s, with different interpretations of the input. we want the same thing in reverse: many parallel versions of our output with different learned features that can be collapsed in the output layer into a final image.<br /></li>
+<li>first, we use a <a href="/convolutional_neural_network.html">dense layer</a> as the first hidden layer that has enough nodes to represent a low-resolution version of the output image. specifically, an image half the size (one quarter the area) of the output image.</li>
+<li>second, we dont just want one low-resolution version of the image; we want many parallel versions or interpretations of the input. this is a pattern in convolutional neural networks where we have many parallel filters resulting in multiple parallel activation maps, called <a href="/feature_map.html">feature map</a>s, with different interpretations of the input. we want the same thing in reverse: many parallel versions of our output with different learned features that can be collapsed in the output layer into a final image.</li>
 </ul>
 <p>
-therefore, the first hidden layer (the dense one) needs enough nodes for multiple low-resolution versions of our output image, in our case 128 images sized 7x7 (or more accurately, 1x7x7), so there would be a total of 6272 nodes in our first dense layer.<br />
-the activations from these nodes can then be reshaped into something image-like to pass into a convolutional layer, such as 128 different 7x7 feature maps.<br />
-the next major architectural innovation involves upsampling the low-resolution image to a higher resolution version of the image. there are two common ways to do this upsampling process, sometimes called <i>deconvolution</i>. one way is to use a 2d <code>Upsample</code> layer (like a reverse pooling layer) followed by a normal <code>Conv2d</code> layer. the other and perhaps more modern way is to combine these two operations into a single layer, called a <code>ConvTranspose2d</code>. we will use this latter approach for our generator.<br />
-the <code>ConvTranspose2d</code> layer can be configured with a stride of (2x2) that will quadruple the area of the input feature maps (double their width and height dimensions). it is also good practice to use a kernel size that is a factor of the stride (e.g. double) to avoid a checkerboard pattern that can be observed when upsampling. we also use a padding of 1x1 in correspondance with the stride size of 2x2 in the hidden layers to preserve the size of the output of the convolution operation.<br />
-this pattern of upsampling can be repeated to arrive at our 28x28 output image.<br />
-the output layer of the model is a <code>Conv2d</code> with one filter and a kernel size of 7x7 and padding of size 1x1, designed to create a single feature map and preserve its dimensions at 28x28 pixels that represent our final grayscale image. a sigmoid activation is used to ensure output values are in the desired range of [0,1].<br />
+therefore, the first hidden layer (the dense one) needs enough nodes for multiple low-resolution versions of our output image, in our case 128 images sized 7x7 (or more accurately, 1x7x7), so there would be a total of 6272 nodes in our first dense layer.
+</p>
+
+<p>
+the activations from these nodes can then be reshaped into something image-like to pass into a convolutional layer, such as 128 different 7x7 feature maps.
+</p>
+
+<p>
+the next major architectural innovation involves upsampling the low-resolution image to a higher resolution version of the image. there are two common ways to do this upsampling process, sometimes called <i>deconvolution</i>. one way is to use a 2d <code>Upsample</code> layer (like a reverse pooling layer) followed by a normal <code>Conv2d</code> layer. the other and perhaps more modern way is to combine these two operations into a single layer, called a <code>ConvTranspose2d</code>. we will use this latter approach for our generator.
+</p>
+
+<p>
+the <code>ConvTranspose2d</code> layer can be configured with a stride of (2x2) that will quadruple the area of the input feature maps (double their width and height dimensions). it is also good practice to use a kernel size that is a factor of the stride (e.g. double) to avoid a checkerboard pattern that can be observed when upsampling. we also use a padding of 1x1 in correspondance with the stride size of 2x2 in the hidden layers to preserve the size of the output of the convolution operation.
+</p>
+
+<p>
+this pattern of upsampling can be repeated to arrive at our 28x28 output image.
+</p>
+
+<p>
+the output layer of the model is a <code>Conv2d</code> with one filter and a kernel size of 7x7 and padding of size 1x1, designed to create a single feature map and preserve its dimensions at 28x28 pixels that represent our final grayscale image. a sigmoid activation is used to ensure output values are in the desired range of [0,1].
 </p>
 <div class="org-src-container" data-language="python">
 <pre class="src src-python" id="src-generator"><span style="color: #deb07a; font-weight: bold;">class</span> <span style="color: #a9c99f;">Generator</span><span style="color: #deb07a;">(</span>nn.Module<span style="color: #deb07a;">)</span>:
@@ -491,7 +541,7 @@ the output layer of the model is a <code>Conv2d</code> with one filter and a ker
 </div>
 
 <p>
-printing a summary of the model:<br />
+printing a summary of the model:
 </p>
 <div class="org-src-container" data-language="python">
 <pre class="src src-python"><span style="color: #a0a0cf; font-style: italic;"># </span><span style="color: #a0a0cf; font-style: italic;">&lt;&lt;src-discriminator-summary()&gt;&gt;</span>
@@ -501,7 +551,7 @@ summary<span style="color: #deb07a;">(</span>Generator<span style="color: #ffaac
 </div>
 
 
-<pre class="example" id="org6469c17">
+<pre class="example" id="org05d1fb8">
 ----------------------------------------------------------------
         Layer (type)               Output Shape         Param #
 ================================================================
@@ -523,7 +573,7 @@ Estimated Total Size (MB): 5.45
 
 
 <p>
-the input to the generator needs to be vectors generated from the latent space. the <code>generate_latent_points()</code> function below implements this and generates a batch with the desired number of points in the latent space that can be used as input to the generator model.<br />
+the input to the generator needs to be vectors generated from the latent space. the <code>generate_latent_points()</code> function below implements this and generates a batch with the desired number of points in the latent space that can be used as input to the generator model.
 </p>
 <div class="org-src-container" data-language="python">
 <pre class="src src-python" id="src-generate-latent-points"><span style="color: #deb07a; font-weight: bold;">def</span> <span style="color: #8fcfd0;">generate_latent_points</span><span style="color: #deb07a;">(</span>latent_size, n_points<span style="color: #deb07a;">)</span>:
@@ -532,7 +582,7 @@ the input to the generator needs to be vectors generated from the latent space. 
 </div>
 
 <p>
-next, we can use the generated points as input to the generator model to generate new samples. we write the function <code>generate_fake_samples_with_generator()</code> which takes the generator model as an argument and uses it to generate the desired number of samples by first calling the <code>generate_latent_points()</code> function to generate the required number of points in latent space as input to the model. typically this function would be useful after the generator has been trained.<br />
+next, we can use the generated points as input to the generator model to generate new samples. we write the function <code>generate_fake_samples_with_generator()</code> which takes the generator model as an argument and uses it to generate the desired number of samples by first calling the <code>generate_latent_points()</code> function to generate the required number of points in latent space as input to the model. typically this function would be useful after the generator has been trained.
 </p>
 <div class="org-src-container" data-language="python">
 <pre class="src src-python" id="src-gen-fake-samples-with-generator"><span style="color: #a0a0cf; font-style: italic;"># </span><span style="color: #a0a0cf; font-style: italic;">&lt;&lt;src-generate-latent-points()&gt;&gt;</span>
@@ -545,7 +595,7 @@ next, we can use the generated points as input to the generator model to generat
 </div>
 
 <p>
-to show a few randomly perturbed images (the generator hasnt been trained yet):<br />
+to show a few randomly perturbed images (the generator hasnt been trained yet):
 </p>
 <div class="org-src-container" data-language="python">
 <pre class="src src-python"><span style="color: #a0a0cf; font-style: italic;"># </span><span style="color: #a0a0cf; font-style: italic;">&lt;&lt;src-generator()&gt;&gt;</span>
@@ -561,18 +611,24 @@ gen_images_img<span style="color: #deb07a;">(</span>X.reshape<span style="color:
 
 
 
-<div id="org4e715d6" class="figure">
-<p><img src="/dUD33Ha.png" /><br />
+<div id="org47ef267" class="figure">
+<p><img src="/dUD33Ha.png" />
 </p>
 </div>
 </div>
-<div id="outline-container-org6b16ce6" class="outline-3">
-<h3 id="org6b16ce6">training the generator</h3>
-<div class="outline-text-3" id="text-org6b16ce6">
+<div id="outline-container-orgb979a1e" class="outline-3">
+<h3 id="orgb979a1e">training the generator</h3>
+<div class="outline-text-3" id="text-orgb979a1e">
 <p>
-to train the generator, we need to attach it to the discriminator in a sequential manner, such that the output of the generator would be forwarded to the discriminator for classification, the discriminator would determine whether the data generated by the generator passes as a real image. this is why the training of disciminator beforehand to classify real data from fake ones is cruical, otherwise the generator wouldnt learn (this is one approach, another is described later).<br />
-during the training of the generator, we may want to freeze the parameters of the discriminator, because we wouldnt want the discriminator training and overfitting on fake data.<br />
-so the next step is constructing the full generational model by composing the generator and discriminator into one model.<br />
+to train the generator, we need to attach it to the discriminator in a sequential manner, such that the output of the generator would be forwarded to the discriminator for classification, the discriminator would determine whether the data generated by the generator passes as a real image. this is why the training of disciminator beforehand to classify real data from fake ones is cruical, otherwise the generator wouldnt learn (this is one approach, another is described later).
+</p>
+
+<p>
+during the training of the generator, we may want to freeze the parameters of the discriminator, because we wouldnt want the discriminator training and overfitting on fake data.
+</p>
+
+<p>
+so the next step is constructing the full generational model by composing the generator and discriminator into one model.
 </p>
 <div class="org-src-container" data-language="python">
 <pre class="src src-python" id="src-gan"><span style="color: #deb07a; font-weight: bold;">class</span> <span style="color: #a9c99f;">GAN</span><span style="color: #deb07a;">(</span>nn.Module<span style="color: #deb07a;">)</span>:
@@ -590,7 +646,7 @@ so the next step is constructing the full generational model by composing the ge
 </div>
 
 <p>
-its that simple, a sequential composition of the two models.<br />
+its that simple, a sequential composition of the two models.
 </p>
 <div class="org-src-container" data-language="python">
 <pre class="src src-python" id="src-train-generator"><span style="color: #deb07a; font-weight: bold;">def</span> <span style="color: #8fcfd0;">train_generator</span><span style="color: #deb07a;">(</span>gan, n_iters=100, batch_size=256<span style="color: #deb07a;">)</span>:
@@ -625,7 +681,7 @@ its that simple, a sequential composition of the two models.<br />
 </div>
 
 <p>
-an example usage:<br />
+an example usage:
 </p>
 <div class="org-src-container" data-language="python">
 <pre class="src src-python" id="src-train-generator-2"><span style="color: #a0a0cf; font-style: italic;"># </span><span style="color: #a0a0cf; font-style: italic;">&lt;&lt;src-train-discriminator()&gt;&gt;</span>
@@ -649,13 +705,14 @@ f
 
 
 
-<div id="org9a6480b" class="figure">
-<p><img src="/YMD1rgW.png" /><br />
+<div id="orgdaa893f" class="figure">
+<p><img src="/YMD1rgW.png" />
 </p>
 </div>
 
+
 <p>
-in theory, this could work, in practice, i had trouble getting sensible results:<br />
+in theory, this could work, in practice, i had trouble getting sensible results:
 </p>
 <div class="org-src-container" data-language="python">
 <pre class="src src-python"><span style="color: #a0a0cf; font-style: italic;"># </span><span style="color: #a0a0cf; font-style: italic;">&lt;&lt;src-train-generator-2()&gt;&gt;</span>
@@ -667,10 +724,16 @@ f
 
 
 <p>
-<img src="/3PW7kEK.png" /><br />
-after 5000 batches these were the results i got, which arent much, with further training i could've gotten better results, but i needed a better approach to get faster convergence.<br />
-as we're only training the generator on random inputs, and the discriminator stays frozen, only one competitor is making progress, whereas if the two were competing, as in a true <a href="/zero-sum_game.html">zero-sum game</a>, we'd get better results, because as the discriminator gets better, the generator would also need to get better in order to be able to fool its competitor, so a better approach would be to train both at the same time, and to train the discriminator on the outputs of the generator, which we label as fake, so that it'd get better at detecting the generator's attempts at fooling it, which in turn makes the generator get better at trying to fool the discriminator.<br />
-the following method, <code>train_gan</code>, implements this approach, and on each epoch (iteration through the entire dataset), it generates some samples for later evaluation (ofcourse a better approach would be to copy the model itself), for further appreciation and more insight into how the model's output changes over epochs.<br />
+<img src="/3PW7kEK.png" />
+after 5000 batches these were the results i got, which arent much, with further training i could've gotten better results, but i needed a better approach to get faster convergence.
+</p>
+
+<p>
+as we're only training the generator on random inputs, and the discriminator stays frozen, only one competitor is making progress, whereas if the two were competing, as in a true <a href="/zero-sum_game.html">zero-sum game</a>, we'd get better results, because as the discriminator gets better, the generator would also need to get better in order to be able to fool its competitor, so a better approach would be to train both at the same time, and to train the discriminator on the outputs of the generator, which we label as fake, so that it'd get better at detecting the generator's attempts at fooling it, which in turn makes the generator get better at trying to fool the discriminator.
+</p>
+
+<p>
+the following method, <code>train_gan</code>, implements this approach, and on each epoch (iteration through the entire dataset), it generates some samples for later evaluation (ofcourse a better approach would be to copy the model itself), for further appreciation and more insight into how the model's output changes over epochs.
 </p>
 <div class="org-src-container" data-language="python">
 <pre class="src src-python" id="src-train-gan"><span style="color: #deb07a; font-weight: bold;">def</span> <span style="color: #8fcfd0;">train_gan</span><span style="color: #deb07a;">(</span>gan, dataset, epochs=10, batch_size=256<span style="color: #deb07a;">)</span>:
@@ -732,7 +795,7 @@ the following method, <code>train_gan</code>, implements this approach, and on e
 </div>
 
 <p>
-i did a test run of 10 epochs:<br />
+i did a test run of 10 epochs:
 </p>
 <div class="org-src-container" data-language="python">
 <pre class="src src-python" id="src-train-generator-3"><span style="color: #a0a0cf; font-style: italic;"># </span><span style="color: #a0a0cf; font-style: italic;">&lt;&lt;src-train-discriminator()&gt;&gt;</span>
@@ -765,41 +828,68 @@ plt.savefig<span style="color: #deb07a;">(</span>f, transparent=<span style="col
 
 
 <p>
-<img src="/ZJpShnf.svg" /><br />
-samples after epoch 1:<br />
-<img src="/0.png" /><br />
-samples after epoch 2:<br />
-<img src="/1.png" /><br />
-&#x2026;<br />
-&#x2026;<br />
-&#x2026;<br />
-samples after epoch 99:<br />
-<img src="/98.png" /><br />
-samples after epoch 100:<br />
-<img src="/99.png" /><br />
-&#x2014;time elapsed: 7404.322350978851 seconds &#x2014;<br />
+<img src="/ZJpShnf.svg" />
+samples after epoch 1:
+</p>
+
+<p>
+<img src="/0.png" />
+samples after epoch 2:
+</p>
+
+<p>
+<img src="/1.png" />
+&#x2026;
+</p>
+
+<p>
+&#x2026;
+</p>
+
+<p>
+&#x2026;
+</p>
+
+<p>
+samples after epoch 99:
+</p>
+
+<p>
+<img src="/98.png" />
+samples after epoch 100:
+</p>
+
+<p>
+<img src="/99.png" />
+&#x2014;time elapsed: 7404.322350978851 seconds &#x2014;
 </p>
 <p>
-in hindsight, i should've separated the different losses and plotted the discriminator's and the generator's losses each with its own graphs, because it makes no sense that the loss only goes up, but it happens because the discriminator gets better at its job faster than the generator and so the generator's loss goes up.<br />
-but the results are interesting, even after the first epoch, we can see that the model has already picked up on some subtle curvy patterns in the center of the image. we could have gotten better results with a few more training epochs and some luck.<br />
+in hindsight, i should've separated the different losses and plotted the discriminator's and the generator's losses each with its own graphs, because it makes no sense that the loss only goes up, but it happens because the discriminator gets better at its job faster than the generator and so the generator's loss goes up.
+</p>
+
+<p>
+but the results are interesting, even after the first epoch, we can see that the model has already picked up on some subtle curvy patterns in the center of the image. we could have gotten better results with a few more training epochs and some luck.
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org6ddab37" class="outline-2">
-<h2 id="org6ddab37">performance evaluation</h2>
-<div class="outline-text-2" id="text-org6ddab37">
+<div id="outline-container-org3da9b32" class="outline-2">
+<h2 id="org3da9b32">performance evaluation</h2>
+<div class="outline-text-2" id="text-org3da9b32">
 <p>
-generally, there are no objective ways to evaluate the performance of a GAN model. we cannot calculate this objective error score for generated images. it might be possible in the case of MNIST images because the images are so well constrained, but in general, it is not possible (yet).<br />
-instead, images must be subjectively evaluated for quality by a human agent. this means that we cannot know when to stop training without looking at examples of generated images. in turn, the adversarial nature of the training process means that the generator is changing after every batch, meaning that once "good enough" images can be generated, the subjective quality of the images may then begin to vary, improve, or even degrade with subsequent updates.<br />
+generally, there are no objective ways to evaluate the performance of a GAN model. we cannot calculate this objective error score for generated images. it might be possible in the case of MNIST images because the images are so well constrained, but in general, it is not possible (yet).
+</p>
+
+<p>
+instead, images must be subjectively evaluated for quality by a human agent. this means that we cannot know when to stop training without looking at examples of generated images. in turn, the adversarial nature of the training process means that the generator is changing after every batch, meaning that once "good enough" images can be generated, the subjective quality of the images may then begin to vary, improve, or even degrade with subsequent updates.
 </p>
 </div>
 </div>
-<div id="outline-container-orgc2804bf" class="outline-2">
-<h2 id="orgc2804bf">latent output space visualization</h2>
-<div class="outline-text-2" id="text-orgc2804bf">
+<div id="outline-container-orgc8e90fc" class="outline-2">
+<h2 id="orgc8e90fc">latent output space visualization</h2>
+<div class="outline-text-2" id="text-orgc8e90fc">
 <p>
-while we cant visualize dimensions higher than 3d, and while computer screens are 2d, we can still try to explore higher dimensions by "navigating" them and projecting the results. by navigation i mean choosing an axis and "hovering" over its possible values while holding the other variables constant, to see how the changes to the variable that corresponds to the axis we chose affect the space we project.<br />
+while we cant visualize dimensions higher than 3d, and while computer screens are 2d, we can still try to explore higher dimensions by "navigating" them and projecting the results. by navigation i mean choosing an axis and "hovering" over its possible values while holding the other variables constant, to see how the changes to the variable that corresponds to the axis we chose affect the space we project.
 </p>
 
 <div class="org-src-container" data-language="python">

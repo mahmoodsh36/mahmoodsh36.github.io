@@ -41,25 +41,31 @@
 note: &lt;/p&gt;
 " id="def-hyperparam" data-id="def-hyperparam">
 <p>
-scroll to the end if you're only interested in the solution and the steps in raw text..<br />
+scroll to the end if you're only interested in the solution and the steps in raw text..
 </p>
 
 </div>
 
 <p>
-homework on <a href="/constraint_satisfaction_problem.html">constraint satisfaction problem</a><br />
-using <a href="/working_with_graphs_in_common_lisp.html">common lisp graphs</a><br />
-<a href="/graph.html">graph</a> image from homework:<br />
-<img src="/Tue_Aug_22_08:26:06_PM_IDT_2023.png" /><br />
+homework on <a href="/constraint_satisfaction_problem.html">constraint satisfaction problem</a>
+</p>
+
+<p>
+using <a href="/working_with_graphs_in_common_lisp.html">common lisp graphs</a>
+</p>
+
+<p>
+<a href="/graph.html">graph</a> image from homework:
+<img src="/Tue_Aug_22_08:26:06_PM_IDT_2023.png" />
 </p>
 <ul class="org-ul">
-<li>gotta solve this as an <b>rgba map coloring problem</b><br /></li>
-<li>make use of forward checking<br /></li>
-<li>variable ordering heuristic: prioritize <a href="/graph.html">vertices</a> that are the least constraining (least edges, least constraints on others) to most constraining (most edges), in case of a draw, use the variable with the most remaining colors (least constrained), if there is another tie, choose the leftmost vertex in the constraint graph<br /></li>
-<li>no value ordering heuristics<br /></li>
+<li>gotta solve this as an <b>rgba map coloring problem</b></li>
+<li>make use of forward checking</li>
+<li>variable ordering heuristic: prioritize <a href="/graph.html">vertices</a> that are the least constraining (least edges, least constraints on others) to most constraining (most edges), in case of a draw, use the variable with the most remaining colors (least constrained), if there is another tie, choose the leftmost vertex in the constraint graph</li>
+<li>no value ordering heuristics</li>
 </ul>
 <p>
-first we define the graph:<br />
+first we define the graph:
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defparameter</span>
@@ -86,13 +92,17 @@ first we define the graph:<br />
 </div>
 
 <p>
-visualize it with tikz:<br />
+visualize it with tikz:
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span>graph-generate-tikz *mygraph* <span style="color: #e3b0c0; font-weight: bold;">:node-distance</span> 80<span style="color: #deb07a;">)</span>
 </pre>
 </div>
 
+
+<p>
+
+</p>
 
 
 <div class="equation-container">
@@ -209,8 +219,11 @@ visualize it with tikz:<br />
 </div>
 
 <p>
-a constraint satisfaction problem is defined by its variables, domains and contrains<br />
-since i had written the problem in its <a href="/constraint_graph.html">constraint graph</a> form, i had to write a function to convert it into its "original" form, its variables, domains and it defines the constraint of neighbors not having the same color, which is from the map coloring problem (so this method is not really general, but specific to this problem):<br />
+a constraint satisfaction problem is defined by its variables, domains and contrains
+</p>
+
+<p>
+since i had written the problem in its <a href="/constraint_graph.html">constraint graph</a> form, i had to write a function to convert it into its "original" form, its variables, domains and it defines the constraint of neighbors not having the same color, which is from the map coloring problem (so this method is not really general, but specific to this problem):
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defstruct</span> <span style="color: #a9c99f;">constraint-satisfaction-problem</span>
@@ -250,7 +263,7 @@ since i had written the problem in its <a href="/constraint_graph.html">constrai
 </div>
 
 <p>
-here i implement a generalized algorithm for constraint satisfaction problem solving:<br />
+here i implement a generalized algorithm for constraint satisfaction problem solving:
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">solve-csp-with-graph</span> <span style="color: #ffaacf;">(</span>csp gr variable-ordering-heuristics
@@ -371,7 +384,7 @@ here i implement a generalized algorithm for constraint satisfaction problem sol
 
 
 <p>
-applying the algorithm:<br />
+applying the algorithm:
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">solve</span> <span style="color: #ffaacf;">()</span>
@@ -394,7 +407,7 @@ applying the algorithm:<br />
 
 
 <p>
-visualizing the constraint graph with the colors we obtained by solving the problem:<br />
+visualizing the constraint graph with the colors we obtained by solving the problem:
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">let</span> <span style="color: #ffaacf;">(</span><span style="color: #80aadf;">(</span>values-assoc-list <span style="color: #e47980;">(</span>solve<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span>
@@ -412,6 +425,10 @@ visualizing the constraint graph with the colors we obtained by solving the prob
 </pre>
 </div>
 
+
+<p>
+
+</p>
 
 
 <div class="equation-container">
@@ -526,8 +543,11 @@ visualizing the constraint graph with the colors we obtained by solving the prob
 </div>
 
 <p>
-showing the inference/decision steps (i went back and modified the algorithm to print stuff)<br />
-this just shows the domain of variables at each step<br />
+showing the inference/decision steps (i went back and modified the algorithm to print stuff)
+</p>
+
+<p>
+this just shows the domain of variables at each step
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span>solve<span style="color: #deb07a;">)</span>
@@ -536,7 +556,10 @@ this just shows the domain of variables at each step<br />
 
 
 <p>
-chose variable A with value R<br />
+chose variable A with value R
+</p>
+
+<p>
 after forward checking for A, domains: (A=R B<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
@@ -559,8 +582,11 @@ after forward checking for A, domains: (A=R B<?xml version='1.0' encoding='UTF-8
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(G B A)<br />
-                                        L<?xml version='1.0' encoding='UTF-8'?>
+</svg>(G B A)
+</p>
+
+<p>
+L<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -582,8 +608,11 @@ after forward checking for A, domains: (A=R B<?xml version='1.0' encoding='UTF-8
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(G B A)<br />
-                                        J<?xml version='1.0' encoding='UTF-8'?>
+</svg>(G B A)
+</p>
+
+<p>
+J<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -605,8 +634,11 @@ after forward checking for A, domains: (A=R B<?xml version='1.0' encoding='UTF-8
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(R G B A)<br />
-                                        E<?xml version='1.0' encoding='UTF-8'?>
+</svg>(R G B A)
+</p>
+
+<p>
+E<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -628,8 +660,11 @@ after forward checking for A, domains: (A=R B<?xml version='1.0' encoding='UTF-8
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(R G B A)<br />
-                                        F<?xml version='1.0' encoding='UTF-8'?>
+</svg>(R G B A)
+</p>
+
+<p>
+F<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -651,8 +686,11 @@ after forward checking for A, domains: (A=R B<?xml version='1.0' encoding='UTF-8
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(R G B A)<br />
-                                        O<?xml version='1.0' encoding='UTF-8'?>
+</svg>(R G B A)
+</p>
+
+<p>
+O<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -674,8 +712,11 @@ after forward checking for A, domains: (A=R B<?xml version='1.0' encoding='UTF-8
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(R G B A)<br />
-                                        N<?xml version='1.0' encoding='UTF-8'?>
+</svg>(R G B A)
+</p>
+
+<p>
+N<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -697,8 +738,11 @@ after forward checking for A, domains: (A=R B<?xml version='1.0' encoding='UTF-8
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(R G B A)<br />
-                                        K<?xml version='1.0' encoding='UTF-8'?>
+</svg>(R G B A)
+</p>
+
+<p>
+K<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -709,8 +753,14 @@ after forward checking for A, domains: (A=R B<?xml version='1.0' encoding='UTF-8
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(R G B A))<br />
-chose variable J with value R<br />
+</svg>(R G B A))
+</p>
+
+<p>
+chose variable J with value R
+</p>
+
+<p>
 after forward checking for J, domains: (A=R B<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
@@ -733,8 +783,11 @@ after forward checking for J, domains: (A=R B<?xml version='1.0' encoding='UTF-8
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(G B A)<br />
-                                        L<?xml version='1.0' encoding='UTF-8'?>
+</svg>(G B A)
+</p>
+
+<p>
+L<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -756,8 +809,11 @@ after forward checking for J, domains: (A=R B<?xml version='1.0' encoding='UTF-8
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(G B A) J=R<br />
-                                        M<?xml version='1.0' encoding='UTF-8'?>
+</svg>(G B A) J=R
+</p>
+
+<p>
+M<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -779,8 +835,11 @@ after forward checking for J, domains: (A=R B<?xml version='1.0' encoding='UTF-8
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(R G B A)<br />
-                                        G<?xml version='1.0' encoding='UTF-8'?>
+</svg>(R G B A)
+</p>
+
+<p>
+G<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -802,8 +861,11 @@ after forward checking for J, domains: (A=R B<?xml version='1.0' encoding='UTF-8
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(R G B A)<br />
-                                        I<?xml version='1.0' encoding='UTF-8'?>
+</svg>(R G B A)
+</p>
+
+<p>
+I<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -825,8 +887,11 @@ after forward checking for J, domains: (A=R B<?xml version='1.0' encoding='UTF-8
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(R G B A)<br />
-                                        H<?xml version='1.0' encoding='UTF-8'?>
+</svg>(R G B A)
+</p>
+
+<p>
+H<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -848,8 +913,11 @@ after forward checking for J, domains: (A=R B<?xml version='1.0' encoding='UTF-8
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(R G B A)<br />
-                                        P<?xml version='1.0' encoding='UTF-8'?>
+</svg>(R G B A)
+</p>
+
+<p>
+P<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -871,8 +939,14 @@ after forward checking for J, domains: (A=R B<?xml version='1.0' encoding='UTF-8
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(R G B A))<br />
-chose variable M with value R<br />
+</svg>(R G B A))
+</p>
+
+<p>
+chose variable M with value R
+</p>
+
+<p>
 after forward checking for M, domains: (A=R B<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
@@ -895,8 +969,11 @@ after forward checking for M, domains: (A=R B<?xml version='1.0' encoding='UTF-8
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(G B A)<br />
-                                        L<?xml version='1.0' encoding='UTF-8'?>
+</svg>(G B A)
+</p>
+
+<p>
+L<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -918,8 +995,11 @@ after forward checking for M, domains: (A=R B<?xml version='1.0' encoding='UTF-8
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(G B A) J=R M=R<br />
-                                        E<?xml version='1.0' encoding='UTF-8'?>
+</svg>(G B A) J=R M=R
+</p>
+
+<p>
+E<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -941,8 +1021,11 @@ after forward checking for M, domains: (A=R B<?xml version='1.0' encoding='UTF-8
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(G B A)<br />
-                                        F<?xml version='1.0' encoding='UTF-8'?>
+</svg>(G B A)
+</p>
+
+<p>
+F<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -964,8 +1047,11 @@ after forward checking for M, domains: (A=R B<?xml version='1.0' encoding='UTF-8
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(G B A)<br />
-                                        O<?xml version='1.0' encoding='UTF-8'?>
+</svg>(G B A)
+</p>
+
+<p>
+O<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -987,8 +1073,11 @@ after forward checking for M, domains: (A=R B<?xml version='1.0' encoding='UTF-8
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(R G B A)<br />
-                                        N<?xml version='1.0' encoding='UTF-8'?>
+</svg>(R G B A)
+</p>
+
+<p>
+N<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -1010,8 +1099,11 @@ after forward checking for M, domains: (A=R B<?xml version='1.0' encoding='UTF-8
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(R G B A)<br />
-                                        K<?xml version='1.0' encoding='UTF-8'?>
+</svg>(R G B A)
+</p>
+
+<p>
+K<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -1022,8 +1114,14 @@ after forward checking for M, domains: (A=R B<?xml version='1.0' encoding='UTF-8
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(R G B A))<br />
-chose variable H with value R<br />
+</svg>(R G B A))
+</p>
+
+<p>
+chose variable H with value R
+</p>
+
+<p>
 after forward checking for H, domains: (A=R B<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
@@ -1046,8 +1144,11 @@ after forward checking for H, domains: (A=R B<?xml version='1.0' encoding='UTF-8
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(G B A)<br />
-                                        L<?xml version='1.0' encoding='UTF-8'?>
+</svg>(G B A)
+</p>
+
+<p>
+L<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -1069,8 +1170,11 @@ after forward checking for H, domains: (A=R B<?xml version='1.0' encoding='UTF-8
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(G B A) J=R M=R<br />
-                                        E<?xml version='1.0' encoding='UTF-8'?>
+</svg>(G B A) J=R M=R
+</p>
+
+<p>
+E<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -1092,8 +1196,11 @@ after forward checking for H, domains: (A=R B<?xml version='1.0' encoding='UTF-8
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(G B A)<br />
-                                        F<?xml version='1.0' encoding='UTF-8'?>
+</svg>(G B A)
+</p>
+
+<p>
+F<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -1115,8 +1222,11 @@ after forward checking for H, domains: (A=R B<?xml version='1.0' encoding='UTF-8
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(G B A)<br />
-                                        O<?xml version='1.0' encoding='UTF-8'?>
+</svg>(G B A)
+</p>
+
+<p>
+O<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -1138,8 +1248,11 @@ after forward checking for H, domains: (A=R B<?xml version='1.0' encoding='UTF-8
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(G B A)<br />
-                                        P<?xml version='1.0' encoding='UTF-8'?>
+</svg>(G B A)
+</p>
+
+<p>
+P<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -1161,8 +1274,14 @@ after forward checking for H, domains: (A=R B<?xml version='1.0' encoding='UTF-8
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(G B A))<br />
-chose variable P with value R<br />
+</svg>(G B A))
+</p>
+
+<p>
+chose variable P with value R
+</p>
+
+<p>
 after forward checking for P, domains: (A=R B<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
@@ -1185,8 +1304,11 @@ after forward checking for P, domains: (A=R B<?xml version='1.0' encoding='UTF-8
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(G B A)<br />
-                                        L<?xml version='1.0' encoding='UTF-8'?>
+</svg>(G B A)
+</p>
+
+<p>
+L<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -1208,8 +1330,11 @@ after forward checking for P, domains: (A=R B<?xml version='1.0' encoding='UTF-8
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(G B A) J=R M=R<br />
-                                        E<?xml version='1.0' encoding='UTF-8'?>
+</svg>(G B A) J=R M=R
+</p>
+
+<p>
+E<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -1231,8 +1356,11 @@ after forward checking for P, domains: (A=R B<?xml version='1.0' encoding='UTF-8
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(G B A)<br />
-                                        F<?xml version='1.0' encoding='UTF-8'?>
+</svg>(G B A)
+</p>
+
+<p>
+F<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -1254,8 +1382,11 @@ after forward checking for P, domains: (A=R B<?xml version='1.0' encoding='UTF-8
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(G B A)<br />
-                                        O<?xml version='1.0' encoding='UTF-8'?>
+</svg>(G B A)
+</p>
+
+<p>
+O<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -1277,8 +1408,11 @@ after forward checking for P, domains: (A=R B<?xml version='1.0' encoding='UTF-8
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(G B A) P=R<br />
-                                        K<?xml version='1.0' encoding='UTF-8'?>
+</svg>(G B A) P=R
+</p>
+
+<p>
+K<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -1289,8 +1423,14 @@ after forward checking for P, domains: (A=R B<?xml version='1.0' encoding='UTF-8
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(G B A))<br />
-chose variable C with value G<br />
+</svg>(G B A))
+</p>
+
+<p>
+chose variable C with value G
+</p>
+
+<p>
 after forward checking for C, domains: (A=R B<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
@@ -1313,8 +1453,11 @@ after forward checking for C, domains: (A=R B<?xml version='1.0' encoding='UTF-8
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(G B A)<br />
-                                        D<?xml version='1.0' encoding='UTF-8'?>
+</svg>(G B A)
+</p>
+
+<p>
+D<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -1336,8 +1479,11 @@ after forward checking for C, domains: (A=R B<?xml version='1.0' encoding='UTF-8
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(G B A)<br />
-                                        G<?xml version='1.0' encoding='UTF-8'?>
+</svg>(G B A)
+</p>
+
+<p>
+G<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -1359,8 +1505,11 @@ after forward checking for C, domains: (A=R B<?xml version='1.0' encoding='UTF-8
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(B A)<br />
-                                        I<?xml version='1.0' encoding='UTF-8'?>
+</svg>(B A)
+</p>
+
+<p>
+I<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -1382,8 +1531,11 @@ after forward checking for C, domains: (A=R B<?xml version='1.0' encoding='UTF-8
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(G B A) H=R<br />
-                                        N<?xml version='1.0' encoding='UTF-8'?>
+</svg>(G B A) H=R
+</p>
+
+<p>
+N<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -1405,8 +1557,14 @@ after forward checking for C, domains: (A=R B<?xml version='1.0' encoding='UTF-8
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(G B A))<br />
-chose variable D with value G<br />
+</svg>(G B A))
+</p>
+
+<p>
+chose variable D with value G
+</p>
+
+<p>
 after forward checking for D, domains: (A=R B<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
@@ -1429,8 +1587,11 @@ after forward checking for D, domains: (A=R B<?xml version='1.0' encoding='UTF-8
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(B A) D=G<br />
-                                        J=R M=R E<?xml version='1.0' encoding='UTF-8'?>
+</svg>(B A) D=G
+</p>
+
+<p>
+J=R M=R E<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -1452,8 +1613,11 @@ after forward checking for D, domains: (A=R B<?xml version='1.0' encoding='UTF-8
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(B A)<br />
-                                        F<?xml version='1.0' encoding='UTF-8'?>
+</svg>(B A)
+</p>
+
+<p>
+F<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -1475,8 +1639,11 @@ after forward checking for D, domains: (A=R B<?xml version='1.0' encoding='UTF-8
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(G B A)<br />
-                                        O<?xml version='1.0' encoding='UTF-8'?>
+</svg>(G B A)
+</p>
+
+<p>
+O<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -1498,8 +1665,11 @@ after forward checking for D, domains: (A=R B<?xml version='1.0' encoding='UTF-8
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(G B A) P=R<br />
-                                        K<?xml version='1.0' encoding='UTF-8'?>
+</svg>(G B A) P=R
+</p>
+
+<p>
+K<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -1510,8 +1680,14 @@ after forward checking for D, domains: (A=R B<?xml version='1.0' encoding='UTF-8
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(G B A))<br />
-chose variable E with value G<br />
+</svg>(G B A))
+</p>
+
+<p>
+chose variable E with value G
+</p>
+
+<p>
 after forward checking for E, domains: (A=R B<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
@@ -1534,8 +1710,11 @@ after forward checking for E, domains: (A=R B<?xml version='1.0' encoding='UTF-8
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(B A) D=G<br />
-                                        J=R M=R E=G G<?xml version='1.0' encoding='UTF-8'?>
+</svg>(B A) D=G
+</p>
+
+<p>
+J=R M=R E=G G<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -1557,8 +1736,11 @@ after forward checking for E, domains: (A=R B<?xml version='1.0' encoding='UTF-8
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(B A)<br />
-                                        I<?xml version='1.0' encoding='UTF-8'?>
+</svg>(B A)
+</p>
+
+<p>
+I<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -1580,8 +1762,11 @@ after forward checking for E, domains: (A=R B<?xml version='1.0' encoding='UTF-8
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(G B A) H=R<br />
-                                        N<?xml version='1.0' encoding='UTF-8'?>
+</svg>(G B A) H=R
+</p>
+
+<p>
+N<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -1603,8 +1788,14 @@ after forward checking for E, domains: (A=R B<?xml version='1.0' encoding='UTF-8
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(G B A))<br />
-chose variable O with value G<br />
+</svg>(G B A))
+</p>
+
+<p>
+chose variable O with value G
+</p>
+
+<p>
 after forward checking for O, domains: (A=R B<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
@@ -1627,8 +1818,11 @@ after forward checking for O, domains: (A=R B<?xml version='1.0' encoding='UTF-8
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(B A) D=G<br />
-                                        J=R M=R E=G G<?xml version='1.0' encoding='UTF-8'?>
+</svg>(B A) D=G
+</p>
+
+<p>
+J=R M=R E=G G<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -1650,8 +1844,11 @@ after forward checking for O, domains: (A=R B<?xml version='1.0' encoding='UTF-8
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(B A)<br />
-                                        I<?xml version='1.0' encoding='UTF-8'?>
+</svg>(B A)
+</p>
+
+<p>
+I<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -1673,8 +1870,11 @@ after forward checking for O, domains: (A=R B<?xml version='1.0' encoding='UTF-8
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(G B A)<br />
-                                        P=R K<?xml version='1.0' encoding='UTF-8'?>
+</svg>(G B A)
+</p>
+
+<p>
+P=R K<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -1685,8 +1885,14 @@ after forward checking for O, domains: (A=R B<?xml version='1.0' encoding='UTF-8
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(G B A))<br />
-chose variable N with value G<br />
+</svg>(G B A))
+</p>
+
+<p>
+chose variable N with value G
+</p>
+
+<p>
 after forward checking for N, domains: (A=R B<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
@@ -1709,8 +1915,11 @@ after forward checking for N, domains: (A=R B<?xml version='1.0' encoding='UTF-8
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(B A) D=G<br />
-                                        J=R M=R E=G G<?xml version='1.0' encoding='UTF-8'?>
+</svg>(B A) D=G
+</p>
+
+<p>
+J=R M=R E=G G<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -1732,8 +1941,11 @@ after forward checking for N, domains: (A=R B<?xml version='1.0' encoding='UTF-8
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(B A)<br />
-                                        I<?xml version='1.0' encoding='UTF-8'?>
+</svg>(B A)
+</p>
+
+<p>
+I<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -1744,8 +1956,11 @@ after forward checking for N, domains: (A=R B<?xml version='1.0' encoding='UTF-8
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(B A) O=G H=R N=G P=R<br />
-                                        K<?xml version='1.0' encoding='UTF-8'?>
+</svg>(B A) O=G H=R N=G P=R
+</p>
+
+<p>
+K<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -1756,8 +1971,14 @@ after forward checking for N, domains: (A=R B<?xml version='1.0' encoding='UTF-8
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(B A))<br />
-chose variable B with value B<br />
+</svg>(B A))
+</p>
+
+<p>
+chose variable B with value B
+</p>
+
+<p>
 after forward checking for B, domains: (A=R B=B C=G L<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
@@ -1769,8 +1990,11 @@ after forward checking for B, domains: (A=R B=B C=G L<?xml version='1.0' encodin
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(B A) D=G J=R M=R<br />
-                                        E=G G<?xml version='1.0' encoding='UTF-8'?>
+</svg>(B A) D=G J=R M=R
+</p>
+
+<p>
+E=G G<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -1792,8 +2016,11 @@ after forward checking for B, domains: (A=R B=B C=G L<?xml version='1.0' encodin
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(B A)<br />
-                                        I<?xml version='1.0' encoding='UTF-8'?>
+</svg>(B A)
+</p>
+
+<p>
+I<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -1804,8 +2031,11 @@ after forward checking for B, domains: (A=R B=B C=G L<?xml version='1.0' encodin
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(B A) O=G H=R N=G P=R<br />
-                                        K<?xml version='1.0' encoding='UTF-8'?>
+</svg>(B A) O=G H=R N=G P=R
+</p>
+
+<p>
+K<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -1816,58 +2046,19 @@ after forward checking for B, domains: (A=R B=B C=G L<?xml version='1.0' encodin
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(B A))<br />
-chose variable L with value B<br />
-after forward checking for L, domains: (A=R B=B C=G L=B D=G J=R M=R E=G<br />
-                                        G<?xml version='1.0' encoding='UTF-8'?>
+</svg>(B A))
+</p>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
-<defs>
-<path id='g0-50' d='m5.808219 .199253c0-.199253-.18929-.199253-.328767-.199253h-1.58406c-1.39477 0-2.540473-.956413-2.660025-2.291407h4.244085c.139477 0 .328767 0 .328767-.199253s-.18929-.199253-.328767-.199253h-4.244085c.119552-1.354919 1.295143-2.291407 2.650062-2.291407h1.594022c.139477 0 .328767 0 .328767-.199253s-.18929-.199253-.328767-.199253h-1.62391c-1.594022 0-3.028643 1.215442-3.028643 2.889166c0 1.653798 1.414695 2.889166 3.038605 2.889166h1.613948c.139477 0 .328767 0 .328767-.199253z'/>
-</defs>
-<g id='page3'>
-<g fill='currentColor'>
-<use x='0' y='0' xlink:href='#g0-50'/>
-</g>
-</g>
-</svg>(A) F<?xml version='1.0' encoding='UTF-8'?>
+<p>
+chose variable L with value B
+</p>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
-<defs>
-<path id='g0-50' d='m5.808219 .199253c0-.199253-.18929-.199253-.328767-.199253h-1.58406c-1.39477 0-2.540473-.956413-2.660025-2.291407h4.244085c.139477 0 .328767 0 .328767-.199253s-.18929-.199253-.328767-.199253h-4.244085c.119552-1.354919 1.295143-2.291407 2.650062-2.291407h1.594022c.139477 0 .328767 0 .328767-.199253s-.18929-.199253-.328767-.199253h-1.62391c-1.594022 0-3.028643 1.215442-3.028643 2.889166c0 1.653798 1.414695 2.889166 3.038605 2.889166h1.613948c.139477 0 .328767 0 .328767-.199253z'/>
-</defs>
-<g id='page3'>
-<g fill='currentColor'>
-<use x='0' y='0' xlink:href='#g0-50'/>
-</g>
-</g>
-</svg>(B A) I<?xml version='1.0' encoding='UTF-8'?>
+<p>
+after forward checking for L, domains: (A=R B=B C=G L=B D=G J=R M=R E=G
+</p>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
-<defs>
-<path id='g0-50' d='m5.808219 .199253c0-.199253-.18929-.199253-.328767-.199253h-1.58406c-1.39477 0-2.540473-.956413-2.660025-2.291407h4.244085c.139477 0 .328767 0 .328767-.199253s-.18929-.199253-.328767-.199253h-4.244085c.119552-1.354919 1.295143-2.291407 2.650062-2.291407h1.594022c.139477 0 .328767 0 .328767-.199253s-.18929-.199253-.328767-.199253h-1.62391c-1.594022 0-3.028643 1.215442-3.028643 2.889166c0 1.653798 1.414695 2.889166 3.038605 2.889166h1.613948c.139477 0 .328767 0 .328767-.199253z'/>
-</defs>
-<g id='page3'>
-<g fill='currentColor'>
-<use x='0' y='0' xlink:href='#g0-50'/>
-</g>
-</g>
-</svg>(B A)<br />
-                                        O=G H=R N=G P=R K<?xml version='1.0' encoding='UTF-8'?>
-
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
-<defs>
-<path id='g0-50' d='m5.808219 .199253c0-.199253-.18929-.199253-.328767-.199253h-1.58406c-1.39477 0-2.540473-.956413-2.660025-2.291407h4.244085c.139477 0 .328767 0 .328767-.199253s-.18929-.199253-.328767-.199253h-4.244085c.119552-1.354919 1.295143-2.291407 2.650062-2.291407h1.594022c.139477 0 .328767 0 .328767-.199253s-.18929-.199253-.328767-.199253h-1.62391c-1.594022 0-3.028643 1.215442-3.028643 2.889166c0 1.653798 1.414695 2.889166 3.038605 2.889166h1.613948c.139477 0 .328767 0 .328767-.199253z'/>
-</defs>
-<g id='page3'>
-<g fill='currentColor'>
-<use x='0' y='0' xlink:href='#g0-50'/>
-</g>
-</g>
-</svg>(B A))<br />
-chose variable K with value B<br />
-after forward checking for K, domains: (A=R B=B C=G L=B D=G J=R M=R E=G<br />
-                                        G<?xml version='1.0' encoding='UTF-8'?>
+<p>
+G<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -1900,11 +2091,83 @@ after forward checking for K, domains: (A=R B=B C=G L=B D=G J=R M=R E=G<br />
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(A)<br />
-                                        O=G H=R N=G P=R K=B)<br />
-chose variable F with value B<br />
-after forward checking for F, domains: (A=R B=B C=G L=B D=G J=R M=R E=G<br />
-                                        G<?xml version='1.0' encoding='UTF-8'?>
+</svg>(B A)
+</p>
+
+<p>
+O=G H=R N=G P=R K<?xml version='1.0' encoding='UTF-8'?>
+
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
+<defs>
+<path id='g0-50' d='m5.808219 .199253c0-.199253-.18929-.199253-.328767-.199253h-1.58406c-1.39477 0-2.540473-.956413-2.660025-2.291407h4.244085c.139477 0 .328767 0 .328767-.199253s-.18929-.199253-.328767-.199253h-4.244085c.119552-1.354919 1.295143-2.291407 2.650062-2.291407h1.594022c.139477 0 .328767 0 .328767-.199253s-.18929-.199253-.328767-.199253h-1.62391c-1.594022 0-3.028643 1.215442-3.028643 2.889166c0 1.653798 1.414695 2.889166 3.038605 2.889166h1.613948c.139477 0 .328767 0 .328767-.199253z'/>
+</defs>
+<g id='page3'>
+<g fill='currentColor'>
+<use x='0' y='0' xlink:href='#g0-50'/>
+</g>
+</g>
+</svg>(B A))
+</p>
+
+<p>
+chose variable K with value B
+</p>
+
+<p>
+after forward checking for K, domains: (A=R B=B C=G L=B D=G J=R M=R E=G
+</p>
+
+<p>
+G<?xml version='1.0' encoding='UTF-8'?>
+
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
+<defs>
+<path id='g0-50' d='m5.808219 .199253c0-.199253-.18929-.199253-.328767-.199253h-1.58406c-1.39477 0-2.540473-.956413-2.660025-2.291407h4.244085c.139477 0 .328767 0 .328767-.199253s-.18929-.199253-.328767-.199253h-4.244085c.119552-1.354919 1.295143-2.291407 2.650062-2.291407h1.594022c.139477 0 .328767 0 .328767-.199253s-.18929-.199253-.328767-.199253h-1.62391c-1.594022 0-3.028643 1.215442-3.028643 2.889166c0 1.653798 1.414695 2.889166 3.038605 2.889166h1.613948c.139477 0 .328767 0 .328767-.199253z'/>
+</defs>
+<g id='page3'>
+<g fill='currentColor'>
+<use x='0' y='0' xlink:href='#g0-50'/>
+</g>
+</g>
+</svg>(A) F<?xml version='1.0' encoding='UTF-8'?>
+
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
+<defs>
+<path id='g0-50' d='m5.808219 .199253c0-.199253-.18929-.199253-.328767-.199253h-1.58406c-1.39477 0-2.540473-.956413-2.660025-2.291407h4.244085c.139477 0 .328767 0 .328767-.199253s-.18929-.199253-.328767-.199253h-4.244085c.119552-1.354919 1.295143-2.291407 2.650062-2.291407h1.594022c.139477 0 .328767 0 .328767-.199253s-.18929-.199253-.328767-.199253h-1.62391c-1.594022 0-3.028643 1.215442-3.028643 2.889166c0 1.653798 1.414695 2.889166 3.038605 2.889166h1.613948c.139477 0 .328767 0 .328767-.199253z'/>
+</defs>
+<g id='page3'>
+<g fill='currentColor'>
+<use x='0' y='0' xlink:href='#g0-50'/>
+</g>
+</g>
+</svg>(B A) I<?xml version='1.0' encoding='UTF-8'?>
+
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
+<defs>
+<path id='g0-50' d='m5.808219 .199253c0-.199253-.18929-.199253-.328767-.199253h-1.58406c-1.39477 0-2.540473-.956413-2.660025-2.291407h4.244085c.139477 0 .328767 0 .328767-.199253s-.18929-.199253-.328767-.199253h-4.244085c.119552-1.354919 1.295143-2.291407 2.650062-2.291407h1.594022c.139477 0 .328767 0 .328767-.199253s-.18929-.199253-.328767-.199253h-1.62391c-1.594022 0-3.028643 1.215442-3.028643 2.889166c0 1.653798 1.414695 2.889166 3.038605 2.889166h1.613948c.139477 0 .328767 0 .328767-.199253z'/>
+</defs>
+<g id='page3'>
+<g fill='currentColor'>
+<use x='0' y='0' xlink:href='#g0-50'/>
+</g>
+</g>
+</svg>(A)
+</p>
+
+<p>
+O=G H=R N=G P=R K=B)
+</p>
+
+<p>
+chose variable F with value B
+</p>
+
+<p>
+after forward checking for F, domains: (A=R B=B C=G L=B D=G J=R M=R E=G
+</p>
+
+<p>
+G<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -1926,11 +2189,23 @@ after forward checking for F, domains: (A=R B=B C=G L=B D=G J=R M=R E=G<br />
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(A) O=G H=R N=G<br />
-                                        P=R K=B)<br />
-chose variable I with value A<br />
-after forward checking for I, domains: (A=R B=B C=G L=B D=G J=R M=R E=G<br />
-                                        G<?xml version='1.0' encoding='UTF-8'?>
+</svg>(A) O=G H=R N=G
+</p>
+
+<p>
+P=R K=B)
+</p>
+
+<p>
+chose variable I with value A
+</p>
+
+<p>
+after forward checking for I, domains: (A=R B=B C=G L=B D=G J=R M=R E=G
+</p>
+
+<p>
+G<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -1941,11 +2216,23 @@ after forward checking for I, domains: (A=R B=B C=G L=B D=G J=R M=R E=G<br />
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>NIL F=B I=A O=G H=R N=G P=R K=B)<br />
-G has no available values, we hit a deadend, propagating back<br />
-chose variable F with value A<br />
-after forward checking for F, domains: (A=R B=B C=G L=B D=G J=R M=R E=G<br />
-                                        G<?xml version='1.0' encoding='UTF-8'?>
+</svg>NIL F=B I=A O=G H=R N=G P=R K=B)
+</p>
+
+<p>
+G has no available values, we hit a deadend, propagating back
+</p>
+
+<p>
+chose variable F with value A
+</p>
+
+<p>
+after forward checking for F, domains: (A=R B=B C=G L=B D=G J=R M=R E=G
+</p>
+
+<p>
+G<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -1967,12 +2254,27 @@ after forward checking for F, domains: (A=R B=B C=G L=B D=G J=R M=R E=G<br />
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>NIL O=G H=R N=G<br />
-                                        P=R K=B)<br />
-I has no available values, we hit a deadend, propagating back<br />
-chose variable K with value A<br />
-after forward checking for K, domains: (A=R B=B C=G L=B D=G J=R M=R E=G<br />
-                                        G<?xml version='1.0' encoding='UTF-8'?>
+</svg>NIL O=G H=R N=G
+</p>
+
+<p>
+P=R K=B)
+</p>
+
+<p>
+I has no available values, we hit a deadend, propagating back
+</p>
+
+<p>
+chose variable K with value A
+</p>
+
+<p>
+after forward checking for K, domains: (A=R B=B C=G L=B D=G J=R M=R E=G
+</p>
+
+<p>
+G<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -2005,11 +2307,23 @@ after forward checking for K, domains: (A=R B=B C=G L=B D=G J=R M=R E=G<br />
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(B)<br />
-                                        O=G H=R N=G P=R K=A)<br />
-chose variable F with value A<br />
-after forward checking for F, domains: (A=R B=B C=G L=B D=G J=R M=R E=G<br />
-                                        G<?xml version='1.0' encoding='UTF-8'?>
+</svg>(B)
+</p>
+
+<p>
+O=G H=R N=G P=R K=A)
+</p>
+
+<p>
+chose variable F with value A
+</p>
+
+<p>
+after forward checking for F, domains: (A=R B=B C=G L=B D=G J=R M=R E=G
+</p>
+
+<p>
+G<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -2031,11 +2345,23 @@ after forward checking for F, domains: (A=R B=B C=G L=B D=G J=R M=R E=G<br />
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(B) O=G H=R N=G<br />
-                                        P=R K=A)<br />
-chose variable I with value B<br />
-after forward checking for I, domains: (A=R B=B C=G L=B D=G J=R M=R E=G<br />
-                                        G<?xml version='1.0' encoding='UTF-8'?>
+</svg>(B) O=G H=R N=G
+</p>
+
+<p>
+P=R K=A)
+</p>
+
+<p>
+chose variable I with value B
+</p>
+
+<p>
+after forward checking for I, domains: (A=R B=B C=G L=B D=G J=R M=R E=G
+</p>
+
+<p>
+G<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -2046,11 +2372,23 @@ after forward checking for I, domains: (A=R B=B C=G L=B D=G J=R M=R E=G<br />
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>NIL F=A I=B O=G H=R N=G P=R K=A)<br />
-G has no available values, we hit a deadend, propagating back<br />
-chose variable F with value B<br />
-after forward checking for F, domains: (A=R B=B C=G L=B D=G J=R M=R E=G<br />
-                                        G<?xml version='1.0' encoding='UTF-8'?>
+</svg>NIL F=A I=B O=G H=R N=G P=R K=A)
+</p>
+
+<p>
+G has no available values, we hit a deadend, propagating back
+</p>
+
+<p>
+chose variable F with value B
+</p>
+
+<p>
+after forward checking for F, domains: (A=R B=B C=G L=B D=G J=R M=R E=G
+</p>
+
+<p>
+G<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -2072,12 +2410,27 @@ after forward checking for F, domains: (A=R B=B C=G L=B D=G J=R M=R E=G<br />
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>NIL O=G H=R N=G<br />
-                                        P=R K=A)<br />
-I has no available values, we hit a deadend, propagating back<br />
-chose variable L with value A<br />
-after forward checking for L, domains: (A=R B=B C=G L=A D=G J=R M=R E=G<br />
-                                        G<?xml version='1.0' encoding='UTF-8'?>
+</svg>NIL O=G H=R N=G
+</p>
+
+<p>
+P=R K=A)
+</p>
+
+<p>
+I has no available values, we hit a deadend, propagating back
+</p>
+
+<p>
+chose variable L with value A
+</p>
+
+<p>
+after forward checking for L, domains: (A=R B=B C=G L=A D=G J=R M=R E=G
+</p>
+
+<p>
+G<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -2110,8 +2463,11 @@ after forward checking for L, domains: (A=R B=B C=G L=A D=G J=R M=R E=G<br />
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(A B)<br />
-                                        O=G H=R N=G P=R K<?xml version='1.0' encoding='UTF-8'?>
+</svg>(A B)
+</p>
+
+<p>
+O=G H=R N=G P=R K<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -2122,10 +2478,19 @@ after forward checking for L, domains: (A=R B=B C=G L=A D=G J=R M=R E=G<br />
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(B A))<br />
-chose variable K with value B<br />
-after forward checking for K, domains: (A=R B=B C=G L=A D=G J=R M=R E=G<br />
-                                        G<?xml version='1.0' encoding='UTF-8'?>
+</svg>(B A))
+</p>
+
+<p>
+chose variable K with value B
+</p>
+
+<p>
+after forward checking for K, domains: (A=R B=B C=G L=A D=G J=R M=R E=G
+</p>
+
+<p>
+G<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -2158,11 +2523,23 @@ after forward checking for K, domains: (A=R B=B C=G L=A D=G J=R M=R E=G<br />
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(A)<br />
-                                        O=G H=R N=G P=R K=B)<br />
-chose variable F with value B<br />
-after forward checking for F, domains: (A=R B=B C=G L=A D=G J=R M=R E=G<br />
-                                        G<?xml version='1.0' encoding='UTF-8'?>
+</svg>(A)
+</p>
+
+<p>
+O=G H=R N=G P=R K=B)
+</p>
+
+<p>
+chose variable F with value B
+</p>
+
+<p>
+after forward checking for F, domains: (A=R B=B C=G L=A D=G J=R M=R E=G
+</p>
+
+<p>
+G<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -2184,11 +2561,23 @@ after forward checking for F, domains: (A=R B=B C=G L=A D=G J=R M=R E=G<br />
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(A) O=G H=R N=G<br />
-                                        P=R K=B)<br />
-chose variable I with value A<br />
-after forward checking for I, domains: (A=R B=B C=G L=A D=G J=R M=R E=G<br />
-                                        G<?xml version='1.0' encoding='UTF-8'?>
+</svg>(A) O=G H=R N=G
+</p>
+
+<p>
+P=R K=B)
+</p>
+
+<p>
+chose variable I with value A
+</p>
+
+<p>
+after forward checking for I, domains: (A=R B=B C=G L=A D=G J=R M=R E=G
+</p>
+
+<p>
+G<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -2199,11 +2588,23 @@ after forward checking for I, domains: (A=R B=B C=G L=A D=G J=R M=R E=G<br />
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>NIL F=B I=A O=G H=R N=G P=R K=B)<br />
-G has no available values, we hit a deadend, propagating back<br />
-chose variable F with value A<br />
-after forward checking for F, domains: (A=R B=B C=G L=A D=G J=R M=R E=G<br />
-                                        G<?xml version='1.0' encoding='UTF-8'?>
+</svg>NIL F=B I=A O=G H=R N=G P=R K=B)
+</p>
+
+<p>
+G has no available values, we hit a deadend, propagating back
+</p>
+
+<p>
+chose variable F with value A
+</p>
+
+<p>
+after forward checking for F, domains: (A=R B=B C=G L=A D=G J=R M=R E=G
+</p>
+
+<p>
+G<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -2225,12 +2626,27 @@ after forward checking for F, domains: (A=R B=B C=G L=A D=G J=R M=R E=G<br />
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>NIL O=G H=R N=G<br />
-                                        P=R K=B)<br />
-I has no available values, we hit a deadend, propagating back<br />
-chose variable K with value A<br />
-after forward checking for K, domains: (A=R B=B C=G L=A D=G J=R M=R E=G<br />
-                                        G<?xml version='1.0' encoding='UTF-8'?>
+</svg>NIL O=G H=R N=G
+</p>
+
+<p>
+P=R K=B)
+</p>
+
+<p>
+I has no available values, we hit a deadend, propagating back
+</p>
+
+<p>
+chose variable K with value A
+</p>
+
+<p>
+after forward checking for K, domains: (A=R B=B C=G L=A D=G J=R M=R E=G
+</p>
+
+<p>
+G<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -2263,11 +2679,23 @@ after forward checking for K, domains: (A=R B=B C=G L=A D=G J=R M=R E=G<br />
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(B)<br />
-                                        O=G H=R N=G P=R K=A)<br />
-chose variable F with value A<br />
-after forward checking for F, domains: (A=R B=B C=G L=A D=G J=R M=R E=G<br />
-                                        G<?xml version='1.0' encoding='UTF-8'?>
+</svg>(B)
+</p>
+
+<p>
+O=G H=R N=G P=R K=A)
+</p>
+
+<p>
+chose variable F with value A
+</p>
+
+<p>
+after forward checking for F, domains: (A=R B=B C=G L=A D=G J=R M=R E=G
+</p>
+
+<p>
+G<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -2289,11 +2717,23 @@ after forward checking for F, domains: (A=R B=B C=G L=A D=G J=R M=R E=G<br />
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(B) O=G H=R N=G<br />
-                                        P=R K=A)<br />
-chose variable I with value B<br />
-after forward checking for I, domains: (A=R B=B C=G L=A D=G J=R M=R E=G<br />
-                                        G<?xml version='1.0' encoding='UTF-8'?>
+</svg>(B) O=G H=R N=G
+</p>
+
+<p>
+P=R K=A)
+</p>
+
+<p>
+chose variable I with value B
+</p>
+
+<p>
+after forward checking for I, domains: (A=R B=B C=G L=A D=G J=R M=R E=G
+</p>
+
+<p>
+G<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -2304,11 +2744,23 @@ after forward checking for I, domains: (A=R B=B C=G L=A D=G J=R M=R E=G<br />
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>NIL F=A I=B O=G H=R N=G P=R K=A)<br />
-G has no available values, we hit a deadend, propagating back<br />
-chose variable F with value B<br />
-after forward checking for F, domains: (A=R B=B C=G L=A D=G J=R M=R E=G<br />
-                                        G<?xml version='1.0' encoding='UTF-8'?>
+</svg>NIL F=A I=B O=G H=R N=G P=R K=A)
+</p>
+
+<p>
+G has no available values, we hit a deadend, propagating back
+</p>
+
+<p>
+chose variable F with value B
+</p>
+
+<p>
+after forward checking for F, domains: (A=R B=B C=G L=A D=G J=R M=R E=G
+</p>
+
+<p>
+G<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -2330,10 +2782,22 @@ after forward checking for F, domains: (A=R B=B C=G L=A D=G J=R M=R E=G<br />
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>NIL O=G H=R N=G<br />
-                                        P=R K=A)<br />
-I has no available values, we hit a deadend, propagating back<br />
-chose variable B with value A<br />
+</svg>NIL O=G H=R N=G
+</p>
+
+<p>
+P=R K=A)
+</p>
+
+<p>
+I has no available values, we hit a deadend, propagating back
+</p>
+
+<p>
+chose variable B with value A
+</p>
+
+<p>
 after forward checking for B, domains: (A=R B=A C=G L<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
@@ -2345,8 +2809,11 @@ after forward checking for B, domains: (A=R B=A C=G L<?xml version='1.0' encodin
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(B A) D=G J=R M=R<br />
-                                        E=G G<?xml version='1.0' encoding='UTF-8'?>
+</svg>(B A) D=G J=R M=R
+</p>
+
+<p>
+E=G G<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -2368,8 +2835,11 @@ after forward checking for B, domains: (A=R B=A C=G L<?xml version='1.0' encodin
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(B A)<br />
-                                        I<?xml version='1.0' encoding='UTF-8'?>
+</svg>(B A)
+</p>
+
+<p>
+I<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -2380,8 +2850,11 @@ after forward checking for B, domains: (A=R B=A C=G L<?xml version='1.0' encodin
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(A B) O=G H=R N=G P=R<br />
-                                        K<?xml version='1.0' encoding='UTF-8'?>
+</svg>(A B) O=G H=R N=G P=R
+</p>
+
+<p>
+K<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -2392,58 +2865,19 @@ after forward checking for B, domains: (A=R B=A C=G L<?xml version='1.0' encodin
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(B A))<br />
-chose variable L with value B<br />
-after forward checking for L, domains: (A=R B=A C=G L=B D=G J=R M=R E=G<br />
-                                        G<?xml version='1.0' encoding='UTF-8'?>
+</svg>(B A))
+</p>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
-<defs>
-<path id='g0-50' d='m5.808219 .199253c0-.199253-.18929-.199253-.328767-.199253h-1.58406c-1.39477 0-2.540473-.956413-2.660025-2.291407h4.244085c.139477 0 .328767 0 .328767-.199253s-.18929-.199253-.328767-.199253h-4.244085c.119552-1.354919 1.295143-2.291407 2.650062-2.291407h1.594022c.139477 0 .328767 0 .328767-.199253s-.18929-.199253-.328767-.199253h-1.62391c-1.594022 0-3.028643 1.215442-3.028643 2.889166c0 1.653798 1.414695 2.889166 3.038605 2.889166h1.613948c.139477 0 .328767 0 .328767-.199253z'/>
-</defs>
-<g id='page3'>
-<g fill='currentColor'>
-<use x='0' y='0' xlink:href='#g0-50'/>
-</g>
-</g>
-</svg>(A) F<?xml version='1.0' encoding='UTF-8'?>
+<p>
+chose variable L with value B
+</p>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
-<defs>
-<path id='g0-50' d='m5.808219 .199253c0-.199253-.18929-.199253-.328767-.199253h-1.58406c-1.39477 0-2.540473-.956413-2.660025-2.291407h4.244085c.139477 0 .328767 0 .328767-.199253s-.18929-.199253-.328767-.199253h-4.244085c.119552-1.354919 1.295143-2.291407 2.650062-2.291407h1.594022c.139477 0 .328767 0 .328767-.199253s-.18929-.199253-.328767-.199253h-1.62391c-1.594022 0-3.028643 1.215442-3.028643 2.889166c0 1.653798 1.414695 2.889166 3.038605 2.889166h1.613948c.139477 0 .328767 0 .328767-.199253z'/>
-</defs>
-<g id='page3'>
-<g fill='currentColor'>
-<use x='0' y='0' xlink:href='#g0-50'/>
-</g>
-</g>
-</svg>(B A) I<?xml version='1.0' encoding='UTF-8'?>
+<p>
+after forward checking for L, domains: (A=R B=A C=G L=B D=G J=R M=R E=G
+</p>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
-<defs>
-<path id='g0-50' d='m5.808219 .199253c0-.199253-.18929-.199253-.328767-.199253h-1.58406c-1.39477 0-2.540473-.956413-2.660025-2.291407h4.244085c.139477 0 .328767 0 .328767-.199253s-.18929-.199253-.328767-.199253h-4.244085c.119552-1.354919 1.295143-2.291407 2.650062-2.291407h1.594022c.139477 0 .328767 0 .328767-.199253s-.18929-.199253-.328767-.199253h-1.62391c-1.594022 0-3.028643 1.215442-3.028643 2.889166c0 1.653798 1.414695 2.889166 3.038605 2.889166h1.613948c.139477 0 .328767 0 .328767-.199253z'/>
-</defs>
-<g id='page3'>
-<g fill='currentColor'>
-<use x='0' y='0' xlink:href='#g0-50'/>
-</g>
-</g>
-</svg>(A B)<br />
-                                        O=G H=R N=G P=R K<?xml version='1.0' encoding='UTF-8'?>
-
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
-<defs>
-<path id='g0-50' d='m5.808219 .199253c0-.199253-.18929-.199253-.328767-.199253h-1.58406c-1.39477 0-2.540473-.956413-2.660025-2.291407h4.244085c.139477 0 .328767 0 .328767-.199253s-.18929-.199253-.328767-.199253h-4.244085c.119552-1.354919 1.295143-2.291407 2.650062-2.291407h1.594022c.139477 0 .328767 0 .328767-.199253s-.18929-.199253-.328767-.199253h-1.62391c-1.594022 0-3.028643 1.215442-3.028643 2.889166c0 1.653798 1.414695 2.889166 3.038605 2.889166h1.613948c.139477 0 .328767 0 .328767-.199253z'/>
-</defs>
-<g id='page3'>
-<g fill='currentColor'>
-<use x='0' y='0' xlink:href='#g0-50'/>
-</g>
-</g>
-</svg>(B A))<br />
-chose variable K with value B<br />
-after forward checking for K, domains: (A=R B=A C=G L=B D=G J=R M=R E=G<br />
-                                        G<?xml version='1.0' encoding='UTF-8'?>
+<p>
+G<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -2476,11 +2910,83 @@ after forward checking for K, domains: (A=R B=A C=G L=B D=G J=R M=R E=G<br />
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(A)<br />
-                                        O=G H=R N=G P=R K=B)<br />
-chose variable F with value B<br />
-after forward checking for F, domains: (A=R B=A C=G L=B D=G J=R M=R E=G<br />
-                                        G<?xml version='1.0' encoding='UTF-8'?>
+</svg>(A B)
+</p>
+
+<p>
+O=G H=R N=G P=R K<?xml version='1.0' encoding='UTF-8'?>
+
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
+<defs>
+<path id='g0-50' d='m5.808219 .199253c0-.199253-.18929-.199253-.328767-.199253h-1.58406c-1.39477 0-2.540473-.956413-2.660025-2.291407h4.244085c.139477 0 .328767 0 .328767-.199253s-.18929-.199253-.328767-.199253h-4.244085c.119552-1.354919 1.295143-2.291407 2.650062-2.291407h1.594022c.139477 0 .328767 0 .328767-.199253s-.18929-.199253-.328767-.199253h-1.62391c-1.594022 0-3.028643 1.215442-3.028643 2.889166c0 1.653798 1.414695 2.889166 3.038605 2.889166h1.613948c.139477 0 .328767 0 .328767-.199253z'/>
+</defs>
+<g id='page3'>
+<g fill='currentColor'>
+<use x='0' y='0' xlink:href='#g0-50'/>
+</g>
+</g>
+</svg>(B A))
+</p>
+
+<p>
+chose variable K with value B
+</p>
+
+<p>
+after forward checking for K, domains: (A=R B=A C=G L=B D=G J=R M=R E=G
+</p>
+
+<p>
+G<?xml version='1.0' encoding='UTF-8'?>
+
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
+<defs>
+<path id='g0-50' d='m5.808219 .199253c0-.199253-.18929-.199253-.328767-.199253h-1.58406c-1.39477 0-2.540473-.956413-2.660025-2.291407h4.244085c.139477 0 .328767 0 .328767-.199253s-.18929-.199253-.328767-.199253h-4.244085c.119552-1.354919 1.295143-2.291407 2.650062-2.291407h1.594022c.139477 0 .328767 0 .328767-.199253s-.18929-.199253-.328767-.199253h-1.62391c-1.594022 0-3.028643 1.215442-3.028643 2.889166c0 1.653798 1.414695 2.889166 3.038605 2.889166h1.613948c.139477 0 .328767 0 .328767-.199253z'/>
+</defs>
+<g id='page3'>
+<g fill='currentColor'>
+<use x='0' y='0' xlink:href='#g0-50'/>
+</g>
+</g>
+</svg>(A) F<?xml version='1.0' encoding='UTF-8'?>
+
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
+<defs>
+<path id='g0-50' d='m5.808219 .199253c0-.199253-.18929-.199253-.328767-.199253h-1.58406c-1.39477 0-2.540473-.956413-2.660025-2.291407h4.244085c.139477 0 .328767 0 .328767-.199253s-.18929-.199253-.328767-.199253h-4.244085c.119552-1.354919 1.295143-2.291407 2.650062-2.291407h1.594022c.139477 0 .328767 0 .328767-.199253s-.18929-.199253-.328767-.199253h-1.62391c-1.594022 0-3.028643 1.215442-3.028643 2.889166c0 1.653798 1.414695 2.889166 3.038605 2.889166h1.613948c.139477 0 .328767 0 .328767-.199253z'/>
+</defs>
+<g id='page3'>
+<g fill='currentColor'>
+<use x='0' y='0' xlink:href='#g0-50'/>
+</g>
+</g>
+</svg>(B A) I<?xml version='1.0' encoding='UTF-8'?>
+
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
+<defs>
+<path id='g0-50' d='m5.808219 .199253c0-.199253-.18929-.199253-.328767-.199253h-1.58406c-1.39477 0-2.540473-.956413-2.660025-2.291407h4.244085c.139477 0 .328767 0 .328767-.199253s-.18929-.199253-.328767-.199253h-4.244085c.119552-1.354919 1.295143-2.291407 2.650062-2.291407h1.594022c.139477 0 .328767 0 .328767-.199253s-.18929-.199253-.328767-.199253h-1.62391c-1.594022 0-3.028643 1.215442-3.028643 2.889166c0 1.653798 1.414695 2.889166 3.038605 2.889166h1.613948c.139477 0 .328767 0 .328767-.199253z'/>
+</defs>
+<g id='page3'>
+<g fill='currentColor'>
+<use x='0' y='0' xlink:href='#g0-50'/>
+</g>
+</g>
+</svg>(A)
+</p>
+
+<p>
+O=G H=R N=G P=R K=B)
+</p>
+
+<p>
+chose variable F with value B
+</p>
+
+<p>
+after forward checking for F, domains: (A=R B=A C=G L=B D=G J=R M=R E=G
+</p>
+
+<p>
+G<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -2502,11 +3008,23 @@ after forward checking for F, domains: (A=R B=A C=G L=B D=G J=R M=R E=G<br />
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(A) O=G H=R N=G<br />
-                                        P=R K=B)<br />
-chose variable I with value A<br />
-after forward checking for I, domains: (A=R B=A C=G L=B D=G J=R M=R E=G<br />
-                                        G<?xml version='1.0' encoding='UTF-8'?>
+</svg>(A) O=G H=R N=G
+</p>
+
+<p>
+P=R K=B)
+</p>
+
+<p>
+chose variable I with value A
+</p>
+
+<p>
+after forward checking for I, domains: (A=R B=A C=G L=B D=G J=R M=R E=G
+</p>
+
+<p>
+G<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -2517,11 +3035,23 @@ after forward checking for I, domains: (A=R B=A C=G L=B D=G J=R M=R E=G<br />
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>NIL F=B I=A O=G H=R N=G P=R K=B)<br />
-G has no available values, we hit a deadend, propagating back<br />
-chose variable F with value A<br />
-after forward checking for F, domains: (A=R B=A C=G L=B D=G J=R M=R E=G<br />
-                                        G<?xml version='1.0' encoding='UTF-8'?>
+</svg>NIL F=B I=A O=G H=R N=G P=R K=B)
+</p>
+
+<p>
+G has no available values, we hit a deadend, propagating back
+</p>
+
+<p>
+chose variable F with value A
+</p>
+
+<p>
+after forward checking for F, domains: (A=R B=A C=G L=B D=G J=R M=R E=G
+</p>
+
+<p>
+G<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -2543,12 +3073,27 @@ after forward checking for F, domains: (A=R B=A C=G L=B D=G J=R M=R E=G<br />
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>NIL O=G H=R N=G<br />
-                                        P=R K=B)<br />
-I has no available values, we hit a deadend, propagating back<br />
-chose variable K with value A<br />
-after forward checking for K, domains: (A=R B=A C=G L=B D=G J=R M=R E=G<br />
-                                        G<?xml version='1.0' encoding='UTF-8'?>
+</svg>NIL O=G H=R N=G
+</p>
+
+<p>
+P=R K=B)
+</p>
+
+<p>
+I has no available values, we hit a deadend, propagating back
+</p>
+
+<p>
+chose variable K with value A
+</p>
+
+<p>
+after forward checking for K, domains: (A=R B=A C=G L=B D=G J=R M=R E=G
+</p>
+
+<p>
+G<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -2581,11 +3126,23 @@ after forward checking for K, domains: (A=R B=A C=G L=B D=G J=R M=R E=G<br />
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(B)<br />
-                                        O=G H=R N=G P=R K=A)<br />
-chose variable F with value A<br />
-after forward checking for F, domains: (A=R B=A C=G L=B D=G J=R M=R E=G<br />
-                                        G<?xml version='1.0' encoding='UTF-8'?>
+</svg>(B)
+</p>
+
+<p>
+O=G H=R N=G P=R K=A)
+</p>
+
+<p>
+chose variable F with value A
+</p>
+
+<p>
+after forward checking for F, domains: (A=R B=A C=G L=B D=G J=R M=R E=G
+</p>
+
+<p>
+G<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -2607,11 +3164,23 @@ after forward checking for F, domains: (A=R B=A C=G L=B D=G J=R M=R E=G<br />
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(B) O=G H=R N=G<br />
-                                        P=R K=A)<br />
-chose variable I with value B<br />
-after forward checking for I, domains: (A=R B=A C=G L=B D=G J=R M=R E=G<br />
-                                        G<?xml version='1.0' encoding='UTF-8'?>
+</svg>(B) O=G H=R N=G
+</p>
+
+<p>
+P=R K=A)
+</p>
+
+<p>
+chose variable I with value B
+</p>
+
+<p>
+after forward checking for I, domains: (A=R B=A C=G L=B D=G J=R M=R E=G
+</p>
+
+<p>
+G<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -2622,11 +3191,23 @@ after forward checking for I, domains: (A=R B=A C=G L=B D=G J=R M=R E=G<br />
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>NIL F=A I=B O=G H=R N=G P=R K=A)<br />
-G has no available values, we hit a deadend, propagating back<br />
-chose variable F with value B<br />
-after forward checking for F, domains: (A=R B=A C=G L=B D=G J=R M=R E=G<br />
-                                        G<?xml version='1.0' encoding='UTF-8'?>
+</svg>NIL F=A I=B O=G H=R N=G P=R K=A)
+</p>
+
+<p>
+G has no available values, we hit a deadend, propagating back
+</p>
+
+<p>
+chose variable F with value B
+</p>
+
+<p>
+after forward checking for F, domains: (A=R B=A C=G L=B D=G J=R M=R E=G
+</p>
+
+<p>
+G<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -2648,12 +3229,27 @@ after forward checking for F, domains: (A=R B=A C=G L=B D=G J=R M=R E=G<br />
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>NIL O=G H=R N=G<br />
-                                        P=R K=A)<br />
-I has no available values, we hit a deadend, propagating back<br />
-chose variable L with value A<br />
-after forward checking for L, domains: (A=R B=A C=G L=A D=G J=R M=R E=G<br />
-                                        G<?xml version='1.0' encoding='UTF-8'?>
+</svg>NIL O=G H=R N=G
+</p>
+
+<p>
+P=R K=A)
+</p>
+
+<p>
+I has no available values, we hit a deadend, propagating back
+</p>
+
+<p>
+chose variable L with value A
+</p>
+
+<p>
+after forward checking for L, domains: (A=R B=A C=G L=A D=G J=R M=R E=G
+</p>
+
+<p>
+G<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -2686,8 +3282,11 @@ after forward checking for L, domains: (A=R B=A C=G L=A D=G J=R M=R E=G<br />
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(A B)<br />
-                                        O=G H=R N=G P=R K<?xml version='1.0' encoding='UTF-8'?>
+</svg>(A B)
+</p>
+
+<p>
+O=G H=R N=G P=R K<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -2698,10 +3297,19 @@ after forward checking for L, domains: (A=R B=A C=G L=A D=G J=R M=R E=G<br />
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(B A))<br />
-chose variable K with value B<br />
-after forward checking for K, domains: (A=R B=A C=G L=A D=G J=R M=R E=G<br />
-                                        G<?xml version='1.0' encoding='UTF-8'?>
+</svg>(B A))
+</p>
+
+<p>
+chose variable K with value B
+</p>
+
+<p>
+after forward checking for K, domains: (A=R B=A C=G L=A D=G J=R M=R E=G
+</p>
+
+<p>
+G<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -2734,11 +3342,23 @@ after forward checking for K, domains: (A=R B=A C=G L=A D=G J=R M=R E=G<br />
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(A)<br />
-                                        O=G H=R N=G P=R K=B)<br />
-chose variable F with value B<br />
-after forward checking for F, domains: (A=R B=A C=G L=A D=G J=R M=R E=G<br />
-                                        G<?xml version='1.0' encoding='UTF-8'?>
+</svg>(A)
+</p>
+
+<p>
+O=G H=R N=G P=R K=B)
+</p>
+
+<p>
+chose variable F with value B
+</p>
+
+<p>
+after forward checking for F, domains: (A=R B=A C=G L=A D=G J=R M=R E=G
+</p>
+
+<p>
+G<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -2760,11 +3380,23 @@ after forward checking for F, domains: (A=R B=A C=G L=A D=G J=R M=R E=G<br />
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(A) O=G H=R N=G<br />
-                                        P=R K=B)<br />
-chose variable I with value A<br />
-after forward checking for I, domains: (A=R B=A C=G L=A D=G J=R M=R E=G<br />
-                                        G<?xml version='1.0' encoding='UTF-8'?>
+</svg>(A) O=G H=R N=G
+</p>
+
+<p>
+P=R K=B)
+</p>
+
+<p>
+chose variable I with value A
+</p>
+
+<p>
+after forward checking for I, domains: (A=R B=A C=G L=A D=G J=R M=R E=G
+</p>
+
+<p>
+G<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -2775,11 +3407,23 @@ after forward checking for I, domains: (A=R B=A C=G L=A D=G J=R M=R E=G<br />
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>NIL F=B I=A O=G H=R N=G P=R K=B)<br />
-G has no available values, we hit a deadend, propagating back<br />
-chose variable F with value A<br />
-after forward checking for F, domains: (A=R B=A C=G L=A D=G J=R M=R E=G<br />
-                                        G<?xml version='1.0' encoding='UTF-8'?>
+</svg>NIL F=B I=A O=G H=R N=G P=R K=B)
+</p>
+
+<p>
+G has no available values, we hit a deadend, propagating back
+</p>
+
+<p>
+chose variable F with value A
+</p>
+
+<p>
+after forward checking for F, domains: (A=R B=A C=G L=A D=G J=R M=R E=G
+</p>
+
+<p>
+G<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -2801,12 +3445,27 @@ after forward checking for F, domains: (A=R B=A C=G L=A D=G J=R M=R E=G<br />
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>NIL O=G H=R N=G<br />
-                                        P=R K=B)<br />
-I has no available values, we hit a deadend, propagating back<br />
-chose variable K with value A<br />
-after forward checking for K, domains: (A=R B=A C=G L=A D=G J=R M=R E=G<br />
-                                        G<?xml version='1.0' encoding='UTF-8'?>
+</svg>NIL O=G H=R N=G
+</p>
+
+<p>
+P=R K=B)
+</p>
+
+<p>
+I has no available values, we hit a deadend, propagating back
+</p>
+
+<p>
+chose variable K with value A
+</p>
+
+<p>
+after forward checking for K, domains: (A=R B=A C=G L=A D=G J=R M=R E=G
+</p>
+
+<p>
+G<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -2839,11 +3498,23 @@ after forward checking for K, domains: (A=R B=A C=G L=A D=G J=R M=R E=G<br />
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(B)<br />
-                                        O=G H=R N=G P=R K=A)<br />
-chose variable F with value A<br />
-after forward checking for F, domains: (A=R B=A C=G L=A D=G J=R M=R E=G<br />
-                                        G<?xml version='1.0' encoding='UTF-8'?>
+</svg>(B)
+</p>
+
+<p>
+O=G H=R N=G P=R K=A)
+</p>
+
+<p>
+chose variable F with value A
+</p>
+
+<p>
+after forward checking for F, domains: (A=R B=A C=G L=A D=G J=R M=R E=G
+</p>
+
+<p>
+G<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -2865,11 +3536,23 @@ after forward checking for F, domains: (A=R B=A C=G L=A D=G J=R M=R E=G<br />
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(B) O=G H=R N=G<br />
-                                        P=R K=A)<br />
-chose variable I with value B<br />
-after forward checking for I, domains: (A=R B=A C=G L=A D=G J=R M=R E=G<br />
-                                        G<?xml version='1.0' encoding='UTF-8'?>
+</svg>(B) O=G H=R N=G
+</p>
+
+<p>
+P=R K=A)
+</p>
+
+<p>
+chose variable I with value B
+</p>
+
+<p>
+after forward checking for I, domains: (A=R B=A C=G L=A D=G J=R M=R E=G
+</p>
+
+<p>
+G<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -2880,11 +3563,23 @@ after forward checking for I, domains: (A=R B=A C=G L=A D=G J=R M=R E=G<br />
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>NIL F=A I=B O=G H=R N=G P=R K=A)<br />
-G has no available values, we hit a deadend, propagating back<br />
-chose variable F with value B<br />
-after forward checking for F, domains: (A=R B=A C=G L=A D=G J=R M=R E=G<br />
-                                        G<?xml version='1.0' encoding='UTF-8'?>
+</svg>NIL F=A I=B O=G H=R N=G P=R K=A)
+</p>
+
+<p>
+G has no available values, we hit a deadend, propagating back
+</p>
+
+<p>
+chose variable F with value B
+</p>
+
+<p>
+after forward checking for F, domains: (A=R B=A C=G L=A D=G J=R M=R E=G
+</p>
+
+<p>
+G<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -2906,10 +3601,22 @@ after forward checking for F, domains: (A=R B=A C=G L=A D=G J=R M=R E=G<br />
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>NIL O=G H=R N=G<br />
-                                        P=R K=A)<br />
-I has no available values, we hit a deadend, propagating back<br />
-chose variable N with value B<br />
+</svg>NIL O=G H=R N=G
+</p>
+
+<p>
+P=R K=A)
+</p>
+
+<p>
+I has no available values, we hit a deadend, propagating back
+</p>
+
+<p>
+chose variable N with value B
+</p>
+
+<p>
 after forward checking for N, domains: (A=R B<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
@@ -2932,8 +3639,11 @@ after forward checking for N, domains: (A=R B<?xml version='1.0' encoding='UTF-8
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(B A) D=G<br />
-                                        J=R M=R E=G G<?xml version='1.0' encoding='UTF-8'?>
+</svg>(B A) D=G
+</p>
+
+<p>
+J=R M=R E=G G<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -2955,8 +3665,11 @@ after forward checking for N, domains: (A=R B<?xml version='1.0' encoding='UTF-8
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(B A)<br />
-                                        I<?xml version='1.0' encoding='UTF-8'?>
+</svg>(B A)
+</p>
+
+<p>
+I<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -2967,8 +3680,11 @@ after forward checking for N, domains: (A=R B<?xml version='1.0' encoding='UTF-8
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(G A) O=G H=R N=B P=R<br />
-                                        K<?xml version='1.0' encoding='UTF-8'?>
+</svg>(G A) O=G H=R N=B P=R
+</p>
+
+<p>
+K<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -2979,8 +3695,14 @@ after forward checking for N, domains: (A=R B<?xml version='1.0' encoding='UTF-8
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(G A))<br />
-chose variable B with value B<br />
+</svg>(G A))
+</p>
+
+<p>
+chose variable B with value B
+</p>
+
+<p>
 after forward checking for B, domains: (A=R B=B C=G L<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
@@ -2992,8 +3714,11 @@ after forward checking for B, domains: (A=R B=B C=G L<?xml version='1.0' encodin
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(B A) D=G J=R M=R<br />
-                                        E=G G<?xml version='1.0' encoding='UTF-8'?>
+</svg>(B A) D=G J=R M=R
+</p>
+
+<p>
+E=G G<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -3015,8 +3740,11 @@ after forward checking for B, domains: (A=R B=B C=G L<?xml version='1.0' encodin
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(B A)<br />
-                                        I<?xml version='1.0' encoding='UTF-8'?>
+</svg>(B A)
+</p>
+
+<p>
+I<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -3027,8 +3755,11 @@ after forward checking for B, domains: (A=R B=B C=G L<?xml version='1.0' encodin
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(G A) O=G H=R N=B P=R<br />
-                                        K<?xml version='1.0' encoding='UTF-8'?>
+</svg>(G A) O=G H=R N=B P=R
+</p>
+
+<p>
+K<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -3039,58 +3770,19 @@ after forward checking for B, domains: (A=R B=B C=G L<?xml version='1.0' encodin
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(G A))<br />
-chose variable L with value B<br />
-after forward checking for L, domains: (A=R B=B C=G L=B D=G J=R M=R E=G<br />
-                                        G<?xml version='1.0' encoding='UTF-8'?>
+</svg>(G A))
+</p>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
-<defs>
-<path id='g0-50' d='m5.808219 .199253c0-.199253-.18929-.199253-.328767-.199253h-1.58406c-1.39477 0-2.540473-.956413-2.660025-2.291407h4.244085c.139477 0 .328767 0 .328767-.199253s-.18929-.199253-.328767-.199253h-4.244085c.119552-1.354919 1.295143-2.291407 2.650062-2.291407h1.594022c.139477 0 .328767 0 .328767-.199253s-.18929-.199253-.328767-.199253h-1.62391c-1.594022 0-3.028643 1.215442-3.028643 2.889166c0 1.653798 1.414695 2.889166 3.038605 2.889166h1.613948c.139477 0 .328767 0 .328767-.199253z'/>
-</defs>
-<g id='page3'>
-<g fill='currentColor'>
-<use x='0' y='0' xlink:href='#g0-50'/>
-</g>
-</g>
-</svg>(A) F<?xml version='1.0' encoding='UTF-8'?>
+<p>
+chose variable L with value B
+</p>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
-<defs>
-<path id='g0-50' d='m5.808219 .199253c0-.199253-.18929-.199253-.328767-.199253h-1.58406c-1.39477 0-2.540473-.956413-2.660025-2.291407h4.244085c.139477 0 .328767 0 .328767-.199253s-.18929-.199253-.328767-.199253h-4.244085c.119552-1.354919 1.295143-2.291407 2.650062-2.291407h1.594022c.139477 0 .328767 0 .328767-.199253s-.18929-.199253-.328767-.199253h-1.62391c-1.594022 0-3.028643 1.215442-3.028643 2.889166c0 1.653798 1.414695 2.889166 3.038605 2.889166h1.613948c.139477 0 .328767 0 .328767-.199253z'/>
-</defs>
-<g id='page3'>
-<g fill='currentColor'>
-<use x='0' y='0' xlink:href='#g0-50'/>
-</g>
-</g>
-</svg>(B A) I<?xml version='1.0' encoding='UTF-8'?>
+<p>
+after forward checking for L, domains: (A=R B=B C=G L=B D=G J=R M=R E=G
+</p>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
-<defs>
-<path id='g0-50' d='m5.808219 .199253c0-.199253-.18929-.199253-.328767-.199253h-1.58406c-1.39477 0-2.540473-.956413-2.660025-2.291407h4.244085c.139477 0 .328767 0 .328767-.199253s-.18929-.199253-.328767-.199253h-4.244085c.119552-1.354919 1.295143-2.291407 2.650062-2.291407h1.594022c.139477 0 .328767 0 .328767-.199253s-.18929-.199253-.328767-.199253h-1.62391c-1.594022 0-3.028643 1.215442-3.028643 2.889166c0 1.653798 1.414695 2.889166 3.038605 2.889166h1.613948c.139477 0 .328767 0 .328767-.199253z'/>
-</defs>
-<g id='page3'>
-<g fill='currentColor'>
-<use x='0' y='0' xlink:href='#g0-50'/>
-</g>
-</g>
-</svg>(G A)<br />
-                                        O=G H=R N=B P=R K<?xml version='1.0' encoding='UTF-8'?>
-
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
-<defs>
-<path id='g0-50' d='m5.808219 .199253c0-.199253-.18929-.199253-.328767-.199253h-1.58406c-1.39477 0-2.540473-.956413-2.660025-2.291407h4.244085c.139477 0 .328767 0 .328767-.199253s-.18929-.199253-.328767-.199253h-4.244085c.119552-1.354919 1.295143-2.291407 2.650062-2.291407h1.594022c.139477 0 .328767 0 .328767-.199253s-.18929-.199253-.328767-.199253h-1.62391c-1.594022 0-3.028643 1.215442-3.028643 2.889166c0 1.653798 1.414695 2.889166 3.038605 2.889166h1.613948c.139477 0 .328767 0 .328767-.199253z'/>
-</defs>
-<g id='page3'>
-<g fill='currentColor'>
-<use x='0' y='0' xlink:href='#g0-50'/>
-</g>
-</g>
-</svg>(G A))<br />
-chose variable K with value G<br />
-after forward checking for K, domains: (A=R B=B C=G L=B D=G J=R M=R E=G<br />
-                                        G<?xml version='1.0' encoding='UTF-8'?>
+<p>
+G<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -3123,11 +3815,83 @@ after forward checking for K, domains: (A=R B=B C=G L=B D=G J=R M=R E=G<br />
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(A)<br />
-                                        O=G H=R N=B P=R K=G)<br />
-chose variable F with value B<br />
-after forward checking for F, domains: (A=R B=B C=G L=B D=G J=R M=R E=G<br />
-                                        G<?xml version='1.0' encoding='UTF-8'?>
+</svg>(G A)
+</p>
+
+<p>
+O=G H=R N=B P=R K<?xml version='1.0' encoding='UTF-8'?>
+
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
+<defs>
+<path id='g0-50' d='m5.808219 .199253c0-.199253-.18929-.199253-.328767-.199253h-1.58406c-1.39477 0-2.540473-.956413-2.660025-2.291407h4.244085c.139477 0 .328767 0 .328767-.199253s-.18929-.199253-.328767-.199253h-4.244085c.119552-1.354919 1.295143-2.291407 2.650062-2.291407h1.594022c.139477 0 .328767 0 .328767-.199253s-.18929-.199253-.328767-.199253h-1.62391c-1.594022 0-3.028643 1.215442-3.028643 2.889166c0 1.653798 1.414695 2.889166 3.038605 2.889166h1.613948c.139477 0 .328767 0 .328767-.199253z'/>
+</defs>
+<g id='page3'>
+<g fill='currentColor'>
+<use x='0' y='0' xlink:href='#g0-50'/>
+</g>
+</g>
+</svg>(G A))
+</p>
+
+<p>
+chose variable K with value G
+</p>
+
+<p>
+after forward checking for K, domains: (A=R B=B C=G L=B D=G J=R M=R E=G
+</p>
+
+<p>
+G<?xml version='1.0' encoding='UTF-8'?>
+
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
+<defs>
+<path id='g0-50' d='m5.808219 .199253c0-.199253-.18929-.199253-.328767-.199253h-1.58406c-1.39477 0-2.540473-.956413-2.660025-2.291407h4.244085c.139477 0 .328767 0 .328767-.199253s-.18929-.199253-.328767-.199253h-4.244085c.119552-1.354919 1.295143-2.291407 2.650062-2.291407h1.594022c.139477 0 .328767 0 .328767-.199253s-.18929-.199253-.328767-.199253h-1.62391c-1.594022 0-3.028643 1.215442-3.028643 2.889166c0 1.653798 1.414695 2.889166 3.038605 2.889166h1.613948c.139477 0 .328767 0 .328767-.199253z'/>
+</defs>
+<g id='page3'>
+<g fill='currentColor'>
+<use x='0' y='0' xlink:href='#g0-50'/>
+</g>
+</g>
+</svg>(A) F<?xml version='1.0' encoding='UTF-8'?>
+
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
+<defs>
+<path id='g0-50' d='m5.808219 .199253c0-.199253-.18929-.199253-.328767-.199253h-1.58406c-1.39477 0-2.540473-.956413-2.660025-2.291407h4.244085c.139477 0 .328767 0 .328767-.199253s-.18929-.199253-.328767-.199253h-4.244085c.119552-1.354919 1.295143-2.291407 2.650062-2.291407h1.594022c.139477 0 .328767 0 .328767-.199253s-.18929-.199253-.328767-.199253h-1.62391c-1.594022 0-3.028643 1.215442-3.028643 2.889166c0 1.653798 1.414695 2.889166 3.038605 2.889166h1.613948c.139477 0 .328767 0 .328767-.199253z'/>
+</defs>
+<g id='page3'>
+<g fill='currentColor'>
+<use x='0' y='0' xlink:href='#g0-50'/>
+</g>
+</g>
+</svg>(B A) I<?xml version='1.0' encoding='UTF-8'?>
+
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
+<defs>
+<path id='g0-50' d='m5.808219 .199253c0-.199253-.18929-.199253-.328767-.199253h-1.58406c-1.39477 0-2.540473-.956413-2.660025-2.291407h4.244085c.139477 0 .328767 0 .328767-.199253s-.18929-.199253-.328767-.199253h-4.244085c.119552-1.354919 1.295143-2.291407 2.650062-2.291407h1.594022c.139477 0 .328767 0 .328767-.199253s-.18929-.199253-.328767-.199253h-1.62391c-1.594022 0-3.028643 1.215442-3.028643 2.889166c0 1.653798 1.414695 2.889166 3.038605 2.889166h1.613948c.139477 0 .328767 0 .328767-.199253z'/>
+</defs>
+<g id='page3'>
+<g fill='currentColor'>
+<use x='0' y='0' xlink:href='#g0-50'/>
+</g>
+</g>
+</svg>(A)
+</p>
+
+<p>
+O=G H=R N=B P=R K=G)
+</p>
+
+<p>
+chose variable F with value B
+</p>
+
+<p>
+after forward checking for F, domains: (A=R B=B C=G L=B D=G J=R M=R E=G
+</p>
+
+<p>
+G<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -3149,11 +3913,23 @@ after forward checking for F, domains: (A=R B=B C=G L=B D=G J=R M=R E=G<br />
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(A) O=G H=R N=B<br />
-                                        P=R K=G)<br />
-chose variable I with value A<br />
-after forward checking for I, domains: (A=R B=B C=G L=B D=G J=R M=R E=G<br />
-                                        G<?xml version='1.0' encoding='UTF-8'?>
+</svg>(A) O=G H=R N=B
+</p>
+
+<p>
+P=R K=G)
+</p>
+
+<p>
+chose variable I with value A
+</p>
+
+<p>
+after forward checking for I, domains: (A=R B=B C=G L=B D=G J=R M=R E=G
+</p>
+
+<p>
+G<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -3164,11 +3940,23 @@ after forward checking for I, domains: (A=R B=B C=G L=B D=G J=R M=R E=G<br />
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>NIL F=B I=A O=G H=R N=B P=R K=G)<br />
-G has no available values, we hit a deadend, propagating back<br />
-chose variable F with value A<br />
-after forward checking for F, domains: (A=R B=B C=G L=B D=G J=R M=R E=G<br />
-                                        G<?xml version='1.0' encoding='UTF-8'?>
+</svg>NIL F=B I=A O=G H=R N=B P=R K=G)
+</p>
+
+<p>
+G has no available values, we hit a deadend, propagating back
+</p>
+
+<p>
+chose variable F with value A
+</p>
+
+<p>
+after forward checking for F, domains: (A=R B=B C=G L=B D=G J=R M=R E=G
+</p>
+
+<p>
+G<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -3190,12 +3978,27 @@ after forward checking for F, domains: (A=R B=B C=G L=B D=G J=R M=R E=G<br />
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>NIL O=G H=R N=B<br />
-                                        P=R K=G)<br />
-I has no available values, we hit a deadend, propagating back<br />
-chose variable K with value A<br />
-after forward checking for K, domains: (A=R B=B C=G L=B D=G J=R M=R E=G<br />
-                                        G<?xml version='1.0' encoding='UTF-8'?>
+</svg>NIL O=G H=R N=B
+</p>
+
+<p>
+P=R K=G)
+</p>
+
+<p>
+I has no available values, we hit a deadend, propagating back
+</p>
+
+<p>
+chose variable K with value A
+</p>
+
+<p>
+after forward checking for K, domains: (A=R B=B C=G L=B D=G J=R M=R E=G
+</p>
+
+<p>
+G<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -3228,11 +4031,23 @@ after forward checking for K, domains: (A=R B=B C=G L=B D=G J=R M=R E=G<br />
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(G)<br />
-                                        O=G H=R N=B P=R K=A)<br />
-chose variable F with value A<br />
-after forward checking for F, domains: (A=R B=B C=G L=B D=G J=R M=R E=G<br />
-                                        G<?xml version='1.0' encoding='UTF-8'?>
+</svg>(G)
+</p>
+
+<p>
+O=G H=R N=B P=R K=A)
+</p>
+
+<p>
+chose variable F with value A
+</p>
+
+<p>
+after forward checking for F, domains: (A=R B=B C=G L=B D=G J=R M=R E=G
+</p>
+
+<p>
+G<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -3254,11 +4069,23 @@ after forward checking for F, domains: (A=R B=B C=G L=B D=G J=R M=R E=G<br />
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(G) O=G H=R N=B<br />
-                                        P=R K=A)<br />
-chose variable I with value G<br />
-after forward checking for I, domains: (A=R B=B C=G L=B D=G J=R M=R E=G<br />
-                                        G<?xml version='1.0' encoding='UTF-8'?>
+</svg>(G) O=G H=R N=B
+</p>
+
+<p>
+P=R K=A)
+</p>
+
+<p>
+chose variable I with value G
+</p>
+
+<p>
+after forward checking for I, domains: (A=R B=B C=G L=B D=G J=R M=R E=G
+</p>
+
+<p>
+G<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -3269,11 +4096,23 @@ after forward checking for I, domains: (A=R B=B C=G L=B D=G J=R M=R E=G<br />
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>NIL F=A I=G O=G H=R N=B P=R K=A)<br />
-G has no available values, we hit a deadend, propagating back<br />
-chose variable F with value B<br />
-after forward checking for F, domains: (A=R B=B C=G L=B D=G J=R M=R E=G<br />
-                                        G<?xml version='1.0' encoding='UTF-8'?>
+</svg>NIL F=A I=G O=G H=R N=B P=R K=A)
+</p>
+
+<p>
+G has no available values, we hit a deadend, propagating back
+</p>
+
+<p>
+chose variable F with value B
+</p>
+
+<p>
+after forward checking for F, domains: (A=R B=B C=G L=B D=G J=R M=R E=G
+</p>
+
+<p>
+G<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -3295,11 +4134,23 @@ after forward checking for F, domains: (A=R B=B C=G L=B D=G J=R M=R E=G<br />
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(G) O=G H=R N=B<br />
-                                        P=R K=A)<br />
-chose variable I with value G<br />
-after forward checking for I, domains: (A=R B=B C=G L=B D=G J=R M=R E=G<br />
-                                        G<?xml version='1.0' encoding='UTF-8'?>
+</svg>(G) O=G H=R N=B
+</p>
+
+<p>
+P=R K=A)
+</p>
+
+<p>
+chose variable I with value G
+</p>
+
+<p>
+after forward checking for I, domains: (A=R B=B C=G L=B D=G J=R M=R E=G
+</p>
+
+<p>
+G<?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.370837 6.641782 5.760354' style="max-height: 0.6650em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -3310,10 +4161,19 @@ after forward checking for I, domains: (A=R B=B C=G L=B D=G J=R M=R E=G<br />
 <use x='0' y='0' xlink:href='#g0-50'/>
 </g>
 </g>
-</svg>(A) F=B I=G O=G H=R N=B P=R K=A)<br />
-chose variable G with value A<br />
-after forward checking for G, domains: (A=R B=B C=G L=B D=G J=R M=R E=G G=A F=B<br />
-                                        I=G O=G H=R N=B P=R K=A)<br />
+</svg>(A) F=B I=G O=G H=R N=B P=R K=A)
+</p>
+
+<p>
+chose variable G with value A
+</p>
+
+<p>
+after forward checking for G, domains: (A=R B=B C=G L=B D=G J=R M=R E=G G=A F=B
+</p>
+
+<p>
+I=G O=G H=R N=B P=R K=A)
 </p>
 </div>
 </body>

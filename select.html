@@ -44,13 +44,13 @@
 definition: select&lt;/p&gt;
 " id="def-link-list" data-id="def-link-list">
 <p>
-the <i>SELECT</i> operation is ussed to choose a <a href="/subset.html">subset</a> of the <a href="/tuple.html">tuple</a>s from a <a href="/relation.html">relation</a> that satisfies a <i>selection condition</i>. we can consider the select operation to be a <i>filter</i> that keeps only those tuples that satisfy a qualifying condition. alternatively, we can consider the select operation to restrict the tuples in a relation to only those tuples that satisfy the condition. the select operation can also be visualized as a horizontal partition of the relation into two sets of tuples&#x2013;those tuples that satisfy the conddition and are selected, and those tuples that do not satisfy the condition and are filtered out.<br />
+the <i>SELECT</i> operation is ussed to choose a <a href="/subset.html">subset</a> of the <a href="/tuple.html">tuple</a>s from a <a href="/relation.html">relation</a> that satisfies a <i>selection condition</i>. we can consider the select operation to be a <i>filter</i> that keeps only those tuples that satisfy a qualifying condition. alternatively, we can consider the select operation to restrict the tuples in a relation to only those tuples that satisfy the condition. the select operation can also be visualized as a horizontal partition of the relation into two sets of tuples&#x2013;those tuples that satisfy the conddition and are selected, and those tuples that do not satisfy the condition and are filtered out.
 </p>
 
 </div>
 
 <p>
-in general, the select operation is denoted by<br />
+in general, the select operation is denoted by
 <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='134.208404 -9.96264 98.786928 9.96264' style="max-height: 1.4210em; display: block" class="org-latex org-latex-block">
@@ -99,7 +99,7 @@ in general, the select operation is denoted by<br />
 <use x='229.120854' y='-2.49066' xlink:href='#g6-41'/>
 </g>
 </g>
-</svg><br />
+</svg>
 where the symbol <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -4.289468 6.050243 4.289468' style="max-height: 0.5203em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
@@ -144,8 +144,11 @@ where the symbol <?xml version='1.0' encoding='UTF-8'?>
 <use x='0' y='0' xlink:href='#g4-82'/>
 </g>
 </g>
-</svg>.<br />
-the Boolean expression specified in &lt;selection condition&gt; is made up of a number of clauses of the form<br />
+</svg>.
+</p>
+
+<p>
+the Boolean expression specified in &lt;selection condition&gt; is made up of a number of clauses of the form
 <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='63.127028 -8.846827 240.949686 8.846824' style="max-height: 1.3661em; display: block" class="org-latex org-latex-block">
@@ -216,8 +219,8 @@ the Boolean expression specified in &lt;selection condition&gt; is made up of a 
 <use x='296.32578' y='-1.932755' xlink:href='#g7-61'/>
 </g>
 </g>
-</svg><br />
-or<br />
+</svg>
+or
 <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='61.752179 -8.846827 243.699371 8.846824' style="max-height: 1.3661em; display: block" class="org-latex org-latex-block">
@@ -286,7 +289,7 @@ or<br />
 <use x='297.700615' y='-1.932755' xlink:href='#g7-61'/>
 </g>
 </g>
-</svg><br />
+</svg>
 where &lt;attribute name&gt; is the name of an attribute of <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.807795 7.641499 6.807795' style="max-height: 0.7680em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
@@ -330,7 +333,7 @@ where &lt;attribute name&gt; is the name of an attribute of <?xml version='1.0' 
 <use x='73.613244' y='0' xlink:href='#g6-103'/>
 </g>
 </g>
-</svg>, and &lt;constant value&gt; is a constant value from the attribute domain. clauses can be connected by the standard boolean operators <a href="/AND.html">AND</a>, <a href="/OR.html">OR</a>, and <a href="/NOT.html">NOT</a> to form a general selection condition. for example, to select the tuples for all employees who either work in department 4 and make over $25,000 per year, or work in department 5 and make over $30,000, we can specify the following SELECT operation:<br />
+</svg>, and &lt;constant value&gt; is a constant value from the attribute domain. clauses can be connected by the standard boolean operators <a href="/AND.html">AND</a>, <a href="/OR.html">OR</a>, and <a href="/NOT.html">NOT</a> to form a general selection condition. for example, to select the tuples for all employees who either work in department 4 and make over $25,000 per year, or work in department 5 and make over $30,000, we can specify the following SELECT operation:
 <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='28.837097 -11.014269 309.529555 11.014269' style="max-height: 1.5244em; display: block" class="org-latex org-latex-block">
@@ -428,7 +431,7 @@ where &lt;attribute name&gt; is the name of an attribute of <?xml version='1.0' 
 <use x='334.492173' y='-3.542289' xlink:href='#g6-41'/>
 </g>
 </g>
-</svg><br />
+</svg>
 notice that all the comparison operators in the set <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -7.47198 78.594583 9.96264' style="max-height: 1.0784em; vertical-align: -0.2942em; display: inline-block" class="org-latex org-latex-inline">
@@ -561,8 +564,11 @@ notice that all the comparison operators in the set <?xml version='1.0' encoding
 <use x='204.633686' y='0' xlink:href='#g2-103'/>
 </g>
 </g>
-</svg>, where no order is specified among the various colors. some domains allow additional types of comparison operators; for example, a domain of character strings may allow the comparison operator SUBSTRING_OF.<br />
-the select operator is <a href="/commutative.html">commutative</a>.<br />
+</svg>, where no order is specified among the various colors. some domains allow additional types of comparison operators; for example, a domain of character strings may allow the comparison operator SUBSTRING_OF.
+</p>
+
+<p>
+the select operator is <a href="/commutative.html">commutative</a>.
 </p>
 
 </div>

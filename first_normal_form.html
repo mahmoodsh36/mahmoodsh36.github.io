@@ -41,27 +41,31 @@
 (see Ramez Elmasri, Shamkant B. Navathe, 2015 chapter 14 basics of functional dependencies and normalization for relational databases)&lt;/p&gt;
 " id="def-db-2nf" data-id="def-db-2nf">
 <p>
-<i>first normal form</i> is now considered to be part of the formal definition of a <a href="/relation.html">relation</a> in the basic (flat) relational model; historically, it was defined to disallow multivalued attributes, composite attributes, and their combinations. it states that the domain of an attribute must include only atomic (simple, indivisible) values and that the value of any attribute in a tuple must be a single value from the domain of that attribute. hence, 1NF disallows having a set of values, a tuple of values, or a combination of both as an attribute value for a single tuple. in other words, 1NF disallows relations within relations or relations as attribute values within tuples. the only attribute values permitted by 1NF are single atomic (or indivisible) values.<br />
+<i>first normal form</i> is now considered to be part of the formal definition of a <a href="/relation.html">relation</a> in the basic (flat) relational model; historically, it was defined to disallow multivalued attributes, composite attributes, and their combinations. it states that the domain of an attribute must include only atomic (simple, indivisible) values and that the value of any attribute in a tuple must be a single value from the domain of that attribute. hence, 1NF disallows having a set of values, a tuple of values, or a combination of both as an attribute value for a single tuple. in other words, 1NF disallows relations within relations or relations as attribute values within tuples. the only attribute values permitted by 1NF are single atomic (or indivisible) values.
 </p>
 
 </div>
 
 <div test="test" class="fancy-block dummy" data-before="" id="def-db-2nf" data-id="def-db-2nf">
 <p>
-every relation in the relational model is atleast of the normal form 1NF; i.e.:<br />
+every relation in the relational model is atleast of the normal form 1NF; i.e.:
 </p>
+
 <ul class="org-ul">
-<li>has the form of a table<br /></li>
-<li>its fields contain atomic values<br /></li>
-<li>a key is defined for it, and the key contains unique values (not null)<br /></li>
+<li>has the form of a table</li>
+<li>its fields contain atomic values</li>
+<li>a key is defined for it, and the key contains unique values (not null)</li>
 </ul>
 <div test="test" class="fancy-block my_example" data-before="&lt;p&gt;
 example: &lt;/p&gt;
 " id="def-db-2nf" data-id="def-db-2nf">
 <p>
-an example of a relation that isnt in 1NF:<br />
-<code>students(id,name,department,courses)</code><br />
-the courses field isnt atomic as it is a collection for course codes<br />
+an example of a relation that isnt in 1NF:
+</p>
+
+<p>
+<code>students(id,name,department,courses)</code>
+the courses field isnt atomic as it is a collection for course codes
 </p>
 
 </div>

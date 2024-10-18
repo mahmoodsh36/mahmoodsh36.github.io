@@ -38,19 +38,19 @@
 </div>
 <div id="content" class="content">
 <p>
-for each task write a single line in mongodb shell to get it done.<br />
+for each task write a single line in mongodb shell to get it done.
 </p>
 <div test="test" class="fancy-block task" data-before="&lt;p&gt;
 task: &lt;/p&gt;
 " id="dum-human-comp" data-id="dum-human-comp">
 <p>
-create a database named <code>HW</code>.<br />
+create a database named <code>HW</code>.
 </p>
 
 </div>
 
 <p>
-refer to mongodb/create database<br />
+refer to mongodb/create database
 </p>
 <div class="org-src-container" data-language="mongo">
 <pre class="src src-mongo">use HW
@@ -61,7 +61,7 @@ refer to mongodb/create database<br />
 task: &lt;/p&gt;
 " id="dum-human-comp" data-id="dum-human-comp">
 <p>
-create a collection named <code>students</code>.<br />
+create a collection named <code>students</code>.
 </p>
 
 </div>
@@ -75,32 +75,35 @@ create a collection named <code>students</code>.<br />
 task: &lt;/p&gt;
 " id="dum-human-comp" data-id="dum-human-comp">
 <p>
-add atleast 10 documents to the <code>students</code> collection. make sure the fields have sensible values. here is the structure of the documents you need to add:<br />
+add atleast 10 documents to the <code>students</code> collection. make sure the fields have sensible values. here is the structure of the documents you need to add:
 </p>
+
 <ul class="org-ul">
-<li>student id, <code>_id</code>.<br /></li>
-<li>student name, including first name and last name.<br /></li>
-<li>date of birth, <code>bdate</code>.<br /></li>
-<li>list of courses the student studies<br /></li>
+<li>student id, <code>_id</code>.</li>
+<li>student name, including first name and last name.</li>
+<li>date of birth, <code>bdate</code>.</li>
+<li>list of courses the student studies</li>
 </ul>
 <p>
-where each course in the list of courses has the following properties:<br />
+where each course in the list of courses has the following properties:
 </p>
+
 <ul class="org-ul">
-<li>course code, <code>ccode</code>.<br /></li>
-<li>course name, <code>cname</code>.<br /></li>
-<li><code>grade</code>.<br /></li>
+<li>course code, <code>ccode</code>.</li>
+<li>course name, <code>cname</code>.</li>
+<li><code>grade</code>.</li>
 </ul>
 <p>
-in addition:<br />
+in addition:
 </p>
+
 <ul class="org-ul">
-<li>the field <code>phones</code> should contain the phone numbers used to contact a student<br /></li>
-<li>the field <code>major</code> contains the main field of study of the student.<br /></li>
-<li>the field <code>minor</code> contains the secondary field of study of the student.<br /></li>
+<li>the field <code>phones</code> should contain the phone numbers used to contact a student</li>
+<li>the field <code>major</code> contains the main field of study of the student.</li>
+<li>the field <code>minor</code> contains the secondary field of study of the student.</li>
 </ul>
 <p>
-note that not every student has a secondary field of study.<br />
+note that not every student has a secondary field of study.
 </p>
 
 </div>
@@ -111,7 +114,7 @@ note that not every student has a secondary field of study.<br />
 </div>
 
 
-<pre class="example" id="orga249d8d">
+<pre class="example" id="orgcdfd3f3">
 {
 	"acknowledged" : true,
 	"insertedIds" : [
@@ -133,7 +136,7 @@ note that not every student has a secondary field of study.<br />
 task: &lt;/p&gt;
 " id="dum-human-comp" data-id="dum-human-comp">
 <p>
-write a command that shows all the students with all the data on them.<br />
+write a command that shows all the students with all the data on them.
 </p>
 
 </div>
@@ -144,7 +147,7 @@ write a command that shows all the students with all the data on them.<br />
 </div>
 
 
-<pre class="example" id="org6033fdd">
+<pre class="example" id="orga241551">
 {
 	"_id" : 0,
 	"name" : {
@@ -355,7 +358,7 @@ write a command that shows all the students with all the data on them.<br />
 task: &lt;/p&gt;
 " id="dum-human-comp" data-id="dum-human-comp">
 <p>
-for each student, show their name and the names of the courses they study, without id.<br />
+for each student, show their name and the names of the courses they study, without id.
 </p>
 
 </div>
@@ -366,7 +369,7 @@ for each student, show their name and the names of the courses they study, witho
 </div>
 
 
-<pre class="example" id="org6577845">
+<pre class="example" id="orge3ec62e">
 {
 	"name" : {
 		"first" : "mahmood0",
@@ -483,7 +486,7 @@ for each student, show their name and the names of the courses they study, witho
 task: &lt;/p&gt;
 " id="dum-human-comp" data-id="dum-human-comp">
 <p>
-show all students, for each student, show their id, a new field named <code>full name</code> that contains both the first and the last name of the student. a new field <code>year</code> that contains the year the student was born. a new field <code>age</code> that shows the age of the student (use <code>$$NOW,$subtract</code>), the phone number field with a single number, and a new field named <code>#courses</code> whose value is the number of courses a student has.<br />
+show all students, for each student, show their id, a new field named <code>full name</code> that contains both the first and the last name of the student. a new field <code>year</code> that contains the year the student was born. a new field <code>age</code> that shows the age of the student (use <code>$$NOW,$subtract</code>), the phone number field with a single number, and a new field named <code>#courses</code> whose value is the number of courses a student has.
 </p>
 
 </div>
@@ -494,7 +497,7 @@ show all students, for each student, show their id, a new field named <code>full
 </div>
 
 
-<pre class="example" id="org1caa615">
+<pre class="example" id="org4193484">
 {
 	"_id" : 0,
 	"phones" : [
@@ -601,7 +604,7 @@ show all students, for each student, show their id, a new field named <code>full
 task: &lt;/p&gt;
 " id="dum-human-comp" data-id="dum-human-comp">
 <p>
-show all students, for each student show their id, the number of courses they're in and the number of phones they own. in addition, show their major and minor field of studies joined by a forward slash, in case they dont have a secondary field of study show the main field without a slash.<br />
+show all students, for each student show their id, the number of courses they're in and the number of phones they own. in addition, show their major and minor field of studies joined by a forward slash, in case they dont have a secondary field of study show the main field without a slash.
 </p>
 
 </div>
@@ -612,7 +615,7 @@ show all students, for each student show their id, the number of courses they're
 </div>
 
 
-<pre class="example" id="org3ac0bcf">
+<pre class="example" id="org68458e9">
 {
 	"_id" : 0,
 	"full name" : "mahmood0 sheikh",
@@ -689,7 +692,7 @@ show all students, for each student show their id, the number of courses they're
 task: &lt;/p&gt;
 " id="dum-human-comp" data-id="dum-human-comp">
 <p>
-show the details of the students with a specific id of your choice.<br />
+show the details of the students with a specific id of your choice.
 </p>
 
 </div>
@@ -700,7 +703,7 @@ show the details of the students with a specific id of your choice.<br />
 </div>
 
 
-<pre class="example" id="orgb01140c">
+<pre class="example" id="org77b037a">
 {
 	"_id" : 1,
 	"name" : {
@@ -728,7 +731,7 @@ show the details of the students with a specific id of your choice.<br />
 task: &lt;/p&gt;
 " id="dum-human-comp" data-id="dum-human-comp">
 <p>
-show the details of all the students except one with a specific id of your choice.<br />
+show the details of all the students except one with a specific id of your choice.
 </p>
 
 </div>
@@ -739,7 +742,7 @@ show the details of all the students except one with a specific id of your choic
 </div>
 
 
-<pre class="example" id="org8da15eb">
+<pre class="example" id="org82f5918">
 {
 	"_id" : 0,
 	"name" : {
@@ -930,7 +933,7 @@ show the details of all the students except one with a specific id of your choic
 task: &lt;/p&gt;
 " id="dum-human-comp" data-id="dum-human-comp">
 <p>
-show the details of 3 students with specific ids of your choice.<br />
+show the details of 3 students with specific ids of your choice.
 </p>
 
 </div>
@@ -941,7 +944,7 @@ show the details of 3 students with specific ids of your choice.<br />
 </div>
 
 
-<pre class="example" id="orgd7b02a4">
+<pre class="example" id="orga58b541">
 {
 	"_id" : 0,
 	"name" : {
@@ -1092,7 +1095,7 @@ show the details of 3 students with specific ids of your choice.<br />
 task: &lt;/p&gt;
 " id="dum-human-comp" data-id="dum-human-comp">
 <p>
-show the details of the students whose date of birth is within the span of two dates of your choice.<br />
+show the details of the students whose date of birth is within the span of two dates of your choice.
 </p>
 
 </div>
@@ -1103,7 +1106,7 @@ show the details of the students whose date of birth is within the span of two d
 </div>
 
 
-<pre class="example" id="org3f275c9">
+<pre class="example" id="orgbe9369c">
 { "_id" : 0, "name" : { "first" : "mahmood0", "last" : "sheikh" }, "bdate" : ISODate("2002-01-10T00:00:00Z"), "courses" : [ { "ccode" : "0", "cname" : "algebra", "grade" : 0 } ], "phones" : [ "0523388010", "0524499120" ], "major" : "computer science" }
 { "_id" : 1, "name" : { "first" : "mahmood1", "last" : "sheikh" }, "bdate" : ISODate("2002-01-11T00:00:00Z"), "courses" : [ { "ccode" : "0", "cname" : "algebra", "grade" : 10 } ], "phones" : [ "0523388011", "0524499121" ], "major" : "computer science" }
 { "_id" : 2, "name" : { "first" : "mahmood2", "last" : "sheikh" }, "bdate" : ISODate("2002-01-12T00:00:00Z"), "courses" : [ { "ccode" : "0", "cname" : "algebra", "grade" : 20 } ], "phones" : [ "0523388012", "0524499122" ], "major" : "computer science" }
@@ -1120,7 +1123,7 @@ show the details of the students whose date of birth is within the span of two d
 task: &lt;/p&gt;
 " id="dum-human-comp" data-id="dum-human-comp">
 <p>
-show all the students that are in a specific course of your choice.<br />
+show all the students that are in a specific course of your choice.
 </p>
 
 </div>
@@ -1131,7 +1134,7 @@ show all the students that are in a specific course of your choice.<br />
 </div>
 
 
-<pre class="example" id="org92fed07">
+<pre class="example" id="orgd5fc442">
 { "_id" : 0, "name" : { "first" : "mahmood0", "last" : "sheikh" }, "bdate" : ISODate("2002-01-10T00:00:00Z"), "courses" : [ { "ccode" : "0", "cname" : "algebra", "grade" : 0 } ], "phones" : [ "0523388010", "0524499120" ], "major" : "computer science" }
 { "_id" : 1, "name" : { "first" : "mahmood1", "last" : "sheikh" }, "bdate" : ISODate("2002-01-11T00:00:00Z"), "courses" : [ { "ccode" : "0", "cname" : "algebra", "grade" : 10 } ], "phones" : [ "0523388011", "0524499121" ], "major" : "computer science" }
 { "_id" : 2, "name" : { "first" : "mahmood2", "last" : "sheikh" }, "bdate" : ISODate("2002-01-12T00:00:00Z"), "courses" : [ { "ccode" : "0", "cname" : "algebra", "grade" : 20 } ], "phones" : [ "0523388012", "0524499122" ], "major" : "computer science" }
@@ -1148,7 +1151,7 @@ show all the students that are in a specific course of your choice.<br />
 task: &lt;/p&gt;
 " id="dum-human-comp" data-id="dum-human-comp">
 <p>
-show all the students that are in a specific course of your choice whose grades are above 80, or some other number of your choice.<br />
+show all the students that are in a specific course of your choice whose grades are above 80, or some other number of your choice.
 </p>
 
 </div>
@@ -1168,7 +1171,7 @@ show all the students that are in a specific course of your choice whose grades 
 task: &lt;/p&gt;
 " id="dum-human-comp" data-id="dum-human-comp">
 <p>
-show all the students with only one phone number.<br />
+show all the students with only one phone number.
 </p>
 
 </div>
@@ -1179,7 +1182,7 @@ show all the students with only one phone number.<br />
 </div>
 
 
-<pre class="example" id="org8193f85">
+<pre class="example" id="org78c2e98">
 { "_id" : 0, "name" : { "first" : "mahmood0", "last" : "sheikh" }, "bdate" : ISODate("2002-01-10T00:00:00Z"), "courses" : [ { "ccode" : "0", "cname" : "algebra", "grade" : 0 } ], "phones" : [ "0523388010", "0524499120" ], "major" : "computer science" }
 { "_id" : 1, "name" : { "first" : "mahmood1", "last" : "sheikh" }, "bdate" : ISODate("2002-01-11T00:00:00Z"), "courses" : [ { "ccode" : "0", "cname" : "algebra", "grade" : 10 } ], "phones" : [ "0523388011", "0524499121" ], "major" : "computer science" }
 { "_id" : 2, "name" : { "first" : "mahmood2", "last" : "sheikh" }, "bdate" : ISODate("2002-01-12T00:00:00Z"), "courses" : [ { "ccode" : "0", "cname" : "algebra", "grade" : 20 } ], "phones" : [ "0523388012", "0524499122" ], "major" : "computer science" }
@@ -1196,7 +1199,7 @@ show all the students with only one phone number.<br />
 task: &lt;/p&gt;
 " id="dum-human-comp" data-id="dum-human-comp">
 <p>
-show the student with a specific phone number of your choice.<br />
+show the student with a specific phone number of your choice.
 </p>
 
 </div>
@@ -1215,7 +1218,7 @@ show the student with a specific phone number of your choice.<br />
 task: &lt;/p&gt;
 " id="dum-human-comp" data-id="dum-human-comp">
 <p>
-show the number of students that are in a collection by storing the results in a <code>cursor</code> variable with usage of <code>count</code>.<br />
+show the number of students that are in a collection by storing the results in a <code>cursor</code> variable with usage of <code>count</code>.
 </p>
 
 </div>

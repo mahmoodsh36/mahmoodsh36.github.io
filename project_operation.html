@@ -41,8 +41,11 @@
 (Ramez Elmasri, Shamkant B. Navathe, 2015 chapter 8.1.2 the PROJECT operation)&lt;/p&gt;
 " id="def-link-list" data-id="def-link-list">
 <p>
-if we think of a <a href="/relation.html">relation</a> as a table, the <a href="/select.html">SELECT operation</a> chooses some of the rows from the table while discarding other rows. the PROJECT operation, on the other hand, selects certain columns from the table and discards the other columns. if we are interested in only certain attributes of a relation, we use the PROJECT operation to project the relation over these attributes only. therefore, the result of the PROJECT operation can be visualized as a vertical partition of the relation into two relations:<br />
-one has the needed columns (attributes) and contains the result of the operation, and the other contains the discarded columns. for example, to list each employee's first and last name and salary, we can use the PROJECT operation as follows:<br />
+if we think of a <a href="/relation.html">relation</a> as a table, the <a href="/select.html">SELECT operation</a> chooses some of the rows from the table while discarding other rows. the PROJECT operation, on the other hand, selects certain columns from the table and discards the other columns. if we are interested in only certain attributes of a relation, we use the PROJECT operation to project the relation over these attributes only. therefore, the result of the PROJECT operation can be visualized as a vertical partition of the relation into two relations:
+</p>
+
+<p>
+one has the needed columns (attributes) and contains the result of the operation, and the other contains the discarded columns. for example, to list each employee's first and last name and salary, we can use the PROJECT operation as follows:
 <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='111.551409 -10.38902 144.10092 10.389026' style="max-height: 1.5613em; display: block" class="org-latex org-latex-block">
@@ -101,8 +104,8 @@ one has the needed columns (attributes) and contains the result of the operation
 <use x='251.77785' y='-2.91704' xlink:href='#g2-41'/>
 </g>
 </g>
-</svg><br />
-the general form of the project operation is<br />
+</svg>
+the general form of the project operation is
 <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='144.357798 -9.96264 78.488129 9.96264' style="max-height: 1.5194em; display: block" class="org-latex org-latex-block">
@@ -146,7 +149,7 @@ the general form of the project operation is<br />
 <use x='218.971448' y='-2.49066' xlink:href='#g2-41'/>
 </g>
 </g>
-</svg><br />
+</svg>
 where <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -4.289468 6.036428 4.289468' style="max-height: 0.5203em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
@@ -180,7 +183,10 @@ where <?xml version='1.0' encoding='UTF-8'?>
 <use x='0' y='0' xlink:href='#g4-82'/>
 </g>
 </g>
-</svg> is, in general, a <a href="/relational_algebra.html">relational algebra</a> expression whose result is a relation, which in the simplest case is just the name of a database relation. the result of the project operation has only the attributes specified in &lt;attribute list&gt; in the same order as they appear in the list. hence, its <b>degree</b> is equal to the number of attributes in &lt;attribute list&gt;.<br />
+</svg> is, in general, a <a href="/relational_algebra.html">relational algebra</a> expression whose result is a relation, which in the simplest case is just the name of a database relation. the result of the project operation has only the attributes specified in &lt;attribute list&gt; in the same order as they appear in the list. hence, its <b>degree</b> is equal to the number of attributes in &lt;attribute list&gt;.
+</p>
+
+<p>
 if the attribute list includes only nonkey attributes of <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.807795 7.641499 6.807795' style="max-height: 0.7680em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
@@ -192,7 +198,7 @@ if the attribute list includes only nonkey attributes of <?xml version='1.0' enc
 <use x='0' y='0' xlink:href='#g4-82'/>
 </g>
 </g>
-</svg>, duplicate tuples are likely to occur. the PROJECT operation removes any duplicate tuples, so the result of the PROJECT operation is a set of distinct tuples, and hence a valid relation. this is known as duplicate elimination. for example, consider the following PROJECT operation:<br />
+</svg>, duplicate tuples are likely to occur. the PROJECT operation removes any duplicate tuples, so the result of the PROJECT operation is a set of distinct tuples, and hence a valid relation. this is known as duplicate elimination. for example, consider the following PROJECT operation:
 <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='129.784533 -10.38902 107.634656 10.389026' style="max-height: 1.5613em; display: block" class="org-latex org-latex-block">
@@ -240,7 +246,7 @@ if the attribute list includes only nonkey attributes of <?xml version='1.0' enc
 <use x='233.544711' y='-2.91704' xlink:href='#g2-41'/>
 </g>
 </g>
-</svg><br />
+</svg>
 the number of tuples in a relation resulting from a PROJECT operation is always less than or equal to the number of tuples in <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.807795 7.641499 6.807795' style="max-height: 0.7680em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
@@ -285,7 +291,7 @@ the number of tuples in a relation resulting from a PROJECT operation is always 
 <use x='0' y='0' xlink:href='#g4-82'/>
 </g>
 </g>
-</svg>. moreover,<br />
+</svg>. moreover,
 <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='107.632435 -9.96264 151.938871 9.96264' style="max-height: 1.5194em; display: block" class="org-latex org-latex-block">
@@ -341,9 +347,12 @@ the number of tuples in a relation resulting from a PROJECT operation is always 
 <use x='255.696828' y='-2.49066' xlink:href='#g2-41'/>
 </g>
 </g>
-</svg><br />
-as long as &lt;list2&gt; contains the attributes in &lt;list1&gt;; otherwise; the left-hand side is an incorrect expression. it is also noteworthy that <a href="/commutative.html">commutativity</a> does not hold on PROJECT.<br />
-In <a href="/sql.html">sql</a>, the PROJECT attribute list is specified in the SELECT clause of a query. for example, the following operation:<br />
+</svg>
+as long as &lt;list2&gt; contains the attributes in &lt;list1&gt;; otherwise; the left-hand side is an incorrect expression. it is also noteworthy that <a href="/commutative.html">commutativity</a> does not hold on PROJECT.
+</p>
+
+<p>
+In <a href="/sql.html">sql</a>, the PROJECT attribute list is specified in the SELECT clause of a query. for example, the following operation:
 <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='129.784533 -10.38902 107.634656 10.389026' style="max-height: 1.5613em; display: block" class="org-latex org-latex-block">
@@ -391,8 +400,8 @@ In <a href="/sql.html">sql</a>, the PROJECT attribute list is specified in the S
 <use x='233.544711' y='-2.91704' xlink:href='#g2-41'/>
 </g>
 </g>
-</svg><br />
-would correspond to the following sql query:<br />
+</svg>
+would correspond to the following sql query:
 </p>
 <div class="org-src-container" data-language="sql">
 <pre class="src src-sql"><span style="color: #deb07a; font-weight: bold;">SELECT</span> <span style="color: #deb07a; font-weight: bold;">DISTINCT</span> Sex, Salary <span style="color: #deb07a; font-weight: bold;">FROM</span> EMPLOYEE
@@ -400,7 +409,7 @@ would correspond to the following sql query:<br />
 </div>
 
 <p>
-notice that if we remove the keyword <code>DISTINCT</code> from this SQL query, then duplicates will not be eliminated. this option is not available in the formal relational algebra, but the algebra can be extended to include this operation and allow relations to be <a href="/multiset.html">multiset</a>s; we do not discuss these extensions here.<br />
+notice that if we remove the keyword <code>DISTINCT</code> from this SQL query, then duplicates will not be eliminated. this option is not available in the formal relational algebra, but the algebra can be extended to include this operation and allow relations to be <a href="/multiset.html">multiset</a>s; we do not discuss these extensions here.
 </p>
 
 </div>

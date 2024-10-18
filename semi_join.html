@@ -41,8 +41,11 @@
 (Ramez Elmasri, Shamkant B. Navathe, 2015 chapter 18.1.1 additional operators semi-join and anti-join)&lt;/p&gt;
 " id="def-link-list" data-id="def-link-list">
 <p>
-the semantics of semi-join are as follows: a row of <code>T1</code> is returned as soon as <code>T1.X</code> finds a match with any value of <code>T2.Y</code> without searching for further matches. this is in contrast to finding all possible matches in <a href="/inner_join.html">inner join</a>.<br />
-consider the following schema:<br />
+the semantics of semi-join are as follows: a row of <code>T1</code> is returned as soon as <code>T1.X</code> finds a match with any value of <code>T2.Y</code> without searching for further matches. this is in contrast to finding all possible matches in <a href="/inner_join.html">inner join</a>.
+</p>
+
+<p>
+consider the following schema:
 </p>
 <div class="org-src-container" data-language="sql">
 <pre class="src src-sql">EMPLOYEE <span style="color: #deb07a;">(</span>Ssn, Bdate, Address, Sex, Salary, Dno<span style="color: #deb07a;">)</span>
@@ -51,8 +54,11 @@ DEPARTMENT <span style="color: #deb07a;">(</span>Dnumber, Dname, Dmgrssn, Zipcod
 </div>
 
 <p>
-where a department is located in a specific zip code.<br />
-let us consider the following query:<br />
+where a department is located in a specific zip code.
+</p>
+
+<p>
+let us consider the following query:
 </p>
 <div class="org-src-container" data-language="sql">
 <pre class="src src-sql">Q<span style="color: #deb07a;">(</span>SJ<span style="color: #deb07a;">)</span>: <span style="color: #deb07a; font-weight: bold;">SELECT</span> <span style="color: #e3b0c0; font-weight: bold;">COUNT</span><span style="color: #deb07a;">(</span>*<span style="color: #deb07a;">)</span>
@@ -64,8 +70,11 @@ let us consider the following query:<br />
 </div>
 
 <p>
-here we have a nested query which is joined by the connector <code>IN</code>.<br />
-to remove the nested query:<br />
+here we have a nested query which is joined by the connector <code>IN</code>.
+</p>
+
+<p>
+to remove the nested query:
 </p>
 <div class="org-src-container" data-language="sql">
 <pre class="src src-sql"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">SELECT</span> E.Dno
@@ -75,7 +84,7 @@ to remove the nested query:<br />
 </div>
 
 <p>
-is called as unnesting. it leads to the following query with an operation called <i>semi-join</i>, which we show with a non-standard notation "S=" below:<br />
+is called as unnesting. it leads to the following query with an operation called <i>semi-join</i>, which we show with a non-standard notation "S=" below:
 </p>
 <div class="org-src-container" data-language="sql">
 <pre class="src src-sql"><span style="color: #deb07a; font-weight: bold;">SELECT</span> <span style="color: #e3b0c0; font-weight: bold;">COUNT</span><span style="color: #deb07a;">(</span>*<span style="color: #deb07a;">)</span>
@@ -85,7 +94,10 @@ is called as unnesting. it leads to the following query with an operation called
 </div>
 
 <p>
-the above query is counting the number of departments that have employees who make more than $200,000 annually. here, the operation is to find the department whose <code>Dnumber</code> attribute matches the value(s) for the <code>Dno</code> attribute of <code>Employee</code> with that high salary.<br />
+the above query is counting the number of departments that have employees who make more than $200,000 annually. here, the operation is to find the department whose <code>Dnumber</code> attribute matches the value(s) for the <code>Dno</code> attribute of <code>Employee</code> with that high salary.
+</p>
+
+<p>
 in algebra, alternate notations exist. one common notation is <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.794919 7.748748 6.608519' style="max-height: 0.7484em; vertical-align: -0.1292em; display: inline-block" class="org-latex org-latex-inline">
@@ -97,7 +109,7 @@ in algebra, alternate notations exist. one common notation is <?xml version='1.0
 <use x='0' y='0' xlink:href='#g0-110'/>
 </g>
 </g>
-</svg>.<br />
+</svg>.
 </p>
 
 </div>

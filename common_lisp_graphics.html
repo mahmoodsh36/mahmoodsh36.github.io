@@ -38,8 +38,11 @@
 </div>
 <div id="content" class="content">
 <p>
-we need the libraries <code>sdl2</code>, <code>livesupport</code> (to be able to continue if an error occurs in the main loop) and <code>opengl</code> for rendering.<br />
-using <a href="/common_lisp.html">quicklisp</a><br />
+we need the libraries <code>sdl2</code>, <code>livesupport</code> (to be able to continue if an error occurs in the main loop) and <code>opengl</code> for rendering.
+</p>
+
+<p>
+using <a href="/common_lisp.html">quicklisp</a>
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span>ql:quickload <span style="color: #e3b0c0; font-weight: bold;">:sdl2</span><span style="color: #deb07a;">)</span>
@@ -49,8 +52,11 @@ using <a href="/common_lisp.html">quicklisp</a><br />
 </div>
 
 <p>
-here im implementing an abstraction layer over opengl/sdl2 to be able to render things like math functions easily<br />
-we need a generic way to represent objects that are renderable onto a window so we use the generic function <code>render</code> and implement it in the various classes<br />
+here im implementing an abstraction layer over opengl/sdl2 to be able to render things like math functions easily
+</p>
+
+<p>
+we need a generic way to represent objects that are renderable onto a window so we use the generic function <code>render</code> and implement it in the various classes
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defgeneric</span> <span style="color: #8fcfd0;">render</span> <span style="color: #ffaacf;">(</span>obj<span style="color: #ffaacf;">)</span>
@@ -253,7 +259,7 @@ we need a generic way to represent objects that are renderable onto a window so 
 </div>
 
 <p>
-example usage:<br />
+example usage:
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">sdl2-test</span> <span style="color: #ffaacf;">()</span>
@@ -282,7 +288,7 @@ example usage:<br />
 </div>
 
 <p>
-we can create objects and add them dynamically to the window:<br />
+we can create objects and add them dynamically to the window:
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span>window-add-renderable
@@ -294,7 +300,7 @@ we can create objects and add them dynamically to the window:<br />
 </div>
 
 <p>
-rendering text wasnt as simple as i expected, i ended up using <b>freetype</b> because thats what most webpages seemed to promote. the library <code>cl-freetype2</code> provides freetype bindings for sbcl, example usage is here <a href="https://github.com/rpav/cl-freetype2/blob/master/doc/example.md">https://github.com/rpav/cl-freetype2/blob/master/doc/example.md</a><br />
+rendering text wasnt as simple as i expected, i ended up using <b>freetype</b> because thats what most webpages seemed to promote. the library <code>cl-freetype2</code> provides freetype bindings for sbcl, example usage is here <a href="https://github.com/rpav/cl-freetype2/blob/master/doc/example.md">https://github.com/rpav/cl-freetype2/blob/master/doc/example.md</a>
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span>ql:quickload <span style="color: #e3b0c0; font-weight: bold;">:cl-freetype2</span><span style="color: #deb07a;">)</span>
@@ -302,7 +308,7 @@ rendering text wasnt as simple as i expected, i ended up using <b>freetype</b> b
 </div>
 
 <p>
-toy around with it to make sure it works:<br />
+toy around with it to make sure it works:
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">make sure your encoding is set to UTF-8</span>
@@ -321,8 +327,11 @@ toy around with it to make sure it works:<br />
 </div>
 
 <p>
-it was hard to figure things out as this was my first time rendering text at such a low level and couldnt find proper documentation for <code>cl-freetype2</code>, had to browse through the source code<br />
-i tried to adapt the code from <a href="http://3bb.cc/tutorials/cl-opengl/textures.html">http://3bb.cc/tutorials/cl-opengl/textures.html</a>:<br />
+it was hard to figure things out as this was my first time rendering text at such a low level and couldnt find proper documentation for <code>cl-freetype2</code>, had to browse through the source code
+</p>
+
+<p>
+i tried to adapt the code from <a href="http://3bb.cc/tutorials/cl-opengl/textures.html">http://3bb.cc/tutorials/cl-opengl/textures.html</a>:
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defstruct</span> <span style="color: #a9c99f;">renderable-text</span> <span style="color: #ffaacf;">()</span>
@@ -365,14 +374,17 @@ i tried to adapt the code from <a href="http://3bb.cc/tutorials/cl-opengl/textur
 </div>
 
 <p>
-couldn't get this to work so i gave up and decided to use raylib since it provides more features than sdl2 (on its own, for example sdl2 doesnt have a way to draw a line with a specific thickness) and i wouldnt even have to deal with opengl<br />
+couldn't get this to work so i gave up and decided to use raylib since it provides more features than sdl2 (on its own, for example sdl2 doesnt have a way to draw a line with a specific thickness) and i wouldnt even have to deal with opengl
 </p>
-<div id="outline-container-orgf80c875" class="outline-2">
-<h2 id="orgf80c875">cl-raylib</h2>
-<div class="outline-text-2" id="text-orgf80c875">
+<div id="outline-container-org0b12585" class="outline-2">
+<h2 id="org0b12585">cl-raylib</h2>
+<div class="outline-text-2" id="text-org0b12585">
 <p>
-on <code>arch linux</code> had to install it using <code>pacman</code> (<code>raylib</code>)<br />
-<code>cl-raylib</code> is currently not on quicklist so you gotta fetch it manually:<br />
+on <code>arch linux</code> had to install it using <code>pacman</code> (<code>raylib</code>)
+</p>
+
+<p>
+<code>cl-raylib</code> is currently not on quicklist so you gotta fetch it manually:
 </p>
 <div class="org-src-container" data-language="bash">
 <pre class="src src-bash">git clone https://github.com/longlene/cl-raylib.git ~/.quicklisp/local-projects/cl-raylib
@@ -386,7 +398,7 @@ on <code>arch linux</code> had to install it using <code>pacman</code> (<code>ra
 </div>
 
 <p>
-its pretty simple to get started with:<br />
+its pretty simple to get started with:
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">raylib-first-test</span> <span style="color: #ffaacf;">()</span>
@@ -404,7 +416,7 @@ its pretty simple to get started with:<br />
 </div>
 
 <p>
-we need some way to say whether an object is renderable or not, to discriminate renderable objects and prevent an attempt to render other objects, we use cl's <code>defgeneric</code> and construct some basic renderable types:<br />
+we need some way to say whether an object is renderable or not, to discriminate renderable objects and prevent an attempt to render other objects, we use cl's <code>defgeneric</code> and construct some basic renderable types:
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defstruct</span> <span style="color: #a9c99f;">rgb</span>
@@ -444,7 +456,7 @@ we need some way to say whether an object is renderable or not, to discriminate 
 </div>
 
 <p>
-we present the basic code for opening a window and drawing to it:<br />
+we present the basic code for opening a window and drawing to it:
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defclass</span> <span style="color: #a9c99f;">window</span> <span style="color: #ffaacf;">()</span>
@@ -480,7 +492,7 @@ we present the basic code for opening a window and drawing to it:<br />
 </div>
 
 <p>
-example usage:<br />
+example usage:
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">raylib-second-test</span> <span style="color: #ffaacf;">()</span>
@@ -493,8 +505,14 @@ example usage:<br />
 </div>
 
 <p>
-we need to implement math plotting functionality, but..<br />
-unfortunately raylib doesnt allow matrix manipulation (atleast for 2d cameras)<br />
+we need to implement math plotting functionality, but..
+</p>
+
+<p>
+unfortunately raylib doesnt allow matrix manipulation (atleast for 2d cameras)
+</p>
+
+<p>
 i had to figure out an easy way to allow objects to render themselves to a normalized screen space, for example we might want to draw a mathematical function from x=0 to x=10, and y might vary from 0-100 if the function was <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.273719 34.182118 8.210901' style="max-height: 0.9061em; vertical-align: -0.2397em; display: inline-block" class="org-latex org-latex-inline">
@@ -514,9 +532,15 @@ i had to figure out an easy way to allow objects to render themselves to a norma
 <use x='28.488186' y='0' xlink:href='#g0-120'/>
 </g>
 </g>
-</svg>, but in raylib's window 0,0 is at the top left and y increases as we go down the window, we need some sort of <b>normalization</b>, it is fairly easy to implement a normalization function/matrix, but consider an axes object with many math functions, how would the functions know where the axis' 0,0 point is? they'd have to have a reference of the axis object, but it doesnt make much sense for them to have a pointer to their parent, in opengl this was possible because the parent was able to manipulate its viewport and its rendering matrix and then let its children draw themselves to a normalized portion of the window, as far as i can tell, raylib doesnt provide such functionality by default, so i had to come up with something, and thought about using a <a href="/common_lisp.html">macro</a> (eventually settled on a different approach, explained below), perhaps call it <code>with-normalization</code>, that takes a normalization function, code to execute, modifies every call to a point's <code>x</code> and <code>y</code> and normalizes it before it is passed to raylib rendering functions, lets see how well that goes<br />
-so basically we want the accessors of the <code>point-2d</code> class to behave differently inside our macro, which begs the question, is that even possible? can we have it so that a specific function behaves differently inside a macro? my first guess was i could modify the <code>body</code> passed to a macro to wrap the calls to <code>point-2d-x</code> and <code>point-2d-y</code> with another function, this would introduce some problems, but then i found out anaphoric macro, so that's what im gonna use<br />
-consider the following macro:<br />
+</svg>, but in raylib's window 0,0 is at the top left and y increases as we go down the window, we need some sort of <b>normalization</b>, it is fairly easy to implement a normalization function/matrix, but consider an axes object with many math functions, how would the functions know where the axis' 0,0 point is? they'd have to have a reference of the axis object, but it doesnt make much sense for them to have a pointer to their parent, in opengl this was possible because the parent was able to manipulate its viewport and its rendering matrix and then let its children draw themselves to a normalized portion of the window, as far as i can tell, raylib doesnt provide such functionality by default, so i had to come up with something, and thought about using a <a href="/common_lisp.html">macro</a> (eventually settled on a different approach, explained below), perhaps call it <code>with-normalization</code>, that takes a normalization function, code to execute, modifies every call to a point's <code>x</code> and <code>y</code> and normalizes it before it is passed to raylib rendering functions, lets see how well that goes
+</p>
+
+<p>
+so basically we want the accessors of the <code>point-2d</code> class to behave differently inside our macro, which begs the question, is that even possible? can we have it so that a specific function behaves differently inside a macro? my first guess was i could modify the <code>body</code> passed to a macro to wrap the calls to <code>point-2d-x</code> and <code>point-2d-y</code> with another function, this would introduce some problems, but then i found out anaphoric macro, so that's what im gonna use
+</p>
+
+<p>
+consider the following macro:
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defmacro</span> <span style="color: #8fcfd0;">with-normalization</span> <span style="color: #ffaacf;">(</span><span style="color: #a9c99f;">&amp;body</span> body<span style="color: #ffaacf;">)</span>
@@ -526,7 +550,7 @@ consider the following macro:<br />
 </div>
 
 <p>
-in the simple case it works fine but not in others:<br />
+in the simple case it works fine but not in others:
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp">CL-USER&gt; <span style="color: #deb07a;">(</span>setf a <span style="color: #ffaacf;">(</span>make-point-2d <span style="color: #e3b0c0; font-weight: bold;">:x</span> 10 <span style="color: #e3b0c0; font-weight: bold;">:y</span> 10<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
@@ -541,12 +565,15 @@ CL-USER&gt; <span style="color: #deb07a;">(</span><span style="color: #deb07a; f
 </div>
 
 <p>
-this works in a <code>lexical</code> scope, calling an outer function that makes a call to <code>point-2d-x</code> wouldnt work as we want because its not shadowed <code>dynamically</code><br />
-this can be done, but its already ugly as it is and uglier approaches isnt something im looking for<br />
+this works in a <code>lexical</code> scope, calling an outer function that makes a call to <code>point-2d-x</code> wouldnt work as we want because its not shadowed <code>dynamically</code>
 </p>
 
 <p>
-so i just decided to pass rendering parameters around, i.e. each function receives a matrix/function that normalizes things and uses that on every object before drawing it, so we modify the generic <code>render</code> function to take a transformation matrix and so we have to rewrite the rendering functions for all renderable types we have, which for now are just a point and a line<br />
+this can be done, but its already ugly as it is and uglier approaches isnt something im looking for
+</p>
+
+<p>
+so i just decided to pass rendering parameters around, i.e. each function receives a matrix/function that normalizes things and uses that on every object before drawing it, so we modify the generic <code>render</code> function to take a transformation matrix and so we have to rewrite the rendering functions for all renderable types we have, which for now are just a point and a line
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defgeneric</span> <span style="color: #8fcfd0;">render</span> <span style="color: #ffaacf;">(</span>obj transformation-matrix<span style="color: #ffaacf;">)</span>
@@ -586,8 +613,11 @@ so i just decided to pass rendering parameters around, i.e. each function receiv
 </div>
 
 <p>
-i wanted a simple way to draw continuous and discrete math functions, so i thought about implementing an <code>axis</code> object first, which would hold these plots and pass the proper transformation matrix to them, plus it would take care of actually rendering the axes on the screen<br />
-here im <a href="/2d_transformations.html">linearly mapping grids</a> using the transformation matrix for it<br />
+i wanted a simple way to draw continuous and discrete math functions, so i thought about implementing an <code>axis</code> object first, which would hold these plots and pass the proper transformation matrix to them, plus it would take care of actually rendering the axes on the screen
+</p>
+
+<p>
+here im <a href="/2d_transformations.html">linearly mapping grids</a> using the transformation matrix for it
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defparameter</span> <span style="color: #ffaacf;">*default-transformation-matrix*</span> #2A<span style="color: #ffaacf;">(</span><span style="color: #80aadf;">(</span>1 0 0<span style="color: #80aadf;">)</span> <span style="color: #80aadf;">(</span>0 1 0<span style="color: #80aadf;">)</span> <span style="color: #80aadf;">(</span>0 0 1<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
@@ -757,7 +787,7 @@ here im <a href="/2d_transformations.html">linearly mapping grids</a> using the 
 </div>
 
 <p>
-example usage:<br />
+example usage:
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">raylib-third-test</span> <span style="color: #ffaacf;">()</span>
@@ -780,7 +810,7 @@ example usage:<br />
 </div>
 
 <p>
-hmmm, im very tempted to try and visualize the <a href="/mandelbrot.html">mandelbrot</a> now, so lets do it, im thinking about just writing the mandelbrot as a function and map it to every pixel on the screen, maybe the function would return a value in 0-255 that describes how "bright" a point is? and we'd just turn it into an rgb? i think that'd do<br />
+hmmm, im very tempted to try and visualize the <a href="/mandelbrot.html">mandelbrot</a> now, so lets do it, im thinking about just writing the mandelbrot as a function and map it to every pixel on the screen, maybe the function would return a value in 0-255 that describes how "bright" a point is? and we'd just turn it into an rgb? i think that'd do
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">complex-square</span> <span style="color: #ffaacf;">(</span>a b<span style="color: #ffaacf;">)</span>
@@ -835,9 +865,15 @@ hmmm, im very tempted to try and visualize the <a href="/mandelbrot.html">mandel
 </div>
 
 <p>
-use <code>(mandelbrot-test)</code> to run this (obviously)<br />
-she's pretty but slow as fuck<br />
-to kill the window now we have to press "q" continuously, because the main loop doesnt reach the code that checks whether a key is pressed until the frame has finished drawing, and the mandelbrot takes some time to draw<br />
+use <code>(mandelbrot-test)</code> to run this (obviously)
+</p>
+
+<p>
+she's pretty but slow as fuck
+</p>
+
+<p>
+to kill the window now we have to press "q" continuously, because the main loop doesnt reach the code that checks whether a key is pressed until the frame has finished drawing, and the mandelbrot takes some time to draw
 </p>
 </div>
 </div>

@@ -38,9 +38,15 @@
 </div>
 <div id="content" class="content">
 <p>
-got the mnist in csv format from <a href="https://www.kaggle.com/datasets/oddrationale/mnist-in-csv">https://www.kaggle.com/datasets/oddrationale/mnist-in-csv</a><br />
-im gonna use a <a href="/feedforward_neural_network.html">feedforward neural network</a>:<br />
-we load the dataset using the <code>cl-csv</code> library<br />
+got the mnist in csv format from <a href="https://www.kaggle.com/datasets/oddrationale/mnist-in-csv">https://www.kaggle.com/datasets/oddrationale/mnist-in-csv</a>
+</p>
+
+<p>
+im gonna use a <a href="/feedforward_neural_network.html">feedforward neural network</a>:
+</p>
+
+<p>
+we load the dataset using the <code>cl-csv</code> library
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span>ql:quickload <span style="color: #f3a0a0;">"cl-csv"</span><span style="color: #deb07a;">)</span>
@@ -58,7 +64,7 @@ we load the dataset using the <code>cl-csv</code> library<br />
 
 
 <p>
-next we create the network, each image is 28x28 pixels so we need an input layer of that size, and an output layer of size 10 because it needs to output 0-9<br />
+next we create the network, each image is 28x28 pixels so we need an input layer of that size, and an output layer of size 10 because it needs to output 0-9
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defparameter</span> <span style="color: #ffaacf;">nw</span> <span style="color: #ffaacf;">(</span>make-network
@@ -106,7 +112,7 @@ with this network we have <?xml version='1.0' encoding='UTF-8'?>
 <use x='114.570202' y='0' xlink:href='#g1-48'/>
 </g>
 </g>
-</svg> weights to update for each training example, its a large network and would take alot of time since we're only using a single CPU thread<br />
+</svg> weights to update for each training example, its a large network and would take alot of time since we're only using a single CPU thread
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">test</span> <span style="color: #ffaacf;">()</span>

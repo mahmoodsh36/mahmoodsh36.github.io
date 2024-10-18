@@ -41,7 +41,7 @@
 definition: &lt;/p&gt;
 " id="def-randvar" data-id="def-randvar">
 <p>
-let <code>P</code> be a <a href="/computational_problem.html">computational problem</a>, the complexity of <code>P</code> is the <a href="/time_complexity.html">time complexity</a> of the fastest possible algorithm that solves <code>P</code><br />
+let <code>P</code> be a <a href="/computational_problem.html">computational problem</a>, the complexity of <code>P</code> is the <a href="/time_complexity.html">time complexity</a> of the fastest possible algorithm that solves <code>P</code>
 </p>
 
 </div>
@@ -50,7 +50,7 @@ let <code>P</code> be a <a href="/computational_problem.html">computational prob
 definition: &lt;/p&gt;
 " id="def-randvar" data-id="def-randvar">
 <p>
-the time complexity of an <a href="/algorithm.html">algorithm</a> is defined as the amount of time taken by it to run, as a function of the length of the input<br />
+the time complexity of an <a href="/algorithm.html">algorithm</a> is defined as the amount of time taken by it to run, as a function of the length of the input
 </p>
 
 </div>
@@ -89,8 +89,9 @@ let <code>P</code> be a computational problem, let <?xml version='1.0' encoding=
 <use x='9.824425' y='0' xlink:href='#g7-110'/>
 <use x='15.804351' y='0' xlink:href='#g9-41'/>
 </g>
-</svg> we have to show that:<br />
+</svg> we have to show that:
 </p>
+
 <ol class="org-ol">
 <li>there exists an algorithm that solves <code>P</code> whose time complexity is <?xml version='1.0' encoding='UTF-8'?>
 
@@ -111,7 +112,7 @@ let <code>P</code> be a computational problem, let <?xml version='1.0' encoding=
 <use x='27.427766' y='0' xlink:href='#g6-41'/>
 <use x='31.302245' y='0' xlink:href='#g6-41'/>
 </g>
-</svg><br /></li>
+</svg></li>
 <li>the time complexity of every algorithm that solves <code>P</code> is atleast <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -7.47198 35.176723 9.96264' style="max-height: 1.0784em; vertical-align: -0.2942em; display: inline-block" class="org-latex org-latex-inline">
@@ -146,7 +147,7 @@ let <code>P</code> be a computational problem, let <?xml version='1.0' encoding=
 <use x='9.824425' y='0' xlink:href='#g7-110'/>
 <use x='15.804351' y='0' xlink:href='#g9-41'/>
 </g>
-</svg><br /></li>
+</svg></li>
 </ol>
 <div test="test" class="fancy-block my_example" data-before="&lt;p&gt;
 example: &lt;/p&gt;
@@ -171,8 +172,11 @@ take the <code>merge</code> algorithm of <a href="/merge_sort.html">merge sort</
 <use x='29.78001' y='0' xlink:href='#g4-109'/>
 <use x='38.527344' y='0' xlink:href='#g6-41'/>
 </g>
-</svg><br />
-<span class="underline">proving the upper bound</span>:<br />
+</svg>
+</p>
+
+<p>
+<span class="underline">proving the upper bound</span>:
 we already know that there exists a solution to <code>merge</code> whose time complexity is <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -7.47198 42.401822 9.96264' style="max-height: 1.0784em; vertical-align: -0.2942em; display: inline-block" class="org-latex org-latex-inline">
@@ -192,8 +196,11 @@ we already know that there exists a solution to <code>merge</code> whose time co
 <use x='29.78001' y='0' xlink:href='#g4-109'/>
 <use x='38.527344' y='0' xlink:href='#g6-41'/>
 </g>
-</svg><br />
-<span class="underline">proving the lower bound</span>:<br />
+</svg>
+</p>
+
+<p>
+<span class="underline">proving the lower bound</span>:
 we have to show that there exists no <code>merge</code> algorithm whose time complexity is less than <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -7.47198 42.401822 9.96264' style="max-height: 1.0784em; vertical-align: -0.2942em; display: inline-block" class="org-latex org-latex-inline">
@@ -213,7 +220,10 @@ we have to show that there exists no <code>merge</code> algorithm whose time com
 <use x='29.78001' y='0' xlink:href='#g4-109'/>
 <use x='38.527344' y='0' xlink:href='#g6-41'/>
 </g>
-</svg><br />
+</svg>
+</p>
+
+<p>
 because every <code>merge</code> algorithm would have to construct the output vector whose size is <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.808221 26.903928 6.635122' style="max-height: 0.7510em; vertical-align: -0.1305em; display: inline-block" class="org-latex org-latex-inline">
@@ -248,7 +258,7 @@ because every <code>merge</code> algorithm would have to construct the output ve
 <use x='29.78001' y='0' xlink:href='#g4-109'/>
 <use x='38.527344' y='0' xlink:href='#g6-41'/>
 </g>
-</svg><br />
+</svg>
 </p>
 
 </div>
@@ -274,8 +284,11 @@ consider the <code>sum</code> problem, i.e. a function that sums the numbers in 
 <use x='17.603341' y='0' xlink:href='#g13-41'/>
 </g>
 </g>
-</svg><br />
-<span class="underline">proving the lower bound</span>:<br />
+</svg>
+</p>
+
+<p>
+<span class="underline">proving the lower bound</span>:
 we already know that there exist <code>sum</code> functions that run in <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -7.47198 21.477819 9.96264' style="max-height: 1.0784em; vertical-align: -0.2942em; display: inline-block" class="org-latex org-latex-inline">
@@ -293,8 +306,11 @@ we already know that there exist <code>sum</code> functions that run in <?xml ve
 <use x='17.603341' y='0' xlink:href='#g13-41'/>
 </g>
 </g>
-</svg> time<br />
-<span class="underline">proving the upper bound</span>:<br />
+</svg> time
+</p>
+
+<p>
+<span class="underline">proving the upper bound</span>:
 we have to show that there exists no <code>sum</code> algorithm whose time complexity is less than <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -7.47198 21.477819 9.96264' style="max-height: 1.0784em; vertical-align: -0.2942em; display: inline-block" class="org-latex org-latex-inline">
@@ -312,7 +328,10 @@ we have to show that there exists no <code>sum</code> algorithm whose time compl
 <use x='17.603341' y='0' xlink:href='#g13-41'/>
 </g>
 </g>
-</svg><br />
+</svg>
+</p>
+
+<p>
 because every <code>sum</code> algorithm would have to check each item in its input vector atleast ones, we know it has to perform atleast <code>n</code> operations, which means that its time complexity cannot be lower than <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -7.47198 21.477819 9.96264' style="max-height: 1.0784em; vertical-align: -0.2942em; display: inline-block" class="org-latex org-latex-inline">
@@ -330,62 +349,62 @@ because every <code>sum</code> algorithm would have to check each item in its in
 <use x='17.603341' y='0' xlink:href='#g13-41'/>
 </g>
 </g>
-</svg><br />
+</svg>
 </p>
 
 </div>
 
 </div>
-<div id="outline-container-org0f35a31" class="outline-2">
-<h2 id="org0f35a31">best case</h2>
-<div class="outline-text-2" id="text-org0f35a31">
+<div id="outline-container-orgae35f9f" class="outline-2">
+<h2 id="orgae35f9f">best case</h2>
+<div class="outline-text-2" id="text-orgae35f9f">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-randvar" data-id="def-randvar">
 <p>
-best case is the time complexity of the case with the least work done, i.e. the case in which the time complexity is minimal<br />
+best case is the time complexity of the case with the least work done, i.e. the case in which the time complexity is minimal
 </p>
 
 </div>
 </div>
 </div>
-<div id="outline-container-org38fa7ee" class="outline-2">
-<h2 id="org38fa7ee">average case</h2>
-<div class="outline-text-2" id="text-org38fa7ee">
+<div id="outline-container-org607cc77" class="outline-2">
+<h2 id="org607cc77">average case</h2>
+<div class="outline-text-2" id="text-org607cc77">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-randvar" data-id="def-randvar">
 <p>
-the average-case complexity of an <a href="/algorithm.html">algorithm</a> is the amount of some computational resource (typically time) used by the algorithm, averaged over all possible inputs.<br />
+the average-case complexity of an <a href="/algorithm.html">algorithm</a> is the amount of some computational resource (typically time) used by the algorithm, averaged over all possible inputs.
 </p>
 
 </div>
 </div>
 </div>
-<div id="outline-container-org38e0ae4" class="outline-2">
-<h2 id="org38e0ae4">worst case</h2>
-<div class="outline-text-2" id="text-org38e0ae4">
+<div id="outline-container-org809895b" class="outline-2">
+<h2 id="org809895b">worst case</h2>
+<div class="outline-text-2" id="text-org809895b">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-randvar" data-id="def-randvar">
 <p>
-worst case is the time complexity of the case with the most work done, i.e. the case in which the time complexity is maximal<br />
+worst case is the time complexity of the case with the most work done, i.e. the case in which the time complexity is maximal
 </p>
 
 </div>
 </div>
 </div>
-<div id="outline-container-org38ef378" class="outline-2">
-<h2 id="org38ef378">best conceivable runtime</h2>
-<div class="outline-text-2" id="text-org38ef378">
+<div id="outline-container-org5149fa6" class="outline-2">
+<h2 id="org5149fa6">best conceivable runtime</h2>
+<div class="outline-text-2" id="text-org5149fa6">
 <p>
-the best conceivable runtime means it is the best time you can conceive that the problem could possibly be solved in, and it is definitely impossible for the problem to be solved faster than that<br />
+the best conceivable runtime means it is the best time you can conceive that the problem could possibly be solved in, and it is definitely impossible for the problem to be solved faster than that
 </p>
 </div>
 </div>
-<div id="outline-container-org53ca4bc" class="outline-2">
-<h2 id="org53ca4bc">examples</h2>
-<div class="outline-text-2" id="text-org53ca4bc">
+<div id="outline-container-org38520d2" class="outline-2">
+<h2 id="org38520d2">examples</h2>
+<div class="outline-text-2" id="text-org38520d2">
 <div test="test" class="fancy-block my_example" data-before="&lt;p&gt;
 example: &lt;/p&gt;
 " id="def-randvar" data-id="def-randvar">
@@ -556,7 +575,6 @@ example: &lt;/p&gt;
 </span>
 <span class="caption"></span>
 </div>
-
 <p>
 at first glance this might seem like a <?xml version='1.0' encoding='UTF-8'?>
 
@@ -592,9 +610,18 @@ at first glance this might seem like a <?xml version='1.0' encoding='UTF-8'?>
 <use x='19.955498' y='-3.615364' xlink:href='#g5-50'/>
 <use x='24.42473' y='-8.069805' xlink:href='#g2-1'/>
 </g>
-</svg><br />
-we track the variable <code>lastp</code>, every time we enter the third inner loop it is decremented and is never incremented until it reaches a point at which the <code>while</code> loop wouldnt execute anymore, this can happen <code>N</code> times at most<br />
-each time the first main loop run, the second and third inner loop both may <b>in total</b> run <code>N</code> times at most because they are both bound by <code>lastp</code> and <code>j</code> which get closer to each other every time either loop runs<br />
+</svg>
+</p>
+
+<p>
+we track the variable <code>lastp</code>, every time we enter the third inner loop it is decremented and is never incremented until it reaches a point at which the <code>while</code> loop wouldnt execute anymore, this can happen <code>N</code> times at most
+</p>
+
+<p>
+each time the first main loop run, the second and third inner loop both may <b>in total</b> run <code>N</code> times at most because they are both bound by <code>lastp</code> and <code>j</code> which get closer to each other every time either loop runs
+</p>
+
+<p>
 and so the time complexity of the two inner loops is bound by <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -7.47198 24.588784 9.96264' style="max-height: 1.0784em; vertical-align: -0.2942em; display: inline-block" class="org-latex org-latex-inline">
@@ -627,7 +654,7 @@ and so the time complexity of the two inner loops is bound by <?xml version='1.0
 <use x='20.714306' y='-3.615364' xlink:href='#g5-50'/>
 <use x='25.183539' y='0' xlink:href='#g6-41'/>
 </g>
-</svg><br />
+</svg>
 </p>
 
 </div>

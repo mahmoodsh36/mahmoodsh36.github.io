@@ -139,18 +139,18 @@ the task of <i>part-of-speech tagging</i> consists of taking a sequence of words
 <use x='59.397261' y='0' xlink:href='#g1-77'/>
 </g>
 </g>
-</svg>.<br />
+</svg>.
 </p>
 
 </div>
-<div id="outline-container-org0e9fb65" class="outline-2">
-<h2 id="org0e9fb65">HMM tagging as decoding</h2>
-<div class="outline-text-2" id="text-org0e9fb65">
+<div id="outline-container-orgdb0913c" class="outline-2">
+<h2 id="orgdb0913c">HMM tagging as decoding</h2>
+<div class="outline-text-2" id="text-orgdb0913c">
 <div test="test" class="fancy-block dummy" data-before="" data-after="&lt;p&gt;
 (taken from Daniel Jurafsky, James H. Martin, 2020 chapter 8.4.4 HMM tagging as decoding)&lt;/p&gt;
 " id="the-universality" data-id="the-universality">
 <p>
-for any model, such as an HMM, that contains hidden variables, the task of determining the hidden variables sequence corresponding to the sequence of observations is called <i>decoding</i>. more formally,<br />
+for any model, such as an HMM, that contains hidden variables, the task of determining the hidden variables sequence corresponding to the sequence of observations is called <i>decoding</i>. more formally,
 </p>
 <div test="test" class="fancy-block problem" data-before="&lt;p&gt;
 problem: &lt;/p&gt;
@@ -241,7 +241,7 @@ given as input an HMM <?xml version='1.0' encoding='UTF-8'?>
 <use x='67.300987' y='1.494381' xlink:href='#g7-84'/>
 </g>
 </g>
-</svg>.<br />
+</svg>.
 </p>
 
 </div>
@@ -298,7 +298,7 @@ for part-of-speech tagging, the goal of HMM decoding is to choose the tag sequen
 <use x='33.677915' y='1.494381' xlink:href='#g7-110'/>
 </g>
 </g>
-</svg>:<br />
+</svg>:
 </p>
 
 <div class="equation-container">
@@ -380,9 +380,8 @@ for part-of-speech tagging, the goal of HMM decoding is to choose the tag sequen
 </span>
 <span class="caption"></span>
 </div>
-
 <p>
-the way we'll do this in the HMM is to use <a href="/bayes_formula.html#the-bayes">bayes' rule</a> to instead compute:<br />
+the way we'll do this in the HMM is to use <a href="/bayes_formula.html#the-bayes">bayes' rule</a> to instead compute:
 </p>
 
 <div class="equation-container">
@@ -489,7 +488,6 @@ the way we'll do this in the HMM is to use <a href="/bayes_formula.html#the-baye
 </span>
 <span class="caption"></span>
 </div>
-
 <p>
 furthermore, we simplify <a href="/part-of-speech_tagging.html#eq-pos-tag-2">eq-pos-tag-2</a> by dropping the denominator <?xml version='1.0' encoding='UTF-8'?>
 
@@ -514,7 +512,7 @@ furthermore, we simplify <a href="/part-of-speech_tagging.html#eq-pos-tag-2">eq-
 <use x='30.488174' y='0' xlink:href='#g11-41'/>
 </g>
 </g>
-</svg>:<br />
+</svg>:
 </p>
 
 <div class="equation-container">
@@ -610,9 +608,8 @@ furthermore, we simplify <a href="/part-of-speech_tagging.html#eq-pos-tag-2">eq-
 </span>
 <span class="caption"></span>
 </div>
-
 <p>
-HMM taggers make two further simplifying assumptions. the first is that the probability of a word appearing depends only on its own tag and is independent of neighboring words and tags:<br />
+HMM taggers make two further simplifying assumptions. the first is that the probability of a word appearing depends only on its own tag and is independent of neighboring words and tags:
 </p>
 
 <div class="equation-container">
@@ -685,9 +682,8 @@ HMM taggers make two further simplifying assumptions. the first is that the prob
 </span>
 <span class="caption"></span>
 </div>
-
 <p>
-the second assumption, the bigram assumption, is that the probability of a tag is dependent only on the previous tag, rather than the entire tag sequence;<br />
+the second assumption, the bigram assumption, is that the probability of a tag is dependent only on the previous tag, rather than the entire tag sequence;
 </p>
 
 <div class="equation-container">
@@ -754,9 +750,8 @@ the second assumption, the bigram assumption, is that the probability of a tag i
 </span>
 <span class="caption"></span>
 </div>
-
 <p>
-plugging the simplifying assumptions from <a href="/part-of-speech_tagging.html#eq-pos-tag-4">eq-pos-tag-4</a> and <a href="/part-of-speech_tagging.html#eq-pos-tag-5">eq-pos-tag-5</a> into <a href="/part-of-speech_tagging.html#eq-pos-tag-3">eq-pos-tag-3</a> results in the following equation for the most probable tag sequence from a bigram tagger:<br />
+plugging the simplifying assumptions from <a href="/part-of-speech_tagging.html#eq-pos-tag-4">eq-pos-tag-4</a> and <a href="/part-of-speech_tagging.html#eq-pos-tag-5">eq-pos-tag-5</a> into <a href="/part-of-speech_tagging.html#eq-pos-tag-3">eq-pos-tag-3</a> results in the following equation for the most probable tag sequence from a bigram tagger:
 </p>
 
 <div class="equation-container">
@@ -928,31 +923,30 @@ plugging the simplifying assumptions from <a href="/part-of-speech_tagging.html#
 </span>
 <span class="caption"></span>
 </div>
-
 <p>
 the two parts of <a href="/part-of-speech_tagging.html#eq-pos-tag-6">eq-pos-tag-6</a> correspond neatly to the <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.807795 8.056612 6.807795' style="max-height: 0.7680em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
-<path id='g9-66' d='m6.993773-2.15193c0-.71731-.577833-1.295143-1.544209-1.404732c1.036115-.18929 2.082192-.926526 2.082192-1.872976c0-.737235-.657534-1.374844-1.853051-1.374844h-3.347447c-.18929 0-.288917 0-.288917 .199253c0 .109589 .089664 .109589 .278954 .109589c0 0 .209215 0 .37858 .019925c.179328 .019925 .268991 .029888 .268991 .159402c0 .039851-.009963 .069738-.039851 .18929l-1.334994 5.349938c-.099626 .388543-.119552 .468244-.9066 .468244c-.169365 0-.268991 0-.268991 .199253c0 .109589 .089664 .109589 .268991 .109589h3.556663c1.574097 0 2.749689-1.175592 2.749689-2.15193zm-.368618-3.317559c0 .876712-.856787 1.823163-2.072229 1.823163h-1.454545l.617684-2.470735c.089664-.348692 .109589-.37858 .537983-.37858h1.285181c.876712 0 1.085928 .587796 1.085928 1.026152zm-.557908 3.20797c0 .986301-.886675 1.952677-2.062267 1.952677h-1.354919c-.139477 0-.159402 0-.219178-.009963c-.099626-.009963-.129514-.019925-.129514-.099626c0-.029888 0-.049813 .049813-.229141l.687422-2.779577h1.882939c.956413 0 1.145704 .737235 1.145704 1.165629z'/>
+<path id='g6-66' d='m6.993773-2.15193c0-.71731-.577833-1.295143-1.544209-1.404732c1.036115-.18929 2.082192-.926526 2.082192-1.872976c0-.737235-.657534-1.374844-1.853051-1.374844h-3.347447c-.18929 0-.288917 0-.288917 .199253c0 .109589 .089664 .109589 .278954 .109589c0 0 .209215 0 .37858 .019925c.179328 .019925 .268991 .029888 .268991 .159402c0 .039851-.009963 .069738-.039851 .18929l-1.334994 5.349938c-.099626 .388543-.119552 .468244-.9066 .468244c-.169365 0-.268991 0-.268991 .199253c0 .109589 .089664 .109589 .268991 .109589h3.556663c1.574097 0 2.749689-1.175592 2.749689-2.15193zm-.368618-3.317559c0 .876712-.856787 1.823163-2.072229 1.823163h-1.454545l.617684-2.470735c.089664-.348692 .109589-.37858 .537983-.37858h1.285181c.876712 0 1.085928 .587796 1.085928 1.026152zm-.557908 3.20797c0 .986301-.886675 1.952677-2.062267 1.952677h-1.354919c-.139477 0-.159402 0-.219178-.009963c-.099626-.009963-.129514-.019925-.129514-.099626c0-.029888 0-.049813 .049813-.229141l.687422-2.779577h1.882939c.956413 0 1.145704 .737235 1.145704 1.165629z'/>
 </defs>
-<g id='page144'>
+<g id='page20'>
 <g fill='currentColor'>
-<use x='0' y='0' xlink:href='#g9-66'/>
+<use x='0' y='0' xlink:href='#g6-66'/>
 </g>
 </g>
 </svg> <a href="/hidden_markov_model.html#hmm-obs-like">emission probability</a> and <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.807795 7.471999 6.807795' style="max-height: 0.7680em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
-<path id='g7-65' d='m7.183064-.199253c0-.109589-.099626-.109589-.229141-.109589c-.617684 0-.617684-.069738-.647572-.358655l-.607721-6.22665c-.019925-.199253-.019925-.239103-.18929-.239103c-.159402 0-.199253 .069738-.259029 .169365l-3.466999 5.818182c-.398506 .667497-.787049 .806974-1.225405 .836862c-.119552 .009963-.209215 .009963-.209215 .199253c0 .059776 .049813 .109589 .129514 .109589c.268991 0 .577833-.029888 .856787-.029888c.328767 0 .67746 .029888 .996264 .029888c.059776 0 .18929 0 .18929-.18929c0-.109589-.089664-.119552-.159402-.119552c-.229141-.019925-.468244-.099626-.468244-.348692c0-.119552 .059776-.229141 .139477-.368618c.069738-.119552 .079701-.119552 .757161-1.275218h2.500623c.019925 .209215 .159402 1.564134 .159402 1.663761c0 .298879-.518057 .328767-.71731 .328767c-.139477 0-.239103 0-.239103 .199253c0 .109589 .139477 .109589 .139477 .109589c.408468 0 .836862-.029888 1.24533-.029888c.249066 0 .876712 .029888 1.125778 .029888c.059776 0 .179328 0 .179328-.199253zm-1.92279-2.410959h-2.281445l1.96264-3.287671l.318804 3.287671z'/>
+<path id='g6-65' d='m7.183064-.199253c0-.109589-.099626-.109589-.229141-.109589c-.617684 0-.617684-.069738-.647572-.358655l-.607721-6.22665c-.019925-.199253-.019925-.239103-.18929-.239103c-.159402 0-.199253 .069738-.259029 .169365l-3.466999 5.818182c-.398506 .667497-.787049 .806974-1.225405 .836862c-.119552 .009963-.209215 .009963-.209215 .199253c0 .059776 .049813 .109589 .129514 .109589c.268991 0 .577833-.029888 .856787-.029888c.328767 0 .67746 .029888 .996264 .029888c.059776 0 .18929 0 .18929-.18929c0-.109589-.089664-.119552-.159402-.119552c-.229141-.019925-.468244-.099626-.468244-.348692c0-.119552 .059776-.229141 .139477-.368618c.069738-.119552 .079701-.119552 .757161-1.275218h2.500623c.019925 .209215 .159402 1.564134 .159402 1.663761c0 .298879-.518057 .328767-.71731 .328767c-.139477 0-.239103 0-.239103 .199253c0 .109589 .139477 .109589 .139477 .109589c.408468 0 .836862-.029888 1.24533-.029888c.249066 0 .876712 .029888 1.125778 .029888c.059776 0 .179328 0 .179328-.199253zm-1.92279-2.410959h-2.281445l1.96264-3.287671l.318804 3.287671z'/>
 </defs>
-<g id='page4'>
+<g id='page1'>
 <g fill='currentColor'>
-<use x='0' y='0' xlink:href='#g7-65'/>
+<use x='0' y='0' xlink:href='#g6-65'/>
 </g>
 </g>
-</svg> <a href="/hidden_markov_model.html#hmm-trans-prob">transition probability</a>.<br />
+</svg> <a href="/hidden_markov_model.html#hmm-trans-prob">transition probability</a>.
 </p>
 
 </div>

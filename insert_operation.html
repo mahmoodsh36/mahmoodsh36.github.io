@@ -63,7 +63,10 @@ the <i>insert</i> operation provides a list of attribute values for a new tuple 
 <use x='0' y='0' xlink:href='#g4-82'/>
 </g>
 </g>
-</svg>. insert can violate any of the four types of constraints.<br />
+</svg>. insert can violate any of the four types of constraints.
+</p>
+
+<p>
 domain constraints can be violated if an attribute value is given that does not appear in the corresponding domain or is not of the appropriate data type. key constraints can be violated if a key value in the new tuple <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.127819 3.597635 6.127819' style="max-height: 0.7011em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
@@ -112,8 +115,11 @@ domain constraints can be violated if an attribute value is given that does not 
 <use x='0' y='0' xlink:href='#g4-116'/>
 </g>
 </g>
-</svg> refers to a tuple that does not exist in the referenced relation.<br />
-if an insertion violates one or more constraints, the default option is to reject the insertion. in this case, it would be useful if the <a href="/database_management_system.html">dbms</a> could provide a reason to the user as to why the insertion was rejected. another option is to attempt to correct the reason for rejecting the insertion, but this is typically not used for violations caused by <i>Insert</i>; rather, it is used more often in correcting violations for <a href="/delete_operation.html">delete</a> and <a href="/update_operation.html">update</a>.<br />
+</svg> refers to a tuple that does not exist in the referenced relation.
+</p>
+
+<p>
+if an insertion violates one or more constraints, the default option is to reject the insertion. in this case, it would be useful if the <a href="/database_management_system.html">dbms</a> could provide a reason to the user as to why the insertion was rejected. another option is to attempt to correct the reason for rejecting the insertion, but this is typically not used for violations caused by <i>Insert</i>; rather, it is used more often in correcting violations for <a href="/delete_operation.html">delete</a> and <a href="/update_operation.html">update</a>.
 </p>
 
 </div>

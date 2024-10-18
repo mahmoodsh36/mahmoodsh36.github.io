@@ -38,13 +38,13 @@
 </div>
 <div id="content" class="content">
 <p>
-some info taken from <a href="http://staff.ustc.edu.cn/~csli/graduate/algorithms/book6/chap20.htm">http://staff.ustc.edu.cn/~csli/graduate/algorithms/book6/chap20.htm</a><br />
+some info taken from <a href="http://staff.ustc.edu.cn/~csli/graduate/algorithms/book6/chap20.htm">http://staff.ustc.edu.cn/~csli/graduate/algorithms/book6/chap20.htm</a>
 </p>
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-link-list" data-id="def-link-list">
 <p>
-a <b>binomial heap</b> is a <a href="/concrete_data_type.html">concrete data type</a> that implements the <a href="/heap.html">heap</a> using a set of <a href="/binomial_heap.html">binomial tree</a>s<br />
+a <b>binomial heap</b> is a <a href="/concrete_data_type.html">concrete data type</a> that implements the <a href="/heap.html">heap</a> using a set of <a href="/binomial_heap.html">binomial tree</a>s
 </p>
 
 </div>
@@ -53,21 +53,22 @@ a <b>binomial heap</b> is a <a href="/concrete_data_type.html">concrete data typ
 characteristic: &lt;/p&gt;
 " id="def-link-list" data-id="def-link-list">
 <p>
-<a href="/binary_heap.html">binary heap</a>s, binomial heaps, and fibonacci heaps are all inefficient in their support of the operation <code>SEARCH</code>; it can take a while to find a node with a given key. for this reason, operations such as <code>DECREASE-KEY</code> and <code>DELETE</code> that refer to a given node require a pointer to that node as part of their input. this requirement poses no problem in many applications.<br />
+<a href="/binary_heap.html">binary heap</a>s, binomial heaps, and fibonacci heaps are all inefficient in their support of the operation <code>SEARCH</code>; it can take a while to find a node with a given key. for this reason, operations such as <code>DECREASE-KEY</code> and <code>DELETE</code> that refer to a given node require a pointer to that node as part of their input. this requirement poses no problem in many applications.
 </p>
 
 </div>
-<div id="outline-container-org7e7ee1c" class="outline-2">
-<h2 id="org7e7ee1c">binomial tree</h2>
-<div class="outline-text-2" id="text-org7e7ee1c">
+<div id="outline-container-org3bd76ee" class="outline-2">
+<h2 id="org3bd76ee">binomial tree</h2>
+<div class="outline-text-2" id="text-org3bd76ee">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-link-list" data-id="def-link-list">
 <p>
-a <b>binomial tree</b> is defined recursively as follows:<br />
+a <b>binomial tree</b> is defined recursively as follows:
 </p>
+
 <ul class="org-ul">
-<li>a binomial tree of order 0 is a single node<br /></li>
+<li>a binomial tree of order 0 is a single node</li>
 <li>a binomial tree of order <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.918502 5.500223 6.918502' style="max-height: 0.7789em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
@@ -110,15 +111,18 @@ a <b>binomial tree</b> is defined recursively as follows:<br />
 <use x='86.273334' y='0' xlink:href='#g3-59'/>
 <use x='90.701142' y='0' xlink:href='#g5-48'/>
 </g>
-</svg> (in this order)<br /></li>
+</svg> (in this order)</li>
 </ul>
 
 <div test="test" class="fancy-block characteristic" data-before="&lt;p&gt;
 characteristic: &lt;/p&gt;
 " id="def-link-list" data-id="def-link-list">
 <p>
-each binomial tree in a heap obeys the <a href="/heap.html">min heap</a> property<br />
-this ensures that the root of each binomial tree contains the smallest key in the tree. it follows that the smallest key in the entire heap is one of the roots.<br />
+each binomial tree in a heap obeys the <a href="/heap.html">min heap</a> property
+</p>
+
+<p>
+this ensures that the root of each binomial tree contains the smallest key in the tree. it follows that the smallest key in the entire heap is one of the roots.
 </p>
 
 </div>
@@ -128,7 +132,10 @@ this ensures that the root of each binomial tree contains the smallest key in th
 characteristic: &lt;/p&gt;
 " id="def-link-list" data-id="def-link-list">
 <p>
-there can be at most one binomial tree for each order, including order 0<br />
+there can be at most one binomial tree for each order, including order 0
+</p>
+
+<p>
 this property implies that a binomial heap with <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -4.289468 5.979925 4.289468' style="max-height: 0.5203em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
@@ -207,7 +214,7 @@ this property implies that a binomial heap with <?xml version='1.0' encoding='UT
 <use x='43.254445' y='0' xlink:href='#g5-50'/>
 <use x='48.235765' y='-3.615364' xlink:href='#g4-48'/>
 </g>
-</svg>, and thus a binomial heap with 13 nodes will consist of three binomial trees of orders 3, 2, and 0 (see the <a href="#binomial_heap_three_orders">figure below</a>).<br />
+</svg>, and thus a binomial heap with 13 nodes will consist of three binomial trees of orders 3, 2, and 0 (see the <a href="#binomial_heap_three_orders">figure below</a>).
 </p>
 
 </div>
@@ -217,8 +224,9 @@ this property implies that a binomial heap with <?xml version='1.0' encoding='UT
 example: &lt;/p&gt;
 " id="def-link-list" data-id="def-link-list">
 <p>
-a binomial heap of order 3:<br />
+a binomial heap of order 3:
 </p>
+
 
 
 <div class="equation-container">
@@ -293,100 +301,100 @@ a binomial heap of order 3:<br />
 example: &lt;/p&gt;
 " id="def-link-list" data-id="def-link-list">
 <p>
-this is an example binomial heap that consists of 13 nodes and 3 binomial trees<br />
+this is an example binomial heap that consists of 13 nodes and 3 binomial trees
 </p>
 
 <div id="binomial_heap_three_orders" class="equation-container">
 <span class="equation">
 <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='-.00005 -222.63285 106.7657 227.61726' style="max-height: 22.4882em; vertical-align: -0.5392em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='-.00003 -117.22655 181.76568 122.21096' style="max-height: 12.0703em; vertical-align: -0.5392em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
-<path id='g6-56' d='m4.473225-2.002491c0-1.185554-.816936-2.181818-1.892902-2.181818c-.478207 0-.9066 .159402-1.265255 .508095v-1.942715c.199253 .059776 .52802 .129514 .846824 .129514c1.225405 0 1.92279-.9066 1.92279-1.036115c0-.059776-.029888-.109589-.099626-.109589c0 0-.029888 0-.079701 .029888c-.199253 .089664-.687422 .288917-1.354919 .288917c-.398506 0-.856787-.069738-1.325031-.278954c-.079701-.029888-.119552-.029888-.119552-.029888c-.099626 0-.099626 .079701-.099626 .239103v2.948941c0 .179328 0 .259029 .139477 .259029c.069738 0 .089664-.029888 .129514-.089664c.109589-.159402 .478207-.697385 1.285181-.697385c.518057 0 .767123 .458281 .846824 .637609c.159402 .368618 .179328 .757161 .179328 1.255293c0 .348692 0 .946451-.239103 1.364882c-.239103 .388543-.607721 .647572-1.066002 .647572c-.727273 0-1.295143-.52802-1.464508-1.115816c.029888 .009963 .059776 .019925 .169365 .019925c.328767 0 .498132-.249066 .498132-.488169s-.169365-.488169-.498132-.488169c-.139477 0-.488169 .069738-.488169 .52802c0 .856787 .687422 1.823163 1.803238 1.823163c1.155666 0 2.171856-.956413 2.171856-2.221669z'/>
-<path id='g6-57' d='m4.692403-1.643836v-.308842h-.996264v-4.533001c0-.199253 0-.259029-.159402-.259029c-.089664 0-.119552 0-.199253 .119552l-3.058531 4.672478v.308842h2.650062v.86675c0 .358655-.019925 .468244-.757161 .468244h-.209215v.308842c.408468-.029888 .926526-.029888 1.344956-.029888s.946451 0 1.354919 .029888v-.308842h-.209215c-.737235 0-.757161-.109589-.757161-.468244v-.86675h.996264zm-1.703611-.308842h-2.430884l2.430884-3.716065v3.716065z'/>
-<path id='g6-78' d='m4.552927-3.277709c0-2.67995-1.145704-3.35741-2.032379-3.35741c-.547945 0-1.036115 .179328-1.464508 .627646c-.408468 .448319-.637609 .86675-.637609 1.613948c0 1.24533 .876712 2.221669 1.992528 2.221669c.607721 0 1.016189-.418431 1.24533-.996264v.318804c0 2.331258-1.036115 2.789539-1.613948 2.789539c-.169365 0-.707347-.019925-.976339-.358655c.438356 0 .518057-.288917 .518057-.458281c0-.308842-.239103-.458281-.458281-.458281c-.159402 0-.458281 .089664-.458281 .478207c0 .667497 .537983 1.075965 1.384807 1.075965c1.285181 0 2.500623-1.354919 2.500623-3.496887zm-.916563-.916563c0 .826899-.33873 1.793275-1.215442 1.793275c-.159402 0-.617684 0-.926526-.627646c-.179328-.368618-.179328-.86675-.179328-1.354919c0-.537983 0-1.006227 .209215-1.374844c.268991-.498132 .647572-.627646 .996264-.627646c.458281 0 .787049 .33873 .956413 .787049c.119552 .318804 .159402 .946451 .159402 1.404732z'/>
-<path id='g6-82' d='m4.174346 0v-.308842h-.318804c-.896638 0-.926526-.109589-.926526-.478207v-5.589041c0-.239103 0-.259029-.229141-.259029c-.617684 .637609-1.494396 .637609-1.8132 .637609v.308842c.199253 0 .787049 0 1.305106-.259029v5.160648c0 .358655-.029888 .478207-.926526 .478207h-.318804v.308842c.348692-.029888 1.215442-.029888 1.613948-.029888s1.265255 0 1.613948 .029888z'/>
-<path id='g6-100' d='m4.83188-6.41594h-2.420922c-1.215442 0-1.235367-.129514-1.275218-.318804h-.249066l-.328767 2.052304h.249066c.029888-.159402 .119552-.787049 .249066-.9066c.069738-.059776 .846824-.059776 .976339-.059776h2.062267l-1.115816 1.574097c-.896638 1.344956-1.225405 2.729763-1.225405 3.745953c0 .099626 0 .547945 .458281 .547945s.458281-.448319 .458281-.547945v-.508095c0-.547945 .029888-1.09589 .109589-1.633873c.039851-.229141 .179328-1.085928 .617684-1.703611l1.344956-1.892902c.089664-.119552 .089664-.139477 .089664-.348692z'/>
-<path id='g6-106' d='m4.552927-1.703611c0-.816936-.627646-1.594022-1.663761-1.803238c.816936-.268991 1.39477-.966376 1.39477-1.753425c0-.816936-.876712-1.374844-1.833126-1.374844c-1.006227 0-1.763387 .597758-1.763387 1.354919c0 .328767 .219178 .518057 .508095 .518057c.308842 0 .508095-.219178 .508095-.508095c0-.498132-.468244-.498132-.617684-.498132c.308842-.488169 .966376-.617684 1.325031-.617684c.408468 0 .956413 .219178 .956413 1.115816c0 .119552-.019925 .697385-.278954 1.135741c-.298879 .478207-.637609 .508095-.886675 .518057c-.079701 .009963-.318804 .029888-.388543 .029888c-.079701 .009963-.14944 .019925-.14944 .119552c0 .109589 .069738 .109589 .239103 .109589h.438356c.816936 0 1.185554 .67746 1.185554 1.653798c0 1.354919-.687422 1.643836-1.125778 1.643836c-.428394 0-1.175592-.169365-1.524284-.757161c.348692 .049813 .657534-.169365 .657534-.547945c0-.358655-.268991-.557908-.557908-.557908c-.239103 0-.557908 .139477-.557908 .577833c0 .9066 .926526 1.564134 2.012453 1.564134c1.215442 0 2.122042-.9066 2.122042-1.92279z'/>
-<path id='g6-107' d='m4.473225-1.733499h-.249066c-.049813 .298879-.119552 .737235-.219178 .886675c-.069738 .079701-.727273 .079701-.946451 .079701h-1.793275l1.05604-1.026152c1.554172-1.374844 2.15193-1.912827 2.15193-2.909091c0-1.135741-.896638-1.932752-2.11208-1.932752c-1.125778 0-1.863014 .916563-1.863014 1.803238c0 .557908 .498132 .557908 .52802 .557908c.169365 0 .518057-.119552 .518057-.52802c0-.259029-.179328-.518057-.52802-.518057c-.079701 0-.099626 0-.129514 .009963c.229141-.647572 .767123-1.016189 1.344956-1.016189c.9066 0 1.334994 .806974 1.334994 1.62391c0 .797011-.498132 1.58406-1.046077 2.201743l-1.912827 2.132005c-.109589 .109589-.109589 .129514-.109589 .368618h3.696139l.278954-1.733499z'/>
+<path id='g0-56' d='m4.473225-2.002491c0-1.185554-.816936-2.181818-1.892902-2.181818c-.478207 0-.9066 .159402-1.265255 .508095v-1.942715c.199253 .059776 .52802 .129514 .846824 .129514c1.225405 0 1.92279-.9066 1.92279-1.036115c0-.059776-.029888-.109589-.099626-.109589c0 0-.029888 0-.079701 .029888c-.199253 .089664-.687422 .288917-1.354919 .288917c-.398506 0-.856787-.069738-1.325031-.278954c-.079701-.029888-.119552-.029888-.119552-.029888c-.099626 0-.099626 .079701-.099626 .239103v2.948941c0 .179328 0 .259029 .139477 .259029c.069738 0 .089664-.029888 .129514-.089664c.109589-.159402 .478207-.697385 1.285181-.697385c.518057 0 .767123 .458281 .846824 .637609c.159402 .368618 .179328 .757161 .179328 1.255293c0 .348692 0 .946451-.239103 1.364882c-.239103 .388543-.607721 .647572-1.066002 .647572c-.727273 0-1.295143-.52802-1.464508-1.115816c.029888 .009963 .059776 .019925 .169365 .019925c.328767 0 .498132-.249066 .498132-.488169s-.169365-.488169-.498132-.488169c-.139477 0-.488169 .069738-.488169 .52802c0 .856787 .687422 1.823163 1.803238 1.823163c1.155666 0 2.171856-.956413 2.171856-2.221669z'/>
+<path id='g0-57' d='m4.692403-1.643836v-.308842h-.996264v-4.533001c0-.199253 0-.259029-.159402-.259029c-.089664 0-.119552 0-.199253 .119552l-3.058531 4.672478v.308842h2.650062v.86675c0 .358655-.019925 .468244-.757161 .468244h-.209215v.308842c.408468-.029888 .926526-.029888 1.344956-.029888s.946451 0 1.354919 .029888v-.308842h-.209215c-.737235 0-.757161-.109589-.757161-.468244v-.86675h.996264zm-1.703611-.308842h-2.430884l2.430884-3.716065v3.716065z'/>
+<path id='g0-78' d='m4.552927-3.277709c0-2.67995-1.145704-3.35741-2.032379-3.35741c-.547945 0-1.036115 .179328-1.464508 .627646c-.408468 .448319-.637609 .86675-.637609 1.613948c0 1.24533 .876712 2.221669 1.992528 2.221669c.607721 0 1.016189-.418431 1.24533-.996264v.318804c0 2.331258-1.036115 2.789539-1.613948 2.789539c-.169365 0-.707347-.019925-.976339-.358655c.438356 0 .518057-.288917 .518057-.458281c0-.308842-.239103-.458281-.458281-.458281c-.159402 0-.458281 .089664-.458281 .478207c0 .667497 .537983 1.075965 1.384807 1.075965c1.285181 0 2.500623-1.354919 2.500623-3.496887zm-.916563-.916563c0 .826899-.33873 1.793275-1.215442 1.793275c-.159402 0-.617684 0-.926526-.627646c-.179328-.368618-.179328-.86675-.179328-1.354919c0-.537983 0-1.006227 .209215-1.374844c.268991-.498132 .647572-.627646 .996264-.627646c.458281 0 .787049 .33873 .956413 .787049c.119552 .318804 .159402 .946451 .159402 1.404732z'/>
+<path id='g0-82' d='m4.174346 0v-.308842h-.318804c-.896638 0-.926526-.109589-.926526-.478207v-5.589041c0-.239103 0-.259029-.229141-.259029c-.617684 .637609-1.494396 .637609-1.8132 .637609v.308842c.199253 0 .787049 0 1.305106-.259029v5.160648c0 .358655-.029888 .478207-.926526 .478207h-.318804v.308842c.348692-.029888 1.215442-.029888 1.613948-.029888s1.265255 0 1.613948 .029888z'/>
+<path id='g0-100' d='m4.83188-6.41594h-2.420922c-1.215442 0-1.235367-.129514-1.275218-.318804h-.249066l-.328767 2.052304h.249066c.029888-.159402 .119552-.787049 .249066-.9066c.069738-.059776 .846824-.059776 .976339-.059776h2.062267l-1.115816 1.574097c-.896638 1.344956-1.225405 2.729763-1.225405 3.745953c0 .099626 0 .547945 .458281 .547945s.458281-.448319 .458281-.547945v-.508095c0-.547945 .029888-1.09589 .109589-1.633873c.039851-.229141 .179328-1.085928 .617684-1.703611l1.344956-1.892902c.089664-.119552 .089664-.139477 .089664-.348692z'/>
+<path id='g0-106' d='m4.552927-1.703611c0-.816936-.627646-1.594022-1.663761-1.803238c.816936-.268991 1.39477-.966376 1.39477-1.753425c0-.816936-.876712-1.374844-1.833126-1.374844c-1.006227 0-1.763387 .597758-1.763387 1.354919c0 .328767 .219178 .518057 .508095 .518057c.308842 0 .508095-.219178 .508095-.508095c0-.498132-.468244-.498132-.617684-.498132c.308842-.488169 .966376-.617684 1.325031-.617684c.408468 0 .956413 .219178 .956413 1.115816c0 .119552-.019925 .697385-.278954 1.135741c-.298879 .478207-.637609 .508095-.886675 .518057c-.079701 .009963-.318804 .029888-.388543 .029888c-.079701 .009963-.14944 .019925-.14944 .119552c0 .109589 .069738 .109589 .239103 .109589h.438356c.816936 0 1.185554 .67746 1.185554 1.653798c0 1.354919-.687422 1.643836-1.125778 1.643836c-.428394 0-1.175592-.169365-1.524284-.757161c.348692 .049813 .657534-.169365 .657534-.547945c0-.358655-.268991-.557908-.557908-.557908c-.239103 0-.557908 .139477-.557908 .577833c0 .9066 .926526 1.564134 2.012453 1.564134c1.215442 0 2.122042-.9066 2.122042-1.92279z'/>
+<path id='g0-107' d='m4.473225-1.733499h-.249066c-.049813 .298879-.119552 .737235-.219178 .886675c-.069738 .079701-.727273 .079701-.946451 .079701h-1.793275l1.05604-1.026152c1.554172-1.374844 2.15193-1.912827 2.15193-2.909091c0-1.135741-.896638-1.932752-2.11208-1.932752c-1.125778 0-1.863014 .916563-1.863014 1.803238c0 .557908 .498132 .557908 .52802 .557908c.169365 0 .518057-.119552 .518057-.52802c0-.259029-.179328-.518057-.52802-.518057c-.079701 0-.099626 0-.129514 .009963c.229141-.647572 .767123-1.016189 1.344956-1.016189c.9066 0 1.334994 .806974 1.334994 1.62391c0 .797011-.498132 1.58406-1.046077 2.201743l-1.912827 2.132005c-.109589 .109589-.109589 .129514-.109589 .368618h3.696139l.278954-1.733499z'/>
 </defs>
-<g id='page5'>
-<path d='m18.00781-213.53124c0-4.91797-3.98828-8.90236-8.906248-8.90236c-4.914062 0-8.902342 3.98439-8.902342 8.90236c0 4.91796 3.98828 8.90625 8.902342 8.90625c4.917968 0 8.906248-3.98829 8.906248-8.90625z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
+<g id='page1'>
+<path d='m18.00781-106.28906c0-4.91797-3.98828-8.90624-8.906248-8.90624c-4.914062 0-8.902342 3.98827-8.902342 8.90624s3.98828 8.90234 8.902342 8.90234c4.917968 0 8.906248-3.98437 8.906248-8.90234z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
 <g transform='translate(-2.49069)'>
-<use x='9.103359' y='-210.321615' xlink:href='#g6-78'/>
+<use x='9.103359' y='-103.082085' xlink:href='#g0-78'/>
 </g>
-<path d='m48.23828-194.32812c0-4.91797-3.98828-8.90238-8.906247-8.90238c-4.917973 0-8.902343 3.98441-8.902343 8.90238s3.98437 8.90625 8.902343 8.90625c4.917967 0 8.906247-3.98828 8.906247-8.90625z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
+<path d='m69.76172-106.28906c0-4.91797-3.98828-8.90624-8.906253-8.90624c-4.917967 0-8.902347 3.98827-8.902347 8.90624s3.98438 8.90234 8.902347 8.90234c4.917973 0 8.906253-3.98437 8.906253-8.90234z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
 <g transform='translate(-2.4907)'>
-<use x='39.332316' y='-191.118632' xlink:href='#g6-56'/>
+<use x='60.856596' y='-103.082085' xlink:href='#g0-56'/>
 </g>
-<path d='m21.6679-162.60115c0-5.92969-4.80857-10.73435-10.734355-10.73435c-5.929685 0-10.734345 4.80466-10.734345 10.73435s4.80466 10.73438 10.734345 10.73438c5.925785 0 10.734355-4.80469 10.734355-10.73438z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
-<g transform='translate(-33.38113 31.776)'>
-<use x='39.332316' y='-191.118632' xlink:href='#g6-82'/>
-<use x='44.313636' y='-191.118632' xlink:href='#g6-100'/>
+<path d='m43.1915-74.56249c0-5.92969-4.80473-10.73441-10.734421-10.73441c-5.929689 0-10.734379 4.80472-10.734379 10.73441c0 5.92578 4.80469 10.73047 10.734379 10.73047c5.929691 0 10.734421-4.80469 10.734421-10.73047z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
+<g transform='translate(-33.3811 31.7756)'>
+<use x='60.856596' y='-103.082085' xlink:href='#g0-82'/>
+<use x='65.837916' y='-103.082085' xlink:href='#g0-100'/>
 </g>
-<path d='m21.6132-129.10175c0-5.89843-4.78122-10.67965-10.679655-10.67965c-5.898435 0-10.679645 4.78122-10.679645 10.67965c0 5.89844 4.78121 10.67969 10.679645 10.67969c5.898435 0 10.679655-4.78125 10.679655-10.67969z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
-<g transform='translate(-33.38113 65.227)'>
-<use x='39.332316' y='-191.118632' xlink:href='#g6-78'/>
-<use x='44.313636' y='-191.118632' xlink:href='#g6-78'/>
+<path d='m43.1368-41.06249c0-5.89843-4.78128-10.67971-10.679721-10.67971c-5.898439 0-10.679679 4.78128-10.679679 10.67971c0 5.89844 4.78124 10.67969 10.679679 10.67969c5.898441 0 10.679721-4.78125 10.679721-10.67969z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
+<g transform='translate(-33.3811 65.2272)'>
+<use x='60.856596' y='-103.082085' xlink:href='#g0-78'/>
+<use x='65.837916' y='-103.082085' xlink:href='#g0-78'/>
 </g>
-<path d='m49.957-162.65974c0-5.8711-4.75778-10.62886-10.624967-10.62886c-5.867183 0-10.625033 4.75776-10.625033 10.62886c0 5.86719 4.75785 10.625 10.625033 10.625c5.867187 0 10.624967-4.75781 10.624967-10.625z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
-<g transform='translate(-4.9814 31.776)'>
-<use x='39.332316' y='-191.118632' xlink:href='#g6-107'/>
-<use x='44.313636' y='-191.118632' xlink:href='#g6-82'/>
+<path d='m71.4844-74.62499c0-5.86719-4.75784-10.62501-10.628933-10.62501c-5.867187 0-10.624967 4.75782-10.624967 10.62501c0 5.8711 4.75778 10.62891 10.624967 10.62891c5.871093 0 10.628933-4.75781 10.628933-10.62891z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
+<g transform='translate(-4.9814 31.7756)'>
+<use x='60.856596' y='-103.082085' xlink:href='#g0-107'/>
+<use x='65.837916' y='-103.082085' xlink:href='#g0-82'/>
 </g>
 <g stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'>
-<path d='m33.26172-187.54297l-15.03902 16.79687'/>
-<path d='m10.9336-151.668v11.6875'/>
-<path d='m39.332033-185.22265v11.73435'/>
-<path d='m106.4609-106.39844c0-5.87109-4.75778-10.62886-10.62887-10.62886c-5.86719 0-10.62503 4.75777-10.62503 10.62886c0 5.86719 4.75784 10.625 10.62503 10.625c5.87109 0 10.62887-4.75781 10.62887-10.625z'/>
+<path d='m54.78515-99.50781l-15.03515 16.79691'/>
+<path d='m32.457-63.6328v11.6914'/>
+<path d='m60.855467-97.1875v11.7383'/>
+<path d='m181.457-106.39844c0-5.87109-4.75778-10.62886-10.624969-10.62886c-5.867191 0-10.625031 4.75777-10.625031 10.62886c0 5.86719 4.75784 10.625 10.625031 10.625c5.867189 0 10.624969-4.75781 10.624969-10.625z'/>
 </g>
-<g transform='translate(-4.9814)'>
-<use x='95.832857' y='-103.082085' xlink:href='#g6-82'/>
-<use x='100.814177' y='-103.082085' xlink:href='#g6-107'/>
+<g transform='translate(-4.981)'>
+<use x='170.832431' y='-103.082085' xlink:href='#g0-82'/>
+<use x='175.813751' y='-103.082085' xlink:href='#g0-107'/>
 </g>
-<path d='m49.8359-72.90232c0-5.89844-4.78123-10.67968-10.679669-10.67968c-5.898441 0-10.679731 4.78124-10.679731 10.67968s4.78129 10.67969 10.679731 10.67969c5.898439 0 10.679669-4.78125 10.679669-10.67969z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
-<g transform='translate(-61.6581 33.3881)'>
-<use x='95.832857' y='-103.082085' xlink:href='#g6-107'/>
-<use x='100.814177' y='-103.082085' xlink:href='#g6-106'/>
+<path d='m124.8356-72.90232c0-5.89844-4.78123-10.67968-10.679669-10.67968c-5.898441 0-10.679731 4.78124-10.679731 10.67968s4.78129 10.67969 10.679731 10.67969c5.898439 0 10.679669-4.78125 10.679669-10.67969z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
+<g transform='translate(-61.658 33.3881)'>
+<use x='170.832431' y='-103.082085' xlink:href='#g0-107'/>
+<use x='175.813751' y='-103.082085' xlink:href='#g0-106'/>
 </g>
-<path d='m21.5586-39.3438c0-5.89844-4.78124-10.6797-10.679678-10.6797c-5.898442 0-10.679722 4.78126-10.679722 10.6797s4.78128 10.67969 10.679722 10.67969c5.898438 0 10.679678-4.78125 10.679678-10.67969z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
+<path d='m96.5586-39.3438c0-5.89844-4.78515-10.6797-10.679677-10.6797c-5.898433 0-10.683623 4.78126-10.683623 10.6797s4.78519 10.67969 10.683623 10.67969c5.894527 0 10.679677-4.78125 10.679677-10.67969z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
 <g transform='translate(-89.9364 66.9463)'>
-<use x='95.832857' y='-103.082085' xlink:href='#g6-106'/>
-<use x='100.814177' y='-103.082085' xlink:href='#g6-106'/>
+<use x='170.832431' y='-103.082085' xlink:href='#g0-106'/>
+<use x='175.813751' y='-103.082085' xlink:href='#g0-106'/>
 </g>
-<path d='m21.5586-5.89453c0-5.89844-4.78124-10.67973-10.679678-10.67973c-5.898442 0-10.679722 4.78129-10.679722 10.67973s4.78128 10.67969 10.679722 10.67969c5.898438 0 10.679678-4.78125 10.679678-10.67969z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
+<path d='m96.5586-5.89453c0-5.89844-4.78515-10.67973-10.679677-10.67973c-5.898433 0-10.683623 4.78129-10.683623 10.67973s4.78519 10.67969 10.683623 10.67969c5.894527 0 10.679677-4.78125 10.679677-10.67969z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
 <g transform='translate(-89.9364 100.39374)'>
-<use x='95.832857' y='-103.082085' xlink:href='#g6-56'/>
-<use x='100.814177' y='-103.082085' xlink:href='#g6-106'/>
+<use x='170.832431' y='-103.082085' xlink:href='#g0-56'/>
+<use x='175.813751' y='-103.082085' xlink:href='#g0-106'/>
 </g>
-<path d='m49.7812-39.50786c0-5.86719-4.75778-10.62504-10.624969-10.62504c-5.867191 0-10.625031 4.75785-10.625031 10.62504s4.75784 10.625 10.625031 10.625c5.867189 0 10.624969-4.75781 10.624969-10.625z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
-<g transform='translate(-61.6581 66.9463)'>
-<use x='95.832857' y='-103.082085' xlink:href='#g6-107'/>
-<use x='100.814177' y='-103.082085' xlink:href='#g6-57'/>
+<path d='m124.7809-39.50786c0-5.86719-4.75778-10.62504-10.624969-10.62504c-5.871091 0-10.628931 4.75785-10.628931 10.62504s4.75784 10.625 10.628931 10.625c5.867189 0 10.624969-4.75781 10.624969-10.625z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
+<g transform='translate(-61.658 66.9463)'>
+<use x='170.832431' y='-103.082085' xlink:href='#g0-107'/>
+<use x='175.813751' y='-103.082085' xlink:href='#g0-57'/>
 </g>
-<path d='m78.086-73.01169c0-5.86719-4.75786-10.62501-10.628956-10.62501c-5.867184 0-10.625044 4.75782-10.625044 10.62501c0 5.86718 4.75786 10.625 10.625044 10.625c5.871096 0 10.628956-4.75782 10.628956-10.625z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
-<g transform='translate(-33.3566 33.3881)'>
-<use x='95.832857' y='-103.082085' xlink:href='#g6-82'/>
-<use x='100.814177' y='-103.082085' xlink:href='#g6-107'/>
+<path d='m153.0822-73.01169c0-5.86719-4.75777-10.62501-10.624956-10.62501c-5.867184 0-10.625044 4.75782-10.625044 10.62501c0 5.86718 4.75786 10.625 10.625044 10.625c5.867186 0 10.624956-4.75782 10.624956-10.625z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
+<g transform='translate(-33.357 33.3881)'>
+<use x='170.832431' y='-103.082085' xlink:href='#g0-82'/>
+<use x='175.813751' y='-103.082085' xlink:href='#g0-107'/>
 </g>
-<path d='m78.1367-39.61717c0-5.89843-4.78122-10.67973-10.679656-10.67973c-5.898434 0-10.679644 4.7813-10.679644 10.67973c0 5.89844 4.78121 10.67969 10.679644 10.67969c5.898436 0 10.679656-4.78125 10.679656-10.67969z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
-<g transform='translate(-33.3566 66.6724)'>
-<use x='95.832857' y='-103.082085' xlink:href='#g6-107'/>
-<use x='100.814177' y='-103.082085' xlink:href='#g6-106'/>
+<path d='m153.1369-39.61717c0-5.89843-4.78122-10.67973-10.679656-10.67973c-5.898434 0-10.679644 4.7813-10.679644 10.67973c0 5.89844 4.78121 10.67969 10.679644 10.67969c5.898436 0 10.679656-4.78125 10.679656-10.67969z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
+<g transform='translate(-33.357 66.6724)'>
+<use x='170.832431' y='-103.082085' xlink:href='#g0-107'/>
+<use x='175.813751' y='-103.082085' xlink:href='#g0-106'/>
 </g>
-<path d='m106.5664-72.9531c0-5.92578-4.80468-10.7305-10.73437-10.7305c-5.92578 0-10.73433 4.80472-10.73433 10.7305c0 5.92969 4.80855 10.73437 10.73433 10.73437c5.92969 0 10.73437-4.80468 10.73437-10.73437z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
-<g transform='translate(-4.9814 33.3881)'>
-<use x='95.832857' y='-103.082085' xlink:href='#g6-100'/>
-<use x='100.814177' y='-103.082085' xlink:href='#g6-100'/>
+<path d='m181.5664-72.9531c0-5.92578-4.80468-10.7305-10.734369-10.7305c-5.929691 0-10.734331 4.80472-10.734331 10.7305c0 5.92969 4.80464 10.73437 10.734331 10.73437c5.929689 0 10.734369-4.80468 10.734369-10.73437z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
+<g transform='translate(-4.981 33.3881)'>
+<use x='170.832431' y='-103.082085' xlink:href='#g0-100'/>
+<use x='175.813751' y='-103.082085' xlink:href='#g0-100'/>
 </g>
 <g stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'>
-<path d='m86.51562-100.89062l-37.99612 22.45312'/>
-<path d='m32.1445-64.582l-14.2578 16.9179'/>
-<path d='m10.8789-28.4648v11.6914'/>
-<path d='m39.1562-62.0234v11.6914'/>
-<path d='m88.82422-98.15234l-14.35552 16.89064'/>
-<path d='m67.457-62.1875v11.6914'/>
-<path d='m95.83203-95.57422v11.68752'/>
+<path d='m161.51172-100.89062l-37.99222 22.45312'/>
+<path d='m107.1445-64.582l-14.2578 16.9179'/>
+<path d='m85.8789-28.4648v11.6914'/>
+<path d='m114.1562-62.0234v11.6914'/>
+<path d='m163.82031-98.15234l-14.35161 16.89064'/>
+<path d='m142.457-62.1875v11.6914'/>
+<path d='m170.832031-95.57422v11.68752'/>
 </g>
 </g>
 </svg>
@@ -484,7 +492,7 @@ a binomial tree of order <?xml version='1.0' encoding='UTF-8'?>
 <use x='7.714086' y='0' xlink:href='#g1-0'/>
 <use x='17.676699' y='0' xlink:href='#g5-49'/>
 </g>
-</svg> by attaching one of them as the leftmost child of the root of the other tree. This feature is central to the <a href="/binomial_heap.html">merge</a> operation of a binomial heap, which is its major advantage over other conventional heaps.<br />
+</svg> by attaching one of them as the leftmost child of the root of the other tree. This feature is central to the <a href="/binomial_heap.html">merge</a> operation of a binomial heap, which is its major advantage over other conventional heaps.
 </p>
 
 </div>
@@ -492,12 +500,18 @@ a binomial tree of order <?xml version='1.0' encoding='UTF-8'?>
 </div>
 </div>
 </div>
-<div id="outline-container-org9072372" class="outline-2">
-<h2 id="org9072372">theoretical implementation</h2>
-<div class="outline-text-2" id="text-org9072372">
+<div id="outline-container-org2f1c42e" class="outline-2">
+<h2 id="org2f1c42e">theoretical implementation</h2>
+<div class="outline-text-2" id="text-org2f1c42e">
 <p>
-because no operation requires random access to the root nodes of the binomial trees, the roots of the binomial trees can be stored in a <a href="/linked_list.html">linked list</a>, ordered by increasing order of the tree. because the number of children for each node is variable, it does not work well for each node to have separate links to each of its children, as would be common in a <a href="/binary_tree.html">binary tree</a>; instead, it is possible to implement this tree using links from each node to its highest-order child in the tree, and to its sibling of the next smaller order than it. these sibling pointers can be interpreted as the next pointers in a linked list of the children of each node, but with the opposite order from the linked list of roots: from largest to smallest order, rather than vice versa. this representation allows two trees of the same order to be linked together, making a tree of the next larger order, in constant time.<br />
-each node <code>x</code> has a key field and contains pointers <code>parent(x)</code> to its parent, <code>child(x)</code> to its leftmost child, and <code>sibling(x)</code> to the sibling of x immediately to its right. if node x is a root, then <code>parent(x) = nil</code>. if node x has no children, then <code>child(x) = nil</code>, and if x is the rightmost child of its parent, then <code>sibling(x) = nil</code>. each node x also contains the field <code>degree(x)</code>, which is the number of children of x.<br />
+because no operation requires random access to the root nodes of the binomial trees, the roots of the binomial trees can be stored in a <a href="/linked_list.html">linked list</a>, ordered by increasing order of the tree. because the number of children for each node is variable, it does not work well for each node to have separate links to each of its children, as would be common in a <a href="/binary_tree.html">binary tree</a>; instead, it is possible to implement this tree using links from each node to its highest-order child in the tree, and to its sibling of the next smaller order than it. these sibling pointers can be interpreted as the next pointers in a linked list of the children of each node, but with the opposite order from the linked list of roots: from largest to smallest order, rather than vice versa. this representation allows two trees of the same order to be linked together, making a tree of the next larger order, in constant time.
+</p>
+
+<p>
+each node <code>x</code> has a key field and contains pointers <code>parent(x)</code> to its parent, <code>child(x)</code> to its leftmost child, and <code>sibling(x)</code> to the sibling of x immediately to its right. if node x is a root, then <code>parent(x) = nil</code>. if node x has no children, then <code>child(x) = nil</code>, and if x is the rightmost child of its parent, then <code>sibling(x) = nil</code>. each node x also contains the field <code>degree(x)</code>, which is the number of children of x.
+</p>
+
+<p>
 the roots of the binomial trees within a binomial heap are organized in a linked list, which we refer to as the <b>root list</b>. the degrees of the roots strictly increase as we traverse the root list. in an n-node binomial heap the degrees of the roots are a subset of <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.863016 52.045795 8.800198' style="max-height: 0.9640em; vertical-align: -0.2397em; display: inline-block" class="org-latex org-latex-inline">
@@ -523,13 +537,16 @@ the roots of the binomial trees within a binomial heap are organized in a linked
 <use x='39.296868' y='0' xlink:href='#g5-103'/>
 <use x='46.06587' y='0' xlink:href='#g3-110'/>
 </g>
-</svg>. the sibling field has a different meaning for roots than for nonroots. if x is a root, then <code>sibling(x)</code> points to the next root in the root list. (as usual, <code>sibling(x) = nil</code> if x is the last root in the root list.)<br />
-a given binomial heap <code>h</code> is accessed by the field <code>head(h)</code>, which is simply a pointer to the first root in the root list of h. if binomial heap H has no elements, then <code>head[h] = nil</code>.<br />
+</svg>. the sibling field has a different meaning for roots than for nonroots. if x is a root, then <code>sibling(x)</code> points to the next root in the root list. (as usual, <code>sibling(x) = nil</code> if x is the last root in the root list.)
+</p>
+
+<p>
+a given binomial heap <code>h</code> is accessed by the field <code>head(h)</code>, which is simply a pointer to the first root in the root list of h. if binomial heap H has no elements, then <code>head[h] = nil</code>.
 </p>
 </div>
-<div id="outline-container-orgacde76a" class="outline-3">
-<h3 id="orgacde76a">binomial heap creation</h3>
-<div class="outline-text-3" id="text-orgacde76a">
+<div id="outline-container-org4e07747" class="outline-3">
+<h3 id="org4e07747">binomial heap creation</h3>
+<div class="outline-text-3" id="text-org4e07747">
 <p>
 to make an empty binomial heap, the <code>MAKE-BINOMIAL-HEAP</code> procedure simply allocates and returns an object <code>h</code>, where <code>head[h] = nil</code>. the running time is <?xml version='1.0' encoding='UTF-8'?>
 
@@ -548,13 +565,13 @@ to make an empty binomial heap, the <code>MAKE-BINOMIAL-HEAP</code> procedure si
 <use x='16.731813' y='0' xlink:href='#g13-41'/>
 </g>
 </g>
-</svg>.<br />
+</svg>.
 </p>
 </div>
 </div>
-<div id="outline-container-orgc32a1d2" class="outline-3">
-<h3 id="orgc32a1d2">binomial heap union</h3>
-<div class="outline-text-3" id="text-orgc32a1d2">
+<div id="outline-container-orgd280b10" class="outline-3">
+<h3 id="orgd280b10">binomial heap union</h3>
+<div class="outline-text-3" id="text-orgd280b10">
 <p>
 the operation of uniting two binomial heaps is used as a subroutine by most of the remaining operations. merging of binomial trees is done by comparing the keys at the roots of two trees, and the root node with the larger key will become the child of the root with the smaller key. the time complexity for finding a union is <?xml version='1.0' encoding='UTF-8'?>
 
@@ -585,17 +602,24 @@ the operation of uniting two binomial heaps is used as a subroutine by most of t
 <use x='30.587721' y='0' xlink:href='#g13-41'/>
 </g>
 </g>
-</svg>.<br />
-to perform the union of two binomial heaps, first we <b>merge</b> the heaps into one, such that the trees in the resulting heap would be in monotonically ascending order, then we traverse through the roots of the binomial trees, we consider the following cases where <code>x</code> denotes the current root:<br />
+</svg>.
 </p>
+
+<p>
+to perform the union of two binomial heaps, first we <b>merge</b> the heaps into one, such that the trees in the resulting heap would be in monotonically ascending order, then we traverse through the roots of the binomial trees, we consider the following cases where <code>x</code> denotes the current root:
+</p>
+
 <ol class="org-ol">
-<li>if <code>degree(x)</code> is not equal to <code>degree(next(x))</code>, then move the pointer ahead<br /></li>
-<li>if <code>degree(x) = degree(next(x)) = degree(next(next(x)))</code> then move the pointer ahead<br /></li>
-<li>if <code>degree(x) = degree(next(x))</code> but not equal to <code>degree(next(next(x)))</code>, and <code>key(x) &lt; key(next(x))</code> then remove <code>next(x)</code> from root and attach it to x<br /></li>
-<li>if <code>degree(x) = degree(next(x))</code> but not equal to <code>degree(next(next(x)))</code> and <code>key(x) &gt; key(next(x))</code> then remove x from root and attach it to <code>next(x)</code>.<br /></li>
+<li>if <code>degree(x)</code> is not equal to <code>degree(next(x))</code>, then move the pointer ahead</li>
+<li>if <code>degree(x) = degree(next(x)) = degree(next(next(x)))</code> then move the pointer ahead</li>
+<li>if <code>degree(x) = degree(next(x))</code> but not equal to <code>degree(next(next(x)))</code>, and <code>key(x) &lt; key(next(x))</code> then remove <code>next(x)</code> from root and attach it to x</li>
+<li>if <code>degree(x) = degree(next(x))</code> but not equal to <code>degree(next(next(x)))</code> and <code>key(x) &gt; key(next(x))</code> then remove x from root and attach it to <code>next(x)</code>.</li>
 </ol>
 <p>
-because each binomial tree in a binomial heap corresponds to a bit in the binary representation of its size, there is an analogy between the merging of two heaps and the binary addition of the sizes of the two heaps, from right-to-left. whenever a carry occurs during addition, this corresponds to a merging of two binomial trees during the merge.<br />
+because each binomial tree in a binomial heap corresponds to a bit in the binary representation of its size, there is an analogy between the merging of two heaps and the binary addition of the sizes of the two heaps, from right-to-left. whenever a carry occurs during addition, this corresponds to a merging of two binomial trees during the merge.
+</p>
+
+<p>
 each binomial tree's traversal during merge only involves roots, hence making the time taken at the biggest order <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.863016 23.306461 8.800179' style="max-height: 0.9640em; vertical-align: -0.2397em; display: inline-block" class="org-latex org-latex-inline">
@@ -646,13 +670,13 @@ each binomial tree's traversal during merge only involves roots, hence making th
 <use x='30.587721' y='0' xlink:href='#g13-41'/>
 </g>
 </g>
-</svg>.<br />
+</svg>.
 </p>
 </div>
 </div>
-<div id="outline-container-org063b95d" class="outline-3">
-<h3 id="org063b95d">binomial heap insert</h3>
-<div class="outline-text-3" id="text-org063b95d">
+<div id="outline-container-org59a3980" class="outline-3">
+<h3 id="org59a3980">binomial heap insert</h3>
+<div class="outline-text-3" id="text-org59a3980">
 <p>
 inserting a new element to a heap can be done by creating a new heap containing only this element and then <a href="/binomial_heap.html">merging</a> it with the original heap. because of the merge, a single insertion takes time <?xml version='1.0' encoding='UTF-8'?>
 
@@ -740,13 +764,16 @@ inserting a new element to a heap can be done by creating a new heap containing 
 <use x='16.731813' y='0' xlink:href='#g13-41'/>
 </g>
 </g>
-</svg> (i.e. constant time) per insertion.<br />
-a variant of the binomial heap, the skew binomial heap, achieves constant worst case insertion time by using forests whose tree sizes are based on the skew binary number system rather than on the binary number system.<br />
+</svg> (i.e. constant time) per insertion.
+</p>
+
+<p>
+a variant of the binomial heap, the skew binomial heap, achieves constant worst case insertion time by using forests whose tree sizes are based on the skew binary number system rather than on the binary number system.
 </p>
 </div>
 </div>
-<div id="outline-container-org30148d1" class="outline-3">
-<h3 id="org30148d1">binomial heap delete</h3>
+<div id="outline-container-orgcea954f" class="outline-3">
+<h3 id="orgcea954f">binomial heap delete</h3>
 </div>
 </div>
 </div>

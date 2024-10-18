@@ -41,7 +41,7 @@
 (Ramez Elmasri, Shamkant B. Navathe, 2015 chapter 8.1.3 sequences of operations and the RENAME operation)&lt;/p&gt;
 " id="def-link-list" data-id="def-link-list">
 <p>
-in general, for most queries, we need to apply several <a href="/relational_algebra.html">relational algebra</a> operations one after the other. either we can write the operations as a single relational algebra expression by nesting the operations, or we can apply one operation at a time and create intermediate result relations. in the latter case, we must give names to the relations that hold the intermediate results. for example, to retrieve the first name, last name, and salary of all employees who work in department number 5, we must apply a <a href="/select.html">select</a> and a <a href="/project_operation.html">project</a> operation. we can write a single <a href="/relational_algebra.html">relational algebra</a> expression, also known as an in-line expression, as follows:<br />
+in general, for most queries, we need to apply several <a href="/relational_algebra.html">relational algebra</a> operations one after the other. either we can write the operations as a single relational algebra expression by nesting the operations, or we can apply one operation at a time and create intermediate result relations. in the latter case, we must give names to the relations that hold the intermediate results. for example, to retrieve the first name, last name, and salary of all employees who work in department number 5, we must apply a <a href="/select.html">select</a> and a <a href="/project_operation.html">project</a> operation. we can write a single <a href="/relational_algebra.html">relational algebra</a> expression, also known as an in-line expression, as follows:
 <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='92.354826 -10.38902 182.494099 10.389026' style="max-height: 1.4629em; display: block" class="org-latex org-latex-block">
@@ -113,7 +113,7 @@ in general, for most queries, we need to apply several <a href="/relational_alge
 <use x='270.974446' y='-2.91704' xlink:href='#g5-41'/>
 </g>
 </g>
-</svg><br />
+</svg>
 alternatively, we can explicitly show the sequence of operations, giving a name to each intermediate relation, and using the assignment operation, denoted by <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -3.655041 9.962669 2.328761' style="max-height: 0.3595em; vertical-align: --0.0000em; display: inline-block" class="org-latex org-latex-inline">
@@ -125,7 +125,7 @@ alternatively, we can explicitly show the sequence of operations, giving a name 
 <use x='0' y='0' xlink:href='#g1-32'/>
 </g>
 </g>
-</svg> (left arrow), as follows:<br />
+</svg> (left arrow), as follows:
 </p>
 
 <div class="equation-container">
@@ -240,7 +240,7 @@ alternatively, we can explicitly show the sequence of operations, giving a name 
 <span class="caption"></span>
 </div>
 <p>
-it is sometimes simpler to break down a complex sequence of operations by specifying intermediate result relations than to write a single relational algebra expression. we can also use this technique to rename the attributes in the intermediate and result relations. this can be useful in connection with more complex operations such as <code>UNION</code> and <code>JOIN</code>, as we shall see. to rename the attributes in a relation, we simply list the new attribute names in parentheses, as in the following example:<br />
+it is sometimes simpler to break down a complex sequence of operations by specifying intermediate result relations than to write a single relational algebra expression. we can also use this technique to rename the attributes in the intermediate and result relations. this can be useful in connection with more complex operations such as <code>UNION</code> and <code>JOIN</code>, as we shall see. to rename the attributes in a relation, we simply list the new attribute names in parentheses, as in the following example:
 </p>
 
 <div class="equation-container">
@@ -378,7 +378,10 @@ it is sometimes simpler to break down a complex sequence of operations by specif
 <span class="caption"></span>
 </div>
 <p>
-if no renaming is applied, the names of the attributes in the resulting relation of a <a href="/select.html">select</a> operation are the same as those in the original relation and in the same order. for a <a href="/project_operation.html">project</a> operation with no renaming, the resulting relation has the same attribute names as those in the projection list and in the same order in which they appear in the list.<br />
+if no renaming is applied, the names of the attributes in the resulting relation of a <a href="/select.html">select</a> operation are the same as those in the original relation and in the same order. for a <a href="/project_operation.html">project</a> operation with no renaming, the resulting relation has the same attribute names as those in the projection list and in the same order in which they appear in the list.
+</p>
+
+<p>
 we can also define a formal RENAME operation&#x2013;which can rename either the relation name or the attribute names, or both&#x2013;as a unary operator. the general RENAME operation when applied to a relation <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.807795 7.641499 6.807795' style="max-height: 0.7680em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
@@ -401,7 +404,7 @@ we can also define a formal RENAME operation&#x2013;which can rename either the 
 <use x='0' y='0' xlink:href='#g4-110'/>
 </g>
 </g>
-</svg> is denoted by any of the following three forms:<br />
+</svg> is denoted by any of the following three forms:
 <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='65.589595 -11.014269 236.024563 11.014269' style="max-height: 1.5244em; display: block" class="org-latex org-latex-block">
@@ -472,7 +475,7 @@ we can also define a formal RENAME operation&#x2013;which can rename either the 
 <use x='297.739679' y='-3.542289' xlink:href='#g5-41'/>
 </g>
 </g>
-</svg><br />
+</svg>
 where the symbol <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -4.289468 5.150839 6.22665' style="max-height: 0.6125em; vertical-align: -0.1905em; display: inline-block" class="org-latex org-latex-inline">
@@ -589,8 +592,11 @@ where the symbol <?xml version='1.0' encoding='UTF-8'?>
 <use x='7.556759' y='1.494381' xlink:href='#g2-105'/>
 </g>
 </g>
-</svg>.<br />
-in <a href="/sql.html">sql</a>, a single query typically represents a complex relational algebra expression. renaming in SQL is accomplished by aliasing using <code>AS</code>, as in the following example:<br />
+</svg>.
+</p>
+
+<p>
+in <a href="/sql.html">sql</a>, a single query typically represents a complex relational algebra expression. renaming in SQL is accomplished by aliasing using <code>AS</code>, as in the following example:
 </p>
 <div class="org-src-container" data-language="sql">
 <pre class="src src-sql"><span style="color: #deb07a; font-weight: bold;">SELECT</span> E.Fname <span style="color: #deb07a; font-weight: bold;">AS</span> First_name, E.Lname <span style="color: #deb07a; font-weight: bold;">AS</span> Last_name, E.Salary <span style="color: #deb07a; font-weight: bold;">AS</span> Salary

@@ -52,9 +52,15 @@ the <i>Update</i> (or <i>Modify</i>) operation is used to change the values of o
 <use x='0' y='0' xlink:href='#g4-82'/>
 </g>
 </g>
-</svg>. It is necessary to specify a condition on the attributes of the relation to select the tuple (or tuples) to be modified.<br />
-updating an attribute that is neither part of a primary key nor part of a foreign key usually causes no problems; the <a href="/database_management_system.html">DBMS</a> need only check to confirm that the new value is of the correct data type and domain. modifying a primary key value is similar to deleting one tuple and inserting another in its place because we use the primary key to identify tuples. if a foreign key attribute is modified, the<br />
-DBMS must make sure that the new value refers to an existing tuple in the referenced relation (or is set to <i>NULL</i>). similar options exist to deal with referential integrity violations caused by Update as those options discussed for the <a href="/delete_operation.html">delete</a> operation. in fact, when a referential integrity constraint is specified in the <a href="/data_definition_language.html">ddl</a>, the DBMS will allow the user to choose separate options to deal with a violation caused by <a href="/delete_operation.html">delete</a> and a violation caused by <i>Update</i>.<br />
+</svg>. It is necessary to specify a condition on the attributes of the relation to select the tuple (or tuples) to be modified.
+</p>
+
+<p>
+updating an attribute that is neither part of a primary key nor part of a foreign key usually causes no problems; the <a href="/database_management_system.html">DBMS</a> need only check to confirm that the new value is of the correct data type and domain. modifying a primary key value is similar to deleting one tuple and inserting another in its place because we use the primary key to identify tuples. if a foreign key attribute is modified, the
+</p>
+
+<p>
+DBMS must make sure that the new value refers to an existing tuple in the referenced relation (or is set to <i>NULL</i>). similar options exist to deal with referential integrity violations caused by Update as those options discussed for the <a href="/delete_operation.html">delete</a> operation. in fact, when a referential integrity constraint is specified in the <a href="/data_definition_language.html">ddl</a>, the DBMS will allow the user to choose separate options to deal with a violation caused by <a href="/delete_operation.html">delete</a> and a violation caused by <i>Update</i>.
 </p>
 
 </div>

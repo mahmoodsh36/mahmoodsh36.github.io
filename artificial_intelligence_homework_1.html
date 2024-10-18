@@ -66,11 +66,11 @@ gotta apply the <a href="/A*_algorithm.html">A* algorithm</a> to the graph from 
 <use x='7.120515' y='1.494381' xlink:href='#g1-57'/>
 </g>
 </g>
-</svg><br />
+</svg>
 </p>
 <p>
-<img src="/Sat_Aug_12_10:26:13_PM_IDT_2023.png" /><br />
-first i turned the tables/graphs into memory:<br />
+<img src="/Sat_Aug_12_10:26:13_PM_IDT_2023.png" />
+first i turned the tables/graphs into memory:
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defparameter</span> <span style="color: #ffaacf;">*graph*</span>
@@ -115,7 +115,7 @@ first i turned the tables/graphs into memory:<br />
 </div>
 
 <p>
-i generated an image for the graph with tikz<br />
+i generated an image for the graph with tikz
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span>generate-graph-tikz *graph*<span style="color: #deb07a;">)</span>
@@ -123,7 +123,7 @@ i generated an image for the graph with tikz<br />
 </div>
 
 
-<pre class="example" id="org3b2427d">
+<pre class="example" id="org996c766">
 \tikz\graph[spring electrical layout,node distance=50] {
 C1 -- C2,
 C2 -- C7,
@@ -149,12 +149,18 @@ C16 -- C8,
 
 
 <p>
-result image (used the parameters <code>spring electrical layout,node distance=50</code> to make it look better, cant be arsed making it draw weights too):<br />
-<img src="/test.svg" /><br />
+result image (used the parameters <code>spring electrical layout,node distance=50</code> to make it look better, cant be arsed making it draw weights too):
 </p>
 
+
+<div id="org3f3d428" class="figure">
+<p><img src="/test.svg" />
+</p>
+</div>
+
+
 <p>
-time to apply the algorithm:<br />
+time to apply the algorithm:
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span>a-star *graph*
@@ -172,8 +178,11 @@ time to apply the algorithm:<br />
 
 
 <p>
-basically this says that we go the path <code>c9 -&gt; c10 -&gt; c17 -&gt; c15 -&gt; c12 -&gt; c5 -&gt; c14</code> (or backwards)<br />
-but i feel like taking this a bit further and generating a tree of the decisions that were made during the algorithm, so i edited the algorithm:<br />
+basically this says that we go the path <code>c9 -&gt; c10 -&gt; c17 -&gt; c15 -&gt; c12 -&gt; c5 -&gt; c14</code> (or backwards)
+</p>
+
+<p>
+but i feel like taking this a bit further and generating a tree of the decisions that were made during the algorithm, so i edited the algorithm:
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">a-star</span> <span style="color: #ffaacf;">(</span>graph src dest heuristic-function<span style="color: #ffaacf;">)</span>
@@ -227,7 +236,7 @@ but i feel like taking this a bit further and generating a tree of the decisions
 </div>
 
 <p>
-usage:<br />
+usage:
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span>a-star *graph*

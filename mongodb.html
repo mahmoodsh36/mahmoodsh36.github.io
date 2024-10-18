@@ -38,38 +38,38 @@
 </div>
 <div id="content" class="content">
 <p>
-mongodb is a <a href="/document-based_database.html">document-based database</a>.<br />
+mongodb is a <a href="/document-based_database.html">document-based database</a>.
 </p>
-<div id="outline-container-org61e41de" class="outline-2">
-<h2 id="org61e41de">mongosh</h2>
-<div class="outline-text-2" id="text-org61e41de">
+<div id="outline-container-org899888c" class="outline-2">
+<h2 id="org899888c">mongosh</h2>
+<div class="outline-text-2" id="text-org899888c">
 <p>
-shell for mongodb<br />
+shell for mongodb
 </p>
 </div>
 </div>
-<div id="outline-container-orgc701ab1" class="outline-2">
-<h2 id="orgc701ab1">books</h2>
-<div class="outline-text-2" id="text-orgc701ab1">
+<div id="outline-container-org498bd9c" class="outline-2">
+<h2 id="org498bd9c">books</h2>
+<div class="outline-text-2" id="text-org498bd9c">
 <ul class="org-ul">
-<li><a href="/mongodb_the_definitive_guide_3rd_edition.html">mongodb the definitive guide 3rd edition</a><br /></li>
+<li><a href="/mongodb_the_definitive_guide_3rd_edition.html">mongodb the definitive guide 3rd edition</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org925985e" class="outline-2">
-<h2 id="org925985e">resources</h2>
-<div class="outline-text-2" id="text-org925985e">
+<div id="outline-container-org48614d4" class="outline-2">
+<h2 id="org48614d4">resources</h2>
+<div class="outline-text-2" id="text-org48614d4">
 <ul class="org-ul">
-<li><a href="/big_data_course_homework_2.html">big data course homework 2</a><br /></li>
-<li><a href="/big_data_course_homework_3.html">big data course homework 3</a><br /></li>
+<li><a href="/big_data_course_homework_2.html">big data course homework 2</a></li>
+<li><a href="/big_data_course_homework_3.html">big data course homework 3</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orga6df9e8" class="outline-2">
-<h2 id="orga6df9e8">import data</h2>
-<div class="outline-text-2" id="text-orga6df9e8">
+<div id="outline-container-orgbf938c3" class="outline-2">
+<h2 id="orgbf938c3">import data</h2>
+<div class="outline-text-2" id="text-orgbf938c3">
 <p>
-the commandline tool <code>mongoimport</code> can import json files, example:<br />
+the commandline tool <code>mongoimport</code> can import json files, example:
 </p>
 <div class="org-src-container" data-language="mongodb">
 <pre class="src src-mongodb">mongoimport --db dbName --collection collectionName --file fileName.json --jsonArray
@@ -77,16 +77,16 @@ the commandline tool <code>mongoimport</code> can import json files, example:<br
 </div>
 
 <p>
-if the file contains line-separated objects, drop the <code>--jsonArray</code> parameter.<br />
+if the file contains line-separated objects, drop the <code>--jsonArray</code> parameter.
 </p>
 </div>
 </div>
-<div id="outline-container-org2e08910" class="outline-2">
-<h2 id="org2e08910">create database</h2>
-<div class="outline-text-2" id="text-org2e08910">
+<div id="outline-container-org143978d" class="outline-2">
+<h2 id="org143978d">create database</h2>
+<div class="outline-text-2" id="text-org143978d">
 <div test="test" class="fancy-block dummy" data-before="" id="sol-automata-homework1-1" data-id="sol-automata-homework1-1">
 <p>
-there is no "create" command in the MongoDB Shell. in order to create a database, you will first need to switch the context to a non-existing database using the use command:<br />
+there is no "create" command in the MongoDB Shell. in order to create a database, you will first need to switch the context to a non-existing database using the use command:
 </p>
 <div class="org-src-container" data-language="mongodb">
 <pre class="src src-mongodb">use myshinynewdb
@@ -94,26 +94,29 @@ there is no "create" command in the MongoDB Shell. in order to create a database
 </div>
 
 <p>
-MongoDB only creates the database when you first store data in that database. this data could be a collection or a document.<br />
-<a href="https://www.mongodb.com/resources/products/fundamentals/create-database">https://www.mongodb.com/resources/products/fundamentals/create-database</a><br />
+MongoDB only creates the database when you first store data in that database. this data could be a collection or a document.
+</p>
+
+<p>
+<a href="https://www.mongodb.com/resources/products/fundamentals/create-database">https://www.mongodb.com/resources/products/fundamentals/create-database</a>
 </p>
 
 </div>
 </div>
 </div>
-<div id="outline-container-org8d59bd1" class="outline-2">
-<h2 id="org8d59bd1">create collection</h2>
-<div class="outline-text-2" id="text-org8d59bd1">
+<div id="outline-container-orgd7688fb" class="outline-2">
+<h2 id="orgd7688fb">create collection</h2>
+<div class="outline-text-2" id="text-orgd7688fb">
 <p>
-collections are automatically created as you add documents.<br />
+collections are automatically created as you add documents.
 </p>
 </div>
 </div>
-<div id="outline-container-orgc1da59a" class="outline-2">
-<h2 id="orgc1da59a">fetch entries</h2>
-<div class="outline-text-2" id="text-orgc1da59a">
+<div id="outline-container-org66d3b12" class="outline-2">
+<h2 id="org66d3b12">fetch entries</h2>
+<div class="outline-text-2" id="text-org66d3b12">
 <p>
-to fetch collection entries use<br />
+to fetch collection entries use
 </p>
 <div class="org-src-container" data-language="mongodb">
 <pre class="src src-mongodb">db.&lt;collection&gt;.find()
@@ -123,9 +126,9 @@ db.students.find({'_id': 1}).pretty()
 </div>
 </div>
 </div>
-<div id="outline-container-org048157e" class="outline-2">
-<h2 id="org048157e">delete entries</h2>
-<div class="outline-text-2" id="text-org048157e">
+<div id="outline-container-org9a6e2a5" class="outline-2">
+<h2 id="org9a6e2a5">delete entries</h2>
+<div class="outline-text-2" id="text-org9a6e2a5">
 <div class="org-src-container" data-language="mongodb">
 <pre class="src src-mongodb">db.&lt;collection&gt;.deleteMany([{&lt;dict&gt;, &lt;dict&gt;, ...}])
 db.&lt;collection&gt;.deleteOne(&lt;dict&gt;)
@@ -133,9 +136,9 @@ db.&lt;collection&gt;.deleteOne(&lt;dict&gt;)
 </div>
 </div>
 </div>
-<div id="outline-container-org1c249a6" class="outline-2">
-<h2 id="org1c249a6">insert entries</h2>
-<div class="outline-text-2" id="text-org1c249a6">
+<div id="outline-container-org5591c42" class="outline-2">
+<h2 id="org5591c42">insert entries</h2>
+<div class="outline-text-2" id="text-org5591c42">
 <div class="org-src-container" data-language="mongodb">
 <pre class="src src-mongodb">db.&lt;collection&gt;.insertOne({&lt;dict&gt;})
 db.&lt;collection&gt;.insertMany([{&lt;dict&gt;, &lt;dict&gt;, ...}])
@@ -144,9 +147,9 @@ db.students.insertMany((function(num) { mylist=[]; for (let i = 0; i &lt; num; +
 </div>
 </div>
 </div>
-<div id="outline-container-orgc135a44" class="outline-2">
-<h2 id="orgc135a44">aggregation</h2>
-<div class="outline-text-2" id="text-orgc135a44">
+<div id="outline-container-org0aca0c8" class="outline-2">
+<h2 id="org0aca0c8">aggregation</h2>
+<div class="outline-text-2" id="text-org0aca0c8">
 <div test="test" class="fancy-block dummy" data-before="" data-after="&lt;p&gt;
 (taken from Shannon Bradshaw, Eoin Brazil &amp;amp; Kristina Chodorow, 2019 chapter 7)&lt;/p&gt;
 " id="sol-automata-homework1-1" data-id="sol-automata-homework1-1">
@@ -158,7 +161,7 @@ db.students.insertMany((function(num) { mylist=[]; for (let i = 0; i &lt; num; +
 </div>
 
 <p>
-this is equivalent to the following operation using find:<br />
+this is equivalent to the following operation using find:
 </p>
 <div class="org-src-container" data-language="mongodb">
 <pre class="src src-mongodb">db.companies.find({founded_year: 2004})
@@ -166,7 +169,7 @@ this is equivalent to the following operation using find:<br />
 </div>
 
 <p>
-now let's add a project stage to our pipeline to reduce the output to just a few fields per document. we'll exclude the "_id" field, but include "name" and "founded_year". our pipeline will be as follows:<br />
+now let's add a project stage to our pipeline to reduce the output to just a few fields per document. we'll exclude the "_id" field, but include "name" and "founded_year". our pipeline will be as follows:
 </p>
 <div class="org-src-container" data-language="mongodb">
 <pre class="src src-mongodb">db.companies.aggregate([
@@ -181,18 +184,18 @@ now let's add a project stage to our pipeline to reduce the output to just a few
 </div>
 
 <p>
-more operations that can be added to aggregation pipelines can be found at <a href="https://www.mongodb.com/docs/manual/reference/operator/aggregation/">https://www.mongodb.com/docs/manual/reference/operator/aggregation/</a> and <a href="https://www.mongodb.com/docs/manual/reference/operator/aggregation-pipeline/">https://www.mongodb.com/docs/manual/reference/operator/aggregation-pipeline/</a>.<br />
+more operations that can be added to aggregation pipelines can be found at <a href="https://www.mongodb.com/docs/manual/reference/operator/aggregation/">https://www.mongodb.com/docs/manual/reference/operator/aggregation/</a> and <a href="https://www.mongodb.com/docs/manual/reference/operator/aggregation-pipeline/">https://www.mongodb.com/docs/manual/reference/operator/aggregation-pipeline/</a>.
 </p>
 
 </div>
 </div>
 </div>
-<div id="outline-container-org918320e" class="outline-2">
-<h2 id="org918320e">grouping aggregation</h2>
-<div class="outline-text-2" id="text-org918320e">
+<div id="outline-container-orga6fb480" class="outline-2">
+<h2 id="orga6fb480">grouping aggregation</h2>
+<div class="outline-text-2" id="text-orga6fb480">
 <p>
-<a href="https://stackoverflow.com/questions/61804268/what-is-root-in-mongodb-aggregate-and-how-it-works">https://stackoverflow.com/questions/61804268/what-is-root-in-mongodb-aggregate-and-how-it-works</a><br />
-consider the following aggregation pipeline:<br />
+<a href="https://stackoverflow.com/questions/61804268/what-is-root-in-mongodb-aggregate-and-how-it-works">https://stackoverflow.com/questions/61804268/what-is-root-in-mongodb-aggregate-and-how-it-works</a>
+consider the following aggregation pipeline:
 </p>
 <div class="org-src-container" data-language="mongodb">
 <pre class="src src-mongodb">db.collection.aggregate([{
@@ -205,32 +208,35 @@ consider the following aggregation pipeline:<br />
 </div>
 
 <p>
-this causes entries to be grouped by the field <code>history</code>, and <code>items: {$push: '$$ROOT'}</code> is for the entries to be grouped into a subcollection named <code>items</code>, see <a href="https://www.mongodb.com/docs/manual/reference/aggregation-variables/">https://www.mongodb.com/docs/manual/reference/aggregation-variables/</a> about <code>$$ROOT</code>.<br />
-notice the <code>$group</code> also acts as some sort of a <code>$project</code>, as it discards the original element and projects only the specified fields. in the example above, it returns a list of objects with the fields <code>_id</code> and <code>items</code> only.<br />
+this causes entries to be grouped by the field <code>history</code>, and <code>items: {$push: '$$ROOT'}</code> is for the entries to be grouped into a subcollection named <code>items</code>, see <a href="https://www.mongodb.com/docs/manual/reference/aggregation-variables/">https://www.mongodb.com/docs/manual/reference/aggregation-variables/</a> about <code>$$ROOT</code>.
+</p>
+
+<p>
+notice the <code>$group</code> also acts as some sort of a <code>$project</code>, as it discards the original element and projects only the specified fields. in the example above, it returns a list of objects with the fields <code>_id</code> and <code>items</code> only.
 </p>
 </div>
 </div>
-<div id="outline-container-org6def37a" class="outline-2">
-<h2 id="org6def37a">format float</h2>
-<div class="outline-text-2" id="text-org6def37a">
+<div id="outline-container-org2e5aea4" class="outline-2">
+<h2 id="org2e5aea4">format float</h2>
+<div class="outline-text-2" id="text-org2e5aea4">
 <p>
-this can be done using <a href="https://www.mongodb.com/docs/manual/reference/operator/aggregation/round/">$round</a><br />
+this can be done using <a href="https://www.mongodb.com/docs/manual/reference/operator/aggregation/round/">$round</a>
 </p>
 </div>
 </div>
-<div id="outline-container-orgb760358" class="outline-2">
-<h2 id="orgb760358">unwind</h2>
-<div class="outline-text-2" id="text-orgb760358">
+<div id="outline-container-org2cdc1a3" class="outline-2">
+<h2 id="org2cdc1a3">unwind</h2>
+<div class="outline-text-2" id="text-org2cdc1a3">
 <p>
-<code>$unwind</code> takes an array from the input document and creates an output document for each element in that array.<br />
+<code>$unwind</code> takes an array from the input document and creates an output document for each element in that array.
 </p>
 </div>
 </div>
-<div id="outline-container-org8ea7e9e" class="outline-2">
-<h2 id="org8ea7e9e">extract a field</h2>
-<div class="outline-text-2" id="text-org8ea7e9e">
+<div id="outline-container-org10459a2" class="outline-2">
+<h2 id="org10459a2">extract a field</h2>
+<div class="outline-text-2" id="text-org10459a2">
 <p>
-extract all <code>_id</code>'s from the subcollection <code>data</code> into an array of ids:<br />
+extract all <code>_id</code>'s from the subcollection <code>data</code> into an array of ids:
 </p>
 <div class="org-src-container" data-language="mongo">
 <pre class="src src-mongo">db.collection.aggregate<span style="color: #deb07a;">(</span><span style="color: #ffaacf;">[</span>
@@ -250,13 +256,19 @@ extract all <code>_id</code>'s from the subcollection <code>data</code> into an 
 </div>
 </div>
 </div>
-<div id="outline-container-org7a6ac92" class="outline-2">
-<h2 id="org7a6ac92">lookup operator</h2>
-<div class="outline-text-2" id="text-org7a6ac92">
+<div id="outline-container-orge3069cf" class="outline-2">
+<h2 id="orge3069cf">lookup operator</h2>
+<div class="outline-text-2" id="text-orge3069cf">
 <p>
-the <code>$lookup</code> operator allows you to read documents from one collection and merge them with documents from another one. much like a left <a href="/outer_join.html">outer join</a> in <a href="/sql.html">sql</a>.<br />
-i cba manually rewriting the text in the following 2 images:<br />
-<img src="/Thu_Sep_19_02:27:50_PM_IDT_2024.png" /><br />
+the <code>$lookup</code> operator allows you to read documents from one collection and merge them with documents from another one. much like a left <a href="/outer_join.html">outer join</a> in <a href="/sql.html">sql</a>.
+</p>
+
+<p>
+i cba manually rewriting the text in the following 2 images:
+</p>
+
+<p>
+<img src="/Thu_Sep_19_02:27:50_PM_IDT_2024.png" />
 <img src="/Thu_Sep_19_02:32:44_PM_IDT_2024.png" /></p>
 </div>
 </div>

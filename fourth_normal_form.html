@@ -39,7 +39,7 @@
 <div id="content" class="content">
 <div test="test" class="fancy-block dummy" data-before="" id="def-np-compl" data-id="def-np-compl">
 <p>
-we present the definition of fourth normal form (4NF), which is violated when a relation has undesirable <a href="/multivalued_dependency.html">multivalued dependencies</a> and hence can be used to identify and decompose such relations.<br />
+we present the definition of fourth normal form (4NF), which is violated when a relation has undesirable <a href="/multivalued_dependency.html">multivalued dependencies</a> and hence can be used to identify and decompose such relations.
 </p>
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: 4nf relation schema&lt;/p&gt;
@@ -113,28 +113,32 @@ a relation schema <?xml version='1.0' encoding='UTF-8'?>
 <use x='0' y='0' xlink:href='#g4-82'/>
 </g>
 </g>
-</svg>.<br />
+</svg>.
 </p>
 
 </div>
 
 <p>
-(see Ramez Elmasri, Shamkant B. Navathe, 2015 chapter 14 basics of functional dependencies and normalization for relational databases)<br />
+(see Ramez Elmasri, Shamkant B. Navathe, 2015 chapter 14 basics of functional dependencies and normalization for relational databases)
 </p>
 
 </div>
 
 <div test="test" class="fancy-block dummy" data-before="" id="def-np-compl" data-id="def-np-compl">
 <p>
-4nf is applied in cases where in the key there are pairs of fields between which there is a multivalued dependency, with no relations between the different pairs.<br />
-a relation satisfies the 4nf normalization degree if:<br />
+4nf is applied in cases where in the key there are pairs of fields between which there is a multivalued dependency, with no relations between the different pairs.
 </p>
+
+<p>
+a relation satisfies the 4nf normalization degree if:
+</p>
+
 <ol class="org-ol">
-<li>it satisfies all of <a href="/first_normal_form.html">1nf</a>, <a href="/second_normal_form.html">2nf</a>, <a href="/third_normal_form.html">3nf</a>: the fields that arent in the key are dependent on the whole key only.<br /></li>
-<li>in the key there is at most one <a href="/multivalued_dependency.html">multivalued dependency</a>.<br /></li>
+<li>it satisfies all of <a href="/first_normal_form.html">1nf</a>, <a href="/second_normal_form.html">2nf</a>, <a href="/third_normal_form.html">3nf</a>: the fields that arent in the key are dependent on the whole key only.</li>
+<li>in the key there is at most one <a href="/multivalued_dependency.html">multivalued dependency</a>.</li>
 </ol>
 <p>
-if there is more than one multivalued dependency inside the key, we must divide the relation into multiple relations, one for each pair of fields of multivalued dependencies. in each relation the key is both fields.<br />
+if there is more than one multivalued dependency inside the key, we must divide the relation into multiple relations, one for each pair of fields of multivalued dependencies. in each relation the key is both fields.
 </p>
 
 </div>
@@ -143,12 +147,16 @@ if there is more than one multivalued dependency inside the key, we must divide 
 example: &lt;/p&gt;
 " id="def-np-compl" data-id="def-np-compl">
 <p>
-consider the relation <code>(worker id, project code, language)</code>, a worker can be a part of many projects, a worker can know different languages, there is no relation between the languages one knows and the projects theyre in.<br />
-to 4nf-normalize this relation we turn it into the following schema:<br />
+consider the relation <code>(worker id, project code, language)</code>, a worker can be a part of many projects, a worker can know different languages, there is no relation between the languages one knows and the projects theyre in.
 </p>
+
+<p>
+to 4nf-normalize this relation we turn it into the following schema:
+</p>
+
 <ul class="org-ul">
-<li><code>(worker id, project)</code><br /></li>
-<li><code>(worker id, language)</code><br /></li>
+<li><code>(worker id, project)</code></li>
+<li><code>(worker id, language)</code></li>
 </ul>
 
 </div>

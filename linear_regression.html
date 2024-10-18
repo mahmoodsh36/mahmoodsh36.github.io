@@ -151,7 +151,7 @@ given a training data set comprising <?xml version='1.0' encoding='UTF-8'?>
 <g id='page5'>
 <use x='0' y='0' xlink:href='#g1-104'/>
 </g>
-</svg>:<br />
+</svg>:
 </p>
 
 <div class="equation-container">
@@ -209,7 +209,6 @@ given a training data set comprising <?xml version='1.0' encoding='UTF-8'?>
 </span>
 <span class="caption"></span>
 </div>
-
 <p>
 but to make our hypothesis applicable to more <a href="/function_space.html">function space</a>s we extend this <a href="/linear_map.html">linear function</a> with a set of <?xml version='1.0' encoding='UTF-8'?>
 
@@ -222,7 +221,7 @@ but to make our hypothesis applicable to more <a href="/function_space.html">fun
 <use x='0' y='0' xlink:href='#g9-77'/>
 </g>
 </g>
-</svg> fixed, non-linear <a href="/basis_function.html">basis function</a>s<br />
+</svg> fixed, non-linear <a href="/basis_function.html">basis function</a>s
 </p>
 
 <div class="equation-container">
@@ -338,7 +337,6 @@ but to make our hypothesis applicable to more <a href="/function_space.html">fun
 </span>
 <span class="caption"></span>
 </div>
-
 <p>
 such that <?xml version='1.0' encoding='UTF-8'?>
 
@@ -361,7 +359,7 @@ such that <?xml version='1.0' encoding='UTF-8'?>
 <use x='28.285519' y='0' xlink:href='#g9-61'/>
 <use x='38.801789' y='0' xlink:href='#g9-49'/>
 </g>
-</svg> for the bias parameter, such that<br />
+</svg> for the bias parameter, such that
 </p>
 
 <div class="equation-container">
@@ -429,7 +427,6 @@ such that <?xml version='1.0' encoding='UTF-8'?>
 </span>
 <span class="caption"></span>
 </div>
-
 <p>
 this gets rid of the restrictions we would be imposing by using linear functions of <?xml version='1.0' encoding='UTF-8'?>
 
@@ -451,7 +448,10 @@ this gets rid of the restrictions we would be imposing by using linear functions
 <g id='page10'>
 <use x='0' y='0' xlink:href='#g1-87'/>
 </g>
-</svg> which eases analysis.<br />
+</svg> which eases analysis.
+</p>
+
+<p>
 here, <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.831633 11.873371 6.831633' style="max-height: 0.7212em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
@@ -491,7 +491,7 @@ here, <?xml version='1.0' encoding='UTF-8'?>
 <use x='18.231606' y='0' xlink:href='#g2-82'/>
 <use x='25.426866' y='-3.615364' xlink:href='#g6-75'/>
 </g>
-</svg>.<br />
+</svg>.
 </p>
 
 </div>
@@ -547,7 +547,10 @@ we start with a random <a href="/point.html">point</a> in <?xml version='1.0' en
 <use x='11.086314' y='1.494381' xlink:href='#g6-106'/>
 <use x='15.284134' y='0' xlink:href='#g5-103'/>
 </g>
-</svg> were drawn, "good enough" being defined by some criterion or <a href="/loss_function.html">loss function</a>.<br />
+</svg> were drawn, "good enough" being defined by some criterion or <a href="/loss_function.html">loss function</a>.
+</p>
+
+<p>
 here we consider the traditional <a href="/gradient_descent.html">gradient descent</a> as the optimization method. the observations may potentially be divided into <a href="/batch.html">batch</a>es, but that doesnt matter in theory. our goal is to converge on a good enough <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.831633 11.873371 6.831633' style="max-height: 0.7212em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
@@ -557,7 +560,7 @@ here we consider the traditional <a href="/gradient_descent.html">gradient desce
 <g id='page10'>
 <use x='0' y='0' xlink:href='#g1-87'/>
 </g>
-</svg> by going in the direction opposite to that of the <a href="/gradient.html">gradient</a> of the loss function, because by doing so we could get closer to a local minima point (i.e. "sliding downhill") so a <i>training step</i> would consist of:<br />
+</svg> by going in the direction opposite to that of the <a href="/gradient.html">gradient</a> of the loss function, because by doing so we could get closer to a local minima point (i.e. "sliding downhill") so a <i>training step</i> would consist of:
 </p>
 
 <div class="equation-container">
@@ -616,17 +619,16 @@ here we consider the traditional <a href="/gradient_descent.html">gradient desce
 </span>
 <span class="caption"></span>
 </div>
-
 <p>
 where <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.807795 6.780147 6.807795' style="max-height: 0.7680em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
-<path id='g9-76' d='m6.405978-2.460772c0-.039851-.029888-.109589-.119552-.109589s-.099626 .049813-.169365 .209215c-.33873 .916563-.777086 2.052304-2.500623 2.052304h-.936488c-.139477 0-.159402 0-.219178-.009963c-.099626-.009963-.129514-.019925-.129514-.099626c0-.029888 0-.049813 .049813-.229141l1.344956-5.379826c.089664-.358655 .119552-.468244 1.05604-.468244c.298879 0 .37858 0 .37858-.18929c0-.119552-.109589-.119552-.159402-.119552l-1.474471 .029888l-1.325031-.029888c-.069738 0-.18929 0-.18929 .199253c0 .109589 .089664 .109589 .278954 .109589c0 0 .209215 0 .37858 .019925c.179328 .019925 .268991 .029888 .268991 .159402c0 .039851-.009963 .069738-.039851 .18929l-1.334994 5.349938c-.099626 .388543-.119552 .468244-.9066 .468244c-.169365 0-.268991 0-.268991 .199253c0 .109589 .089664 .109589 .268991 .109589h4.612702c.239103 0 .249066 0 .308842-.169365l.787049-2.15193c.039851-.109589 .039851-.139477 .039851-.139477z'/>
+<path id='g6-76' d='m6.405978-2.460772c0-.039851-.029888-.109589-.119552-.109589s-.099626 .049813-.169365 .209215c-.33873 .916563-.777086 2.052304-2.500623 2.052304h-.936488c-.139477 0-.159402 0-.219178-.009963c-.099626-.009963-.129514-.019925-.129514-.099626c0-.029888 0-.049813 .049813-.229141l1.344956-5.379826c.089664-.358655 .119552-.468244 1.05604-.468244c.298879 0 .37858 0 .37858-.18929c0-.119552-.109589-.119552-.159402-.119552l-1.474471 .029888l-1.325031-.029888c-.069738 0-.18929 0-.18929 .199253c0 .109589 .089664 .109589 .278954 .109589c0 0 .209215 0 .37858 .019925c.179328 .019925 .268991 .029888 .268991 .159402c0 .039851-.009963 .069738-.039851 .18929l-1.334994 5.349938c-.099626 .388543-.119552 .468244-.9066 .468244c-.169365 0-.268991 0-.268991 .199253c0 .109589 .089664 .109589 .268991 .109589h4.612702c.239103 0 .249066 0 .308842-.169365l.787049-2.15193c.039851-.109589 .039851-.139477 .039851-.139477z'/>
 </defs>
-<g id='page65'>
+<g id='page91'>
 <g fill='currentColor'>
-<use x='0' y='0' xlink:href='#g9-76'/>
+<use x='0' y='0' xlink:href='#g6-76'/>
 </g>
 </g>
 </svg> is the loss function and <?xml version='1.0' encoding='UTF-8'?>
@@ -638,7 +640,10 @@ where <?xml version='1.0' encoding='UTF-8'?>
 <g id='page19'>
 <use x='0' y='0' xlink:href='#g7-17'/>
 </g>
-</svg> is the <a href="/learning_rate.html">learning rate</a>.<br />
+</svg> is the <a href="/learning_rate.html">learning rate</a>.
+</p>
+
+<p>
 the optimal weight matrix <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -9.487163 11.873371 9.487163' style="max-height: 0.9824em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
@@ -650,7 +655,7 @@ the optimal weight matrix <?xml version='1.0' encoding='UTF-8'?>
 <use x='3.072432' y='-2.403721' xlink:href='#g1-94'/>
 <use x='0' y='0' xlink:href='#g1-87'/>
 </g>
-</svg> would be the one to minimize this loss for a given batch (set of observations):<br />
+</svg> would be the one to minimize this loss for a given batch (set of observations):
 </p>
 
 <div class="equation-container">

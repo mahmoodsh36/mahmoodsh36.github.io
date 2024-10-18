@@ -39,16 +39,19 @@
 <div id="content" class="content">
 <div test="test" class="fancy-block dummy" data-before="" data-after="&lt;p&gt;
 (Peter Norvig, Stuart J. Russell, 2020)&lt;/p&gt;
-" id="def-graph" data-id="def-graph">
+" id="def-acyc-graph" data-id="def-acyc-graph">
 <p>
-a <b>decision tree</b> represents a <a href="/function.html">function</a> that takes as input a <a href="/vector.html">vector</a> of attribute values and returns a "decision"&#x2013;a single output value. the input and output values can be <a href="/discrete_continuous_data.html">discrete or continuous</a><br />
-for a wide variety of problems, the decision tree yields a nice, concise result. but some functions cannot be represented concisely, for example, the majority function, which returns true if and only if more than half of the inputs are true, requires an exponentially large decision tree.<br />
+a <b>decision tree</b> represents a <a href="/function.html">function</a> that takes as input a <a href="/vector.html">vector</a> of attribute values and returns a "decision"&#x2013;a single output value. the input and output values can be <a href="/discrete_continuous_data.html">discrete or continuous</a>
+</p>
+
+<p>
+for a wide variety of problems, the decision tree yields a nice, concise result. but some functions cannot be represented concisely, for example, the majority function, which returns true if and only if more than half of the inputs are true, requires an exponentially large decision tree.
 </p>
 
 </div>
-<div id="outline-container-orgd760276" class="outline-2">
-<h2 id="orgd760276">inducing boolean decision trees from examples</h2>
-<div class="outline-text-2" id="text-orgd760276">
+<div id="outline-container-orgb6f5acd" class="outline-2">
+<h2 id="orgb6f5acd">inducing boolean decision trees from examples</h2>
+<div class="outline-text-2" id="text-orgb6f5acd">
 <p>
 no matter how we measure size, it is an intractable problem to find the smallest consistent tree; there is no way to efficiently search through the <?xml version='1.0' encoding='UTF-8'?>
 
@@ -109,14 +112,18 @@ no matter how we measure size, it is an intractable problem to find the smallest
 <use x='114.899128' y='0' xlink:href='#g3-59'/>
 </g>
 </g>
-</svg> algorithm adopts a <a href="/greedy_algorithm.html">greedy</a> <a href="/divide-and-conquer.html">divide-and-conquer</a> strategy: always test the most important attribute first. this test divides the problem up into smaller subproblems that can then be solved recursively. by “most important attribute” we mean the one that makes the most difference to the classification of an example. that way, we hope to get to the correct classification with a small number of tests, meaning that all paths in the tree will be short and the tree as a whole will be shallow.<br />
-in general, after the first attribute test splits up the examples, each outcome is a new decision tree learning problem in itself, with fewer examples and one less attribute. there are four cases to consider for these recursive problems:<br />
+</svg> algorithm adopts a <a href="/greedy_algorithm.html">greedy</a> <a href="/divide-and-conquer.html">divide-and-conquer</a> strategy: always test the most important attribute first. this test divides the problem up into smaller subproblems that can then be solved recursively. by “most important attribute” we mean the one that makes the most difference to the classification of an example. that way, we hope to get to the correct classification with a small number of tests, meaning that all paths in the tree will be short and the tree as a whole will be shallow.
 </p>
+
+<p>
+in general, after the first attribute test splits up the examples, each outcome is a new decision tree learning problem in itself, with fewer examples and one less attribute. there are four cases to consider for these recursive problems:
+</p>
+
 <ol class="org-ol">
-<li>if the remaining examples are all positive (or all negative), then we are done: we can answer Yes or No<br /></li>
-<li>if there are some positive and some negative examples, then choose the best attribute to split them.<br /></li>
-<li>if there are no examples left, it means that no example has been observed for this combination of attribute values, and we return a default value calculated from the plurality classification of all the examples that were used in constructing the node’s parent. these are passed along in the variable <i>parent_examples</i><br /></li>
-<li>if there are no attributes left, but both positive and negative examples, it means that these examples have exactly the same description, but different classifications. this can happen because there is an error or noise in the data; because the domain is nondeterministic; or because we can’t observe an attribute that would distinguish the examples. the best we can do is return the plurality classification of the remaining examples.<br /></li>
+<li>if the remaining examples are all positive (or all negative), then we are done: we can answer Yes or No</li>
+<li>if there are some positive and some negative examples, then choose the best attribute to split them.</li>
+<li>if there are no examples left, it means that no example has been observed for this combination of attribute values, and we return a default value calculated from the plurality classification of all the examples that were used in constructing the node’s parent. these are passed along in the variable <i>parent_examples</i></li>
+<li>if there are no attributes left, but both positive and negative examples, it means that these examples have exactly the same description, but different classifications. this can happen because there is an error or noise in the data; because the domain is nondeterministic; or because we can’t observe an attribute that would distinguish the examples. the best we can do is return the plurality classification of the remaining examples.</li>
 </ol>
 
 <div class="equation-container">
@@ -775,7 +782,6 @@ in general, after the first attribute test splits up the examples, each outcome 
 </span>
 <span class="caption"></span>
 </div>
-
 <p>
 an attribute a with <?xml version='1.0' encoding='UTF-8'?>
 
@@ -924,14 +930,14 @@ an attribute a with <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.807795 7.471999 6.807795' style="max-height: 0.7680em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
-<path id='g7-65' d='m7.183064-.199253c0-.109589-.099626-.109589-.229141-.109589c-.617684 0-.617684-.069738-.647572-.358655l-.607721-6.22665c-.019925-.199253-.019925-.239103-.18929-.239103c-.159402 0-.199253 .069738-.259029 .169365l-3.466999 5.818182c-.398506 .667497-.787049 .806974-1.225405 .836862c-.119552 .009963-.209215 .009963-.209215 .199253c0 .059776 .049813 .109589 .129514 .109589c.268991 0 .577833-.029888 .856787-.029888c.328767 0 .67746 .029888 .996264 .029888c.059776 0 .18929 0 .18929-.18929c0-.109589-.089664-.119552-.159402-.119552c-.229141-.019925-.468244-.099626-.468244-.348692c0-.119552 .059776-.229141 .139477-.368618c.069738-.119552 .079701-.119552 .757161-1.275218h2.500623c.019925 .209215 .159402 1.564134 .159402 1.663761c0 .298879-.518057 .328767-.71731 .328767c-.139477 0-.239103 0-.239103 .199253c0 .109589 .139477 .109589 .139477 .109589c.408468 0 .836862-.029888 1.24533-.029888c.249066 0 .876712 .029888 1.125778 .029888c.059776 0 .179328 0 .179328-.199253zm-1.92279-2.410959h-2.281445l1.96264-3.287671l.318804 3.287671z'/>
+<path id='g6-65' d='m7.183064-.199253c0-.109589-.099626-.109589-.229141-.109589c-.617684 0-.617684-.069738-.647572-.358655l-.607721-6.22665c-.019925-.199253-.019925-.239103-.18929-.239103c-.159402 0-.199253 .069738-.259029 .169365l-3.466999 5.818182c-.398506 .667497-.787049 .806974-1.225405 .836862c-.119552 .009963-.209215 .009963-.209215 .199253c0 .059776 .049813 .109589 .129514 .109589c.268991 0 .577833-.029888 .856787-.029888c.328767 0 .67746 .029888 .996264 .029888c.059776 0 .18929 0 .18929-.18929c0-.109589-.089664-.119552-.159402-.119552c-.229141-.019925-.468244-.099626-.468244-.348692c0-.119552 .059776-.229141 .139477-.368618c.069738-.119552 .079701-.119552 .757161-1.275218h2.500623c.019925 .209215 .159402 1.564134 .159402 1.663761c0 .298879-.518057 .328767-.71731 .328767c-.139477 0-.239103 0-.239103 .199253c0 .109589 .139477 .109589 .139477 .109589c.408468 0 .836862-.029888 1.24533-.029888c.249066 0 .876712 .029888 1.125778 .029888c.059776 0 .179328 0 .179328-.199253zm-1.92279-2.410959h-2.281445l1.96264-3.287671l.318804 3.287671z'/>
 </defs>
-<g id='page4'>
+<g id='page1'>
 <g fill='currentColor'>
-<use x='0' y='0' xlink:href='#g7-65'/>
+<use x='0' y='0' xlink:href='#g6-65'/>
 </g>
 </g>
-</svg> is<br />
+</svg> is
 <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='88.567317 -30.275442 190.06916 29.279178' style="max-height: 3.2725em; display: block" class="org-latex org-latex-block">
@@ -1001,14 +1007,17 @@ an attribute a with <?xml version='1.0' encoding='UTF-8'?>
 <use x='271.302833' y='-27.026595' xlink:href='#g4-19'/>
 </g>
 </g>
-</svg><br />
+</svg>
 </p>
 <div test="test" class="fancy-block note" data-before="&lt;p&gt;
 note: &lt;/p&gt;
-" id="def-graph" data-id="def-graph">
+" id="def-acyc-graph" data-id="def-acyc-graph">
 <p>
-this confused me at first, why multiply probability by entropy? and why would the result be entropy?<br />
-turns out, the probability is giving "weight" to the entropy, as the entropy of a more probable branch is more important than a less probable one<br />
+this confused me at first, why multiply probability by entropy? and why would the result be entropy?
+</p>
+
+<p>
+turns out, the probability is giving "weight" to the entropy, as the entropy of a more probable branch is more important than a less probable one
 </p>
 
 </div>
@@ -1018,14 +1027,14 @@ the <a href="/information_gain.html">information gain</a> from the attribute tes
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.807795 7.471999 6.807795' style="max-height: 0.7680em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
-<path id='g7-65' d='m7.183064-.199253c0-.109589-.099626-.109589-.229141-.109589c-.617684 0-.617684-.069738-.647572-.358655l-.607721-6.22665c-.019925-.199253-.019925-.239103-.18929-.239103c-.159402 0-.199253 .069738-.259029 .169365l-3.466999 5.818182c-.398506 .667497-.787049 .806974-1.225405 .836862c-.119552 .009963-.209215 .009963-.209215 .199253c0 .059776 .049813 .109589 .129514 .109589c.268991 0 .577833-.029888 .856787-.029888c.328767 0 .67746 .029888 .996264 .029888c.059776 0 .18929 0 .18929-.18929c0-.109589-.089664-.119552-.159402-.119552c-.229141-.019925-.468244-.099626-.468244-.348692c0-.119552 .059776-.229141 .139477-.368618c.069738-.119552 .079701-.119552 .757161-1.275218h2.500623c.019925 .209215 .159402 1.564134 .159402 1.663761c0 .298879-.518057 .328767-.71731 .328767c-.139477 0-.239103 0-.239103 .199253c0 .109589 .139477 .109589 .139477 .109589c.408468 0 .836862-.029888 1.24533-.029888c.249066 0 .876712 .029888 1.125778 .029888c.059776 0 .179328 0 .179328-.199253zm-1.92279-2.410959h-2.281445l1.96264-3.287671l.318804 3.287671z'/>
+<path id='g6-65' d='m7.183064-.199253c0-.109589-.099626-.109589-.229141-.109589c-.617684 0-.617684-.069738-.647572-.358655l-.607721-6.22665c-.019925-.199253-.019925-.239103-.18929-.239103c-.159402 0-.199253 .069738-.259029 .169365l-3.466999 5.818182c-.398506 .667497-.787049 .806974-1.225405 .836862c-.119552 .009963-.209215 .009963-.209215 .199253c0 .059776 .049813 .109589 .129514 .109589c.268991 0 .577833-.029888 .856787-.029888c.328767 0 .67746 .029888 .996264 .029888c.059776 0 .18929 0 .18929-.18929c0-.109589-.089664-.119552-.159402-.119552c-.229141-.019925-.468244-.099626-.468244-.348692c0-.119552 .059776-.229141 .139477-.368618c.069738-.119552 .079701-.119552 .757161-1.275218h2.500623c.019925 .209215 .159402 1.564134 .159402 1.663761c0 .298879-.518057 .328767-.71731 .328767c-.139477 0-.239103 0-.239103 .199253c0 .109589 .139477 .109589 .139477 .109589c.408468 0 .836862-.029888 1.24533-.029888c.249066 0 .876712 .029888 1.125778 .029888c.059776 0 .179328 0 .179328-.199253zm-1.92279-2.410959h-2.281445l1.96264-3.287671l.318804 3.287671z'/>
 </defs>
-<g id='page4'>
+<g id='page1'>
 <g fill='currentColor'>
-<use x='0' y='0' xlink:href='#g7-65'/>
+<use x='0' y='0' xlink:href='#g6-65'/>
 </g>
 </g>
-</svg> is the expected reduction in entropy:<br />
+</svg> is the expected reduction in entropy:
 <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='94.27209 -23.910576 178.659639 23.910579' style="max-height: 2.5484em; display: block" class="org-latex org-latex-block">
@@ -1083,7 +1092,7 @@ the <a href="/information_gain.html">information gain</a> from the attribute tes
 <use x='269.057251' y='-9.46463' xlink:href='#g10-41'/>
 </g>
 </g>
-</svg><br />
+</svg>
 which is exactly what we need to implement the <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.804483 57.594026 6.94396' style="max-height: 0.7814em; vertical-align: -0.0629em; display: inline-block" class="org-latex org-latex-inline">
@@ -1113,8 +1122,9 @@ which is exactly what we need to implement the <?xml version='1.0' encoding='UTF
 <use x='52.034873' y='0' xlink:href='#g3-50'/>
 </g>
 </g>
-</svg> function, as the attribute that gives the most information gain is the one that should be split on<br />
+</svg> function, as the attribute that gives the most information gain is the one that should be split on
 </p>
+
 
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">decision-tree-learning</span> <span style="color: #ffaacf;">(</span>examples attributes parent-examples<span style="color: #ffaacf;">)</span>

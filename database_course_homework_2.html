@@ -41,25 +41,25 @@
 note: &lt;/p&gt;
 " id="def-link-list" data-id="def-link-list">
 <p>
-the notation i used is more similar to the one in <a href="/elmasri_fundamentals_of_database_systems.html">elmasri's book</a> than the one used in practice lectures, but it shouldnt matter (hopefully to you too).<br />
+the notation i used is more similar to the one in <a href="/elmasri_fundamentals_of_database_systems.html">elmasri's book</a> than the one used in practice lectures, but it shouldnt matter (hopefully to you too).
 </p>
 
 </div>
 
 <p>
-using the same schema as in <a href="/database_course_homework_1.html">homework 1</a><br />
+using the same schema as in <a href="/database_course_homework_1.html">homework 1</a>
 </p>
 <div test="test" class="fancy-block problem" data-before="&lt;p&gt;
 problem: &lt;/p&gt;
 " id="def-link-list" data-id="def-link-list">
 <p>
-write the following queries in <a href="/relational_algebra.html">relational algebra</a><br />
+write the following queries in <a href="/relational_algebra.html">relational algebra</a>
 </p>
 <div test="test" class="fancy-block subproblem" data-before="&lt;p&gt;
 subproblem: &lt;/p&gt;
 " id="def-link-list" data-id="def-link-list">
 <p>
-retrieve id and phone number of the customers whose first name is "almog"<br />
+retrieve id and phone number of the customers whose first name is "almog"
 </p>
 
 </div>
@@ -68,7 +68,7 @@ retrieve id and phone number of the customers whose first name is "almog"<br />
 solution: &lt;/p&gt;
 " id="def-link-list" data-id="def-link-list">
 <p>
-relational algera version<br />
+relational algera version
 </p>
 
 <div class="equation-container">
@@ -171,9 +171,8 @@ relational algera version<br />
 </span>
 <span class="caption"></span>
 </div>
-
 <p>
-sql version<br />
+sql version
 </p>
 <div class="org-src-container" data-language="sql">
 <pre class="src src-sql"><span style="color: #deb07a; font-weight: bold;">SELECT</span> id, phone_number <span style="color: #deb07a; font-weight: bold;">FROM</span> customer <span style="color: #deb07a; font-weight: bold;">WHERE</span> first_name = "almog"
@@ -186,7 +185,7 @@ sql version<br />
 subproblem: &lt;/p&gt;
 " id="def-link-list" data-id="def-link-list">
 <p>
-retrieve the id and location (city, street, and house number) of the customers that have cars<br />
+retrieve the id and location (city, street, and house number) of the customers that have cars
 </p>
 
 </div>
@@ -195,7 +194,7 @@ retrieve the id and location (city, street, and house number) of the customers t
 solution: &lt;/p&gt;
 " id="def-link-list" data-id="def-link-list">
 <p>
-we use a <a href="/semi_join.html">semi join</a> and then a <a href="/project_operation.html">project operation</a><br />
+we use a <a href="/semi_join.html">semi join</a> and then a <a href="/project_operation.html">project operation</a>
 </p>
 
 <div class="equation-container">
@@ -372,10 +371,12 @@ we use a <a href="/semi_join.html">semi join</a> and then a <a href="/project_op
 </span>
 <span class="caption"></span>
 </div>
+<p>
+assuming the customer id attribute has the same name in all relations.
+</p>
 
 <p>
-assuming the customer id attribute has the same name in all relations.<br />
-sql version:<br />
+sql version:
 </p>
 <div class="org-src-container" data-language="sql">
 <pre class="src src-sql"><span style="color: #deb07a; font-weight: bold;">SELECT</span> id, hometown, street, house_number
@@ -394,7 +395,7 @@ sql version:<br />
 subproblem: &lt;/p&gt;
 " id="def-link-list" data-id="def-link-list">
 <p>
-retrieve the id and customer name (first and last name) of customers that have more than 2 cars<br />
+retrieve the id and customer name (first and last name) of customers that have more than 2 cars
 </p>
 
 </div>
@@ -674,7 +675,7 @@ solution: &lt;/p&gt;
 subproblem: &lt;/p&gt;
 " id="def-link-list" data-id="def-link-list">
 <p>
-retrieve the ids and customer names of all customers and the numbers of cars that belong to them, if the end date of the car ownership has ended it shouldnt be retrieved.<br />
+retrieve the ids and customer names of all customers and the numbers of cars that belong to them, if the end date of the car ownership has ended it shouldnt be retrieved.
 </p>
 
 </div>
@@ -683,8 +684,11 @@ retrieve the ids and customer names of all customers and the numbers of cars tha
 solution: &lt;/p&gt;
 " id="def-link-list" data-id="def-link-list">
 <p>
-i assume the goal is to retrieve the entries of the car numbers and not the number of cars, hopefully thats what you meant because the original text is ambiguous.<br />
-an <a href="/outer_join.html">outer join</a> is needed here to make sure all customers are considered even if they dont own cars<br />
+i assume the goal is to retrieve the entries of the car numbers and not the number of cars, hopefully thats what you meant because the original text is ambiguous.
+</p>
+
+<p>
+an <a href="/outer_join.html">outer join</a> is needed here to make sure all customers are considered even if they dont own cars
 </p>
 
 <div class="equation-container">
@@ -845,7 +849,7 @@ an <a href="/outer_join.html">outer join</a> is needed here to make sure all cus
 subproblem: &lt;/p&gt;
 " id="def-link-list" data-id="def-link-list">
 <p>
-retrieve the garage name, car number, maintenace date and maintenance type in which the part "plug" or "gear oil" was replaced<br />
+retrieve the garage name, car number, maintenace date and maintenance type in which the part "plug" or "gear oil" was replaced
 </p>
 
 </div>
@@ -1146,7 +1150,7 @@ solution: &lt;/p&gt;
 subproblem: &lt;/p&gt;
 " id="def-link-list" data-id="def-link-list">
 <p>
-retrieve car number, car type, car manufacturing company, and production date of cars that have gone through every kind of maintenance<br />
+retrieve car number, car type, car manufacturing company, and production date of cars that have gone through every kind of maintenance
 </p>
 
 </div>
@@ -1155,7 +1159,7 @@ retrieve car number, car type, car manufacturing company, and production date of
 solution: &lt;/p&gt;
 " id="def-link-list" data-id="def-link-list">
 <p>
-this is the naive solution, i cant think of a better one<br />
+this is the naive solution, i cant think of a better one
 </p>
 
 <div class="equation-container">
@@ -1480,7 +1484,7 @@ this is the naive solution, i cant think of a better one<br />
 subproblem: &lt;/p&gt;
 " id="def-link-list" data-id="def-link-list">
 <p>
-retrieve the first name, last name and phone number of the customers that have garages in their local town<br />
+retrieve the first name, last name and phone number of the customers that have garages in their local town
 </p>
 
 </div>
@@ -1620,7 +1624,7 @@ solution: &lt;/p&gt;
 subproblem: &lt;/p&gt;
 " id="def-link-list" data-id="def-link-list">
 <p>
-retrieve the name of the garage that has done the most maintenances<br />
+retrieve the name of the garage that has done the most maintenances
 </p>
 
 </div>
@@ -1881,7 +1885,7 @@ solution: &lt;/p&gt;
 subproblem: &lt;/p&gt;
 " id="def-link-list" data-id="def-link-list">
 <p>
-retrieve the details of customers (first name, last name and phone number), the number and manufacturing company name of the motorcycle for the customers that have a motorcycle and have done maintenance in tel aviv<br />
+retrieve the details of customers (first name, last name and phone number), the number and manufacturing company name of the motorcycle for the customers that have a motorcycle and have done maintenance in tel aviv
 </p>
 
 </div>
@@ -2291,12 +2295,13 @@ solution: &lt;/p&gt;
 subproblem: &lt;/p&gt;
 " id="def-link-list" data-id="def-link-list">
 <p>
-retrieve the id, first name and last name of all customers. in addition add a field called "ownership" with the following value:<br />
+retrieve the id, first name and last name of all customers. in addition add a field called "ownership" with the following value:
 </p>
+
 <ol class="org-ol">
-<li>for a customer with no car, "no car"<br /></li>
-<li>for a customer with a car that they dont own, "old owner" (hint: there is an end date in the ownership table)<br /></li>
-<li>for a customer with a car that they own, "car owner" (there is no end date in the owners table).<br /></li>
+<li>for a customer with no car, "no car"</li>
+<li>for a customer with a car that they dont own, "old owner" (hint: there is an end date in the ownership table)</li>
+<li>for a customer with a car that they own, "car owner" (there is no end date in the owners table).</li>
 </ol>
 
 </div>
@@ -2305,7 +2310,7 @@ retrieve the id, first name and last name of all customers. in addition add a fi
 solution: &lt;/p&gt;
 " id="def-link-list" data-id="def-link-list">
 <p>
-we use <a href="/outer_join.html">outer join</a>s<br />
+we use <a href="/outer_join.html">outer join</a>s
 </p>
 
 <div class="equation-container">

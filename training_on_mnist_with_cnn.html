@@ -38,8 +38,11 @@
 </div>
 <div id="content" class="content">
 <p>
-refer to <a href="/training_on_mnist_(old).html">training on mnist</a>, which was my first attempt with my "old" <a href="/feedforward_neural_network.html">feedforward neural network</a> implementation of simple perceptrons, but now i have a (rather slow, currently) <a href="/convolutional_neural_network.html">convolutional neural network</a> implementation, so time to see the results:<br />
-load the dataset (replace <code>train-data-file</code> and <code>test-data-file</code> if youre not me):<br />
+refer to <a href="/training_on_mnist_(old).html">training on mnist</a>, which was my first attempt with my "old" <a href="/feedforward_neural_network.html">feedforward neural network</a> implementation of simple perceptrons, but now i have a (rather slow, currently) <a href="/convolutional_neural_network.html">convolutional neural network</a> implementation, so time to see the results:
+</p>
+
+<p>
+load the dataset (replace <code>train-data-file</code> and <code>test-data-file</code> if youre not me):
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span>ql:quickload <span style="color: #f3a0a0;">"cl-csv"</span><span style="color: #deb07a;">)</span>
@@ -67,8 +70,11 @@ load the dataset (replace <code>train-data-file</code> and <code>test-data-file<
 </div>
 
 <p>
-note that i had to normalize the pixel value from 1-255 to 0-1, otherwise i couldnt train the network, all the deltas were turning into 0<br />
-each image is of size 28x28, we can use the following architecture:<br />
+note that i had to normalize the pixel value from 1-255 to 0-1, otherwise i couldnt train the network, all the deltas were turning into 0
+</p>
+
+<p>
+each image is of size 28x28, we can use the following architecture:
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">input meant to be of size 1x28x28</span>
@@ -96,7 +102,7 @@ each image is of size 28x28, we can use the following architecture:<br />
 </div>
 
 <p>
-example usage:<br />
+example usage:
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span>construct-mnist-network<span style="color: #deb07a;">)</span>
@@ -121,8 +127,11 @@ total network weights: 16780, learning rate: 0.02 {10186DB593}&gt;
 
 
 <p>
-after running <code>load-mnist</code>, we can begin training<br />
-because at the time (<span class="timestamp-wrapper"><span class="timestamp">&lt;2023-08-12 Sat 17:52:00&gt;</span></span>), my training algorithm for cnn's was slow, i wanted to measure the accuracy of the algorithm but didnt want to wait days for training to finish, so i tried training on a single image, the network should overfit and be able to classify the image correctly:<br />
+after running <code>load-mnist</code>, we can begin training
+</p>
+
+<p>
+because at the time (<span class="timestamp-wrapper"><span class="timestamp">&lt;2023-08-12 Sat 17:52:00&gt;</span></span>), my training algorithm for cnn's was slow, i wanted to measure the accuracy of the algorithm but didnt want to wait days for training to finish, so i tried training on a single image, the network should overfit and be able to classify the image correctly:
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">train-on-mnist-single-image</span> <span style="color: #ffaacf;">()</span>
@@ -156,7 +165,7 @@ because at the time (<span class="timestamp-wrapper"><span class="timestamp">&lt
 </div>
 
 <p>
-eventually, after alot debugging of my code, simplified network did converge and overfit, so the next task was to train it on the actual dataset and not just a single image<br />
+eventually, after alot debugging of my code, simplified network did converge and overfit, so the next task was to train it on the actual dataset and not just a single image
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">train-on-mnist</span> <span style="color: #ffaacf;">()</span>

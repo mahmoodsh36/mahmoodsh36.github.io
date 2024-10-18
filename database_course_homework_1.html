@@ -38,40 +38,45 @@
 </div>
 <div id="content" class="content">
 <p>
-a car company wants to setup a <a href="/database.html">database</a> to store its customers data, data about their cars and garages that it has and the deals it has made, the following tables are needed:<br />
+a car company wants to setup a <a href="/database.html">database</a> to store its customers data, data about their cars and garages that it has and the deals it has made, the following tables are needed:
 </p>
+
 <ul class="org-ul">
-<li><b>Customer</b>: first name, family name, id, town address, street, house number, phone number, and customer type.<br /></li>
-<li><b>Car</b>: car number, car type, manufacturing company, production year, engine number, miles travelled, status.<br /></li>
-<li><b>CarOwner</b>: customer id, car number, start date, end date.<br /></li>
-<li><b>Garage</b>: garage name, town address, street, house number, phone number, company, car type specialty.<br /></li>
-<li><b>CarMaintenance</b>: maintenance number, car number, type of maintenance, maintenance date, name of garage, name of responsible worker.<br /></li>
-<li><b>ReplacedParts</b>: maintenance number, name of replaced part.<br /></li>
+<li><b>Customer</b>: first name, family name, id, town address, street, house number, phone number, and customer type.</li>
+<li><b>Car</b>: car number, car type, manufacturing company, production year, engine number, miles travelled, status.</li>
+<li><b>CarOwner</b>: customer id, car number, start date, end date.</li>
+<li><b>Garage</b>: garage name, town address, street, house number, phone number, company, car type specialty.</li>
+<li><b>CarMaintenance</b>: maintenance number, car number, type of maintenance, maintenance date, name of garage, name of responsible worker.</li>
+<li><b>ReplacedParts</b>: maintenance number, name of replaced part.</li>
 </ul>
 <p>
-the following constraints on the data need to be applied:<br />
+the following constraints on the data need to be applied:
 </p>
+
 <ul class="org-ul">
-<li>customers: id number contains 9 digits only (ids never repeat). the possible cities are: tel aviv, netanya, herzliya, arael, ashdod, haifa, beer sheva, jerusalem, ramat gan. the type of customer can be either private or business.<br /></li>
-<li>cars: car number is 8 digits (doesnt repeat), type is private/commerical/motorcycle. company is renault/pazo/alpha/fiat/ford/honda/audi/bmw. production year is ba number greater or equal to 1950 and smaller or equal to 2030, engine number is a string of 10 digits and letters in english and doesnt repeat. kilometers travelled is a number between 0 and 1m. status is new/off/maintenance.<br /></li>
-<li>when a car is deleted from the database all the data on it is deleted, including ownership records, maintenance records, and records of replaced parts.<br /></li>
-<li>car ownerships: the id of the customer is taken from the customers table, the car number is taken from the cars table, dates are made up of day,month and year only, end date has to be greater than the start date, end date cannot be in the future, incase there is an end date it means that the customer is not the owner of the car anymore. a customer can be an owner of more than one car and a car can be owned by more than one customer.<br /></li>
-<li>garages: the name of a garage is unique, the list of possible cities is the same as the one for customers, and the companies allowed are the same as for car entries, the specialty in cars is one of private/commercial/motorcycle.<br /></li>
-<li>car maintenances: the number of a maintenance is automatic, types of maintenances are 10000-maintenance/accident/spoilage/proactive. the id of a responsible worker is from the customer list.<br /></li>
-<li>replaced parts: the table contains the parts that were replaced during maintenance.<br /></li>
+<li>customers: id number contains 9 digits only (ids never repeat). the possible cities are: tel aviv, netanya, herzliya, arael, ashdod, haifa, beer sheva, jerusalem, ramat gan. the type of customer can be either private or business.</li>
+<li>cars: car number is 8 digits (doesnt repeat), type is private/commerical/motorcycle. company is renault/pazo/alpha/fiat/ford/honda/audi/bmw. production year is ba number greater or equal to 1950 and smaller or equal to 2030, engine number is a string of 10 digits and letters in english and doesnt repeat. kilometers travelled is a number between 0 and 1m. status is new/off/maintenance.</li>
+<li>when a car is deleted from the database all the data on it is deleted, including ownership records, maintenance records, and records of replaced parts.</li>
+<li>car ownerships: the id of the customer is taken from the customers table, the car number is taken from the cars table, dates are made up of day,month and year only, end date has to be greater than the start date, end date cannot be in the future, incase there is an end date it means that the customer is not the owner of the car anymore. a customer can be an owner of more than one car and a car can be owned by more than one customer.</li>
+<li>garages: the name of a garage is unique, the list of possible cities is the same as the one for customers, and the companies allowed are the same as for car entries, the specialty in cars is one of private/commercial/motorcycle.</li>
+<li>car maintenances: the number of a maintenance is automatic, types of maintenances are 10000-maintenance/accident/spoilage/proactive. the id of a responsible worker is from the customer list.</li>
+<li>replaced parts: the table contains the parts that were replaced during maintenance.</li>
 </ul>
 <div test="test" class="fancy-block task" data-before="&lt;p&gt;
 task: &lt;/p&gt;
 " id="def-inr-prod" data-id="def-inr-prod">
 <p>
-write <a href="/data_definition_language.html">ddl</a> commands to define a <a href="/schema.html">schema</a> with the proper constraints (primary keys, foreign keys, data types and length, additional tests and constraints stemmed by the requirements. every string field should be a varchar2 of length 22.<br />
+write <a href="/data_definition_language.html">ddl</a> commands to define a <a href="/schema.html">schema</a> with the proper constraints (primary keys, foreign keys, data types and length, additional tests and constraints stemmed by the requirements. every string field should be a varchar2 of length 22.
 </p>
 
 </div>
 
 <p>
-here, i make use of mariadb, im on nixos (a flavor of linux), and have it installed.<br />
-creating the database:<br />
+here, i make use of mariadb, im on nixos (a flavor of linux), and have it installed.
+</p>
+
+<p>
+creating the database:
 </p>
 <div class="org-src-container" data-language="sql">
 <pre class="src src-sql"><span style="color: #deb07a; font-weight: bold;">create</span> database homework1
@@ -79,7 +84,7 @@ creating the database:<br />
 </div>
 
 <p>
-line used for deleting the database (for testing):<br />
+line used for deleting the database (for testing):
 </p>
 <div class="org-src-container" data-language="sql">
 <pre class="src src-sql"><span style="color: #deb07a; font-weight: bold;">drop</span> database homework1;
@@ -97,11 +102,11 @@ line used for deleting the database (for testing):<br />
 </div>
 
 <p>
-creating the tables:<br />
+creating the tables:
 </p>
-<div id="outline-container-orgd016bc8" class="outline-2">
-<h2 id="orgd016bc8">schema</h2>
-<div class="outline-text-2" id="text-orgd016bc8">
+<div id="outline-container-org5448b13" class="outline-2">
+<h2 id="org5448b13">schema</h2>
+<div class="outline-text-2" id="text-org5448b13">
 <div class="org-src-container" data-language="sql">
 <pre class="src src-sql" id="src-database-homework-schema"><span style="color: #deb07a; font-weight: bold;">CREATE</span> <span style="color: #deb07a; font-weight: bold;">TABLE</span> <span style="color: #8fcfd0;">customer</span> <span style="color: #deb07a;">(</span>
   first_name    <span style="color: #a9c99f;">VARCHAR</span><span style="color: #ffaacf;">(</span>22<span style="color: #ffaacf;">)</span> <span style="color: #deb07a; font-weight: bold;">NOT</span> <span style="color: #deb07a; font-weight: bold;">NULL</span>,
@@ -179,7 +184,7 @@ creating the tables:<br />
 </div>
 
 <p>
-some tests to make sure the database works as expected:<br />
+some tests to make sure the database works as expected:
 </p>
 <div class="org-src-container" data-language="sql">
 <pre class="src src-sql"><span style="color: #deb07a; font-weight: bold;">describe</span> car;

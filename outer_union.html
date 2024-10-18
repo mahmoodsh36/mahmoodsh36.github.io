@@ -41,7 +41,10 @@
 (Ramez Elmasri, Shamkant B. Navathe, 2015 chapter 8.4.5 the outer union operation)&lt;/p&gt;
 " id="def-link-list" data-id="def-link-list">
 <p>
-the OUTER UNION operation was developed to take the union of tuples from two relations that have some common attributes, but are not union (type) compatible.<br />
+the OUTER UNION operation was developed to take the union of tuples from two relations that have some common attributes, but are not union (type) compatible.
+</p>
+
+<p>
 this operation will take the UNION of tuples in two relations <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -7.47198 36.298141 9.96264' style="max-height: 1.0784em; vertical-align: -0.2942em; display: inline-block" class="org-latex org-latex-inline">
@@ -119,7 +122,10 @@ this operation will take the UNION of tuples in two relations <?xml version='1.0
 <use x='42.268668' y='0' xlink:href='#g1-41'/>
 </g>
 </g>
-</svg>. it is therefore the same as a <i>FULL OUTER JOIN</i> on the common attributes.<br />
+</svg>. it is therefore the same as a <i>FULL OUTER JOIN</i> on the common attributes.
+</p>
+
+<p>
 two tuples <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.127819 7.568736 7.6222' style="max-height: 0.8481em; vertical-align: -0.1962em; display: inline-block" class="org-latex org-latex-inline">
@@ -206,7 +212,7 @@ two tuples <?xml version='1.0' encoding='UTF-8'?>
 <use x='0' y='0' xlink:href='#g4-116'/>
 </g>
 </g>
-</svg>. tuples in either relation that have no matching tuple in the other relation are padded with NULL values. for example, an OUTER UNION can be applied to two relations whose schemas <code>are STUDENT(Name, Ssn, Department, Advisor)</code> and <code>INSTRUCTOR(Name, Ssn, Department, Rank)</code>. tuples from the two relations are matched based on having the same combination of values of the shared attributes--<code>Name, Ssn, Department</code>. The resulting relation, <code>STUDENT_OR_INSTRUCTOR</code>, will have the following attributes:<br />
+</svg>. tuples in either relation that have no matching tuple in the other relation are padded with NULL values. for example, an OUTER UNION can be applied to two relations whose schemas <code>are STUDENT(Name, Ssn, Department, Advisor)</code> and <code>INSTRUCTOR(Name, Ssn, Department, Rank)</code>. tuples from the two relations are matched based on having the same combination of values of the shared attributes--<code>Name, Ssn, Department</code>. The resulting relation, <code>STUDENT_OR_INSTRUCTOR</code>, will have the following attributes:
 </p>
 <div class="org-src-container" data-language="sql">
 <pre class="src src-sql">STUDENT_OR_INSTRUCTOR<span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">Name</span>, Ssn, Department, Advisor, Rank<span style="color: #deb07a;">)</span>
@@ -214,7 +220,7 @@ two tuples <?xml version='1.0' encoding='UTF-8'?>
 </div>
 
 <p>
-all the tuples from both relations are included in the result, but tuples with the same <code>(Name, Ssn, Department)</code> combination will appear only once in the result. tuples appearing only in <code>STUDENT</code> will have a NULL for the <code>Rank</code> attribute, whereas tuples appearing only in <code>INSTRUCTOR</code> will have a NULL for the <code>Advisor</code> attribute. a tuple that exists in both relations, which represent a student who is also an instructor, will have values for all its attributes.<br />
+all the tuples from both relations are included in the result, but tuples with the same <code>(Name, Ssn, Department)</code> combination will appear only once in the result. tuples appearing only in <code>STUDENT</code> will have a NULL for the <code>Rank</code> attribute, whereas tuples appearing only in <code>INSTRUCTOR</code> will have a NULL for the <code>Advisor</code> attribute. a tuple that exists in both relations, which represent a student who is also an instructor, will have values for all its attributes.
 </p>
 
 </div>

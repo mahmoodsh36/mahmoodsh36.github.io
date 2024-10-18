@@ -38,11 +38,11 @@
 </div>
 <div id="content" class="content">
 <p>
-a collection of utility functions for <a href="/common_lisp.html">common lisp</a>.<br />
+a collection of utility functions for <a href="/common_lisp.html">common lisp</a>.
 </p>
-<div id="outline-container-org5c42d0a" class="outline-2">
-<h2 id="org5c42d0a">arrays</h2>
-<div class="outline-text-2" id="text-org5c42d0a">
+<div id="outline-container-org97ebaa9" class="outline-2">
+<h2 id="org97ebaa9">arrays</h2>
+<div class="outline-text-2" id="text-org97ebaa9">
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp" id="src-array-dims"><span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">(defun array-width (2d-array)</span>
 <span style="color: #a0a0cf; font-style: italic;">;;   </span><span style="color: #a0a0cf; font-style: italic;">(car (cdr (array-dimensions 2d-array))))</span>
@@ -63,7 +63,7 @@ a collection of utility functions for <a href="/common_lisp.html">common lisp</a
 </div>
 
 <p>
-turn multidimensional (nested) list into array:<br />
+turn multidimensional (nested) list into array:
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp" id="src-list-to-array"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">list-dimensions</span> <span style="color: #ffaacf;">(</span>list<span style="color: #ffaacf;">)</span>
@@ -77,7 +77,7 @@ turn multidimensional (nested) list into array:<br />
 </div>
 
 <p>
-turn multidimensional array into a list:<br />
+turn multidimensional array into a list:
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp" id="src-array-to-list"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">array-&gt;list</span> <span style="color: #ffaacf;">(</span>array<span style="color: #ffaacf;">)</span>
@@ -95,7 +95,7 @@ turn multidimensional array into a list:<br />
 </div>
 
 <p>
-to generate an array with random elements of arbitrary dimensions:<br />
+to generate an array with random elements of arbitrary dimensions:
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp" id="src-random-tensor"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">random-float</span> <span style="color: #ffaacf;">(</span>min max<span style="color: #ffaacf;">)</span>
@@ -118,8 +118,11 @@ to generate an array with random elements of arbitrary dimensions:<br />
 </div>
 
 <p>
-the following utility functions are similar to <code>map</code> but for arrays:<br />
-we sometimes may wanna iterate through a multidimensional array and do an action on each of its indicies, the following utility functions helps do that easily, without nesting loops, although notice that this function iterates through every cell in the array, so it may not be what you want (efficiency wise) if you only want to apply something to only a portion of the array<br />
+the following utility functions are similar to <code>map</code> but for arrays:
+</p>
+
+<p>
+we sometimes may wanna iterate through a multidimensional array and do an action on each of its indicies, the following utility functions helps do that easily, without nesting loops, although notice that this function iterates through every cell in the array, so it may not be what you want (efficiency wise) if you only want to apply something to only a portion of the array
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp" id="src-array-map"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">array-map</span> <span style="color: #ffaacf;">(</span>fn <span style="color: #a9c99f;">&amp;rest</span> arrays<span style="color: #ffaacf;">)</span>
@@ -147,7 +150,7 @@ we sometimes may wanna iterate through a multidimensional array and do an action
 </div>
 
 <p>
-a utility function to copy a subarray of an array<br />
+a utility function to copy a subarray of an array
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp" id="src-subarray"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">subarray</span> <span style="color: #ffaacf;">(</span>a offsets dims<span style="color: #ffaacf;">)</span>
@@ -188,7 +191,7 @@ a utility function to copy a subarray of an array<br />
 </div>
 
 <p>
-a utility that copies the n-th element of an array, which is an array itself:<br />
+a utility that copies the n-th element of an array, which is an array itself:
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp" id="src-array-nth"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">copy-array-nth</span> <span style="color: #ffaacf;">(</span>arr idx<span style="color: #ffaacf;">)</span>
@@ -209,7 +212,7 @@ a utility that copies the n-th element of an array, which is an array itself:<br
 </div>
 
 <p>
-a utility function to copy a subarray into an array<br />
+a utility function to copy a subarray into an array
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp" id="src-copy-into-array"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">copy-into-array</span> <span style="color: #ffaacf;">(</span>a b <span style="color: #a9c99f;">&amp;optional</span> <span style="color: #80aadf;">(</span>offsets <span style="color: #e47980;">(</span>make-list <span style="color: #d0b0ff;">(</span>length <span style="color: #3fc489;">(</span>array-dimensions a<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span> <span style="color: #e3b0c0; font-weight: bold;">:initial-element</span> 0<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span>
@@ -245,7 +248,7 @@ a utility function to copy a subarray into an array<br />
 </div>
 
 <p>
-a utility function to copy an array into anothers highest dimension<br />
+a utility function to copy an array into anothers highest dimension
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp" id="src-set-array-nth"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">set-array-nth</span> <span style="color: #ffaacf;">(</span>arr other-arr idx<span style="color: #ffaacf;">)</span>
@@ -258,7 +261,7 @@ a utility function to copy an array into anothers highest dimension<br />
 </div>
 
 <p>
-vectorizing an array (turning it into a 1d vector) is pretty simple:<br />
+vectorizing an array (turning it into a 1d vector) is pretty simple:
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp" id="src-vectorize-array"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">vectorize-array</span> <span style="color: #ffaacf;">(</span>arr<span style="color: #ffaacf;">)</span>
@@ -268,7 +271,7 @@ vectorizing an array (turning it into a 1d vector) is pretty simple:<br />
 </div>
 
 <p>
-a function that refers the row-major index of a cell of an array (shamelessly stolen from <a href="https://groups.google.com/g/comp.lang.lisp/c/CM3MQkyOTHk?pli=1">https://groups.google.com/g/comp.lang.lisp/c/CM3MQkyOTHk?pli=1</a>):<br />
+a function that refers the row-major index of a cell of an array (shamelessly stolen from <a href="https://groups.google.com/g/comp.lang.lisp/c/CM3MQkyOTHk?pli=1">https://groups.google.com/g/comp.lang.lisp/c/CM3MQkyOTHk?pli=1</a>):
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp" id="src-row-major"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">array-index-row-major</span> <span style="color: #ffaacf;">(</span>array rmi<span style="color: #ffaacf;">)</span>
@@ -298,7 +301,7 @@ a function that refers the row-major index of a cell of an array (shamelessly st
 </div>
 
 <p>
-a function to simply copy/clone an array/tensor:<br />
+a function to simply copy/clone an array/tensor:
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp" id="src-copy-array"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">copy-array</span> <span style="color: #ffaacf;">(</span>arr<span style="color: #ffaacf;">)</span>
@@ -308,7 +311,7 @@ a function to simply copy/clone an array/tensor:<br />
 </div>
 
 <p>
-reducing an array with a function:<br />
+reducing an array with a function:
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp" id="src-reduce-array"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">reduce-array</span> <span style="color: #ffaacf;">(</span>arr fn<span style="color: #ffaacf;">)</span>
@@ -318,11 +321,11 @@ reducing an array with a function:<br />
 </div>
 </div>
 </div>
-<div id="outline-container-orgd2992b1" class="outline-2">
-<h2 id="orgd2992b1">sequences</h2>
-<div class="outline-text-2" id="text-orgd2992b1">
+<div id="outline-container-orgc14b013" class="outline-2">
+<h2 id="orgc14b013">sequences</h2>
+<div class="outline-text-2" id="text-orgc14b013">
 <p>
-a function to get the last element in a list (or any sequence):<br />
+a function to get the last element in a list (or any sequence):
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp" id="src-last-elt"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">last-elt</span> <span style="color: #ffaacf;">(</span>seq<span style="color: #ffaacf;">)</span>
@@ -332,7 +335,7 @@ a function to get the last element in a list (or any sequence):<br />
 </div>
 
 <p>
-converting nested lists to nested vectors:<br />
+converting nested lists to nested vectors:
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">list-&gt;vector</span> <span style="color: #ffaacf;">(</span>mylist<span style="color: #ffaacf;">)</span>
@@ -350,7 +353,7 @@ converting nested lists to nested vectors:<br />
 </div>
 
 <p>
-or this shorter one:<br />
+or this shorter one:
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp" id="src-list-to-vector"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">list-&gt;vector</span> <span style="color: #ffaacf;">(</span>list<span style="color: #ffaacf;">)</span>
@@ -360,7 +363,7 @@ or this shorter one:<br />
 </div>
 
 <p>
-get the type of a sequence (<code>type-of</code> is unreliable):<br />
+get the type of a sequence (<code>type-of</code> is unreliable):
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">seq-type</span> <span style="color: #ffaacf;">(</span>seq<span style="color: #ffaacf;">)</span>
@@ -373,7 +376,7 @@ get the type of a sequence (<code>type-of</code> is unreliable):<br />
 </div>
 
 <p>
-a concatenate function that acts with respect to the sequence type:<br />
+a concatenate function that acts with respect to the sequence type:
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">concatenate-type-aware</span> <span style="color: #ffaacf;">(</span>seqs<span style="color: #ffaacf;">)</span>
@@ -394,7 +397,7 @@ a concatenate function that acts with respect to the sequence type:<br />
 </div>
 
 <p>
-delete nth element of a sequence:<br />
+delete nth element of a sequence:
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">remove-nth</span> <span style="color: #ffaacf;">(</span>seq n<span style="color: #ffaacf;">)</span>
@@ -404,7 +407,7 @@ delete nth element of a sequence:<br />
 </div>
 
 <p>
-split a sequence into <a href="/singleton.html">singleton</a> sequences (of the same type as the original sequence)<br />
+split a sequence into <a href="/singleton.html">singleton</a> sequences (of the same type as the original sequence)
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">seq-singletons</span> <span style="color: #ffaacf;">(</span>seq<span style="color: #ffaacf;">)</span>
@@ -415,9 +418,9 @@ split a sequence into <a href="/singleton.html">singleton</a> sequences (of the 
 </div>
 </div>
 </div>
-<div id="outline-container-org0453753" class="outline-2">
-<h2 id="org0453753">argmin and argmax</h2>
-<div class="outline-text-2" id="text-org0453753">
+<div id="outline-container-orge09d476" class="outline-2">
+<h2 id="orge09d476">argmin and argmax</h2>
+<div class="outline-text-2" id="text-orge09d476">
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp" id="src-argmin-argmax"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">argmax</span> <span style="color: #ffaacf;">(</span>s <span style="color: #a9c99f;">&amp;key</span> <span style="color: #80aadf;">(</span>key #'identity<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span>
   <span style="color: #caa89f; font-style: italic;">"returns value,index of element in sequence s that maximizes the key function"</span>
@@ -436,11 +439,11 @@ split a sequence into <a href="/singleton.html">singleton</a> sequences (of the 
 </div>
 </div>
 </div>
-<div id="outline-container-org0f9c0e4" class="outline-2">
-<h2 id="org0f9c0e4">open url in browser</h2>
-<div class="outline-text-2" id="text-org0f9c0e4">
+<div id="outline-container-orgff8b35c" class="outline-2">
+<h2 id="orgff8b35c">open url in browser</h2>
+<div class="outline-text-2" id="text-orgff8b35c">
 <p>
-open a url by its default browser/app on macos/windows/linux<br />
+open a url by its default browser/app on macos/windows/linux
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp" id="src-open-browser"><span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">from https://github.com/eudoxia0/trivial-open-browser/blob/master/src/trivial-open-browser.lisp</span>

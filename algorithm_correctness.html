@@ -41,27 +41,31 @@
 definition: &lt;/p&gt;
 " id="def-randvar" data-id="def-randvar">
 <p>
-an algorithm is totally correct if it receives valid input, terminates, and always returns the correct output<br />
+an algorithm is totally correct if it receives valid input, terminates, and always returns the correct output
 </p>
 
 </div>
 
 <p>
-the only way to prove the <a href="/algorithm_correctness.html">correctness of an algorithm</a> over all possible inputs is by reasoning formally or mathematically about it.<br />
-generally, to prove an algorithm is correct we prove two things<br />
+the only way to prove the <a href="/algorithm_correctness.html">correctness of an algorithm</a> over all possible inputs is by reasoning formally or mathematically about it.
 </p>
+
+<p>
+generally, to prove an algorithm is correct we prove two things
+</p>
+
 <ol class="org-ol">
-<li>the algorithm terminates<br /></li>
-<li>the algorithm returns the correct value for every input<br /></li>
+<li>the algorithm terminates</li>
+<li>the algorithm returns the correct value for every input</li>
 </ol>
 <p>
-we propose a statement that describes what the algorithm takes as input and what its supposed to output and then prove it<br />
+we propose a statement that describes what the algorithm takes as input and what its supposed to output and then prove it
 </p>
-<div id="outline-container-org422d5ca" class="outline-2">
-<h2 id="org422d5ca">proving algorithm correctness by induction</h2>
-<div class="outline-text-2" id="text-org422d5ca">
+<div id="outline-container-orgccce300" class="outline-2">
+<h2 id="orgccce300">proving algorithm correctness by induction</h2>
+<div class="outline-text-2" id="text-orgccce300">
 <p>
-here we'll be using <a href="/proof_by_induction.html">mathematical induction</a><br />
+here we'll be using <a href="/proof_by_induction.html">mathematical induction</a>
 </p>
 <div test="test" class="fancy-block my_example" data-before="&lt;p&gt;
 example: &lt;/p&gt;
@@ -199,7 +203,6 @@ example: &lt;/p&gt;
 </span>
 <span class="caption"></span>
 </div>
-
 <div test="test" class="fancy-block lemma" data-before="&lt;p&gt;
 lemma: &lt;/p&gt;
 " id="def-randvar" data-id="def-randvar">
@@ -230,15 +233,15 @@ for each input that is an array of numbers A, the algorithm <?xml version='1.0' 
 <use x='48.946453' y='0' xlink:href='#g6-118'/>
 </g>
 </g>
-</svg> computes the sum of the numbers<br />
+</svg> computes the sum of the numbers
 </p>
 <div test="test" class="fancy-block proof" data-before="&lt;p&gt;
 proof: &lt;/p&gt;
 " id="def-randvar" data-id="def-randvar">
 <p>
-<span class="underline">proof the algorithm terminates</span>: the algorithm consists of a for loop that is bound by n, so it follows trivially that it must terminate<br />
-<span class="underline">proof of correctness</span> by <a href="/perfect_induction.html">perfect induction</a> on the length of the input array<br />
-we propose the following <a href="/loop_invariant.html">loop invariant</a> for the loop<br />
+<span class="underline">proof the algorithm terminates</span>: the algorithm consists of a for loop that is bound by n, so it follows trivially that it must terminate
+<span class="underline">proof of correctness</span> by <a href="/perfect_induction.html">perfect induction</a> on the length of the input array
+we propose the following <a href="/loop_invariant.html">loop invariant</a> for the loop
 <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='150.509594 -31.174826 66.184568 30.178576' style="max-height: 3.3610em; display: block" class="org-latex org-latex-block">
@@ -274,9 +277,10 @@ we propose the following <a href="/loop_invariant.html">loop invariant</a> for t
 <use x='213.926782' y='-14.106844' xlink:href='#g5-93'/>
 </g>
 </g>
-</svg><br />
-in this case, proving the proposed loop invariant would prove the algorithm correct<br />
+</svg>
+in this case, proving the proposed loop invariant would prove the algorithm correct
 </p>
+
 <ol class="org-ol">
 <li>for <?xml version='1.0' encoding='UTF-8'?>
 
@@ -293,7 +297,7 @@ in this case, proving the proposed loop invariant would prove the algorithm corr
 <use x='16.715861' y='0' xlink:href='#g9-49'/>
 </g>
 </g>
-</svg>, which is the base case, the algorithm returns A[1] which would be the only element in the array, so its obvious that its the correct output<br /></li>
+</svg>, which is the base case, the algorithm returns A[1] which would be the only element in the array, so its obvious that its the correct output</li>
 <li>the <a href="/induction_hypothesis.html">induction hypothesis</a>, we assume after i iterations in the loop that <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -9.623715 76.59519 13.968581' style="max-height: 1.4724em; vertical-align: -0.4766em; display: inline-block" class="org-latex org-latex-inline">
@@ -329,7 +333,7 @@ in this case, proving the proposed loop invariant would prove the algorithm corr
 <use x='73.82781' y='0' xlink:href='#g5-93'/>
 </g>
 </g>
-</svg><br /></li>
+</svg></li>
 <li>the <a href="/induction_step.html">induction step</a>, during the <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.570609 20.590248 7.39751' style="max-height: 0.8260em; vertical-align: -0.1305em; display: inline-block" class="org-latex org-latex-inline">
@@ -366,7 +370,7 @@ in this case, proving the proposed loop invariant would prove the algorithm corr
 <use x='30.879428' y='0' xlink:href='#g5-93'/>
 </g>
 </g>
-</svg> to the variable sum, and so it follows from this and from the induction hypothesis that:<br /></li>
+</svg> to the variable sum, and so it follows from this and from the induction hypothesis that:</li>
 </ol>
 <p>
 <?xml version='1.0' encoding='UTF-8'?>
@@ -427,8 +431,8 @@ in this case, proving the proposed loop invariant would prove the algorithm corr
 <use x='260.370586' y='-14.106844' xlink:href='#g5-93'/>
 </g>
 </g>
-</svg><br />
-the loop runs n times, by substituting n in the loop invariant, we'd get<br />
+</svg>
+the loop runs n times, by substituting n in the loop invariant, we'd get
 <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='150.509594 -29.562817 66.184568 28.566566' style="max-height: 3.2024em; display: block" class="org-latex org-latex-block">
@@ -464,34 +468,38 @@ the loop runs n times, by substituting n in the loop invariant, we'd get<br />
 <use x='213.926782' y='-14.106844' xlink:href='#g5-93'/>
 </g>
 </g>
-</svg><br />
-which means that after the loop is done, the variable sum would contain the sum of the elements in the array, which is what the function returns, which is the correct output<br />
-QED<br />
+</svg>
+which means that after the loop is done, the variable sum would contain the sum of the elements in the array, which is what the function returns, which is the correct output
 </p>
 
-</div>
-
-</div>
-
-</div>
-</div>
-</div>
-<div id="outline-container-org9a97040" class="outline-2">
-<h2 id="org9a97040">correctness of recursive algorithms</h2>
-<div class="outline-text-2" id="text-org9a97040">
 <p>
-the pattern for proofs of recursive algorithms is as follows:<br />
+QED
 </p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+</div>
+<div id="outline-container-orgc29464a" class="outline-2">
+<h2 id="orgc29464a">correctness of recursive algorithms</h2>
+<div class="outline-text-2" id="text-orgc29464a">
+<p>
+the pattern for proofs of recursive algorithms is as follows:
+</p>
+
 <ol class="org-ol">
-<li><span class="underline">base step of the recursion</span>, we have to manually show that for each of the edge cases the output is correct<br /></li>
-<li><span class="underline">induction hypothesis</span>, we assume that in each recurring call the output is correct<br /></li>
-<li><span class="underline">proof</span>, we show that the output is correct for the main function call<br /></li>
+<li><span class="underline">base step of the recursion</span>, we have to manually show that for each of the edge cases the output is correct</li>
+<li><span class="underline">induction hypothesis</span>, we assume that in each recurring call the output is correct</li>
+<li><span class="underline">proof</span>, we show that the output is correct for the main function call</li>
 </ol>
 <div test="test" class="fancy-block my_example" data-before="&lt;p&gt;
 example: &lt;/p&gt;
 " id="def-randvar" data-id="def-randvar">
 <p>
-consider the following function<br />
+consider the following function
 </p>
 
 <div class="equation-container">
@@ -741,9 +749,8 @@ consider the following function<br />
 </span>
 <span class="caption"></span>
 </div>
-
 <p>
-<span class="underline">proof that the algorithm terminates</span>:<br />
+<span class="underline">proof that the algorithm terminates</span>:
 assume that <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -7.023661 74.161893 7.242839' style="max-height: 0.8108em; vertical-align: -0.0707em; display: inline-block" class="org-latex org-latex-inline">
@@ -777,10 +784,14 @@ assume that <?xml version='1.0' encoding='UTF-8'?>
 <use x='66.719801' y='0' xlink:href='#g6-75'/>
 </g>
 </g>
-</svg> runs on an array <code>A</code>, on each recurring call, the size of the input array <code>A</code> is halved, its obvious that at the end of every sequence of calls the size of the input array would arrive to 1 which is the edge case that would cause the function to terminate<br />
-<span class="underline">proof of correctness</span>:<br />
-we prove this by induction on the number of elements in the array<br />
+</svg> runs on an array <code>A</code>, on each recurring call, the size of the input array <code>A</code> is halved, its obvious that at the end of every sequence of calls the size of the input array would arrive to 1 which is the edge case that would cause the function to terminate
 </p>
+
+<p>
+<span class="underline">proof of correctness</span>:
+we prove this by induction on the number of elements in the array
+</p>
+
 <ol class="org-ol">
 <li><span class="underline">base case</span>: for <?xml version='1.0' encoding='UTF-8'?>
 
@@ -821,15 +832,15 @@ we prove this by induction on the number of elements in the array<br />
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.807795 7.471999 6.807795' style="max-height: 0.7680em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
-<path id='g7-65' d='m7.183064-.199253c0-.109589-.099626-.109589-.229141-.109589c-.617684 0-.617684-.069738-.647572-.358655l-.607721-6.22665c-.019925-.199253-.019925-.239103-.18929-.239103c-.159402 0-.199253 .069738-.259029 .169365l-3.466999 5.818182c-.398506 .667497-.787049 .806974-1.225405 .836862c-.119552 .009963-.209215 .009963-.209215 .199253c0 .059776 .049813 .109589 .129514 .109589c.268991 0 .577833-.029888 .856787-.029888c.328767 0 .67746 .029888 .996264 .029888c.059776 0 .18929 0 .18929-.18929c0-.109589-.089664-.119552-.159402-.119552c-.229141-.019925-.468244-.099626-.468244-.348692c0-.119552 .059776-.229141 .139477-.368618c.069738-.119552 .079701-.119552 .757161-1.275218h2.500623c.019925 .209215 .159402 1.564134 .159402 1.663761c0 .298879-.518057 .328767-.71731 .328767c-.139477 0-.239103 0-.239103 .199253c0 .109589 .139477 .109589 .139477 .109589c.408468 0 .836862-.029888 1.24533-.029888c.249066 0 .876712 .029888 1.125778 .029888c.059776 0 .179328 0 .179328-.199253zm-1.92279-2.410959h-2.281445l1.96264-3.287671l.318804 3.287671z'/>
+<path id='g6-65' d='m7.183064-.199253c0-.109589-.099626-.109589-.229141-.109589c-.617684 0-.617684-.069738-.647572-.358655l-.607721-6.22665c-.019925-.199253-.019925-.239103-.18929-.239103c-.159402 0-.199253 .069738-.259029 .169365l-3.466999 5.818182c-.398506 .667497-.787049 .806974-1.225405 .836862c-.119552 .009963-.209215 .009963-.209215 .199253c0 .059776 .049813 .109589 .129514 .109589c.268991 0 .577833-.029888 .856787-.029888c.328767 0 .67746 .029888 .996264 .029888c.059776 0 .18929 0 .18929-.18929c0-.109589-.089664-.119552-.159402-.119552c-.229141-.019925-.468244-.099626-.468244-.348692c0-.119552 .059776-.229141 .139477-.368618c.069738-.119552 .079701-.119552 .757161-1.275218h2.500623c.019925 .209215 .159402 1.564134 .159402 1.663761c0 .298879-.518057 .328767-.71731 .328767c-.139477 0-.239103 0-.239103 .199253c0 .109589 .139477 .109589 .139477 .109589c.408468 0 .836862-.029888 1.24533-.029888c.249066 0 .876712 .029888 1.125778 .029888c.059776 0 .179328 0 .179328-.199253zm-1.92279-2.410959h-2.281445l1.96264-3.287671l.318804 3.287671z'/>
 </defs>
-<g id='page4'>
+<g id='page1'>
 <g fill='currentColor'>
-<use x='0' y='0' xlink:href='#g7-65'/>
+<use x='0' y='0' xlink:href='#g6-65'/>
 </g>
 </g>
-</svg>, its obvious that the output is correct<br /></li>
-<li><span class="underline">induction hypothesis</span>: we use perfect induction on the size of the input, we assume that the algorithm correctly computes the sum of the elements of any array whose size is smaller than <code>n</code><br /></li>
+</svg>, its obvious that the output is correct</li>
+<li><span class="underline">induction hypothesis</span>: we use perfect induction on the size of the input, we assume that the algorithm correctly computes the sum of the elements of any array whose size is smaller than <code>n</code></li>
 <li><span class="underline">induction step</span>: let <code>A</code> be an arbitrary array of size <code>n</code>, the call to <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -7.47198 89.382881 9.96264' style="max-height: 1.0784em; vertical-align: -0.2942em; display: inline-block" class="org-latex org-latex-inline">
@@ -988,7 +999,7 @@ we prove this by induction on the number of elements in the array<br />
 <use x='0' y='0' xlink:href='#g4-110'/>
 </g>
 </g>
-</svg>, so according to the previous step we know those two recurring calls do return the correct sum of the corresponding subarrays, and since we are returning the sum of those sums we know for sure we are returning the correct sum<br /></li>
+</svg>, so according to the previous step we know those two recurring calls do return the correct sum of the corresponding subarrays, and since we are returning the sum of those sums we know for sure we are returning the correct sum</li>
 </ol>
 
 </div>

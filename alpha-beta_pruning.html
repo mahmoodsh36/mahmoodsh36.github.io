@@ -38,7 +38,7 @@
 </div>
 <div id="content" class="content">
 <p>
-<b>alpha-beta pruning</b> is an extension of <a href="/minimax.html">minimax</a> that uses <a href="/pruning.html">pruning</a> to reduce the size of the <a href="/game_tree.html">game tree</a>.<br />
+<b>alpha-beta pruning</b> is an extension of <a href="/minimax.html">minimax</a> that uses <a href="/pruning.html">pruning</a> to reduce the size of the <a href="/game_tree.html">game tree</a>.
 </p>
 <div test="test" class="fancy-block dummy" data-before="" data-after="&lt;p&gt;
 (Peter Norvig, Stuart J. Russell, 2020)&lt;/p&gt;
@@ -88,7 +88,10 @@ the general principle of alpha-beta pruning is this: consider a node <?xml versi
 <use x='0' y='0' xlink:href='#g4-110'/>
 </g>
 </g>
-</svg> (by examining some of its <a href="/tree_data_structure.html">descendant</a>s) to reach this conclusion, we can prune it.<br />
+</svg> (by examining some of its <a href="/tree_data_structure.html">descendant</a>s) to reach this conclusion, we can prune it.
+</p>
+
+<p>
 alpha-beta pruning gets its name from the two extra parameters in <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -7.47198 106.607078 9.96264' style="max-height: 1.0341em; vertical-align: -0.2942em; display: inline-block" class="org-latex org-latex-inline">
@@ -133,8 +136,9 @@ alpha-beta pruning gets its name from the two extra parameters in <?xml version=
 <use x='96.571671' y='0' xlink:href='#g1-12'/>
 <use x='102.7326' y='0' xlink:href='#g2-41'/>
 </g>
-</svg> that describe bounds on the backed-up values that appear anywhere along the path:<br />
+</svg> that describe bounds on the backed-up values that appear anywhere along the path:
 </p>
+
 <ul class="org-ul">
 <li><?xml version='1.0' encoding='UTF-8'?>
 
@@ -176,7 +180,7 @@ alpha-beta pruning gets its name from the two extra parameters in <?xml version=
 <use x='0' y='0' xlink:href='#g7-11'/>
 </g>
 </g>
-</svg> = "at least."<br /></li>
+</svg> = "at least."</li>
 <li><?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.918502 6.16094 8.855684' style="max-height: 0.8711em; vertical-align: -0.1905em; display: inline-block" class="org-latex org-latex-inline">
@@ -217,7 +221,7 @@ alpha-beta pruning gets its name from the two extra parameters in <?xml version=
 <use x='0' y='0' xlink:href='#g4-12'/>
 </g>
 </g>
-</svg> = "at most."<br /></li>
+</svg> = "at most."</li>
 </ul>
 <p>
 alpha-beta search updates the values of <?xml version='1.0' encoding='UTF-8'?>
@@ -300,7 +304,10 @@ alpha-beta search updates the values of <?xml version='1.0' encoding='UTF-8'?>
 <use x='10.450809' y='0' xlink:href='#g3-77'/>
 </g>
 </g>
-</svg>, respectively.<br />
+</svg>, respectively.
+</p>
+
+<p>
 another way to look at this is as a simplification of the formula for <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.804483 41.633873 6.804483' style="max-height: 0.7677em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
@@ -329,7 +336,7 @@ another way to look at this is as a simplification of the formula for <?xml vers
 <use x='35.526775' y='0' xlink:href='#g3-116'/>
 </g>
 </g>
-</svg>. let the two unevaluated successors of node C in Figure 5.5 have values x and y. Then the value of the root node is given by<br />
+</svg>. let the two unevaluated successors of node C in Figure 5.5 have values x and y. Then the value of the root node is given by
 </p>
 
 </div>
