@@ -71,9 +71,9 @@ for example, if <code>x</code> is a person, <code>key(x)</code> could be the per
 </div>
 
 </div>
-<div id="outline-container-orgbd61411" class="outline-2">
-<h2 id="orgbd61411">KeyValue</h2>
-<div class="outline-text-2" id="text-orgbd61411">
+<div id="outline-container-org27fbbc5" class="outline-2">
+<h2 id="org27fbbc5">KeyValue</h2>
+<div class="outline-text-2" id="text-org27fbbc5">
 <p>
 a helper class that represents a key-value/pair relation, used as a building block for many data structures
 </p>
@@ -112,9 +112,9 @@ a helper class that represents a key-value/pair relation, used as a building blo
 </div>
 </div>
 </div>
-<div id="outline-container-org0bf6881" class="outline-2">
-<h2 id="org0bf6881">lists</h2>
-<div class="outline-text-2" id="text-org0bf6881">
+<div id="outline-container-org64dbfa7" class="outline-2">
+<h2 id="org64dbfa7">lists</h2>
+<div class="outline-text-2" id="text-org64dbfa7">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: list&lt;/p&gt;
 " id="def-list" data-id="def-list">
@@ -128,9 +128,9 @@ in lists, ordering matters, and duplicate items may be allowed, unlike in <a hre
 
 </div>
 </div>
-<div id="outline-container-orgfad4191" class="outline-3">
-<h3 id="orgfad4191">linked list</h3>
-<div class="outline-text-3" id="text-orgfad4191">
+<div id="outline-container-org0139601" class="outline-3">
+<h3 id="org0139601">linked list</h3>
+<div class="outline-text-3" id="text-org0139601">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: linked list&lt;/p&gt;
 " id="def-link-list" data-id="def-link-list">
@@ -140,9 +140,9 @@ a <b>linked list</b> is a <a href="/concrete_data_type.html">concrete data type<
 
 </div>
 </div>
-<div id="outline-container-org55d7d40" class="outline-4">
-<h4 id="org55d7d40">characteristics</h4>
-<div class="outline-text-4" id="text-org55d7d40">
+<div id="outline-container-org3f2e627" class="outline-4">
+<h4 id="org3f2e627">characteristics</h4>
+<div class="outline-text-4" id="text-org3f2e627">
 <ul class="org-ul">
 <li>is the list <b>sorted</b>? the nodes are sorted by their <code>key</code> (usually in an ascending order)</li>
 <li>is the list <b>doubly/singly linked</b>? in a doubly linked list each node points to the next and previous node whereas in a singly linked list a node only points to the next</li>
@@ -151,9 +151,9 @@ a <b>linked list</b> is a <a href="/concrete_data_type.html">concrete data type<
 </ul>
 </div>
 </div>
-<div id="outline-container-org81a48a1" class="outline-4">
-<h4 id="org81a48a1">functions</h4>
-<div class="outline-text-4" id="text-org81a48a1">
+<div id="outline-container-org59b5c86" class="outline-4">
+<h4 id="org59b5c86">functions</h4>
+<div class="outline-text-4" id="text-org59b5c86">
 <ul class="org-ul">
 <li><code>insert(x)</code>: inserts <code>x</code></li>
 <li><code>search(k)</code>: returns the node whose key is <code>k</code></li>
@@ -162,13 +162,13 @@ a <b>linked list</b> is a <a href="/concrete_data_type.html">concrete data type<
 </ul>
 </div>
 </div>
-<div id="outline-container-org65b3dfb" class="outline-4">
-<h4 id="org65b3dfb">implementation (c++)</h4>
-<div class="outline-text-4" id="text-org65b3dfb">
+<div id="outline-container-orgc2b94a7" class="outline-4">
+<h4 id="orgc2b94a7">implementation (c++)</h4>
+<div class="outline-text-4" id="text-orgc2b94a7">
 </div>
-<div id="outline-container-org462052d" class="outline-5">
-<h5 id="org462052d">Node</h5>
-<div class="outline-text-5" id="text-org462052d">
+<div id="outline-container-org438c5a6" class="outline-5">
+<h5 id="org438c5a6">Node</h5>
+<div class="outline-text-5" id="text-org438c5a6">
 <div class="org-src-container" data-language="C++">
 <pre class="src src-C++" id="Node">
 <span style="color: #65c5a8;">#include</span> <span style="color: #deb07a;">&lt;</span><span style="color: #f3a0a0;">cassert</span><span style="color: #deb07a;">&gt;</span>
@@ -220,9 +220,9 @@ example usage:
 </pre>
 </div>
 </div>
-<div id="outline-container-orgc614c1d" class="outline-5">
-<h5 id="orgc614c1d">DoublyNode</h5>
-<div class="outline-text-5" id="text-orgc614c1d">
+<div id="outline-container-org5310002" class="outline-5">
+<h5 id="org5310002">DoublyNode</h5>
+<div class="outline-text-5" id="text-org5310002">
 <div class="org-src-container" data-language="C++">
 <pre class="src src-C++" id="DoublyNode"><span style="color: #deb07a; font-weight: bold;">template</span> <span style="color: #deb07a;">&lt;</span><span style="color: #deb07a; font-weight: bold;">typename</span> <span style="color: #a9c99f;">T</span><span style="color: #deb07a;">&gt;</span>
 <span style="color: #deb07a; font-weight: bold;">class</span> <span style="color: #a9c99f;">DoublyNode</span> <span style="color: #deb07a;">{</span>
@@ -271,9 +271,9 @@ example usage:
 </div>
 </div>
 </div>
-<div id="outline-container-orgac145ff" class="outline-5">
-<h5 id="orgac145ff">LinkedList</h5>
-<div class="outline-text-5" id="text-orgac145ff">
+<div id="outline-container-orgf2aa6a1" class="outline-5">
+<h5 id="orgf2aa6a1">LinkedList</h5>
+<div class="outline-text-5" id="text-orgf2aa6a1">
 <div class="org-src-container" data-language="C++">
 <pre class="src src-C++" id="LinkedList">
 <span style="color: #deb07a; font-weight: bold;">template</span> <span style="color: #deb07a;">&lt;</span><span style="color: #deb07a; font-weight: bold;">typename</span> <span style="color: #a9c99f;">T</span><span style="color: #deb07a;">&gt;</span>
@@ -364,27 +364,27 @@ example usage:
 </pre>
 </div>
 </div>
-<div id="outline-container-orgb58e490" class="outline-5">
-<h5 id="orgb58e490">DoublyLinkedList</h5>
-<div class="outline-text-5" id="text-orgb58e490">
+<div id="outline-container-orge86544e" class="outline-5">
+<h5 id="orge86544e">DoublyLinkedList</h5>
+<div class="outline-text-5" id="text-orge86544e">
 <div class="org-src-container" data-language="C++">
 <pre class="src src-C++">to be implemented
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgd991c68" class="outline-5">
-<h5 id="orgd991c68">LinkedListWithTail</h5>
-<div class="outline-text-5" id="text-orgd991c68">
+<div id="outline-container-org1e57bd4" class="outline-5">
+<h5 id="org1e57bd4">LinkedListWithTail</h5>
+<div class="outline-text-5" id="text-org1e57bd4">
 <div class="org-src-container" data-language="C++">
 <pre class="src src-C++">to be implemented
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org91dd0f8" class="outline-5">
-<h5 id="org91dd0f8">CircularLinkedList</h5>
-<div class="outline-text-5" id="text-org91dd0f8">
+<div id="outline-container-org2226f17" class="outline-5">
+<h5 id="org2226f17">CircularLinkedList</h5>
+<div class="outline-text-5" id="text-org2226f17">
 <div class="org-src-container" data-language="C++">
 <pre class="src src-C++">to be implemented
 </pre>
@@ -393,9 +393,9 @@ example usage:
 </div>
 </div>
 </div>
-<div id="outline-container-org529dd7e" class="outline-3">
-<h3 id="org529dd7e">array list</h3>
-<div class="outline-text-3" id="text-org529dd7e">
+<div id="outline-container-org7a24a6d" class="outline-3">
+<h3 id="org7a24a6d">array list</h3>
+<div class="outline-text-3" id="text-org7a24a6d">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-link-list" data-id="def-link-list">
@@ -458,9 +458,9 @@ an array list contains a fixed-size array initialized to a constant length, when
 
 </div>
 </div>
-<div id="outline-container-org4afb36f" class="outline-4">
-<h4 id="org4afb36f">ArrayList</h4>
-<div class="outline-text-4" id="text-org4afb36f">
+<div id="outline-container-org00c8bd6" class="outline-4">
+<h4 id="org00c8bd6">ArrayList</h4>
+<div class="outline-text-4" id="text-org00c8bd6">
 <div class="org-src-container" data-language="C++">
 <pre class="src src-C++" id="ArrayList"><span style="color: #65c5a8;">#include</span> <span style="color: #deb07a;">&lt;</span><span style="color: #f3a0a0;">cassert</span><span style="color: #deb07a;">&gt;</span>
 <span style="color: #65c5a8;">#include</span> <span style="color: #deb07a;">&lt;</span><span style="color: #f3a0a0;">memory</span><span style="color: #deb07a;">&gt;</span>
@@ -578,9 +578,9 @@ size is 6
 </div>
 </div>
 </div>
-<div id="outline-container-orgeb10e03" class="outline-2">
-<h2 id="orgeb10e03">stack</h2>
-<div class="outline-text-2" id="text-orgeb10e03">
+<div id="outline-container-org2921335" class="outline-2">
+<h2 id="org2921335">stack</h2>
+<div class="outline-text-2" id="text-org2921335">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: stack&lt;/p&gt;
 " id="def-stack" data-id="def-stack">
@@ -591,9 +591,9 @@ a <b>stack</b> is an <a href="/abstract_data_type.html">abstract data type</a>
 </div>
 </div>
 </div>
-<div id="outline-container-orgc569cd3" class="outline-2">
-<h2 id="orgc569cd3">queue</h2>
-<div class="outline-text-2" id="text-orgc569cd3">
+<div id="outline-container-orge181339" class="outline-2">
+<h2 id="orge181339">queue</h2>
+<div class="outline-text-2" id="text-orge181339">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-stack" data-id="def-stack">
@@ -604,9 +604,9 @@ a <b>queue</b> is a linear <a href="/abstract_data_type.html">abstract data type
 </div>
 </div>
 </div>
-<div id="outline-container-orga965c5f" class="outline-2">
-<h2 id="orga965c5f">tree</h2>
-<div class="outline-text-2" id="text-orga965c5f">
+<div id="outline-container-org5c7a25a" class="outline-2">
+<h2 id="org5c7a25a">tree</h2>
+<div class="outline-text-2" id="text-org5c7a25a">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-stack" data-id="def-stack">
@@ -616,9 +616,9 @@ a <b>tree</b> is an <a href="/abstract_data_type.html">abstract data type</a> wh
 
 </div>
 </div>
-<div id="outline-container-orga3a317f" class="outline-3">
-<h3 id="orga3a317f">node</h3>
-<div class="outline-text-3" id="text-orga3a317f">
+<div id="outline-container-orgc0b4c42" class="outline-3">
+<h3 id="orgc0b4c42">node</h3>
+<div class="outline-text-3" id="text-orgc0b4c42">
 <p>
 trees store data as <b>nodes</b>, meaning each item in a tree is called a node
 </p>
@@ -638,9 +638,9 @@ each node <code>x</code> has the following fields
 every node in a <a href="/binary_tree.html">binary tree</a> has from 0 to 2 children
 </p>
 </div>
-<div id="outline-container-org6328c94" class="outline-4">
-<h4 id="org6328c94">height</h4>
-<div class="outline-text-4" id="text-org6328c94">
+<div id="outline-container-orgf39d8d2" class="outline-4">
+<h4 id="orgf39d8d2">height</h4>
+<div class="outline-text-4" id="text-orgf39d8d2">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-stack" data-id="def-stack">
@@ -664,9 +664,9 @@ the <b>height</b> of a <a href="/tree_data_structure.html">node</a> <code>x</cod
 </div>
 </div>
 </div>
-<div id="outline-container-orgcc8a4ae" class="outline-4">
-<h4 id="orgcc8a4ae">balance factor</h4>
-<div class="outline-text-4" id="text-orgcc8a4ae">
+<div id="outline-container-org4d1fd7c" class="outline-4">
+<h4 id="org4d1fd7c">balance factor</h4>
+<div class="outline-text-4" id="text-org4d1fd7c">
 <p>
 the <b>balance factor</b> of a <a href="/tree_data_structure.html">node</a> <code>x</code>, denoted by <code>balance(x)</code> or <code>BF(x)</code>, is defined as the height of the <a href="/tree_data_structure.html">subtree</a> of the left child of <code>x</code>, denoted by <?xml version='1.0' encoding='UTF-8'?>
 
@@ -889,9 +889,9 @@ see for example this tree, the balance factor of each node is written above it
 </div>
 </div>
 </div>
-<div id="outline-container-org05bcfab" class="outline-3">
-<h3 id="org05bcfab">height</h3>
-<div class="outline-text-3" id="text-org05bcfab">
+<div id="outline-container-orga0a8801" class="outline-3">
+<h3 id="orga0a8801">height</h3>
+<div class="outline-text-3" id="text-orga0a8801">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-stack" data-id="def-stack">
@@ -902,9 +902,9 @@ the <b>height</b> of a tree is the number of the <a href="/tree_data_structure.h
 </div>
 </div>
 </div>
-<div id="outline-container-orgd127ffc" class="outline-3">
-<h3 id="orgd127ffc">level</h3>
-<div class="outline-text-3" id="text-orgd127ffc">
+<div id="outline-container-orgc16ae7f" class="outline-3">
+<h3 id="orgc16ae7f">level</h3>
+<div class="outline-text-3" id="text-orgc16ae7f">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-stack" data-id="def-stack">
@@ -915,9 +915,9 @@ the <b>level</b> of a row in the tree is its distance from the root whose level 
 </div>
 </div>
 </div>
-<div id="outline-container-orgc8457af" class="outline-3">
-<h3 id="orgc8457af">root</h3>
-<div class="outline-text-3" id="text-orgc8457af">
+<div id="outline-container-orgb72a3ec" class="outline-3">
+<h3 id="orgb72a3ec">root</h3>
+<div class="outline-text-3" id="text-orgb72a3ec">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-stack" data-id="def-stack">
@@ -928,9 +928,9 @@ the tree itself <code>T</code> (not every node) contains a pointer <code>root(T)
 </div>
 </div>
 </div>
-<div id="outline-container-org8180edc" class="outline-3">
-<h3 id="org8180edc">leaf</h3>
-<div class="outline-text-3" id="text-org8180edc">
+<div id="outline-container-org84d123f" class="outline-3">
+<h3 id="org84d123f">leaf</h3>
+<div class="outline-text-3" id="text-org84d123f">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-stack" data-id="def-stack">
@@ -941,9 +941,9 @@ a <a href="/tree_data_structure.html">node</a> that doesnt have children is call
 </div>
 </div>
 </div>
-<div id="outline-container-orga246f29" class="outline-3">
-<h3 id="orga246f29">internal node</h3>
-<div class="outline-text-3" id="text-orga246f29">
+<div id="outline-container-orgbe403fc" class="outline-3">
+<h3 id="orgbe403fc">internal node</h3>
+<div class="outline-text-3" id="text-orgbe403fc">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-stack" data-id="def-stack">
@@ -954,9 +954,9 @@ a <a href="/tree_data_structure.html">node</a> that has atleast one child is cal
 </div>
 </div>
 </div>
-<div id="outline-container-orgec86676" class="outline-3">
-<h3 id="orgec86676">sibling</h3>
-<div class="outline-text-3" id="text-orgec86676">
+<div id="outline-container-orgabba039" class="outline-3">
+<h3 id="orgabba039">sibling</h3>
+<div class="outline-text-3" id="text-orgabba039">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-stack" data-id="def-stack">
@@ -967,9 +967,9 @@ definition: &lt;/p&gt;
 </div>
 </div>
 </div>
-<div id="outline-container-org1139f60" class="outline-3">
-<h3 id="org1139f60">ancestor</h3>
-<div class="outline-text-3" id="text-org1139f60">
+<div id="outline-container-org2fd4151" class="outline-3">
+<h3 id="org2fd4151">ancestor</h3>
+<div class="outline-text-3" id="text-org2fd4151">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-stack" data-id="def-stack">
@@ -980,9 +980,9 @@ an <b>ancestor</b> of a given <a href="/tree_data_structure.html">node</a> is a 
 </div>
 </div>
 </div>
-<div id="outline-container-orgf765dcb" class="outline-3">
-<h3 id="orgf765dcb">descendant</h3>
-<div class="outline-text-3" id="text-orgf765dcb">
+<div id="outline-container-org2b183ea" class="outline-3">
+<h3 id="org2b183ea">descendant</h3>
+<div class="outline-text-3" id="text-org2b183ea">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-stack" data-id="def-stack">
@@ -993,9 +993,9 @@ a <b>descendant</b> of a given <a href="/tree_data_structure.html">node</a> is a
 </div>
 </div>
 </div>
-<div id="outline-container-org867cb8d" class="outline-3">
-<h3 id="org867cb8d">subtree</h3>
-<div class="outline-text-3" id="text-org867cb8d">
+<div id="outline-container-orgbb13924" class="outline-3">
+<h3 id="orgbb13924">subtree</h3>
+<div class="outline-text-3" id="text-orgbb13924">
 <p>
 for some <a href="/binary_tree.html">binary tree</a> <code>T</code> and a node <code>x</code> of said tree we denote <?xml version='1.0' encoding='UTF-8'?>
 
@@ -1190,9 +1190,9 @@ the height of this tree is 4
 </p>
 </div>
 </div>
-<div id="outline-container-org1e7d05d" class="outline-3">
-<h3 id="org1e7d05d">complete tree</h3>
-<div class="outline-text-3" id="text-org1e7d05d">
+<div id="outline-container-org2a0bee2" class="outline-3">
+<h3 id="org2a0bee2">complete tree</h3>
+<div class="outline-text-3" id="text-org2a0bee2">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-stack" data-id="def-stack">
@@ -1203,9 +1203,9 @@ a <b>complete</b> <a href="/binary_tree.html">binary tree</a> is a binary tree i
 </div>
 </div>
 </div>
-<div id="outline-container-orga1312ce" class="outline-3">
-<h3 id="orga1312ce">almost complete tree</h3>
-<div class="outline-text-3" id="text-orga1312ce">
+<div id="outline-container-org71f0999" class="outline-3">
+<h3 id="org71f0999">almost complete tree</h3>
+<div class="outline-text-3" id="text-org71f0999">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-stack" data-id="def-stack">
@@ -1356,38 +1356,38 @@ the number of nodes at height <?xml version='1.0' encoding='UTF-8'?>
 </div>
 </div>
 </div>
-<div id="outline-container-org9901c7c" class="outline-3">
-<h3 id="org9901c7c">tree breadth-first search</h3>
-<div class="outline-text-3" id="text-org9901c7c">
+<div id="outline-container-org2535e3f" class="outline-3">
+<h3 id="org2535e3f">tree breadth-first search</h3>
+<div class="outline-text-3" id="text-org2535e3f">
 <p>
 <b>breadth-first search</b> or <b>BFS</b> for short, explores each level before moving onto the next one
 extra memory, usually a <a href="/queue.html">queue</a>, is needed to keep track of the child nodes that were encountered but not yet explored.
 </p>
 
 
-<div id="orgeb3b3d6" class="figure">
+<div id="orgb37e7f2" class="figure">
 <p><img src="/Animated_BFS.gif" />
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org6461f74" class="outline-3">
-<h3 id="org6461f74">tree depth-first search</h3>
-<div class="outline-text-3" id="text-org6461f74">
+<div id="outline-container-org7e9fd63" class="outline-3">
+<h3 id="org7e9fd63">tree depth-first search</h3>
+<div class="outline-text-3" id="text-org7e9fd63">
 <p>
 <b>depth-first search</b> or <b>DFS</b> for short, consists of exploring branches as far as possible before <a href="/tree_data_structure.html">backtracking</a> and exploring branches of other nodes
 this is the algorithm we'll be using because its simpler
 </p>
 
 
-<div id="org43d36bb" class="figure">
+<div id="org77f53da" class="figure">
 <p><img src="/bfs_dfs.gif" />
 </p>
 </div>
 </div>
-<div id="outline-container-org81ae14b" class="outline-4">
-<h4 id="org81ae14b">inorder traversal</h4>
-<div class="outline-text-4" id="text-org81ae14b">
+<div id="outline-container-orgb752bba" class="outline-4">
+<h4 id="orgb752bba">inorder traversal</h4>
+<div class="outline-text-4" id="text-orgb752bba">
 <p>
 left, parent, right
 </p>
@@ -1409,9 +1409,9 @@ note that before printing a child will always call <code>inorder(left-child)</co
 </div>
 </div>
 </div>
-<div id="outline-container-orge821d16" class="outline-4">
-<h4 id="orge821d16">preorder traversal</h4>
-<div class="outline-text-4" id="text-orge821d16">
+<div id="outline-container-org7c8054a" class="outline-4">
+<h4 id="org7c8054a">preorder traversal</h4>
+<div class="outline-text-4" id="text-org7c8054a">
 <p>
 parent, left, right
 </p>
@@ -1424,9 +1424,9 @@ parent, left, right
 </div>
 </div>
 </div>
-<div id="outline-container-orgde7a9fa" class="outline-4">
-<h4 id="orgde7a9fa">postorder traversal</h4>
-<div class="outline-text-4" id="text-orgde7a9fa">
+<div id="outline-container-orgf917bbf" class="outline-4">
+<h4 id="orgf917bbf">postorder traversal</h4>
+<div class="outline-text-4" id="text-orgf917bbf">
 <p>
 left, right, parent
 </p>
@@ -1440,13 +1440,13 @@ left, right, parent
 </div>
 </div>
 </div>
-<div id="outline-container-orgad294cf" class="outline-3">
-<h3 id="orgad294cf">algorithms</h3>
-<div class="outline-text-3" id="text-orgad294cf">
+<div id="outline-container-org5250535" class="outline-3">
+<h3 id="org5250535">algorithms</h3>
+<div class="outline-text-3" id="text-org5250535">
 </div>
-<div id="outline-container-orgaac9bac" class="outline-4">
-<h4 id="orgaac9bac">reverse inorder</h4>
-<div class="outline-text-4" id="text-orgaac9bac">
+<div id="outline-container-org3ac7aa8" class="outline-4">
+<h4 id="org3ac7aa8">reverse inorder</h4>
+<div class="outline-text-4" id="text-org3ac7aa8">
 <p>
 given a <a href="/binary_tree.html">binary tree</a>, write a function to reverse its <a href="/tree_data_structure.html">inorder traversal</a> output
 </p>
@@ -1546,9 +1546,9 @@ example usage:
 </div>
 </div>
 </div>
-<div id="outline-container-orgcd3df6e" class="outline-3">
-<h3 id="orgcd3df6e">binary tree</h3>
-<div class="outline-text-3" id="text-orgcd3df6e">
+<div id="outline-container-org88a0ec4" class="outline-3">
+<h3 id="org88a0ec4">binary tree</h3>
+<div class="outline-text-3" id="text-org88a0ec4">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-stack" data-id="def-stack">
@@ -1558,9 +1558,9 @@ a <b>binary tree</b> is a <a href="/concrete_data_type.html">concrete data type<
 
 </div>
 </div>
-<div id="outline-container-orgb891c2f" class="outline-4">
-<h4 id="orgb891c2f">BinaryTreeNode</h4>
-<div class="outline-text-4" id="text-orgb891c2f">
+<div id="outline-container-org6b6f655" class="outline-4">
+<h4 id="org6b6f655">BinaryTreeNode</h4>
+<div class="outline-text-4" id="text-org6b6f655">
 <div class="org-src-container" data-language="C++">
 <pre class="src src-C++" id="BinaryTreeNode"><span style="color: #65c5a8;">#include</span> <span style="color: #deb07a;">&lt;</span><span style="color: #f3a0a0;">cstdlib</span><span style="color: #deb07a;">&gt;</span>
 
@@ -1781,9 +1781,9 @@ a <b>binary tree</b> is a <a href="/concrete_data_type.html">concrete data type<
 </div>
 </div>
 </div>
-<div id="outline-container-orged2098e" class="outline-4">
-<h4 id="orged2098e">BinaryTree</h4>
-<div class="outline-text-4" id="text-orged2098e">
+<div id="outline-container-org0f38f0b" class="outline-4">
+<h4 id="org0f38f0b">BinaryTree</h4>
+<div class="outline-text-4" id="text-org0f38f0b">
 <div class="org-src-container" data-language="C++">
 <pre class="src src-C++" id="BinaryTree">
 
@@ -1964,9 +1964,9 @@ example usage:
 </div>
 </div>
 </div>
-<div id="outline-container-org6e18af8" class="outline-4">
-<h4 id="org6e18af8">algorithms</h4>
-<div class="outline-text-4" id="text-org6e18af8">
+<div id="outline-container-org44239ff" class="outline-4">
+<h4 id="org44239ff">algorithms</h4>
+<div class="outline-text-4" id="text-org44239ff">
 <div test="test" class="fancy-block question" data-before="&lt;p&gt;
 question: &lt;/p&gt;
 " id="def-stack" data-id="def-stack">
@@ -2207,13 +2207,13 @@ this code runs in <?xml version='1.0' encoding='UTF-8'?>
 </div>
 </div>
 </div>
-<div id="outline-container-org1e3fb2e" class="outline-3">
-<h3 id="org1e3fb2e">binary search tree</h3>
-<div class="outline-text-3" id="text-org1e3fb2e">
+<div id="outline-container-orgbe98fe1" class="outline-3">
+<h3 id="orgbe98fe1">binary search tree</h3>
+<div class="outline-text-3" id="text-orgbe98fe1">
 </div>
-<div id="outline-container-orgf117c98" class="outline-4">
-<h4 id="orgf117c98">BinarySearchTree</h4>
-<div class="outline-text-4" id="text-orgf117c98">
+<div id="outline-container-org0b5d0ad" class="outline-4">
+<h4 id="org0b5d0ad">BinarySearchTree</h4>
+<div class="outline-text-4" id="text-org0b5d0ad">
 <div class="org-src-container" data-language="C++">
 <pre class="src src-C++" id="BinarySearchTree">
 
@@ -2522,9 +2522,9 @@ the balance factor of the root is: -1
 </div>
 </div>
 </div>
-<div id="outline-container-orge85a5d5" class="outline-3">
-<h3 id="orge85a5d5">AVL tree</h3>
-<div class="outline-text-3" id="text-orge85a5d5">
+<div id="outline-container-orge9f7082" class="outline-3">
+<h3 id="orge9f7082">AVL tree</h3>
+<div class="outline-text-3" id="text-orge9f7082">
 <p>
 an <b>AVL tree</b> is a <a href="/binary_search_tree.html">binary search tree</a> in which every node <code>x</code> has a <a href="/tree_data_structure.html">balance factor</a> of <?xml version='1.0' encoding='UTF-8'?>
 
@@ -2776,9 +2776,9 @@ let <code>T</code> be an AVL tree with <code>n</code> nodes and height <?xml ver
 
 </div>
 </div>
-<div id="outline-container-org0c92bdb" class="outline-4">
-<h4 id="org0c92bdb">minimal form</h4>
-<div class="outline-text-4" id="text-org0c92bdb">
+<div id="outline-container-org69bb5ab" class="outline-4">
+<h4 id="org69bb5ab">minimal form</h4>
+<div class="outline-text-4" id="text-org69bb5ab">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-stack" data-id="def-stack">
@@ -3069,9 +3069,9 @@ here is a python snippet to find the minimal number of nodes needed for a given 
 </div>
 </div>
 </div>
-<div id="outline-container-org00af76a" class="outline-4">
-<h4 id="org00af76a">problematic node</h4>
-<div class="outline-text-4" id="text-org00af76a">
+<div id="outline-container-orgabea284" class="outline-4">
+<h4 id="orgabea284">problematic node</h4>
+<div class="outline-text-4" id="text-orgabea284">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-stack" data-id="def-stack">
@@ -3095,9 +3095,9 @@ a <b>problematic node</b> is a <a href="/tree_data_structure.html">node</a> whos
 </div>
 </div>
 </div>
-<div id="outline-container-org5a40401" class="outline-4">
-<h4 id="org5a40401">insertion</h4>
-<div class="outline-text-4" id="text-org5a40401">
+<div id="outline-container-org50b9b2f" class="outline-4">
+<h4 id="org50b9b2f">insertion</h4>
+<div class="outline-text-4" id="text-org50b9b2f">
 <p>
 the process of inserting a node to an AVL tree starts with inserting it using the same insertion method we used for a <a href="/binary_search_tree.html">binary search tree</a>, after said insertion we start going up the tree starting at the new node we just inserted and updating the <a href="/tree_data_structure.html">balance factor</a> for every node we encounter as we go
 </p>
@@ -3107,16 +3107,16 @@ if we arrive at problematic node, we apply the proper rotation to rebalance the 
 </p>
 </div>
 </div>
-<div id="outline-container-org1508ac0" class="outline-4">
-<h4 id="org1508ac0">rebalancing</h4>
-<div class="outline-text-4" id="text-org1508ac0">
+<div id="outline-container-org66f6db4" class="outline-4">
+<h4 id="org66f6db4">rebalancing</h4>
+<div class="outline-text-4" id="text-org66f6db4">
 <p>
 during a modifying operation of a <a href="/binary_tree.html">binary tree</a>, a node might become problematic, to restore balance to the tree so that it remains an AVL tree we use rotations
 </p>
 </div>
-<div id="outline-container-org9100e29" class="outline-5">
-<h5 id="org9100e29">rotation</h5>
-<div class="outline-text-5" id="text-org9100e29">
+<div id="outline-container-orgb277212" class="outline-5">
+<h5 id="orgb277212">rotation</h5>
+<div class="outline-text-5" id="text-orgb277212">
 <p>
 to determine which type of <b>rotation</b> we need to use to <b>rebalance</b> a given tree, we go 2 steps from the problematic node towards the newly inserted node which gives us the following 4 cases:
 </p>
@@ -3128,13 +3128,13 @@ to determine which type of <b>rotation</b> we need to use to <b>rebalance</b> a 
 <li>if we go right and then left then the <b>rotation</b> is of type RL</li>
 </ol>
 </div>
-<div id="outline-container-org5cbe118" class="outline-6">
-<h6 id="org5cbe118">simple rotation</h6>
-<div class="outline-text-6" id="text-org5cbe118">
+<div id="outline-container-org043ff52" class="outline-6">
+<h6 id="org043ff52">simple rotation</h6>
+<div class="outline-text-6" id="text-org043ff52">
 </div>
-<div id="outline-container-orgd7acd6f" class="outline-7">
-<h7 id="orgd7acd6f">left left rotation</h7>
-<div class="outline-text-7" id="text-orgd7acd6f">
+<div id="outline-container-org10f1a49" class="outline-7">
+<h7 id="org10f1a49">left left rotation</h7>
+<div class="outline-text-7" id="text-org10f1a49">
 <p>
 let <code>z</code> be the left child of the problematic node and <code>x</code> be the problematic node itself
 </p>
@@ -3145,7 +3145,7 @@ in <b>Left Left</b> rotation we rotate <code>x</code> to the right, such that th
 
 
 
-<div id="org6767c4d" class="figure">
+<div id="orgab46c9d" class="figure">
 <p><img src="/leftleftrotation.gif" />
 </p>
 </div>
@@ -3485,9 +3485,9 @@ and so the original tree would become:
 </div>
 </div>
 </div>
-<div id="outline-container-org2740dd8" class="outline-7">
-<h7 id="org2740dd8">right right rotation</h7>
-<div class="outline-text-7" id="text-org2740dd8">
+<div id="outline-container-org04978b3" class="outline-7">
+<h7 id="org04978b3">right right rotation</h7>
+<div class="outline-text-7" id="text-org04978b3">
 <p>
 this is very similar to Left Left, we first add the node and then if we have a problematic node <code>x</code> and if we took 2 steps to the right, then we use this rotation method
 </p>
@@ -3511,31 +3511,31 @@ this method consists of rotating the <a href="/tree_data_structure.html">subtree
 
 
 
-<div id="org8c6d247" class="figure">
+<div id="orgb36a5ff" class="figure">
 <p><img src="/rightrightrotation.gif" />
 </p>
 </div>
 </div>
 </div>
 </div>
-<div id="outline-container-orga15b13a" class="outline-6">
-<h6 id="orga15b13a">double rotation</h6>
-<div class="outline-text-6" id="text-orga15b13a">
+<div id="outline-container-org2b00964" class="outline-6">
+<h6 id="org2b00964">double rotation</h6>
+<div class="outline-text-6" id="text-org2b00964">
 <p>
 the difference between this and simple rotation is that this method consists of rotating twice as you might've already guessed from the title
 </p>
 </div>
-<div id="outline-container-org20aeeb4" class="outline-7">
-<h7 id="org20aeeb4">left right rotation</h7>
-<div class="outline-text-7" id="text-org20aeeb4">
+<div id="outline-container-org0aef460" class="outline-7">
+<h7 id="org0aef460">left right rotation</h7>
+<div class="outline-text-7" id="text-org0aef460">
 <p>
 this method consists of 2 steps, first is applying an RR rotation over the left child of the problematic node, then applying an LL rotation to the problematic node
 </p>
 </div>
 </div>
-<div id="outline-container-orgef1a2d8" class="outline-7">
-<h7 id="orgef1a2d8">right left rotation</h7>
-<div class="outline-text-7" id="text-orgef1a2d8">
+<div id="outline-container-orgb44c807" class="outline-7">
+<h7 id="orgb44c807">right left rotation</h7>
+<div class="outline-text-7" id="text-orgb44c807">
 <p>
 this method consists of 2 steps, first is applying an LL rotation over the right child of the problematic node, then applying a RR rotation to the problematic node
 </p>
@@ -3544,9 +3544,9 @@ this method consists of 2 steps, first is applying an LL rotation over the right
 </div>
 </div>
 </div>
-<div id="outline-container-org3d31b26" class="outline-4">
-<h4 id="org3d31b26">AVLTree</h4>
-<div class="outline-text-4" id="text-org3d31b26">
+<div id="outline-container-orgab3d340" class="outline-4">
+<h4 id="orgab3d340">AVLTree</h4>
+<div class="outline-text-4" id="text-orgab3d340">
 <div class="org-src-container" data-language="C++">
 <pre class="src src-C++" id="AVLTree">
 <span style="color: #deb07a; font-weight: bold;">template</span> <span style="color: #deb07a;">&lt;</span><span style="color: #deb07a; font-weight: bold;">typename</span> <span style="color: #a9c99f;">T</span><span style="color: #deb07a;">&gt;</span> <span style="color: #deb07a; font-weight: bold;">class</span> <span style="color: #a9c99f;">AVLTree</span> : <span style="color: #deb07a; font-weight: bold;">public</span> <span style="color: #a9c99f;">BinarySearchTree</span><span style="color: #deb07a;">&lt;</span><span style="color: #a9c99f;">T</span><span style="color: #deb07a;">&gt;</span> <span style="color: #deb07a;">{</span>
@@ -3726,9 +3726,9 @@ example:
 </div>
 </div>
 </div>
-<div id="outline-container-org2563f8e" class="outline-3">
-<h3 id="org2563f8e">2-3 tree</h3>
-<div class="outline-text-3" id="text-org2563f8e">
+<div id="outline-container-orgbefe53c" class="outline-3">
+<h3 id="orgbefe53c">2-3 tree</h3>
+<div class="outline-text-3" id="text-orgbefe53c">
 <p>
 a <b>2–3 tree</b> is a <a href="/tree_data_structure.html">tree</a> <a href="/concrete_data_type.html">concrete data type</a> where every <a href="/tree_data_structure.html">internal node</a> is either a 2-node or 3-node
 </p>
@@ -3763,9 +3763,9 @@ keys are always ordered from left to right in ascending order
 
 </div>
 </div>
-<div id="outline-container-orgc5f4d77" class="outline-4">
-<h4 id="orgc5f4d77">2-node</h4>
-<div class="outline-text-4" id="text-orgc5f4d77">
+<div id="outline-container-org521eb77" class="outline-4">
+<h4 id="org521eb77">2-node</h4>
+<div class="outline-text-4" id="text-org521eb77">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-stack" data-id="def-stack">
@@ -3776,9 +3776,9 @@ we say that an <a href="/tree_data_structure.html">internal node</a> is a <b>2-n
 </div>
 </div>
 </div>
-<div id="outline-container-org4b36ba1" class="outline-4">
-<h4 id="org4b36ba1">3-node</h4>
-<div class="outline-text-4" id="text-org4b36ba1">
+<div id="outline-container-orgfd13459" class="outline-4">
+<h4 id="orgfd13459">3-node</h4>
+<div class="outline-text-4" id="text-orgfd13459">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-stack" data-id="def-stack">
@@ -3789,22 +3789,22 @@ we say that an <a href="/tree_data_structure.html">internal node</a> is a <b>3-n
 </div>
 </div>
 </div>
-<div id="outline-container-org1f8703d" class="outline-4">
-<h4 id="org1f8703d">insertion</h4>
-<div class="outline-text-4" id="text-org1f8703d">
+<div id="outline-container-orgbca8640" class="outline-4">
+<h4 id="orgbca8640">insertion</h4>
+<div class="outline-text-4" id="text-orgbca8640">
 <p>
 an important property to keep in mind is that insertion <b>always</b> occurs in one of the <a href="/tree_data_structure.html">leaves</a>
 </p>
 
-<div id="orgc7442d3" class="figure">
+<div id="orgbf9fe44" class="figure">
 <p><img src="/2-3_insertion.jpg" />
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org5e01a2e" class="outline-4">
-<h4 id="org5e01a2e">TwoThreeNode</h4>
-<div class="outline-text-4" id="text-org5e01a2e">
+<div id="outline-container-org831decf" class="outline-4">
+<h4 id="org831decf">TwoThreeNode</h4>
+<div class="outline-text-4" id="text-org831decf">
 <div class="org-src-container" data-language="C++">
 <pre class="src src-C++" id="TwoThreeNode"><span style="color: #deb07a; font-weight: bold;">const</span> <span style="color: #a9c99f;">int</span> <span style="color: #ffaacf;">SIZE</span> = 3;
 
@@ -4063,9 +4063,9 @@ an important property to keep in mind is that insertion <b>always</b> occurs in 
 </div>
 </div>
 </div>
-<div id="outline-container-org7de9e34" class="outline-4">
-<h4 id="org7de9e34">TwoThreeTree</h4>
-<div class="outline-text-4" id="text-org7de9e34">
+<div id="outline-container-orgc97638d" class="outline-4">
+<h4 id="orgc97638d">TwoThreeTree</h4>
+<div class="outline-text-4" id="text-orgc97638d">
 <div class="org-src-container" data-language="C++">
 <pre class="src src-C++" id="TwoThreeTree">
 
@@ -6774,9 +6774,9 @@ root: 40 <?xml version='1.0' encoding='UTF-8'?>
 </div>
 </div>
 </div>
-<div id="outline-container-org08271e9" class="outline-2">
-<h2 id="org08271e9">heap</h2>
-<div class="outline-text-2" id="text-org08271e9">
+<div id="outline-container-org08e2f25" class="outline-2">
+<h2 id="org08e2f25">heap</h2>
+<div class="outline-text-2" id="text-org08e2f25">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-stack" data-id="def-stack">
@@ -6786,9 +6786,9 @@ a <b>heap</b> is an <a href="/abstract_data_type.html">abstract data type</a>
 
 </div>
 </div>
-<div id="outline-container-org0eb342f" class="outline-3">
-<h3 id="org0eb342f">min heap</h3>
-<div class="outline-text-3" id="text-org0eb342f">
+<div id="outline-container-org4cd6a39" class="outline-3">
+<h3 id="org4cd6a39">min heap</h3>
+<div class="outline-text-3" id="text-org4cd6a39">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-stack" data-id="def-stack">
@@ -6799,9 +6799,9 @@ a <b>min heap</b> is a <a href="/heap.html">heap</a> in which each <a href="/tre
 </div>
 </div>
 </div>
-<div id="outline-container-orgac64c8e" class="outline-3">
-<h3 id="orgac64c8e">max heap</h3>
-<div class="outline-text-3" id="text-orgac64c8e">
+<div id="outline-container-org47a61df" class="outline-3">
+<h3 id="org47a61df">max heap</h3>
+<div class="outline-text-3" id="text-org47a61df">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-stack" data-id="def-stack">
@@ -6812,9 +6812,9 @@ a <b>max heap</b> is a <a href="/heap.html">heap</a> in which each node is bigge
 </div>
 </div>
 </div>
-<div id="outline-container-org70de30e" class="outline-3">
-<h3 id="org70de30e">binary heap</h3>
-<div class="outline-text-3" id="text-org70de30e">
+<div id="outline-container-org956f464" class="outline-3">
+<h3 id="org956f464">binary heap</h3>
+<div class="outline-text-3" id="text-org956f464">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-stack" data-id="def-stack">
@@ -6847,9 +6847,9 @@ in a heap the keys arent necessarily sorted like in <a href="/binary_search_tree
 
 </div>
 </div>
-<div id="outline-container-org975a921" class="outline-4">
-<h4 id="org975a921">bubbling</h4>
-<div class="outline-text-4" id="text-org975a921">
+<div id="outline-container-orge7c89ee" class="outline-4">
+<h4 id="orge7c89ee">bubbling</h4>
+<div class="outline-text-4" id="text-orge7c89ee">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-stack" data-id="def-stack">
@@ -6859,17 +6859,17 @@ moving a <a href="/tree_data_structure.html">node</a> up/down a heap to get it t
 
 </div>
 </div>
-<div id="outline-container-org3741fc6" class="outline-5">
-<h5 id="org3741fc6">bubble up</h5>
-<div class="outline-text-5" id="text-org3741fc6">
+<div id="outline-container-orgfd42bbe" class="outline-5">
+<h5 id="orgfd42bbe">bubble up</h5>
+<div class="outline-text-5" id="text-orgfd42bbe">
 <p>
 <a href="/binary_heap.html">bubbling</a> a node <b>upwards</b> consists of recursively switching it with its parent until its parent is bigger/smaller than it (depending on whether we're using a <a href="/heap.html">min heap</a> or a <a href="/heap.html">max heap</a>)
 </p>
 </div>
 </div>
-<div id="outline-container-org73f0d41" class="outline-5">
-<h5 id="org73f0d41">bubble down</h5>
-<div class="outline-text-5" id="text-org73f0d41">
+<div id="outline-container-org9c8297f" class="outline-5">
+<h5 id="org9c8297f">bubble down</h5>
+<div class="outline-text-5" id="text-org9c8297f">
 <p>
 <a href="/binary_heap.html">bubbling</a> a node <b>downards</b> consists of recursively switching it with one of its children until it gets to its correct position
 this is a pseudocode for the <a href="/algorithm.html">algorithm</a>:
@@ -6924,9 +6924,9 @@ this is a pseudocode for the <a href="/algorithm.html">algorithm</a>:
 </div>
 </div>
 </div>
-<div id="outline-container-org1ea1257" class="outline-4">
-<h4 id="org1ea1257">insertion</h4>
-<div class="outline-text-4" id="text-org1ea1257">
+<div id="outline-container-org434388f" class="outline-4">
+<h4 id="org434388f">insertion</h4>
+<div class="outline-text-4" id="text-org434388f">
 <p>
 inserting a new <a href="/tree_data_structure.html">node</a> to the heap consists of adding it as a <a href="/tree_data_structure.html">leaf</a> such that the heap remains <a href="/tree_data_structure.html">almost complete</a> and <a href="/binary_heap.html">bubbling up</a> the newly added node so that the keys in the tree remain sorted
 </p>
@@ -6936,17 +6936,17 @@ if the heap is in <a href="/binary_heap.html">array representation</a>, we inser
 </p>
 </div>
 </div>
-<div id="outline-container-org409281c" class="outline-4">
-<h4 id="org409281c">deletion</h4>
-<div class="outline-text-4" id="text-org409281c">
+<div id="outline-container-org9148bad" class="outline-4">
+<h4 id="org9148bad">deletion</h4>
+<div class="outline-text-4" id="text-org9148bad">
 <p>
 deletion of a node consists of replacing the rightmost leaf with it and bubble it <a href="/binary_heap.html">downwards</a> if its smaller than one of its children or <a href="/binary_heap.html">upwards</a> if its bigger than its parent
 </p>
 </div>
 </div>
-<div id="outline-container-org4f899c0" class="outline-4">
-<h4 id="org4f899c0">binary heap array representation</h4>
-<div class="outline-text-4" id="text-org4f899c0">
+<div id="outline-container-org98948c2" class="outline-4">
+<h4 id="org98948c2">binary heap array representation</h4>
+<div class="outline-text-4" id="text-org98948c2">
 <div test="test" class="fancy-block note" data-before="&lt;p&gt;
 note: &lt;/p&gt;
 " id="def-stack" data-id="def-stack">
@@ -7189,9 +7189,9 @@ the array should hold 2 values, <code>array-size</code>, which is the size of th
 </p>
 </div>
 </div>
-<div id="outline-container-org0eb6875" class="outline-4">
-<h4 id="org0eb6875">construction of binary heap from array</h4>
-<div class="outline-text-4" id="text-org0eb6875">
+<div id="outline-container-org24ac0e7" class="outline-4">
+<h4 id="org24ac0e7">construction of binary heap from array</h4>
+<div class="outline-text-4" id="text-org24ac0e7">
 <p>
 given some random array, e.g. <code>A=[10,20,30,40,50,70,35,60,80]</code>, we need to reorganize its elements such that it <a href="/binary_heap.html">represents a binary heap</a>
 </p>
@@ -7440,13 +7440,13 @@ to be continued
 </div>
 </div>
 </div>
-<div id="outline-container-org0a1875d" class="outline-4">
-<h4 id="org0a1875d">binary heap algorithms</h4>
-<div class="outline-text-4" id="text-org0a1875d">
+<div id="outline-container-org7f00604" class="outline-4">
+<h4 id="org7f00604">binary heap algorithms</h4>
+<div class="outline-text-4" id="text-org7f00604">
 </div>
-<div id="outline-container-org51857e4" class="outline-5">
-<h5 id="org51857e4">biggest k nodes</h5>
-<div class="outline-text-5" id="text-org51857e4">
+<div id="outline-container-orgd49f2e5" class="outline-5">
+<h5 id="orgd49f2e5">biggest k nodes</h5>
+<div class="outline-text-5" id="text-orgd49f2e5">
 <p>
 initial inefficient solution:
 </p>
@@ -8017,9 +8017,9 @@ we suggest another algorithm that is more efficient:
 </div>
 </div>
 </div>
-<div id="outline-container-orge0b7792" class="outline-4">
-<h4 id="orge0b7792">BinaryHeap</h4>
-<div class="outline-text-4" id="text-orge0b7792">
+<div id="outline-container-orgea02a96" class="outline-4">
+<h4 id="orgea02a96">BinaryHeap</h4>
+<div class="outline-text-4" id="text-orgea02a96">
 <div test="test" class="fancy-block note" data-before="&lt;p&gt;
 note: &lt;/p&gt;
 " id="def-stack" data-id="def-stack">
@@ -8671,9 +8671,9 @@ inserting 9
 </div>
 </div>
 </div>
-<div id="outline-container-orge20968e" class="outline-4">
-<h4 id="orge20968e">check if array represents a binary heap</h4>
-<div class="outline-text-4" id="text-orge20968e">
+<div id="outline-container-org168886d" class="outline-4">
+<h4 id="org168886d">check if array represents a binary heap</h4>
+<div class="outline-text-4" id="text-org168886d">
 <div class="org-src-container" data-language="C++">
 <pre class="src src-C++"><span style="color: #65c5a8;">#include</span> <span style="color: #deb07a;">&lt;</span><span style="color: #f3a0a0;">iostream</span><span style="color: #deb07a;">&gt;</span>
 
@@ -8729,13 +8729,13 @@ inserting 9
 </div>
 </div>
 </div>
-<div id="outline-container-org8a56ec1" class="outline-3">
-<h3 id="org8a56ec1">binomial heap</h3>
-<div class="outline-text-3" id="text-org8a56ec1">
+<div id="outline-container-org47d2c20" class="outline-3">
+<h3 id="org47d2c20">binomial heap</h3>
+<div class="outline-text-3" id="text-org47d2c20">
 </div>
-<div id="outline-container-org711f894" class="outline-4">
-<h4 id="org711f894">BinomialHeapNode</h4>
-<div class="outline-text-4" id="text-org711f894">
+<div id="outline-container-orgd44f1ed" class="outline-4">
+<h4 id="orgd44f1ed">BinomialHeapNode</h4>
+<div class="outline-text-4" id="text-orgd44f1ed">
 <div class="org-src-container" data-language="C++">
 <pre class="src src-C++" id="BinomialHeapNode">
 
@@ -8781,9 +8781,9 @@ inserting 9
 </div>
 </div>
 </div>
-<div id="outline-container-org1c434c9" class="outline-4">
-<h4 id="org1c434c9">BinomialHeap</h4>
-<div class="outline-text-4" id="text-org1c434c9">
+<div id="outline-container-org700a6b4" class="outline-4">
+<h4 id="org700a6b4">BinomialHeap</h4>
+<div class="outline-text-4" id="text-org700a6b4">
 <div class="org-src-container" data-language="C++">
 <pre class="src src-C++" id="BinomialHeap">
 
@@ -9911,9 +9911,9 @@ inserting 14
 </div>
 </div>
 </div>
-<div id="outline-container-org0f8fa81" class="outline-2">
-<h2 id="org0f8fa81">hash table</h2>
-<div class="outline-text-2" id="text-org0f8fa81">
+<div id="outline-container-orgf145505" class="outline-2">
+<h2 id="orgf145505">hash table</h2>
+<div class="outline-text-2" id="text-orgf145505">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-stack" data-id="def-stack">
@@ -9934,9 +9934,9 @@ it contains the following functions:
 </div>
 </div>
 </div>
-<div id="outline-container-org2f16bf3" class="outline-2">
-<h2 id="org2f16bf3">theorems</h2>
-<div class="outline-text-2" id="text-org2f16bf3">
+<div id="outline-container-org918a8b7" class="outline-2">
+<h2 id="org918a8b7">theorems</h2>
+<div class="outline-text-2" id="text-org918a8b7">
 <div test="test" class="fancy-block lemma" data-before="&lt;p&gt;
 lemma: &lt;/p&gt;
 " id="def-stack" data-id="def-stack">
@@ -11085,9 +11085,9 @@ for every almost complete tree with <?xml version='1.0' encoding='UTF-8'?>
 </div>
 </div>
 </div>
-<div id="outline-container-org5a6196b" class="outline-2">
-<h2 id="org5a6196b">average time complexity table</h2>
-<div class="outline-text-2" id="text-org5a6196b">
+<div id="outline-container-org5f5662c" class="outline-2">
+<h2 id="org5f5662c">average time complexity table</h2>
+<div class="outline-text-2" id="text-org5f5662c">
 <div test="test" class="fancy-block note" data-before="&lt;p&gt;
 note: &lt;/p&gt;
 " id="def-stack" data-id="def-stack">

@@ -57,9 +57,9 @@ characteristic: &lt;/p&gt;
 </p>
 
 </div>
-<div id="outline-container-org7a590a7" class="outline-2">
-<h2 id="org7a590a7">binomial tree</h2>
-<div class="outline-text-2" id="text-org7a590a7">
+<div id="outline-container-org1d6e1af" class="outline-2">
+<h2 id="org1d6e1af">binomial tree</h2>
+<div class="outline-text-2" id="text-org1d6e1af">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-link-list" data-id="def-link-list">
@@ -494,9 +494,9 @@ a binomial tree of order <?xml version='1.0' encoding='UTF-8'?>
 </div>
 </div>
 </div>
-<div id="outline-container-orgbde968e" class="outline-2">
-<h2 id="orgbde968e">theoretical implementation</h2>
-<div class="outline-text-2" id="text-orgbde968e">
+<div id="outline-container-orga09eaec" class="outline-2">
+<h2 id="orga09eaec">theoretical implementation</h2>
+<div class="outline-text-2" id="text-orga09eaec">
 <p>
 because no operation requires random access to the root nodes of the binomial trees, the roots of the binomial trees can be stored in a <a href="/linked_list.html">linked list</a>, ordered by increasing order of the tree. because the number of children for each node is variable, it does not work well for each node to have separate links to each of its children, as would be common in a <a href="/binary_tree.html">binary tree</a>; instead, it is possible to implement this tree using links from each node to its highest-order child in the tree, and to its sibling of the next smaller order than it. these sibling pointers can be interpreted as the next pointers in a linked list of the children of each node, but with the opposite order from the linked list of roots: from largest to smallest order, rather than vice versa. this representation allows two trees of the same order to be linked together, making a tree of the next larger order, in constant time.
 </p>
@@ -538,9 +538,9 @@ the roots of the binomial trees within a binomial heap are organized in a linked
 a given binomial heap <code>h</code> is accessed by the field <code>head(h)</code>, which is simply a pointer to the first root in the root list of h. if binomial heap H has no elements, then <code>head[h] = nil</code>.
 </p>
 </div>
-<div id="outline-container-org8a4073d" class="outline-3">
-<h3 id="org8a4073d">binomial heap creation</h3>
-<div class="outline-text-3" id="text-org8a4073d">
+<div id="outline-container-org30c757c" class="outline-3">
+<h3 id="org30c757c">binomial heap creation</h3>
+<div class="outline-text-3" id="text-org30c757c">
 <p>
 to make an empty binomial heap, the <code>MAKE-BINOMIAL-HEAP</code> procedure simply allocates and returns an object <code>h</code>, where <code>head[h] = nil</code>. the running time is <?xml version='1.0' encoding='UTF-8'?>
 
@@ -563,9 +563,9 @@ to make an empty binomial heap, the <code>MAKE-BINOMIAL-HEAP</code> procedure si
 </p>
 </div>
 </div>
-<div id="outline-container-orgc1568ca" class="outline-3">
-<h3 id="orgc1568ca">binomial heap union</h3>
-<div class="outline-text-3" id="text-orgc1568ca">
+<div id="outline-container-orgac40c7d" class="outline-3">
+<h3 id="orgac40c7d">binomial heap union</h3>
+<div class="outline-text-3" id="text-orgac40c7d">
 <p>
 the operation of uniting two binomial heaps is used as a subroutine by most of the remaining operations. merging of binomial trees is done by comparing the keys at the roots of two trees, and the root node with the larger key will become the child of the root with the smaller key. the time complexity for finding a union is <?xml version='1.0' encoding='UTF-8'?>
 
@@ -668,9 +668,9 @@ each binomial tree's traversal during merge only involves roots, hence making th
 </p>
 </div>
 </div>
-<div id="outline-container-org68d31b7" class="outline-3">
-<h3 id="org68d31b7">binomial heap insert</h3>
-<div class="outline-text-3" id="text-org68d31b7">
+<div id="outline-container-org8563547" class="outline-3">
+<h3 id="org8563547">binomial heap insert</h3>
+<div class="outline-text-3" id="text-org8563547">
 <p>
 inserting a new element to a heap can be done by creating a new heap containing only this element and then <a href="/binomial_heap.html">merging</a> it with the original heap. because of the merge, a single insertion takes time <?xml version='1.0' encoding='UTF-8'?>
 
@@ -766,8 +766,8 @@ a variant of the binomial heap, the skew binomial heap, achieves constant worst 
 </p>
 </div>
 </div>
-<div id="outline-container-orgb1d347a" class="outline-3">
-<h3 id="orgb1d347a">binomial heap delete</h3>
+<div id="outline-container-org6ae817d" class="outline-3">
+<h3 id="org6ae817d">binomial heap delete</h3>
 </div>
 </div>
 </div>
