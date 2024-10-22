@@ -41,9 +41,9 @@
 (Peter Norvig, Stuart J. Russell, 2020 section 7.5.4)
 a family of <a href="/inference_algorithm.html">inference algorithm</a>s
 </p>
-<div id="outline-container-orgd27c762" class="outline-2">
-<h2 id="orgd27c762">propositional logic chaining</h2>
-<div class="outline-text-2" id="text-orgd27c762">
+<div id="outline-container-orgfd19651" class="outline-2">
+<h2 id="orgfd19651">propositional logic chaining</h2>
+<div class="outline-text-2" id="text-orgfd19651">
 <p>
 the forward-chaining algorithm <?xml version='1.0' encoding='UTF-8'?>
 
@@ -303,7 +303,7 @@ in <?xml version='1.0' encoding='UTF-8'?>
 </svg>) are set, and inference propagates up the graph as far as possible. wherever a conjunction appears, the propagation waits until all the conjuncts are known before proceeding.
 </p>
 
-<div id="org36b4e0b" class="figure">
+<div id="org1f4a8bc" class="figure">
 <p><img src="/fig1.png" />
 </p>
 </div>
@@ -1102,9 +1102,9 @@ the <a href="/backward_chaining.html">backward chaining</a> algorithm, as its na
 </p>
 </div>
 </div>
-<div id="outline-container-org3cd6d85" class="outline-2">
-<h2 id="org3cd6d85">first-order logic chaining</h2>
-<div class="outline-text-2" id="text-org3cd6d85">
+<div id="outline-container-org23572e3" class="outline-2">
+<h2 id="org23572e3">first-order logic chaining</h2>
+<div class="outline-text-2" id="text-org23572e3">
 <p>
 <a href="/forward_chaining.html#fig-forward-chaining-3">fig-forward-chaining-3</a> shows a simple forward chaining inference algorithm for first-order logic. starting from the known facts, it triggers all the rules whose premises are satisfied, adding their conclusions to the known facts. the process repeats until the query is answered (assuming that just one answer is required) or no new facts are added. notice that a fact is not "new" if it is just a renaming of a known fact—-a sentence is a renaming of another if they are identical except for the names of the variables. for example, <?xml version='1.0' encoding='UTF-8'?>
 
@@ -2772,7 +2772,7 @@ we use this crime problem to illustrate <?xml version='1.0' encoding='UTF-8'?>
 </svg> is added.</li>
 </ul>
 
-<div id="org6b8861b" class="figure">
+<div id="orgfd86e04" class="figure">
 <p><img src="/fig4.png" />
 </p>
 </div>
