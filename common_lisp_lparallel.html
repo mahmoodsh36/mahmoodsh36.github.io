@@ -6,7 +6,18 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>common lisp lparallel</title><!-- lambda icon, frail attempt -->
+<title>common lisp lparallel</title><!-- for google analytics -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QNNF19VZGH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QNNF19VZGH');
+</script>
+
+<!-- lambda icon, frail attempt -->
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22100%22 color=%22red%22>λ</text></svg>">
 <!-- not-so-awesome awesome font -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -184,9 +195,9 @@ note that a kernel will not be garbage collected until <code>end-kernel</code> i
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span>lparallel:end-kernel<span style="color: #deb07a;">)</span>
 </pre>
 </div>
-<div id="outline-container-org2a6fc77" class="outline-2">
-<h2 id="org2a6fc77">plet</h2>
-<div class="outline-text-2" id="text-org2a6fc77">
+<div id="outline-container-org2672589" class="outline-2">
+<h2 id="org2672589">plet</h2>
+<div class="outline-text-2" id="text-org2672589">
 <p>
 plet might be the simplest construct that lparallel offers for asynchronous computation, consider the following example:
 </p>
@@ -224,9 +235,9 @@ the next sexp after <code>plet</code> doesnt run until <code>plet</code> is done
 </p>
 </div>
 </div>
-<div id="outline-container-org3a68ec7" class="outline-2">
-<h2 id="org3a68ec7">promise</h2>
-<div class="outline-text-2" id="text-org3a68ec7">
+<div id="outline-container-orgf28a1de" class="outline-2">
+<h2 id="orgf28a1de">promise</h2>
+<div class="outline-text-2" id="text-orgf28a1de">
 <p>
 promises and futures are also useful
 </p>

@@ -6,7 +6,18 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>conv gan with pytorch</title><!-- lambda icon, frail attempt -->
+<title>conv gan with pytorch</title><!-- for google analytics -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QNNF19VZGH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QNNF19VZGH');
+</script>
+
+<!-- lambda icon, frail attempt -->
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22100%22 color=%22red%22>λ</text></svg>">
 <!-- not-so-awesome awesome font -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -45,9 +56,9 @@ some information was quoted from <a href="https://machinelearningmastery.com/how
 </p>
 
 </div>
-<div id="outline-container-org74dc6e1" class="outline-2">
-<h2 id="org74dc6e1">essential packages</h2>
-<div class="outline-text-2" id="text-org74dc6e1">
+<div id="outline-container-org75391e6" class="outline-2">
+<h2 id="org75391e6">essential packages</h2>
+<div class="outline-text-2" id="text-org75391e6">
 <p>
 we need to import some essential packages:
 </p>
@@ -74,9 +85,9 @@ here, if the machine we're using has a cuda-supported gpu available, we use that
 </div>
 </div>
 </div>
-<div id="outline-container-org3ab5b04" class="outline-2">
-<h2 id="org3ab5b04">load the data</h2>
-<div class="outline-text-2" id="text-org3ab5b04">
+<div id="outline-container-org2fb63ef" class="outline-2">
+<h2 id="org2fb63ef">load the data</h2>
+<div class="outline-text-2" id="text-org2fb63ef">
 <p>
 we start by loading the mnist dataset (the 28x28 images of hand-written digits), we use the <code>torchvision</code> package from <code>pypi</code> which provides various datasets for <a href="/machine_learning.html">machine learning</a>
 </p>
@@ -147,15 +158,15 @@ gen_images_img<span style="color: #deb07a;">(</span>train_x<span style="color: #
 
 
 
-<div id="orge8632fc" class="figure">
+<div id="orgbe86402" class="figure">
 <p><img src="/zuBb2Oa.png" />
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org445313d" class="outline-2">
-<h2 id="org445313d">discriminator</h2>
-<div class="outline-text-2" id="text-org445313d">
+<div id="outline-container-orgf3ec171" class="outline-2">
+<h2 id="orgf3ec171">discriminator</h2>
+<div class="outline-text-2" id="text-orgf3ec171">
 <p>
 the discriminator model must take a sample image from our dataset as input and output a classification, a prediction as to whether the sample is real or fake. or perhaps the likelihood of the sample being real, which means the discriminator does <a href="/boolean_classification.html">binary classification</a>.
 </p>
@@ -223,7 +234,7 @@ summary<span style="color: #deb07a;">(</span>Discriminator<span style="color: #f
 </div>
 
 
-<pre class="example" id="orga7080ca">
+<pre class="example" id="org7d40923">
 ----------------------------------------------------------------
         Layer (type)               Output Shape         Param #
 ================================================================
@@ -323,9 +334,9 @@ before: torch.Size([60000, 28, 28])
 after: torch.Size([60000, 1, 28, 28])
 </pre>
 </div>
-<div id="outline-container-orgfe86bc2" class="outline-3">
-<h3 id="orgfe86bc2">training the discriminator</h3>
-<div class="outline-text-3" id="text-orgfe86bc2">
+<div id="outline-container-org1f410ad" class="outline-3">
+<h3 id="org1f410ad">training the discriminator</h3>
+<div class="outline-text-3" id="text-org1f410ad">
 <p>
 we could systematically enumerate all samples in the training dataset, and that is a good approach, but good training via <a href="/stochastic_gradient_descent.html">stochastic gradient descent</a> requires that the training dataset be shuffled prior to each epoch. a simpler approach is to select random samples of images from the training dataset.
 </p>
@@ -452,7 +463,7 @@ f
 
 
 
-<div id="org3112425" class="figure">
+<div id="org9b00ba1" class="figure">
 <p><img src="/ar1T72O.svg" />
 </p>
 </div>
@@ -464,9 +475,9 @@ as we can see, the loss gradually declines which means the discriminator (theore
 </div>
 </div>
 </div>
-<div id="outline-container-org5e69398" class="outline-2">
-<h2 id="org5e69398">generator</h2>
-<div class="outline-text-2" id="text-org5e69398">
+<div id="outline-container-org56e1fdf" class="outline-2">
+<h2 id="org56e1fdf">generator</h2>
+<div class="outline-text-2" id="text-org56e1fdf">
 <p>
 the generator model is responsible for creating new, fake but plausible images of handwritten digits. it does so by taking a point from the <a href="/latent_space.html">latent space</a> as input and outputting a tensor representing a grayscale image.
 </p>
@@ -551,7 +562,7 @@ summary<span style="color: #deb07a;">(</span>Generator<span style="color: #ffaac
 </div>
 
 
-<pre class="example" id="orgb3f8cc7">
+<pre class="example" id="orgff2dc6d">
 ----------------------------------------------------------------
         Layer (type)               Output Shape         Param #
 ================================================================
@@ -611,14 +622,14 @@ gen_images_img<span style="color: #deb07a;">(</span>X.reshape<span style="color:
 
 
 
-<div id="org08a30f7" class="figure">
+<div id="org03bb3ec" class="figure">
 <p><img src="/dUD33Ha.png" />
 </p>
 </div>
 </div>
-<div id="outline-container-orgc5ad5ad" class="outline-3">
-<h3 id="orgc5ad5ad">training the generator</h3>
-<div class="outline-text-3" id="text-orgc5ad5ad">
+<div id="outline-container-orgd30d70e" class="outline-3">
+<h3 id="orgd30d70e">training the generator</h3>
+<div class="outline-text-3" id="text-orgd30d70e">
 <p>
 to train the generator, we need to attach it to the discriminator in a sequential manner, such that the output of the generator would be forwarded to the discriminator for classification, the discriminator would determine whether the data generated by the generator passes as a real image. this is why the training of disciminator beforehand to classify real data from fake ones is cruical, otherwise the generator wouldnt learn (this is one approach, another is described later).
 </p>
@@ -705,7 +716,7 @@ f
 
 
 
-<div id="org0fe2936" class="figure">
+<div id="orgea9f22c" class="figure">
 <p><img src="/YMD1rgW.png" />
 </p>
 </div>
@@ -873,9 +884,9 @@ but the results are interesting, even after the first epoch, we can see that the
 </div>
 </div>
 </div>
-<div id="outline-container-orgcfa4209" class="outline-2">
-<h2 id="orgcfa4209">performance evaluation</h2>
-<div class="outline-text-2" id="text-orgcfa4209">
+<div id="outline-container-org85d0bad" class="outline-2">
+<h2 id="org85d0bad">performance evaluation</h2>
+<div class="outline-text-2" id="text-org85d0bad">
 <p>
 generally, there are no objective ways to evaluate the performance of a GAN model. we cannot calculate this objective error score for generated images. it might be possible in the case of MNIST images because the images are so well constrained, but in general, it is not possible (yet).
 </p>
@@ -885,9 +896,9 @@ instead, images must be subjectively evaluated for quality by a human agent. thi
 </p>
 </div>
 </div>
-<div id="outline-container-orgedc0a68" class="outline-2">
-<h2 id="orgedc0a68">latent output space visualization</h2>
-<div class="outline-text-2" id="text-orgedc0a68">
+<div id="outline-container-org6a651b8" class="outline-2">
+<h2 id="org6a651b8">latent output space visualization</h2>
+<div class="outline-text-2" id="text-org6a651b8">
 <p>
 while we cant visualize dimensions higher than 3d, and while computer screens are 2d, we can still try to explore higher dimensions by "navigating" them and projecting the results. by navigation i mean choosing an axis and "hovering" over its possible values while holding the other variables constant, to see how the changes to the variable that corresponds to the axis we chose affect the space we project.
 </p>
