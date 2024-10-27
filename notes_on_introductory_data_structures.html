@@ -6,7 +6,18 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>notes on introductory data structures</title><!-- lambda icon, frail attempt -->
+<title>notes on introductory data structures</title><!-- for google analytics -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QNNF19VZGH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QNNF19VZGH');
+</script>
+
+<!-- lambda icon, frail attempt -->
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22100%22 color=%22red%22>λ</text></svg>">
 <!-- not-so-awesome awesome font -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -71,9 +82,9 @@ for example, if <code>x</code> is a person, <code>key(x)</code> could be the per
 </div>
 
 </div>
-<div id="outline-container-org7e5a805" class="outline-2">
-<h2 id="org7e5a805">KeyValue</h2>
-<div class="outline-text-2" id="text-org7e5a805">
+<div id="outline-container-orgfd43e25" class="outline-2">
+<h2 id="orgfd43e25">KeyValue</h2>
+<div class="outline-text-2" id="text-orgfd43e25">
 <p>
 a helper class that represents a key-value/pair relation, used as a building block for many data structures
 </p>
@@ -112,9 +123,9 @@ a helper class that represents a key-value/pair relation, used as a building blo
 </div>
 </div>
 </div>
-<div id="outline-container-org6f04335" class="outline-2">
-<h2 id="org6f04335">lists</h2>
-<div class="outline-text-2" id="text-org6f04335">
+<div id="outline-container-org3d2ce28" class="outline-2">
+<h2 id="org3d2ce28">lists</h2>
+<div class="outline-text-2" id="text-org3d2ce28">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: list&lt;/p&gt;
 " id="def-list" data-id="def-list">
@@ -128,9 +139,9 @@ in lists, ordering matters, and duplicate items may be allowed, unlike in <a hre
 
 </div>
 </div>
-<div id="outline-container-org21cb1dc" class="outline-3">
-<h3 id="org21cb1dc">linked list</h3>
-<div class="outline-text-3" id="text-org21cb1dc">
+<div id="outline-container-org8ba7895" class="outline-3">
+<h3 id="org8ba7895">linked list</h3>
+<div class="outline-text-3" id="text-org8ba7895">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: linked list&lt;/p&gt;
 " id="def-link-list" data-id="def-link-list">
@@ -140,9 +151,9 @@ a <b>linked list</b> is a <a href="/concrete_data_type.html">concrete data type<
 
 </div>
 </div>
-<div id="outline-container-orgb3fb7bd" class="outline-4">
-<h4 id="orgb3fb7bd">characteristics</h4>
-<div class="outline-text-4" id="text-orgb3fb7bd">
+<div id="outline-container-orgf2a61a5" class="outline-4">
+<h4 id="orgf2a61a5">characteristics</h4>
+<div class="outline-text-4" id="text-orgf2a61a5">
 <ul class="org-ul">
 <li>is the list <b>sorted</b>? the nodes are sorted by their <code>key</code> (usually in an ascending order)</li>
 <li>is the list <b>doubly/singly linked</b>? in a doubly linked list each node points to the next and previous node whereas in a singly linked list a node only points to the next</li>
@@ -151,9 +162,9 @@ a <b>linked list</b> is a <a href="/concrete_data_type.html">concrete data type<
 </ul>
 </div>
 </div>
-<div id="outline-container-org0aa571f" class="outline-4">
-<h4 id="org0aa571f">functions</h4>
-<div class="outline-text-4" id="text-org0aa571f">
+<div id="outline-container-orgdfe002c" class="outline-4">
+<h4 id="orgdfe002c">functions</h4>
+<div class="outline-text-4" id="text-orgdfe002c">
 <ul class="org-ul">
 <li><code>insert(x)</code>: inserts <code>x</code></li>
 <li><code>search(k)</code>: returns the node whose key is <code>k</code></li>
@@ -162,13 +173,13 @@ a <b>linked list</b> is a <a href="/concrete_data_type.html">concrete data type<
 </ul>
 </div>
 </div>
-<div id="outline-container-org6e7fff1" class="outline-4">
-<h4 id="org6e7fff1">implementation (c++)</h4>
-<div class="outline-text-4" id="text-org6e7fff1">
+<div id="outline-container-orga972de8" class="outline-4">
+<h4 id="orga972de8">implementation (c++)</h4>
+<div class="outline-text-4" id="text-orga972de8">
 </div>
-<div id="outline-container-orgb51428d" class="outline-5">
-<h5 id="orgb51428d">Node</h5>
-<div class="outline-text-5" id="text-orgb51428d">
+<div id="outline-container-orgc675165" class="outline-5">
+<h5 id="orgc675165">Node</h5>
+<div class="outline-text-5" id="text-orgc675165">
 <div class="org-src-container" data-language="C++">
 <pre class="src src-C++" id="Node">
 <span style="color: #65c5a8;">#include</span> <span style="color: #f3a0a0;">&lt;cassert&gt;</span>
@@ -220,9 +231,9 @@ example usage:
 </pre>
 </div>
 </div>
-<div id="outline-container-orgba0edbb" class="outline-5">
-<h5 id="orgba0edbb">DoublyNode</h5>
-<div class="outline-text-5" id="text-orgba0edbb">
+<div id="outline-container-orgd3b6663" class="outline-5">
+<h5 id="orgd3b6663">DoublyNode</h5>
+<div class="outline-text-5" id="text-orgd3b6663">
 <div class="org-src-container" data-language="C++">
 <pre class="src src-C++" id="DoublyNode"><span style="color: #deb07a; font-weight: bold;">template</span> <span style="color: #deb07a;">&lt;</span><span style="color: #deb07a; font-weight: bold;">typename</span> <span style="color: #a9c99f;">T</span><span style="color: #deb07a;">&gt;</span>
 <span style="color: #deb07a; font-weight: bold;">class</span> <span style="color: #a9c99f;">DoublyNode</span> <span style="color: #deb07a;">{</span>
@@ -271,9 +282,9 @@ example usage:
 </div>
 </div>
 </div>
-<div id="outline-container-org3caa07c" class="outline-5">
-<h5 id="org3caa07c">LinkedList</h5>
-<div class="outline-text-5" id="text-org3caa07c">
+<div id="outline-container-orgd33d78e" class="outline-5">
+<h5 id="orgd33d78e">LinkedList</h5>
+<div class="outline-text-5" id="text-orgd33d78e">
 <div class="org-src-container" data-language="C++">
 <pre class="src src-C++" id="LinkedList">
 <span style="color: #deb07a; font-weight: bold;">template</span> <span style="color: #deb07a;">&lt;</span><span style="color: #deb07a; font-weight: bold;">typename</span> <span style="color: #a9c99f;">T</span><span style="color: #deb07a;">&gt;</span>
@@ -364,27 +375,27 @@ example usage:
 </pre>
 </div>
 </div>
-<div id="outline-container-org5fce46b" class="outline-5">
-<h5 id="org5fce46b">DoublyLinkedList</h5>
-<div class="outline-text-5" id="text-org5fce46b">
+<div id="outline-container-org71c9536" class="outline-5">
+<h5 id="org71c9536">DoublyLinkedList</h5>
+<div class="outline-text-5" id="text-org71c9536">
 <div class="org-src-container" data-language="C++">
 <pre class="src src-C++">to be implemented
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org6971401" class="outline-5">
-<h5 id="org6971401">LinkedListWithTail</h5>
-<div class="outline-text-5" id="text-org6971401">
+<div id="outline-container-org5d2ce5c" class="outline-5">
+<h5 id="org5d2ce5c">LinkedListWithTail</h5>
+<div class="outline-text-5" id="text-org5d2ce5c">
 <div class="org-src-container" data-language="C++">
 <pre class="src src-C++">to be implemented
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org47e086f" class="outline-5">
-<h5 id="org47e086f">CircularLinkedList</h5>
-<div class="outline-text-5" id="text-org47e086f">
+<div id="outline-container-org18810ef" class="outline-5">
+<h5 id="org18810ef">CircularLinkedList</h5>
+<div class="outline-text-5" id="text-org18810ef">
 <div class="org-src-container" data-language="C++">
 <pre class="src src-C++">to be implemented
 </pre>
@@ -393,9 +404,9 @@ example usage:
 </div>
 </div>
 </div>
-<div id="outline-container-org3bf543b" class="outline-3">
-<h3 id="org3bf543b">array list</h3>
-<div class="outline-text-3" id="text-org3bf543b">
+<div id="outline-container-orgb12e68b" class="outline-3">
+<h3 id="orgb12e68b">array list</h3>
+<div class="outline-text-3" id="text-orgb12e68b">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-link-list" data-id="def-link-list">
@@ -435,12 +446,14 @@ an array list contains a fixed-size array initialized to a constant length, when
 </g>
 </svg> where <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -4.289468 5.979925 4.289468' style="max-height: 0.4219em; vertical-align: -0.0000em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -4.289468 5.979925 4.289468' style="max-height: 0.5203em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
-<path id='g2-110' d='m5.688667-1.424658c0-.099626-.089664-.099626-.119552-.099626c-.099626 0-.099626 .029888-.14944 .179328c-.199253 .67746-.52802 1.235367-1.016189 1.235367c-.169365 0-.239103-.099626-.239103-.328767c0-.249066 .089664-.488169 .179328-.707347c.18929-.52802 .607721-1.62391 .607721-2.191781c0-.667497-.428394-1.066002-1.145704-1.066002c-.896638 0-1.384807 .637609-1.554172 .86675c-.049813-.557908-.458281-.86675-.916563-.86675s-.647572 .388543-.747198 .56787c-.159402 .33873-.298879 .926526-.298879 .966376c0 .099626 .119552 .099626 .119552 .099626c.099626 0 .109589-.009963 .169365-.229141c.169365-.707347 .368618-1.185554 .727273-1.185554c.199253 0 .308842 .129514 .308842 .458281c0 .209215-.029888 .318804-.159402 .836862l-.577833 2.30137c-.029888 .14944-.089664 .37858-.089664 .428394c0 .179328 .139477 .268991 .288917 .268991c.119552 0 .298879-.079701 .368618-.278954c.009963-.019925 .129514-.488169 .18929-.737235l.219178-.896638c.059776-.219178 .119552-.438356 .169365-.667497l.129514-.498132c.14944-.308842 .67746-1.215442 1.62391-1.215442c.448319 0 .537983 .368618 .537983 .697385c0 .617684-.488169 1.892902-.647572 2.321295c-.089664 .229141-.099626 .348692-.099626 .458281c0 .468244 .348692 .816936 .816936 .816936c.936488 0 1.305106-1.454545 1.305106-1.534247z'/>
+<path id='g4-110' d='m5.688667-1.424658c0-.099626-.089664-.099626-.119552-.099626c-.099626 0-.099626 .029888-.14944 .179328c-.199253 .67746-.52802 1.235367-1.016189 1.235367c-.169365 0-.239103-.099626-.239103-.328767c0-.249066 .089664-.488169 .179328-.707347c.18929-.52802 .607721-1.62391 .607721-2.191781c0-.667497-.428394-1.066002-1.145704-1.066002c-.896638 0-1.384807 .637609-1.554172 .86675c-.049813-.557908-.458281-.86675-.916563-.86675s-.647572 .388543-.747198 .56787c-.159402 .33873-.298879 .926526-.298879 .966376c0 .099626 .119552 .099626 .119552 .099626c.099626 0 .109589-.009963 .169365-.229141c.169365-.707347 .368618-1.185554 .727273-1.185554c.199253 0 .308842 .129514 .308842 .458281c0 .209215-.029888 .318804-.159402 .836862l-.577833 2.30137c-.029888 .14944-.089664 .37858-.089664 .428394c0 .179328 .139477 .268991 .288917 .268991c.119552 0 .298879-.079701 .368618-.278954c.009963-.019925 .129514-.488169 .18929-.737235l.219178-.896638c.059776-.219178 .119552-.438356 .169365-.667497l.129514-.498132c.14944-.308842 .67746-1.215442 1.62391-1.215442c.448319 0 .537983 .368618 .537983 .697385c0 .617684-.488169 1.892902-.647572 2.321295c-.089664 .229141-.099626 .348692-.099626 .458281c0 .468244 .348692 .816936 .816936 .816936c.936488 0 1.305106-1.454545 1.305106-1.534247z'/>
 </defs>
-<g id='page25'>
-<use x='0' y='0' xlink:href='#g2-110'/>
+<g id='page110'>
+<g fill='currentColor'>
+<use x='0' y='0' xlink:href='#g4-110'/>
+</g>
 </g>
 </svg> is a constant (usually 2), and <?xml version='1.0' encoding='UTF-8'?>
 
@@ -456,9 +469,9 @@ an array list contains a fixed-size array initialized to a constant length, when
 
 </div>
 </div>
-<div id="outline-container-orgc4d2ddd" class="outline-4">
-<h4 id="orgc4d2ddd">ArrayList</h4>
-<div class="outline-text-4" id="text-orgc4d2ddd">
+<div id="outline-container-org885ade3" class="outline-4">
+<h4 id="org885ade3">ArrayList</h4>
+<div class="outline-text-4" id="text-org885ade3">
 <div class="org-src-container" data-language="C++">
 <pre class="src src-C++" id="ArrayList"><span style="color: #65c5a8;">#include</span> <span style="color: #f3a0a0;">&lt;cassert&gt;</span>
 <span style="color: #65c5a8;">#include</span> <span style="color: #f3a0a0;">&lt;memory&gt;</span>
@@ -576,9 +589,9 @@ size is 6
 </div>
 </div>
 </div>
-<div id="outline-container-org38b7dfc" class="outline-2">
-<h2 id="org38b7dfc">stack</h2>
-<div class="outline-text-2" id="text-org38b7dfc">
+<div id="outline-container-orgb918b3a" class="outline-2">
+<h2 id="orgb918b3a">stack</h2>
+<div class="outline-text-2" id="text-orgb918b3a">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: stack&lt;/p&gt;
 " id="def-stack" data-id="def-stack">
@@ -589,9 +602,9 @@ a <b>stack</b> is an <a href="/abstract_data_type.html">abstract data type</a>
 </div>
 </div>
 </div>
-<div id="outline-container-org7f48028" class="outline-2">
-<h2 id="org7f48028">queue</h2>
-<div class="outline-text-2" id="text-org7f48028">
+<div id="outline-container-orgd44c516" class="outline-2">
+<h2 id="orgd44c516">queue</h2>
+<div class="outline-text-2" id="text-orgd44c516">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-stack" data-id="def-stack">
@@ -602,9 +615,9 @@ a <b>queue</b> is a linear <a href="/abstract_data_type.html">abstract data type
 </div>
 </div>
 </div>
-<div id="outline-container-orga73aef5" class="outline-2">
-<h2 id="orga73aef5">tree</h2>
-<div class="outline-text-2" id="text-orga73aef5">
+<div id="outline-container-org31226cb" class="outline-2">
+<h2 id="org31226cb">tree</h2>
+<div class="outline-text-2" id="text-org31226cb">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-stack" data-id="def-stack">
@@ -614,9 +627,9 @@ a <b>tree</b> is an <a href="/abstract_data_type.html">abstract data type</a> wh
 
 </div>
 </div>
-<div id="outline-container-org293441e" class="outline-3">
-<h3 id="org293441e">node</h3>
-<div class="outline-text-3" id="text-org293441e">
+<div id="outline-container-org199191f" class="outline-3">
+<h3 id="org199191f">node</h3>
+<div class="outline-text-3" id="text-org199191f">
 <p>
 trees store data as <b>nodes</b>, meaning each item in a tree is called a node
 </p>
@@ -636,9 +649,9 @@ each node <code>x</code> has the following fields
 every node in a <a href="/binary_tree.html">binary tree</a> has from 0 to 2 children
 </p>
 </div>
-<div id="outline-container-org3430686" class="outline-4">
-<h4 id="org3430686">height</h4>
-<div class="outline-text-4" id="text-org3430686">
+<div id="outline-container-orgf4c28b4" class="outline-4">
+<h4 id="orgf4c28b4">height</h4>
+<div class="outline-text-4" id="text-orgf4c28b4">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-stack" data-id="def-stack">
@@ -662,9 +675,9 @@ the <b>height</b> of a <a href="/tree_data_structure.html">node</a> <code>x</cod
 </div>
 </div>
 </div>
-<div id="outline-container-org831dac5" class="outline-4">
-<h4 id="org831dac5">balance factor</h4>
-<div class="outline-text-4" id="text-org831dac5">
+<div id="outline-container-org64297e7" class="outline-4">
+<h4 id="org64297e7">balance factor</h4>
+<div class="outline-text-4" id="text-org64297e7">
 <p>
 the <b>balance factor</b> of a <a href="/tree_data_structure.html">node</a> <code>x</code>, denoted by <code>balance(x)</code> or <code>BF(x)</code>, is defined as the height of the <a href="/tree_data_structure.html">subtree</a> of the left child of <code>x</code>, denoted by <?xml version='1.0' encoding='UTF-8'?>
 
@@ -889,9 +902,9 @@ see for example this tree, the balance factor of each node is written above it
 </div>
 </div>
 </div>
-<div id="outline-container-org2329dd1" class="outline-3">
-<h3 id="org2329dd1">height</h3>
-<div class="outline-text-3" id="text-org2329dd1">
+<div id="outline-container-orgc6e0686" class="outline-3">
+<h3 id="orgc6e0686">height</h3>
+<div class="outline-text-3" id="text-orgc6e0686">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-stack" data-id="def-stack">
@@ -902,9 +915,9 @@ the <b>height</b> of a tree is the number of the <a href="/tree_data_structure.h
 </div>
 </div>
 </div>
-<div id="outline-container-orgf6d95cd" class="outline-3">
-<h3 id="orgf6d95cd">level</h3>
-<div class="outline-text-3" id="text-orgf6d95cd">
+<div id="outline-container-org42729e6" class="outline-3">
+<h3 id="org42729e6">level</h3>
+<div class="outline-text-3" id="text-org42729e6">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-stack" data-id="def-stack">
@@ -915,9 +928,9 @@ the <b>level</b> of a row in the tree is its distance from the root whose level 
 </div>
 </div>
 </div>
-<div id="outline-container-org1808964" class="outline-3">
-<h3 id="org1808964">root</h3>
-<div class="outline-text-3" id="text-org1808964">
+<div id="outline-container-orgbb733d8" class="outline-3">
+<h3 id="orgbb733d8">root</h3>
+<div class="outline-text-3" id="text-orgbb733d8">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-stack" data-id="def-stack">
@@ -928,9 +941,9 @@ the tree itself <code>T</code> (not every node) contains a pointer <code>root(T)
 </div>
 </div>
 </div>
-<div id="outline-container-org9dabda1" class="outline-3">
-<h3 id="org9dabda1">leaf</h3>
-<div class="outline-text-3" id="text-org9dabda1">
+<div id="outline-container-orgea96afa" class="outline-3">
+<h3 id="orgea96afa">leaf</h3>
+<div class="outline-text-3" id="text-orgea96afa">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-stack" data-id="def-stack">
@@ -941,9 +954,9 @@ a <a href="/tree_data_structure.html">node</a> that doesnt have children is call
 </div>
 </div>
 </div>
-<div id="outline-container-orgebb23f6" class="outline-3">
-<h3 id="orgebb23f6">internal node</h3>
-<div class="outline-text-3" id="text-orgebb23f6">
+<div id="outline-container-org1234636" class="outline-3">
+<h3 id="org1234636">internal node</h3>
+<div class="outline-text-3" id="text-org1234636">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-stack" data-id="def-stack">
@@ -954,9 +967,9 @@ a <a href="/tree_data_structure.html">node</a> that has atleast one child is cal
 </div>
 </div>
 </div>
-<div id="outline-container-org00d2db0" class="outline-3">
-<h3 id="org00d2db0">sibling</h3>
-<div class="outline-text-3" id="text-org00d2db0">
+<div id="outline-container-org5646199" class="outline-3">
+<h3 id="org5646199">sibling</h3>
+<div class="outline-text-3" id="text-org5646199">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-stack" data-id="def-stack">
@@ -967,9 +980,9 @@ definition: &lt;/p&gt;
 </div>
 </div>
 </div>
-<div id="outline-container-orgecea947" class="outline-3">
-<h3 id="orgecea947">ancestor</h3>
-<div class="outline-text-3" id="text-orgecea947">
+<div id="outline-container-org0b41a67" class="outline-3">
+<h3 id="org0b41a67">ancestor</h3>
+<div class="outline-text-3" id="text-org0b41a67">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-stack" data-id="def-stack">
@@ -980,9 +993,9 @@ an <b>ancestor</b> of a given <a href="/tree_data_structure.html">node</a> is a 
 </div>
 </div>
 </div>
-<div id="outline-container-orge13e60a" class="outline-3">
-<h3 id="orge13e60a">descendant</h3>
-<div class="outline-text-3" id="text-orge13e60a">
+<div id="outline-container-orgc4a2fb3" class="outline-3">
+<h3 id="orgc4a2fb3">descendant</h3>
+<div class="outline-text-3" id="text-orgc4a2fb3">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-stack" data-id="def-stack">
@@ -993,9 +1006,9 @@ a <b>descendant</b> of a given <a href="/tree_data_structure.html">node</a> is a
 </div>
 </div>
 </div>
-<div id="outline-container-org3a8836b" class="outline-3">
-<h3 id="org3a8836b">subtree</h3>
-<div class="outline-text-3" id="text-org3a8836b">
+<div id="outline-container-org7db7be7" class="outline-3">
+<h3 id="org7db7be7">subtree</h3>
+<div class="outline-text-3" id="text-org7db7be7">
 <p>
 for some <a href="/binary_tree.html">binary tree</a> <code>T</code> and a node <code>x</code> of said tree we denote <?xml version='1.0' encoding='UTF-8'?>
 
@@ -1190,9 +1203,9 @@ the height of this tree is 4
 </p>
 </div>
 </div>
-<div id="outline-container-org5bafb19" class="outline-3">
-<h3 id="org5bafb19">complete tree</h3>
-<div class="outline-text-3" id="text-org5bafb19">
+<div id="outline-container-org8c42cd4" class="outline-3">
+<h3 id="org8c42cd4">complete tree</h3>
+<div class="outline-text-3" id="text-org8c42cd4">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-stack" data-id="def-stack">
@@ -1203,9 +1216,9 @@ a <b>complete</b> <a href="/binary_tree.html">binary tree</a> is a binary tree i
 </div>
 </div>
 </div>
-<div id="outline-container-org06e321c" class="outline-3">
-<h3 id="org06e321c">almost complete tree</h3>
-<div class="outline-text-3" id="text-org06e321c">
+<div id="outline-container-orgaabc1d0" class="outline-3">
+<h3 id="orgaabc1d0">almost complete tree</h3>
+<div class="outline-text-3" id="text-orgaabc1d0">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-stack" data-id="def-stack">
@@ -1315,7 +1328,7 @@ characteristic: &lt;/p&gt;
 <p>
 the number of nodes at height <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.570609 3.432258 6.570609' style="max-height: 0.7447em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.570609 3.432258 6.570609' style="max-height: 0.6463em; vertical-align: --0.0000em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g4-105' d='m2.82939-6.22665c0-.199253-.139477-.358655-.368618-.358655c-.268991 0-.537983 .259029-.537983 .52802c0 .18929 .139477 .358655 .37858 .358655c.229141 0 .52802-.229141 .52802-.52802zm.089664 4.801993c0-.099626-.089664-.099626-.119552-.099626c-.099626 0-.099626 .029888-.14944 .179328c-.179328 .627646-.508095 1.235367-1.016189 1.235367c-.169365 0-.239103-.099626-.239103-.328767c0-.249066 .059776-.388543 .288917-.996264l.388543-1.046077c.119552-.288917 .119552-.308842 .219178-.577833c.079701-.199253 .129514-.33873 .129514-.52802c0-.448319-.318804-.816936-.816936-.816936c-.936488 0-1.315068 1.444583-1.315068 1.534247c0 .099626 .119552 .099626 .119552 .099626c.099626 0 .109589-.019925 .159402-.179328c.268991-.936488 .667497-1.235367 1.006227-1.235367c.079701 0 .249066 0 .249066 .318804c0 .209215-.069738 .418431-.109589 .518057c-.079701 .259029-.52802 1.414695-.687422 1.843088c-.099626 .259029-.229141 .587796-.229141 .797011c0 .468244 .33873 .816936 .816936 .816936c.936488 0 1.305106-1.444583 1.305106-1.534247z'/>
 </defs>
@@ -1354,38 +1367,38 @@ the number of nodes at height <?xml version='1.0' encoding='UTF-8'?>
 </div>
 </div>
 </div>
-<div id="outline-container-org9660c50" class="outline-3">
-<h3 id="org9660c50">tree breadth-first search</h3>
-<div class="outline-text-3" id="text-org9660c50">
+<div id="outline-container-org405789f" class="outline-3">
+<h3 id="org405789f">tree breadth-first search</h3>
+<div class="outline-text-3" id="text-org405789f">
 <p>
 <b>breadth-first search</b> or <b>BFS</b> for short, explores each level before moving onto the next one
 extra memory, usually a <a href="/queue.html">queue</a>, is needed to keep track of the child nodes that were encountered but not yet explored.
 </p>
 
 
-<div id="org8cc7a7d" class="figure">
+<div id="org65b1481" class="figure">
 <p><img src="/Animated_BFS.gif" />
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org3271bdb" class="outline-3">
-<h3 id="org3271bdb">tree depth-first search</h3>
-<div class="outline-text-3" id="text-org3271bdb">
+<div id="outline-container-orgbe61598" class="outline-3">
+<h3 id="orgbe61598">tree depth-first search</h3>
+<div class="outline-text-3" id="text-orgbe61598">
 <p>
 <b>depth-first search</b> or <b>DFS</b> for short, consists of exploring branches as far as possible before <a href="/tree_data_structure.html">backtracking</a> and exploring branches of other nodes
 this is the algorithm we'll be using because its simpler
 </p>
 
 
-<div id="orgb8a196f" class="figure">
+<div id="org06b6740" class="figure">
 <p><img src="/bfs_dfs.gif" />
 </p>
 </div>
 </div>
-<div id="outline-container-orgc23a970" class="outline-4">
-<h4 id="orgc23a970">inorder traversal</h4>
-<div class="outline-text-4" id="text-orgc23a970">
+<div id="outline-container-org092a7b2" class="outline-4">
+<h4 id="org092a7b2">inorder traversal</h4>
+<div class="outline-text-4" id="text-org092a7b2">
 <p>
 left, parent, right
 </p>
@@ -1407,9 +1420,9 @@ note that before printing a child will always call <code>inorder(left-child)</co
 </div>
 </div>
 </div>
-<div id="outline-container-org8b79ba9" class="outline-4">
-<h4 id="org8b79ba9">preorder traversal</h4>
-<div class="outline-text-4" id="text-org8b79ba9">
+<div id="outline-container-orgb31a8d1" class="outline-4">
+<h4 id="orgb31a8d1">preorder traversal</h4>
+<div class="outline-text-4" id="text-orgb31a8d1">
 <p>
 parent, left, right
 </p>
@@ -1422,9 +1435,9 @@ parent, left, right
 </div>
 </div>
 </div>
-<div id="outline-container-org0317391" class="outline-4">
-<h4 id="org0317391">postorder traversal</h4>
-<div class="outline-text-4" id="text-org0317391">
+<div id="outline-container-org5ff34fd" class="outline-4">
+<h4 id="org5ff34fd">postorder traversal</h4>
+<div class="outline-text-4" id="text-org5ff34fd">
 <p>
 left, right, parent
 </p>
@@ -1438,13 +1451,13 @@ left, right, parent
 </div>
 </div>
 </div>
-<div id="outline-container-org6ae9e2a" class="outline-3">
-<h3 id="org6ae9e2a">algorithms</h3>
-<div class="outline-text-3" id="text-org6ae9e2a">
+<div id="outline-container-orga52c546" class="outline-3">
+<h3 id="orga52c546">algorithms</h3>
+<div class="outline-text-3" id="text-orga52c546">
 </div>
-<div id="outline-container-orgd1fc669" class="outline-4">
-<h4 id="orgd1fc669">reverse inorder</h4>
-<div class="outline-text-4" id="text-orgd1fc669">
+<div id="outline-container-org0eb826d" class="outline-4">
+<h4 id="org0eb826d">reverse inorder</h4>
+<div class="outline-text-4" id="text-org0eb826d">
 <p>
 given a <a href="/binary_tree.html">binary tree</a>, write a function to reverse its <a href="/tree_data_structure.html">inorder traversal</a> output
 </p>
@@ -1544,9 +1557,9 @@ example usage:
 </div>
 </div>
 </div>
-<div id="outline-container-org465887d" class="outline-3">
-<h3 id="org465887d">binary tree</h3>
-<div class="outline-text-3" id="text-org465887d">
+<div id="outline-container-orgb9ea8f4" class="outline-3">
+<h3 id="orgb9ea8f4">binary tree</h3>
+<div class="outline-text-3" id="text-orgb9ea8f4">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-stack" data-id="def-stack">
@@ -1556,9 +1569,9 @@ a <b>binary tree</b> is a <a href="/concrete_data_type.html">concrete data type<
 
 </div>
 </div>
-<div id="outline-container-org9b21f36" class="outline-4">
-<h4 id="org9b21f36">BinaryTreeNode</h4>
-<div class="outline-text-4" id="text-org9b21f36">
+<div id="outline-container-org798848a" class="outline-4">
+<h4 id="org798848a">BinaryTreeNode</h4>
+<div class="outline-text-4" id="text-org798848a">
 <div class="org-src-container" data-language="C++">
 <pre class="src src-C++" id="BinaryTreeNode"><span style="color: #65c5a8;">#include</span> <span style="color: #f3a0a0;">&lt;cstdlib&gt;</span>
 
@@ -1779,9 +1792,9 @@ a <b>binary tree</b> is a <a href="/concrete_data_type.html">concrete data type<
 </div>
 </div>
 </div>
-<div id="outline-container-org072b5a6" class="outline-4">
-<h4 id="org072b5a6">BinaryTree</h4>
-<div class="outline-text-4" id="text-org072b5a6">
+<div id="outline-container-org17c2927" class="outline-4">
+<h4 id="org17c2927">BinaryTree</h4>
+<div class="outline-text-4" id="text-org17c2927">
 <div class="org-src-container" data-language="C++">
 <pre class="src src-C++" id="BinaryTree">
 
@@ -1962,30 +1975,34 @@ example usage:
 </div>
 </div>
 </div>
-<div id="outline-container-org9108bfe" class="outline-4">
-<h4 id="org9108bfe">algorithms</h4>
-<div class="outline-text-4" id="text-org9108bfe">
+<div id="outline-container-orge956f02" class="outline-4">
+<h4 id="orge956f02">algorithms</h4>
+<div class="outline-text-4" id="text-orge956f02">
 <div test="test" class="fancy-block question" data-before="&lt;p&gt;
 question: &lt;/p&gt;
 " id="def-stack" data-id="def-stack">
 <p>
 add to the class of a <a href="/binary_tree.html">binary tree</a> a function that takes in an integer <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.918502 5.500223 6.918502' style="max-height: 0.6806em; vertical-align: -0.0000em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.918502 5.500223 6.918502' style="max-height: 0.7789em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
-<path id='g2-107' d='m4.881694-1.424658c0-.099626-.089664-.099626-.119552-.099626c-.099626 0-.109589 .039851-.139477 .179328c-.199253 .727273-.428394 1.235367-.86675 1.235367c-.18929 0-.318804-.109589-.318804-.468244c0-.169365 .039851-.398506 .079701-.557908c.039851-.169365 .039851-.209215 .039851-.308842c0-.647572-.627646-.936488-1.474471-1.046077c.308842-.179328 .627646-.498132 .856787-.737235c.478207-.52802 .936488-.956413 1.424658-.956413c.059776 0 .069738 0 .089664 .009963c.119552 .019925 .129514 .019925 .209215 .079701c.019925 .009963 .019925 .019925 .039851 .039851c-.478207 .029888-.56787 .418431-.56787 .537983c0 .159402 .109589 .348692 .37858 .348692c.259029 0 .547945-.219178 .547945-.607721c0-.298879-.229141-.627646-.67746-.627646c-.278954 0-.737235 .079701-1.454545 .876712c-.33873 .37858-.727273 .777086-1.105853 .926526l1.036115-4.204234c0 0 0-.109589-.129514-.109589c-.229141 0-.956413 .079701-1.215442 .099626c-.079701 .009963-.18929 .019925-.18929 .199253c0 .119552 .089664 .119552 .239103 .119552c.478207 0 .498132 .069738 .498132 .169365l-.029888 .199253l-1.444583 5.738481c-.039851 .139477-.039851 .159402-.039851 .219178c0 .229141 .199253 .278954 .288917 .278954c.129514 0 .278954-.089664 .33873-.209215c.049813-.089664 .498132-1.932752 .557908-2.181818c.33873 .029888 1.155666 .18929 1.155666 .846824c0 .069738 0 .109589-.029888 .209215c-.019925 .119552-.039851 .239103-.039851 .348692c0 .587796 .398506 .986301 .916563 .986301c.298879 0 .56787-.159402 .787049-.52802c.249066-.438356 .358655-1.006227 .358655-1.006227z'/>
+<path id='g4-107' d='m4.881694-1.424658c0-.099626-.089664-.099626-.119552-.099626c-.099626 0-.109589 .039851-.139477 .179328c-.199253 .727273-.428394 1.235367-.86675 1.235367c-.18929 0-.318804-.109589-.318804-.468244c0-.169365 .039851-.398506 .079701-.557908c.039851-.169365 .039851-.209215 .039851-.308842c0-.647572-.627646-.936488-1.474471-1.046077c.308842-.179328 .627646-.498132 .856787-.737235c.478207-.52802 .936488-.956413 1.424658-.956413c.059776 0 .069738 0 .089664 .009963c.119552 .019925 .129514 .019925 .209215 .079701c.019925 .009963 .019925 .019925 .039851 .039851c-.478207 .029888-.56787 .418431-.56787 .537983c0 .159402 .109589 .348692 .37858 .348692c.259029 0 .547945-.219178 .547945-.607721c0-.298879-.229141-.627646-.67746-.627646c-.278954 0-.737235 .079701-1.454545 .876712c-.33873 .37858-.727273 .777086-1.105853 .926526l1.036115-4.204234c0 0 0-.109589-.129514-.109589c-.229141 0-.956413 .079701-1.215442 .099626c-.079701 .009963-.18929 .019925-.18929 .199253c0 .119552 .089664 .119552 .239103 .119552c.478207 0 .498132 .069738 .498132 .169365l-.029888 .199253l-1.444583 5.738481c-.039851 .139477-.039851 .159402-.039851 .219178c0 .229141 .199253 .278954 .288917 .278954c.129514 0 .278954-.089664 .33873-.209215c.049813-.089664 .498132-1.932752 .557908-2.181818c.33873 .029888 1.155666 .18929 1.155666 .846824c0 .069738 0 .109589-.029888 .209215c-.019925 .119552-.039851 .239103-.039851 .348692c0 .587796 .398506 .986301 .916563 .986301c.298879 0 .56787-.159402 .787049-.52802c.249066-.438356 .358655-1.006227 .358655-1.006227z'/>
 </defs>
-<g id='page6'>
-<use x='0' y='0' xlink:href='#g2-107'/>
+<g id='page91'>
+<g fill='currentColor'>
+<use x='0' y='0' xlink:href='#g4-107'/>
+</g>
 </g>
 </svg> and checks if there is a node in the tree that contains exactly <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.918502 5.500223 6.918502' style="max-height: 0.6806em; vertical-align: -0.0000em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.918502 5.500223 6.918502' style="max-height: 0.7789em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
-<path id='g2-107' d='m4.881694-1.424658c0-.099626-.089664-.099626-.119552-.099626c-.099626 0-.109589 .039851-.139477 .179328c-.199253 .727273-.428394 1.235367-.86675 1.235367c-.18929 0-.318804-.109589-.318804-.468244c0-.169365 .039851-.398506 .079701-.557908c.039851-.169365 .039851-.209215 .039851-.308842c0-.647572-.627646-.936488-1.474471-1.046077c.308842-.179328 .627646-.498132 .856787-.737235c.478207-.52802 .936488-.956413 1.424658-.956413c.059776 0 .069738 0 .089664 .009963c.119552 .019925 .129514 .019925 .209215 .079701c.019925 .009963 .019925 .019925 .039851 .039851c-.478207 .029888-.56787 .418431-.56787 .537983c0 .159402 .109589 .348692 .37858 .348692c.259029 0 .547945-.219178 .547945-.607721c0-.298879-.229141-.627646-.67746-.627646c-.278954 0-.737235 .079701-1.454545 .876712c-.33873 .37858-.727273 .777086-1.105853 .926526l1.036115-4.204234c0 0 0-.109589-.129514-.109589c-.229141 0-.956413 .079701-1.215442 .099626c-.079701 .009963-.18929 .019925-.18929 .199253c0 .119552 .089664 .119552 .239103 .119552c.478207 0 .498132 .069738 .498132 .169365l-.029888 .199253l-1.444583 5.738481c-.039851 .139477-.039851 .159402-.039851 .219178c0 .229141 .199253 .278954 .288917 .278954c.129514 0 .278954-.089664 .33873-.209215c.049813-.089664 .498132-1.932752 .557908-2.181818c.33873 .029888 1.155666 .18929 1.155666 .846824c0 .069738 0 .109589-.029888 .209215c-.019925 .119552-.039851 .239103-.039851 .348692c0 .587796 .398506 .986301 .916563 .986301c.298879 0 .56787-.159402 .787049-.52802c.249066-.438356 .358655-1.006227 .358655-1.006227z'/>
+<path id='g4-107' d='m4.881694-1.424658c0-.099626-.089664-.099626-.119552-.099626c-.099626 0-.109589 .039851-.139477 .179328c-.199253 .727273-.428394 1.235367-.86675 1.235367c-.18929 0-.318804-.109589-.318804-.468244c0-.169365 .039851-.398506 .079701-.557908c.039851-.169365 .039851-.209215 .039851-.308842c0-.647572-.627646-.936488-1.474471-1.046077c.308842-.179328 .627646-.498132 .856787-.737235c.478207-.52802 .936488-.956413 1.424658-.956413c.059776 0 .069738 0 .089664 .009963c.119552 .019925 .129514 .019925 .209215 .079701c.019925 .009963 .019925 .019925 .039851 .039851c-.478207 .029888-.56787 .418431-.56787 .537983c0 .159402 .109589 .348692 .37858 .348692c.259029 0 .547945-.219178 .547945-.607721c0-.298879-.229141-.627646-.67746-.627646c-.278954 0-.737235 .079701-1.454545 .876712c-.33873 .37858-.727273 .777086-1.105853 .926526l1.036115-4.204234c0 0 0-.109589-.129514-.109589c-.229141 0-.956413 .079701-1.215442 .099626c-.079701 .009963-.18929 .019925-.18929 .199253c0 .119552 .089664 .119552 .239103 .119552c.478207 0 .498132 .069738 .498132 .169365l-.029888 .199253l-1.444583 5.738481c-.039851 .139477-.039851 .159402-.039851 .219178c0 .229141 .199253 .278954 .288917 .278954c.129514 0 .278954-.089664 .33873-.209215c.049813-.089664 .498132-1.932752 .557908-2.181818c.33873 .029888 1.155666 .18929 1.155666 .846824c0 .069738 0 .109589-.029888 .209215c-.019925 .119552-.039851 .239103-.039851 .348692c0 .587796 .398506 .986301 .916563 .986301c.298879 0 .56787-.159402 .787049-.52802c.249066-.438356 .358655-1.006227 .358655-1.006227z'/>
 </defs>
-<g id='page6'>
-<use x='0' y='0' xlink:href='#g2-107'/>
+<g id='page91'>
+<g fill='currentColor'>
+<use x='0' y='0' xlink:href='#g4-107'/>
+</g>
 </g>
 </svg> <a href="/tree_data_structure.html">descendant</a>s, it should run in <?xml version='1.0' encoding='UTF-8'?>
 
@@ -2201,13 +2218,13 @@ this code runs in <?xml version='1.0' encoding='UTF-8'?>
 </div>
 </div>
 </div>
-<div id="outline-container-orga8263bc" class="outline-3">
-<h3 id="orga8263bc">binary search tree</h3>
-<div class="outline-text-3" id="text-orga8263bc">
+<div id="outline-container-org5fc754d" class="outline-3">
+<h3 id="org5fc754d">binary search tree</h3>
+<div class="outline-text-3" id="text-org5fc754d">
 </div>
-<div id="outline-container-orgc044e4f" class="outline-4">
-<h4 id="orgc044e4f">BinarySearchTree</h4>
-<div class="outline-text-4" id="text-orgc044e4f">
+<div id="outline-container-orgb8f9096" class="outline-4">
+<h4 id="orgb8f9096">BinarySearchTree</h4>
+<div class="outline-text-4" id="text-orgb8f9096">
 <div class="org-src-container" data-language="C++">
 <pre class="src src-C++" id="BinarySearchTree">
 
@@ -2516,9 +2533,9 @@ the balance factor of the root is: -1
 </div>
 </div>
 </div>
-<div id="outline-container-org83a0ff5" class="outline-3">
-<h3 id="org83a0ff5">AVL tree</h3>
-<div class="outline-text-3" id="text-org83a0ff5">
+<div id="outline-container-org0e6d1e0" class="outline-3">
+<h3 id="org0e6d1e0">AVL tree</h3>
+<div class="outline-text-3" id="text-org0e6d1e0">
 <p>
 an <b>AVL tree</b> is a <a href="/binary_search_tree.html">binary search tree</a> in which every node <code>x</code> has a <a href="/tree_data_structure.html">balance factor</a> of <?xml version='1.0' encoding='UTF-8'?>
 
@@ -2770,9 +2787,9 @@ let <code>T</code> be an AVL tree with <code>n</code> nodes and height <?xml ver
 
 </div>
 </div>
-<div id="outline-container-orgda51e0c" class="outline-4">
-<h4 id="orgda51e0c">minimal form</h4>
-<div class="outline-text-4" id="text-orgda51e0c">
+<div id="outline-container-org06c3b35" class="outline-4">
+<h4 id="org06c3b35">minimal form</h4>
+<div class="outline-text-4" id="text-org06c3b35">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-stack" data-id="def-stack">
@@ -3063,9 +3080,9 @@ here is a python snippet to find the minimal number of nodes needed for a given 
 </div>
 </div>
 </div>
-<div id="outline-container-org428af4a" class="outline-4">
-<h4 id="org428af4a">problematic node</h4>
-<div class="outline-text-4" id="text-org428af4a">
+<div id="outline-container-org484f2eb" class="outline-4">
+<h4 id="org484f2eb">problematic node</h4>
+<div class="outline-text-4" id="text-org484f2eb">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-stack" data-id="def-stack">
@@ -3089,9 +3106,9 @@ a <b>problematic node</b> is a <a href="/tree_data_structure.html">node</a> whos
 </div>
 </div>
 </div>
-<div id="outline-container-orgaf8e77e" class="outline-4">
-<h4 id="orgaf8e77e">insertion</h4>
-<div class="outline-text-4" id="text-orgaf8e77e">
+<div id="outline-container-org21c1d45" class="outline-4">
+<h4 id="org21c1d45">insertion</h4>
+<div class="outline-text-4" id="text-org21c1d45">
 <p>
 the process of inserting a node to an AVL tree starts with inserting it using the same insertion method we used for a <a href="/binary_search_tree.html">binary search tree</a>, after said insertion we start going up the tree starting at the new node we just inserted and updating the <a href="/tree_data_structure.html">balance factor</a> for every node we encounter as we go
 </p>
@@ -3101,16 +3118,16 @@ if we arrive at problematic node, we apply the proper rotation to rebalance the 
 </p>
 </div>
 </div>
-<div id="outline-container-org383d9b8" class="outline-4">
-<h4 id="org383d9b8">rebalancing</h4>
-<div class="outline-text-4" id="text-org383d9b8">
+<div id="outline-container-org88a5e2d" class="outline-4">
+<h4 id="org88a5e2d">rebalancing</h4>
+<div class="outline-text-4" id="text-org88a5e2d">
 <p>
 during a modifying operation of a <a href="/binary_tree.html">binary tree</a>, a node might become problematic, to restore balance to the tree so that it remains an AVL tree we use rotations
 </p>
 </div>
-<div id="outline-container-orgfd1d833" class="outline-5">
-<h5 id="orgfd1d833">rotation</h5>
-<div class="outline-text-5" id="text-orgfd1d833">
+<div id="outline-container-org3bee497" class="outline-5">
+<h5 id="org3bee497">rotation</h5>
+<div class="outline-text-5" id="text-org3bee497">
 <p>
 to determine which type of <b>rotation</b> we need to use to <b>rebalance</b> a given tree, we go 2 steps from the problematic node towards the newly inserted node which gives us the following 4 cases:
 </p>
@@ -3122,13 +3139,13 @@ to determine which type of <b>rotation</b> we need to use to <b>rebalance</b> a 
 <li>if we go right and then left then the <b>rotation</b> is of type RL</li>
 </ol>
 </div>
-<div id="outline-container-org4d0028b" class="outline-6">
-<h6 id="org4d0028b">simple rotation</h6>
-<div class="outline-text-6" id="text-org4d0028b">
+<div id="outline-container-org0177e6f" class="outline-6">
+<h6 id="org0177e6f">simple rotation</h6>
+<div class="outline-text-6" id="text-org0177e6f">
 </div>
-<div id="outline-container-orgd6be7cd" class="outline-7">
-<h7 id="orgd6be7cd">left left rotation</h7>
-<div class="outline-text-7" id="text-orgd6be7cd">
+<div id="outline-container-orgfea75d1" class="outline-7">
+<h7 id="orgfea75d1">left left rotation</h7>
+<div class="outline-text-7" id="text-orgfea75d1">
 <p>
 let <code>z</code> be the left child of the problematic node and <code>x</code> be the problematic node itself
 </p>
@@ -3139,7 +3156,7 @@ in <b>Left Left</b> rotation we rotate <code>x</code> to the right, such that th
 
 
 
-<div id="orgec87b1a" class="figure">
+<div id="orgc5f61ae" class="figure">
 <p><img src="/leftleftrotation.gif" />
 </p>
 </div>
@@ -3479,9 +3496,9 @@ and so the original tree would become:
 </div>
 </div>
 </div>
-<div id="outline-container-orga7c27d0" class="outline-7">
-<h7 id="orga7c27d0">right right rotation</h7>
-<div class="outline-text-7" id="text-orga7c27d0">
+<div id="outline-container-org126b4b6" class="outline-7">
+<h7 id="org126b4b6">right right rotation</h7>
+<div class="outline-text-7" id="text-org126b4b6">
 <p>
 this is very similar to Left Left, we first add the node and then if we have a problematic node <code>x</code> and if we took 2 steps to the right, then we use this rotation method
 </p>
@@ -3505,31 +3522,31 @@ this method consists of rotating the <a href="/tree_data_structure.html">subtree
 
 
 
-<div id="org6f433cc" class="figure">
+<div id="org93ac503" class="figure">
 <p><img src="/rightrightrotation.gif" />
 </p>
 </div>
 </div>
 </div>
 </div>
-<div id="outline-container-orgb5dcf37" class="outline-6">
-<h6 id="orgb5dcf37">double rotation</h6>
-<div class="outline-text-6" id="text-orgb5dcf37">
+<div id="outline-container-orgaf608fb" class="outline-6">
+<h6 id="orgaf608fb">double rotation</h6>
+<div class="outline-text-6" id="text-orgaf608fb">
 <p>
 the difference between this and simple rotation is that this method consists of rotating twice as you might've already guessed from the title
 </p>
 </div>
-<div id="outline-container-org7f9d439" class="outline-7">
-<h7 id="org7f9d439">left right rotation</h7>
-<div class="outline-text-7" id="text-org7f9d439">
+<div id="outline-container-org1a0994b" class="outline-7">
+<h7 id="org1a0994b">left right rotation</h7>
+<div class="outline-text-7" id="text-org1a0994b">
 <p>
 this method consists of 2 steps, first is applying an RR rotation over the left child of the problematic node, then applying an LL rotation to the problematic node
 </p>
 </div>
 </div>
-<div id="outline-container-orga30b21d" class="outline-7">
-<h7 id="orga30b21d">right left rotation</h7>
-<div class="outline-text-7" id="text-orga30b21d">
+<div id="outline-container-org99923de" class="outline-7">
+<h7 id="org99923de">right left rotation</h7>
+<div class="outline-text-7" id="text-org99923de">
 <p>
 this method consists of 2 steps, first is applying an LL rotation over the right child of the problematic node, then applying a RR rotation to the problematic node
 </p>
@@ -3538,9 +3555,9 @@ this method consists of 2 steps, first is applying an LL rotation over the right
 </div>
 </div>
 </div>
-<div id="outline-container-org6059fea" class="outline-4">
-<h4 id="org6059fea">AVLTree</h4>
-<div class="outline-text-4" id="text-org6059fea">
+<div id="outline-container-orgb7b56e8" class="outline-4">
+<h4 id="orgb7b56e8">AVLTree</h4>
+<div class="outline-text-4" id="text-orgb7b56e8">
 <div class="org-src-container" data-language="C++">
 <pre class="src src-C++" id="AVLTree">
 <span style="color: #deb07a; font-weight: bold;">template</span> <span style="color: #deb07a;">&lt;</span><span style="color: #deb07a; font-weight: bold;">typename</span> <span style="color: #a9c99f;">T</span><span style="color: #deb07a;">&gt;</span> <span style="color: #deb07a; font-weight: bold;">class</span> <span style="color: #a9c99f;">AVLTree</span> : <span style="color: #deb07a; font-weight: bold;">public</span> <span style="color: #a9c99f;">BinarySearchTree</span><span style="color: #deb07a;">&lt;</span><span style="color: #a9c99f;">T</span><span style="color: #deb07a;">&gt;</span> <span style="color: #deb07a;">{</span>
@@ -3720,9 +3737,9 @@ example:
 </div>
 </div>
 </div>
-<div id="outline-container-org8a3cc3e" class="outline-3">
-<h3 id="org8a3cc3e">2-3 tree</h3>
-<div class="outline-text-3" id="text-org8a3cc3e">
+<div id="outline-container-org72e3337" class="outline-3">
+<h3 id="org72e3337">2-3 tree</h3>
+<div class="outline-text-3" id="text-org72e3337">
 <p>
 a <b>2–3 tree</b> is a <a href="/tree_data_structure.html">tree</a> <a href="/concrete_data_type.html">concrete data type</a> where every <a href="/tree_data_structure.html">internal node</a> is either a 2-node or 3-node
 </p>
@@ -3757,9 +3774,9 @@ keys are always ordered from left to right in ascending order
 
 </div>
 </div>
-<div id="outline-container-org5de66d0" class="outline-4">
-<h4 id="org5de66d0">2-node</h4>
-<div class="outline-text-4" id="text-org5de66d0">
+<div id="outline-container-org1c0c847" class="outline-4">
+<h4 id="org1c0c847">2-node</h4>
+<div class="outline-text-4" id="text-org1c0c847">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-stack" data-id="def-stack">
@@ -3770,9 +3787,9 @@ we say that an <a href="/tree_data_structure.html">internal node</a> is a <b>2-n
 </div>
 </div>
 </div>
-<div id="outline-container-orge6837aa" class="outline-4">
-<h4 id="orge6837aa">3-node</h4>
-<div class="outline-text-4" id="text-orge6837aa">
+<div id="outline-container-org2bd18a9" class="outline-4">
+<h4 id="org2bd18a9">3-node</h4>
+<div class="outline-text-4" id="text-org2bd18a9">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-stack" data-id="def-stack">
@@ -3783,22 +3800,22 @@ we say that an <a href="/tree_data_structure.html">internal node</a> is a <b>3-n
 </div>
 </div>
 </div>
-<div id="outline-container-orgd6f9d1d" class="outline-4">
-<h4 id="orgd6f9d1d">insertion</h4>
-<div class="outline-text-4" id="text-orgd6f9d1d">
+<div id="outline-container-orgb44d490" class="outline-4">
+<h4 id="orgb44d490">insertion</h4>
+<div class="outline-text-4" id="text-orgb44d490">
 <p>
 an important property to keep in mind is that insertion <b>always</b> occurs in one of the <a href="/tree_data_structure.html">leaves</a>
 </p>
 
-<div id="org03c03f0" class="figure">
+<div id="orgfe1454d" class="figure">
 <p><img src="/2-3_insertion.jpg" />
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org62ebc45" class="outline-4">
-<h4 id="org62ebc45">TwoThreeNode</h4>
-<div class="outline-text-4" id="text-org62ebc45">
+<div id="outline-container-org0b775ae" class="outline-4">
+<h4 id="org0b775ae">TwoThreeNode</h4>
+<div class="outline-text-4" id="text-org0b775ae">
 <div class="org-src-container" data-language="C++">
 <pre class="src src-C++" id="TwoThreeNode"><span style="color: #deb07a; font-weight: bold;">const</span> <span style="color: #a9c99f;">int</span> <span style="color: #ffaacf;">SIZE</span> = 3;
 
@@ -4057,9 +4074,9 @@ an important property to keep in mind is that insertion <b>always</b> occurs in 
 </div>
 </div>
 </div>
-<div id="outline-container-org01d4753" class="outline-4">
-<h4 id="org01d4753">TwoThreeTree</h4>
-<div class="outline-text-4" id="text-org01d4753">
+<div id="outline-container-org67b1cf0" class="outline-4">
+<h4 id="org67b1cf0">TwoThreeTree</h4>
+<div class="outline-text-4" id="text-org67b1cf0">
 <div class="org-src-container" data-language="C++">
 <pre class="src src-C++" id="TwoThreeTree">
 
@@ -6768,9 +6785,9 @@ root: 40 <?xml version='1.0' encoding='UTF-8'?>
 </div>
 </div>
 </div>
-<div id="outline-container-orgdf37d5a" class="outline-2">
-<h2 id="orgdf37d5a">heap</h2>
-<div class="outline-text-2" id="text-orgdf37d5a">
+<div id="outline-container-org1380b05" class="outline-2">
+<h2 id="org1380b05">heap</h2>
+<div class="outline-text-2" id="text-org1380b05">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-stack" data-id="def-stack">
@@ -6780,9 +6797,9 @@ a <b>heap</b> is an <a href="/abstract_data_type.html">abstract data type</a>
 
 </div>
 </div>
-<div id="outline-container-orgcad6d24" class="outline-3">
-<h3 id="orgcad6d24">min heap</h3>
-<div class="outline-text-3" id="text-orgcad6d24">
+<div id="outline-container-org25ea1a6" class="outline-3">
+<h3 id="org25ea1a6">min heap</h3>
+<div class="outline-text-3" id="text-org25ea1a6">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-stack" data-id="def-stack">
@@ -6793,9 +6810,9 @@ a <b>min heap</b> is a <a href="/heap.html">heap</a> in which each <a href="/tre
 </div>
 </div>
 </div>
-<div id="outline-container-orged0293f" class="outline-3">
-<h3 id="orged0293f">max heap</h3>
-<div class="outline-text-3" id="text-orged0293f">
+<div id="outline-container-orgd084173" class="outline-3">
+<h3 id="orgd084173">max heap</h3>
+<div class="outline-text-3" id="text-orgd084173">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-stack" data-id="def-stack">
@@ -6806,9 +6823,9 @@ a <b>max heap</b> is a <a href="/heap.html">heap</a> in which each node is bigge
 </div>
 </div>
 </div>
-<div id="outline-container-orgd3c237f" class="outline-3">
-<h3 id="orgd3c237f">binary heap</h3>
-<div class="outline-text-3" id="text-orgd3c237f">
+<div id="outline-container-orge0a0064" class="outline-3">
+<h3 id="orge0a0064">binary heap</h3>
+<div class="outline-text-3" id="text-orge0a0064">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-stack" data-id="def-stack">
@@ -6841,9 +6858,9 @@ in a heap the keys arent necessarily sorted like in <a href="/binary_search_tree
 
 </div>
 </div>
-<div id="outline-container-org7b1ce4a" class="outline-4">
-<h4 id="org7b1ce4a">bubbling</h4>
-<div class="outline-text-4" id="text-org7b1ce4a">
+<div id="outline-container-org6593481" class="outline-4">
+<h4 id="org6593481">bubbling</h4>
+<div class="outline-text-4" id="text-org6593481">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-stack" data-id="def-stack">
@@ -6853,17 +6870,17 @@ moving a <a href="/tree_data_structure.html">node</a> up/down a heap to get it t
 
 </div>
 </div>
-<div id="outline-container-org63af457" class="outline-5">
-<h5 id="org63af457">bubble up</h5>
-<div class="outline-text-5" id="text-org63af457">
+<div id="outline-container-org2a74e0d" class="outline-5">
+<h5 id="org2a74e0d">bubble up</h5>
+<div class="outline-text-5" id="text-org2a74e0d">
 <p>
 <a href="/binary_heap.html">bubbling</a> a node <b>upwards</b> consists of recursively switching it with its parent until its parent is bigger/smaller than it (depending on whether we're using a <a href="/heap.html">min heap</a> or a <a href="/heap.html">max heap</a>)
 </p>
 </div>
 </div>
-<div id="outline-container-orgd3932d9" class="outline-5">
-<h5 id="orgd3932d9">bubble down</h5>
-<div class="outline-text-5" id="text-orgd3932d9">
+<div id="outline-container-org09deaeb" class="outline-5">
+<h5 id="org09deaeb">bubble down</h5>
+<div class="outline-text-5" id="text-org09deaeb">
 <p>
 <a href="/binary_heap.html">bubbling</a> a node <b>downards</b> consists of recursively switching it with one of its children until it gets to its correct position
 this is a pseudocode for the <a href="/algorithm.html">algorithm</a>:
@@ -6918,9 +6935,9 @@ this is a pseudocode for the <a href="/algorithm.html">algorithm</a>:
 </div>
 </div>
 </div>
-<div id="outline-container-org15edc8b" class="outline-4">
-<h4 id="org15edc8b">insertion</h4>
-<div class="outline-text-4" id="text-org15edc8b">
+<div id="outline-container-org96bfc13" class="outline-4">
+<h4 id="org96bfc13">insertion</h4>
+<div class="outline-text-4" id="text-org96bfc13">
 <p>
 inserting a new <a href="/tree_data_structure.html">node</a> to the heap consists of adding it as a <a href="/tree_data_structure.html">leaf</a> such that the heap remains <a href="/tree_data_structure.html">almost complete</a> and <a href="/binary_heap.html">bubbling up</a> the newly added node so that the keys in the tree remain sorted
 </p>
@@ -6930,17 +6947,17 @@ if the heap is in <a href="/binary_heap.html">array representation</a>, we inser
 </p>
 </div>
 </div>
-<div id="outline-container-org78752b2" class="outline-4">
-<h4 id="org78752b2">deletion</h4>
-<div class="outline-text-4" id="text-org78752b2">
+<div id="outline-container-org42310cc" class="outline-4">
+<h4 id="org42310cc">deletion</h4>
+<div class="outline-text-4" id="text-org42310cc">
 <p>
 deletion of a node consists of replacing the rightmost leaf with it and bubble it <a href="/binary_heap.html">downwards</a> if its smaller than one of its children or <a href="/binary_heap.html">upwards</a> if its bigger than its parent
 </p>
 </div>
 </div>
-<div id="outline-container-org2d64b6f" class="outline-4">
-<h4 id="org2d64b6f">binary heap array representation</h4>
-<div class="outline-text-4" id="text-org2d64b6f">
+<div id="outline-container-orgcde8f10" class="outline-4">
+<h4 id="orgcde8f10">binary heap array representation</h4>
+<div class="outline-text-4" id="text-orgcde8f10">
 <div test="test" class="fancy-block note" data-before="&lt;p&gt;
 note: &lt;/p&gt;
 " id="def-stack" data-id="def-stack">
@@ -7183,9 +7200,9 @@ the array should hold 2 values, <code>array-size</code>, which is the size of th
 </p>
 </div>
 </div>
-<div id="outline-container-org53f2861" class="outline-4">
-<h4 id="org53f2861">construction of binary heap from array</h4>
-<div class="outline-text-4" id="text-org53f2861">
+<div id="outline-container-org1cd912f" class="outline-4">
+<h4 id="org1cd912f">construction of binary heap from array</h4>
+<div class="outline-text-4" id="text-org1cd912f">
 <p>
 given some random array, e.g. <code>A=[10,20,30,40,50,70,35,60,80]</code>, we need to reorganize its elements such that it <a href="/binary_heap.html">represents a binary heap</a>
 </p>
@@ -7434,13 +7451,13 @@ to be continued
 </div>
 </div>
 </div>
-<div id="outline-container-org8ff7d29" class="outline-4">
-<h4 id="org8ff7d29">binary heap algorithms</h4>
-<div class="outline-text-4" id="text-org8ff7d29">
+<div id="outline-container-org6e08eb9" class="outline-4">
+<h4 id="org6e08eb9">binary heap algorithms</h4>
+<div class="outline-text-4" id="text-org6e08eb9">
 </div>
-<div id="outline-container-org703b297" class="outline-5">
-<h5 id="org703b297">biggest k nodes</h5>
-<div class="outline-text-5" id="text-org703b297">
+<div id="outline-container-orgdacfed1" class="outline-5">
+<h5 id="orgdacfed1">biggest k nodes</h5>
+<div class="outline-text-5" id="text-orgdacfed1">
 <p>
 initial inefficient solution:
 </p>
@@ -8011,9 +8028,9 @@ we suggest another algorithm that is more efficient:
 </div>
 </div>
 </div>
-<div id="outline-container-org55b4158" class="outline-4">
-<h4 id="org55b4158">BinaryHeap</h4>
-<div class="outline-text-4" id="text-org55b4158">
+<div id="outline-container-orgfb279d1" class="outline-4">
+<h4 id="orgfb279d1">BinaryHeap</h4>
+<div class="outline-text-4" id="text-orgfb279d1">
 <div test="test" class="fancy-block note" data-before="&lt;p&gt;
 note: &lt;/p&gt;
 " id="def-stack" data-id="def-stack">
@@ -8665,9 +8682,9 @@ inserting 9
 </div>
 </div>
 </div>
-<div id="outline-container-orgc38e04d" class="outline-4">
-<h4 id="orgc38e04d">check if array represents a binary heap</h4>
-<div class="outline-text-4" id="text-orgc38e04d">
+<div id="outline-container-org25474b5" class="outline-4">
+<h4 id="org25474b5">check if array represents a binary heap</h4>
+<div class="outline-text-4" id="text-org25474b5">
 <div class="org-src-container" data-language="C++">
 <pre class="src src-C++"><span style="color: #65c5a8;">#include</span> <span style="color: #f3a0a0;">&lt;iostream&gt;</span>
 
@@ -8723,13 +8740,13 @@ inserting 9
 </div>
 </div>
 </div>
-<div id="outline-container-org0a19683" class="outline-3">
-<h3 id="org0a19683">binomial heap</h3>
-<div class="outline-text-3" id="text-org0a19683">
+<div id="outline-container-org9786247" class="outline-3">
+<h3 id="org9786247">binomial heap</h3>
+<div class="outline-text-3" id="text-org9786247">
 </div>
-<div id="outline-container-org177f68d" class="outline-4">
-<h4 id="org177f68d">BinomialHeapNode</h4>
-<div class="outline-text-4" id="text-org177f68d">
+<div id="outline-container-orgf30071b" class="outline-4">
+<h4 id="orgf30071b">BinomialHeapNode</h4>
+<div class="outline-text-4" id="text-orgf30071b">
 <div class="org-src-container" data-language="C++">
 <pre class="src src-C++" id="BinomialHeapNode">
 
@@ -8775,9 +8792,9 @@ inserting 9
 </div>
 </div>
 </div>
-<div id="outline-container-orgfe16d14" class="outline-4">
-<h4 id="orgfe16d14">BinomialHeap</h4>
-<div class="outline-text-4" id="text-orgfe16d14">
+<div id="outline-container-org886e2df" class="outline-4">
+<h4 id="org886e2df">BinomialHeap</h4>
+<div class="outline-text-4" id="text-org886e2df">
 <div class="org-src-container" data-language="C++">
 <pre class="src src-C++" id="BinomialHeap">
 
@@ -9905,9 +9922,9 @@ inserting 14
 </div>
 </div>
 </div>
-<div id="outline-container-org7698c69" class="outline-2">
-<h2 id="org7698c69">hash table</h2>
-<div class="outline-text-2" id="text-org7698c69">
+<div id="outline-container-orgb13c35f" class="outline-2">
+<h2 id="orgb13c35f">hash table</h2>
+<div class="outline-text-2" id="text-orgb13c35f">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-stack" data-id="def-stack">
@@ -9928,9 +9945,9 @@ it contains the following functions:
 </div>
 </div>
 </div>
-<div id="outline-container-orgdb1f19a" class="outline-2">
-<h2 id="orgdb1f19a">theorems</h2>
-<div class="outline-text-2" id="text-orgdb1f19a">
+<div id="outline-container-org2cea9b5" class="outline-2">
+<h2 id="org2cea9b5">theorems</h2>
+<div class="outline-text-2" id="text-org2cea9b5">
 <div test="test" class="fancy-block lemma" data-before="&lt;p&gt;
 lemma: &lt;/p&gt;
 " id="def-stack" data-id="def-stack">
@@ -10029,12 +10046,14 @@ lemma: &lt;/p&gt;
 <p>
 the height of a complete tree with <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -4.289468 5.979925 4.289468' style="max-height: 0.4219em; vertical-align: -0.0000em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -4.289468 5.979925 4.289468' style="max-height: 0.5203em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
-<path id='g2-110' d='m5.688667-1.424658c0-.099626-.089664-.099626-.119552-.099626c-.099626 0-.099626 .029888-.14944 .179328c-.199253 .67746-.52802 1.235367-1.016189 1.235367c-.169365 0-.239103-.099626-.239103-.328767c0-.249066 .089664-.488169 .179328-.707347c.18929-.52802 .607721-1.62391 .607721-2.191781c0-.667497-.428394-1.066002-1.145704-1.066002c-.896638 0-1.384807 .637609-1.554172 .86675c-.049813-.557908-.458281-.86675-.916563-.86675s-.647572 .388543-.747198 .56787c-.159402 .33873-.298879 .926526-.298879 .966376c0 .099626 .119552 .099626 .119552 .099626c.099626 0 .109589-.009963 .169365-.229141c.169365-.707347 .368618-1.185554 .727273-1.185554c.199253 0 .308842 .129514 .308842 .458281c0 .209215-.029888 .318804-.159402 .836862l-.577833 2.30137c-.029888 .14944-.089664 .37858-.089664 .428394c0 .179328 .139477 .268991 .288917 .268991c.119552 0 .298879-.079701 .368618-.278954c.009963-.019925 .129514-.488169 .18929-.737235l.219178-.896638c.059776-.219178 .119552-.438356 .169365-.667497l.129514-.498132c.14944-.308842 .67746-1.215442 1.62391-1.215442c.448319 0 .537983 .368618 .537983 .697385c0 .617684-.488169 1.892902-.647572 2.321295c-.089664 .229141-.099626 .348692-.099626 .458281c0 .468244 .348692 .816936 .816936 .816936c.936488 0 1.305106-1.454545 1.305106-1.534247z'/>
+<path id='g4-110' d='m5.688667-1.424658c0-.099626-.089664-.099626-.119552-.099626c-.099626 0-.099626 .029888-.14944 .179328c-.199253 .67746-.52802 1.235367-1.016189 1.235367c-.169365 0-.239103-.099626-.239103-.328767c0-.249066 .089664-.488169 .179328-.707347c.18929-.52802 .607721-1.62391 .607721-2.191781c0-.667497-.428394-1.066002-1.145704-1.066002c-.896638 0-1.384807 .637609-1.554172 .86675c-.049813-.557908-.458281-.86675-.916563-.86675s-.647572 .388543-.747198 .56787c-.159402 .33873-.298879 .926526-.298879 .966376c0 .099626 .119552 .099626 .119552 .099626c.099626 0 .109589-.009963 .169365-.229141c.169365-.707347 .368618-1.185554 .727273-1.185554c.199253 0 .308842 .129514 .308842 .458281c0 .209215-.029888 .318804-.159402 .836862l-.577833 2.30137c-.029888 .14944-.089664 .37858-.089664 .428394c0 .179328 .139477 .268991 .288917 .268991c.119552 0 .298879-.079701 .368618-.278954c.009963-.019925 .129514-.488169 .18929-.737235l.219178-.896638c.059776-.219178 .119552-.438356 .169365-.667497l.129514-.498132c.14944-.308842 .67746-1.215442 1.62391-1.215442c.448319 0 .537983 .368618 .537983 .697385c0 .617684-.488169 1.892902-.647572 2.321295c-.089664 .229141-.099626 .348692-.099626 .458281c0 .468244 .348692 .816936 .816936 .816936c.936488 0 1.305106-1.454545 1.305106-1.534247z'/>
 </defs>
-<g id='page25'>
-<use x='0' y='0' xlink:href='#g2-110'/>
+<g id='page110'>
+<g fill='currentColor'>
+<use x='0' y='0' xlink:href='#g4-110'/>
+</g>
 </g>
 </svg> nodes is <?xml version='1.0' encoding='UTF-8'?>
 
@@ -10145,12 +10164,14 @@ lemma: &lt;/p&gt;
 <p>
 the number of <a href="/tree_data_structure.html">leaves</a> in a complete tree with <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -4.289468 5.979925 4.289468' style="max-height: 0.4219em; vertical-align: -0.0000em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -4.289468 5.979925 4.289468' style="max-height: 0.5203em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
-<path id='g2-110' d='m5.688667-1.424658c0-.099626-.089664-.099626-.119552-.099626c-.099626 0-.099626 .029888-.14944 .179328c-.199253 .67746-.52802 1.235367-1.016189 1.235367c-.169365 0-.239103-.099626-.239103-.328767c0-.249066 .089664-.488169 .179328-.707347c.18929-.52802 .607721-1.62391 .607721-2.191781c0-.667497-.428394-1.066002-1.145704-1.066002c-.896638 0-1.384807 .637609-1.554172 .86675c-.049813-.557908-.458281-.86675-.916563-.86675s-.647572 .388543-.747198 .56787c-.159402 .33873-.298879 .926526-.298879 .966376c0 .099626 .119552 .099626 .119552 .099626c.099626 0 .109589-.009963 .169365-.229141c.169365-.707347 .368618-1.185554 .727273-1.185554c.199253 0 .308842 .129514 .308842 .458281c0 .209215-.029888 .318804-.159402 .836862l-.577833 2.30137c-.029888 .14944-.089664 .37858-.089664 .428394c0 .179328 .139477 .268991 .288917 .268991c.119552 0 .298879-.079701 .368618-.278954c.009963-.019925 .129514-.488169 .18929-.737235l.219178-.896638c.059776-.219178 .119552-.438356 .169365-.667497l.129514-.498132c.14944-.308842 .67746-1.215442 1.62391-1.215442c.448319 0 .537983 .368618 .537983 .697385c0 .617684-.488169 1.892902-.647572 2.321295c-.089664 .229141-.099626 .348692-.099626 .458281c0 .468244 .348692 .816936 .816936 .816936c.936488 0 1.305106-1.454545 1.305106-1.534247z'/>
+<path id='g4-110' d='m5.688667-1.424658c0-.099626-.089664-.099626-.119552-.099626c-.099626 0-.099626 .029888-.14944 .179328c-.199253 .67746-.52802 1.235367-1.016189 1.235367c-.169365 0-.239103-.099626-.239103-.328767c0-.249066 .089664-.488169 .179328-.707347c.18929-.52802 .607721-1.62391 .607721-2.191781c0-.667497-.428394-1.066002-1.145704-1.066002c-.896638 0-1.384807 .637609-1.554172 .86675c-.049813-.557908-.458281-.86675-.916563-.86675s-.647572 .388543-.747198 .56787c-.159402 .33873-.298879 .926526-.298879 .966376c0 .099626 .119552 .099626 .119552 .099626c.099626 0 .109589-.009963 .169365-.229141c.169365-.707347 .368618-1.185554 .727273-1.185554c.199253 0 .308842 .129514 .308842 .458281c0 .209215-.029888 .318804-.159402 .836862l-.577833 2.30137c-.029888 .14944-.089664 .37858-.089664 .428394c0 .179328 .139477 .268991 .288917 .268991c.119552 0 .298879-.079701 .368618-.278954c.009963-.019925 .129514-.488169 .18929-.737235l.219178-.896638c.059776-.219178 .119552-.438356 .169365-.667497l.129514-.498132c.14944-.308842 .67746-1.215442 1.62391-1.215442c.448319 0 .537983 .368618 .537983 .697385c0 .617684-.488169 1.892902-.647572 2.321295c-.089664 .229141-.099626 .348692-.099626 .458281c0 .468244 .348692 .816936 .816936 .816936c.936488 0 1.305106-1.454545 1.305106-1.534247z'/>
 </defs>
-<g id='page25'>
-<use x='0' y='0' xlink:href='#g2-110'/>
+<g id='page110'>
+<g fill='currentColor'>
+<use x='0' y='0' xlink:href='#g4-110'/>
+</g>
 </g>
 </svg> nodes and height <?xml version='1.0' encoding='UTF-8'?>
 
@@ -10294,7 +10315,7 @@ we prove the statements holds true for <?xml version='1.0' encoding='UTF-8'?>
 </g>
 </svg>, we can build it using a tree of height <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.570609 3.432258 6.570609' style="max-height: 0.7447em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.570609 3.432258 6.570609' style="max-height: 0.6463em; vertical-align: --0.0000em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g4-105' d='m2.82939-6.22665c0-.199253-.139477-.358655-.368618-.358655c-.268991 0-.537983 .259029-.537983 .52802c0 .18929 .139477 .358655 .37858 .358655c.229141 0 .52802-.229141 .52802-.52802zm.089664 4.801993c0-.099626-.089664-.099626-.119552-.099626c-.099626 0-.099626 .029888-.14944 .179328c-.179328 .627646-.508095 1.235367-1.016189 1.235367c-.169365 0-.239103-.099626-.239103-.328767c0-.249066 .059776-.388543 .288917-.996264l.388543-1.046077c.119552-.288917 .119552-.308842 .219178-.577833c.079701-.199253 .129514-.33873 .129514-.52802c0-.448319-.318804-.816936-.816936-.816936c-.936488 0-1.315068 1.444583-1.315068 1.534247c0 .099626 .119552 .099626 .119552 .099626c.099626 0 .109589-.019925 .159402-.179328c.268991-.936488 .667497-1.235367 1.006227-1.235367c.079701 0 .249066 0 .249066 .318804c0 .209215-.069738 .418431-.109589 .518057c-.079701 .259029-.52802 1.414695-.687422 1.843088c-.099626 .259029-.229141 .587796-.229141 .797011c0 .468244 .33873 .816936 .816936 .816936c.936488 0 1.305106-1.444583 1.305106-1.534247z'/>
 </defs>
@@ -10354,12 +10375,14 @@ lemma: &lt;/p&gt;
 <p>
 the number of leaves in a complete tree that holds <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -4.289468 5.979925 4.289468' style="max-height: 0.4219em; vertical-align: -0.0000em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -4.289468 5.979925 4.289468' style="max-height: 0.5203em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
-<path id='g2-110' d='m5.688667-1.424658c0-.099626-.089664-.099626-.119552-.099626c-.099626 0-.099626 .029888-.14944 .179328c-.199253 .67746-.52802 1.235367-1.016189 1.235367c-.169365 0-.239103-.099626-.239103-.328767c0-.249066 .089664-.488169 .179328-.707347c.18929-.52802 .607721-1.62391 .607721-2.191781c0-.667497-.428394-1.066002-1.145704-1.066002c-.896638 0-1.384807 .637609-1.554172 .86675c-.049813-.557908-.458281-.86675-.916563-.86675s-.647572 .388543-.747198 .56787c-.159402 .33873-.298879 .926526-.298879 .966376c0 .099626 .119552 .099626 .119552 .099626c.099626 0 .109589-.009963 .169365-.229141c.169365-.707347 .368618-1.185554 .727273-1.185554c.199253 0 .308842 .129514 .308842 .458281c0 .209215-.029888 .318804-.159402 .836862l-.577833 2.30137c-.029888 .14944-.089664 .37858-.089664 .428394c0 .179328 .139477 .268991 .288917 .268991c.119552 0 .298879-.079701 .368618-.278954c.009963-.019925 .129514-.488169 .18929-.737235l.219178-.896638c.059776-.219178 .119552-.438356 .169365-.667497l.129514-.498132c.14944-.308842 .67746-1.215442 1.62391-1.215442c.448319 0 .537983 .368618 .537983 .697385c0 .617684-.488169 1.892902-.647572 2.321295c-.089664 .229141-.099626 .348692-.099626 .458281c0 .468244 .348692 .816936 .816936 .816936c.936488 0 1.305106-1.454545 1.305106-1.534247z'/>
+<path id='g4-110' d='m5.688667-1.424658c0-.099626-.089664-.099626-.119552-.099626c-.099626 0-.099626 .029888-.14944 .179328c-.199253 .67746-.52802 1.235367-1.016189 1.235367c-.169365 0-.239103-.099626-.239103-.328767c0-.249066 .089664-.488169 .179328-.707347c.18929-.52802 .607721-1.62391 .607721-2.191781c0-.667497-.428394-1.066002-1.145704-1.066002c-.896638 0-1.384807 .637609-1.554172 .86675c-.049813-.557908-.458281-.86675-.916563-.86675s-.647572 .388543-.747198 .56787c-.159402 .33873-.298879 .926526-.298879 .966376c0 .099626 .119552 .099626 .119552 .099626c.099626 0 .109589-.009963 .169365-.229141c.169365-.707347 .368618-1.185554 .727273-1.185554c.199253 0 .308842 .129514 .308842 .458281c0 .209215-.029888 .318804-.159402 .836862l-.577833 2.30137c-.029888 .14944-.089664 .37858-.089664 .428394c0 .179328 .139477 .268991 .288917 .268991c.119552 0 .298879-.079701 .368618-.278954c.009963-.019925 .129514-.488169 .18929-.737235l.219178-.896638c.059776-.219178 .119552-.438356 .169365-.667497l.129514-.498132c.14944-.308842 .67746-1.215442 1.62391-1.215442c.448319 0 .537983 .368618 .537983 .697385c0 .617684-.488169 1.892902-.647572 2.321295c-.089664 .229141-.099626 .348692-.099626 .458281c0 .468244 .348692 .816936 .816936 .816936c.936488 0 1.305106-1.454545 1.305106-1.534247z'/>
 </defs>
-<g id='page25'>
-<use x='0' y='0' xlink:href='#g2-110'/>
+<g id='page110'>
+<g fill='currentColor'>
+<use x='0' y='0' xlink:href='#g4-110'/>
+</g>
 </g>
 </svg> nodes is <?xml version='1.0' encoding='UTF-8'?>
 
@@ -10521,12 +10544,14 @@ lemma: &lt;/p&gt;
 <p>
 the height of an almost complete tree with <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -4.289468 5.979925 4.289468' style="max-height: 0.4219em; vertical-align: -0.0000em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -4.289468 5.979925 4.289468' style="max-height: 0.5203em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
-<path id='g2-110' d='m5.688667-1.424658c0-.099626-.089664-.099626-.119552-.099626c-.099626 0-.099626 .029888-.14944 .179328c-.199253 .67746-.52802 1.235367-1.016189 1.235367c-.169365 0-.239103-.099626-.239103-.328767c0-.249066 .089664-.488169 .179328-.707347c.18929-.52802 .607721-1.62391 .607721-2.191781c0-.667497-.428394-1.066002-1.145704-1.066002c-.896638 0-1.384807 .637609-1.554172 .86675c-.049813-.557908-.458281-.86675-.916563-.86675s-.647572 .388543-.747198 .56787c-.159402 .33873-.298879 .926526-.298879 .966376c0 .099626 .119552 .099626 .119552 .099626c.099626 0 .109589-.009963 .169365-.229141c.169365-.707347 .368618-1.185554 .727273-1.185554c.199253 0 .308842 .129514 .308842 .458281c0 .209215-.029888 .318804-.159402 .836862l-.577833 2.30137c-.029888 .14944-.089664 .37858-.089664 .428394c0 .179328 .139477 .268991 .288917 .268991c.119552 0 .298879-.079701 .368618-.278954c.009963-.019925 .129514-.488169 .18929-.737235l.219178-.896638c.059776-.219178 .119552-.438356 .169365-.667497l.129514-.498132c.14944-.308842 .67746-1.215442 1.62391-1.215442c.448319 0 .537983 .368618 .537983 .697385c0 .617684-.488169 1.892902-.647572 2.321295c-.089664 .229141-.099626 .348692-.099626 .458281c0 .468244 .348692 .816936 .816936 .816936c.936488 0 1.305106-1.454545 1.305106-1.534247z'/>
+<path id='g4-110' d='m5.688667-1.424658c0-.099626-.089664-.099626-.119552-.099626c-.099626 0-.099626 .029888-.14944 .179328c-.199253 .67746-.52802 1.235367-1.016189 1.235367c-.169365 0-.239103-.099626-.239103-.328767c0-.249066 .089664-.488169 .179328-.707347c.18929-.52802 .607721-1.62391 .607721-2.191781c0-.667497-.428394-1.066002-1.145704-1.066002c-.896638 0-1.384807 .637609-1.554172 .86675c-.049813-.557908-.458281-.86675-.916563-.86675s-.647572 .388543-.747198 .56787c-.159402 .33873-.298879 .926526-.298879 .966376c0 .099626 .119552 .099626 .119552 .099626c.099626 0 .109589-.009963 .169365-.229141c.169365-.707347 .368618-1.185554 .727273-1.185554c.199253 0 .308842 .129514 .308842 .458281c0 .209215-.029888 .318804-.159402 .836862l-.577833 2.30137c-.029888 .14944-.089664 .37858-.089664 .428394c0 .179328 .139477 .268991 .288917 .268991c.119552 0 .298879-.079701 .368618-.278954c.009963-.019925 .129514-.488169 .18929-.737235l.219178-.896638c.059776-.219178 .119552-.438356 .169365-.667497l.129514-.498132c.14944-.308842 .67746-1.215442 1.62391-1.215442c.448319 0 .537983 .368618 .537983 .697385c0 .617684-.488169 1.892902-.647572 2.321295c-.089664 .229141-.099626 .348692-.099626 .458281c0 .468244 .348692 .816936 .816936 .816936c.936488 0 1.305106-1.454545 1.305106-1.534247z'/>
 </defs>
-<g id='page25'>
-<use x='0' y='0' xlink:href='#g2-110'/>
+<g id='page110'>
+<g fill='currentColor'>
+<use x='0' y='0' xlink:href='#g4-110'/>
+</g>
 </g>
 </svg> nodes is <?xml version='1.0' encoding='UTF-8'?>
 
@@ -10569,12 +10594,14 @@ lemma: &lt;/p&gt;
 <p>
 the number of leaves in an almost complete tree with <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -4.289468 5.979925 4.289468' style="max-height: 0.4219em; vertical-align: -0.0000em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -4.289468 5.979925 4.289468' style="max-height: 0.5203em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
-<path id='g2-110' d='m5.688667-1.424658c0-.099626-.089664-.099626-.119552-.099626c-.099626 0-.099626 .029888-.14944 .179328c-.199253 .67746-.52802 1.235367-1.016189 1.235367c-.169365 0-.239103-.099626-.239103-.328767c0-.249066 .089664-.488169 .179328-.707347c.18929-.52802 .607721-1.62391 .607721-2.191781c0-.667497-.428394-1.066002-1.145704-1.066002c-.896638 0-1.384807 .637609-1.554172 .86675c-.049813-.557908-.458281-.86675-.916563-.86675s-.647572 .388543-.747198 .56787c-.159402 .33873-.298879 .926526-.298879 .966376c0 .099626 .119552 .099626 .119552 .099626c.099626 0 .109589-.009963 .169365-.229141c.169365-.707347 .368618-1.185554 .727273-1.185554c.199253 0 .308842 .129514 .308842 .458281c0 .209215-.029888 .318804-.159402 .836862l-.577833 2.30137c-.029888 .14944-.089664 .37858-.089664 .428394c0 .179328 .139477 .268991 .288917 .268991c.119552 0 .298879-.079701 .368618-.278954c.009963-.019925 .129514-.488169 .18929-.737235l.219178-.896638c.059776-.219178 .119552-.438356 .169365-.667497l.129514-.498132c.14944-.308842 .67746-1.215442 1.62391-1.215442c.448319 0 .537983 .368618 .537983 .697385c0 .617684-.488169 1.892902-.647572 2.321295c-.089664 .229141-.099626 .348692-.099626 .458281c0 .468244 .348692 .816936 .816936 .816936c.936488 0 1.305106-1.454545 1.305106-1.534247z'/>
+<path id='g4-110' d='m5.688667-1.424658c0-.099626-.089664-.099626-.119552-.099626c-.099626 0-.099626 .029888-.14944 .179328c-.199253 .67746-.52802 1.235367-1.016189 1.235367c-.169365 0-.239103-.099626-.239103-.328767c0-.249066 .089664-.488169 .179328-.707347c.18929-.52802 .607721-1.62391 .607721-2.191781c0-.667497-.428394-1.066002-1.145704-1.066002c-.896638 0-1.384807 .637609-1.554172 .86675c-.049813-.557908-.458281-.86675-.916563-.86675s-.647572 .388543-.747198 .56787c-.159402 .33873-.298879 .926526-.298879 .966376c0 .099626 .119552 .099626 .119552 .099626c.099626 0 .109589-.009963 .169365-.229141c.169365-.707347 .368618-1.185554 .727273-1.185554c.199253 0 .308842 .129514 .308842 .458281c0 .209215-.029888 .318804-.159402 .836862l-.577833 2.30137c-.029888 .14944-.089664 .37858-.089664 .428394c0 .179328 .139477 .268991 .288917 .268991c.119552 0 .298879-.079701 .368618-.278954c.009963-.019925 .129514-.488169 .18929-.737235l.219178-.896638c.059776-.219178 .119552-.438356 .169365-.667497l.129514-.498132c.14944-.308842 .67746-1.215442 1.62391-1.215442c.448319 0 .537983 .368618 .537983 .697385c0 .617684-.488169 1.892902-.647572 2.321295c-.089664 .229141-.099626 .348692-.099626 .458281c0 .468244 .348692 .816936 .816936 .816936c.936488 0 1.305106-1.454545 1.305106-1.534247z'/>
 </defs>
-<g id='page25'>
-<use x='0' y='0' xlink:href='#g2-110'/>
+<g id='page110'>
+<g fill='currentColor'>
+<use x='0' y='0' xlink:href='#g4-110'/>
+</g>
 </g>
 </svg> nodes is <?xml version='1.0' encoding='UTF-8'?>
 
@@ -10606,7 +10633,7 @@ lemma: &lt;/p&gt;
 <p>
 the number of nodes with height <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.570609 3.432258 6.570609' style="max-height: 0.7447em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.570609 3.432258 6.570609' style="max-height: 0.6463em; vertical-align: --0.0000em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g4-105' d='m2.82939-6.22665c0-.199253-.139477-.358655-.368618-.358655c-.268991 0-.537983 .259029-.537983 .52802c0 .18929 .139477 .358655 .37858 .358655c.229141 0 .52802-.229141 .52802-.52802zm.089664 4.801993c0-.099626-.089664-.099626-.119552-.099626c-.099626 0-.099626 .029888-.14944 .179328c-.179328 .627646-.508095 1.235367-1.016189 1.235367c-.169365 0-.239103-.099626-.239103-.328767c0-.249066 .059776-.388543 .288917-.996264l.388543-1.046077c.119552-.288917 .119552-.308842 .219178-.577833c.079701-.199253 .129514-.33873 .129514-.52802c0-.448319-.318804-.816936-.816936-.816936c-.936488 0-1.315068 1.444583-1.315068 1.534247c0 .099626 .119552 .099626 .119552 .099626c.099626 0 .109589-.019925 .159402-.179328c.268991-.936488 .667497-1.235367 1.006227-1.235367c.079701 0 .249066 0 .249066 .318804c0 .209215-.069738 .418431-.109589 .518057c-.079701 .259029-.52802 1.414695-.687422 1.843088c-.099626 .259029-.229141 .587796-.229141 .797011c0 .468244 .33873 .816936 .816936 .816936c.936488 0 1.305106-1.444583 1.305106-1.534247z'/>
 </defs>
@@ -10615,12 +10642,14 @@ the number of nodes with height <?xml version='1.0' encoding='UTF-8'?>
 </g>
 </svg> in an almost complete tree with <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -4.289468 5.979925 4.289468' style="max-height: 0.4219em; vertical-align: -0.0000em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -4.289468 5.979925 4.289468' style="max-height: 0.5203em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
-<path id='g2-110' d='m5.688667-1.424658c0-.099626-.089664-.099626-.119552-.099626c-.099626 0-.099626 .029888-.14944 .179328c-.199253 .67746-.52802 1.235367-1.016189 1.235367c-.169365 0-.239103-.099626-.239103-.328767c0-.249066 .089664-.488169 .179328-.707347c.18929-.52802 .607721-1.62391 .607721-2.191781c0-.667497-.428394-1.066002-1.145704-1.066002c-.896638 0-1.384807 .637609-1.554172 .86675c-.049813-.557908-.458281-.86675-.916563-.86675s-.647572 .388543-.747198 .56787c-.159402 .33873-.298879 .926526-.298879 .966376c0 .099626 .119552 .099626 .119552 .099626c.099626 0 .109589-.009963 .169365-.229141c.169365-.707347 .368618-1.185554 .727273-1.185554c.199253 0 .308842 .129514 .308842 .458281c0 .209215-.029888 .318804-.159402 .836862l-.577833 2.30137c-.029888 .14944-.089664 .37858-.089664 .428394c0 .179328 .139477 .268991 .288917 .268991c.119552 0 .298879-.079701 .368618-.278954c.009963-.019925 .129514-.488169 .18929-.737235l.219178-.896638c.059776-.219178 .119552-.438356 .169365-.667497l.129514-.498132c.14944-.308842 .67746-1.215442 1.62391-1.215442c.448319 0 .537983 .368618 .537983 .697385c0 .617684-.488169 1.892902-.647572 2.321295c-.089664 .229141-.099626 .348692-.099626 .458281c0 .468244 .348692 .816936 .816936 .816936c.936488 0 1.305106-1.454545 1.305106-1.534247z'/>
+<path id='g4-110' d='m5.688667-1.424658c0-.099626-.089664-.099626-.119552-.099626c-.099626 0-.099626 .029888-.14944 .179328c-.199253 .67746-.52802 1.235367-1.016189 1.235367c-.169365 0-.239103-.099626-.239103-.328767c0-.249066 .089664-.488169 .179328-.707347c.18929-.52802 .607721-1.62391 .607721-2.191781c0-.667497-.428394-1.066002-1.145704-1.066002c-.896638 0-1.384807 .637609-1.554172 .86675c-.049813-.557908-.458281-.86675-.916563-.86675s-.647572 .388543-.747198 .56787c-.159402 .33873-.298879 .926526-.298879 .966376c0 .099626 .119552 .099626 .119552 .099626c.099626 0 .109589-.009963 .169365-.229141c.169365-.707347 .368618-1.185554 .727273-1.185554c.199253 0 .308842 .129514 .308842 .458281c0 .209215-.029888 .318804-.159402 .836862l-.577833 2.30137c-.029888 .14944-.089664 .37858-.089664 .428394c0 .179328 .139477 .268991 .288917 .268991c.119552 0 .298879-.079701 .368618-.278954c.009963-.019925 .129514-.488169 .18929-.737235l.219178-.896638c.059776-.219178 .119552-.438356 .169365-.667497l.129514-.498132c.14944-.308842 .67746-1.215442 1.62391-1.215442c.448319 0 .537983 .368618 .537983 .697385c0 .617684-.488169 1.892902-.647572 2.321295c-.089664 .229141-.099626 .348692-.099626 .458281c0 .468244 .348692 .816936 .816936 .816936c.936488 0 1.305106-1.454545 1.305106-1.534247z'/>
 </defs>
-<g id='page25'>
-<use x='0' y='0' xlink:href='#g2-110'/>
+<g id='page110'>
+<g fill='currentColor'>
+<use x='0' y='0' xlink:href='#g4-110'/>
+</g>
 </g>
 </svg> nodes is <?xml version='1.0' encoding='UTF-8'?>
 
@@ -10658,12 +10687,14 @@ lemma: &lt;/p&gt;
 <p>
 for every <a href="/tree_data_structure.html">almost complete tree</a> with <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -4.289468 5.979925 4.289468' style="max-height: 0.4219em; vertical-align: -0.0000em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -4.289468 5.979925 4.289468' style="max-height: 0.5203em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
-<path id='g2-110' d='m5.688667-1.424658c0-.099626-.089664-.099626-.119552-.099626c-.099626 0-.099626 .029888-.14944 .179328c-.199253 .67746-.52802 1.235367-1.016189 1.235367c-.169365 0-.239103-.099626-.239103-.328767c0-.249066 .089664-.488169 .179328-.707347c.18929-.52802 .607721-1.62391 .607721-2.191781c0-.667497-.428394-1.066002-1.145704-1.066002c-.896638 0-1.384807 .637609-1.554172 .86675c-.049813-.557908-.458281-.86675-.916563-.86675s-.647572 .388543-.747198 .56787c-.159402 .33873-.298879 .926526-.298879 .966376c0 .099626 .119552 .099626 .119552 .099626c.099626 0 .109589-.009963 .169365-.229141c.169365-.707347 .368618-1.185554 .727273-1.185554c.199253 0 .308842 .129514 .308842 .458281c0 .209215-.029888 .318804-.159402 .836862l-.577833 2.30137c-.029888 .14944-.089664 .37858-.089664 .428394c0 .179328 .139477 .268991 .288917 .268991c.119552 0 .298879-.079701 .368618-.278954c.009963-.019925 .129514-.488169 .18929-.737235l.219178-.896638c.059776-.219178 .119552-.438356 .169365-.667497l.129514-.498132c.14944-.308842 .67746-1.215442 1.62391-1.215442c.448319 0 .537983 .368618 .537983 .697385c0 .617684-.488169 1.892902-.647572 2.321295c-.089664 .229141-.099626 .348692-.099626 .458281c0 .468244 .348692 .816936 .816936 .816936c.936488 0 1.305106-1.454545 1.305106-1.534247z'/>
+<path id='g4-110' d='m5.688667-1.424658c0-.099626-.089664-.099626-.119552-.099626c-.099626 0-.099626 .029888-.14944 .179328c-.199253 .67746-.52802 1.235367-1.016189 1.235367c-.169365 0-.239103-.099626-.239103-.328767c0-.249066 .089664-.488169 .179328-.707347c.18929-.52802 .607721-1.62391 .607721-2.191781c0-.667497-.428394-1.066002-1.145704-1.066002c-.896638 0-1.384807 .637609-1.554172 .86675c-.049813-.557908-.458281-.86675-.916563-.86675s-.647572 .388543-.747198 .56787c-.159402 .33873-.298879 .926526-.298879 .966376c0 .099626 .119552 .099626 .119552 .099626c.099626 0 .109589-.009963 .169365-.229141c.169365-.707347 .368618-1.185554 .727273-1.185554c.199253 0 .308842 .129514 .308842 .458281c0 .209215-.029888 .318804-.159402 .836862l-.577833 2.30137c-.029888 .14944-.089664 .37858-.089664 .428394c0 .179328 .139477 .268991 .288917 .268991c.119552 0 .298879-.079701 .368618-.278954c.009963-.019925 .129514-.488169 .18929-.737235l.219178-.896638c.059776-.219178 .119552-.438356 .169365-.667497l.129514-.498132c.14944-.308842 .67746-1.215442 1.62391-1.215442c.448319 0 .537983 .368618 .537983 .697385c0 .617684-.488169 1.892902-.647572 2.321295c-.089664 .229141-.099626 .348692-.099626 .458281c0 .468244 .348692 .816936 .816936 .816936c.936488 0 1.305106-1.454545 1.305106-1.534247z'/>
 </defs>
-<g id='page25'>
-<use x='0' y='0' xlink:href='#g2-110'/>
+<g id='page110'>
+<g fill='currentColor'>
+<use x='0' y='0' xlink:href='#g4-110'/>
+</g>
 </g>
 </svg> nodes and height <?xml version='1.0' encoding='UTF-8'?>
 
@@ -10921,12 +10952,14 @@ lemma: &lt;/p&gt;
 <p>
 for every almost complete tree with <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -4.289468 5.979925 4.289468' style="max-height: 0.4219em; vertical-align: -0.0000em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -4.289468 5.979925 4.289468' style="max-height: 0.5203em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
-<path id='g2-110' d='m5.688667-1.424658c0-.099626-.089664-.099626-.119552-.099626c-.099626 0-.099626 .029888-.14944 .179328c-.199253 .67746-.52802 1.235367-1.016189 1.235367c-.169365 0-.239103-.099626-.239103-.328767c0-.249066 .089664-.488169 .179328-.707347c.18929-.52802 .607721-1.62391 .607721-2.191781c0-.667497-.428394-1.066002-1.145704-1.066002c-.896638 0-1.384807 .637609-1.554172 .86675c-.049813-.557908-.458281-.86675-.916563-.86675s-.647572 .388543-.747198 .56787c-.159402 .33873-.298879 .926526-.298879 .966376c0 .099626 .119552 .099626 .119552 .099626c.099626 0 .109589-.009963 .169365-.229141c.169365-.707347 .368618-1.185554 .727273-1.185554c.199253 0 .308842 .129514 .308842 .458281c0 .209215-.029888 .318804-.159402 .836862l-.577833 2.30137c-.029888 .14944-.089664 .37858-.089664 .428394c0 .179328 .139477 .268991 .288917 .268991c.119552 0 .298879-.079701 .368618-.278954c.009963-.019925 .129514-.488169 .18929-.737235l.219178-.896638c.059776-.219178 .119552-.438356 .169365-.667497l.129514-.498132c.14944-.308842 .67746-1.215442 1.62391-1.215442c.448319 0 .537983 .368618 .537983 .697385c0 .617684-.488169 1.892902-.647572 2.321295c-.089664 .229141-.099626 .348692-.099626 .458281c0 .468244 .348692 .816936 .816936 .816936c.936488 0 1.305106-1.454545 1.305106-1.534247z'/>
+<path id='g4-110' d='m5.688667-1.424658c0-.099626-.089664-.099626-.119552-.099626c-.099626 0-.099626 .029888-.14944 .179328c-.199253 .67746-.52802 1.235367-1.016189 1.235367c-.169365 0-.239103-.099626-.239103-.328767c0-.249066 .089664-.488169 .179328-.707347c.18929-.52802 .607721-1.62391 .607721-2.191781c0-.667497-.428394-1.066002-1.145704-1.066002c-.896638 0-1.384807 .637609-1.554172 .86675c-.049813-.557908-.458281-.86675-.916563-.86675s-.647572 .388543-.747198 .56787c-.159402 .33873-.298879 .926526-.298879 .966376c0 .099626 .119552 .099626 .119552 .099626c.099626 0 .109589-.009963 .169365-.229141c.169365-.707347 .368618-1.185554 .727273-1.185554c.199253 0 .308842 .129514 .308842 .458281c0 .209215-.029888 .318804-.159402 .836862l-.577833 2.30137c-.029888 .14944-.089664 .37858-.089664 .428394c0 .179328 .139477 .268991 .288917 .268991c.119552 0 .298879-.079701 .368618-.278954c.009963-.019925 .129514-.488169 .18929-.737235l.219178-.896638c.059776-.219178 .119552-.438356 .169365-.667497l.129514-.498132c.14944-.308842 .67746-1.215442 1.62391-1.215442c.448319 0 .537983 .368618 .537983 .697385c0 .617684-.488169 1.892902-.647572 2.321295c-.089664 .229141-.099626 .348692-.099626 .458281c0 .468244 .348692 .816936 .816936 .816936c.936488 0 1.305106-1.454545 1.305106-1.534247z'/>
 </defs>
-<g id='page25'>
-<use x='0' y='0' xlink:href='#g2-110'/>
+<g id='page110'>
+<g fill='currentColor'>
+<use x='0' y='0' xlink:href='#g4-110'/>
+</g>
 </g>
 </svg> nodes and height <?xml version='1.0' encoding='UTF-8'?>
 
@@ -11000,12 +11033,14 @@ lemma: &lt;/p&gt;
 <p>
 for every almost complete tree with <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -4.289468 5.979925 4.289468' style="max-height: 0.4219em; vertical-align: -0.0000em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -4.289468 5.979925 4.289468' style="max-height: 0.5203em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
-<path id='g2-110' d='m5.688667-1.424658c0-.099626-.089664-.099626-.119552-.099626c-.099626 0-.099626 .029888-.14944 .179328c-.199253 .67746-.52802 1.235367-1.016189 1.235367c-.169365 0-.239103-.099626-.239103-.328767c0-.249066 .089664-.488169 .179328-.707347c.18929-.52802 .607721-1.62391 .607721-2.191781c0-.667497-.428394-1.066002-1.145704-1.066002c-.896638 0-1.384807 .637609-1.554172 .86675c-.049813-.557908-.458281-.86675-.916563-.86675s-.647572 .388543-.747198 .56787c-.159402 .33873-.298879 .926526-.298879 .966376c0 .099626 .119552 .099626 .119552 .099626c.099626 0 .109589-.009963 .169365-.229141c.169365-.707347 .368618-1.185554 .727273-1.185554c.199253 0 .308842 .129514 .308842 .458281c0 .209215-.029888 .318804-.159402 .836862l-.577833 2.30137c-.029888 .14944-.089664 .37858-.089664 .428394c0 .179328 .139477 .268991 .288917 .268991c.119552 0 .298879-.079701 .368618-.278954c.009963-.019925 .129514-.488169 .18929-.737235l.219178-.896638c.059776-.219178 .119552-.438356 .169365-.667497l.129514-.498132c.14944-.308842 .67746-1.215442 1.62391-1.215442c.448319 0 .537983 .368618 .537983 .697385c0 .617684-.488169 1.892902-.647572 2.321295c-.089664 .229141-.099626 .348692-.099626 .458281c0 .468244 .348692 .816936 .816936 .816936c.936488 0 1.305106-1.454545 1.305106-1.534247z'/>
+<path id='g4-110' d='m5.688667-1.424658c0-.099626-.089664-.099626-.119552-.099626c-.099626 0-.099626 .029888-.14944 .179328c-.199253 .67746-.52802 1.235367-1.016189 1.235367c-.169365 0-.239103-.099626-.239103-.328767c0-.249066 .089664-.488169 .179328-.707347c.18929-.52802 .607721-1.62391 .607721-2.191781c0-.667497-.428394-1.066002-1.145704-1.066002c-.896638 0-1.384807 .637609-1.554172 .86675c-.049813-.557908-.458281-.86675-.916563-.86675s-.647572 .388543-.747198 .56787c-.159402 .33873-.298879 .926526-.298879 .966376c0 .099626 .119552 .099626 .119552 .099626c.099626 0 .109589-.009963 .169365-.229141c.169365-.707347 .368618-1.185554 .727273-1.185554c.199253 0 .308842 .129514 .308842 .458281c0 .209215-.029888 .318804-.159402 .836862l-.577833 2.30137c-.029888 .14944-.089664 .37858-.089664 .428394c0 .179328 .139477 .268991 .288917 .268991c.119552 0 .298879-.079701 .368618-.278954c.009963-.019925 .129514-.488169 .18929-.737235l.219178-.896638c.059776-.219178 .119552-.438356 .169365-.667497l.129514-.498132c.14944-.308842 .67746-1.215442 1.62391-1.215442c.448319 0 .537983 .368618 .537983 .697385c0 .617684-.488169 1.892902-.647572 2.321295c-.089664 .229141-.099626 .348692-.099626 .458281c0 .468244 .348692 .816936 .816936 .816936c.936488 0 1.305106-1.454545 1.305106-1.534247z'/>
 </defs>
-<g id='page25'>
-<use x='0' y='0' xlink:href='#g2-110'/>
+<g id='page110'>
+<g fill='currentColor'>
+<use x='0' y='0' xlink:href='#g4-110'/>
+</g>
 </g>
 </svg> nodes and height <?xml version='1.0' encoding='UTF-8'?>
 
@@ -11075,9 +11110,9 @@ for every almost complete tree with <?xml version='1.0' encoding='UTF-8'?>
 </div>
 </div>
 </div>
-<div id="outline-container-org252cd9d" class="outline-2">
-<h2 id="org252cd9d">average time complexity table</h2>
-<div class="outline-text-2" id="text-org252cd9d">
+<div id="outline-container-orgdb5d3d4" class="outline-2">
+<h2 id="orgdb5d3d4">average time complexity table</h2>
+<div class="outline-text-2" id="text-orgdb5d3d4">
 <div test="test" class="fancy-block note" data-before="&lt;p&gt;
 note: &lt;/p&gt;
 " id="def-stack" data-id="def-stack">

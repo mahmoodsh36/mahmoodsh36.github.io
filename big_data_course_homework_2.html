@@ -6,7 +6,18 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>big data course homework 2</title><!-- lambda icon, frail attempt -->
+<title>big data course homework 2</title><!-- for google analytics -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QNNF19VZGH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QNNF19VZGH');
+</script>
+
+<!-- lambda icon, frail attempt -->
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22100%22 color=%22red%22>λ</text></svg>">
 <!-- not-so-awesome awesome font -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -114,7 +125,7 @@ note that not every student has a secondary field of study.
 </div>
 
 
-<pre class="example" id="org43f5f56">
+<pre class="example" id="orgb822094">
 {
 	"acknowledged" : true,
 	"insertedIds" : [
@@ -147,7 +158,7 @@ write a command that shows all the students with all the data on them.
 </div>
 
 
-<pre class="example" id="orgc533abf">
+<pre class="example" id="orgc86b46c">
 {
 	"_id" : 0,
 	"name" : {
@@ -369,7 +380,7 @@ for each student, show their name and the names of the courses they study, witho
 </div>
 
 
-<pre class="example" id="org3f6e72a">
+<pre class="example" id="org7972ed8">
 {
 	"name" : {
 		"first" : "mahmood0",
@@ -497,7 +508,7 @@ show all students, for each student, show their id, a new field named <code>full
 </div>
 
 
-<pre class="example" id="org7281c2e">
+<pre class="example" id="org87174dc">
 {
 	"_id" : 0,
 	"phones" : [
@@ -615,7 +626,7 @@ show all students, for each student show their id, the number of courses they're
 </div>
 
 
-<pre class="example" id="org77b856a">
+<pre class="example" id="org233f942">
 {
 	"_id" : 0,
 	"full name" : "mahmood0 sheikh",
@@ -703,7 +714,7 @@ show the details of the students with a specific id of your choice.
 </div>
 
 
-<pre class="example" id="orgdd8141e">
+<pre class="example" id="org119bb73">
 {
 	"_id" : 1,
 	"name" : {
@@ -742,7 +753,7 @@ show the details of all the students except one with a specific id of your choic
 </div>
 
 
-<pre class="example" id="org33e6eba">
+<pre class="example" id="org461763c">
 {
 	"_id" : 0,
 	"name" : {
@@ -944,7 +955,7 @@ show the details of 3 students with specific ids of your choice.
 </div>
 
 
-<pre class="example" id="orgf6914c1">
+<pre class="example" id="orgf6a6854">
 {
 	"_id" : 0,
 	"name" : {
@@ -1106,7 +1117,7 @@ show the details of the students whose date of birth is within the span of two d
 </div>
 
 
-<pre class="example" id="org2f6b550">
+<pre class="example" id="orgc0650d7">
 { "_id" : 0, "name" : { "first" : "mahmood0", "last" : "sheikh" }, "bdate" : ISODate("2002-01-10T00:00:00Z"), "courses" : [ { "ccode" : "0", "cname" : "algebra", "grade" : 0 } ], "phones" : [ "0523388010", "0524499120" ], "major" : "computer science" }
 { "_id" : 1, "name" : { "first" : "mahmood1", "last" : "sheikh" }, "bdate" : ISODate("2002-01-11T00:00:00Z"), "courses" : [ { "ccode" : "0", "cname" : "algebra", "grade" : 10 } ], "phones" : [ "0523388011", "0524499121" ], "major" : "computer science" }
 { "_id" : 2, "name" : { "first" : "mahmood2", "last" : "sheikh" }, "bdate" : ISODate("2002-01-12T00:00:00Z"), "courses" : [ { "ccode" : "0", "cname" : "algebra", "grade" : 20 } ], "phones" : [ "0523388012", "0524499122" ], "major" : "computer science" }
@@ -1134,7 +1145,7 @@ show all the students that are in a specific course of your choice.
 </div>
 
 
-<pre class="example" id="orgc1ba4de">
+<pre class="example" id="org2d46c32">
 { "_id" : 0, "name" : { "first" : "mahmood0", "last" : "sheikh" }, "bdate" : ISODate("2002-01-10T00:00:00Z"), "courses" : [ { "ccode" : "0", "cname" : "algebra", "grade" : 0 } ], "phones" : [ "0523388010", "0524499120" ], "major" : "computer science" }
 { "_id" : 1, "name" : { "first" : "mahmood1", "last" : "sheikh" }, "bdate" : ISODate("2002-01-11T00:00:00Z"), "courses" : [ { "ccode" : "0", "cname" : "algebra", "grade" : 10 } ], "phones" : [ "0523388011", "0524499121" ], "major" : "computer science" }
 { "_id" : 2, "name" : { "first" : "mahmood2", "last" : "sheikh" }, "bdate" : ISODate("2002-01-12T00:00:00Z"), "courses" : [ { "ccode" : "0", "cname" : "algebra", "grade" : 20 } ], "phones" : [ "0523388012", "0524499122" ], "major" : "computer science" }
@@ -1182,7 +1193,7 @@ show all the students with only one phone number.
 </div>
 
 
-<pre class="example" id="org18a4d5a">
+<pre class="example" id="org15c345a">
 { "_id" : 0, "name" : { "first" : "mahmood0", "last" : "sheikh" }, "bdate" : ISODate("2002-01-10T00:00:00Z"), "courses" : [ { "ccode" : "0", "cname" : "algebra", "grade" : 0 } ], "phones" : [ "0523388010", "0524499120" ], "major" : "computer science" }
 { "_id" : 1, "name" : { "first" : "mahmood1", "last" : "sheikh" }, "bdate" : ISODate("2002-01-11T00:00:00Z"), "courses" : [ { "ccode" : "0", "cname" : "algebra", "grade" : 10 } ], "phones" : [ "0523388011", "0524499121" ], "major" : "computer science" }
 { "_id" : 2, "name" : { "first" : "mahmood2", "last" : "sheikh" }, "bdate" : ISODate("2002-01-12T00:00:00Z"), "courses" : [ { "ccode" : "0", "cname" : "algebra", "grade" : 20 } ], "phones" : [ "0523388012", "0524499122" ], "major" : "computer science" }
