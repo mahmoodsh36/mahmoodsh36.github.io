@@ -6,7 +6,18 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>python</title><!-- lambda icon, frail attempt -->
+<title>python</title><!-- for google analytics -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QNNF19VZGH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QNNF19VZGH');
+</script>
+
+<!-- lambda icon, frail attempt -->
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22100%22 color=%22red%22>λ</text></svg>">
 <!-- not-so-awesome awesome font -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -54,9 +65,9 @@
 <span style="color: #a0a0cf; font-style: italic;"># </span><span style="color: #a0a0cf; font-style: italic;">from keras import layers</span>
 </pre>
 </div>
-<div id="outline-container-org5b41a1a" class="outline-2">
-<h2 id="org5b41a1a">automating interpreter installation and setup</h2>
-<div class="outline-text-2" id="text-org5b41a1a">
+<div id="outline-container-orgea0dbdc" class="outline-2">
+<h2 id="orgea0dbdc">automating interpreter installation and setup</h2>
+<div class="outline-text-2" id="text-orgea0dbdc">
 <p>
 this doesnt work because <code>torchtext</code> isnt in nixos.. <span class="timestamp-wrapper"><span class="timestamp">&lt;2024-06-30 Sun 20:15:00&gt;</span></span>
 </p>
@@ -68,9 +79,9 @@ this doesnt work because <code>torchtext</code> isnt in nixos.. <span class="tim
 </div>
 </div>
 </div>
-<div id="outline-container-orgca55f56" class="outline-2">
-<h2 id="orgca55f56">add method to class dynamically</h2>
-<div class="outline-text-2" id="text-orgca55f56">
+<div id="outline-container-orgf3b7099" class="outline-2">
+<h2 id="orgf3b7099">add method to class dynamically</h2>
+<div class="outline-text-2" id="text-orgf3b7099">
 <div class="org-src-container" data-language="python">
 <pre class="src src-python"><span style="color: #deb07a; font-weight: bold;">from</span> functools <span style="color: #deb07a; font-weight: bold;">import</span> wraps
 
@@ -118,9 +129,9 @@ printing from foo
 </pre>
 </div>
 </div>
-<div id="outline-container-orgf6793b8" class="outline-2">
-<h2 id="orgf6793b8">slicing operator</h2>
-<div class="outline-text-2" id="text-orgf6793b8">
+<div id="outline-container-orge598acc" class="outline-2">
+<h2 id="orge598acc">slicing operator</h2>
+<div class="outline-text-2" id="text-orge598acc">
 <p>
 the colon in python is used as a slicing operator in lists
 </p>
@@ -181,9 +192,9 @@ the operator <code>::1</code> is often used to reverse a list:
 </pre>
 </div>
 </div>
-<div id="outline-container-org703b73f" class="outline-2">
-<h2 id="org703b73f">lambda</h2>
-<div class="outline-text-2" id="text-org703b73f">
+<div id="outline-container-orgb0a2953" class="outline-2">
+<h2 id="orgb0a2953">lambda</h2>
+<div class="outline-text-2" id="text-orgb0a2953">
 <div class="org-src-container" data-language="python">
 <pre class="src src-python"><span style="color: #ffaacf;">students</span> = <span style="color: #deb07a;">{</span>111: <span style="color: #f3a0a0;">"anna"</span>, 222: <span style="color: #f3a0a0;">"john"</span>, 333: <span style="color: #f3a0a0;">"katy"</span>, 444: <span style="color: #f3a0a0;">"suzanne"</span>, 555: <span style="color: #f3a0a0;">"julia"</span><span style="color: #deb07a;">}</span>
 <span style="color: #e3b0c0; font-weight: bold;">print</span><span style="color: #deb07a;">(</span><span style="color: #e3b0c0; font-weight: bold;">sorted</span><span style="color: #ffaacf;">(</span>students,
@@ -209,9 +220,9 @@ the operator <code>::1</code> is often used to reverse a list:
 </pre>
 </div>
 </div>
-<div id="outline-container-org850e104" class="outline-2">
-<h2 id="org850e104">filesystem</h2>
-<div class="outline-text-2" id="text-org850e104">
+<div id="outline-container-orgb03ff17" class="outline-2">
+<h2 id="orgb03ff17">filesystem</h2>
+<div class="outline-text-2" id="text-orgb03ff17">
 <div class="org-src-container" data-language="python">
 <pre class="src src-python"><span style="color: #deb07a; font-weight: bold;">import</span> os.path
 <span style="color: #deb07a; font-weight: bold;">import</span> os
@@ -229,9 +240,9 @@ True
 </pre>
 </div>
 </div>
-<div id="outline-container-org3939fd2" class="outline-2">
-<h2 id="org3939fd2">list comprehension</h2>
-<div class="outline-text-2" id="text-org3939fd2">
+<div id="outline-container-org28ec7cf" class="outline-2">
+<h2 id="org28ec7cf">list comprehension</h2>
+<div class="outline-text-2" id="text-org28ec7cf">
 <div class="org-src-container" data-language="python">
 <pre class="src src-python"><span style="color: #deb07a; font-weight: bold;">return</span> <span style="color: #deb07a;">[</span>num <span style="color: #deb07a; font-weight: bold;">for</span> num <span style="color: #deb07a; font-weight: bold;">in</span> <span style="color: #e3b0c0; font-weight: bold;">range</span><span style="color: #ffaacf;">(</span>-10, 10<span style="color: #ffaacf;">)</span> <span style="color: #deb07a; font-weight: bold;">if</span> num &gt; 0<span style="color: #deb07a;">]</span>
 </pre>
@@ -276,9 +287,9 @@ True
 </table>
 </div>
 </div>
-<div id="outline-container-org3294547" class="outline-2">
-<h2 id="org3294547">reading documentation</h2>
-<div class="outline-text-2" id="text-org3294547">
+<div id="outline-container-org1241b3d" class="outline-2">
+<h2 id="org1241b3d">reading documentation</h2>
+<div class="outline-text-2" id="text-org1241b3d">
 <p>
 the easiest way to read the documentation for a package is to use <code>pydoc &lt;package&gt;</code> on the commandline
 </p>
@@ -292,9 +303,9 @@ for usage with emacs this could be of help <a href="https://www.emacswiki.org/em
 </p>
 </div>
 </div>
-<div id="outline-container-org4b987d1" class="outline-2">
-<h2 id="org4b987d1">python set union</h2>
-<div class="outline-text-2" id="text-org4b987d1">
+<div id="outline-container-org9f67966" class="outline-2">
+<h2 id="org9f67966">python set union</h2>
+<div class="outline-text-2" id="text-org9f67966">
 <div class="org-src-container" data-language="python">
 <pre class="src src-python"><span style="color: #e3b0c0; font-weight: bold;">print</span><span style="color: #deb07a;">(</span><span style="color: #e3b0c0; font-weight: bold;">set</span><span style="color: #ffaacf;">(</span><span style="color: #80aadf;">{</span>1<span style="color: #80aadf;">}</span><span style="color: #ffaacf;">)</span>.union<span style="color: #ffaacf;">(</span><span style="color: #80aadf;">{</span>2<span style="color: #80aadf;">}</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
 <span style="color: #e3b0c0; font-weight: bold;">print</span><span style="color: #deb07a;">(</span><span style="color: #e3b0c0; font-weight: bold;">set</span><span style="color: #ffaacf;">()</span>.union<span style="color: #ffaacf;">(</span><span style="color: #80aadf;">{</span>2<span style="color: #80aadf;">}</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
@@ -308,18 +319,18 @@ for usage with emacs this could be of help <a href="https://www.emacswiki.org/em
 </pre>
 </div>
 </div>
-<div id="outline-container-orge1af575" class="outline-2">
-<h2 id="orge1af575">python index of item in list</h2>
-<div class="outline-text-2" id="text-orge1af575">
+<div id="outline-container-org455abb8" class="outline-2">
+<h2 id="org455abb8">python index of item in list</h2>
+<div class="outline-text-2" id="text-org455abb8">
 <div class="org-src-container" data-language="python">
 <pre class="src src-python">mylist.index<span style="color: #deb07a;">(</span>myelement<span style="color: #deb07a;">)</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org98775de" class="outline-2">
-<h2 id="org98775de">random item from list</h2>
-<div class="outline-text-2" id="text-org98775de">
+<div id="outline-container-org3cc2307" class="outline-2">
+<h2 id="org3cc2307">random item from list</h2>
+<div class="outline-text-2" id="text-org3cc2307">
 <div class="org-src-container" data-language="python">
 <pre class="src src-python"><span style="color: #deb07a; font-weight: bold;">import</span> random
 
@@ -329,10 +340,10 @@ for usage with emacs this could be of help <a href="https://www.emacswiki.org/em
 </div>
 </div>
 </div>
-<div id="outline-container-org3c9ec3a" class="outline-2">
-<h2 id="org3c9ec3a">remove item from list</h2>
-<div class="outline-text-2" id="text-org3c9ec3a">
-<div test="test" class="fancy-block dummy" data-before="" id="def-forest" data-id="def-forest">
+<div id="outline-container-orged3e233" class="outline-2">
+<h2 id="orged3e233">remove item from list</h2>
+<div class="outline-text-2" id="text-orged3e233">
+<div test="test" class="fancy-block dummy" data-before="" id="def-assoc" data-id="def-assoc">
 <p>
 list.pop(index)
 </p>
@@ -384,35 +395,35 @@ if x is empty, x=x[1:] would leave it empty without complaining. x.pop(0) would 
 </div>
 </div>
 </div>
-<div id="outline-container-org6310bd8" class="outline-2">
-<h2 id="org6310bd8">random int</h2>
-<div class="outline-text-2" id="text-org6310bd8">
+<div id="outline-container-org4cf4e4f" class="outline-2">
+<h2 id="org4cf4e4f">random int</h2>
+<div class="outline-text-2" id="text-org4cf4e4f">
 <div class="org-src-container" data-language="python">
 <pre class="src src-python">random.randint<span style="color: #deb07a;">(</span>3, 9<span style="color: #deb07a;">)</span> <span style="color: #a0a0cf; font-style: italic;"># </span><span style="color: #a0a0cf; font-style: italic;">between 3 and 9, both included</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgf9a4c44" class="outline-2">
-<h2 id="orgf9a4c44">pick random sublist</h2>
-<div class="outline-text-2" id="text-orgf9a4c44">
+<div id="outline-container-org70f137a" class="outline-2">
+<h2 id="org70f137a">pick random sublist</h2>
+<div class="outline-text-2" id="text-org70f137a">
 <div class="org-src-container" data-language="python">
 <pre class="src src-python">random.sample<span style="color: #deb07a;">(</span><span style="color: #ffaacf;">[</span><span style="color: #f3a0a0;">"some"</span>, <span style="color: #f3a0a0;">"provider"</span>, <span style="color: #f3a0a0;">"can"</span>, <span style="color: #f3a0a0;">"be"</span>, <span style="color: #f3a0a0;">"null"</span><span style="color: #ffaacf;">]</span>, 3<span style="color: #deb07a;">)</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgd4a6d8b" class="outline-2">
-<h2 id="orgd4a6d8b">concatenate lists</h2>
-<div class="outline-text-2" id="text-orgd4a6d8b">
+<div id="outline-container-org8c856f4" class="outline-2">
+<h2 id="org8c856f4">concatenate lists</h2>
+<div class="outline-text-2" id="text-org8c856f4">
 <p>
 simply <code>list1 + list2</code>.
 </p>
 </div>
 </div>
-<div id="outline-container-org2659432" class="outline-2">
-<h2 id="org2659432">get user home dir</h2>
-<div class="outline-text-2" id="text-org2659432">
+<div id="outline-container-org221d0f4" class="outline-2">
+<h2 id="org221d0f4">get user home dir</h2>
+<div class="outline-text-2" id="text-org221d0f4">
 <div class="org-src-container" data-language="python">
 <pre class="src src-python"><span style="color: #deb07a; font-weight: bold;">from</span> os.path <span style="color: #deb07a; font-weight: bold;">import</span> expanduser
 <span style="color: #ffaacf;">home</span> = expanduser<span style="color: #deb07a;">(</span><span style="color: #f3a0a0;">"~"</span><span style="color: #deb07a;">)</span>
@@ -420,9 +431,9 @@ simply <code>list1 + list2</code>.
 </div>
 </div>
 </div>
-<div id="outline-container-orge0e1f33" class="outline-2">
-<h2 id="orge0e1f33">python spawn command avoid zombie process</h2>
-<div class="outline-text-2" id="text-orge0e1f33">
+<div id="outline-container-org7c2ba35" class="outline-2">
+<h2 id="org7c2ba35">python spawn command avoid zombie process</h2>
+<div class="outline-text-2" id="text-org7c2ba35">
 <p>
 as an example, launch a command using:
 </p>
@@ -433,7 +444,7 @@ as an example, launch a command using:
 
 <div test="test" class="fancy-block dummy" data-before="" data-after="&lt;p&gt;
 &lt;a href=&quot;https://stackoverflow.com/questions/13247956/python-django-spawn-background-process-and-avoid-zombie-process&quot;&gt;https://stackoverflow.com/questions/13247956/python-django-spawn-background-process-and-avoid-zombie-process&lt;/a&gt;&lt;/p&gt;
-" id="def-forest" data-id="def-forest">
+" id="def-assoc" data-id="def-assoc">
 <p>
 avoid a zombie state when the command is finished by adding this at the top of your file:
 </p>
@@ -455,9 +466,9 @@ actually, it seems this works alot better (and detaches the subprocess too):
 </div>
 </div>
 </div>
-<div id="outline-container-orgb6da94d" class="outline-2">
-<h2 id="orgb6da94d">requests library</h2>
-<div class="outline-text-2" id="text-orgb6da94d">
+<div id="outline-container-orgc0d9074" class="outline-2">
+<h2 id="orgc0d9074">requests library</h2>
+<div class="outline-text-2" id="text-orgc0d9074">
 <p>
 <a id="blk-python-requests-lib-docs">blk-python-requests-lib-docs</a><a href="elisp:(open-devdocs-entry%20%22requests%22)">devdocs documentation entry for requests</a>
 imported as
@@ -467,9 +478,9 @@ imported as
 </pre>
 </div>
 </div>
-<div id="outline-container-orgd0b9282" class="outline-3">
-<h3 id="orgd0b9282">post request</h3>
-<div class="outline-text-3" id="text-orgd0b9282">
+<div id="outline-container-org6b8704a" class="outline-3">
+<h3 id="org6b8704a">post request</h3>
+<div class="outline-text-3" id="text-org6b8704a">
 <p>
 usage example from <a href="/python.html#blk-python-requests-lib-docs">blk-python-requests-lib-docs</a>:
 </p>
@@ -484,9 +495,9 @@ using <code>json</code> makes <code>requests</code> set the correct headers for 
 </div>
 </div>
 </div>
-<div id="outline-container-org2c76684" class="outline-2">
-<h2 id="org2c76684">iterate through every two adjacent elements in a list at a time</h2>
-<div class="outline-text-2" id="text-org2c76684">
+<div id="outline-container-org5982f0a" class="outline-2">
+<h2 id="org5982f0a">iterate through every two adjacent elements in a list at a time</h2>
+<div class="outline-text-2" id="text-org5982f0a">
 <div class="org-src-container" data-language="python">
 <pre class="src src-python"><span style="color: #deb07a; font-weight: bold;">for</span> <span style="color: #deb07a;">(</span>index, thing<span style="color: #deb07a;">)</span> <span style="color: #deb07a; font-weight: bold;">in</span> <span style="color: #e3b0c0; font-weight: bold;">enumerate</span><span style="color: #deb07a;">(</span>the_list<span style="color: #ffaacf;">[</span>:-1<span style="color: #ffaacf;">]</span><span style="color: #deb07a;">)</span>:
     <span style="color: #ffaacf;">current</span>, <span style="color: #ffaacf;">next_</span> = thing, the_list<span style="color: #deb07a;">[</span>index + 1<span style="color: #deb07a;">]</span>
@@ -494,9 +505,9 @@ using <code>json</code> makes <code>requests</code> set the correct headers for 
 </div>
 </div>
 </div>
-<div id="outline-container-org56de76c" class="outline-2">
-<h2 id="org56de76c">read file line by line</h2>
-<div class="outline-text-2" id="text-org56de76c">
+<div id="outline-container-orgd3391f7" class="outline-2">
+<h2 id="orgd3391f7">read file line by line</h2>
+<div class="outline-text-2" id="text-orgd3391f7">
 <div class="org-src-container" data-language="python">
 <pre class="src src-python"><span style="color: #deb07a; font-weight: bold;">with</span> <span style="color: #e3b0c0; font-weight: bold;">open</span><span style="color: #deb07a;">(</span>filename<span style="color: #deb07a;">)</span> <span style="color: #deb07a; font-weight: bold;">as</span> <span style="color: #e3b0c0; font-weight: bold;">file</span>:
   <span style="color: #deb07a; font-weight: bold;">for</span> line <span style="color: #deb07a; font-weight: bold;">in</span> <span style="color: #e3b0c0; font-weight: bold;">file</span>:
@@ -505,9 +516,9 @@ using <code>json</code> makes <code>requests</code> set the correct headers for 
 </div>
 </div>
 </div>
-<div id="outline-container-orgce75309" class="outline-2">
-<h2 id="orgce75309">get local ip address</h2>
-<div class="outline-text-2" id="text-orgce75309">
+<div id="outline-container-orgb3b78e8" class="outline-2">
+<h2 id="orgb3b78e8">get local ip address</h2>
+<div class="outline-text-2" id="text-orgb3b78e8">
 <div class="org-src-container" data-language="python">
 <pre class="src src-python"><span style="color: #deb07a; font-weight: bold;">import</span> socket
 
@@ -522,9 +533,9 @@ s.close<span style="color: #deb07a;">()</span>
 </div>
 </div>
 </div>
-<div id="outline-container-org8d60e8d" class="outline-2">
-<h2 id="org8d60e8d">beautifulsoup4</h2>
-<div class="outline-text-2" id="text-org8d60e8d">
+<div id="outline-container-org706f994" class="outline-2">
+<h2 id="org706f994">beautifulsoup4</h2>
+<div class="outline-text-2" id="text-org706f994">
 <p>
 simple example:
 </p>
@@ -537,7 +548,7 @@ simple example:
 
 <div test="test" class="fancy-block note" data-before="&lt;p&gt;
 note: &lt;/p&gt;
-" id="def-forest" data-id="def-forest">
+" id="def-assoc" data-id="def-assoc">
 <p>
 unlike html5lib, this parser (html.parser) makes no attempt to create a well-formed HTML document by adding a &lt;body&gt; tag. Unlike lxml, it doesn’t even bother to add an &lt;html&gt; tag.
 </p>
@@ -565,9 +576,9 @@ unlike html5lib, this parser (html.parser) makes no attempt to create a well-for
 </div>
 </div>
 </div>
-<div id="outline-container-org668b344" class="outline-2">
-<h2 id="org668b344">define iterator for class</h2>
-<div class="outline-text-2" id="text-org668b344">
+<div id="outline-container-org214cc10" class="outline-2">
+<h2 id="org214cc10">define iterator for class</h2>
+<div class="outline-text-2" id="text-org214cc10">
 <div class="org-src-container" data-language="python">
 <pre class="src src-python"><span style="color: #deb07a; font-weight: bold;">class</span> <span style="color: #a9c99f;">MyNumbers</span>:
   <span style="color: #deb07a; font-weight: bold;">def</span> <span style="color: #8fcfd0;">__iter__</span><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">self</span><span style="color: #deb07a;">)</span>:
@@ -591,9 +602,9 @@ unlike html5lib, this parser (html.parser) makes no attempt to create a well-for
 </div>
 </div>
 </div>
-<div id="outline-container-org411d229" class="outline-2">
-<h2 id="org411d229">threadpoolexecutor</h2>
-<div class="outline-text-2" id="text-org411d229">
+<div id="outline-container-org382c58a" class="outline-2">
+<h2 id="org382c58a">threadpoolexecutor</h2>
+<div class="outline-text-2" id="text-org382c58a">
 <p>
 <code>ThreadPoolExecutor</code> is useful when wanting to quickly parallelize stuff, heres a simple example:
 </p>
