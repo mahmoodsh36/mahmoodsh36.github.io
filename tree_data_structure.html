@@ -6,7 +6,18 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>tree data structure</title><!-- lambda icon, frail attempt -->
+<title>tree data structure</title><!-- for google analytics -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QNNF19VZGH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QNNF19VZGH');
+</script>
+
+<!-- lambda icon, frail attempt -->
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22100%22 color=%22red%22>λ</text></svg>">
 <!-- not-so-awesome awesome font -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -45,9 +56,9 @@ a <b>tree</b> is an <a href="/abstract_data_type.html">abstract data type</a> wh
 </p>
 
 </div>
-<div id="outline-container-orgce7ad0d" class="outline-2">
-<h2 id="orgce7ad0d">node</h2>
-<div class="outline-text-2" id="text-orgce7ad0d">
+<div id="outline-container-orgfca3b73" class="outline-2">
+<h2 id="orgfca3b73">node</h2>
+<div class="outline-text-2" id="text-orgfca3b73">
 <p>
 trees store data as <b>nodes</b>, meaning each item in a tree is called a node
 </p>
@@ -67,9 +78,9 @@ each node <code>x</code> has the following fields
 every node in a <a href="/binary_tree.html">binary tree</a> has from 0 to 2 children
 </p>
 </div>
-<div id="outline-container-org2b0b7e0" class="outline-3">
-<h3 id="org2b0b7e0">height</h3>
-<div class="outline-text-3" id="text-org2b0b7e0">
+<div id="outline-container-org2dcc48b" class="outline-3">
+<h3 id="org2dcc48b">height</h3>
+<div class="outline-text-3" id="text-org2dcc48b">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-link-list" data-id="def-link-list">
@@ -93,9 +104,9 @@ the <b>height</b> of a <a href="/tree_data_structure.html">node</a> <code>x</cod
 </div>
 </div>
 </div>
-<div id="outline-container-org3ed3385" class="outline-3">
-<h3 id="org3ed3385">balance factor</h3>
-<div class="outline-text-3" id="text-org3ed3385">
+<div id="outline-container-org0a04371" class="outline-3">
+<h3 id="org0a04371">balance factor</h3>
+<div class="outline-text-3" id="text-org0a04371">
 <p>
 the <b>balance factor</b> of a <a href="/tree_data_structure.html">node</a> <code>x</code>, denoted by <code>balance(x)</code> or <code>BF(x)</code>, is defined as the height of the <a href="/tree_data_structure.html">subtree</a> of the left child of <code>x</code>, denoted by <?xml version='1.0' encoding='UTF-8'?>
 
@@ -320,9 +331,9 @@ see for example this tree, the balance factor of each node is written above it
 </div>
 </div>
 </div>
-<div id="outline-container-org836db83" class="outline-2">
-<h2 id="org836db83">height</h2>
-<div class="outline-text-2" id="text-org836db83">
+<div id="outline-container-orgd424a4f" class="outline-2">
+<h2 id="orgd424a4f">height</h2>
+<div class="outline-text-2" id="text-orgd424a4f">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-link-list" data-id="def-link-list">
@@ -333,9 +344,9 @@ the <b>height</b> of a tree is the number of the <a href="/tree_data_structure.h
 </div>
 </div>
 </div>
-<div id="outline-container-org5e9cf18" class="outline-2">
-<h2 id="org5e9cf18">level</h2>
-<div class="outline-text-2" id="text-org5e9cf18">
+<div id="outline-container-org9d02ae7" class="outline-2">
+<h2 id="org9d02ae7">level</h2>
+<div class="outline-text-2" id="text-org9d02ae7">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-link-list" data-id="def-link-list">
@@ -346,9 +357,9 @@ the <b>level</b> of a row in the tree is its distance from the root whose level 
 </div>
 </div>
 </div>
-<div id="outline-container-org56452f7" class="outline-2">
-<h2 id="org56452f7">root</h2>
-<div class="outline-text-2" id="text-org56452f7">
+<div id="outline-container-org6aabbcb" class="outline-2">
+<h2 id="org6aabbcb">root</h2>
+<div class="outline-text-2" id="text-org6aabbcb">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-link-list" data-id="def-link-list">
@@ -359,9 +370,9 @@ the tree itself <code>T</code> (not every node) contains a pointer <code>root(T)
 </div>
 </div>
 </div>
-<div id="outline-container-orge2df8a4" class="outline-2">
-<h2 id="orge2df8a4">leaf</h2>
-<div class="outline-text-2" id="text-orge2df8a4">
+<div id="outline-container-orgac1c5cb" class="outline-2">
+<h2 id="orgac1c5cb">leaf</h2>
+<div class="outline-text-2" id="text-orgac1c5cb">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-link-list" data-id="def-link-list">
@@ -372,9 +383,9 @@ a <a href="/tree_data_structure.html">node</a> that doesnt have children is call
 </div>
 </div>
 </div>
-<div id="outline-container-org61263c0" class="outline-2">
-<h2 id="org61263c0">internal node</h2>
-<div class="outline-text-2" id="text-org61263c0">
+<div id="outline-container-orgd728532" class="outline-2">
+<h2 id="orgd728532">internal node</h2>
+<div class="outline-text-2" id="text-orgd728532">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-link-list" data-id="def-link-list">
@@ -385,9 +396,9 @@ a <a href="/tree_data_structure.html">node</a> that has atleast one child is cal
 </div>
 </div>
 </div>
-<div id="outline-container-org6de6701" class="outline-2">
-<h2 id="org6de6701">sibling</h2>
-<div class="outline-text-2" id="text-org6de6701">
+<div id="outline-container-org6b9c49a" class="outline-2">
+<h2 id="org6b9c49a">sibling</h2>
+<div class="outline-text-2" id="text-org6b9c49a">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-link-list" data-id="def-link-list">
@@ -398,9 +409,9 @@ definition: &lt;/p&gt;
 </div>
 </div>
 </div>
-<div id="outline-container-org4f817bf" class="outline-2">
-<h2 id="org4f817bf">ancestor</h2>
-<div class="outline-text-2" id="text-org4f817bf">
+<div id="outline-container-org815efc9" class="outline-2">
+<h2 id="org815efc9">ancestor</h2>
+<div class="outline-text-2" id="text-org815efc9">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-link-list" data-id="def-link-list">
@@ -411,9 +422,9 @@ an <b>ancestor</b> of a given <a href="/tree_data_structure.html">node</a> is a 
 </div>
 </div>
 </div>
-<div id="outline-container-orgd6e8289" class="outline-2">
-<h2 id="orgd6e8289">descendant</h2>
-<div class="outline-text-2" id="text-orgd6e8289">
+<div id="outline-container-org24f732e" class="outline-2">
+<h2 id="org24f732e">descendant</h2>
+<div class="outline-text-2" id="text-org24f732e">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-link-list" data-id="def-link-list">
@@ -424,9 +435,9 @@ a <b>descendant</b> of a given <a href="/tree_data_structure.html">node</a> is a
 </div>
 </div>
 </div>
-<div id="outline-container-org9cb4b5a" class="outline-2">
-<h2 id="org9cb4b5a">subtree</h2>
-<div class="outline-text-2" id="text-org9cb4b5a">
+<div id="outline-container-org99df29d" class="outline-2">
+<h2 id="org99df29d">subtree</h2>
+<div class="outline-text-2" id="text-org99df29d">
 <p>
 for some <a href="/binary_tree.html">binary tree</a> <code>T</code> and a node <code>x</code> of said tree we denote <?xml version='1.0' encoding='UTF-8'?>
 
@@ -621,9 +632,9 @@ the height of this tree is 4
 </p>
 </div>
 </div>
-<div id="outline-container-orga7f895b" class="outline-2">
-<h2 id="orga7f895b">complete tree</h2>
-<div class="outline-text-2" id="text-orga7f895b">
+<div id="outline-container-orgec25c03" class="outline-2">
+<h2 id="orgec25c03">complete tree</h2>
+<div class="outline-text-2" id="text-orgec25c03">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-link-list" data-id="def-link-list">
@@ -634,9 +645,9 @@ a <b>complete</b> <a href="/binary_tree.html">binary tree</a> is a binary tree i
 </div>
 </div>
 </div>
-<div id="outline-container-orgd32ebaa" class="outline-2">
-<h2 id="orgd32ebaa">almost complete tree</h2>
-<div class="outline-text-2" id="text-orgd32ebaa">
+<div id="outline-container-org2881707" class="outline-2">
+<h2 id="org2881707">almost complete tree</h2>
+<div class="outline-text-2" id="text-org2881707">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-link-list" data-id="def-link-list">
@@ -746,7 +757,7 @@ characteristic: &lt;/p&gt;
 <p>
 the number of nodes at height <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.570609 3.432258 6.570609' style="max-height: 0.7447em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.570609 3.432258 6.570609' style="max-height: 0.6463em; vertical-align: --0.0000em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g4-105' d='m2.82939-6.22665c0-.199253-.139477-.358655-.368618-.358655c-.268991 0-.537983 .259029-.537983 .52802c0 .18929 .139477 .358655 .37858 .358655c.229141 0 .52802-.229141 .52802-.52802zm.089664 4.801993c0-.099626-.089664-.099626-.119552-.099626c-.099626 0-.099626 .029888-.14944 .179328c-.179328 .627646-.508095 1.235367-1.016189 1.235367c-.169365 0-.239103-.099626-.239103-.328767c0-.249066 .059776-.388543 .288917-.996264l.388543-1.046077c.119552-.288917 .119552-.308842 .219178-.577833c.079701-.199253 .129514-.33873 .129514-.52802c0-.448319-.318804-.816936-.816936-.816936c-.936488 0-1.315068 1.444583-1.315068 1.534247c0 .099626 .119552 .099626 .119552 .099626c.099626 0 .109589-.019925 .159402-.179328c.268991-.936488 .667497-1.235367 1.006227-1.235367c.079701 0 .249066 0 .249066 .318804c0 .209215-.069738 .418431-.109589 .518057c-.079701 .259029-.52802 1.414695-.687422 1.843088c-.099626 .259029-.229141 .587796-.229141 .797011c0 .468244 .33873 .816936 .816936 .816936c.936488 0 1.305106-1.444583 1.305106-1.534247z'/>
 </defs>
@@ -785,38 +796,38 @@ the number of nodes at height <?xml version='1.0' encoding='UTF-8'?>
 </div>
 </div>
 </div>
-<div id="outline-container-org832097d" class="outline-2">
-<h2 id="org832097d">tree breadth-first search</h2>
-<div class="outline-text-2" id="text-org832097d">
+<div id="outline-container-org4248b4b" class="outline-2">
+<h2 id="org4248b4b">tree breadth-first search</h2>
+<div class="outline-text-2" id="text-org4248b4b">
 <p>
 <b>breadth-first search</b> or <b>BFS</b> for short, explores each level before moving onto the next one
 extra memory, usually a <a href="/queue.html">queue</a>, is needed to keep track of the child nodes that were encountered but not yet explored.
 </p>
 
 
-<div id="orgafb2b45" class="figure">
+<div id="org720273f" class="figure">
 <p><img src="/Animated_BFS.gif" />
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org0fdf848" class="outline-2">
-<h2 id="org0fdf848">tree depth-first search</h2>
-<div class="outline-text-2" id="text-org0fdf848">
+<div id="outline-container-org1768b92" class="outline-2">
+<h2 id="org1768b92">tree depth-first search</h2>
+<div class="outline-text-2" id="text-org1768b92">
 <p>
 <b>depth-first search</b> or <b>DFS</b> for short, consists of exploring branches as far as possible before <a href="/tree_data_structure.html">backtracking</a> and exploring branches of other nodes
 this is the algorithm we'll be using because its simpler
 </p>
 
 
-<div id="org414fc21" class="figure">
+<div id="org506907a" class="figure">
 <p><img src="/bfs_dfs.gif" />
 </p>
 </div>
 </div>
-<div id="outline-container-org97a6328" class="outline-3">
-<h3 id="org97a6328">inorder traversal</h3>
-<div class="outline-text-3" id="text-org97a6328">
+<div id="outline-container-org0239887" class="outline-3">
+<h3 id="org0239887">inorder traversal</h3>
+<div class="outline-text-3" id="text-org0239887">
 <p>
 left, parent, right
 </p>
@@ -838,9 +849,9 @@ note that before printing a child will always call <code>inorder(left-child)</co
 </div>
 </div>
 </div>
-<div id="outline-container-org0c1dfdc" class="outline-3">
-<h3 id="org0c1dfdc">preorder traversal</h3>
-<div class="outline-text-3" id="text-org0c1dfdc">
+<div id="outline-container-orga03ec26" class="outline-3">
+<h3 id="orga03ec26">preorder traversal</h3>
+<div class="outline-text-3" id="text-orga03ec26">
 <p>
 parent, left, right
 </p>
@@ -853,9 +864,9 @@ parent, left, right
 </div>
 </div>
 </div>
-<div id="outline-container-org8b7f174" class="outline-3">
-<h3 id="org8b7f174">postorder traversal</h3>
-<div class="outline-text-3" id="text-org8b7f174">
+<div id="outline-container-org92dd55f" class="outline-3">
+<h3 id="org92dd55f">postorder traversal</h3>
+<div class="outline-text-3" id="text-org92dd55f">
 <p>
 left, right, parent
 </p>
@@ -869,13 +880,13 @@ left, right, parent
 </div>
 </div>
 </div>
-<div id="outline-container-org2a5fc09" class="outline-2">
-<h2 id="org2a5fc09">algorithms</h2>
-<div class="outline-text-2" id="text-org2a5fc09">
+<div id="outline-container-orge0de89c" class="outline-2">
+<h2 id="orge0de89c">algorithms</h2>
+<div class="outline-text-2" id="text-orge0de89c">
 </div>
-<div id="outline-container-org61a4bc0" class="outline-3">
-<h3 id="org61a4bc0">reverse inorder</h3>
-<div class="outline-text-3" id="text-org61a4bc0">
+<div id="outline-container-org3c16c74" class="outline-3">
+<h3 id="org3c16c74">reverse inorder</h3>
+<div class="outline-text-3" id="text-org3c16c74">
 <p>
 given a <a href="/binary_tree.html">binary tree</a>, write a function to reverse its <a href="/tree_data_structure.html">inorder traversal</a> output
 </p>

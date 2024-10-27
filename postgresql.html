@@ -6,7 +6,18 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>postgresql</title><!-- lambda icon, frail attempt -->
+<title>postgresql</title><!-- for google analytics -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QNNF19VZGH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QNNF19VZGH');
+</script>
+
+<!-- lambda icon, frail attempt -->
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22100%22 color=%22red%22>λ</text></svg>">
 <!-- not-so-awesome awesome font -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -54,9 +65,9 @@ the <code>psql</code> program's <code>\l</code> meta-command and <code>-l</code>
 </p>
 
 </div>
-<div id="outline-container-org356c226" class="outline-2">
-<h2 id="org356c226">database creation</h2>
-<div class="outline-text-2" id="text-org356c226">
+<div id="outline-container-org9045ba8" class="outline-2">
+<h2 id="org9045ba8">database creation</h2>
+<div class="outline-text-2" id="text-org9045ba8">
 <p>
 create database &lt;name&gt;
 </p>
@@ -66,9 +77,9 @@ create database &lt;name&gt;
 </p>
 </div>
 </div>
-<div id="outline-container-orga1f52e8" class="outline-2">
-<h2 id="orga1f52e8">list databases</h2>
-<div class="outline-text-2" id="text-orga1f52e8">
+<div id="outline-container-orgdaa9da9" class="outline-2">
+<h2 id="orgdaa9da9">list databases</h2>
+<div class="outline-text-2" id="text-orgdaa9da9">
 <p>
 <?xml version='1.0' encoding='UTF-8'?>
 
@@ -85,9 +96,9 @@ create database &lt;name&gt;
 </p>
 </div>
 </div>
-<div id="outline-container-orgc8a6506" class="outline-2">
-<h2 id="orgc8a6506">ERROR:  template database "template1" has a collation version mismatch</h2>
-<div class="outline-text-2" id="text-orgc8a6506">
+<div id="outline-container-org3355c15" class="outline-2">
+<h2 id="org3355c15">ERROR:  template database "template1" has a collation version mismatch</h2>
+<div class="outline-text-2" id="text-org3355c15">
 <div test="test" class="fancy-block dummy" data-before="" id="def-bool-func-fam" data-id="def-bool-func-fam">
 <p>
 sudo -u postgres psql
@@ -104,9 +115,9 @@ alter database template1 refresh collation version;
 </div>
 </div>
 </div>
-<div id="outline-container-org4421b7b" class="outline-2">
-<h2 id="org4421b7b">execute sql file</h2>
-<div class="outline-text-2" id="text-org4421b7b">
+<div id="outline-container-org6c4f613" class="outline-2">
+<h2 id="org6c4f613">execute sql file</h2>
+<div class="outline-text-2" id="text-org6c4f613">
 <div test="test" class="fancy-block dummy" data-before="" id="def-bool-func-fam" data-id="def-bool-func-fam">
 <p>
 psql &#x2013;username=&lt;db_user_name&gt; databasename &lt; myfile.sql

@@ -6,7 +6,18 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>binary search tree</title><!-- lambda icon, frail attempt -->
+<title>binary search tree</title><!-- for google analytics -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QNNF19VZGH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QNNF19VZGH');
+</script>
+
+<!-- lambda icon, frail attempt -->
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22100%22 color=%22red%22>λ</text></svg>">
 <!-- not-so-awesome awesome font -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -115,9 +126,9 @@ for example the following tree is a binary search tree:
 </span>
 <span class="caption"></span>
 </div>
-<div id="outline-container-org0532c74" class="outline-2">
-<h2 id="org0532c74">insertion</h2>
-<div class="outline-text-2" id="text-org0532c74">
+<div id="outline-container-org5bb14b1" class="outline-2">
+<h2 id="org5bb14b1">insertion</h2>
+<div class="outline-text-2" id="text-org5bb14b1">
 <p>
 a new key is always inserted as a <a href="/tree_data_structure.html">leaf</a>. we start from the <a href="/tree_data_structure.html">root</a>, making our way downwards by comparing the new key to the key of the current node to decide which child to move to on each iteration, until we hit a leaf node, then we add the new node as its child</p>
 </div>
