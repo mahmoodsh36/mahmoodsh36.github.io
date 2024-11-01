@@ -59,9 +59,9 @@ load it using <a href="/common_lisp.html">quicklisp</a>:
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span>ql:quickload <span style="color: #e3b0c0; font-weight: bold;">:cl-cuda</span><span style="color: #deb07a;">)</span>
 </pre>
 </div>
-<div id="outline-container-orgb6f954f" class="outline-2">
-<h2 id="orgb6f954f">arch linux setup</h2>
-<div class="outline-text-2" id="text-orgb6f954f">
+<div id="outline-container-org909a94e" class="outline-2">
+<h2 id="org909a94e">arch linux setup</h2>
+<div class="outline-text-2" id="text-org909a94e">
 <p>
 i had to install <code>cuda</code> for the <code>nvcc</code> compiler and more, and <code>nvidia</code> for the gpu driver, at first you may have to use <code>/opt/cuda/bin/nvcc</code> until you reboot or extend your $PATH.
 </p>
@@ -79,13 +79,13 @@ if you have installed the <code>nvidia</code> package and your os still uses <co
 </p>
 </div>
 </div>
-<div id="outline-container-orgb4ac28c" class="outline-2">
-<h2 id="orgb4ac28c">essential concepts</h2>
-<div class="outline-text-2" id="text-orgb4ac28c">
+<div id="outline-container-org05bc488" class="outline-2">
+<h2 id="org05bc488">essential concepts</h2>
+<div class="outline-text-2" id="text-org05bc488">
 </div>
-<div id="outline-container-org21e2e1e" class="outline-3">
-<h3 id="org21e2e1e">threads</h3>
-<div class="outline-text-3" id="text-org21e2e1e">
+<div id="outline-container-org6d11dfd" class="outline-3">
+<h3 id="org6d11dfd">threads</h3>
+<div class="outline-text-3" id="text-org6d11dfd">
 <p>
 mostly from <a href="https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#programming-model">https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#programming-model</a>.
 </p>
@@ -120,9 +120,9 @@ for efficient cooperation, the shared memory is expected to be a low-latency mem
 </p>
 </div>
 </div>
-<div id="outline-container-orgcac1404" class="outline-3">
-<h3 id="orgcac1404">memory</h3>
-<div class="outline-text-3" id="text-orgcac1404">
+<div id="outline-container-org671c2e0" class="outline-3">
+<h3 id="org671c2e0">memory</h3>
+<div class="outline-text-3" id="text-org671c2e0">
 <p>
 CUDA threads may access data from multiple memory spaces during their execution. each thread has private <b>local memory</b>. each thread block has <b>shared memory</b> visible to all threads of the block and with the same lifetime as the block. thread blocks in a thread block cluster can perform read, write, and atomics operations on each other’s shared memory. all threads have access to the same <b>global memory</b>.
 </p>
@@ -145,9 +145,9 @@ unified memory provides managed memory to bridge the host and device memory spac
 </p>
 </div>
 </div>
-<div id="outline-container-org8e2e4c4" class="outline-3">
-<h3 id="org8e2e4c4">device memory</h3>
-<div class="outline-text-3" id="text-org8e2e4c4">
+<div id="outline-container-orgff9d418" class="outline-3">
+<h3 id="orgff9d418">device memory</h3>
+<div class="outline-text-3" id="text-orgff9d418">
 <p>
 the CUDA programming model assumes a system composed of a host and a device, each with their own separate memory. kernels operate out of device memory, so the runtime provides functions to allocate, deallocate, and copy device memory, as well as transfer data between host memory and device memory.
 </p>
@@ -166,9 +166,9 @@ CUDA arrays are opaque memory layouts optimized for texture fetching.
 </div>
 </div>
 </div>
-<div id="outline-container-orgc0ba700" class="outline-2">
-<h2 id="orgc0ba700">code</h2>
-<div class="outline-text-2" id="text-orgc0ba700">
+<div id="outline-container-org39cb9b9" class="outline-2">
+<h2 id="org39cb9b9">code</h2>
+<div class="outline-text-2" id="text-org39cb9b9">
 <p>
 see <a href="/connect_to_remote_common_lisp_repl_with_sly_slime.html">connect to remote common lisp repl with sly/slime</a> for connecting to a remote common lisp repl with <a href="/emacs.html">emacs</a>.
 </p>
@@ -181,9 +181,9 @@ notice that when working cl-cuda the data that we're passing to the gpu is gonna
 
 </div>
 </div>
-<div id="outline-container-orgd6643c6" class="outline-3">
-<h3 id="orgd6643c6">cuda vector addition</h3>
-<div class="outline-text-3" id="text-orgd6643c6">
+<div id="outline-container-org9a9e761" class="outline-3">
+<h3 id="org9a9e761">cuda vector addition</h3>
+<div class="outline-text-3" id="text-org9a9e761">
 <p>
 we start with the vectorAdd example, a simple example in C, stolen from <a href="https://github.com/NVIDIA/cuda-samples/blob/master/Samples/0_Introduction/vectorAdd/vectorAdd.cu">https://github.com/NVIDIA/cuda-samples/blob/master/Samples/0_Introduction/vectorAdd/vectorAdd.cu</a> and modified to reduce boilerplate code.
 </p>
@@ -302,9 +302,9 @@ similar same code but in cl:
 </div>
 </div>
 </div>
-<div id="outline-container-orge9cdc40" class="outline-3">
-<h3 id="orge9cdc40">cuda matrix multiplication</h3>
-<div class="outline-text-3" id="text-orge9cdc40">
+<div id="outline-container-org19185eb" class="outline-3">
+<h3 id="org19185eb">cuda matrix multiplication</h3>
+<div class="outline-text-3" id="text-org19185eb">
 <p>
 mostly taken from <a href="https://docs.nvidia.com/deeplearning/performance/dl-performance-matrix-multiplication/index.html">https://docs.nvidia.com/deeplearning/performance/dl-performance-matrix-multiplication/index.html</a> and <a href="https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#programming-model">https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#programming-model</a>.
 </p>
@@ -412,7 +412,7 @@ the product of two matrices <?xml version='1.0' encoding='UTF-8'?>
 </g>
 </svg> <a href="/flops.html">flops</a> are required, if we were to consider <a href="/gemm.html">gemm</a>, the parameters <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.918502 16.998747 8.855684' style="max-height: 0.9695em; vertical-align: -0.2397em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.918502 16.998747 8.855684' style="max-height: 0.9208em; vertical-align: -0.2397em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g4-11' d='m5.867995-.597758c0-.069738-.059776-.099626-.119552-.099626c-.069738 0-.099626 .029888-.129514 .099626c-.179328 .488169-.557908 .488169-.557908 .488169c-.308842 0-.308842-.777086-.308842-1.016189c0-.209215 0-.229141 .099626-.348692c.936488-1.175592 1.145704-2.34122 1.145704-2.34122s-.009963-.099626-.119552-.099626c-.099626 0-.099626 .029888-.14944 .209215c-.179328 .627646-.508095 1.384807-.976339 1.972603v-.617684c0-1.564134-.926526-2.052304-1.663761-2.052304c-1.364882 0-2.67995 1.424658-2.67995 2.82939c0 .926526 .597758 1.683686 1.613948 1.683686c.627646 0 1.344956-.229141 2.102117-.836862c.129514 .52802 .458281 .836862 .9066 .836862c.52802 0 .836862-.547945 .836862-.707347zm-1.783313-.388543c-.876712 .767123-1.643836 .876712-2.042341 .876712c-.597758 0-.896638-.448319-.896638-1.085928c0-.488169 .259029-1.564134 .577833-2.072229c.468244-.727273 1.006227-.916563 1.354919-.916563c.986301 0 .986301 1.305106 .986301 2.082192c0 .368618 0 .946451 .019925 1.115816z'/>
 <path id='g4-12' d='m5.210461-1.853051c.049813-.219178 .079701-.438356 .079701-.637609c0-.398506-.099626-.767123-.298879-1.075965c-.119552-.169365-.259029-.318804-.428394-.428394c.099626-.059776 .199253-.119552 .298879-.199253c.398506-.298879 .697385-.707347 .806974-1.155666c.029888-.129514 .049813-.249066 .049813-.368618c0-.308842-.109589-.597758-.288917-.816936c-.268991-.318804-.687422-.498132-1.155666-.498132c-1.195517 0-2.102117 1.364882-2.440847 2.719801l-1.534247 6.127024c0 .079701 .039851 .119552 .099626 .119552h.049813c.049813 0 .089664-.029888 .099626-.069738l.67746-2.729763c.169365 .577833 .627646 .976339 1.305106 .976339c.56787 0 1.175592-.18929 1.693649-.56787c.478207-.358655 .846824-.86675 .986301-1.39477zm-.657534-.049813c-.119552 .458281-.33873 .926526-.727273 1.275218c-.37858 .328767-.846824 .518057-1.285181 .518057c-.71731 0-1.125778-.547945-1.125778-1.255293c0-.159402 .019925-.318804 .059776-.488169l.597758-2.410959c.318804-1.255293 1.09589-2.540473 2.191781-2.540473c.33873 0 .617684 .139477 .777086 .398506c.089664 .14944 .119552 .318804 .119552 .508095c0 .159402-.019925 .328767-.069738 .498132c-.089664 .37858-.268991 .757161-.577833 1.046077c-.079701 .069738-.169365 .139477-.259029 .18929c-.199253-.079701-.428394-.129514-.667497-.129514c-.358655 0-.777086 0-.846824 .268991c-.009963 .019925-.009963 .069738-.009963 .069738c0 .239103 .408468 .239103 .757161 .239103c.249066 0 .498132-.039851 .747198-.129514c.129514 .099626 .229141 .229141 .298879 .388543c.099626 .209215 .139477 .438356 .139477 .687422c0 .278954-.049813 .577833-.119552 .86675zm-.617684-2.11208c-.14944 .049813-.298879 .079701-.438356 .079701c-.219178 0-.52802 0-.518057-.039851c.029888-.089664 .358655-.089664 .597758-.089664c.129514 0 .249066 .019925 .358655 .049813z'/>
