@@ -50,13 +50,13 @@
 <div id="content" class="content">
 <div test="test" class="fancy-block dummy" data-before="" data-after="&lt;p&gt;
 (Ramez Elmasri, Shamkant B. Navathe, 2015 chapter 7.1 more complex sql retrieval queries)&lt;/p&gt;
-" id="def-bool-func-fam" data-id="def-bool-func-fam">
+" id="def-add-mat" data-id="def-add-mat">
 <p>
 aggregate functions are used to summarize information from multiple tuples into a single-tuple summary. grouping is used to create subgroups of tuples before summarization. grouping and aggregation are required in many database applications, a number of built-in functions exist: <i>COUNT</i>, <i>SUM</i>, <i>MAX</i>, <i>MIN</i>, and <i>AVG</i>.
 </p>
 
 <p>
-in many cases we want to apply an <a href="/aggregate_function.html">aggregate function</a> operation to subgroups of tuples in a relation, where the subgroups are based on some attribute values. for example, we may want to find the average salary of employees in each department or the number of employees who work on each project. in these cases we need to partition the relation into nonoverlapping subsets (or groups) of tuples. each group (partition) will consist of the tuples that have the same value of some attribute(s), called the grouping attribute(s). we can then apply the function to each such group independently to produce summary information about each group. <a href="/sql.html">sql</a> has a <code>GROUP BY</code> clause for this purpose. the GROUP BY clause specifies the grouping attributes, which should also appear in the SELECT clause, so that the value resulting from applying each aggregate function to a group of tuples appears along with the value of the grouping attribute(s).
+in many cases we want to apply an aggregate function operation to subgroups of tuples in a relation, where the subgroups are based on some attribute values. for example, we may want to find the average salary of employees in each department or the number of employees who work on each project. in these cases we need to partition the relation into nonoverlapping subsets (or groups) of tuples. each group (partition) will consist of the tuples that have the same value of some attribute(s), called the grouping attribute(s). we can then apply the function to each such group independently to produce summary information about each group. <a href="/sql.html">sql</a> has a <code>GROUP BY</code> clause for this purpose. the GROUP BY clause specifies the grouping attributes, which should also appear in the SELECT clause, so that the value resulting from applying each aggregate function to a group of tuples appears along with the value of the grouping attribute(s).
 </p>
 
 <p>

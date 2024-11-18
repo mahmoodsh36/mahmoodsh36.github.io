@@ -49,13 +49,13 @@
 </div>
 <div id="content" class="content">
 <p>
-<a href="/logic_programming.html">logic programming</a> in <a href="/common_lisp.html">common lisp</a>
+logic programming in <a href="/common_lisp.html">common lisp</a>
 </p>
-<div id="outline-container-org48992a1" class="outline-2">
-<h2 id="org48992a1">logical statements</h2>
-<div class="outline-text-2" id="text-org48992a1">
+<div id="outline-container-org45a251b" class="outline-2">
+<h2 id="org45a251b">logical statements</h2>
+<div class="outline-text-2" id="text-org45a251b">
 <p>
-we make use of the symbolic capabilities of lisp, we use quoting and symbols to represent logical <a href="/statement.html">statement</a>s, e.g. given the following <a href="/knowledge_base.html">knowledge base</a> of <a href="/horn_clause.html">horn clause</a>s:
+we make use of the symbolic capabilities of lisp, we use quoting and symbols to represent logical <a href="/statement.html">statement</a>s, e.g. given the following knowledge base of horn clauses:
 </p>
 
 <div class="equation-container">
@@ -181,7 +181,7 @@ what about <a href="/predicate.html">predicate</a>s? e.g. statements like <?xml 
 </p>
 
 <p>
-first obstacle we may face is the issue of distinguishing a variable from a <a href="/scalar.html">constant</a> symbol, how can we tell whether a symbol represents a variable or a constant (an immutable object)? after all both are just symbols (in our implementation), for example consider <code>person</code> vs <code>John</code>, inherently, <code>person</code> is a variable that applies to everyone and <code>John</code> is a constant that only describes one person (in a simplified context where John refers to a friend, for example). a simple solution to this problem would be to use special syntax for variables, like <code>?x</code>, here, <code>?x</code> would mean we're dealing with a variable, and a symbol without a question mark prefix, for example <code>x</code>, is recognized as a constant.
+first obstacle we may face is the issue of distinguishing a variable from a constant symbol, how can we tell whether a symbol represents a variable or a constant (an immutable object)? after all both are just symbols (in our implementation), for example consider <code>person</code> vs <code>John</code>, inherently, <code>person</code> is a variable that applies to everyone and <code>John</code> is a constant that only describes one person (in a simplified context where John refers to a friend, for example). a simple solution to this problem would be to use special syntax for variables, like <code>?x</code>, here, <code>?x</code> would mean we're dealing with a variable, and a symbol without a question mark prefix, for example <code>x</code>, is recognized as a constant.
 </p>
 
 <p>
@@ -253,11 +253,11 @@ how about substitutions? how do we represent for example the substitution <?xml 
 </pre>
 </div>
 </div>
-<div id="outline-container-org6df063e" class="outline-2">
-<h2 id="org6df063e">early <a href="/inference_engine.html">inference engine</a>s</h2>
-<div class="outline-text-2" id="text-org6df063e">
+<div id="outline-container-org5f767ab" class="outline-2">
+<h2 id="org5f767ab">early <a href="/inference_engine.html">inference engine</a>s</h2>
+<div class="outline-text-2" id="text-org5f767ab">
 <p>
-imma start off with the <a href="/unification.html">unification</a> algorithm, this one differs a bit from the pseudocode version, as it doesnt apply the <b>occur check</b> and doesnt distinguish between a compound statement or a list of expressions, as they are only used to represent predicates
+imma start off with the unification algorithm, this one differs a bit from the pseudocode version, as it doesnt apply the <b>occur check</b> and doesnt distinguish between a compound statement or a list of expressions, as they are only used to represent predicates
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">variable?</span> <span style="color: #ffaacf;">(</span>x<span style="color: #ffaacf;">)</span>
@@ -319,7 +319,7 @@ a test:
 
 
 <p>
-next up, we need to implement <a href="/forward_chaining.html">forward chaining</a> and <a href="/backward_chaining.html">backward chaining</a> which take in a knowledge base of statements which are <a href="/definite_clause.html">definite clause</a>s and do <a href="/inference_algorithm.html">algorithmic inference</a>, this code makes use of <a href="/common_lisp_math_utils.html">common lisp math utils</a>
+next up, we need to implement <a href="/forward_chaining.html">forward chaining</a> and <a href="/backward_chaining.html">backward chaining</a> which take in a knowledge base of statements which are definite clauses and do algorithmic inference, this code makes use of <a href="/common_lisp_math_utils.html">common lisp math utils</a>
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">find-variables-in-statement</span> <span style="color: #ffaacf;">(</span>statement<span style="color: #ffaacf;">)</span>
@@ -480,7 +480,7 @@ example usage:
 </div>
 
 <p>
-some functions (that do their best) to "unpack" a knowledge base by unpacking conjunctions and implications into multiple smaller statements that are easier to deal with (there isnt much we can do when the precedent of an implication is a <a href="/logical_connective.html">logical connective</a>)
+some functions (that do their best) to "unpack" a knowledge base by unpacking conjunctions and implications into multiple smaller statements that are easier to deal with (there isnt much we can do when the precedent of an implication is a logical connective)
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">unpack-implication</span> <span style="color: #ffaacf;">(</span>implication<span style="color: #ffaacf;">)</span>
