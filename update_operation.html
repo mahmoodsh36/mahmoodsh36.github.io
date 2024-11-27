@@ -50,9 +50,9 @@
 <div id="content" class="content">
 <div test="test" class="fancy-block dummy" data-before="" data-after="&lt;p&gt;
 (Ramez Elmasri, Shamkant B. Navathe, 2015 chapter 5.3.3 the update operation)&lt;/p&gt;
-" id="exa-lambda-calc-1" data-id="exa-lambda-calc-1">
+" id="def-prob-spc" data-id="def-prob-spc">
 <p>
-the <i>Update</i> (or <i>Modify</i>) operation is used to change the values of one or more attributes in a tuple (or tuples) of some relation <?xml version='1.0' encoding='UTF-8'?>
+the <i>Update</i> (or <i>Modify</i>) operation is used to change the values of one or more attributes in a <a href="/tuple.html">tuple</a> (or tuples) of some relation <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.807795 7.641499 6.807795' style="max-height: 0.7680em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
@@ -67,11 +67,11 @@ the <i>Update</i> (or <i>Modify</i>) operation is used to change the values of o
 </p>
 
 <p>
-updating an attribute that is neither part of a primary key nor part of a foreign key usually causes no problems; the DBMS need only check to confirm that the new value is of the correct data type and domain. modifying a primary key value is similar to deleting one tuple and inserting another in its place because we use the primary key to identify tuples. if a foreign key attribute is modified, the
+updating an attribute that is neither part of a primary key nor part of a foreign key usually causes no problems; the <a href="/database_management_system.html">DBMS</a> need only check to confirm that the new value is of the correct data type and domain. modifying a primary key value is similar to deleting one tuple and inserting another in its place because we use the primary key to identify tuples. if a foreign key attribute is modified, the
 </p>
 
 <p>
-DBMS must make sure that the new value refers to an existing tuple in the referenced relation (or is set to <i>NULL</i>). similar options exist to deal with referential integrity violations caused by Update as those options discussed for the <a href="/delete_operation.html">delete</a> operation. in fact, when a referential integrity constraint is specified in the ddl, the DBMS will allow the user to choose separate options to deal with a violation caused by <a href="/delete_operation.html">delete</a> and a violation caused by <i>Update</i>.
+DBMS must make sure that the new value refers to an existing tuple in the referenced relation (or is set to <i>NULL</i>). similar options exist to deal with referential integrity violations caused by Update as those options discussed for the <a href="/delete_operation.html">delete</a> operation. in fact, when a referential integrity constraint is specified in the <a href="/data_definition_language.html">ddl</a>, the DBMS will allow the user to choose separate options to deal with a violation caused by <a href="/delete_operation.html">delete</a> and a violation caused by <i>Update</i>.
 </p>
 
 </div>

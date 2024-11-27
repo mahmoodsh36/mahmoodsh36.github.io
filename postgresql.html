@@ -59,15 +59,15 @@ it has alot of nice features, more than mysql
 listing the available databases&lt;/p&gt;
 " data-after="&lt;p&gt;
 (??, 2023 chapter 23 managing databases)&lt;/p&gt;
-" id="def-bool-func-fam" data-id="def-bool-func-fam">
+" id="not-bfuncs" data-id="not-bfuncs">
 <p>
 the <code>psql</code> program's <code>\l</code> meta-command and <code>-l</code> command-line option are also useful for listing the existing databases.
 </p>
 
 </div>
-<div id="outline-container-org39afc78" class="outline-2">
-<h2 id="org39afc78">database creation</h2>
-<div class="outline-text-2" id="text-org39afc78">
+<div id="outline-container-org4250b3f" class="outline-2">
+<h2 id="org4250b3f">database creation</h2>
+<div class="outline-text-2" id="text-org4250b3f">
 <p>
 create database &lt;name&gt;
 </p>
@@ -77,9 +77,9 @@ create database &lt;name&gt;
 </p>
 </div>
 </div>
-<div id="outline-container-org9367557" class="outline-2">
-<h2 id="org9367557">list databases</h2>
-<div class="outline-text-2" id="text-org9367557">
+<div id="outline-container-org6aff03d" class="outline-2">
+<h2 id="org6aff03d">list databases</h2>
+<div class="outline-text-2" id="text-org6aff03d">
 <p>
 <?xml version='1.0' encoding='UTF-8'?>
 
@@ -96,10 +96,10 @@ create database &lt;name&gt;
 </p>
 </div>
 </div>
-<div id="outline-container-orge2a9a09" class="outline-2">
-<h2 id="orge2a9a09">ERROR:  template database "template1" has a collation version mismatch</h2>
-<div class="outline-text-2" id="text-orge2a9a09">
-<div test="test" class="fancy-block dummy" data-before="" id="def-bool-func-fam" data-id="def-bool-func-fam">
+<div id="outline-container-orgd623422" class="outline-2">
+<h2 id="orgd623422">ERROR:  template database "template1" has a collation version mismatch</h2>
+<div class="outline-text-2" id="text-orgd623422">
+<div test="test" class="fancy-block dummy" data-before="" id="not-bfuncs" data-id="not-bfuncs">
 <p>
 sudo -u postgres psql
 </p>
@@ -115,10 +115,10 @@ alter database template1 refresh collation version;
 </div>
 </div>
 </div>
-<div id="outline-container-orgebe8095" class="outline-2">
-<h2 id="orgebe8095">execute sql file</h2>
-<div class="outline-text-2" id="text-orgebe8095">
-<div test="test" class="fancy-block dummy" data-before="" id="def-bool-func-fam" data-id="def-bool-func-fam">
+<div id="outline-container-org4239de8" class="outline-2">
+<h2 id="org4239de8">execute sql file</h2>
+<div class="outline-text-2" id="text-org4239de8">
+<div test="test" class="fancy-block dummy" data-before="" id="not-bfuncs" data-id="not-bfuncs">
 <p>
 psql &#x2013;username=&lt;db_user_name&gt; databasename &lt; myfile.sql
 </p>

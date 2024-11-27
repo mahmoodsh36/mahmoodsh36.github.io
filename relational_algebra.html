@@ -50,32 +50,32 @@
 <div id="content" class="content">
 <div test="test" class="fancy-block dummy" data-before="" data-after="&lt;p&gt;
 (Ramez Elmasri, Shamkant B. Navathe, 2015 chapter 8 the relational algebra and relational calculus)&lt;/p&gt;
-" id="def-vec" data-id="def-vec">
+" id="def-inr-prod" data-id="def-inr-prod">
 <p>
-the basic set of operations for the formal relational model is the <i>relational algebra</i>. these operations enable a user to specify basic retrieval requests as <i>relational algebra expressions</i>. the result of a retrieval query is a new relation. the algebra operations thus produce new relations, which can be further manipulated using operations of the same algebra. a sequence of relational algebra operations forms a relational algebra expression, whose result will also be a relation that represents the result of a database query (or retrieval request).
+the basic set of operations for the formal relational model is the <i>relational algebra</i>. these operations enable a user to specify basic retrieval requests as <i>relational algebra expressions</i>. the result of a retrieval query is a new <a href="/relation.html">relation</a>. the algebra operations thus produce new relations, which can be further manipulated using operations of the same algebra. a sequence of relational algebra operations forms a relational algebra expression, whose result will also be a relation that represents the result of a database query (or retrieval request).
 </p>
 
 </div>
 
-<div test="test" class="fancy-block dummy" data-before="" id="def-vec" data-id="def-vec">
+<div test="test" class="fancy-block dummy" data-before="" id="def-inr-prod" data-id="def-inr-prod">
 <p>
 the operations of relational algebra include:
 </p>
 
 <ul class="org-ul">
-<li>set operations</li>
+<li><a href="/set_operations.html">set operations</a></li>
 <li><a href="/select.html">select operation</a></li>
 <li><a href="/project_operation.html">project operation</a></li>
 <li><a href="/rename_operation.html">rename operation</a></li>
 <li><a href="/division_operation.html">division operation</a></li>
 <li><a href="/join_operation.html">join operation</a>
 <ul class="org-ul">
-<li>semi join</li>
-<li>outer join</li>
-<li>inner join</li>
-<li>natural join</li>
+<li><a href="/semi_join.html">semi join</a></li>
+<li><a href="/outer_join.html">outer join</a></li>
+<li><a href="/inner_join.html">inner join</a></li>
+<li><a href="/natural_join.html">natural join</a></li>
 </ul></li>
-<li>outer union</li>
+<li><a href="/outer_union.html">outer union</a></li>
 <li><a href="/insert_operation.html">insert operation</a></li>
 <li><a href="/delete_operation.html">delete operation</a></li>
 <li><a href="/update_operation.html">update operation</a></li>
@@ -85,11 +85,11 @@ the operations of relational algebra include:
 
 <div test="test" class="fancy-block dummy" data-before="" data-after="&lt;p&gt;
 (Ramez Elmasri, Shamkant B. Navathe, 2015 chapter 8.3.3 a complete set of relational algebra operations)&lt;/p&gt;
-" id="def-vec" data-id="def-vec">
+" id="def-inr-prod" data-id="def-inr-prod">
 <p>
 the set of relational algebra operations <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -7.47198 70.925001 9.96264' style="max-height: 1.0784em; vertical-align: -0.2942em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -7.47198 70.925001 9.96264' style="max-height: 0.9800em; vertical-align: -0.2450em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g1-25' d='m5.648817-4.054795c0-.239103-.209215-.239103-.398506-.239103h-3.337484c-.219178 0-.597758 0-1.036115 .468244c-.348692 .388543-.607721 .846824-.607721 .896638c0 0 0 .099626 .119552 .099626c.079701 0 .099626-.039851 .159402-.119552c.488169-.767123 1.066002-.767123 1.265255-.767123h.56787c-.318804 1.205479-.856787 2.410959-1.275218 3.317559c-.079701 .14944-.079701 .169365-.079701 .239103c0 .18929 .159402 .268991 .288917 .268991c.298879 0 .37858-.278954 .498132-.647572c.139477-.458281 .139477-.478207 .268991-.976339l.557908-2.201743h1.125778c-.328767 1.474471-.418431 1.902864-.418431 2.570361c0 .14944 0 .418431 .079701 .757161c.099626 .438356 .209215 .498132 .358655 .498132c.199253 0 .408468-.179328 .408468-.37858c0-.059776 0-.079701-.059776-.219178c-.288917-.71731-.288917-1.364882-.288917-1.643836c0-.52802 .069738-1.066002 .179328-1.58406h1.135741c.129514 0 .488169 0 .488169-.33873z'/>
 <path id='g1-26' d='m5.001245-2.779577c0-1.05604-.657534-1.62391-1.384807-1.62391c-.966376 0-2.012453 .996264-2.311333 2.211706l-.976339 3.915318c-.029888 .119552-.029888 .159402-.029888 .159402c0 .14944 .109589 .268991 .278954 .268991c.209215 0 .328767-.179328 .348692-.209215c.049813-.089664 .368618-1.424658 .637609-2.500623c.199253 .398506 .518057 .667497 .986301 .667497c1.165629 0 2.450809-1.404732 2.450809-2.889166zm-.71731-.428394c0 .547945-.288917 1.663761-.557908 2.15193c-.328767 .627646-.806974 .946451-1.185554 .946451c-.697385 0-.856787-.797011-.856787-.886675c0-.039851 .049813-.239103 .079701-.368618c.278954-1.115816 .37858-1.474471 .597758-1.872976c.428394-.727273 .926526-.946451 1.235367-.946451c.368618 0 .687422 .288917 .687422 .976339z'/>

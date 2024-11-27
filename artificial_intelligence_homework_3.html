@@ -234,7 +234,7 @@ a constraint satisfaction problem is defined by its variables, domains and contr
 </p>
 
 <p>
-since i had written the problem in its constraint graph form, i had to write a function to convert it into its "original" form, its variables, domains and it defines the constraint of neighbors not having the same color, which is from the map coloring problem (so this method is not really general, but specific to this problem):
+since i had written the problem in its <a href="/constraint_graph.html">constraint graph</a> form, i had to write a function to convert it into its "original" form, its variables, domains and it defines the constraint of neighbors not having the same color, which is from the map coloring problem (so this method is not really general, but specific to this problem):
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defstruct</span> <span style="color: #a9c99f;">constraint-satisfaction-problem</span>

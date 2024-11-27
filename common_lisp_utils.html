@@ -51,9 +51,9 @@
 <p>
 a collection of utility functions for <a href="/common_lisp.html">common lisp</a>.
 </p>
-<div id="outline-container-org19fc2d7" class="outline-2">
-<h2 id="org19fc2d7">arrays</h2>
-<div class="outline-text-2" id="text-org19fc2d7">
+<div id="outline-container-org1915879" class="outline-2">
+<h2 id="org1915879">arrays</h2>
+<div class="outline-text-2" id="text-org1915879">
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp" id="src-array-dims"><span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">(defun array-width (2d-array)</span>
 <span style="color: #a0a0cf; font-style: italic;">;;   </span><span style="color: #a0a0cf; font-style: italic;">(car (cdr (array-dimensions 2d-array))))</span>
@@ -332,9 +332,9 @@ reducing an array with a function:
 </div>
 </div>
 </div>
-<div id="outline-container-org781d640" class="outline-2">
-<h2 id="org781d640">sequences</h2>
-<div class="outline-text-2" id="text-org781d640">
+<div id="outline-container-org283793d" class="outline-2">
+<h2 id="org283793d">sequences</h2>
+<div class="outline-text-2" id="text-org283793d">
 <p>
 a function to get the last element in a list (or any sequence):
 </p>
@@ -418,7 +418,7 @@ delete nth element of a sequence:
 </div>
 
 <p>
-split a sequence into singleton sequences (of the same type as the original sequence)
+split a sequence into <a href="/singleton.html">singleton</a> sequences (of the same type as the original sequence)
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">seq-singletons</span> <span style="color: #ffaacf;">(</span>seq<span style="color: #ffaacf;">)</span>
@@ -429,9 +429,9 @@ split a sequence into singleton sequences (of the same type as the original sequ
 </div>
 </div>
 </div>
-<div id="outline-container-org7866ef9" class="outline-2">
-<h2 id="org7866ef9">argmin and argmax</h2>
-<div class="outline-text-2" id="text-org7866ef9">
+<div id="outline-container-org56247b8" class="outline-2">
+<h2 id="org56247b8">argmin and argmax</h2>
+<div class="outline-text-2" id="text-org56247b8">
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp" id="src-argmin-argmax"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">argmax</span> <span style="color: #ffaacf;">(</span>s <span style="color: #a9c99f;">&amp;key</span> <span style="color: #80aadf;">(</span>key #'identity<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span>
   <span style="color: #caa89f; font-style: italic;">"returns value,index of element in sequence s that maximizes the key function"</span>
@@ -450,9 +450,9 @@ split a sequence into singleton sequences (of the same type as the original sequ
 </div>
 </div>
 </div>
-<div id="outline-container-org8397c70" class="outline-2">
-<h2 id="org8397c70">open url in browser</h2>
-<div class="outline-text-2" id="text-org8397c70">
+<div id="outline-container-org4a23cad" class="outline-2">
+<h2 id="org4a23cad">open url in browser</h2>
+<div class="outline-text-2" id="text-org4a23cad">
 <p>
 open a url by its default browser/app on macos/windows/linux
 </p>

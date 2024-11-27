@@ -56,7 +56,7 @@ to connect to a device behind a private unreachable router you can use <i>remote
 example:
 </p>
 <div class="org-src-container" data-language="sh">
-<pre class="src src-sh">ssh -i path/to/key -R <span style="color: #f3a0a0;">'*:5000:*:22'</span> user@remote -N -g
+<pre class="src src-sh">ssh -i path/to/key -R <span style="color: #c74400;">'*:5000:*:22'</span> user@remote -N -g
 </pre>
 </div>
 
@@ -79,16 +79,16 @@ a connection to the tunnel can be opened using the command
 <p>
 note that <code>localuser</code> would be the user of <code>local2</code> (not the remote machine) that you want ssh to use.
 </p>
-<div id="outline-container-org2911b80" class="outline-2">
-<h2 id="org2911b80">connection refused</h2>
-<div class="outline-text-2" id="text-org2911b80">
+<div id="outline-container-org9c79a14" class="outline-2">
+<h2 id="org9c79a14">connection refused</h2>
+<div class="outline-text-2" id="text-org9c79a14">
 <div test="test" class="fancy-block dummy" data-before="" data-after="&lt;p&gt;
 &lt;a href=&quot;https://serverfault.com/questions/478171/reverse-ssh-tunnel-connexion-refused&quot;&gt;https://serverfault.com/questions/478171/reverse-ssh-tunnel-connexion-refused&lt;/a&gt;&lt;/p&gt;
-" id="orgfbabd84">
+" id="orgeb01501">
 <p>
 by default tunnel endpoints only listen on 127.0.0.1, so they can't be accessed from other machines. to change this you may need to add this to <code>/etc/ssh/sshd_config</code> on the server:
 </p>
-<div class="literal" id="org3daf9a9">
+<div class="literal" id="org648eff5">
 <p>
 GatewayPorts clientspecified
 </p>
@@ -102,9 +102,9 @@ this is also the reason we use the address <code>*:5000:*:22</code>, the star is
 </p>
 </div>
 </div>
-<div id="outline-container-org943ec77" class="outline-2">
-<h2 id="org943ec77">using ipv6</h2>
-<div class="outline-text-2" id="text-org943ec77">
+<div id="outline-container-org0babb52" class="outline-2">
+<h2 id="org0babb52">using ipv6</h2>
+<div class="outline-text-2" id="text-org0babb52">
 <p>
 if you're using ipv6 you need to make sure its enabled on all machines. <code>vim /etc/sysctl.conf</code> and make sure you have the following:
 </p>
@@ -118,14 +118,14 @@ net.ipv6.conf.all.disable_ipv6 = 0
 the ipv6 equivalent for <code>localhost</code> is <code>::1</code>. so, for example, the reverse tunnel ssh command becomes:
 </p>
 <div class="org-src-container" data-language="sh">
-<pre class="src src-sh">ssh -i yourkey -R <span style="color: #f3a0a0;">'*:5000:*:22'</span> -6 user@remote1:etc:etc::1 -N -g
+<pre class="src src-sh">ssh -i yourkey -R <span style="color: #c74400;">'*:5000:*:22'</span> -6 user@remote1:etc:etc::1 -N -g
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orge6be20f" class="outline-2">
-<h2 id="orge6be20f">systemd service</h2>
-<div class="outline-text-2" id="text-orge6be20f">
+<div id="outline-container-orgb28895a" class="outline-2">
+<h2 id="orgb28895a">systemd service</h2>
+<div class="outline-text-2" id="text-orgb28895a">
 <p>
 an example systemd service that i use to automatically open an ssh tunnel for a linux server:
 </p>

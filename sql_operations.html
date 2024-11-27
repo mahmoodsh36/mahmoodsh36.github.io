@@ -48,9 +48,9 @@
 </div><h1 class="main-title">sql operations</h1><span class="desc">a set of common [[blk:1702389696][sql]] operations</span><span class='date'>2023-12-12</span>
 </div>
 <div id="content" class="content">
-<div id="outline-container-org65e12ce" class="outline-2">
-<h2 id="org65e12ce">list databases</h2>
-<div class="outline-text-2" id="text-org65e12ce">
+<div id="outline-container-orgb73d994" class="outline-2">
+<h2 id="orgb73d994">list databases</h2>
+<div class="outline-text-2" id="text-orgb73d994">
 <div class="org-src-container" data-language="sql">
 <pre class="src src-sql"><span style="color: #a0a0cf; font-style: italic;">-- </span><span style="color: #a0a0cf; font-style: italic;">show databases; -- for mysql</span>
 \l <span style="color: #a0a0cf; font-style: italic;">-- </span><span style="color: #a0a0cf; font-style: italic;">for postgresql</span>
@@ -181,41 +181,41 @@
 </table>
 </div>
 </div>
-<div id="outline-container-orgb21db00" class="outline-2">
-<h2 id="orgb21db00">deleting a database</h2>
-<div class="outline-text-2" id="text-orgb21db00">
+<div id="outline-container-org9156a46" class="outline-2">
+<h2 id="org9156a46">deleting a database</h2>
+<div class="outline-text-2" id="text-org9156a46">
 <div class="org-src-container" data-language="sql">
 <pre class="src src-sql"><span style="color: #deb07a; font-weight: bold;">drop</span> databsae &lt;dbname&gt;;
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgf76cf9e" class="outline-2">
-<h2 id="orgf76cf9e">creating databases</h2>
-<div class="outline-text-2" id="text-orgf76cf9e">
+<div id="outline-container-org0e22ed1" class="outline-2">
+<h2 id="org0e22ed1">creating databases</h2>
+<div class="outline-text-2" id="text-org0e22ed1">
 <div class="org-src-container" data-language="sql">
 <pre class="src src-sql"><span style="color: #deb07a; font-weight: bold;">create</span> database &lt;dbname&gt;;
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org45d1f5e" class="outline-2">
-<h2 id="org45d1f5e">describe database</h2>
-<div class="outline-text-2" id="text-org45d1f5e">
+<div id="outline-container-org06f1065" class="outline-2">
+<h2 id="org06f1065">describe database</h2>
+<div class="outline-text-2" id="text-org06f1065">
 <div class="org-src-container" data-language="sql">
 <pre class="src src-sql"><span style="color: #deb07a; font-weight: bold;">describe</span> sys;
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgcda70e4" class="outline-2">
-<h2 id="orgcda70e4">schema</h2>
-<div class="outline-text-2" id="text-orgcda70e4">
+<div id="outline-container-org4c6920a" class="outline-2">
+<h2 id="org4c6920a">schema</h2>
+<div class="outline-text-2" id="text-org4c6920a">
 <div test="test" class="fancy-block dummy" data-before="" data-after="&lt;p&gt;
 (Ramez Elmasri, Shamkant B. Navathe, 2015 chapter 6.1.1 schema and catalog concepts in sql)&lt;/p&gt;
-" id="def-vec" data-id="def-vec">
+" id="def-inr-prod" data-id="def-inr-prod">
 <p>
-an example of creating a schema (usually called a database), a schema called <code>COMPANY</code> owned by the user with authorization identifier <code>Jsmith</code>. note that each statement in SQL ends with a semicolon.
+an example of creating a <a href="/schema.html">schema</a> (usually called a database), a schema called <code>COMPANY</code> owned by the user with authorization identifier <code>Jsmith</code>. note that each statement in SQL ends with a semicolon.
 </p>
 <div class="org-src-container" data-language="sql">
 <pre class="src src-sql"><span style="color: #deb07a; font-weight: bold;">CREATE</span> <span style="color: #deb07a; font-weight: bold;">SCHEMA</span> COMPANY <span style="color: #deb07a; font-weight: bold;">AUTHORIZATION</span> <span style="color: #f3a0a0;">'Jsmith'</span>;
@@ -223,18 +223,18 @@ an example of creating a schema (usually called a database), a schema called <co
 </div>
 
 <p>
-in general, not all users are authorized to create schemas and schema elements. the privilege to create schemas, tables, and other constructs must be explicitly granted to the relevant user accounts by the system administrator or DBA.
+in general, not all users are authorized to create schemas and schema elements. the privilege to create schemas, tables, and other constructs must be explicitly granted to the relevant user accounts by the system administrator or <a href="/database_administrator.html">DBA</a>.
 </p>
 
 </div>
 </div>
 </div>
-<div id="outline-container-orgddfe729" class="outline-2">
-<h2 id="orgddfe729">create table</h2>
-<div class="outline-text-2" id="text-orgddfe729">
+<div id="outline-container-orge8578a2" class="outline-2">
+<h2 id="orge8578a2">create table</h2>
+<div class="outline-text-2" id="text-orge8578a2">
 <div test="test" class="fancy-block dummy" data-before="" data-after="&lt;p&gt;
 (Ramez Elmasri, Shamkant B. Navathe, 2015 chapter 6.1.2 the create table command in sql)&lt;/p&gt;
-" id="def-vec" data-id="def-vec">
+" id="def-inr-prod" data-id="def-inr-prod">
 <p>
 the <code>CREATE TABLE</code> command is used to specify a new relation by giving it a name and specifying its attributes and initial constraints. the attributes are specified first, and each attribute is given a name, a data type to specify its domain of values, and possibly attribute constraints, such as <code>NOT NULL</code>. the key, entity integrity, and referential integrity constraints can be specified within the <code>CREATE TABLE</code> statement after the attributes are declared, or they can be added later using the <code>ALTER TABLE</code> command.
 </p>
@@ -256,7 +256,7 @@ rather than
 </div>
 
 <p>
-the relations declared through <code>CREATE TABLE</code> statements are called <i>base tables</i> (or base relations); this means that the table and its rows are actually created and stored as a file by the dbms.
+the relations declared through <code>CREATE TABLE</code> statements are called <i>base tables</i> (or base relations); this means that the table and its rows are actually created and stored as a file by the <a href="/database_management_system.html">dbms</a>.
 </p>
 <div class="org-src-container" data-language="sql">
 <label class="org-src-name"><span class="listing-number">Listing 1: </span>an example schema declaration</label><pre class="src src-sql" id="src-sql-example-1"><span style="color: #deb07a; font-weight: bold;">CREATE</span> <span style="color: #deb07a; font-weight: bold;">TABLE</span> <span style="color: #8fcfd0;">EMPLOYEE</span>
@@ -313,12 +313,12 @@ the relations declared through <code>CREATE TABLE</code> statements are called <
 </div>
 </div>
 </div>
-<div id="outline-container-orgc9e600c" class="outline-2">
-<h2 id="orgc9e600c">select-from-where</h2>
-<div class="outline-text-2" id="text-orgc9e600c">
+<div id="outline-container-org9970d57" class="outline-2">
+<h2 id="org9970d57">select-from-where</h2>
+<div class="outline-text-2" id="text-org9970d57">
 <div test="test" class="fancy-block dummy" data-before="" data-after="&lt;p&gt;
 (Ramez Elmasri, Shamkant B. Navathe, 2015 chapter 6.3.1 the select-from-where structure of basic sql queries)&lt;/p&gt;
-" id="def-vec" data-id="def-vec">
+" id="def-inr-prod" data-id="def-inr-prod">
 <p>
 the basic form of the <i>SELECT</i> statement, sometimes called a <i>mapping</i> or a <i>select-from-where</i> block, is formed of the three clauses <i>SELECT</i>, <i>FROM</i>, and <i>WHERE</i> and has the following form:
 </p>
@@ -342,19 +342,19 @@ where
 </div>
 </div>
 </div>
-<div id="outline-container-orgd6b7477" class="outline-2">
-<h2 id="orgd6b7477">ordering of query results</h2>
-<div class="outline-text-2" id="text-orgd6b7477">
+<div id="outline-container-orgf940c17" class="outline-2">
+<h2 id="orgf940c17">ordering of query results</h2>
+<div class="outline-text-2" id="text-orgf940c17">
 <p>
 the order by operator
 </p>
 </div>
 </div>
-<div id="outline-container-org2d0f24a" class="outline-2">
-<h2 id="org2d0f24a">alter table</h2>
+<div id="outline-container-orgbcf28a8" class="outline-2">
+<h2 id="orgbcf28a8">alter table</h2>
 </div>
-<div id="outline-container-orgfb384b6" class="outline-2">
-<h2 id="orgfb384b6">update</h2>
+<div id="outline-container-org04a5587" class="outline-2">
+<h2 id="org04a5587">update</h2>
 </div>
 </div>
 </body>

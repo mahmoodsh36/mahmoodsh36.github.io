@@ -51,9 +51,9 @@
 <p>
 some math utilities for <a href="/common_lisp.html">common lisp</a>
 </p>
-<div id="outline-container-org542967e" class="outline-2">
-<h2 id="org542967e">essential functions</h2>
-<div class="outline-text-2" id="text-org542967e">
+<div id="outline-container-org2339a9c" class="outline-2">
+<h2 id="org2339a9c">essential functions</h2>
+<div class="outline-text-2" id="text-org2339a9c">
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp" id="src-math-functions"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">sigmoid</span> <span style="color: #ffaacf;">(</span>x<span style="color: #ffaacf;">)</span>
   <span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">cond</span> <span style="color: #80aadf;">(</span><span style="color: #e47980;">(</span>&lt; x -70<span style="color: #e47980;">)</span> 0<span style="color: #80aadf;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">to avoid float overflow</span>
@@ -74,12 +74,12 @@ some math utilities for <a href="/common_lisp.html">common lisp</a>
 </div>
 </div>
 </div>
-<div id="outline-container-org453826b" class="outline-2">
-<h2 id="org453826b">vectors</h2>
-<div class="outline-text-2" id="text-org453826b">
+<div id="outline-container-org00a4502" class="outline-2">
+<h2 id="org00a4502">vectors</h2>
+<div class="outline-text-2" id="text-org00a4502">
 <div test="test" class="fancy-block note" data-before="&lt;p&gt;
 note: &lt;/p&gt;
-" id="minimum_spanning_tree_lemma_7" data-id="minimum_spanning_tree_lemma_7">
+" id="def-forest" data-id="def-forest">
 <p>
 these functions work, but some use lists and some do redundant operations, they need efficiency improvement
 </p>
@@ -123,9 +123,9 @@ these functions work, but some use lists and some do redundant operations, they 
 </div>
 </div>
 </div>
-<div id="outline-container-org6dcc264" class="outline-2">
-<h2 id="org6dcc264">matrices</h2>
-<div class="outline-text-2" id="text-org6dcc264">
+<div id="outline-container-orga75eda5" class="outline-2">
+<h2 id="orga75eda5">matrices</h2>
+<div class="outline-text-2" id="text-orga75eda5">
 <p>
 im using arrays for matrices, which use different functions than vectors/lists
 </p>
@@ -203,9 +203,9 @@ matrix multiplication:
 </pre>
 </div>
 </div>
-<div id="outline-container-orgce5bc29" class="outline-3">
-<h3 id="orgce5bc29">matrix multiplication implementation comparison between lists and arrays</h3>
-<div class="outline-text-3" id="text-orgce5bc29">
+<div id="outline-container-org15ec488" class="outline-3">
+<h3 id="org15ec488">matrix multiplication implementation comparison between lists and arrays</h3>
+<div class="outline-text-3" id="text-org15ec488">
 <p>
 with lists:
 </p>
@@ -249,11 +249,11 @@ with arrays:
 </div>
 </div>
 </div>
-<div id="outline-container-org69b72df" class="outline-3">
-<h3 id="org69b72df">2d transformation matrices</h3>
-<div class="outline-text-3" id="text-org69b72df">
+<div id="outline-container-org20e1464" class="outline-3">
+<h3 id="org20e1464">2d transformation matrices</h3>
+<div class="outline-text-3" id="text-org20e1464">
 <p>
-linearly mapping a grid to another:
+<a href="/2d_transformations.html">linearly mapping a grid to another</a>:
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp" id="src-map-grid"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">map-grid-matrix</span> <span style="color: #ffaacf;">(</span>src-x-range dest-x-range src-y-range dest-y-range<span style="color: #ffaacf;">)</span>
@@ -294,9 +294,9 @@ example usage:
 </div>
 </div>
 </div>
-<div id="outline-container-org7839379" class="outline-2">
-<h2 id="org7839379">linearly mapping discrete range onto another</h2>
-<div class="outline-text-2" id="text-org7839379">
+<div id="outline-container-org8ab1a42" class="outline-2">
+<h2 id="org8ab1a42"><a href="/linearly_mapping_an_interval_onto_another.html">linearly mapping discrete range onto another</a></h2>
+<div class="outline-text-2" id="text-org8ab1a42">
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp" id="src-map-num"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">map-num</span> <span style="color: #ffaacf;">(</span>num src-min src-max dest-min dest-max<span style="color: #ffaacf;">)</span>
   <span style="color: #caa89f; font-style: italic;">"(map-num 0.5 -1 1 -50 50) =&gt; 25.0"</span>
@@ -305,9 +305,9 @@ example usage:
 </div>
 </div>
 </div>
-<div id="outline-container-org85e093e" class="outline-2">
-<h2 id="org85e093e">sets</h2>
-<div class="outline-text-2" id="text-org85e093e">
+<div id="outline-container-org77b0b9a" class="outline-2">
+<h2 id="org77b0b9a">sets</h2>
+<div class="outline-text-2" id="text-org77b0b9a">
 <p>
 a good resource <a href="https://www.cs.cmu.edu/Groups/AI/html/cltl/clm/node152.html">https://www.cs.cmu.edu/Groups/AI/html/cltl/clm/node152.html</a>
 </p>
@@ -341,7 +341,7 @@ example:
 </div>
 
 <p>
-a function to check whether a list is a subset of another, with the <code>test</code> being <code>:equal</code>
+a function to check whether a list is a <a href="/subset.html">subset</a> of another, with the <code>test</code> being <code>:equal</code>
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">subset?</span> <span style="color: #ffaacf;">(</span>list1 list2<span style="color: #ffaacf;">)</span>
@@ -366,11 +366,11 @@ check for set equality:
 </div>
 </div>
 </div>
-<div id="outline-container-org8b0970b" class="outline-2">
-<h2 id="org8b0970b">combinatorics</h2>
-<div class="outline-text-2" id="text-org8b0970b">
+<div id="outline-container-orgdc7f176" class="outline-2">
+<h2 id="orgdc7f176"><a href="/combinatorics.html">combinatorics</a></h2>
+<div class="outline-text-2" id="text-orgdc7f176">
 <p>
-generating variations:
+generating <a href="/combinatorics.html">variation</a>s:
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">variations</span> <span style="color: #ffaacf;">(</span>seq <span style="color: #a9c99f;">&amp;optional</span> <span style="color: #80aadf;">(</span>len <span style="color: #e47980;">(</span>length seq<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span>
@@ -392,7 +392,7 @@ generating variations:
 </div>
 
 <p>
-generating variations with repetition:
+generating <a href="/combinatorics.html">variations with repetition</a>:
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">variations-with-repetition</span> <span style="color: #ffaacf;">(</span>seq <span style="color: #a9c99f;">&amp;optional</span> <span style="color: #80aadf;">(</span>len <span style="color: #e47980;">(</span>length seq<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span>
@@ -416,7 +416,7 @@ generating variations with repetition:
 </div>
 
 <p>
-generating combinations:
+generating <a href="/combinatorics.html">combination</a>s:
 </p>
 
 <p>
@@ -424,7 +424,7 @@ to make the problem easier to tackle i took some examples:
 </p>
 
 <p>
-assume the sequence "ashey" and the length 3, the base case for recursion would be a sequence of length 3, so if we were to progress letter by letter through the sequence we'd get to a function call with the sequence "hey" and the length 3, then when we exit recursion calls back to the call with the sequence "shey", we need to consider the cell "s" with 3 other sequences, "he","hy","ey", which itself is a combination with the sequence "hey" and length 2, so a call to the function should take care of getting the combinations of the subsequences its concatenating which requires a recursive call to the function by with a reduced length and a reduced subsequence, we may use this as a base case, so when we get a length of 2 we return every combination of length 2, this will satisfy the call with the sequence "hey" and length 3 which in turn satisfies the call with the sequence "shey" and length 4, and so on..
+assume the sequence "ashey" and the length 3, the <a href="/base_case.html">base case</a> for <a href="/recursive_algorithm.html">recursion</a> would be a sequence of length 3, so if we were to progress letter by letter through the sequence we'd get to a function call with the sequence "hey" and the length 3, then when we exit recursion calls back to the call with the sequence "shey", we need to consider the cell "s" with 3 other sequences, "he","hy","ey", which itself is a combination with the sequence "hey" and length 2, so a call to the function should take care of getting the combinations of the subsequences its concatenating which requires a recursive call to the function by with a reduced length and a reduced subsequence, we may use this as a base case, so when we get a length of 2 we return every combination of length 2, this will satisfy the call with the sequence "hey" and length 3 which in turn satisfies the call with the sequence "shey" and length 4, and so on..
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">combinations</span> <span style="color: #ffaacf;">(</span>seq len<span style="color: #ffaacf;">)</span>

@@ -6,7 +6,18 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>maxima in lisp</title><!-- lambda icon, frail attempt -->
+<title>maxima in lisp</title><!-- for google analytics -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QNNF19VZGH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QNNF19VZGH');
+</script>
+
+<!-- lambda icon, frail attempt -->
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22100%22 color=%22red%22>λ</text></svg>">
 <!-- not-so-awesome awesome font -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -37,42 +48,49 @@
 </div><h1 class="main-title">maxima in lisp</h1><span class="desc">how to use maxima code in common lisp</span><span class='date'>2023-05-10</span>
 </div>
 <div id="content" class="content">
-<div class="fancy-block note" data-before="&lt;p&gt;
+<div test="test" class="fancy-block note" data-before="&lt;p&gt;
 note: &lt;/p&gt;
-" data-after="">
+" id="orgeb01501">
 <p>
-i ended up giving up on using maxima as a visualization/symbolic math computation library for lisp, it wasnt made with this usecase in mind i guess, and so its an utter nightmare to lisp with it<br />
+i ended up giving up on using maxima as a visualization/symbolic math computation library for lisp, it wasnt made with this usecase in mind i guess, and so its an utter nightmare to lisp with it
 </p>
 
 </div>
+
 <p>
-maxima is written in lisp and so it can be used as a modified/extended lisp runtime<br />
+<a href="/maxima.html">maxima</a> is written in <a href="/lisp.html">lisp</a> and so it can be used as a modified/extended lisp runtime
 </p>
-<div id="outline-container-orgbdb4a72" class="outline-2">
-<h2 id="orgbdb4a72">how to</h2>
-<div class="outline-text-2" id="text-orgbdb4a72">
+<div id="outline-container-org2a89e11" class="outline-2">
+<h2 id="org2a89e11">how to</h2>
+<div class="outline-text-2" id="text-org2a89e11">
 <p>
-to start the lisp runtime use the command:<br />
+to start the lisp runtime use the command:
 </p>
-<div class="org-src-container">
-<pre class="src src-bash">rmaxima -r <span style="color: #f06a3f;">'to_lisp();'</span>
+<div class="org-src-container" data-language="bash">
+<pre class="src src-bash">rmaxima -r <span style="color: #c74400;">'to_lisp();'</span>
 </pre>
 </div>
+
 <p>
-can also run this in <a href="/emacs.html#1707341556">emacs</a>' slime/sly with <code>(sly "rmaxima -r to_lisp();")</code><br />
-alternatively, we can clone maxima's source code to the subdirectory <code>local-projects</code> of the quicklisp installation directory (usually <code>~/quicklisp</code> unless you've modified it), follow the instructions at <a href="https://sourceforge.net/p/maxima/code/ci/master/tree/INSTALL.lisp#l66">https://sourceforge.net/p/maxima/code/ci/master/tree/INSTALL.lisp#l66</a> to compile maxima and you'll be able to load it as a library:<br />
+can also run this in <a href="/emacs.html">emacs</a>' slime/sly with <code>(sly "rmaxima -r to_lisp();")</code>
 </p>
-<div class="org-src-container">
-<pre class="src src-lisp"><span style="color: #d0730f;">(</span>ql:quickload <span style="color: #f06a3f;">"maxima"</span><span style="color: #d0730f;">)</span>
+
+<p>
+alternatively, we can clone maxima's source code to the subdirectory <code>local-projects</code> of the quicklisp installation directory (usually <code>~/quicklisp</code> unless you've modified it), follow the instructions at <a href="https://sourceforge.net/p/maxima/code/ci/master/tree/INSTALL.lisp#l66">https://sourceforge.net/p/maxima/code/ci/master/tree/INSTALL.lisp#l66</a> to compile maxima and you'll be able to load it as a library:
+</p>
+<div class="org-src-container" data-language="lisp">
+<pre class="src src-lisp"><span style="color: #ba5205;">(</span>ql:quickload <span style="color: #c74400;">"maxima"</span><span style="color: #ba5205;">)</span>
 </pre>
 </div>
+
 <p>
-but then you gotta prefix functions with <code>maxima::</code>, e.g.<br />
+but then you gotta prefix functions with <code>maxima::</code>, e.g.
 </p>
-<div class="org-src-container">
-<pre class="src src-lisp"><span style="color: #d0730f;">(</span>maxima::displa <span style="color: #64aa0f;">(</span>maxima::$integrate #$2/<span style="color: #ef656a;">(</span>3*x^5<span style="color: #ef656a;">)</span>$ 'x<span style="color: #64aa0f;">)</span><span style="color: #d0730f;">)</span>
+<div class="org-src-container" data-language="lisp">
+<pre class="src src-lisp"><span style="color: #ba5205;">(</span>maxima::displa <span style="color: #a26310;">(</span>maxima::$integrate #$2/<span style="color: #5a7400;">(</span>3*x^5<span style="color: #5a7400;">)</span>$ 'x<span style="color: #a26310;">)</span><span style="color: #ba5205;">)</span>
 </pre>
 </div>
+
 
 <pre class="example">
 2 x
@@ -83,27 +101,29 @@ but then you gotta prefix functions with <code>maxima::</code>, e.g.<br />
 
 
 <p>
-unless you enter the library itself then you dont need the prefix:<br />
+unless you enter the library itself then you dont need the prefix:
 </p>
-<div class="org-src-container">
-<pre class="src src-lisp"><span style="color: #d0730f;">(</span><span style="color: #c48702; font-weight: bold;">in-package</span> <span style="color: #ff7a7f; font-weight: bold;">:maxima</span><span style="color: #d0730f;">)</span>
+<div class="org-src-container" data-language="lisp">
+<pre class="src src-lisp"><span style="color: #ba5205;">(</span><span style="color: #a26310; font-weight: bold;">in-package</span> <span style="color: #946830; font-weight: bold;">:maxima</span><span style="color: #ba5205;">)</span>
 </pre>
 </div>
+
 <p>
-loading maxima as a library works most of the time, but it causes some problems, for example we cant use <code>draw</code> when maxima is loaded as a library, thats why using <code>rmaxima</code> is better<br />
+loading maxima as a library works most of the time, but it causes some problems, for example we cant use <code>draw</code> when maxima is loaded as a library, thats why using <code>rmaxima</code> is better
 </p>
 </div>
 </div>
-<div id="outline-container-org9910858" class="outline-2">
-<h2 id="org9910858">misc</h2>
-<div class="outline-text-2" id="text-org9910858">
+<div id="outline-container-org96856b4" class="outline-2">
+<h2 id="org96856b4">misc</h2>
+<div class="outline-text-2" id="text-org96856b4">
 <p>
-to write an expression in infix syntax we do:<br />
+to write an expression in infix syntax we do:
 </p>
-<div class="org-src-container">
-<pre class="src src-lisp"><span style="color: #d0730f;">(</span>print #$10/13$<span style="color: #d0730f;">)</span>
+<div class="org-src-container" data-language="lisp">
+<pre class="src src-lisp"><span style="color: #ba5205;">(</span>print #$10/13$<span style="color: #ba5205;">)</span>
 </pre>
 </div>
+
 
 <pre class="example">
 
@@ -112,12 +132,13 @@ to write an expression in infix syntax we do:<br />
 
 
 <p>
-to display math using ascii art we use the function <code>displa</code> (short for <b>display</b>)<br />
+to display math using ascii art we use the function <code>displa</code> (short for <b>display</b>)
 </p>
-<div class="org-src-container">
-<pre class="src src-lisp"><span style="color: #d0730f;">(</span>maxima::displa #$10/13$<span style="color: #d0730f;">)</span>
+<div class="org-src-container" data-language="lisp">
+<pre class="src src-lisp"><span style="color: #ba5205;">(</span>maxima::displa #$10/13$<span style="color: #ba5205;">)</span>
 </pre>
 </div>
+
 
 <pre class="example">
 10
@@ -126,25 +147,27 @@ to display math using ascii art we use the function <code>displa</code> (short f
 </pre>
 </div>
 </div>
-<div id="outline-container-org4168e60" class="outline-2">
-<h2 id="org4168e60">maxima expression to lisp expression</h2>
-<div class="outline-text-2" id="text-org4168e60">
+<div id="outline-container-orgec39da7" class="outline-2">
+<h2 id="orgec39da7">maxima expression to lisp expression</h2>
+<div class="outline-text-2" id="text-orgec39da7">
 <p>
-this function helps turn maxima expressions into their corresponding lisp expression<br />
+this function helps turn maxima expressions into their corresponding lisp expression
 </p>
-<div class="org-src-container">
-<pre class="src src-lisp"><span style="color: #d0730f;">(</span><span style="color: #c48702; font-weight: bold;">defun</span> <span style="color: #3dbbb0;">lisp-form</span> <span style="color: #64aa0f;">(</span>macsyma-string<span style="color: #64aa0f;">)</span>
-  <span style="color: #64aa0f;">(</span>maxima::macsyma-read-string <span style="color: #ef656a;">(</span>concatenate 'string macsyma-string <span style="color: #f06a3f;">"$"</span><span style="color: #ef656a;">)</span><span style="color: #64aa0f;">)</span><span style="color: #d0730f;">)</span>
+<div class="org-src-container" data-language="lisp">
+<pre class="src src-lisp"><span style="color: #ba5205;">(</span><span style="color: #a26310; font-weight: bold;">defun</span> <span style="color: #5a7400;">lisp-form</span> <span style="color: #a26310;">(</span>macsyma-string<span style="color: #a26310;">)</span>
+  <span style="color: #a26310;">(</span>maxima::macsyma-read-string <span style="color: #5a7400;">(</span>concatenate 'string macsyma-string <span style="color: #c74400;">"$"</span><span style="color: #5a7400;">)</span><span style="color: #a26310;">)</span><span style="color: #ba5205;">)</span>
 </pre>
 </div>
 
+
 <p>
-example:<br />
+example:
 </p>
-<div class="org-src-container">
-<pre class="src src-lisp"><span style="color: #d0730f;">(</span>print <span style="color: #64aa0f;">(</span>lisp-form <span style="color: #f06a3f;">"diff(sin(x),x)"</span><span style="color: #64aa0f;">)</span><span style="color: #d0730f;">)</span>
+<div class="org-src-container" data-language="lisp">
+<pre class="src src-lisp"><span style="color: #ba5205;">(</span>print <span style="color: #a26310;">(</span>lisp-form <span style="color: #c74400;">"diff(sin(x),x)"</span><span style="color: #a26310;">)</span><span style="color: #ba5205;">)</span>
 </pre>
 </div>
+
 
 <pre class="example">
 
@@ -153,12 +176,13 @@ example:<br />
 
 
 <p>
-some expressions will return symbols instead of functions so they cannot be run directly, e.g.<br />
+some expressions will return symbols instead of functions so they cannot be run directly, e.g.
 </p>
-<div class="org-src-container">
-<pre class="src src-lisp"><span style="color: #d0730f;">(</span>print <span style="color: #64aa0f;">(</span>lisp-form <span style="color: #f06a3f;">"sin(10d0)"</span><span style="color: #64aa0f;">)</span><span style="color: #d0730f;">)</span>
+<div class="org-src-container" data-language="lisp">
+<pre class="src src-lisp"><span style="color: #ba5205;">(</span>print <span style="color: #a26310;">(</span>lisp-form <span style="color: #c74400;">"sin(10d0)"</span><span style="color: #a26310;">)</span><span style="color: #ba5205;">)</span>
 </pre>
 </div>
+
 
 <pre class="example">
 
@@ -167,14 +191,15 @@ some expressions will return symbols instead of functions so they cannot be run 
 
 
 <p>
-so to evaluate these expressions we can use <code>meval*</code>:<br />
+so to evaluate these expressions we can use <code>meval*</code>:
 </p>
-<div class="org-src-container">
-<pre class="src src-lisp"><span style="color: #d0730f;">(</span>print <span style="color: #64aa0f;">(</span>lisp-form <span style="color: #f06a3f;">"sin(10d0)"</span><span style="color: #64aa0f;">)</span><span style="color: #d0730f;">)</span>
-<span style="color: #d0730f;">(</span>print <span style="color: #64aa0f;">(</span>maxima::meval* <span style="color: #ef656a;">(</span>lisp-form <span style="color: #f06a3f;">"sin(10d0)"</span><span style="color: #ef656a;">)</span><span style="color: #64aa0f;">)</span><span style="color: #d0730f;">)</span>
-<span style="color: #d0730f;">(</span>print <span style="color: #64aa0f;">(</span>maxima::meval* '<span style="color: #ef656a;">(</span><span style="color: #3dbbb0;">(</span>maxima::%sin<span style="color: #3dbbb0;">)</span> 10.0<span style="color: #ef656a;">)</span><span style="color: #64aa0f;">)</span><span style="color: #d0730f;">)</span>
+<div class="org-src-container" data-language="lisp">
+<pre class="src src-lisp"><span style="color: #ba5205;">(</span>print <span style="color: #a26310;">(</span>lisp-form <span style="color: #c74400;">"sin(10d0)"</span><span style="color: #a26310;">)</span><span style="color: #ba5205;">)</span>
+<span style="color: #ba5205;">(</span>print <span style="color: #a26310;">(</span>maxima::meval* <span style="color: #5a7400;">(</span>lisp-form <span style="color: #c74400;">"sin(10d0)"</span><span style="color: #5a7400;">)</span><span style="color: #a26310;">)</span><span style="color: #ba5205;">)</span>
+<span style="color: #ba5205;">(</span>print <span style="color: #a26310;">(</span>maxima::meval* '<span style="color: #5a7400;">(</span><span style="color: #c02945;">(</span>maxima::%sin<span style="color: #c02945;">)</span> 10.0<span style="color: #5a7400;">)</span><span style="color: #a26310;">)</span><span style="color: #ba5205;">)</span>
 </pre>
 </div>
+
 
 <pre class="example">
 
@@ -185,21 +210,25 @@ so to evaluate these expressions we can use <code>meval*</code>:<br />
 
 
 <p>
-although functions like <code>$sin</code> do exist and can be used instead of symbols like <code>%sin</code><br />
-taken from <a href="https://github.com/livelisp/livewlisp/blob/main/maxima-tutorial.txt">https://github.com/livelisp/livewlisp/blob/main/maxima-tutorial.txt</a><br />
+although functions like <code>$sin</code> do exist and can be used instead of symbols like <code>%sin</code>
 </p>
-</div>
-</div>
-<div id="outline-container-org26236f8" class="outline-2">
-<h2 id="org26236f8">integration</h2>
-<div class="outline-text-2" id="text-org26236f8">
+
 <p>
-the main function for integration is <code>$integrate</code> (or <code>sinint</code>)<br />
+taken from <a href="https://github.com/livelisp/livewlisp/blob/main/maxima-tutorial.txt">https://github.com/livelisp/livewlisp/blob/main/maxima-tutorial.txt</a>
 </p>
-<div class="org-src-container">
-<pre class="src src-lisp"><span style="color: #d0730f;">(</span>maxima::displa <span style="color: #64aa0f;">(</span>maxima::$integrate #$2/<span style="color: #ef656a;">(</span>3*x^2<span style="color: #ef656a;">)</span>$ 'x<span style="color: #64aa0f;">)</span><span style="color: #d0730f;">)</span>
+</div>
+</div>
+<div id="outline-container-orga05abfd" class="outline-2">
+<h2 id="orga05abfd">integration</h2>
+<div class="outline-text-2" id="text-orga05abfd">
+<p>
+the main function for integration is <code>$integrate</code> (or <code>sinint</code>)
+</p>
+<div class="org-src-container" data-language="lisp">
+<pre class="src src-lisp"><span style="color: #ba5205;">(</span>maxima::displa <span style="color: #a26310;">(</span>maxima::$integrate #$2/<span style="color: #5a7400;">(</span>3*x^2<span style="color: #5a7400;">)</span>$ 'x<span style="color: #a26310;">)</span><span style="color: #ba5205;">)</span>
 </pre>
 </div>
+
 
 <pre class="example">
 2 x
@@ -209,26 +238,28 @@ the main function for integration is <code>$integrate</code> (or <code>sinint</c
 </pre>
 
 
-<div class="org-src-container">
-<pre class="src src-lisp"><span style="color: #d0730f;">(</span>maxima::displa <span style="color: #64aa0f;">(</span>maxima::$integrate '<span style="color: #ef656a;">(</span><span style="color: #3dbbb0;">(</span>maxima::%cos<span style="color: #3dbbb0;">)</span> x<span style="color: #ef656a;">)</span> 'x<span style="color: #64aa0f;">)</span><span style="color: #d0730f;">)</span>
+<div class="org-src-container" data-language="lisp">
+<pre class="src src-lisp"><span style="color: #ba5205;">(</span>maxima::displa <span style="color: #a26310;">(</span>maxima::$integrate '<span style="color: #5a7400;">(</span><span style="color: #c02945;">(</span>maxima::%cos<span style="color: #c02945;">)</span> x<span style="color: #5a7400;">)</span> 'x<span style="color: #a26310;">)</span><span style="color: #ba5205;">)</span>
 </pre>
 </div>
+
 
 <pre class="example">
 sin(x)
 </pre>
 </div>
 </div>
-<div id="outline-container-org7e170c7" class="outline-2">
-<h2 id="org7e170c7">lists</h2>
-<div class="outline-text-2" id="text-org7e170c7">
+<div id="outline-container-org2fefc71" class="outline-2">
+<h2 id="org2fefc71">lists</h2>
+<div class="outline-text-2" id="text-org2fefc71">
 <p>
-i havent a better approach yet<br />
+i havent a better approach yet
 </p>
-<div class="org-src-container">
-<pre class="src src-lisp"><span style="color: #d0730f;">(</span>maxima::displa <span style="color: #64aa0f;">(</span>maxima::meval* `<span style="color: #ef656a;">(</span><span style="color: #3dbbb0;">(</span>maxima::mlist<span style="color: #3dbbb0;">)</span> 2 3 5<span style="color: #ef656a;">)</span><span style="color: #64aa0f;">)</span><span style="color: #d0730f;">)</span>
+<div class="org-src-container" data-language="lisp">
+<pre class="src src-lisp"><span style="color: #ba5205;">(</span>maxima::displa <span style="color: #a26310;">(</span>maxima::meval* `<span style="color: #5a7400;">(</span><span style="color: #c02945;">(</span>maxima::mlist<span style="color: #c02945;">)</span> 2 3 5<span style="color: #5a7400;">)</span><span style="color: #a26310;">)</span><span style="color: #ba5205;">)</span>
 </pre>
 </div>
+
 
 <pre class="example">
 [2, 3, 5]
@@ -236,26 +267,28 @@ i havent a better approach yet<br />
 
 
 <p>
-lisp list to maxima list:<br />
+lisp list to maxima list:
 </p>
-<div class="org-src-container">
-<pre class="src src-lisp"><span style="color: #d0730f;">(</span><span style="color: #c48702; font-weight: bold;">defun</span> <span style="color: #3dbbb0;">list-&gt;mlist</span> <span style="color: #64aa0f;">(</span>list<span style="color: #64aa0f;">)</span>
-  <span style="color: #64aa0f;">(</span><span style="color: #c48702; font-weight: bold;">let</span> <span style="color: #ef656a;">(</span><span style="color: #3dbbb0;">(</span>mlist <span style="color: #df8f6f;">(</span>maxima::meval* `<span style="color: #379cf6;">(</span><span style="color: #ff7a7f;">(</span>maxima::mlist<span style="color: #ff7a7f;">)</span><span style="color: #379cf6;">)</span><span style="color: #df8f6f;">)</span><span style="color: #3dbbb0;">)</span><span style="color: #ef656a;">)</span>
-    <span style="color: #ef656a;">(</span><span style="color: #c48702; font-weight: bold;">loop</span> for expr in <span style="color: #3dbbb0;">(</span>reverse list<span style="color: #3dbbb0;">)</span>
-          do <span style="color: #3dbbb0;">(</span>setf
+<div class="org-src-container" data-language="lisp">
+<pre class="src src-lisp"><span style="color: #ba5205;">(</span><span style="color: #a26310; font-weight: bold;">defun</span> <span style="color: #5a7400;">list-&gt;mlist</span> <span style="color: #a26310;">(</span>list<span style="color: #a26310;">)</span>
+  <span style="color: #a26310;">(</span><span style="color: #a26310; font-weight: bold;">let</span> <span style="color: #5a7400;">(</span><span style="color: #c02945;">(</span>mlist <span style="color: #4060a0;">(</span>maxima::meval* `<span style="color: #aa3e74;">(</span><span style="color: #008250;">(</span>maxima::mlist<span style="color: #008250;">)</span><span style="color: #aa3e74;">)</span><span style="color: #4060a0;">)</span><span style="color: #c02945;">)</span><span style="color: #5a7400;">)</span>
+    <span style="color: #5a7400;">(</span><span style="color: #a26310; font-weight: bold;">loop</span> for expr in <span style="color: #c02945;">(</span>reverse list<span style="color: #c02945;">)</span>
+          do <span style="color: #c02945;">(</span>setf
               mlist
-              <span style="color: #df8f6f;">(</span>maxima::meval* `<span style="color: #379cf6;">(</span><span style="color: #ff7a7f;">(</span>maxima::$append<span style="color: #ff7a7f;">)</span> <span style="color: #ff7a7f;">(</span><span style="color: #2fa526;">(</span>maxima::mlist<span style="color: #2fa526;">)</span> ,expr<span style="color: #ff7a7f;">)</span> ,mlist<span style="color: #379cf6;">)</span><span style="color: #df8f6f;">)</span><span style="color: #3dbbb0;">)</span><span style="color: #ef656a;">)</span>
-    mlist<span style="color: #64aa0f;">)</span><span style="color: #d0730f;">)</span>
+              <span style="color: #4060a0;">(</span>maxima::meval* `<span style="color: #aa3e74;">(</span><span style="color: #008250;">(</span>maxima::$append<span style="color: #008250;">)</span> <span style="color: #008250;">(</span><span style="color: #b02f80;">(</span>maxima::mlist<span style="color: #b02f80;">)</span> ,expr<span style="color: #008250;">)</span> ,mlist<span style="color: #aa3e74;">)</span><span style="color: #4060a0;">)</span><span style="color: #c02945;">)</span><span style="color: #5a7400;">)</span>
+    mlist<span style="color: #a26310;">)</span><span style="color: #ba5205;">)</span>
 </pre>
 </div>
+
 <p>
-example:<br />
+example:
 </p>
-<div class="org-src-container">
-<pre class="src src-lisp"><span style="color: #d0730f;">(</span>print <span style="color: #64aa0f;">(</span>list-&gt;mlist '<span style="color: #ef656a;">(</span>1 2 3<span style="color: #ef656a;">)</span><span style="color: #64aa0f;">)</span><span style="color: #d0730f;">)</span>
-<span style="color: #d0730f;">(</span>maxima::displa <span style="color: #64aa0f;">(</span>list-&gt;mlist '<span style="color: #ef656a;">(</span>1 2 3<span style="color: #ef656a;">)</span><span style="color: #64aa0f;">)</span><span style="color: #d0730f;">)</span>
+<div class="org-src-container" data-language="lisp">
+<pre class="src src-lisp"><span style="color: #ba5205;">(</span>print <span style="color: #a26310;">(</span>list-&gt;mlist '<span style="color: #5a7400;">(</span>1 2 3<span style="color: #5a7400;">)</span><span style="color: #a26310;">)</span><span style="color: #ba5205;">)</span>
+<span style="color: #ba5205;">(</span>maxima::displa <span style="color: #a26310;">(</span>list-&gt;mlist '<span style="color: #5a7400;">(</span>1 2 3<span style="color: #5a7400;">)</span><span style="color: #a26310;">)</span><span style="color: #ba5205;">)</span>
 </pre>
 </div>
+
 
 <pre class="example">
 
@@ -264,65 +297,69 @@ example:<br />
 </pre>
 </div>
 </div>
-<div id="outline-container-org0c3cf90" class="outline-2">
-<h2 id="org0c3cf90">plotting</h2>
-<div class="outline-text-2" id="text-org0c3cf90">
+<div id="outline-container-org1bec7d0" class="outline-2">
+<h2 id="org1bec7d0">plotting</h2>
+<div class="outline-text-2" id="text-org1bec7d0">
 <p>
-we need to initialize some variables (like <code>*maxima-tempdir*</code>) to be able to plot, this can be done automatically using <code>initialize-runtime-globals</code><br />
+we need to initialize some variables (like <code>*maxima-tempdir*</code>) to be able to plot, this can be done automatically using <code>initialize-runtime-globals</code>
 </p>
-<div class="org-src-container">
-<pre class="src src-lisp"><span style="color: #d0730f;">(</span>maxima::initialize-runtime-globals<span style="color: #d0730f;">)</span>
+<div class="org-src-container" data-language="lisp">
+<pre class="src src-lisp"><span style="color: #ba5205;">(</span>maxima::initialize-runtime-globals<span style="color: #ba5205;">)</span>
 </pre>
 </div>
+
 <p>
-to plot a set of points (discrete plot) using <code>gnuplot</code><br />
+to plot a set of points (discrete plot) using <code>gnuplot</code>
 </p>
-<div class="org-src-container">
-<pre class="src src-lisp"><span style="color: #d0730f;">(</span>maxima::$plot2d
- '<span style="color: #64aa0f;">(</span><span style="color: #ef656a;">(</span>maxima::mlist<span style="color: #ef656a;">)</span>
+<div class="org-src-container" data-language="lisp">
+<pre class="src src-lisp"><span style="color: #ba5205;">(</span>maxima::$plot2d
+ '<span style="color: #a26310;">(</span><span style="color: #5a7400;">(</span>maxima::mlist<span style="color: #5a7400;">)</span>
    maxima::$discrete
-   <span style="color: #ef656a;">(</span><span style="color: #3dbbb0;">(</span>maxima::mlist<span style="color: #3dbbb0;">)</span> 1 2 3<span style="color: #ef656a;">)</span> <span style="color: #ef656a;">(</span><span style="color: #3dbbb0;">(</span>maxima::mlist<span style="color: #3dbbb0;">)</span> 1 2 3<span style="color: #ef656a;">)</span><span style="color: #64aa0f;">)</span><span style="color: #d0730f;">)</span>
+   <span style="color: #5a7400;">(</span><span style="color: #c02945;">(</span>maxima::mlist<span style="color: #c02945;">)</span> 1 2 3<span style="color: #5a7400;">)</span> <span style="color: #5a7400;">(</span><span style="color: #c02945;">(</span>maxima::mlist<span style="color: #c02945;">)</span> 1 2 3<span style="color: #5a7400;">)</span><span style="color: #a26310;">)</span><span style="color: #ba5205;">)</span>
 </pre>
 </div>
+
 <p>
-this can be (somewhat) simplified using our function <code>list-&gt;mlist</code> (see above)<br />
+this can be (somewhat) simplified using our function <code>list-&gt;mlist</code> (see above)
 </p>
-<div class="org-src-container">
-<pre class="src src-lisp"><span style="color: #d0730f;">(</span>maxima::$plot2d
- `<span style="color: #64aa0f;">(</span><span style="color: #ef656a;">(</span>maxima::mlist<span style="color: #ef656a;">)</span>
-   <span style="color: #ef656a;">(</span><span style="color: #3dbbb0;">(</span>maxima::mlist<span style="color: #3dbbb0;">)</span> maxima::$discrete
-                    ,<span style="color: #3dbbb0;">(</span>list-&gt;mlist '<span style="color: #df8f6f;">(</span>1 2 3<span style="color: #df8f6f;">)</span><span style="color: #3dbbb0;">)</span> ,<span style="color: #3dbbb0;">(</span>list-&gt;mlist '<span style="color: #df8f6f;">(</span>1 2 3<span style="color: #df8f6f;">)</span><span style="color: #3dbbb0;">)</span><span style="color: #ef656a;">)</span>
-   <span style="color: #ef656a;">(</span><span style="color: #3dbbb0;">(</span>maxima::mlist<span style="color: #3dbbb0;">)</span> maxima::$discrete
-                    ,<span style="color: #3dbbb0;">(</span>list-&gt;mlist '<span style="color: #df8f6f;">(</span>1 2 3<span style="color: #df8f6f;">)</span><span style="color: #3dbbb0;">)</span> ,<span style="color: #3dbbb0;">(</span>list-&gt;mlist '<span style="color: #df8f6f;">(</span>1 5 3<span style="color: #df8f6f;">)</span><span style="color: #3dbbb0;">)</span><span style="color: #ef656a;">)</span><span style="color: #64aa0f;">)</span><span style="color: #d0730f;">)</span>
+<div class="org-src-container" data-language="lisp">
+<pre class="src src-lisp"><span style="color: #ba5205;">(</span>maxima::$plot2d
+ `<span style="color: #a26310;">(</span><span style="color: #5a7400;">(</span>maxima::mlist<span style="color: #5a7400;">)</span>
+   <span style="color: #5a7400;">(</span><span style="color: #c02945;">(</span>maxima::mlist<span style="color: #c02945;">)</span> maxima::$discrete
+                    ,<span style="color: #c02945;">(</span>list-&gt;mlist '<span style="color: #4060a0;">(</span>1 2 3<span style="color: #4060a0;">)</span><span style="color: #c02945;">)</span> ,<span style="color: #c02945;">(</span>list-&gt;mlist '<span style="color: #4060a0;">(</span>1 2 3<span style="color: #4060a0;">)</span><span style="color: #c02945;">)</span><span style="color: #5a7400;">)</span>
+   <span style="color: #5a7400;">(</span><span style="color: #c02945;">(</span>maxima::mlist<span style="color: #c02945;">)</span> maxima::$discrete
+                    ,<span style="color: #c02945;">(</span>list-&gt;mlist '<span style="color: #4060a0;">(</span>1 2 3<span style="color: #4060a0;">)</span><span style="color: #c02945;">)</span> ,<span style="color: #c02945;">(</span>list-&gt;mlist '<span style="color: #4060a0;">(</span>1 5 3<span style="color: #4060a0;">)</span><span style="color: #c02945;">)</span><span style="color: #5a7400;">)</span><span style="color: #a26310;">)</span><span style="color: #ba5205;">)</span>
 </pre>
 </div>
+
 <p>
-we can draw multiple plots (this only works when running lisp using <code>maxima</code>, see the <b>how to</b> section):<br />
+we can draw multiple plots (this only works when running lisp using <code>maxima</code>, see the <b>how to</b> section):
 </p>
-<div class="org-src-container">
-<pre class="src src-lisp"><span style="color: #d0730f;">(</span><span style="color: #c48702; font-weight: bold;">let</span> <span style="color: #64aa0f;">(</span><span style="color: #ef656a;">(</span>scene1 '<span style="color: #3dbbb0;">(</span><span style="color: #df8f6f;">(</span>MAXIMA::$GR2D<span style="color: #df8f6f;">)</span>
-                <span style="color: #df8f6f;">(</span><span style="color: #379cf6;">(</span>MAXIMA::MEQUAL<span style="color: #379cf6;">)</span> MAXIMA::$TITLE <span style="color: #f06a3f;">"first plot"</span><span style="color: #df8f6f;">)</span>
-                <span style="color: #df8f6f;">(</span><span style="color: #379cf6;">(</span>MAXIMA::MEQUAL<span style="color: #379cf6;">)</span> MAXIMA::$NTICKS 300<span style="color: #df8f6f;">)</span>
-                <span style="color: #df8f6f;">(</span><span style="color: #379cf6;">(</span>MAXIMA::$PARAMETRIC<span style="color: #379cf6;">)</span>
-                 <span style="color: #379cf6;">(</span><span style="color: #ff7a7f;">(</span>MAXIMA::MTIMES<span style="color: #ff7a7f;">)</span> 2 <span style="color: #ff7a7f;">(</span><span style="color: #2fa526;">(</span>MAXIMA::%COS<span style="color: #2fa526;">)</span> MAXIMA::$T<span style="color: #ff7a7f;">)</span><span style="color: #379cf6;">)</span>
-                 <span style="color: #379cf6;">(</span><span style="color: #ff7a7f;">(</span>MAXIMA::MTIMES<span style="color: #ff7a7f;">)</span> 5 <span style="color: #ff7a7f;">(</span><span style="color: #2fa526;">(</span>MAXIMA::%SIN<span style="color: #2fa526;">)</span> MAXIMA::$T<span style="color: #ff7a7f;">)</span><span style="color: #379cf6;">)</span> MAXIMA::$T 0
-                 <span style="color: #379cf6;">(</span><span style="color: #ff7a7f;">(</span>MAXIMA::MTIMES<span style="color: #ff7a7f;">)</span> 2 MAXIMA::$%PI<span style="color: #379cf6;">)</span><span style="color: #df8f6f;">)</span><span style="color: #3dbbb0;">)</span><span style="color: #ef656a;">)</span>
-      <span style="color: #ef656a;">(</span>scene2 `<span style="color: #3dbbb0;">(</span><span style="color: #df8f6f;">(</span>MAXIMA::$GR2D<span style="color: #df8f6f;">)</span>
-                <span style="color: #df8f6f;">(</span><span style="color: #379cf6;">(</span>MAXIMA::MEQUAL<span style="color: #379cf6;">)</span> MAXIMA::$TITLE <span style="color: #f06a3f;">"second plot"</span><span style="color: #df8f6f;">)</span>
-                <span style="color: #df8f6f;">(</span><span style="color: #379cf6;">(</span>MAXIMA::MEQUAL<span style="color: #379cf6;">)</span> MAXIMA::$NTICKS 300<span style="color: #df8f6f;">)</span>
-                <span style="color: #df8f6f;">(</span><span style="color: #379cf6;">(</span>maxima::$points<span style="color: #379cf6;">)</span> <span style="color: #379cf6;">(</span><span style="color: #ff7a7f;">(</span>mlist<span style="color: #ff7a7f;">)</span> 1 2 3<span style="color: #379cf6;">)</span> <span style="color: #379cf6;">(</span><span style="color: #ff7a7f;">(</span>mlist<span style="color: #ff7a7f;">)</span> 1 2 3<span style="color: #379cf6;">)</span><span style="color: #df8f6f;">)</span><span style="color: #3dbbb0;">)</span><span style="color: #ef656a;">)</span><span style="color: #64aa0f;">)</span>
-  <span style="color: #64aa0f;">(</span>maxima::meval* `<span style="color: #ef656a;">(</span><span style="color: #3dbbb0;">(</span>MAXIMA::$DRAW<span style="color: #3dbbb0;">)</span> ,scene1 ,scene2 <span style="color: #3dbbb0;">(</span><span style="color: #df8f6f;">(</span>MAXIMA::MEQUAL<span style="color: #df8f6f;">)</span> MAXIMA::$COLUMNS 2<span style="color: #3dbbb0;">)</span><span style="color: #ef656a;">)</span><span style="color: #64aa0f;">)</span><span style="color: #d0730f;">)</span>
+<div class="org-src-container" data-language="lisp">
+<pre class="src src-lisp"><span style="color: #ba5205;">(</span><span style="color: #a26310; font-weight: bold;">let</span> <span style="color: #a26310;">(</span><span style="color: #5a7400;">(</span>scene1 '<span style="color: #c02945;">(</span><span style="color: #4060a0;">(</span>MAXIMA::$GR2D<span style="color: #4060a0;">)</span>
+                <span style="color: #4060a0;">(</span><span style="color: #aa3e74;">(</span>MAXIMA::MEQUAL<span style="color: #aa3e74;">)</span> MAXIMA::$TITLE <span style="color: #c74400;">"first plot"</span><span style="color: #4060a0;">)</span>
+                <span style="color: #4060a0;">(</span><span style="color: #aa3e74;">(</span>MAXIMA::MEQUAL<span style="color: #aa3e74;">)</span> MAXIMA::$NTICKS 300<span style="color: #4060a0;">)</span>
+                <span style="color: #4060a0;">(</span><span style="color: #aa3e74;">(</span>MAXIMA::$PARAMETRIC<span style="color: #aa3e74;">)</span>
+                 <span style="color: #aa3e74;">(</span><span style="color: #008250;">(</span>MAXIMA::MTIMES<span style="color: #008250;">)</span> 2 <span style="color: #008250;">(</span><span style="color: #b02f80;">(</span>MAXIMA::%COS<span style="color: #b02f80;">)</span> MAXIMA::$T<span style="color: #008250;">)</span><span style="color: #aa3e74;">)</span>
+                 <span style="color: #aa3e74;">(</span><span style="color: #008250;">(</span>MAXIMA::MTIMES<span style="color: #008250;">)</span> 5 <span style="color: #008250;">(</span><span style="color: #b02f80;">(</span>MAXIMA::%SIN<span style="color: #b02f80;">)</span> MAXIMA::$T<span style="color: #008250;">)</span><span style="color: #aa3e74;">)</span> MAXIMA::$T 0
+                 <span style="color: #aa3e74;">(</span><span style="color: #008250;">(</span>MAXIMA::MTIMES<span style="color: #008250;">)</span> 2 MAXIMA::$%PI<span style="color: #aa3e74;">)</span><span style="color: #4060a0;">)</span><span style="color: #c02945;">)</span><span style="color: #5a7400;">)</span>
+      <span style="color: #5a7400;">(</span>scene2 `<span style="color: #c02945;">(</span><span style="color: #4060a0;">(</span>MAXIMA::$GR2D<span style="color: #4060a0;">)</span>
+                <span style="color: #4060a0;">(</span><span style="color: #aa3e74;">(</span>MAXIMA::MEQUAL<span style="color: #aa3e74;">)</span> MAXIMA::$TITLE <span style="color: #c74400;">"second plot"</span><span style="color: #4060a0;">)</span>
+                <span style="color: #4060a0;">(</span><span style="color: #aa3e74;">(</span>MAXIMA::MEQUAL<span style="color: #aa3e74;">)</span> MAXIMA::$NTICKS 300<span style="color: #4060a0;">)</span>
+                <span style="color: #4060a0;">(</span><span style="color: #aa3e74;">(</span>maxima::$points<span style="color: #aa3e74;">)</span> <span style="color: #aa3e74;">(</span><span style="color: #008250;">(</span>mlist<span style="color: #008250;">)</span> 1 2 3<span style="color: #aa3e74;">)</span> <span style="color: #aa3e74;">(</span><span style="color: #008250;">(</span>mlist<span style="color: #008250;">)</span> 1 2 3<span style="color: #aa3e74;">)</span><span style="color: #4060a0;">)</span><span style="color: #c02945;">)</span><span style="color: #5a7400;">)</span><span style="color: #a26310;">)</span>
+  <span style="color: #a26310;">(</span>maxima::meval* `<span style="color: #5a7400;">(</span><span style="color: #c02945;">(</span>MAXIMA::$DRAW<span style="color: #c02945;">)</span> ,scene1 ,scene2 <span style="color: #c02945;">(</span><span style="color: #4060a0;">(</span>MAXIMA::MEQUAL<span style="color: #4060a0;">)</span> MAXIMA::$COLUMNS 2<span style="color: #c02945;">)</span><span style="color: #5a7400;">)</span><span style="color: #a26310;">)</span><span style="color: #ba5205;">)</span>
 </pre>
 </div>
+
 <p>
-we implement some abstraction over this to make it less explicit:<br />
+we implement some abstraction over this to make it less explicit:
 </p>
-<div class="org-src-container">
-<pre class="src src-lisp"><span style="color: #d0730f;">(</span><span style="color: #c48702; font-weight: bold;">defun</span> <span style="color: #3dbbb0;">plot-points</span> <span style="color: #64aa0f;">(</span>x-values y-values<span style="color: #64aa0f;">)</span>
-  <span style="color: #64aa0f;">(</span>maxima::$plot2d
-   `<span style="color: #ef656a;">(</span><span style="color: #3dbbb0;">(</span>maxima::mlist<span style="color: #3dbbb0;">)</span>
+<div class="org-src-container" data-language="lisp">
+<pre class="src src-lisp"><span style="color: #ba5205;">(</span><span style="color: #a26310; font-weight: bold;">defun</span> <span style="color: #5a7400;">plot-points</span> <span style="color: #a26310;">(</span>x-values y-values<span style="color: #a26310;">)</span>
+  <span style="color: #a26310;">(</span>maxima::$plot2d
+   `<span style="color: #5a7400;">(</span><span style="color: #c02945;">(</span>maxima::mlist<span style="color: #c02945;">)</span>
      maxima::$discrete
-     ,<span style="color: #3dbbb0;">(</span>list-&gt;mlist x-values<span style="color: #3dbbb0;">)</span> ,<span style="color: #3dbbb0;">(</span>list-&gt;mlist y-values<span style="color: #3dbbb0;">)</span><span style="color: #ef656a;">)</span><span style="color: #64aa0f;">)</span><span style="color: #d0730f;">)</span>
+     ,<span style="color: #c02945;">(</span>list-&gt;mlist x-values<span style="color: #c02945;">)</span> ,<span style="color: #c02945;">(</span>list-&gt;mlist y-values<span style="color: #c02945;">)</span><span style="color: #5a7400;">)</span><span style="color: #a26310;">)</span><span style="color: #ba5205;">)</span>
 </pre>
 </div>
 </div>
