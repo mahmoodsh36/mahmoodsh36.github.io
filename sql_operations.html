@@ -48,9 +48,9 @@
 </div><h1 class="main-title">sql operations</h1><span class="desc">a set of common [[blk:1702389696][sql]] operations</span><span class='date'>2023-12-12</span>
 </div>
 <div id="content" class="content">
-<div id="outline-container-orgb73d994" class="outline-2">
-<h2 id="orgb73d994">list databases</h2>
-<div class="outline-text-2" id="text-orgb73d994">
+<div id="outline-container-orge105703" class="outline-2">
+<h2 id="orge105703">list databases</h2>
+<div class="outline-text-2" id="text-orge105703">
 <div class="org-src-container" data-language="sql">
 <pre class="src src-sql"><span style="color: #a0a0cf; font-style: italic;">-- </span><span style="color: #a0a0cf; font-style: italic;">show databases; -- for mysql</span>
 \l <span style="color: #a0a0cf; font-style: italic;">-- </span><span style="color: #a0a0cf; font-style: italic;">for postgresql</span>
@@ -181,36 +181,36 @@
 </table>
 </div>
 </div>
-<div id="outline-container-org9156a46" class="outline-2">
-<h2 id="org9156a46">deleting a database</h2>
-<div class="outline-text-2" id="text-org9156a46">
+<div id="outline-container-org5a89808" class="outline-2">
+<h2 id="org5a89808">deleting a database</h2>
+<div class="outline-text-2" id="text-org5a89808">
 <div class="org-src-container" data-language="sql">
 <pre class="src src-sql"><span style="color: #deb07a; font-weight: bold;">drop</span> databsae &lt;dbname&gt;;
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org0e22ed1" class="outline-2">
-<h2 id="org0e22ed1">creating databases</h2>
-<div class="outline-text-2" id="text-org0e22ed1">
+<div id="outline-container-orgf0b2d45" class="outline-2">
+<h2 id="orgf0b2d45">creating databases</h2>
+<div class="outline-text-2" id="text-orgf0b2d45">
 <div class="org-src-container" data-language="sql">
 <pre class="src src-sql"><span style="color: #deb07a; font-weight: bold;">create</span> database &lt;dbname&gt;;
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org06f1065" class="outline-2">
-<h2 id="org06f1065">describe database</h2>
-<div class="outline-text-2" id="text-org06f1065">
+<div id="outline-container-org6cefc1e" class="outline-2">
+<h2 id="org6cefc1e">describe database</h2>
+<div class="outline-text-2" id="text-org6cefc1e">
 <div class="org-src-container" data-language="sql">
 <pre class="src src-sql"><span style="color: #deb07a; font-weight: bold;">describe</span> sys;
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org4c6920a" class="outline-2">
-<h2 id="org4c6920a">schema</h2>
-<div class="outline-text-2" id="text-org4c6920a">
+<div id="outline-container-org6c35bb8" class="outline-2">
+<h2 id="org6c35bb8">schema</h2>
+<div class="outline-text-2" id="text-org6c35bb8">
 <div test="test" class="fancy-block dummy" data-before="" data-after="&lt;p&gt;
 (Ramez Elmasri, Shamkant B. Navathe, 2015 chapter 6.1.1 schema and catalog concepts in sql)&lt;/p&gt;
 " id="def-inr-prod" data-id="def-inr-prod">
@@ -229,9 +229,9 @@ in general, not all users are authorized to create schemas and schema elements. 
 </div>
 </div>
 </div>
-<div id="outline-container-orge8578a2" class="outline-2">
-<h2 id="orge8578a2">create table</h2>
-<div class="outline-text-2" id="text-orge8578a2">
+<div id="outline-container-org1dd1b09" class="outline-2">
+<h2 id="org1dd1b09">create table</h2>
+<div class="outline-text-2" id="text-org1dd1b09">
 <div test="test" class="fancy-block dummy" data-before="" data-after="&lt;p&gt;
 (Ramez Elmasri, Shamkant B. Navathe, 2015 chapter 6.1.2 the create table command in sql)&lt;/p&gt;
 " id="def-inr-prod" data-id="def-inr-prod">
@@ -313,9 +313,9 @@ the relations declared through <code>CREATE TABLE</code> statements are called <
 </div>
 </div>
 </div>
-<div id="outline-container-org9970d57" class="outline-2">
-<h2 id="org9970d57">select-from-where</h2>
-<div class="outline-text-2" id="text-org9970d57">
+<div id="outline-container-org43032c3" class="outline-2">
+<h2 id="org43032c3">select-from-where</h2>
+<div class="outline-text-2" id="text-org43032c3">
 <div test="test" class="fancy-block dummy" data-before="" data-after="&lt;p&gt;
 (Ramez Elmasri, Shamkant B. Navathe, 2015 chapter 6.3.1 the select-from-where structure of basic sql queries)&lt;/p&gt;
 " id="def-inr-prod" data-id="def-inr-prod">
@@ -342,19 +342,19 @@ where
 </div>
 </div>
 </div>
-<div id="outline-container-orgf940c17" class="outline-2">
-<h2 id="orgf940c17">ordering of query results</h2>
-<div class="outline-text-2" id="text-orgf940c17">
+<div id="outline-container-org1c3f4b5" class="outline-2">
+<h2 id="org1c3f4b5">ordering of query results</h2>
+<div class="outline-text-2" id="text-org1c3f4b5">
 <p>
 the order by operator
 </p>
 </div>
 </div>
-<div id="outline-container-orgbcf28a8" class="outline-2">
-<h2 id="orgbcf28a8">alter table</h2>
+<div id="outline-container-org9eec28d" class="outline-2">
+<h2 id="org9eec28d">alter table</h2>
 </div>
-<div id="outline-container-org04a5587" class="outline-2">
-<h2 id="org04a5587">update</h2>
+<div id="outline-container-orge658f54" class="outline-2">
+<h2 id="orge658f54">update</h2>
 </div>
 </div>
 </body>

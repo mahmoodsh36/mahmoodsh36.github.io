@@ -51,9 +51,9 @@
 <p>
 some math utilities for <a href="/common_lisp.html">common lisp</a>
 </p>
-<div id="outline-container-org2339a9c" class="outline-2">
-<h2 id="org2339a9c">essential functions</h2>
-<div class="outline-text-2" id="text-org2339a9c">
+<div id="outline-container-orgfeeb509" class="outline-2">
+<h2 id="orgfeeb509">essential functions</h2>
+<div class="outline-text-2" id="text-orgfeeb509">
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp" id="src-math-functions"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">sigmoid</span> <span style="color: #ffaacf;">(</span>x<span style="color: #ffaacf;">)</span>
   <span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">cond</span> <span style="color: #80aadf;">(</span><span style="color: #e47980;">(</span>&lt; x -70<span style="color: #e47980;">)</span> 0<span style="color: #80aadf;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">to avoid float overflow</span>
@@ -74,12 +74,12 @@ some math utilities for <a href="/common_lisp.html">common lisp</a>
 </div>
 </div>
 </div>
-<div id="outline-container-org00a4502" class="outline-2">
-<h2 id="org00a4502">vectors</h2>
-<div class="outline-text-2" id="text-org00a4502">
+<div id="outline-container-org02a8290" class="outline-2">
+<h2 id="org02a8290">vectors</h2>
+<div class="outline-text-2" id="text-org02a8290">
 <div test="test" class="fancy-block note" data-before="&lt;p&gt;
 note: &lt;/p&gt;
-" id="def-forest" data-id="def-forest">
+" id="minimum_spanning_tree_lemma_7" data-id="minimum_spanning_tree_lemma_7">
 <p>
 these functions work, but some use lists and some do redundant operations, they need efficiency improvement
 </p>
@@ -123,9 +123,9 @@ these functions work, but some use lists and some do redundant operations, they 
 </div>
 </div>
 </div>
-<div id="outline-container-orga75eda5" class="outline-2">
-<h2 id="orga75eda5">matrices</h2>
-<div class="outline-text-2" id="text-orga75eda5">
+<div id="outline-container-org99d43bc" class="outline-2">
+<h2 id="org99d43bc">matrices</h2>
+<div class="outline-text-2" id="text-org99d43bc">
 <p>
 im using arrays for matrices, which use different functions than vectors/lists
 </p>
@@ -203,9 +203,9 @@ matrix multiplication:
 </pre>
 </div>
 </div>
-<div id="outline-container-org15ec488" class="outline-3">
-<h3 id="org15ec488">matrix multiplication implementation comparison between lists and arrays</h3>
-<div class="outline-text-3" id="text-org15ec488">
+<div id="outline-container-org01ce389" class="outline-3">
+<h3 id="org01ce389">matrix multiplication implementation comparison between lists and arrays</h3>
+<div class="outline-text-3" id="text-org01ce389">
 <p>
 with lists:
 </p>
@@ -249,9 +249,9 @@ with arrays:
 </div>
 </div>
 </div>
-<div id="outline-container-org20e1464" class="outline-3">
-<h3 id="org20e1464">2d transformation matrices</h3>
-<div class="outline-text-3" id="text-org20e1464">
+<div id="outline-container-org24f5ea0" class="outline-3">
+<h3 id="org24f5ea0">2d transformation matrices</h3>
+<div class="outline-text-3" id="text-org24f5ea0">
 <p>
 <a href="/2d_transformations.html">linearly mapping a grid to another</a>:
 </p>
@@ -294,9 +294,9 @@ example usage:
 </div>
 </div>
 </div>
-<div id="outline-container-org8ab1a42" class="outline-2">
-<h2 id="org8ab1a42"><a href="/linearly_mapping_an_interval_onto_another.html">linearly mapping discrete range onto another</a></h2>
-<div class="outline-text-2" id="text-org8ab1a42">
+<div id="outline-container-orgaf7bb6f" class="outline-2">
+<h2 id="orgaf7bb6f"><a href="/linearly_mapping_an_interval_onto_another.html">linearly mapping discrete range onto another</a></h2>
+<div class="outline-text-2" id="text-orgaf7bb6f">
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp" id="src-map-num"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">map-num</span> <span style="color: #ffaacf;">(</span>num src-min src-max dest-min dest-max<span style="color: #ffaacf;">)</span>
   <span style="color: #caa89f; font-style: italic;">"(map-num 0.5 -1 1 -50 50) =&gt; 25.0"</span>
@@ -305,9 +305,9 @@ example usage:
 </div>
 </div>
 </div>
-<div id="outline-container-org77b0b9a" class="outline-2">
-<h2 id="org77b0b9a">sets</h2>
-<div class="outline-text-2" id="text-org77b0b9a">
+<div id="outline-container-orgaccdd05" class="outline-2">
+<h2 id="orgaccdd05">sets</h2>
+<div class="outline-text-2" id="text-orgaccdd05">
 <p>
 a good resource <a href="https://www.cs.cmu.edu/Groups/AI/html/cltl/clm/node152.html">https://www.cs.cmu.edu/Groups/AI/html/cltl/clm/node152.html</a>
 </p>
@@ -366,9 +366,9 @@ check for set equality:
 </div>
 </div>
 </div>
-<div id="outline-container-orgdc7f176" class="outline-2">
-<h2 id="orgdc7f176"><a href="/combinatorics.html">combinatorics</a></h2>
-<div class="outline-text-2" id="text-orgdc7f176">
+<div id="outline-container-org314cbb0" class="outline-2">
+<h2 id="org314cbb0"><a href="/combinatorics.html">combinatorics</a></h2>
+<div class="outline-text-2" id="text-org314cbb0">
 <p>
 generating <a href="/combinatorics.html">variation</a>s:
 </p>

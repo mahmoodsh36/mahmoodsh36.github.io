@@ -59,15 +59,15 @@ it has alot of nice features, more than mysql
 listing the available databases&lt;/p&gt;
 " data-after="&lt;p&gt;
 (??, 2023 chapter 23 managing databases)&lt;/p&gt;
-" id="not-bfuncs" data-id="not-bfuncs">
+" id="prf-bool-func-1" data-id="prf-bool-func-1">
 <p>
 the <code>psql</code> program's <code>\l</code> meta-command and <code>-l</code> command-line option are also useful for listing the existing databases.
 </p>
 
 </div>
-<div id="outline-container-org4250b3f" class="outline-2">
-<h2 id="org4250b3f">database creation</h2>
-<div class="outline-text-2" id="text-org4250b3f">
+<div id="outline-container-org6419b80" class="outline-2">
+<h2 id="org6419b80">database creation</h2>
+<div class="outline-text-2" id="text-org6419b80">
 <p>
 create database &lt;name&gt;
 </p>
@@ -77,13 +77,13 @@ create database &lt;name&gt;
 </p>
 </div>
 </div>
-<div id="outline-container-org6aff03d" class="outline-2">
-<h2 id="org6aff03d">list databases</h2>
-<div class="outline-text-2" id="text-org6aff03d">
+<div id="outline-container-org8ce3c06" class="outline-2">
+<h2 id="org8ce3c06">list databases</h2>
+<div class="outline-text-2" id="text-org8ce3c06">
 <p>
 <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.914072 3.347447 6.914072' style="max-height: 0.7785em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.914072 3.347447 6.914072' style="max-height: 0.7294em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g0-392' d='m2.849315-4.174346l-.159402-.209215l-.647572 .478207v-3.008717l-1.43462 .109589v.308842c.697385 0 .777086 .069738 .777086 .557908v2.530511l-.9066 .67746l.159402 .199253l.747198-.557908v2.331258c0 .448319-.109589 .448319-.777086 .448319v.308842l1.105853-.029888l1.105853 .029888v-.308842c-.667497 0-.777086 0-.777086-.448319v-2.809465l.806974-.607721z'/>
 </defs>
@@ -96,10 +96,10 @@ create database &lt;name&gt;
 </p>
 </div>
 </div>
-<div id="outline-container-orgd623422" class="outline-2">
-<h2 id="orgd623422">ERROR:  template database "template1" has a collation version mismatch</h2>
-<div class="outline-text-2" id="text-orgd623422">
-<div test="test" class="fancy-block dummy" data-before="" id="not-bfuncs" data-id="not-bfuncs">
+<div id="outline-container-orgdfb0bfa" class="outline-2">
+<h2 id="orgdfb0bfa">ERROR:  template database "template1" has a collation version mismatch</h2>
+<div class="outline-text-2" id="text-orgdfb0bfa">
+<div test="test" class="fancy-block dummy" data-before="" id="prf-bool-func-1" data-id="prf-bool-func-1">
 <p>
 sudo -u postgres psql
 </p>
@@ -115,10 +115,10 @@ alter database template1 refresh collation version;
 </div>
 </div>
 </div>
-<div id="outline-container-org4239de8" class="outline-2">
-<h2 id="org4239de8">execute sql file</h2>
-<div class="outline-text-2" id="text-org4239de8">
-<div test="test" class="fancy-block dummy" data-before="" id="not-bfuncs" data-id="not-bfuncs">
+<div id="outline-container-org6aea653" class="outline-2">
+<h2 id="org6aea653">execute sql file</h2>
+<div class="outline-text-2" id="text-org6aea653">
+<div test="test" class="fancy-block dummy" data-before="" id="prf-bool-func-1" data-id="prf-bool-func-1">
 <p>
 psql &#x2013;username=&lt;db_user_name&gt; databasename &lt; myfile.sql
 </p>

@@ -48,9 +48,9 @@
 </div><h1 class="main-title">gpg</h1><span class="desc">encrypting files with gpg</span><span class='date'>2022-08-07</span>
 </div>
 <div id="content" class="content">
-<div id="outline-container-orgbc74d6c" class="outline-2">
-<h2 id="orgbc74d6c">encrypt file with password</h2>
-<div class="outline-text-2" id="text-orgbc74d6c">
+<div id="outline-container-org4cf60d3" class="outline-2">
+<h2 id="org4cf60d3">encrypt file with password</h2>
+<div class="outline-text-2" id="text-org4cf60d3">
 <div class="org-src-container" data-language="bash">
 <pre class="src src-bash">gpg -o &lt;output-file&gt; -c &lt;file-to-encrypt&gt;
 </pre>
@@ -61,9 +61,9 @@ the argument <code>-o</code> takes the path to the output file (the encrypted on
 </p>
 </div>
 </div>
-<div id="outline-container-org14bfa12" class="outline-2">
-<h2 id="org14bfa12">decrypt file with password</h2>
-<div class="outline-text-2" id="text-org14bfa12">
+<div id="outline-container-orgf72a4bd" class="outline-2">
+<h2 id="orgf72a4bd">decrypt file with password</h2>
+<div class="outline-text-2" id="text-orgf72a4bd">
 <div class="org-src-container" data-language="bash">
 <pre class="src src-bash">gpg -o &lt;output-file&gt; -d &lt;file-to-decrypt&gt;
 </pre>
@@ -74,9 +74,9 @@ the argument <code>-o</code> takes the path to the output file (the decrypted on
 </p>
 </div>
 </div>
-<div id="outline-container-org8fe18fe" class="outline-2">
-<h2 id="org8fe18fe">encrypt directory with password</h2>
-<div class="outline-text-2" id="text-org8fe18fe">
+<div id="outline-container-org5639480" class="outline-2">
+<h2 id="org5639480">encrypt directory with password</h2>
+<div class="outline-text-2" id="text-org5639480">
 <p>
 to encrypt a directory, we simply compress it into a file:
 </p>
@@ -89,7 +89,7 @@ to encrypt a directory, we simply compress it into a file:
 for faster compression but bigger file size:
 </p>
 <div class="org-src-container" data-language="bash">
-<pre class="src src-bash">tar --use-compress-program=<span style="color: #c74400;">"pigz -k -9 "</span> -cf archive.tar &lt;directory-to-compress&gt;
+<pre class="src src-bash">tar --use-compress-program=<span style="color: #f3a0a0;">"pigz -k -9 "</span> -cf archive.tar &lt;directory-to-compress&gt;
 </pre>
 </div>
 
