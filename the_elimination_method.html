@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>the elimination method</title><!-- for google analytics -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QNNF19VZGH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QNNF19VZGH');
+</script>
+
+<!-- lambda icon, frail attempt -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22100%22 color=%22red%22>λ</text></svg>">
+<!-- not-so-awesome awesome font -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="/main.css">
+<!-- for dark mode -->
+<script src="darkmode.js"></script>
+<script src="main.js"></script>
+<script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div class="navbar">
+  <a href='/'>home</a>
+  <a href='/blog.html'>blog</a>
+  <a href='/search.html'>search</a>
+  <a href='/about.html'>about</a>
+  <div id="darkModeToggle" onclick="toggleDarkMode()">
+    &#9680; <!-- Circle with left half black -->
+  </div>
+</div>
+<div class="toc">
+  <span class="toc-title-container">
+    <a class='feather' data-feather='menu'></a>
+    <span class="toc-title">table of contents</span>
+  </span>
+  <div class="toc-list">
+  </div>
+</div><h1 class="main-title">the elimination method</h1><span class='date'>2024-11-22</span>
+</div>
+<div id="content" class="content">
+<div test="test" class="fancy-block dummy" data-before="" data-after="&lt;p&gt;
+(taken from Stasys Jukna, 2012 chapter 1.6 a 3n lower bound for circuits)&lt;/p&gt;
+" id="def-func-bin" data-id="def-func-bin">
+<p>
+this method, known as the <i>elimination method</i>, is used to obtain lower bounds.
+</p>
+
+<p>
+the gate-elimination argument does the following. given a circuit for the function in question, we first argue that some variable 1 (or set of variables) must fan out to several gates. setting this variable to a constant will eliminate several gates. by repeatedly applying this process, we conclude that the original circuit must have had many gates.
+</p>
+
+</div>
+</div>
+</body>
+</html>

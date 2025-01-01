@@ -1,0 +1,808 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>cuda programming in common lisp</title><!-- for google analytics -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QNNF19VZGH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QNNF19VZGH');
+</script>
+
+<!-- lambda icon, frail attempt -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22100%22 color=%22red%22>λ</text></svg>">
+<!-- not-so-awesome awesome font -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="/main.css">
+<!-- for dark mode -->
+<script src="darkmode.js"></script>
+<script src="main.js"></script>
+<script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div class="navbar">
+  <a href='/'>home</a>
+  <a href='/blog.html'>blog</a>
+  <a href='/search.html'>search</a>
+  <a href='/about.html'>about</a>
+  <div id="darkModeToggle" onclick="toggleDarkMode()">
+    &#9680; <!-- Circle with left half black -->
+  </div>
+</div>
+<div class="toc">
+  <span class="toc-title-container">
+    <a class='feather' data-feather='menu'></a>
+    <span class="toc-title">table of contents</span>
+  </span>
+  <div class="toc-list">
+  </div>
+</div><h1 class="main-title">cuda programming in common lisp</h1><span class='date'>2023-06-14</span>
+</div>
+<div id="content" class="content">
+<p>
+using <code>cl-cuda</code>.
+</p>
+
+<p>
+load it using <a href="/common_lisp.html">quicklisp</a>:
+</p>
+<div class="org-src-container" data-language="lisp">
+<pre class="src src-lisp"><span style="color: #deb07a;">(</span>ql:quickload <span style="color: #e3b0c0; font-weight: bold;">:cl-cuda</span><span style="color: #deb07a;">)</span>
+</pre>
+</div>
+<div id="outline-container-orgbdb6edc" class="outline-2">
+<h2 id="orgbdb6edc">arch linux setup</h2>
+<div class="outline-text-2" id="text-orgbdb6edc">
+<p>
+i had to install <code>cuda</code> for the <code>nvcc</code> compiler and more, and <code>nvidia</code> for the gpu driver, at first you may have to use <code>/opt/cuda/bin/nvcc</code> until you reboot or extend your $PATH.
+</p>
+
+<p>
+to check which nvidia driver is in use run:
+</p>
+<div class="org-src-container" data-language="sh">
+<pre class="src src-sh">lspci -k | grep -A 2 -E <span style="color: #f3a0a0;">"(VGA|3D)"</span>
+</pre>
+</div>
+
+<p>
+if you have installed the <code>nvidia</code> package and your os still uses <code>nouveau</code> you need to reboot. if it still doesnt use <code>nvidia</code> you need to update your while system with <code>pacman -Syyu</code> (you've been doing partial upgrades).
+</p>
+</div>
+</div>
+<div id="outline-container-org2726ab0" class="outline-2">
+<h2 id="org2726ab0">essential concepts</h2>
+<div class="outline-text-2" id="text-org2726ab0">
+</div>
+<div id="outline-container-org8a8e7c0" class="outline-3">
+<h3 id="org8a8e7c0">threads</h3>
+<div class="outline-text-3" id="text-org8a8e7c0">
+<p>
+mostly from <a href="https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#programming-model">https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#programming-model</a>.
+</p>
+
+<p>
+i also read the examples from the cl-cuda's source code.
+</p>
+
+<p>
+<b>kernels</b> are just functions that are run by different cuda threads in a <b>thread block</b>, a thread block is a group of threads each given an index, thread blocks can be nested up to 3 times, an index is a 3d vector with each value corresponding to the index in one of the dimensions x,y,z, there is a limit to the number of threads per block, which on current GPUs is 1024. the index of a thread is stored in the special variable <code>threadIdx</code>, the index of a block is stored in the special variable <code>blockIdx</code>, the dimensions of a block can be given by <code>blockDim</code>, all of these variables are 3d vectors and have <code>x,y,z</code> members.
+</p>
+
+<p>
+a kernel can be executed by multiple equally-shaped thread blocks, so that the total number of threads is equal to the number of threads per block times the number of blocks.
+</p>
+
+<p>
+blocks are organized into a one-dimensional, two-dimensional, or three-dimensional <b>grid of thread blocks</b>. the number of thread blocks in a grid is usually dictated by the size of the data being processed, which typically exceeds the number of processors in the system.
+</p>
+
+<p>
+a thread block size of 16x16 (256 threads) is a common choice.
+</p>
+
+<p>
+thread blocks are required to execute independently: it must be possible to execute them in any order, in parallel or in series. this independence requirement allows thread blocks to be scheduled in any order across any number of cores, enabling programmers to write code that scales with the number of cores.
+</p>
+
+<p>
+threads within a block can cooperate by sharing data through some <b>shared memory</b> and by synchronizing their execution to coordinate memory accesses. more precisely, one can specify synchronization points in the kernel by calling the <code>__syncthreads()</code> intrinsic function; <code>__syncthreads()</code> acts as a barrier at which all threads in the block must wait before any is allowed to proceed. in addition to <code>__syncthreads()</code>, the cooperative groups api provides a rich set of thread-synchronization primitives.
+</p>
+
+<p>
+for efficient cooperation, the shared memory is expected to be a low-latency memory near each processor core (much like an L1 cache) and <code>__syncthreads()</code> is expected to be lightweight.
+</p>
+</div>
+</div>
+<div id="outline-container-orgb892474" class="outline-3">
+<h3 id="orgb892474">memory</h3>
+<div class="outline-text-3" id="text-orgb892474">
+<p>
+CUDA threads may access data from multiple memory spaces during their execution. each thread has private <b>local memory</b>. each thread block has <b>shared memory</b> visible to all threads of the block and with the same lifetime as the block. thread blocks in a thread block cluster can perform read, write, and atomics operations on each other’s shared memory. all threads have access to the same <b>global memory</b>.
+</p>
+
+<p>
+there are also two additional read-only memory spaces accessible by all threads: the constant and texture memory spaces. the global, constant, and texture memory spaces are optimized for different memory usages. texture memory also offers different addressing modes, as well as data filtering, for some specific data formats.
+</p>
+
+<p>
+the global, constant, and texture memory spaces are persistent across kernel launches by the same application.
+</p>
+
+<p>
+<b>unified memory</b> provides <b>managed memory</b> to bridge the host and <b>device memory</b> spaces. managed memory is accessible from all CPUs and GPUs in the system as a single, coherent memory image with a common address space. this capability enables oversubscription of device memory and can greatly simplify the task of porting applications by eliminating the need to explicitly mirror data on host and device.
+</p>
+
+<p>
+the CUDA programming model also assumes that both the host and the device maintain their own separate memory spaces in DRAM, referred to as host memory and device memory, respectively. therefore, a program manages the global, constant, and texture memory spaces visible to kernels through calls to the CUDA runtime. this includes device memory allocation and deallocation as well as data transfer between host and device memory.
+</p>
+
+<p>
+unified memory provides managed memory to bridge the host and device memory spaces. managed memory is accessible from all CPUs and GPUs in the system as a single, coherent memory image with a common address space. this capability enables oversubscription of device memory and can greatly simplify the task of porting applications by eliminating the need to explicitly mirror data on host and device.
+</p>
+</div>
+</div>
+<div id="outline-container-org7ecf12d" class="outline-3">
+<h3 id="org7ecf12d">device memory</h3>
+<div class="outline-text-3" id="text-org7ecf12d">
+<p>
+the CUDA programming model assumes a system composed of a host and a device, each with their own separate memory. kernels operate out of device memory, so the runtime provides functions to allocate, deallocate, and copy device memory, as well as transfer data between host memory and device memory.
+</p>
+
+<p>
+device memory can be allocated either as linear memory or as <b>CUDA arrays</b>.
+</p>
+
+<p>
+CUDA arrays are opaque memory layouts optimized for texture fetching.
+</p>
+
+<p>
+<b>linear memory</b> is allocated in a single unified address space, which means that separately allocated entities can reference one another via pointers, for example, in a binary tree or linked list. the size of the address space depends on the host system (CPU) and the compute capability of the used GPU.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org4ad8db9" class="outline-2">
+<h2 id="org4ad8db9">code</h2>
+<div class="outline-text-2" id="text-org4ad8db9">
+<p>
+see <a href="/connect_to_remote_common_lisp_repl_with_sly_slime.html">connect to remote common lisp repl with sly/slime</a> for connecting to a remote common lisp repl with <a href="/emacs.html">emacs</a>.
+</p>
+<div test="test" class="fancy-block note" data-before="&lt;p&gt;
+note: &lt;/p&gt;
+" id="blk-softmax" data-id="blk-softmax">
+<p>
+notice that when working cl-cuda the data that we're passing to the gpu is gonna be duplicated (because its a binding from cl to C and uses whats called foreign memory), i never considered how bad that is, atleast in this case, as mostly when doing gpu calculations we're ofcourse passing lots of data and then copying it back, and the maximum amount of memory that i can use is already cut in half, if i have 16gb of memory i already know i cant use more than 8gb of that, thats pretty horrible (assuming i have a gpu with ~16gb memory), i can have my way around this, e.g. free memory from sbcl as it gets copied to C, but that'd be much more complexity than i wanna have to deal with
+</p>
+
+</div>
+</div>
+<div id="outline-container-org0238119" class="outline-3">
+<h3 id="org0238119">cuda vector addition</h3>
+<div class="outline-text-3" id="text-org0238119">
+<p>
+we start with the vectorAdd example, a simple example in C, stolen from <a href="https://github.com/NVIDIA/cuda-samples/blob/master/Samples/0_Introduction/vectorAdd/vectorAdd.cu">https://github.com/NVIDIA/cuda-samples/blob/master/Samples/0_Introduction/vectorAdd/vectorAdd.cu</a> and modified to reduce boilerplate code.
+</p>
+
+<p>
+the syntax for calling a kernel in c++ is <code>vector&lt;&lt;&lt; blocks per grid, threads per block &gt;&gt;&gt;(arg1,arg2,...)</code>.
+</p>
+
+<p>
+consider the following program which does vector addition.
+</p>
+
+<p>
+place this code in a file with a <code>.cu</code> extension (only .cu works):
+</p>
+<div class="org-src-container" data-language="C">
+<pre class="src src-C"><span style="color: #65c5a8;">#include</span> <span style="color: #deb07a;">&lt;</span><span style="color: #f3a0a0;">stdio.h</span><span style="color: #deb07a;">&gt;</span>
+
+__global__ <span style="color: #a9c99f;">void</span> <span style="color: #8fcfd0;">vector_add</span><span style="color: #deb07a;">(</span><span style="color: #a9c99f;">float</span> *<span style="color: #ffaacf;">c</span>, <span style="color: #a9c99f;">float</span> *<span style="color: #ffaacf;">a</span>, <span style="color: #a9c99f;">float</span> *<span style="color: #ffaacf;">b</span>, <span style="color: #a9c99f;">int</span> <span style="color: #ffaacf;">n</span><span style="color: #deb07a;">)</span> <span style="color: #deb07a;">{</span>
+  <span style="color: #deb07a; font-weight: bold;">for</span> <span style="color: #ffaacf;">(</span><span style="color: #a9c99f;">int</span> <span style="color: #ffaacf;">i</span> = 0; i &lt; n; i++<span style="color: #ffaacf;">)</span> <span style="color: #ffaacf;">{</span>
+    c<span style="color: #80aadf;">[</span>i<span style="color: #80aadf;">]</span> = a<span style="color: #80aadf;">[</span>i<span style="color: #80aadf;">]</span> + b<span style="color: #80aadf;">[</span>i<span style="color: #80aadf;">]</span>;
+  <span style="color: #ffaacf;">}</span>
+<span style="color: #deb07a;">}</span>
+
+<span style="color: #a9c99f;">int</span> <span style="color: #8fcfd0;">main</span><span style="color: #deb07a;">()</span> <span style="color: #deb07a;">{</span>
+  <span style="color: #deb07a; font-weight: bold;">const</span> <span style="color: #a9c99f;">int</span> <span style="color: #ffaacf;">N</span> = 1000; <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">length of vectors</span>
+  <span style="color: #a9c99f;">size_t</span> <span style="color: #ffaacf;">size</span> = N * <span style="color: #deb07a; font-weight: bold;">sizeof</span><span style="color: #ffaacf;">(</span><span style="color: #a9c99f;">float</span><span style="color: #ffaacf;">)</span>; <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">size of a vector in memory</span>
+
+  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">allocate vectors in host memory</span>
+  <span style="color: #a9c99f;">float</span>* <span style="color: #ffaacf;">host_a</span> = <span style="color: #ffaacf;">(</span><span style="color: #a9c99f;">float</span>*<span style="color: #ffaacf;">)</span>malloc<span style="color: #ffaacf;">(</span>size<span style="color: #ffaacf;">)</span>;
+  <span style="color: #a9c99f;">float</span>* <span style="color: #ffaacf;">host_b</span> = <span style="color: #ffaacf;">(</span><span style="color: #a9c99f;">float</span>*<span style="color: #ffaacf;">)</span>malloc<span style="color: #ffaacf;">(</span>size<span style="color: #ffaacf;">)</span>;
+  <span style="color: #a9c99f;">float</span>* <span style="color: #ffaacf;">host_c</span> = <span style="color: #ffaacf;">(</span><span style="color: #a9c99f;">float</span>*<span style="color: #ffaacf;">)</span>malloc<span style="color: #ffaacf;">(</span>size<span style="color: #ffaacf;">)</span>; <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">output vector a+b=c</span>
+
+  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">initialize host input vectors</span>
+  <span style="color: #deb07a; font-weight: bold;">for</span> <span style="color: #ffaacf;">(</span><span style="color: #a9c99f;">int</span> <span style="color: #ffaacf;">i</span> = 0; i &lt; N; i++<span style="color: #ffaacf;">)</span> <span style="color: #ffaacf;">{</span>
+    host_a<span style="color: #80aadf;">[</span>i<span style="color: #80aadf;">]</span> = 1.0f;
+    host_b<span style="color: #80aadf;">[</span>i<span style="color: #80aadf;">]</span> = 2.0f;
+  <span style="color: #ffaacf;">}</span>
+
+  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">allocate (global) linear memory for vectors on the device (gpu)</span>
+  <span style="color: #a9c99f;">float</span>* <span style="color: #ffaacf;">device_a</span>;
+  <span style="color: #a9c99f;">float</span>* <span style="color: #ffaacf;">device_b</span>;
+  <span style="color: #a9c99f;">float</span>* <span style="color: #ffaacf;">device_c</span>;
+  cudaMalloc<span style="color: #ffaacf;">(</span>&amp;device_a, size<span style="color: #ffaacf;">)</span>;
+  cudaMalloc<span style="color: #ffaacf;">(</span>&amp;device_b, size<span style="color: #ffaacf;">)</span>;
+  cudaMalloc<span style="color: #ffaacf;">(</span>&amp;device_c, size<span style="color: #ffaacf;">)</span>;
+
+  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">copy vectors from host memory to device memory</span>
+  cudaMemcpy<span style="color: #ffaacf;">(</span>device_a, host_a, size, cudaMemcpyHostToDevice<span style="color: #ffaacf;">)</span>;
+  cudaMemcpy<span style="color: #ffaacf;">(</span>device_b, host_b, size, cudaMemcpyHostToDevice<span style="color: #ffaacf;">)</span>;
+
+  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">invoke kernel</span>
+  <span style="color: #a9c99f;">int</span> <span style="color: #ffaacf;">threads_per_block</span> = 256;
+  <span style="color: #a9c99f;">int</span> <span style="color: #ffaacf;">blocks_per_grid</span> =
+    <span style="color: #ffaacf;">(</span>N + threads_per_block - 1<span style="color: #ffaacf;">)</span> / threads_per_block;
+  vector_add&lt;&lt;&lt;blocks_per_grid, threads_per_block&gt;&gt;&gt;<span style="color: #ffaacf;">(</span>device_c, device_b, device_a, N<span style="color: #ffaacf;">)</span>;
+
+  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">copy result from device memory to host memory</span>
+  cudaMemcpy<span style="color: #ffaacf;">(</span>host_c, device_c, size, cudaMemcpyDeviceToHost<span style="color: #ffaacf;">)</span>;
+
+  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">free device memory</span>
+  cudaFree<span style="color: #ffaacf;">(</span>device_a<span style="color: #ffaacf;">)</span>;
+  cudaFree<span style="color: #ffaacf;">(</span>device_b<span style="color: #ffaacf;">)</span>;
+  cudaFree<span style="color: #ffaacf;">(</span>device_c<span style="color: #ffaacf;">)</span>;
+
+  <span style="color: #deb07a; font-weight: bold;">for</span> <span style="color: #ffaacf;">(</span><span style="color: #a9c99f;">int</span> <span style="color: #ffaacf;">i</span> = 0; i &lt; N; ++i<span style="color: #ffaacf;">)</span> <span style="color: #ffaacf;">{</span>
+    printf<span style="color: #80aadf;">(</span><span style="color: #f3a0a0;">"%d: %f\n"</span>, i, host_c<span style="color: #e47980;">[</span>i<span style="color: #e47980;">]</span><span style="color: #80aadf;">)</span>;
+  <span style="color: #ffaacf;">}</span>
+
+  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">free host memory</span>
+  free<span style="color: #ffaacf;">(</span>host_a<span style="color: #ffaacf;">)</span>;
+  free<span style="color: #ffaacf;">(</span>host_b<span style="color: #ffaacf;">)</span>;
+  free<span style="color: #ffaacf;">(</span>host_c<span style="color: #ffaacf;">)</span>;
+<span style="color: #deb07a;">}</span>
+</pre>
+</div>
+
+<p>
+compile with <code>nvcc &lt;name&gt;.cu -o vector_add</code> and run with <code>./vector_add</code>.
+</p>
+
+<p>
+similar same code but in cl:
+</p>
+<div class="org-src-container" data-language="lisp">
+<pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">random-init</span> <span style="color: #ffaacf;">(</span>data n<span style="color: #ffaacf;">)</span>
+  <span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">dotimes</span> <span style="color: #80aadf;">(</span>i n<span style="color: #80aadf;">)</span>
+    <span style="color: #80aadf;">(</span>setf <span style="color: #e47980;">(</span>cl-cuda:memory-block-aref data i<span style="color: #e47980;">)</span> <span style="color: #e47980;">(</span>random 1.0<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+
+<span style="color: #deb07a;">(</span>cl-cuda:defkernel vec-add-kernel <span style="color: #ffaacf;">(</span>cl-cuda:void <span style="color: #80aadf;">(</span><span style="color: #e47980;">(</span>a cl-cuda:float*<span style="color: #e47980;">)</span> <span style="color: #e47980;">(</span>b cl-cuda:float*<span style="color: #e47980;">)</span> <span style="color: #e47980;">(</span>c cl-cuda:float*<span style="color: #e47980;">)</span> <span style="color: #e47980;">(</span>n cl-cuda:int<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span>
+  <span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">let</span> <span style="color: #80aadf;">(</span><span style="color: #e47980;">(</span>i <span style="color: #d0b0ff;">(</span>+ <span style="color: #3fc489;">(</span>* cl-cuda:block-dim-x cl-cuda:block-idx-x<span style="color: #3fc489;">)</span> cl-cuda:thread-idx-x<span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
+    <span style="color: #80aadf;">(</span><span style="color: #deb07a; font-weight: bold;">if</span> <span style="color: #e47980;">(</span>&lt; i n<span style="color: #e47980;">)</span>
+        <span style="color: #e47980;">(</span>set <span style="color: #d0b0ff;">(</span>aref c i<span style="color: #d0b0ff;">)</span>
+             <span style="color: #d0b0ff;">(</span>+ <span style="color: #3fc489;">(</span>aref a i<span style="color: #3fc489;">)</span> <span style="color: #3fc489;">(</span>aref b i<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+
+<span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">main</span> <span style="color: #ffaacf;">()</span>
+  <span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">let*</span> <span style="color: #80aadf;">(</span><span style="color: #e47980;">(</span>dev-id 0<span style="color: #e47980;">)</span>
+         <span style="color: #e47980;">(</span>n 1024<span style="color: #e47980;">)</span>
+         <span style="color: #e47980;">(</span>threads-per-block 256<span style="color: #e47980;">)</span>
+         <span style="color: #e47980;">(</span>blocks-per-grid <span style="color: #d0b0ff;">(</span>/ n threads-per-block<span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
+    <span style="color: #80aadf;">(</span>cl-cuda:with-cuda <span style="color: #e47980;">(</span>dev-id<span style="color: #e47980;">)</span>
+      <span style="color: #e47980;">(</span>cl-cuda:with-memory-blocks <span style="color: #d0b0ff;">(</span><span style="color: #3fc489;">(</span>a 'float n<span style="color: #3fc489;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">allocate (global) linear memory on both host+device</span>
+                                   <span style="color: #3fc489;">(</span>b 'float n<span style="color: #3fc489;">)</span>
+                                   <span style="color: #3fc489;">(</span>c 'float n<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span>
+        <span style="color: #d0b0ff;">(</span>random-init a n<span style="color: #d0b0ff;">)</span>
+        <span style="color: #d0b0ff;">(</span>random-init b n<span style="color: #d0b0ff;">)</span>
+        <span style="color: #d0b0ff;">(</span>cl-cuda:sync-memory-block a <span style="color: #e3b0c0; font-weight: bold;">:host-to-device</span><span style="color: #d0b0ff;">)</span>
+        <span style="color: #d0b0ff;">(</span>cl-cuda:sync-memory-block b <span style="color: #e3b0c0; font-weight: bold;">:host-to-device</span><span style="color: #d0b0ff;">)</span>
+        <span style="color: #d0b0ff;">(</span>vec-add-kernel a b c n
+                        <span style="color: #e3b0c0; font-weight: bold;">:grid-dim</span> <span style="color: #3fc489;">(</span>list blocks-per-grid 1 1<span style="color: #3fc489;">)</span>
+                        <span style="color: #e3b0c0; font-weight: bold;">:block-dim</span> <span style="color: #3fc489;">(</span>list threads-per-block 1 1<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span>
+        <span style="color: #d0b0ff;">(</span>cl-cuda:sync-memory-block c <span style="color: #e3b0c0; font-weight: bold;">:device-to-host</span><span style="color: #d0b0ff;">)</span>
+        <span style="color: #d0b0ff;">(</span><span style="color: #deb07a; font-weight: bold;">loop</span> for i from 0 below 1024
+              do <span style="color: #3fc489;">(</span>print <span style="color: #6fb3c0;">(</span>cl-cuda:memory-block-aref c i<span style="color: #6fb3c0;">)</span><span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgcdf8b3a" class="outline-3">
+<h3 id="orgcdf8b3a">cuda matrix multiplication</h3>
+<div class="outline-text-3" id="text-orgcdf8b3a">
+<p>
+mostly taken from <a href="https://docs.nvidia.com/deeplearning/performance/dl-performance-matrix-multiplication/index.html">https://docs.nvidia.com/deeplearning/performance/dl-performance-matrix-multiplication/index.html</a> and <a href="https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#programming-model">https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#programming-model</a>.
+</p>
+
+<p>
+before implementing matrix multiplication for the <b>gpu</b> we need to consider some things.
+</p>
+
+<p>
+the product of two matrices <?xml version='1.0' encoding='UTF-8'?>
+
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.807795 62.177088 9.132406' style="max-height: 0.9967em; vertical-align: -0.2779em; display: inline-block" class="org-latex org-latex-inline">
+<defs>
+<path id='g0-2' d='m4.979328-.055791c0-.062765-.020922-.083686-.09066-.153425l-1.534247-1.534247l1.534247-1.54122c.069738-.069738 .09066-.09066 .09066-.153425c0-.118555-.097634-.174346-.167372-.174346s-.09066 .020922-.160399 .09066l-1.54122 1.534247l-1.534247-1.534247c-.076712-.076712-.118555-.09066-.160399-.09066c-.097634 0-.174346 .076712-.174346 .174346c0 .062765 .027895 .09066 .09066 .153425l1.534247 1.534247l-1.534247 1.54122c-.062765 .062765-.09066 .09066-.09066 .153425c0 .104608 .076712 .174346 .174346 .174346c.062765 0 .09066-.027895 .153425-.09066l1.54122-1.534247l1.54122 1.534247c.069738 .069738 .09066 .09066 .160399 .09066s.167372-.055791 .167372-.174346z'/>
+<path id='g2-75' d='m5.802242-.146451c0-.104608-.09066-.104608-.160399-.104608c-.125529 0-.341719-.006974-.460274-.230137l-1.192528-2.322291l-.041843-.083686c0 0 .006974-.020922 .167372-.132503l.704359-.495143c.920548-.648568 1.352927-.955417 1.84807-.99726c.076712-.006974 .160399-.013948 .160399-.153425c0-.055791-.048817-.09066-.09066-.09066c-.146451 0-.327771 .020922-.481196 .020922c-.188294 0-.655542-.027895-.843836-.027895c-.041843 0-.146451 0-.146451 .153425c0 0 0 .09066 .104608 .097634c.083686 .006974 .174346 .020922 .174346 .097634c0 .125529-.216189 .278954-.306849 .341719l-2.908095 2.050311l.550934-2.196762c.062765-.237111 .069738-.292902 .613699-.292902c.111582 0 .209215 0 .209215-.146451c0-.062765-.041843-.104608-.111582-.104608c-.202242 0-.711333 .027895-.913574 .027895c-.118555 0-.36264 0-.481196-.006974c-.139477-.006974-.306849-.020922-.439352-.020922c-.041843 0-.146451 0-.146451 .153425c0 .097634 .076712 .097634 .230137 .097634c.111582 0 .139477 0 .265006 .013948c.139477 .013948 .153425 .027895 .153425 .097634c0 0 0 .048817-.027895 .153425l-.927522 3.703113c-.055791 .237111-.069738 .292902-.613699 .292902c-.125529 0-.209215 0-.209215 .153425c0 0 0 .097634 .111582 .097634c.202242 0 .704359-.027895 .9066-.027895c.118555 0 .36264 0 .481196 .006974c.139477 .006974 .313823 .020922 .446326 .020922c.041843 0 .146451 0 .146451-.153425c0-.097634-.083686-.097634-.223163-.097634c0 0-.139477 0-.265006-.013948c-.160399-.013948-.160399-.034869-.160399-.104608c0-.055791 .069738-.313823 .327771-1.338979l1.157659-.81594l1.011208 1.959651c.048817 .09066 .048817 .097634 .048817 .132503c0 .160399-.195268 .18132-.320797 .18132c-.083686 0-.18132 0-.18132 .153425c0 0 .006974 .097634 .118555 .097634c.195268 0 .697385-.027895 .892653-.027895c.209215 0 .488169 .027895 .683437 .027895c.09066 0 .139477-.048817 .139477-.146451z'/>
+<path id='g2-77' d='m7.950187-4.658531c0-.104608-.083686-.104608-.209215-.104608h-.948443c-.202242 0-.209215 .006974-.299875 .139477l-2.691905 3.975093l-.690411-3.926276c-.034869-.18132-.034869-.188294-.244085-.188294h-.99726c-.139477 0-.230137 0-.230137 .153425c0 .097634 .083686 .097634 .237111 .097634c.111582 0 .139477 0 .265006 .013948c.139477 .013948 .153425 .027895 .153425 .097634c0 0 0 .048817-.027895 .153425l-.878705 3.500872c-.062765 .237111-.167372 .474222-.72528 .495143c-.055791 0-.146451 .006974-.146451 .153425c0 0 .006974 .097634 .104608 .097634c.209215 0 .502117-.027895 .72528-.027895c.167372 0 .571856 .027895 .739228 .027895c.034869 0 .139477 0 .139477-.153425c0-.09066-.09066-.097634-.153425-.097634c-.446326-.013948-.446326-.195268-.446326-.292902c0-.027895 0-.062765 .027895-.174346l.927522-3.710087h.006974l.746202 4.2401c.020922 .125529 .034869 .188294 .139477 .188294c.097634 0 .153425-.076712 .202242-.153425l2.929016-4.344707l.006974 .006974l-.983313 3.947198c-.055791 .237111-.069738 .292902-.613699 .292902c-.125529 0-.209215 0-.209215 .153425c0 0 0 .097634 .111582 .097634c.132503 0 .292902-.020922 .432379-.020922l.439352-.006974c.195268 0 .690411 .027895 .885679 .027895c.041843 0 .146451 0 .146451-.153425c0-.097634-.083686-.097634-.223163-.097634c0 0-.139477 0-.265006-.013948c-.160399-.013948-.160399-.034869-.160399-.104608c0-.041843 .020922-.111582 .027895-.153425l.920548-3.675218c.062765-.258032 .076712-.313823 .592777-.313823c.146451 0 .237111 0 .237111-.146451z'/>
+<path id='g2-78' d='m6.694894-4.665504c0-.041843-.034869-.097634-.104608-.097634c-.230137 0-.488169 .027895-.72528 .027895c-.167372 0-.571856-.027895-.739228-.027895c-.034869 0-.139477 0-.139477 .153425c0 .09066 .09066 .097634 .153425 .097634c.327771 .006974 .446326 .111582 .446326 .285928c0 .055791-.006974 .09066-.027895 .167372l-.760149 3.040598l-1.771357-3.626401c-.055791-.118555-.069738-.118555-.237111-.118555h-.955417c-.132503 0-.223163 0-.223163 .153425c0 .097634 .083686 .097634 .230137 .097634s.299875 .006974 .446326 .034869l-.934496 3.731009c-.062765 .265006-.18132 .474222-.72528 .495143c-.048817 0-.146451 .006974-.146451 .146451c0 .076712 .055791 .104608 .104608 .104608c.230137 0 .488169-.027895 .72528-.027895c.167372 0 .571856 .027895 .739228 .027895c.069738 0 .139477-.034869 .139477-.146451c0-.097634-.083686-.104608-.160399-.104608c-.439352-.013948-.439352-.195268-.439352-.292902c0-.027895 0-.062765 .027895-.174346l.892653-3.57061l2.036364 4.170361c.055791 .111582 .083686 .118555 .153425 .118555c.111582 0 .111582-.020922 .146451-.146451l.969365-3.856538c.069738-.265006 .18132-.495143 .739228-.509091c.034869 0 .139477-.006974 .139477-.153425z'/>
+<path id='g3-59' d='m2.022416-.009963c0-.657534-.249066-1.046077-.637609-1.046077c-.328767 0-.52802 .249066-.52802 .52802c0 .268991 .199253 .52802 .52802 .52802c.119552 0 .249066-.039851 .348692-.129514c.029888-.019925 .049813-.029888 .049813-.029888s.019925 .009963 .019925 .14944c0 .737235-.348692 1.334994-.67746 1.663761c-.109589 .109589-.109589 .129514-.109589 .159402c0 .069738 .049813 .109589 .099626 .109589c.109589 0 .9066-.767123 .9066-1.932752z'/>
+<path id='g3-65' d='m7.183064-.199253c0-.109589-.099626-.109589-.229141-.109589c-.617684 0-.617684-.069738-.647572-.358655l-.607721-6.22665c-.019925-.199253-.019925-.239103-.18929-.239103c-.159402 0-.199253 .069738-.259029 .169365l-3.466999 5.818182c-.398506 .667497-.787049 .806974-1.225405 .836862c-.119552 .009963-.209215 .009963-.209215 .199253c0 .059776 .049813 .109589 .129514 .109589c.268991 0 .577833-.029888 .856787-.029888c.328767 0 .67746 .029888 .996264 .029888c.059776 0 .18929 0 .18929-.18929c0-.109589-.089664-.119552-.159402-.119552c-.229141-.019925-.468244-.099626-.468244-.348692c0-.119552 .059776-.229141 .139477-.368618c.069738-.119552 .079701-.119552 .757161-1.275218h2.500623c.019925 .209215 .159402 1.564134 .159402 1.663761c0 .298879-.518057 .328767-.71731 .328767c-.139477 0-.239103 0-.239103 .199253c0 .109589 .139477 .109589 .139477 .109589c.408468 0 .836862-.029888 1.24533-.029888c.249066 0 .876712 .029888 1.125778 .029888c.059776 0 .179328 0 .179328-.199253zm-1.92279-2.410959h-2.281445l1.96264-3.287671l.318804 3.287671z'/>
+<path id='g3-66' d='m6.993773-2.15193c0-.71731-.577833-1.295143-1.544209-1.404732c1.036115-.18929 2.082192-.926526 2.082192-1.872976c0-.737235-.657534-1.374844-1.853051-1.374844h-3.347447c-.18929 0-.288917 0-.288917 .199253c0 .109589 .089664 .109589 .278954 .109589c0 0 .209215 0 .37858 .019925c.179328 .019925 .268991 .029888 .268991 .159402c0 .039851-.009963 .069738-.039851 .18929l-1.334994 5.349938c-.099626 .388543-.119552 .468244-.9066 .468244c-.169365 0-.268991 0-.268991 .199253c0 .109589 .089664 .109589 .268991 .109589h3.556663c1.574097 0 2.749689-1.175592 2.749689-2.15193zm-.368618-3.317559c0 .876712-.856787 1.823163-2.072229 1.823163h-1.454545l.617684-2.470735c.089664-.348692 .109589-.37858 .537983-.37858h1.285181c.876712 0 1.085928 .587796 1.085928 1.026152zm-.557908 3.20797c0 .986301-.886675 1.952677-2.062267 1.952677h-1.354919c-.139477 0-.159402 0-.219178-.009963c-.099626-.009963-.129514-.019925-.129514-.099626c0-.029888 0-.049813 .049813-.229141l.687422-2.779577h1.882939c.956413 0 1.145704 .737235 1.145704 1.165629z'/>
+</defs>
+<g id='page1'>
+<g fill='currentColor'>
+<use x='0' y='0' xlink:href='#g3-65'/>
+<use x='7.471999' y='1.494381' xlink:href='#g2-77'/>
+<use x='15.817112' y='1.494381' xlink:href='#g0-2'/>
+<use x='22.043791' y='1.494381' xlink:href='#g2-75'/>
+<use x='29.724733' y='0' xlink:href='#g3-59'/>
+<use x='34.152541' y='0' xlink:href='#g3-66'/>
+<use x='41.709299' y='1.494381' xlink:href='#g2-75'/>
+<use x='48.892128' y='1.494381' xlink:href='#g0-2'/>
+<use x='55.118808' y='1.494381' xlink:href='#g2-78'/>
+</g>
+</g>
+</svg> results in a matrix <?xml version='1.0' encoding='UTF-8'?>
+
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.807795 28.750587 9.132406' style="max-height: 0.9967em; vertical-align: -0.2779em; display: inline-block" class="org-latex org-latex-inline">
+<defs>
+<path id='g0-2' d='m4.979328-.055791c0-.062765-.020922-.083686-.09066-.153425l-1.534247-1.534247l1.534247-1.54122c.069738-.069738 .09066-.09066 .09066-.153425c0-.118555-.097634-.174346-.167372-.174346s-.09066 .020922-.160399 .09066l-1.54122 1.534247l-1.534247-1.534247c-.076712-.076712-.118555-.09066-.160399-.09066c-.097634 0-.174346 .076712-.174346 .174346c0 .062765 .027895 .09066 .09066 .153425l1.534247 1.534247l-1.534247 1.54122c-.062765 .062765-.09066 .09066-.09066 .153425c0 .104608 .076712 .174346 .174346 .174346c.062765 0 .09066-.027895 .153425-.09066l1.54122-1.534247l1.54122 1.534247c.069738 .069738 .09066 .09066 .160399 .09066s.167372-.055791 .167372-.174346z'/>
+<path id='g2-77' d='m7.950187-4.658531c0-.104608-.083686-.104608-.209215-.104608h-.948443c-.202242 0-.209215 .006974-.299875 .139477l-2.691905 3.975093l-.690411-3.926276c-.034869-.18132-.034869-.188294-.244085-.188294h-.99726c-.139477 0-.230137 0-.230137 .153425c0 .097634 .083686 .097634 .237111 .097634c.111582 0 .139477 0 .265006 .013948c.139477 .013948 .153425 .027895 .153425 .097634c0 0 0 .048817-.027895 .153425l-.878705 3.500872c-.062765 .237111-.167372 .474222-.72528 .495143c-.055791 0-.146451 .006974-.146451 .153425c0 0 .006974 .097634 .104608 .097634c.209215 0 .502117-.027895 .72528-.027895c.167372 0 .571856 .027895 .739228 .027895c.034869 0 .139477 0 .139477-.153425c0-.09066-.09066-.097634-.153425-.097634c-.446326-.013948-.446326-.195268-.446326-.292902c0-.027895 0-.062765 .027895-.174346l.927522-3.710087h.006974l.746202 4.2401c.020922 .125529 .034869 .188294 .139477 .188294c.097634 0 .153425-.076712 .202242-.153425l2.929016-4.344707l.006974 .006974l-.983313 3.947198c-.055791 .237111-.069738 .292902-.613699 .292902c-.125529 0-.209215 0-.209215 .153425c0 0 0 .097634 .111582 .097634c.132503 0 .292902-.020922 .432379-.020922l.439352-.006974c.195268 0 .690411 .027895 .885679 .027895c.041843 0 .146451 0 .146451-.153425c0-.097634-.083686-.097634-.223163-.097634c0 0-.139477 0-.265006-.013948c-.160399-.013948-.160399-.034869-.160399-.104608c0-.041843 .020922-.111582 .027895-.153425l.920548-3.675218c.062765-.258032 .076712-.313823 .592777-.313823c.146451 0 .237111 0 .237111-.146451z'/>
+<path id='g2-78' d='m6.694894-4.665504c0-.041843-.034869-.097634-.104608-.097634c-.230137 0-.488169 .027895-.72528 .027895c-.167372 0-.571856-.027895-.739228-.027895c-.034869 0-.139477 0-.139477 .153425c0 .09066 .09066 .097634 .153425 .097634c.327771 .006974 .446326 .111582 .446326 .285928c0 .055791-.006974 .09066-.027895 .167372l-.760149 3.040598l-1.771357-3.626401c-.055791-.118555-.069738-.118555-.237111-.118555h-.955417c-.132503 0-.223163 0-.223163 .153425c0 .097634 .083686 .097634 .230137 .097634s.299875 .006974 .446326 .034869l-.934496 3.731009c-.062765 .265006-.18132 .474222-.72528 .495143c-.048817 0-.146451 .006974-.146451 .146451c0 .076712 .055791 .104608 .104608 .104608c.230137 0 .488169-.027895 .72528-.027895c.167372 0 .571856 .027895 .739228 .027895c.069738 0 .139477-.034869 .139477-.146451c0-.097634-.083686-.104608-.160399-.104608c-.439352-.013948-.439352-.195268-.439352-.292902c0-.027895 0-.062765 .027895-.174346l.892653-3.57061l2.036364 4.170361c.055791 .111582 .083686 .118555 .153425 .118555c.111582 0 .111582-.020922 .146451-.146451l.969365-3.856538c.069738-.265006 .18132-.495143 .739228-.509091c.034869 0 .139477-.006974 .139477-.153425z'/>
+<path id='g3-67' d='m6.445828-2.391034c0-.099626-.119552-.099626-.119552-.099626c-.059776 0-.109589 .019925-.129514 .099626c-.089664 .288917-.318804 .996264-1.006227 1.574097c-.687422 .557908-1.315068 .727273-1.833126 .727273c-.896638 0-1.952677-.518057-1.952677-2.072229c0-.56787 .209215-2.181818 1.205479-3.347447c.607721-.707347 1.544209-1.205479 2.430884-1.205479c1.016189 0 1.603985 .767123 1.603985 1.92279c0 .398506-.029888 .408468-.029888 .508095s.109589 .099626 .14944 .099626c.129514 0 .129514-.019925 .179328-.199253l.627646-2.540473c0-.029888-.019925-.099626-.109589-.099626c-.029888 0-.039851 .009963-.14944 .119552l-.697385 .767123c-.089664-.139477-.547945-.886675-1.653798-.886675c-2.221669 0-4.463263 2.201743-4.463263 4.513076c0 1.643836 1.175592 2.729763 2.699875 2.729763c.86675 0 1.62391-.398506 2.15193-.856787c.926526-.816936 1.09589-1.723537 1.09589-1.753425z'/>
+</defs>
+<g id='page2'>
+<g fill='currentColor'>
+<use x='0' y='0' xlink:href='#g3-67'/>
+<use x='7.120515' y='1.494381' xlink:href='#g2-77'/>
+<use x='15.465627' y='1.494381' xlink:href='#g0-2'/>
+<use x='21.692307' y='1.494381' xlink:href='#g2-78'/>
+</g>
+</g>
+</svg> which contains <?xml version='1.0' encoding='UTF-8'?>
+
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.807795 27.037387 6.807795' style="max-height: 0.7680em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
+<defs>
+<path id='g1-1' d='m1.912827-2.49066c0-.288917-.239103-.52802-.52802-.52802s-.52802 .239103-.52802 .52802s.239103 .52802 .52802 .52802s.52802-.239103 .52802-.52802z'/>
+<path id='g3-77' d='m8.777086-.199253c0-.109589-.089664-.109589-.278954-.109589c-.368618 0-.647572 0-.647572-.179328c0-.039851 0-.059776 .049813-.239103l1.325031-5.310087c.089664-.358655 .109589-.458281 .856787-.458281c.229141 0 .318804 0 .318804-.199253c0-.109589-.099626-.109589-.268991-.109589h-1.315068c-.259029 0-.268991 0-.388543 .18929l-3.636364 5.678705l-.777086-5.638854c-.029888-.229141-.049813-.229141-.308842-.229141h-1.364882c-.18929 0-.298879 0-.298879 .18929c0 .119552 .089664 .119552 .288917 .119552c.129514 0 .308842 .009963 .428394 .019925c.159402 .019925 .219178 .049813 .219178 .159402c0 .039851-.009963 .069738-.039851 .18929l-1.265255 5.070984c-.099626 .398506-.268991 .71731-1.075965 .747198c-.049813 0-.179328 .009963-.179328 .18929c0 .089664 .059776 .119552 .139477 .119552c.318804 0 .667497-.029888 .996264-.029888c.33873 0 .697385 .029888 1.026152 .029888c.049813 0 .179328 0 .179328-.199253c0-.109589-.109589-.109589-.179328-.109589c-.56787-.009963-.67746-.209215-.67746-.438356c0-.069738 .009963-.119552 .039851-.229141l1.354919-5.429639h.009963l.856787 6.176837c.019925 .119552 .029888 .229141 .14944 .229141c.109589 0 .169365-.109589 .219178-.179328l4.024907-6.306351h.009963l-1.424658 5.708593c-.099626 .388543-.119552 .468244-.9066 .468244c-.169365 0-.278954 0-.278954 .18929c0 .119552 .119552 .119552 .14944 .119552l1.235367-.029888c.408468 0 .836862 .029888 1.24533 .029888c.059776 0 .18929 0 .18929-.199253z'/>
+<path id='g3-78' d='m8.777086-6.694894c0 0 0-.109589-.129514-.109589c-.328767 0-.67746 .029888-1.006227 .029888c-.33873 0-.687422-.029888-1.016189-.029888c-.059776 0-.179328 0-.179328 .199253c0 .109589 .099626 .109589 .179328 .109589c.56787 .009963 .67746 .219178 .67746 .438356c0 .029888-.019925 .179328-.029888 .209215l-1.115816 4.433375l-2.201743-5.200498c-.079701-.179328-.089664-.18929-.318804-.18929h-1.334994c-.199253 0-.288917 0-.288917 .199253c0 .109589 .089664 .109589 .278954 .109589c.049813 0 .67746 0 .67746 .089664l-1.334994 5.349938c-.099626 .398506-.268991 .71731-1.075965 .747198c-.059776 0-.169365 .009963-.169365 .199253c0 .069738 .049813 .109589 .129514 .109589c.318804 0 .667497-.029888 .996264-.029888c.33873 0 .697385 .029888 1.026152 .029888c.049813 0 .179328 0 .179328-.199253c0-.099626-.089664-.109589-.199253-.109589c-.577833-.019925-.657534-.239103-.657534-.438356c0-.069738 .009963-.119552 .039851-.229141l1.315068-5.260274c.039851 .059776 .039851 .079701 .089664 .179328l2.480697 5.867995c.069738 .169365 .099626 .18929 .18929 .18929c.109589 0 .109589-.029888 .159402-.209215l1.39477-5.549191c.099626-.398506 .278954-.707347 1.075965-.737235c.049813 0 .169365-.009963 .169365-.199253z'/>
+</defs>
+<g id='page3'>
+<g fill='currentColor'>
+<use x='0' y='0' xlink:href='#g3-77'/>
+<use x='12.965209' y='0' xlink:href='#g1-1'/>
+<use x='17.946483' y='0' xlink:href='#g3-78'/>
+</g>
+</g>
+</svg> values, each of which is a <a href="/dot_product.html">dot product</a> of K-element <a href="/vector.html">vector</a>s. thus a total of <?xml version='1.0' encoding='UTF-8'?>
+
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.807795 43.406457 6.807795' style="max-height: 0.7680em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
+<defs>
+<path id='g1-1' d='m1.912827-2.49066c0-.288917-.239103-.52802-.52802-.52802s-.52802 .239103-.52802 .52802s.239103 .52802 .52802 .52802s.52802-.239103 .52802-.52802z'/>
+<path id='g3-75' d='m7.372354-.199253c0-.109589-.109589-.109589-.199253-.109589c-.408468-.009963-.537983-.099626-.687422-.448319l-1.414695-3.267746c-.009963-.029888-.049813-.109589-.049813-.139477c0 0 .179328-.14944 .288917-.229141l1.743462-1.344956c.936488-.687422 1.325031-.727273 1.62391-.757161c.079701-.009963 .179328-.019925 .179328-.199253c0-.039851-.029888-.109589-.109589-.109589c-.219178 0-.468244 .029888-.707347 .029888c-.358655 0-.747198-.029888-1.105853-.029888c-.069738 0-.18929 0-.18929 .199253c0 .069738 .049813 .099626 .119552 .109589c.219178 .019925 .308842 .069738 .308842 .209215c0 .179328-.298879 .408468-.358655 .458281l-3.88543 2.988792l.797011-3.198007c.089664-.358655 .109589-.458281 .836862-.458281c.249066 0 .33873 0 .33873-.199253c0-.089664-.079701-.109589-.139477-.109589l-1.275218 .029888l-1.285181-.029888c-.069738 0-.199253 0-.199253 .18929c0 .119552 .089664 .119552 .288917 .119552c.129514 0 .308842 .009963 .428394 .019925c.159402 .019925 .219178 .049813 .219178 .159402c0 .039851-.009963 .069738-.039851 .18929l-1.334994 5.349938c-.099626 .388543-.119552 .468244-.9066 .468244c-.169365 0-.278954 0-.278954 .18929c0 .119552 .119552 .119552 .14944 .119552l1.265255-.029888l.637609 .009963c.219178 0 .438356 .019925 .647572 .019925c.069738 0 .199253 0 .199253-.199253c0-.109589-.089664-.109589-.278954-.109589c-.368618 0-.647572 0-.647572-.179328c0-.069738 .059776-.288917 .089664-.438356l.398506-1.564134l1.484433-1.155666l1.155666 2.67995c.119552 .268991 .119552 .288917 .119552 .348692c0 .298879-.428394 .308842-.518057 .308842c-.109589 0-.219178 0-.219178 .199253c0 .109589 .139477 .109589 .139477 .109589c.398506 0 .816936-.029888 1.215442-.029888c.219178 0 .757161 .029888 .976339 .029888c.049813 0 .179328 0 .179328-.199253z'/>
+<path id='g3-77' d='m8.777086-.199253c0-.109589-.089664-.109589-.278954-.109589c-.368618 0-.647572 0-.647572-.179328c0-.039851 0-.059776 .049813-.239103l1.325031-5.310087c.089664-.358655 .109589-.458281 .856787-.458281c.229141 0 .318804 0 .318804-.199253c0-.109589-.099626-.109589-.268991-.109589h-1.315068c-.259029 0-.268991 0-.388543 .18929l-3.636364 5.678705l-.777086-5.638854c-.029888-.229141-.049813-.229141-.308842-.229141h-1.364882c-.18929 0-.298879 0-.298879 .18929c0 .119552 .089664 .119552 .288917 .119552c.129514 0 .308842 .009963 .428394 .019925c.159402 .019925 .219178 .049813 .219178 .159402c0 .039851-.009963 .069738-.039851 .18929l-1.265255 5.070984c-.099626 .398506-.268991 .71731-1.075965 .747198c-.049813 0-.179328 .009963-.179328 .18929c0 .089664 .059776 .119552 .139477 .119552c.318804 0 .667497-.029888 .996264-.029888c.33873 0 .697385 .029888 1.026152 .029888c.049813 0 .179328 0 .179328-.199253c0-.109589-.109589-.109589-.179328-.109589c-.56787-.009963-.67746-.209215-.67746-.438356c0-.069738 .009963-.119552 .039851-.229141l1.354919-5.429639h.009963l.856787 6.176837c.019925 .119552 .029888 .229141 .14944 .229141c.109589 0 .169365-.109589 .219178-.179328l4.024907-6.306351h.009963l-1.424658 5.708593c-.099626 .388543-.119552 .468244-.9066 .468244c-.169365 0-.278954 0-.278954 .18929c0 .119552 .119552 .119552 .14944 .119552l1.235367-.029888c.408468 0 .836862 .029888 1.24533 .029888c.059776 0 .18929 0 .18929-.199253z'/>
+<path id='g3-78' d='m8.777086-6.694894c0 0 0-.109589-.129514-.109589c-.328767 0-.67746 .029888-1.006227 .029888c-.33873 0-.687422-.029888-1.016189-.029888c-.059776 0-.179328 0-.179328 .199253c0 .109589 .099626 .109589 .179328 .109589c.56787 .009963 .67746 .219178 .67746 .438356c0 .029888-.019925 .179328-.029888 .209215l-1.115816 4.433375l-2.201743-5.200498c-.079701-.179328-.089664-.18929-.318804-.18929h-1.334994c-.199253 0-.288917 0-.288917 .199253c0 .109589 .089664 .109589 .278954 .109589c.049813 0 .67746 0 .67746 .089664l-1.334994 5.349938c-.099626 .398506-.268991 .71731-1.075965 .747198c-.059776 0-.169365 .009963-.169365 .199253c0 .069738 .049813 .109589 .129514 .109589c.318804 0 .667497-.029888 .996264-.029888c.33873 0 .697385 .029888 1.026152 .029888c.049813 0 .179328 0 .179328-.199253c0-.099626-.089664-.109589-.199253-.109589c-.577833-.019925-.657534-.239103-.657534-.438356c0-.069738 .009963-.119552 .039851-.229141l1.315068-5.260274c.039851 .059776 .039851 .079701 .089664 .179328l2.480697 5.867995c.069738 .169365 .099626 .18929 .18929 .18929c.109589 0 .109589-.029888 .159402-.209215l1.39477-5.549191c.099626-.398506 .278954-.707347 1.075965-.737235c.049813 0 .169365-.009963 .169365-.199253z'/>
+</defs>
+<g id='page4'>
+<g fill='currentColor'>
+<use x='0' y='0' xlink:href='#g3-77'/>
+<use x='12.965209' y='0' xlink:href='#g1-1'/>
+<use x='17.946483' y='0' xlink:href='#g3-78'/>
+<use x='29.251239' y='0' xlink:href='#g1-1'/>
+<use x='34.232514' y='0' xlink:href='#g3-75'/>
+</g>
+</g>
+</svg> <a href="/fma.html">fused multiply-add</a>s are needed to compute the product. each FMA is 2 operations, a (scalar) multiplication and an addition, so a total of <?xml version='1.0' encoding='UTF-8'?>
+
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.807795 55.582917 6.807795' style="max-height: 0.7680em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
+<defs>
+<path id='g3-75' d='m7.372354-.199253c0-.109589-.109589-.109589-.199253-.109589c-.408468-.009963-.537983-.099626-.687422-.448319l-1.414695-3.267746c-.009963-.029888-.049813-.109589-.049813-.139477c0 0 .179328-.14944 .288917-.229141l1.743462-1.344956c.936488-.687422 1.325031-.727273 1.62391-.757161c.079701-.009963 .179328-.019925 .179328-.199253c0-.039851-.029888-.109589-.109589-.109589c-.219178 0-.468244 .029888-.707347 .029888c-.358655 0-.747198-.029888-1.105853-.029888c-.069738 0-.18929 0-.18929 .199253c0 .069738 .049813 .099626 .119552 .109589c.219178 .019925 .308842 .069738 .308842 .209215c0 .179328-.298879 .408468-.358655 .458281l-3.88543 2.988792l.797011-3.198007c.089664-.358655 .109589-.458281 .836862-.458281c.249066 0 .33873 0 .33873-.199253c0-.089664-.079701-.109589-.139477-.109589l-1.275218 .029888l-1.285181-.029888c-.069738 0-.199253 0-.199253 .18929c0 .119552 .089664 .119552 .288917 .119552c.129514 0 .308842 .009963 .428394 .019925c.159402 .019925 .219178 .049813 .219178 .159402c0 .039851-.009963 .069738-.039851 .18929l-1.334994 5.349938c-.099626 .388543-.119552 .468244-.9066 .468244c-.169365 0-.278954 0-.278954 .18929c0 .119552 .119552 .119552 .14944 .119552l1.265255-.029888l.637609 .009963c.219178 0 .438356 .019925 .647572 .019925c.069738 0 .199253 0 .199253-.199253c0-.109589-.089664-.109589-.278954-.109589c-.368618 0-.647572 0-.647572-.179328c0-.069738 .059776-.288917 .089664-.438356l.398506-1.564134l1.484433-1.155666l1.155666 2.67995c.119552 .268991 .119552 .288917 .119552 .348692c0 .298879-.428394 .308842-.518057 .308842c-.109589 0-.219178 0-.219178 .199253c0 .109589 .139477 .109589 .139477 .109589c.398506 0 .816936-.029888 1.215442-.029888c.219178 0 .757161 .029888 .976339 .029888c.049813 0 .179328 0 .179328-.199253z'/>
+<path id='g3-77' d='m8.777086-.199253c0-.109589-.089664-.109589-.278954-.109589c-.368618 0-.647572 0-.647572-.179328c0-.039851 0-.059776 .049813-.239103l1.325031-5.310087c.089664-.358655 .109589-.458281 .856787-.458281c.229141 0 .318804 0 .318804-.199253c0-.109589-.099626-.109589-.268991-.109589h-1.315068c-.259029 0-.268991 0-.388543 .18929l-3.636364 5.678705l-.777086-5.638854c-.029888-.229141-.049813-.229141-.308842-.229141h-1.364882c-.18929 0-.298879 0-.298879 .18929c0 .119552 .089664 .119552 .288917 .119552c.129514 0 .308842 .009963 .428394 .019925c.159402 .019925 .219178 .049813 .219178 .159402c0 .039851-.009963 .069738-.039851 .18929l-1.265255 5.070984c-.099626 .398506-.268991 .71731-1.075965 .747198c-.049813 0-.179328 .009963-.179328 .18929c0 .089664 .059776 .119552 .139477 .119552c.318804 0 .667497-.029888 .996264-.029888c.33873 0 .697385 .029888 1.026152 .029888c.049813 0 .179328 0 .179328-.199253c0-.109589-.109589-.109589-.179328-.109589c-.56787-.009963-.67746-.209215-.67746-.438356c0-.069738 .009963-.119552 .039851-.229141l1.354919-5.429639h.009963l.856787 6.176837c.019925 .119552 .029888 .229141 .14944 .229141c.109589 0 .169365-.109589 .219178-.179328l4.024907-6.306351h.009963l-1.424658 5.708593c-.099626 .388543-.119552 .468244-.9066 .468244c-.169365 0-.278954 0-.278954 .18929c0 .119552 .119552 .119552 .14944 .119552l1.235367-.029888c.408468 0 .836862 .029888 1.24533 .029888c.059776 0 .18929 0 .18929-.199253z'/>
+<path id='g3-78' d='m8.777086-6.694894c0 0 0-.109589-.129514-.109589c-.328767 0-.67746 .029888-1.006227 .029888c-.33873 0-.687422-.029888-1.016189-.029888c-.059776 0-.179328 0-.179328 .199253c0 .109589 .099626 .109589 .179328 .109589c.56787 .009963 .67746 .219178 .67746 .438356c0 .029888-.019925 .179328-.029888 .209215l-1.115816 4.433375l-2.201743-5.200498c-.079701-.179328-.089664-.18929-.318804-.18929h-1.334994c-.199253 0-.288917 0-.288917 .199253c0 .109589 .089664 .109589 .278954 .109589c.049813 0 .67746 0 .67746 .089664l-1.334994 5.349938c-.099626 .398506-.268991 .71731-1.075965 .747198c-.059776 0-.169365 .009963-.169365 .199253c0 .069738 .049813 .109589 .129514 .109589c.318804 0 .667497-.029888 .996264-.029888c.33873 0 .697385 .029888 1.026152 .029888c.049813 0 .179328 0 .179328-.199253c0-.099626-.089664-.109589-.199253-.109589c-.577833-.019925-.657534-.239103-.657534-.438356c0-.069738 .009963-.119552 .039851-.229141l1.315068-5.260274c.039851 .059776 .039851 .079701 .089664 .179328l2.480697 5.867995c.069738 .169365 .099626 .18929 .18929 .18929c.109589 0 .109589-.029888 .159402-.209215l1.39477-5.549191c.099626-.398506 .278954-.707347 1.075965-.737235c.049813 0 .169365-.009963 .169365-.199253z'/>
+<path id='g1-1' d='m1.912827-2.49066c0-.288917-.239103-.52802-.52802-.52802s-.52802 .239103-.52802 .52802s.239103 .52802 .52802 .52802s.52802-.239103 .52802-.52802z'/>
+<path id='g4-50' d='m4.473225-1.733499h-.249066c-.049813 .298879-.119552 .737235-.219178 .886675c-.069738 .079701-.727273 .079701-.946451 .079701h-1.793275l1.05604-1.026152c1.554172-1.374844 2.15193-1.912827 2.15193-2.909091c0-1.135741-.896638-1.932752-2.11208-1.932752c-1.125778 0-1.863014 .916563-1.863014 1.803238c0 .557908 .498132 .557908 .52802 .557908c.169365 0 .518057-.119552 .518057-.52802c0-.259029-.179328-.518057-.52802-.518057c-.079701 0-.099626 0-.129514 .009963c.229141-.647572 .767123-1.016189 1.344956-1.016189c.9066 0 1.334994 .806974 1.334994 1.62391c0 .797011-.498132 1.58406-1.046077 2.201743l-1.912827 2.132005c-.109589 .109589-.109589 .129514-.109589 .368618h3.696139l.278954-1.733499z'/>
+</defs>
+<g id='page5'>
+<g fill='currentColor'>
+<use x='0' y='0' xlink:href='#g4-50'/>
+<use x='7.195186' y='0' xlink:href='#g1-1'/>
+<use x='12.17646' y='0' xlink:href='#g3-77'/>
+<use x='25.141669' y='0' xlink:href='#g1-1'/>
+<use x='30.122944' y='0' xlink:href='#g3-78'/>
+<use x='41.4277' y='0' xlink:href='#g1-1'/>
+<use x='46.408974' y='0' xlink:href='#g3-75'/>
+</g>
+</g>
+</svg> <a href="/flops.html">flops</a> are required, if we were to consider <a href="/gemm.html">gemm</a>, the parameters <?xml version='1.0' encoding='UTF-8'?>
+
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.918502 16.998747 8.855684' style="max-height: 0.6806em; vertical-align: -0.1906em; display: inline-block" class="org-latex org-latex-inline">
+<defs>
+<path id='g4-11' d='m5.867995-.597758c0-.069738-.059776-.099626-.119552-.099626c-.069738 0-.099626 .029888-.129514 .099626c-.179328 .488169-.557908 .488169-.557908 .488169c-.308842 0-.308842-.777086-.308842-1.016189c0-.209215 0-.229141 .099626-.348692c.936488-1.175592 1.145704-2.34122 1.145704-2.34122s-.009963-.099626-.119552-.099626c-.099626 0-.099626 .029888-.14944 .209215c-.179328 .627646-.508095 1.384807-.976339 1.972603v-.617684c0-1.564134-.926526-2.052304-1.663761-2.052304c-1.364882 0-2.67995 1.424658-2.67995 2.82939c0 .926526 .597758 1.683686 1.613948 1.683686c.627646 0 1.344956-.229141 2.102117-.836862c.129514 .52802 .458281 .836862 .9066 .836862c.52802 0 .836862-.547945 .836862-.707347zm-1.783313-.388543c-.876712 .767123-1.643836 .876712-2.042341 .876712c-.597758 0-.896638-.448319-.896638-1.085928c0-.488169 .259029-1.564134 .577833-2.072229c.468244-.727273 1.006227-.916563 1.354919-.916563c.986301 0 .986301 1.305106 .986301 2.082192c0 .368618 0 .946451 .019925 1.115816z'/>
+<path id='g4-12' d='m5.210461-1.853051c.049813-.219178 .079701-.438356 .079701-.637609c0-.398506-.099626-.767123-.298879-1.075965c-.119552-.169365-.259029-.318804-.428394-.428394c.099626-.059776 .199253-.119552 .298879-.199253c.398506-.298879 .697385-.707347 .806974-1.155666c.029888-.129514 .049813-.249066 .049813-.368618c0-.308842-.109589-.597758-.288917-.816936c-.268991-.318804-.687422-.498132-1.155666-.498132c-1.195517 0-2.102117 1.364882-2.440847 2.719801l-1.534247 6.127024c0 .079701 .039851 .119552 .099626 .119552h.049813c.049813 0 .089664-.029888 .099626-.069738l.67746-2.729763c.169365 .577833 .627646 .976339 1.305106 .976339c.56787 0 1.175592-.18929 1.693649-.56787c.478207-.358655 .846824-.86675 .986301-1.39477zm-.657534-.049813c-.119552 .458281-.33873 .926526-.727273 1.275218c-.37858 .328767-.846824 .518057-1.285181 .518057c-.71731 0-1.125778-.547945-1.125778-1.255293c0-.159402 .019925-.318804 .059776-.488169l.597758-2.410959c.318804-1.255293 1.09589-2.540473 2.191781-2.540473c.33873 0 .617684 .139477 .777086 .398506c.089664 .14944 .119552 .318804 .119552 .508095c0 .159402-.019925 .328767-.069738 .498132c-.089664 .37858-.268991 .757161-.577833 1.046077c-.079701 .069738-.169365 .139477-.259029 .18929c-.199253-.079701-.428394-.129514-.667497-.129514c-.358655 0-.777086 0-.846824 .268991c-.009963 .019925-.009963 .069738-.009963 .069738c0 .239103 .408468 .239103 .757161 .239103c.249066 0 .498132-.039851 .747198-.129514c.129514 .099626 .229141 .229141 .298879 .388543c.099626 .209215 .139477 .438356 .139477 .687422c0 .278954-.049813 .577833-.119552 .86675zm-.617684-2.11208c-.14944 .049813-.298879 .079701-.438356 .079701c-.219178 0-.52802 0-.518057-.039851c.029888-.089664 .358655-.089664 .597758-.089664c.129514 0 .249066 .019925 .358655 .049813z'/>
+<path id='g4-59' d='m2.022416-.009963c0-.657534-.249066-1.046077-.637609-1.046077c-.328767 0-.52802 .249066-.52802 .52802c0 .268991 .199253 .52802 .52802 .52802c.119552 0 .249066-.039851 .348692-.129514c.029888-.019925 .049813-.029888 .049813-.029888s.019925 .009963 .019925 .14944c0 .737235-.348692 1.334994-.67746 1.663761c-.109589 .109589-.109589 .129514-.109589 .159402c0 .069738 .049813 .109589 .099626 .109589c.109589 0 .9066-.767123 .9066-1.932752z'/>
+</defs>
+<g id='page2'>
+<g fill='currentColor'>
+<use x='0' y='0' xlink:href='#g4-11'/>
+<use x='6.409999' y='0' xlink:href='#g4-59'/>
+<use x='10.837807' y='0' xlink:href='#g4-12'/>
+</g>
+</g>
+</svg> would also play a role in the number of flops required, but the effect these scalars have can be negligable for sufficiently large matrices.
+</p>
+
+<p>
+in the example of vector addition, we used <b>global memory</b> (using <code>cudaMalloc</code> in C and <code>with-memory-block</code> in CL), which is (very) slow compared to <b>shared memory</b> which is allocated per <b>thread block</b>. we also did one <b>floating point operation</b> per memory access, so with as many flops as we have you can already see how slow we are going. to speed this up we're gonna use shared memory so that threads in a thread block can collaborate in computing a submatrix of the output matrix and to reduce calls to global memory.
+</p>
+
+<p>
+first, an implementation without shared memory:
+</p>
+<div class="org-src-container" data-language="C">
+<pre class="src src-C"><span style="color: #65c5a8;">#include</span> <span style="color: #deb07a;">&lt;</span><span style="color: #f3a0a0;">stdio.h</span><span style="color: #deb07a;">&gt;</span>
+<span style="color: #65c5a8;">#include</span> <span style="color: #deb07a;">&lt;</span><span style="color: #f3a0a0;">stdlib.h</span><span style="color: #deb07a;">&gt;</span>
+
+<span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">matrices are stored in row-major order:</span>
+<span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">M(row, col) = *(M.elements + row * M.width + col)</span>
+<span style="color: #deb07a; font-weight: bold;">typedef</span> <span style="color: #deb07a; font-weight: bold;">struct</span> <span style="color: #deb07a;">{</span>
+  <span style="color: #a9c99f;">int</span> <span style="color: #ffaacf;">width</span>;
+  <span style="color: #a9c99f;">int</span> <span style="color: #ffaacf;">height</span>;
+  <span style="color: #a9c99f;">float</span>* <span style="color: #ffaacf;">elements</span>;
+<span style="color: #deb07a;">}</span> <span style="color: #a9c99f;">Matrix</span>;
+
+<span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">thread block size</span>
+<span style="color: #65c5a8;">#define</span> <span style="color: #ffaacf;">BLOCK_SIZE</span> 16
+
+<span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">forward declaration of the matrix multiplication kernel</span>
+__global__ <span style="color: #a9c99f;">void</span> <span style="color: #8fcfd0;">MatMulKernel</span><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">const</span> <span style="color: #ffaacf;">Matrix</span>, <span style="color: #deb07a; font-weight: bold;">const</span> <span style="color: #ffaacf;">Matrix</span>, <span style="color: #a9c99f;">Matrix</span><span style="color: #deb07a;">)</span>;
+
+<span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">matrix multiplication - host code</span>
+<span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">matrix dimensions are assumed to be multiples of BLOCK_SIZE</span>
+<span style="color: #a9c99f;">void</span> <span style="color: #8fcfd0;">MatMul</span><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">const</span> <span style="color: #a9c99f;">Matrix</span> <span style="color: #ffaacf;">A</span>, <span style="color: #deb07a; font-weight: bold;">const</span> <span style="color: #a9c99f;">Matrix</span> <span style="color: #ffaacf;">B</span>, <span style="color: #a9c99f;">Matrix</span> <span style="color: #ffaacf;">C</span><span style="color: #deb07a;">)</span>
+<span style="color: #deb07a;">{</span>
+  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">load A and B to device memory</span>
+  <span style="color: #a9c99f;">Matrix</span> <span style="color: #ffaacf;">d_A</span>;
+  d_A.width = A.width; d_A.height = A.height;
+  <span style="color: #a9c99f;">size_t</span> <span style="color: #ffaacf;">size</span> = A.width * A.height * <span style="color: #deb07a; font-weight: bold;">sizeof</span><span style="color: #ffaacf;">(</span><span style="color: #a9c99f;">float</span><span style="color: #ffaacf;">)</span>;
+  cudaMalloc<span style="color: #ffaacf;">(</span>&amp;d_A.elements, size<span style="color: #ffaacf;">)</span>;
+  cudaMemcpy<span style="color: #ffaacf;">(</span>d_A.elements, A.elements, size,
+             cudaMemcpyHostToDevice<span style="color: #ffaacf;">)</span>;
+  <span style="color: #a9c99f;">Matrix</span> <span style="color: #ffaacf;">d_B</span>;
+  d_B.width = B.width; d_B.height = B.height;
+  size = B.width * B.height * <span style="color: #deb07a; font-weight: bold;">sizeof</span><span style="color: #ffaacf;">(</span><span style="color: #a9c99f;">float</span><span style="color: #ffaacf;">)</span>;
+  cudaMalloc<span style="color: #ffaacf;">(</span>&amp;d_B.elements, size<span style="color: #ffaacf;">)</span>;
+  cudaMemcpy<span style="color: #ffaacf;">(</span>d_B.elements, B.elements, size,
+             cudaMemcpyHostToDevice<span style="color: #ffaacf;">)</span>;
+
+  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">allocate C in device memory</span>
+  <span style="color: #a9c99f;">Matrix</span> <span style="color: #ffaacf;">d_C</span>;
+  d_C.width = C.width; d_C.height = C.height;
+  size = C.width * C.height * <span style="color: #deb07a; font-weight: bold;">sizeof</span><span style="color: #ffaacf;">(</span><span style="color: #a9c99f;">float</span><span style="color: #ffaacf;">)</span>;
+  cudaMalloc<span style="color: #ffaacf;">(</span>&amp;d_C.elements, size<span style="color: #ffaacf;">)</span>;
+
+  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">invoke kernel</span>
+  <span style="color: #a9c99f;">dim3</span> <span style="color: #8fcfd0;">dimBlock</span><span style="color: #ffaacf;">(</span>BLOCK_SIZE, BLOCK_SIZE<span style="color: #ffaacf;">)</span>;
+  <span style="color: #a9c99f;">dim3</span> <span style="color: #8fcfd0;">dimGrid</span><span style="color: #ffaacf;">(</span>B.width / dimBlock.x, A.height / dimBlock.y<span style="color: #ffaacf;">)</span>;
+  MatMulKernel&lt;&lt;&lt;dimGrid, dimBlock&gt;&gt;&gt;<span style="color: #ffaacf;">(</span>d_A, d_B, d_C<span style="color: #ffaacf;">)</span>;
+
+  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">read C from device memory</span>
+  cudaMemcpy<span style="color: #ffaacf;">(</span>C.elements, d_C.elements, size,
+             cudaMemcpyDeviceToHost<span style="color: #ffaacf;">)</span>;
+
+  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">free device memory</span>
+  cudaFree<span style="color: #ffaacf;">(</span>d_A.elements<span style="color: #ffaacf;">)</span>;
+  cudaFree<span style="color: #ffaacf;">(</span>d_B.elements<span style="color: #ffaacf;">)</span>;
+  cudaFree<span style="color: #ffaacf;">(</span>d_C.elements<span style="color: #ffaacf;">)</span>;
+<span style="color: #deb07a;">}</span>
+
+<span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">matrix multiplication kernel called by MatMul()</span>
+__global__ <span style="color: #a9c99f;">void</span> <span style="color: #8fcfd0;">MatMulKernel</span><span style="color: #deb07a;">(</span><span style="color: #a9c99f;">Matrix</span> <span style="color: #ffaacf;">A</span>, <span style="color: #a9c99f;">Matrix</span> <span style="color: #ffaacf;">B</span>, <span style="color: #a9c99f;">Matrix</span> <span style="color: #ffaacf;">C</span><span style="color: #deb07a;">)</span>
+<span style="color: #deb07a;">{</span>
+  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">each thread computes one element of C</span>
+  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">by accumulating results into Cvalue</span>
+  <span style="color: #a9c99f;">float</span> <span style="color: #ffaacf;">Cvalue</span> = 0;
+  <span style="color: #a9c99f;">int</span> <span style="color: #ffaacf;">row</span> = blockIdx.y * blockDim.y + threadIdx.y;
+  <span style="color: #a9c99f;">int</span> <span style="color: #ffaacf;">col</span> = blockIdx.x * blockDim.x + threadIdx.x;
+  <span style="color: #deb07a; font-weight: bold;">for</span> <span style="color: #ffaacf;">(</span><span style="color: #a9c99f;">int</span> <span style="color: #ffaacf;">e</span> = 0; e &lt; A.width; ++e<span style="color: #ffaacf;">)</span>
+    Cvalue += A.elements<span style="color: #ffaacf;">[</span>row * A.width + e<span style="color: #ffaacf;">]</span>
+      * B.elements<span style="color: #ffaacf;">[</span>e * B.width + col<span style="color: #ffaacf;">]</span>;
+  C.elements<span style="color: #ffaacf;">[</span>row * C.width + col<span style="color: #ffaacf;">]</span> = Cvalue;
+<span style="color: #deb07a;">}</span>
+
+<span style="color: #a9c99f;">int</span> <span style="color: #8fcfd0;">main</span><span style="color: #deb07a;">()</span> <span style="color: #deb07a;">{</span>
+  <span style="color: #a9c99f;">Matrix</span> <span style="color: #ffaacf;">a</span>,<span style="color: #ffaacf;">b</span>,<span style="color: #ffaacf;">c</span>;
+  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">width*height should be a multiple of 16</span>
+  <span style="color: #a9c99f;">float</span> <span style="color: #ffaacf;">elements</span><span style="color: #ffaacf;">[</span>16*16<span style="color: #ffaacf;">]</span>;
+  c.width = c.height = a.width = a.height = b.width = b.height = 16;
+  a.elements = b.elements = elements;
+  c.elements = <span style="color: #ffaacf;">(</span><span style="color: #a9c99f;">float</span>*<span style="color: #ffaacf;">)</span>malloc<span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">sizeof</span><span style="color: #80aadf;">(</span><span style="color: #a9c99f;">float</span><span style="color: #80aadf;">)</span>*c.width*c.height<span style="color: #ffaacf;">)</span>;
+  <span style="color: #deb07a; font-weight: bold;">for</span> <span style="color: #ffaacf;">(</span><span style="color: #a9c99f;">int</span> <span style="color: #ffaacf;">i</span> = 0; i &lt; c.width * c.height; ++i<span style="color: #ffaacf;">)</span> <span style="color: #ffaacf;">{</span>
+    a.elements<span style="color: #80aadf;">[</span>i<span style="color: #80aadf;">]</span> = b.elements<span style="color: #80aadf;">[</span>i<span style="color: #80aadf;">]</span> = c.elements<span style="color: #80aadf;">[</span>i<span style="color: #80aadf;">]</span> = i;
+  <span style="color: #ffaacf;">}</span>
+  MatMul<span style="color: #ffaacf;">(</span>a,b,c<span style="color: #ffaacf;">)</span>;
+  <span style="color: #deb07a; font-weight: bold;">for</span> <span style="color: #ffaacf;">(</span><span style="color: #a9c99f;">int</span> <span style="color: #ffaacf;">i</span> = 0; i &lt; c.width * c.height; ++i<span style="color: #ffaacf;">)</span> <span style="color: #ffaacf;">{</span>
+    printf<span style="color: #80aadf;">(</span><span style="color: #f3a0a0;">"%f\n"</span>, c.elements<span style="color: #e47980;">[</span>i<span style="color: #e47980;">]</span><span style="color: #80aadf;">)</span>;
+  <span style="color: #ffaacf;">}</span>
+<span style="color: #deb07a;">}</span>
+</pre>
+</div>
+
+<p>
+to divide the work with shared memory we load submatrices into each thread block so that threads of each block can operate on the respective submatrix.
+</p>
+
+<p>
+<img src="/matrix-multiplication-with-shared-memory.png" />
+the threads cooperate in loading from memory the values of the input matrices to minimize access to global memory, different thread blocks load different portions of the input matrices, the portions they load are exactly the part of the matrices needed to find the values of the submatrix of C they operate on.
+</p>
+
+<p>
+the best way to understand this is to read the code:
+</p>
+<div class="org-src-container" data-language="C">
+<pre class="src src-C"><span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">matrices are stored in row-major order:</span>
+<span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">M(row, col) = *(M.elements + row * M.stride + col)</span>
+<span style="color: #deb07a; font-weight: bold;">typedef</span> <span style="color: #deb07a; font-weight: bold;">struct</span> <span style="color: #deb07a;">{</span>
+  <span style="color: #a9c99f;">int</span> <span style="color: #ffaacf;">width</span>;
+  <span style="color: #a9c99f;">int</span> <span style="color: #ffaacf;">height</span>;
+  <span style="color: #a9c99f;">int</span> <span style="color: #ffaacf;">stride</span>;
+  <span style="color: #a9c99f;">float</span>* <span style="color: #ffaacf;">elements</span>;
+<span style="color: #deb07a;">}</span> <span style="color: #a9c99f;">Matrix</span>;
+
+<span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">get a matrix element</span>
+__device__ <span style="color: #a9c99f;">float</span> <span style="color: #8fcfd0;">GetElement</span><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">const</span> <span style="color: #a9c99f;">Matrix</span> <span style="color: #ffaacf;">A</span>, <span style="color: #a9c99f;">int</span> <span style="color: #ffaacf;">row</span>, <span style="color: #a9c99f;">int</span> <span style="color: #ffaacf;">col</span><span style="color: #deb07a;">)</span> <span style="color: #deb07a;">{</span>
+  <span style="color: #deb07a; font-weight: bold;">return</span> A.elements<span style="color: #ffaacf;">[</span>row * A.stride + col<span style="color: #ffaacf;">]</span>;
+<span style="color: #deb07a;">}</span>
+
+<span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">set a matrix element</span>
+__device__ <span style="color: #a9c99f;">void</span> <span style="color: #8fcfd0;">SetElement</span><span style="color: #deb07a;">(</span><span style="color: #a9c99f;">Matrix</span> <span style="color: #ffaacf;">A</span>, <span style="color: #a9c99f;">int</span> <span style="color: #ffaacf;">row</span>, <span style="color: #a9c99f;">int</span> <span style="color: #ffaacf;">col</span>, <span style="color: #a9c99f;">float</span> <span style="color: #ffaacf;">value</span><span style="color: #deb07a;">)</span> <span style="color: #deb07a;">{</span>
+  A.elements<span style="color: #ffaacf;">[</span>row * A.stride + col<span style="color: #ffaacf;">]</span> = value;
+<span style="color: #deb07a;">}</span>
+<span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">get the BLOCK_SIZExBLOCK_SIZE sub-matrix Asub of A that is</span>
+<span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">located col sub-matrices to the right and row sub-matrices down</span>
+<span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">from the upper-left corner of A</span>
+__device__ <span style="color: #a9c99f;">Matrix</span> <span style="color: #8fcfd0;">GetSubMatrix</span><span style="color: #deb07a;">(</span><span style="color: #a9c99f;">Matrix</span> <span style="color: #ffaacf;">A</span>, <span style="color: #a9c99f;">int</span> <span style="color: #ffaacf;">row</span>, <span style="color: #a9c99f;">int</span> <span style="color: #ffaacf;">col</span><span style="color: #deb07a;">)</span> <span style="color: #deb07a;">{</span>
+  <span style="color: #a9c99f;">Matrix</span> <span style="color: #ffaacf;">Asub</span>;
+  Asub.width    = BLOCK_SIZE;
+  Asub.height   = BLOCK_SIZE;
+  Asub.stride   = A.stride;
+  Asub.elements = &amp;A.elements<span style="color: #ffaacf;">[</span>A.stride * BLOCK_SIZE * row
+                              + BLOCK_SIZE * col<span style="color: #ffaacf;">]</span>;
+  <span style="color: #deb07a; font-weight: bold;">return</span> Asub;
+<span style="color: #deb07a;">}</span>
+
+<span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">thread block size</span>
+<span style="color: #65c5a8;">#define</span> <span style="color: #ffaacf;">BLOCK_SIZE</span> 16
+
+<span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">forward declaration of the matrix multiplication kernel</span>
+__global__ <span style="color: #a9c99f;">void</span> <span style="color: #8fcfd0;">MatMulKernel</span><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">const</span> <span style="color: #ffaacf;">Matrix</span>, <span style="color: #deb07a; font-weight: bold;">const</span> <span style="color: #ffaacf;">Matrix</span>, <span style="color: #a9c99f;">Matrix</span><span style="color: #deb07a;">)</span>;
+
+<span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">matrix multiplication - host code</span>
+<span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">matrix dimensions are assumed to be multiples of BLOCK_SIZE</span>
+<span style="color: #a9c99f;">void</span> <span style="color: #8fcfd0;">MatMul</span><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">const</span> <span style="color: #a9c99f;">Matrix</span> <span style="color: #ffaacf;">A</span>, <span style="color: #deb07a; font-weight: bold;">const</span> <span style="color: #a9c99f;">Matrix</span> <span style="color: #ffaacf;">B</span>, <span style="color: #a9c99f;">Matrix</span> <span style="color: #ffaacf;">C</span><span style="color: #deb07a;">)</span> <span style="color: #deb07a;">{</span>
+  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">load A and B to device memory</span>
+  <span style="color: #a9c99f;">Matrix</span> <span style="color: #ffaacf;">d_A</span>;
+  d_A.width = d_A.stride = A.width; d_A.height = A.height;
+  <span style="color: #a9c99f;">size_t</span> <span style="color: #ffaacf;">size</span> = A.width * A.height * <span style="color: #deb07a; font-weight: bold;">sizeof</span><span style="color: #ffaacf;">(</span><span style="color: #a9c99f;">float</span><span style="color: #ffaacf;">)</span>;
+  cudaMalloc<span style="color: #ffaacf;">(</span>&amp;d_A.elements, size<span style="color: #ffaacf;">)</span>;
+  cudaMemcpy<span style="color: #ffaacf;">(</span>d_A.elements, A.elements, size,
+             cudaMemcpyHostToDevice<span style="color: #ffaacf;">)</span>;
+  <span style="color: #a9c99f;">Matrix</span> <span style="color: #ffaacf;">d_B</span>;
+  d_B.width = d_B.stride = B.width; d_B.height = B.height;
+  size = B.width * B.height * <span style="color: #deb07a; font-weight: bold;">sizeof</span><span style="color: #ffaacf;">(</span><span style="color: #a9c99f;">float</span><span style="color: #ffaacf;">)</span>;
+  cudaMalloc<span style="color: #ffaacf;">(</span>&amp;d_B.elements, size<span style="color: #ffaacf;">)</span>;
+  cudaMemcpy<span style="color: #ffaacf;">(</span>d_B.elements, B.elements, size,
+             cudaMemcpyHostToDevice<span style="color: #ffaacf;">)</span>;
+
+  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">allocate C in device memory</span>
+  <span style="color: #a9c99f;">Matrix</span> <span style="color: #ffaacf;">d_C</span>;
+  d_C.width = d_C.stride = C.width; d_C.height = C.height;
+  size = C.width * C.height * <span style="color: #deb07a; font-weight: bold;">sizeof</span><span style="color: #ffaacf;">(</span><span style="color: #a9c99f;">float</span><span style="color: #ffaacf;">)</span>;
+  cudaMalloc<span style="color: #ffaacf;">(</span>&amp;d_C.elements, size<span style="color: #ffaacf;">)</span>;
+
+  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">invoke kernel</span>
+  <span style="color: #a9c99f;">dim3</span> <span style="color: #8fcfd0;">dimBlock</span><span style="color: #ffaacf;">(</span>BLOCK_SIZE, BLOCK_SIZE<span style="color: #ffaacf;">)</span>;
+  <span style="color: #a9c99f;">dim3</span> <span style="color: #8fcfd0;">dimGrid</span><span style="color: #ffaacf;">(</span>B.width / dimBlock.x, A.height / dimBlock.y<span style="color: #ffaacf;">)</span>;
+  MatMulKernel&lt;&lt;&lt;dimGrid, dimBlock&gt;&gt;&gt;<span style="color: #ffaacf;">(</span>d_A, d_B, d_C<span style="color: #ffaacf;">)</span>;
+
+  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">read C from device memory</span>
+  cudaMemcpy<span style="color: #ffaacf;">(</span>C.elements, d_C.elements, size,
+             cudaMemcpyDeviceToHost<span style="color: #ffaacf;">)</span>;
+
+  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">free device memory</span>
+  cudaFree<span style="color: #ffaacf;">(</span>d_A.elements<span style="color: #ffaacf;">)</span>;
+  cudaFree<span style="color: #ffaacf;">(</span>d_B.elements<span style="color: #ffaacf;">)</span>;
+  cudaFree<span style="color: #ffaacf;">(</span>d_C.elements<span style="color: #ffaacf;">)</span>;
+<span style="color: #deb07a;">}</span>
+
+<span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">matrix multiplication kernel called by MatMul()</span>
+__global__ <span style="color: #a9c99f;">void</span> <span style="color: #8fcfd0;">MatMulKernel</span><span style="color: #deb07a;">(</span><span style="color: #a9c99f;">Matrix</span> <span style="color: #ffaacf;">A</span>, <span style="color: #a9c99f;">Matrix</span> <span style="color: #ffaacf;">B</span>, <span style="color: #a9c99f;">Matrix</span> <span style="color: #ffaacf;">C</span><span style="color: #deb07a;">)</span> <span style="color: #deb07a;">{</span>
+  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">block row and column</span>
+  <span style="color: #a9c99f;">int</span> <span style="color: #ffaacf;">blockRow</span> = blockIdx.y;
+  <span style="color: #a9c99f;">int</span> <span style="color: #ffaacf;">blockCol</span> = blockIdx.x;
+  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">each thread block computes one sub-matrix Csub of C</span>
+  <span style="color: #a9c99f;">Matrix</span> <span style="color: #ffaacf;">Csub</span> = GetSubMatrix<span style="color: #ffaacf;">(</span>C, blockRow, blockCol<span style="color: #ffaacf;">)</span>;
+  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">each thread computes one element of Csub</span>
+  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">by accumulating results into Cvalue</span>
+  <span style="color: #a9c99f;">float</span> <span style="color: #ffaacf;">Cvalue</span> = 0;
+  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">thread row and column within Csub</span>
+  <span style="color: #a9c99f;">int</span> <span style="color: #ffaacf;">row</span> = threadIdx.y;
+  <span style="color: #a9c99f;">int</span> <span style="color: #ffaacf;">col</span> = threadIdx.x;
+  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">loop over all the sub-matrices of A and B that are</span>
+  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">required to compute Csub</span>
+  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">multiply each pair of sub-matrices together</span>
+  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">and accumulate the results</span>
+  <span style="color: #deb07a; font-weight: bold;">for</span> <span style="color: #ffaacf;">(</span><span style="color: #a9c99f;">int</span> <span style="color: #ffaacf;">m</span> = 0; m &lt; <span style="color: #80aadf;">(</span>A.width / BLOCK_SIZE<span style="color: #80aadf;">)</span>; ++m<span style="color: #ffaacf;">)</span> <span style="color: #ffaacf;">{</span>
+    <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">get sub-matrix Asub of A</span>
+    <span style="color: #a9c99f;">Matrix</span> <span style="color: #ffaacf;">Asub</span> = GetSubMatrix<span style="color: #80aadf;">(</span>A, blockRow, m<span style="color: #80aadf;">)</span>;
+    <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">get sub-matrix Bsub of B</span>
+    <span style="color: #a9c99f;">Matrix</span> <span style="color: #ffaacf;">Bsub</span> = GetSubMatrix<span style="color: #80aadf;">(</span>B, m, blockCol<span style="color: #80aadf;">)</span>;
+    <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">shared memory (static variables) used to store Asub and Bsub respectively</span>
+    __shared__ <span style="color: #a9c99f;">float</span> <span style="color: #ffaacf;">As</span><span style="color: #80aadf;">[</span>BLOCK_SIZE<span style="color: #80aadf;">][</span>BLOCK_SIZE<span style="color: #80aadf;">]</span>;
+    __shared__ <span style="color: #a9c99f;">float</span> <span style="color: #ffaacf;">Bs</span><span style="color: #80aadf;">[</span>BLOCK_SIZE<span style="color: #80aadf;">][</span>BLOCK_SIZE<span style="color: #80aadf;">]</span>;
+    <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">load Asub and Bsub from device memory to shared memory</span>
+    <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">each thread loads one element of each sub-matrix</span>
+    As<span style="color: #80aadf;">[</span>row<span style="color: #80aadf;">][</span>col<span style="color: #80aadf;">]</span> = GetElement<span style="color: #80aadf;">(</span>Asub, row, col<span style="color: #80aadf;">)</span>;
+    Bs<span style="color: #80aadf;">[</span>row<span style="color: #80aadf;">][</span>col<span style="color: #80aadf;">]</span> = GetElement<span style="color: #80aadf;">(</span>Bsub, row, col<span style="color: #80aadf;">)</span>;
+    <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">synchronize to make sure the sub-matrices are loaded</span>
+    <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">before starting the computation</span>
+    __syncthreads<span style="color: #80aadf;">()</span>;
+    <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">multiply Asub and Bsub together</span>
+    <span style="color: #deb07a; font-weight: bold;">for</span> <span style="color: #80aadf;">(</span><span style="color: #a9c99f;">int</span> <span style="color: #ffaacf;">e</span> = 0; e &lt; BLOCK_SIZE; ++e<span style="color: #80aadf;">)</span>
+      Cvalue += As<span style="color: #80aadf;">[</span>row<span style="color: #80aadf;">][</span>e<span style="color: #80aadf;">]</span> * Bs<span style="color: #80aadf;">[</span>e<span style="color: #80aadf;">][</span>col<span style="color: #80aadf;">]</span>;
+    <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">synchronize to make sure that the preceding</span>
+    <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">computation is done before loading two new</span>
+    <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">sub-matrices of A and B in the next iteration</span>
+    __syncthreads<span style="color: #80aadf;">()</span>;
+  <span style="color: #ffaacf;">}</span>
+  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">write Csub to device memory</span>
+  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">each thread writes one element</span>
+  SetElement<span style="color: #ffaacf;">(</span>Csub, row, col, Cvalue<span style="color: #ffaacf;">)</span>;
+<span style="color: #deb07a;">}</span>
+</pre>
+</div>
+
+<p>
+some points to consider before implementating in lisp:
+</p>
+<ol class="org-ol">
+<li>we cant pass structs like in C, unfortunately, we can only allocate linear memory of basic types,</li>
+<li>for matrices on cpu, i used cl's arrays, for matrices on gpu, im gonna use just C pointers, like in the C example,</li>
+<li>common lisp implementation will be more complete (i cba doing the same for C), e.g. no assumptions on matrix sizes,</li>
+<li>loops in kernels can only be done using the <code>do</code> statement.</li>
+</ol>
+<div class="org-src-container" data-language="lisp">
+<pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">random-init</span> <span style="color: #ffaacf;">(</span>data n<span style="color: #ffaacf;">)</span>
+  <span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">dotimes</span> <span style="color: #80aadf;">(</span>i n<span style="color: #80aadf;">)</span>
+    <span style="color: #80aadf;">(</span>setf <span style="color: #e47980;">(</span>cl-cuda:memory-block-aref data i<span style="color: #e47980;">)</span> <span style="color: #e47980;">(</span>random 1.0<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+
+<span style="color: #deb07a;">(</span>cl-cuda:defkernel matrix-mul-kernel <span style="color: #ffaacf;">(</span>cl-cuda:void <span style="color: #80aadf;">(</span><span style="color: #e47980;">(</span>arr1      cl-cuda:float*<span style="color: #e47980;">)</span>
+                                                    <span style="color: #e47980;">(</span>arr2      cl-cuda:float*<span style="color: #e47980;">)</span>
+                                                    <span style="color: #e47980;">(</span>out       cl-cuda:float*<span style="color: #e47980;">)</span>
+                                                    <span style="color: #e47980;">(</span>arr1-rows cl-cuda:int<span style="color: #e47980;">)</span>
+                                                    <span style="color: #e47980;">(</span>arr2-cols cl-cuda:int<span style="color: #e47980;">)</span>
+                                                    <span style="color: #e47980;">(</span>arr2-rows cl-cuda:int<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span>
+  <span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">let*</span> <span style="color: #80aadf;">(</span><span style="color: #e47980;">(</span>block-row cl-cuda:block-idx-y<span style="color: #e47980;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">location of current thread block in the grid</span>
+         <span style="color: #e47980;">(</span>block-col cl-cuda:block-idx-x<span style="color: #e47980;">)</span>
+         <span style="color: #e47980;">(</span>row cl-cuda:thread-idx-y<span style="color: #e47980;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">cell this thread is responsible for in output matrix</span>
+         <span style="color: #e47980;">(</span>col cl-cuda:thread-idx-x<span style="color: #e47980;">)</span>
+         <span style="color: #e47980;">(</span>c-value 10.0<span style="color: #e47980;">)</span>
+         <span style="color: #e47980;">(</span>arr1-cols arr2-rows<span style="color: #e47980;">)</span>
+         <span style="color: #e47980;">(</span>block-size cl-cuda:block-dim-x<span style="color: #e47980;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">16 unless modified</span>
+         <span style="color: #e47980;">(</span>out-size arr1-rows<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
+    <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">start iterating through input submatrices</span>
+    <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">(set c-value (float arr1-cols))</span>
+    <span style="color: #80aadf;">(</span><span style="color: #deb07a; font-weight: bold;">do</span> <span style="color: #e47980;">(</span><span style="color: #d0b0ff;">(</span>i 0 <span style="color: #3fc489;">(</span>+ i 1<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span>
+        <span style="color: #e47980;">(</span><span style="color: #d0b0ff;">(</span>&gt;= i <span style="color: #3fc489;">(</span>/ arr1-cols block-size<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span>
+      <span style="color: #e47980;">(</span>cl-cuda:with-shared-memory <span style="color: #d0b0ff;">(</span><span style="color: #3fc489;">(</span>arr1-sub float 16 16<span style="color: #3fc489;">)</span>
+                                   <span style="color: #3fc489;">(</span>arr2-sub float 16 16<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span>
+        <span style="color: #d0b0ff;">(</span>set <span style="color: #3fc489;">(</span>aref arr1-sub row col<span style="color: #3fc489;">)</span> <span style="color: #3fc489;">(</span>aref arr1 <span style="color: #6fb3c0;">(</span>+ <span style="color: #c0b24f;">(</span>* block-row block-size<span style="color: #c0b24f;">)</span>
+                                                   <span style="color: #c0b24f;">(</span>* row block-size<span style="color: #c0b24f;">)</span>
+                                                   <span style="color: #c0b24f;">(</span>* i block-size<span style="color: #c0b24f;">)</span>
+                                                   col<span style="color: #6fb3c0;">)</span><span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span>
+        <span style="color: #d0b0ff;">(</span>set <span style="color: #3fc489;">(</span>aref arr2-sub row col<span style="color: #3fc489;">)</span> <span style="color: #3fc489;">(</span>aref arr2 <span style="color: #6fb3c0;">(</span>+ <span style="color: #c0b24f;">(</span>* i block-size<span style="color: #c0b24f;">)</span>
+                                                   <span style="color: #c0b24f;">(</span>* row block-size<span style="color: #c0b24f;">)</span>
+                                                   <span style="color: #c0b24f;">(</span>* block-col block-size<span style="color: #c0b24f;">)</span>
+                                                   col<span style="color: #6fb3c0;">)</span><span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span>
+        <span style="color: #d0b0ff;">(</span>cl-cuda:syncthreads<span style="color: #d0b0ff;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">synchronize to make sure submatrices are loaded</span>
+        <span style="color: #d0b0ff;">(</span><span style="color: #deb07a; font-weight: bold;">do</span> <span style="color: #3fc489;">(</span><span style="color: #6fb3c0;">(</span>j 0 <span style="color: #c0b24f;">(</span>+ j 1<span style="color: #c0b24f;">)</span><span style="color: #6fb3c0;">)</span><span style="color: #3fc489;">)</span>
+            <span style="color: #3fc489;">(</span><span style="color: #6fb3c0;">(</span>&gt;= j block-size<span style="color: #6fb3c0;">)</span><span style="color: #3fc489;">)</span>
+          <span style="color: #3fc489;">(</span>set c-value <span style="color: #6fb3c0;">(</span>+ c-value <span style="color: #c0b24f;">(</span>* <span style="color: #f3a0a0;">(</span>aref arr1-sub row j<span style="color: #f3a0a0;">)</span> <span style="color: #f3a0a0;">(</span>aref arr2-sub j col<span style="color: #f3a0a0;">)</span><span style="color: #c0b24f;">)</span><span style="color: #6fb3c0;">)</span><span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span>
+        <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">synchronize to make sure that the preceding</span>
+        <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">computation is done before loading two new</span>
+        <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">sub-matrices of A and B in the next iteration</span>
+        <span style="color: #d0b0ff;">(</span>cl-cuda:syncthreads<span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
+    <span style="color: #80aadf;">(</span>set <span style="color: #e47980;">(</span>aref out <span style="color: #d0b0ff;">(</span>+ <span style="color: #3fc489;">(</span>* block-row block-size<span style="color: #3fc489;">)</span>
+                      <span style="color: #3fc489;">(</span>* block-col block-size<span style="color: #3fc489;">)</span>
+                      <span style="color: #3fc489;">(</span>* row block-size<span style="color: #3fc489;">)</span>
+                      col<span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span> <span style="color: #d09950;">c-value</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+
+<span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">cuda-matrix-mul</span> <span style="color: #ffaacf;">(</span>arr1 arr2<span style="color: #ffaacf;">)</span>
+  <span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">let*</span> <span style="color: #80aadf;">(</span><span style="color: #e47980;">(</span>out-size <span style="color: #d0b0ff;">(</span>* <span style="color: #3fc489;">(</span>array-rows arr1<span style="color: #3fc489;">)</span> <span style="color: #3fc489;">(</span>array-cols arr2<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span>
+         <span style="color: #e47980;">(</span>dev-id 0<span style="color: #e47980;">)</span>
+         <span style="color: #e47980;">(</span>block-size 16<span style="color: #e47980;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">actual size is squared, this is more of a "length"</span>
+         <span style="color: #e47980;">(</span>threads-per-block <span style="color: #d0b0ff;">(</span>expt block-size 2<span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span>
+         <span style="color: #e47980;">(</span>blocks-per-grid <span style="color: #d0b0ff;">(</span>/ out-size threads-per-block<span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
+    <span style="color: #80aadf;">(</span>cl-cuda:with-cuda <span style="color: #e47980;">(</span>dev-id<span style="color: #e47980;">)</span>
+      <span style="color: #e47980;">(</span>cl-cuda:with-memory-blocks <span style="color: #d0b0ff;">(</span><span style="color: #3fc489;">(</span>c-arr1 'float <span style="color: #6fb3c0;">(</span>array-size arr1<span style="color: #6fb3c0;">)</span><span style="color: #3fc489;">)</span>
+                                   <span style="color: #3fc489;">(</span>c-arr2 'float <span style="color: #6fb3c0;">(</span>array-size arr2<span style="color: #6fb3c0;">)</span><span style="color: #3fc489;">)</span>
+                                   <span style="color: #3fc489;">(</span>c-out 'float out-size<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span>
+        <span style="color: #d0b0ff;">(</span>random-init c-arr1 <span style="color: #3fc489;">(</span>array-size arr1<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span>
+        <span style="color: #d0b0ff;">(</span>random-init c-arr2 <span style="color: #3fc489;">(</span>array-size arr2<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span>
+        <span style="color: #d0b0ff;">(</span>cl-cuda:sync-memory-block c-arr1 <span style="color: #e3b0c0; font-weight: bold;">:host-to-device</span><span style="color: #d0b0ff;">)</span>
+        <span style="color: #d0b0ff;">(</span>cl-cuda:sync-memory-block c-arr2 <span style="color: #e3b0c0; font-weight: bold;">:host-to-device</span><span style="color: #d0b0ff;">)</span>
+        <span style="color: #d0b0ff;">(</span>matrix-mul-kernel
+         c-arr1 c-arr2 c-out
+         <span style="color: #3fc489;">(</span>array-rows arr1<span style="color: #3fc489;">)</span> <span style="color: #3fc489;">(</span>array-cols arr2<span style="color: #3fc489;">)</span> <span style="color: #3fc489;">(</span>array-rows arr2<span style="color: #3fc489;">)</span>
+         <span style="color: #e3b0c0; font-weight: bold;">:grid-dim</span> <span style="color: #3fc489;">(</span>list blocks-per-grid 1 1<span style="color: #3fc489;">)</span>
+         <span style="color: #e3b0c0; font-weight: bold;">:block-dim</span> <span style="color: #3fc489;">(</span>list block-size block-size 1<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span>
+        <span style="color: #d0b0ff;">(</span>cl-cuda:sync-memory-block c-out <span style="color: #e3b0c0; font-weight: bold;">:device-to-host</span><span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+
+<span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">example-cuda-matrix-mul</span> <span style="color: #ffaacf;">()</span>
+  <span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">let</span> <span style="color: #80aadf;">(</span><span style="color: #e47980;">(</span>size <span style="color: #d0b0ff;">(</span>expt 16 3<span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
+    <span style="color: #80aadf;">(</span><span style="color: #deb07a; font-weight: bold;">let</span> <span style="color: #e47980;">(</span><span style="color: #d0b0ff;">(</span>mat1 <span style="color: #3fc489;">(</span>make-array <span style="color: #6fb3c0;">(</span>list size size<span style="color: #6fb3c0;">)</span> <span style="color: #e3b0c0; font-weight: bold;">:initial-element</span> 10<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span>
+          <span style="color: #d0b0ff;">(</span>mat2 <span style="color: #3fc489;">(</span>make-array <span style="color: #6fb3c0;">(</span>list size size<span style="color: #6fb3c0;">)</span> <span style="color: #e3b0c0; font-weight: bold;">:initial-element</span> 20<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span>
+      <span style="color: #e47980;">(</span>cuda-matrix-mul mat1 mat2<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+</pre>
+</div>
+
+<p>
+that took some effort, i had to hard-code the block size because as it compiles to C the variable isnt defined as a constant which it has to be because i'd get this error if i were to replace the number 16 with the variable <code>block-size</code>:
+</p>
+<div class="org-src-container" data-language="C">
+<pre class="src src-C">nvcc exits with <span style="color: #a9c99f;">code</span>: 1
+/tmp/cl-cuda.EjtQeE.cu<span style="color: #deb07a;">(</span>60<span style="color: #deb07a;">)</span>: error: expression must have a constant value
+                        <span style="color: #deb07a; font-weight: bold;">__attribute__</span><span style="color: #deb07a;">(</span><span style="color: #ffaacf;">(</span>shared<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span> <span style="color: #a9c99f;">float</span> <span style="color: #ffaacf;">arr1_sub</span><span style="color: #deb07a;">[</span>block_size<span style="color: #deb07a;">][</span>block_size<span style="color: #deb07a;">]</span>;
+</pre>
+</div>
+
+<p>
+kernels are very limtied in terms of functionality, not everything can be used in kernels, almost everything is translated to C.
+</p>
+
+<p>
+now a small benchmark to test this against my previous cpu solution:
+</p>
+<div class="org-src-container" data-language="lisp">
+<pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">example-cuda-matrix-mul</span> <span style="color: #ffaacf;">()</span>
+  <span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">let</span> <span style="color: #80aadf;">(</span><span style="color: #e47980;">(</span>size <span style="color: #d0b0ff;">(</span>expt 16 3<span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
+    <span style="color: #80aadf;">(</span><span style="color: #deb07a; font-weight: bold;">let</span> <span style="color: #e47980;">(</span><span style="color: #d0b0ff;">(</span>mat1 <span style="color: #3fc489;">(</span>make-array <span style="color: #6fb3c0;">(</span>list size size<span style="color: #6fb3c0;">)</span> <span style="color: #e3b0c0; font-weight: bold;">:initial-element</span> 10<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span>
+          <span style="color: #d0b0ff;">(</span>mat2 <span style="color: #3fc489;">(</span>make-array <span style="color: #6fb3c0;">(</span>list size size<span style="color: #6fb3c0;">)</span> <span style="color: #e3b0c0; font-weight: bold;">:initial-element</span> 20<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span>
+      <span style="color: #e47980;">(</span>cuda-matrix-mul mat1 mat2<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+
+<span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">example-cpu-matrix-mul</span> <span style="color: #ffaacf;">()</span>
+  <span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">let</span> <span style="color: #80aadf;">(</span><span style="color: #e47980;">(</span>size 768<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
+    <span style="color: #80aadf;">(</span><span style="color: #deb07a; font-weight: bold;">let</span> <span style="color: #e47980;">(</span><span style="color: #d0b0ff;">(</span>mat1 <span style="color: #3fc489;">(</span>make-array <span style="color: #6fb3c0;">(</span>list size size<span style="color: #6fb3c0;">)</span> <span style="color: #e3b0c0; font-weight: bold;">:initial-element</span> 10<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span>
+          <span style="color: #d0b0ff;">(</span>mat2 <span style="color: #3fc489;">(</span>make-array <span style="color: #6fb3c0;">(</span>list size size<span style="color: #6fb3c0;">)</span> <span style="color: #e3b0c0; font-weight: bold;">:initial-element</span> 20<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span>
+      <span style="color: #e47980;">(</span>matrix-mul mat1 mat2<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+
+<span style="color: #deb07a;">(</span>time <span style="color: #ffaacf;">(</span>example-cuda-matrix-mul<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">Evaluation took:</span>
+<span style="color: #a0a0cf; font-style: italic;">;;   </span><span style="color: #a0a0cf; font-style: italic;">2.776 seconds of real time</span>
+<span style="color: #a0a0cf; font-style: italic;">;;   </span><span style="color: #a0a0cf; font-style: italic;">2.771769 seconds of total run time (2.600099 user, 0.171670 system)</span>
+<span style="color: #a0a0cf; font-style: italic;">;;   </span><span style="color: #a0a0cf; font-style: italic;">[ Run times consist of 0.032 seconds GC time, and 2.740 seconds non-GC time. ]</span>
+<span style="color: #a0a0cf; font-style: italic;">;;   </span><span style="color: #a0a0cf; font-style: italic;">99.86% CPU</span>
+<span style="color: #a0a0cf; font-style: italic;">;;   </span><span style="color: #a0a0cf; font-style: italic;">7,192,807,350 processor cycles</span>
+<span style="color: #a0a0cf; font-style: italic;">;;   </span><span style="color: #a0a0cf; font-style: italic;">268,435,488 bytes consed</span>
+
+<span style="color: #deb07a;">(</span>time <span style="color: #ffaacf;">(</span>example-cpu-matrix-mul<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">Evaluation took:</span>
+<span style="color: #a0a0cf; font-style: italic;">;;   </span><span style="color: #a0a0cf; font-style: italic;">6.533 seconds of real time</span>
+<span style="color: #a0a0cf; font-style: italic;">;;   </span><span style="color: #a0a0cf; font-style: italic;">6.530840 seconds of total run time (6.530840 user, 0.000000 system)</span>
+<span style="color: #a0a0cf; font-style: italic;">;;   </span><span style="color: #a0a0cf; font-style: italic;">99.97% CPU</span>
+<span style="color: #a0a0cf; font-style: italic;">;;   </span><span style="color: #a0a0cf; font-style: italic;">16,934,213,216 processor cycles</span>
+<span style="color: #a0a0cf; font-style: italic;">;;   </span><span style="color: #a0a0cf; font-style: italic;">14,155,824 bytes consed</span>
+</pre>
+</div>
+
+<p>
+the values dont even scale linearly, the gpu version is much faster, a benchmark figure here would be a good idea but im too lazy to bother with that atm.</p>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

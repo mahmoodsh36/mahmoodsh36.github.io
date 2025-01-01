@@ -1,0 +1,1245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>big data course homework 2</title><!-- for google analytics -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QNNF19VZGH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QNNF19VZGH');
+</script>
+
+<!-- lambda icon, frail attempt -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22100%22 color=%22red%22>λ</text></svg>">
+<!-- not-so-awesome awesome font -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="/main.css">
+<!-- for dark mode -->
+<script src="darkmode.js"></script>
+<script src="main.js"></script>
+<script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div class="navbar">
+  <a href='/'>home</a>
+  <a href='/blog.html'>blog</a>
+  <a href='/search.html'>search</a>
+  <a href='/about.html'>about</a>
+  <div id="darkModeToggle" onclick="toggleDarkMode()">
+    &#9680; <!-- Circle with left half black -->
+  </div>
+</div>
+<div class="toc">
+  <span class="toc-title-container">
+    <a class='feather' data-feather='menu'></a>
+    <span class="toc-title">table of contents</span>
+  </span>
+  <div class="toc-list">
+  </div>
+</div><h1 class="main-title">big data course homework 2</h1><span class='date'>2024-08-16</span>
+</div>
+<div id="content" class="content">
+<p>
+for each task write a single line in mongodb shell to get it done.
+</p>
+<div test="test" class="fancy-block task" data-before="&lt;p&gt;
+task: &lt;/p&gt;
+" id="dum-human-comp" data-id="dum-human-comp">
+<p>
+create a database named <code>HW</code>.
+</p>
+
+</div>
+
+<p>
+refer to mongodb/create database
+</p>
+<div class="org-src-container" data-language="mongo">
+<pre class="src src-mongo">use HW
+</pre>
+</div>
+
+<div test="test" class="fancy-block task" data-before="&lt;p&gt;
+task: &lt;/p&gt;
+" id="dum-human-comp" data-id="dum-human-comp">
+<p>
+create a collection named <code>students</code>.
+</p>
+
+</div>
+
+<div class="org-src-container" data-language="mongo">
+<pre class="src src-mongo">db.createCollection<span style="color: #deb07a;">(</span><span style="color: #f3a0a0;">'students'</span><span style="color: #deb07a;">)</span>
+</pre>
+</div>
+
+<div test="test" class="fancy-block task" data-before="&lt;p&gt;
+task: &lt;/p&gt;
+" id="dum-human-comp" data-id="dum-human-comp">
+<p>
+add atleast 10 documents to the <code>students</code> collection. make sure the fields have sensible values. here is the structure of the documents you need to add:
+</p>
+<ul class="org-ul">
+<li>student id, <code>_id</code>.</li>
+<li>student name, including first name and last name.</li>
+<li>date of birth, <code>bdate</code>.</li>
+<li>list of courses the student studies</li>
+</ul>
+<p>
+where each course in the list of courses has the following properties:
+</p>
+<ul class="org-ul">
+<li>course code, <code>ccode</code>.</li>
+<li>course name, <code>cname</code>.</li>
+<li><code>grade</code>.</li>
+</ul>
+<p>
+in addition:
+</p>
+<ul class="org-ul">
+<li>the field <code>phones</code> should contain the phone numbers used to contact a student</li>
+<li>the field <code>major</code> contains the main field of study of the student.</li>
+<li>the field <code>minor</code> contains the secondary field of study of the student.</li>
+</ul>
+<p>
+note that not every student has a secondary field of study.
+</p>
+
+</div>
+
+<div class="org-src-container" data-language="mongo">
+<pre class="src src-mongo">db.students.insertMany<span style="color: #deb07a;">(</span><span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">function</span><span style="color: #80aadf;">(</span><span style="color: #ffaacf;">num</span><span style="color: #80aadf;">)</span> <span style="color: #80aadf;">{</span> mylist=<span style="color: #e47980;">[]</span>; <span style="color: #deb07a; font-weight: bold;">for</span> <span style="color: #e47980;">(</span><span style="color: #deb07a; font-weight: bold;">let</span> <span style="color: #ffaacf;">i</span> = 0; i &lt; num; ++i<span style="color: #e47980;">)</span> mylist.push<span style="color: #e47980;">(</span><span style="color: #d0b0ff;">{</span><span style="color: #f3a0a0;">'_id'</span>: i, <span style="color: #f3a0a0;">'name'</span>: <span style="color: #3fc489;">{</span><span style="color: #f3a0a0;">'first'</span>: <span style="color: #f3a0a0;">'mahmood'</span>+i, <span style="color: #f3a0a0;">'last'</span>: <span style="color: #f3a0a0;">'sheikh'</span><span style="color: #3fc489;">}</span>, <span style="color: #f3a0a0;">'bdate'</span>: <span style="color: #deb07a; font-weight: bold;">new</span> <span style="color: #a9c99f;">Date</span><span style="color: #3fc489;">(</span><span style="color: #f3a0a0;">'2002-1-1'</span>+i<span style="color: #3fc489;">)</span>, <span style="color: #f3a0a0;">'courses'</span>: <span style="color: #3fc489;">[</span><span style="color: #6fb3c0;">{</span><span style="color: #f3a0a0;">'ccode'</span>: <span style="color: #f3a0a0;">'0'</span>, <span style="color: #f3a0a0;">'cname'</span>: <span style="color: #f3a0a0;">'algebra'</span>, <span style="color: #f3a0a0;">'grade'</span>: 10*i<span style="color: #6fb3c0;">}</span><span style="color: #3fc489;">]</span>, <span style="color: #f3a0a0;">'phones'</span>: <span style="color: #3fc489;">[</span><span style="color: #f3a0a0;">'052338801'</span>+i, <span style="color: #f3a0a0;">'052449912'</span>+i<span style="color: #3fc489;">]</span>, <span style="color: #f3a0a0;">'major'</span>: <span style="color: #f3a0a0;">'computer science'</span>, ...<span style="color: #3fc489;">(</span>i &gt; 5<span style="color: #3fc489;">)</span> &amp;&amp; <span style="color: #3fc489;">{</span><span style="color: #f3a0a0;">'minor'</span>: <span style="color: #f3a0a0;">'math'</span><span style="color: #3fc489;">}</span><span style="color: #d0b0ff;">}</span><span style="color: #e47980;">)</span>; <span style="color: #deb07a; font-weight: bold;">return</span> mylist; <span style="color: #80aadf;">}</span><span style="color: #ffaacf;">)(</span>10<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>;
+</pre>
+</div>
+
+
+<pre class="example" id="org75ee07c">
+{
+	"acknowledged" : true,
+	"insertedIds" : [
+		0,
+		1,
+		2,
+		3,
+		4,
+		5,
+		6,
+		7,
+		8,
+		9
+	]
+}
+</pre>
+
+<div test="test" class="fancy-block task" data-before="&lt;p&gt;
+task: &lt;/p&gt;
+" id="dum-human-comp" data-id="dum-human-comp">
+<p>
+write a command that shows all the students with all the data on them.
+</p>
+
+</div>
+
+<div class="org-src-container" data-language="mongo">
+<pre class="src src-mongo">db.students.find<span style="color: #deb07a;">()</span>.pretty<span style="color: #deb07a;">()</span>
+</pre>
+</div>
+
+
+<pre class="example" id="orgcab63e6">
+{
+	"_id" : 0,
+	"name" : {
+		"first" : "mahmood0",
+		"last" : "sheikh"
+	},
+	"bdate" : ISODate("2002-01-10T00:00:00Z"),
+	"courses" : [
+		{
+			"ccode" : "0",
+			"cname" : "algebra",
+			"grade" : 0
+		}
+	],
+	"phones" : [
+		"0523388010",
+		"0524499120"
+	],
+	"major" : "computer science"
+}
+{
+	"_id" : 1,
+	"name" : {
+		"first" : "mahmood1",
+		"last" : "sheikh"
+	},
+	"bdate" : ISODate("2002-01-11T00:00:00Z"),
+	"courses" : [
+		{
+			"ccode" : "0",
+			"cname" : "algebra",
+			"grade" : 10
+		}
+	],
+	"phones" : [
+		"0523388011",
+		"0524499121"
+	],
+	"major" : "computer science"
+}
+{
+	"_id" : 2,
+	"name" : {
+		"first" : "mahmood2",
+		"last" : "sheikh"
+	},
+	"bdate" : ISODate("2002-01-12T00:00:00Z"),
+	"courses" : [
+		{
+			"ccode" : "0",
+			"cname" : "algebra",
+			"grade" : 20
+		}
+	],
+	"phones" : [
+		"0523388012",
+		"0524499122"
+	],
+	"major" : "computer science"
+}
+{
+	"_id" : 3,
+	"name" : {
+		"first" : "mahmood3",
+		"last" : "sheikh"
+	},
+	"bdate" : ISODate("2002-01-13T00:00:00Z"),
+	"courses" : [
+		{
+			"ccode" : "0",
+			"cname" : "algebra",
+			"grade" : 30
+		}
+	],
+	"phones" : [
+		"0523388013",
+		"0524499123"
+	],
+	"major" : "computer science"
+}
+{
+	"_id" : 4,
+	"name" : {
+		"first" : "mahmood4",
+		"last" : "sheikh"
+	},
+	"bdate" : ISODate("2002-01-14T00:00:00Z"),
+	"courses" : [
+		{
+			"ccode" : "0",
+			"cname" : "algebra",
+			"grade" : 40
+		}
+	],
+	"phones" : [
+		"0523388014",
+		"0524499124"
+	],
+	"major" : "computer science"
+}
+{
+	"_id" : 5,
+	"name" : {
+		"first" : "mahmood5",
+		"last" : "sheikh"
+	},
+	"bdate" : ISODate("2002-01-15T00:00:00Z"),
+	"courses" : [
+		{
+			"ccode" : "0",
+			"cname" : "algebra",
+			"grade" : 50
+		}
+	],
+	"phones" : [
+		"0523388015",
+		"0524499125"
+	],
+	"major" : "computer science"
+}
+{
+	"_id" : 6,
+	"name" : {
+		"first" : "mahmood6",
+		"last" : "sheikh"
+	},
+	"bdate" : ISODate("2002-01-16T00:00:00Z"),
+	"courses" : [
+		{
+			"ccode" : "0",
+			"cname" : "algebra",
+			"grade" : 60
+		}
+	],
+	"phones" : [
+		"0523388016",
+		"0524499126"
+	],
+	"major" : "computer science",
+	"minor" : "math"
+}
+{
+	"_id" : 7,
+	"name" : {
+		"first" : "mahmood7",
+		"last" : "sheikh"
+	},
+	"bdate" : ISODate("2002-01-17T00:00:00Z"),
+	"courses" : [
+		{
+			"ccode" : "0",
+			"cname" : "algebra",
+			"grade" : 70
+		}
+	],
+	"phones" : [
+		"0523388017",
+		"0524499127"
+	],
+	"major" : "computer science",
+	"minor" : "math"
+}
+{
+	"_id" : 8,
+	"name" : {
+		"first" : "mahmood8",
+		"last" : "sheikh"
+	},
+	"bdate" : ISODate("2002-01-18T00:00:00Z"),
+	"courses" : [
+		{
+			"ccode" : "0",
+			"cname" : "algebra",
+			"grade" : 80
+		}
+	],
+	"phones" : [
+		"0523388018",
+		"0524499128"
+	],
+	"major" : "computer science",
+	"minor" : "math"
+}
+{
+	"_id" : 9,
+	"name" : {
+		"first" : "mahmood9",
+		"last" : "sheikh"
+	},
+	"bdate" : ISODate("2002-01-19T00:00:00Z"),
+	"courses" : [
+		{
+			"ccode" : "0",
+			"cname" : "algebra",
+			"grade" : 90
+		}
+	],
+	"phones" : [
+		"0523388019",
+		"0524499129"
+	],
+	"major" : "computer science",
+	"minor" : "math"
+}
+</pre>
+
+<div test="test" class="fancy-block task" data-before="&lt;p&gt;
+task: &lt;/p&gt;
+" id="dum-human-comp" data-id="dum-human-comp">
+<p>
+for each student, show their name and the names of the courses they study, without id.
+</p>
+
+</div>
+
+<div class="org-src-container" data-language="mongo">
+<pre class="src src-mongo">db.students.find<span style="color: #deb07a;">(</span><span style="color: #ffaacf;">{}</span>, <span style="color: #ffaacf;">{</span><span style="color: #f3a0a0;">'_id'</span>: 0, <span style="color: #f3a0a0;">'courses.ccode'</span>: 0, <span style="color: #f3a0a0;">'courses.grade'</span>: 0, <span style="color: #f3a0a0;">'bdate'</span>: 0, <span style="color: #f3a0a0;">'major'</span>: 0, <span style="color: #f3a0a0;">'minor'</span>: 0, <span style="color: #f3a0a0;">'phones'</span>: 0<span style="color: #ffaacf;">}</span><span style="color: #deb07a;">)</span>.pretty<span style="color: #deb07a;">()</span>
+</pre>
+</div>
+
+
+<pre class="example" id="org5deae09">
+{
+	"name" : {
+		"first" : "mahmood0",
+		"last" : "sheikh"
+	},
+	"courses" : [
+		{
+			"cname" : "algebra"
+		}
+	]
+}
+{
+	"name" : {
+		"first" : "mahmood1",
+		"last" : "sheikh"
+	},
+	"courses" : [
+		{
+			"cname" : "algebra"
+		}
+	]
+}
+{
+	"name" : {
+		"first" : "mahmood2",
+		"last" : "sheikh"
+	},
+	"courses" : [
+		{
+			"cname" : "algebra"
+		}
+	]
+}
+{
+	"name" : {
+		"first" : "mahmood3",
+		"last" : "sheikh"
+	},
+	"courses" : [
+		{
+			"cname" : "algebra"
+		}
+	]
+}
+{
+	"name" : {
+		"first" : "mahmood4",
+		"last" : "sheikh"
+	},
+	"courses" : [
+		{
+			"cname" : "algebra"
+		}
+	]
+}
+{
+	"name" : {
+		"first" : "mahmood5",
+		"last" : "sheikh"
+	},
+	"courses" : [
+		{
+			"cname" : "algebra"
+		}
+	]
+}
+{
+	"name" : {
+		"first" : "mahmood6",
+		"last" : "sheikh"
+	},
+	"courses" : [
+		{
+			"cname" : "algebra"
+		}
+	]
+}
+{
+	"name" : {
+		"first" : "mahmood7",
+		"last" : "sheikh"
+	},
+	"courses" : [
+		{
+			"cname" : "algebra"
+		}
+	]
+}
+{
+	"name" : {
+		"first" : "mahmood8",
+		"last" : "sheikh"
+	},
+	"courses" : [
+		{
+			"cname" : "algebra"
+		}
+	]
+}
+{
+	"name" : {
+		"first" : "mahmood9",
+		"last" : "sheikh"
+	},
+	"courses" : [
+		{
+			"cname" : "algebra"
+		}
+	]
+}
+</pre>
+
+<div test="test" class="fancy-block task" data-before="&lt;p&gt;
+task: &lt;/p&gt;
+" id="dum-human-comp" data-id="dum-human-comp">
+<p>
+show all students, for each student, show their id, a new field named <code>full name</code> that contains both the first and the last name of the student. a new field <code>year</code> that contains the year the student was born. a new field <code>age</code> that shows the age of the student (use <code>$$NOW,$subtract</code>), the phone number field with a single number, and a new field named <code>#courses</code> whose value is the number of courses a student has.
+</p>
+
+</div>
+
+<div class="org-src-container" data-language="mongo">
+<pre class="src src-mongo">db.students.find<span style="color: #deb07a;">(</span><span style="color: #ffaacf;">{}</span>, <span style="color: #ffaacf;">{</span><span style="color: #f3a0a0;">'full name'</span>: <span style="color: #80aadf;">{</span>$concat: <span style="color: #e47980;">[</span><span style="color: #f3a0a0;">'$name.first'</span>, <span style="color: #f3a0a0;">' '</span>, <span style="color: #f3a0a0;">'$name.last'</span><span style="color: #e47980;">]</span><span style="color: #80aadf;">}</span>, <span style="color: #f3a0a0;">'year'</span>: <span style="color: #80aadf;">{</span>$dateToString: <span style="color: #e47980;">{</span><span style="color: #f3a0a0;">'date'</span>: <span style="color: #f3a0a0;">'$bdate'</span>, <span style="color: #f3a0a0;">'format'</span>: <span style="color: #f3a0a0;">'%Y'</span><span style="color: #e47980;">}</span><span style="color: #80aadf;">}</span>, <span style="color: #f3a0a0;">'age'</span>: <span style="color: #80aadf;">{</span>$toInt: <span style="color: #e47980;">{</span>$divide: <span style="color: #d0b0ff;">[</span><span style="color: #3fc489;">{</span>$subtract: <span style="color: #6fb3c0;">[</span><span style="color: #f3a0a0;">'$$NOW'</span>, <span style="color: #f3a0a0;">'$bdate'</span><span style="color: #6fb3c0;">]</span><span style="color: #3fc489;">}</span>, 1000*60*60*24*365<span style="color: #d0b0ff;">]</span><span style="color: #e47980;">}</span><span style="color: #80aadf;">}</span>, <span style="color: #f3a0a0;">'#courses'</span>: <span style="color: #80aadf;">{</span>$size: <span style="color: #f3a0a0;">'$courses'</span><span style="color: #80aadf;">}</span>, <span style="color: #f3a0a0;">'phones'</span>: <span style="color: #80aadf;">{</span>$slice: 1<span style="color: #80aadf;">}</span><span style="color: #ffaacf;">}</span><span style="color: #deb07a;">)</span>.pretty<span style="color: #deb07a;">()</span>
+</pre>
+</div>
+
+
+<pre class="example" id="org5e850de">
+{
+	"_id" : 0,
+	"phones" : [
+		"0523388010"
+	],
+	"full name" : "mahmood0 sheikh",
+	"year" : "2002",
+	"age" : 22,
+	"#courses" : 1
+}
+{
+	"_id" : 1,
+	"phones" : [
+		"0523388011"
+	],
+	"full name" : "mahmood1 sheikh",
+	"year" : "2002",
+	"age" : 22,
+	"#courses" : 1
+}
+{
+	"_id" : 2,
+	"phones" : [
+		"0523388012"
+	],
+	"full name" : "mahmood2 sheikh",
+	"year" : "2002",
+	"age" : 22,
+	"#courses" : 1
+}
+{
+	"_id" : 3,
+	"phones" : [
+		"0523388013"
+	],
+	"full name" : "mahmood3 sheikh",
+	"year" : "2002",
+	"age" : 22,
+	"#courses" : 1
+}
+{
+	"_id" : 4,
+	"phones" : [
+		"0523388014"
+	],
+	"full name" : "mahmood4 sheikh",
+	"year" : "2002",
+	"age" : 22,
+	"#courses" : 1
+}
+{
+	"_id" : 5,
+	"phones" : [
+		"0523388015"
+	],
+	"full name" : "mahmood5 sheikh",
+	"year" : "2002",
+	"age" : 22,
+	"#courses" : 1
+}
+{
+	"_id" : 6,
+	"phones" : [
+		"0523388016"
+	],
+	"full name" : "mahmood6 sheikh",
+	"year" : "2002",
+	"age" : 22,
+	"#courses" : 1
+}
+{
+	"_id" : 7,
+	"phones" : [
+		"0523388017"
+	],
+	"full name" : "mahmood7 sheikh",
+	"year" : "2002",
+	"age" : 22,
+	"#courses" : 1
+}
+{
+	"_id" : 8,
+	"phones" : [
+		"0523388018"
+	],
+	"full name" : "mahmood8 sheikh",
+	"year" : "2002",
+	"age" : 22,
+	"#courses" : 1
+}
+{
+	"_id" : 9,
+	"phones" : [
+		"0523388019"
+	],
+	"full name" : "mahmood9 sheikh",
+	"year" : "2002",
+	"age" : 22,
+	"#courses" : 1
+}
+</pre>
+
+<div test="test" class="fancy-block task" data-before="&lt;p&gt;
+task: &lt;/p&gt;
+" id="dum-human-comp" data-id="dum-human-comp">
+<p>
+show all students, for each student show their id, the number of courses they're in and the number of phones they own. in addition, show their major and minor field of studies joined by a forward slash, in case they dont have a secondary field of study show the main field without a slash.
+</p>
+
+</div>
+
+<div class="org-src-container" data-language="mongo">
+<pre class="src src-mongo">db.students.find<span style="color: #deb07a;">(</span><span style="color: #ffaacf;">{}</span>, <span style="color: #ffaacf;">{</span><span style="color: #f3a0a0;">'full name'</span>: <span style="color: #80aadf;">{</span>$concat: <span style="color: #e47980;">[</span><span style="color: #f3a0a0;">'$name.first'</span>, <span style="color: #f3a0a0;">' '</span>, <span style="color: #f3a0a0;">'$name.last'</span><span style="color: #e47980;">]</span><span style="color: #80aadf;">}</span>, <span style="color: #f3a0a0;">'#courses'</span>: <span style="color: #80aadf;">{</span>$size: <span style="color: #f3a0a0;">'$courses'</span><span style="color: #80aadf;">}</span>, <span style="color: #f3a0a0;">'#phones'</span>: <span style="color: #80aadf;">{</span>$size: <span style="color: #f3a0a0;">'$phones'</span><span style="color: #80aadf;">}</span>, <span style="color: #f3a0a0;">'field of study'</span>: <span style="color: #80aadf;">{</span>$cond: <span style="color: #e47980;">[</span><span style="color: #d0b0ff;">{</span>$eq: <span style="color: #3fc489;">[</span><span style="color: #f3a0a0;">"$minor"</span>, <span style="color: #80aadf;">undefined</span><span style="color: #3fc489;">]</span><span style="color: #d0b0ff;">}</span>, <span style="color: #f3a0a0;">"$major"</span>, <span style="color: #d0b0ff;">{</span>$concat: <span style="color: #3fc489;">[</span><span style="color: #f3a0a0;">"$major"</span>, <span style="color: #f3a0a0;">"/"</span>, <span style="color: #f3a0a0;">"$minor"</span><span style="color: #3fc489;">]</span><span style="color: #d0b0ff;">}</span><span style="color: #e47980;">]</span><span style="color: #80aadf;">}</span><span style="color: #ffaacf;">}</span><span style="color: #deb07a;">)</span>.pretty<span style="color: #deb07a;">()</span>
+</pre>
+</div>
+
+
+<pre class="example" id="orgdb98781">
+{
+	"_id" : 0,
+	"full name" : "mahmood0 sheikh",
+	"#courses" : 1,
+	"#phones" : 2,
+	"field of study" : "computer science"
+}
+{
+	"_id" : 1,
+	"full name" : "mahmood1 sheikh",
+	"#courses" : 1,
+	"#phones" : 2,
+	"field of study" : "computer science"
+}
+{
+	"_id" : 2,
+	"full name" : "mahmood2 sheikh",
+	"#courses" : 1,
+	"#phones" : 2,
+	"field of study" : "computer science"
+}
+{
+	"_id" : 3,
+	"full name" : "mahmood3 sheikh",
+	"#courses" : 1,
+	"#phones" : 2,
+	"field of study" : "computer science"
+}
+{
+	"_id" : 4,
+	"full name" : "mahmood4 sheikh",
+	"#courses" : 1,
+	"#phones" : 2,
+	"field of study" : "computer science"
+}
+{
+	"_id" : 5,
+	"full name" : "mahmood5 sheikh",
+	"#courses" : 1,
+	"#phones" : 2,
+	"field of study" : "computer science"
+}
+{
+	"_id" : 6,
+	"full name" : "mahmood6 sheikh",
+	"#courses" : 1,
+	"#phones" : 2,
+	"field of study" : "computer science/math"
+}
+{
+	"_id" : 7,
+	"full name" : "mahmood7 sheikh",
+	"#courses" : 1,
+	"#phones" : 2,
+	"field of study" : "computer science/math"
+}
+{
+	"_id" : 8,
+	"full name" : "mahmood8 sheikh",
+	"#courses" : 1,
+	"#phones" : 2,
+	"field of study" : "computer science/math"
+}
+{
+	"_id" : 9,
+	"full name" : "mahmood9 sheikh",
+	"#courses" : 1,
+	"#phones" : 2,
+	"field of study" : "computer science/math"
+}
+</pre>
+
+<div test="test" class="fancy-block task" data-before="&lt;p&gt;
+task: &lt;/p&gt;
+" id="dum-human-comp" data-id="dum-human-comp">
+<p>
+show the details of the students with a specific id of your choice.
+</p>
+
+</div>
+
+<div class="org-src-container" data-language="mongo">
+<pre class="src src-mongo">db.students.find<span style="color: #deb07a;">(</span><span style="color: #ffaacf;">{</span><span style="color: #f3a0a0;">'_id'</span>: 1<span style="color: #ffaacf;">}</span><span style="color: #deb07a;">)</span>.pretty<span style="color: #deb07a;">()</span>
+</pre>
+</div>
+
+
+<pre class="example" id="org98757a8">
+{
+	"_id" : 1,
+	"name" : {
+		"first" : "mahmood1",
+		"last" : "sheikh"
+	},
+	"bdate" : ISODate("2002-01-11T00:00:00Z"),
+	"courses" : [
+		{
+			"ccode" : "0",
+			"cname" : "algebra",
+			"grade" : 10
+		}
+	],
+	"phones" : [
+		"0523388011",
+		"0524499121"
+	],
+	"major" : "computer science"
+}
+</pre>
+
+
+<div test="test" class="fancy-block task" data-before="&lt;p&gt;
+task: &lt;/p&gt;
+" id="dum-human-comp" data-id="dum-human-comp">
+<p>
+show the details of all the students except one with a specific id of your choice.
+</p>
+
+</div>
+
+<div class="org-src-container" data-language="mongo">
+<pre class="src src-mongo">db.students.find<span style="color: #deb07a;">(</span><span style="color: #ffaacf;">{</span><span style="color: #f3a0a0;">'_id'</span>: <span style="color: #80aadf;">{</span>$ne: 3<span style="color: #80aadf;">}</span><span style="color: #ffaacf;">}</span><span style="color: #deb07a;">)</span>.pretty<span style="color: #deb07a;">()</span>
+</pre>
+</div>
+
+
+<pre class="example" id="org4c3dd00">
+{
+	"_id" : 0,
+	"name" : {
+		"first" : "mahmood0",
+		"last" : "sheikh"
+	},
+	"bdate" : ISODate("2002-01-10T00:00:00Z"),
+	"courses" : [
+		{
+			"ccode" : "0",
+			"cname" : "algebra",
+			"grade" : 0
+		}
+	],
+	"phones" : [
+		"0523388010",
+		"0524499120"
+	],
+	"major" : "computer science"
+}
+{
+	"_id" : 1,
+	"name" : {
+		"first" : "mahmood1",
+		"last" : "sheikh"
+	},
+	"bdate" : ISODate("2002-01-11T00:00:00Z"),
+	"courses" : [
+		{
+			"ccode" : "0",
+			"cname" : "algebra",
+			"grade" : 10
+		}
+	],
+	"phones" : [
+		"0523388011",
+		"0524499121"
+	],
+	"major" : "computer science"
+}
+{
+	"_id" : 2,
+	"name" : {
+		"first" : "mahmood2",
+		"last" : "sheikh"
+	},
+	"bdate" : ISODate("2002-01-12T00:00:00Z"),
+	"courses" : [
+		{
+			"ccode" : "0",
+			"cname" : "algebra",
+			"grade" : 20
+		}
+	],
+	"phones" : [
+		"0523388012",
+		"0524499122"
+	],
+	"major" : "computer science"
+}
+{
+	"_id" : 4,
+	"name" : {
+		"first" : "mahmood4",
+		"last" : "sheikh"
+	},
+	"bdate" : ISODate("2002-01-14T00:00:00Z"),
+	"courses" : [
+		{
+			"ccode" : "0",
+			"cname" : "algebra",
+			"grade" : 40
+		}
+	],
+	"phones" : [
+		"0523388014",
+		"0524499124"
+	],
+	"major" : "computer science"
+}
+{
+	"_id" : 5,
+	"name" : {
+		"first" : "mahmood5",
+		"last" : "sheikh"
+	},
+	"bdate" : ISODate("2002-01-15T00:00:00Z"),
+	"courses" : [
+		{
+			"ccode" : "0",
+			"cname" : "algebra",
+			"grade" : 50
+		}
+	],
+	"phones" : [
+		"0523388015",
+		"0524499125"
+	],
+	"major" : "computer science"
+}
+{
+	"_id" : 6,
+	"name" : {
+		"first" : "mahmood6",
+		"last" : "sheikh"
+	},
+	"bdate" : ISODate("2002-01-16T00:00:00Z"),
+	"courses" : [
+		{
+			"ccode" : "0",
+			"cname" : "algebra",
+			"grade" : 60
+		}
+	],
+	"phones" : [
+		"0523388016",
+		"0524499126"
+	],
+	"major" : "computer science",
+	"minor" : "math"
+}
+{
+	"_id" : 7,
+	"name" : {
+		"first" : "mahmood7",
+		"last" : "sheikh"
+	},
+	"bdate" : ISODate("2002-01-17T00:00:00Z"),
+	"courses" : [
+		{
+			"ccode" : "0",
+			"cname" : "algebra",
+			"grade" : 70
+		}
+	],
+	"phones" : [
+		"0523388017",
+		"0524499127"
+	],
+	"major" : "computer science",
+	"minor" : "math"
+}
+{
+	"_id" : 8,
+	"name" : {
+		"first" : "mahmood8",
+		"last" : "sheikh"
+	},
+	"bdate" : ISODate("2002-01-18T00:00:00Z"),
+	"courses" : [
+		{
+			"ccode" : "0",
+			"cname" : "algebra",
+			"grade" : 80
+		}
+	],
+	"phones" : [
+		"0523388018",
+		"0524499128"
+	],
+	"major" : "computer science",
+	"minor" : "math"
+}
+{
+	"_id" : 9,
+	"name" : {
+		"first" : "mahmood9",
+		"last" : "sheikh"
+	},
+	"bdate" : ISODate("2002-01-19T00:00:00Z"),
+	"courses" : [
+		{
+			"ccode" : "0",
+			"cname" : "algebra",
+			"grade" : 90
+		}
+	],
+	"phones" : [
+		"0523388019",
+		"0524499129"
+	],
+	"major" : "computer science",
+	"minor" : "math"
+}
+</pre>
+
+<div test="test" class="fancy-block task" data-before="&lt;p&gt;
+task: &lt;/p&gt;
+" id="dum-human-comp" data-id="dum-human-comp">
+<p>
+show the details of 3 students with specific ids of your choice.
+</p>
+
+</div>
+
+<div class="org-src-container" data-language="mongo">
+<pre class="src src-mongo">db.students.find<span style="color: #deb07a;">(</span><span style="color: #ffaacf;">{</span><span style="color: #f3a0a0;">'_id'</span>: <span style="color: #80aadf;">{</span>$nin: <span style="color: #e47980;">[</span>1, 2, 3<span style="color: #e47980;">]</span><span style="color: #80aadf;">}</span><span style="color: #ffaacf;">}</span><span style="color: #deb07a;">)</span>.pretty<span style="color: #deb07a;">()</span>
+</pre>
+</div>
+
+
+<pre class="example" id="orge509d45">
+{
+	"_id" : 0,
+	"name" : {
+		"first" : "mahmood0",
+		"last" : "sheikh"
+	},
+	"bdate" : ISODate("2002-01-10T00:00:00Z"),
+	"courses" : [
+		{
+			"ccode" : "0",
+			"cname" : "algebra",
+			"grade" : 0
+		}
+	],
+	"phones" : [
+		"0523388010",
+		"0524499120"
+	],
+	"major" : "computer science"
+}
+{
+	"_id" : 4,
+	"name" : {
+		"first" : "mahmood4",
+		"last" : "sheikh"
+	},
+	"bdate" : ISODate("2002-01-14T00:00:00Z"),
+	"courses" : [
+		{
+			"ccode" : "0",
+			"cname" : "algebra",
+			"grade" : 40
+		}
+	],
+	"phones" : [
+		"0523388014",
+		"0524499124"
+	],
+	"major" : "computer science"
+}
+{
+	"_id" : 5,
+	"name" : {
+		"first" : "mahmood5",
+		"last" : "sheikh"
+	},
+	"bdate" : ISODate("2002-01-15T00:00:00Z"),
+	"courses" : [
+		{
+			"ccode" : "0",
+			"cname" : "algebra",
+			"grade" : 50
+		}
+	],
+	"phones" : [
+		"0523388015",
+		"0524499125"
+	],
+	"major" : "computer science"
+}
+{
+	"_id" : 6,
+	"name" : {
+		"first" : "mahmood6",
+		"last" : "sheikh"
+	},
+	"bdate" : ISODate("2002-01-16T00:00:00Z"),
+	"courses" : [
+		{
+			"ccode" : "0",
+			"cname" : "algebra",
+			"grade" : 60
+		}
+	],
+	"phones" : [
+		"0523388016",
+		"0524499126"
+	],
+	"major" : "computer science",
+	"minor" : "math"
+}
+{
+	"_id" : 7,
+	"name" : {
+		"first" : "mahmood7",
+		"last" : "sheikh"
+	},
+	"bdate" : ISODate("2002-01-17T00:00:00Z"),
+	"courses" : [
+		{
+			"ccode" : "0",
+			"cname" : "algebra",
+			"grade" : 70
+		}
+	],
+	"phones" : [
+		"0523388017",
+		"0524499127"
+	],
+	"major" : "computer science",
+	"minor" : "math"
+}
+{
+	"_id" : 8,
+	"name" : {
+		"first" : "mahmood8",
+		"last" : "sheikh"
+	},
+	"bdate" : ISODate("2002-01-18T00:00:00Z"),
+	"courses" : [
+		{
+			"ccode" : "0",
+			"cname" : "algebra",
+			"grade" : 80
+		}
+	],
+	"phones" : [
+		"0523388018",
+		"0524499128"
+	],
+	"major" : "computer science",
+	"minor" : "math"
+}
+{
+	"_id" : 9,
+	"name" : {
+		"first" : "mahmood9",
+		"last" : "sheikh"
+	},
+	"bdate" : ISODate("2002-01-19T00:00:00Z"),
+	"courses" : [
+		{
+			"ccode" : "0",
+			"cname" : "algebra",
+			"grade" : 90
+		}
+	],
+	"phones" : [
+		"0523388019",
+		"0524499129"
+	],
+	"major" : "computer science",
+	"minor" : "math"
+}
+</pre>
+
+<div test="test" class="fancy-block task" data-before="&lt;p&gt;
+task: &lt;/p&gt;
+" id="dum-human-comp" data-id="dum-human-comp">
+<p>
+show the details of the students whose date of birth is within the span of two dates of your choice.
+</p>
+
+</div>
+
+<div class="org-src-container" data-language="mongo">
+<pre class="src src-mongo">db.students.find<span style="color: #deb07a;">(</span><span style="color: #ffaacf;">{</span>bdate: <span style="color: #80aadf;">{</span>$gte: <span style="color: #deb07a; font-weight: bold;">new</span> <span style="color: #a9c99f;">Date</span><span style="color: #e47980;">(</span><span style="color: #f3a0a0;">"2000-01-01"</span><span style="color: #e47980;">)</span>, $lte: <span style="color: #deb07a; font-weight: bold;">new</span> <span style="color: #a9c99f;">Date</span><span style="color: #e47980;">(</span><span style="color: #f3a0a0;">"2005-01-01"</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">}</span><span style="color: #ffaacf;">}</span><span style="color: #deb07a;">)</span>;
+</pre>
+</div>
+
+
+<pre class="example" id="orgc32ffff">
+{ "_id" : 0, "name" : { "first" : "mahmood0", "last" : "sheikh" }, "bdate" : ISODate("2002-01-10T00:00:00Z"), "courses" : [ { "ccode" : "0", "cname" : "algebra", "grade" : 0 } ], "phones" : [ "0523388010", "0524499120" ], "major" : "computer science" }
+{ "_id" : 1, "name" : { "first" : "mahmood1", "last" : "sheikh" }, "bdate" : ISODate("2002-01-11T00:00:00Z"), "courses" : [ { "ccode" : "0", "cname" : "algebra", "grade" : 10 } ], "phones" : [ "0523388011", "0524499121" ], "major" : "computer science" }
+{ "_id" : 2, "name" : { "first" : "mahmood2", "last" : "sheikh" }, "bdate" : ISODate("2002-01-12T00:00:00Z"), "courses" : [ { "ccode" : "0", "cname" : "algebra", "grade" : 20 } ], "phones" : [ "0523388012", "0524499122" ], "major" : "computer science" }
+{ "_id" : 3, "name" : { "first" : "mahmood3", "last" : "sheikh" }, "bdate" : ISODate("2002-01-13T00:00:00Z"), "courses" : [ { "ccode" : "0", "cname" : "algebra", "grade" : 30 } ], "phones" : [ "0523388013", "0524499123" ], "major" : "computer science" }
+{ "_id" : 4, "name" : { "first" : "mahmood4", "last" : "sheikh" }, "bdate" : ISODate("2002-01-14T00:00:00Z"), "courses" : [ { "ccode" : "0", "cname" : "algebra", "grade" : 40 } ], "phones" : [ "0523388014", "0524499124" ], "major" : "computer science" }
+{ "_id" : 5, "name" : { "first" : "mahmood5", "last" : "sheikh" }, "bdate" : ISODate("2002-01-15T00:00:00Z"), "courses" : [ { "ccode" : "0", "cname" : "algebra", "grade" : 50 } ], "phones" : [ "0523388015", "0524499125" ], "major" : "computer science" }
+{ "_id" : 6, "name" : { "first" : "mahmood6", "last" : "sheikh" }, "bdate" : ISODate("2002-01-16T00:00:00Z"), "courses" : [ { "ccode" : "0", "cname" : "algebra", "grade" : 60 } ], "phones" : [ "0523388016", "0524499126" ], "major" : "computer science", "minor" : "math" }
+{ "_id" : 7, "name" : { "first" : "mahmood7", "last" : "sheikh" }, "bdate" : ISODate("2002-01-17T00:00:00Z"), "courses" : [ { "ccode" : "0", "cname" : "algebra", "grade" : 70 } ], "phones" : [ "0523388017", "0524499127" ], "major" : "computer science", "minor" : "math" }
+{ "_id" : 8, "name" : { "first" : "mahmood8", "last" : "sheikh" }, "bdate" : ISODate("2002-01-18T00:00:00Z"), "courses" : [ { "ccode" : "0", "cname" : "algebra", "grade" : 80 } ], "phones" : [ "0523388018", "0524499128" ], "major" : "computer science", "minor" : "math" }
+{ "_id" : 9, "name" : { "first" : "mahmood9", "last" : "sheikh" }, "bdate" : ISODate("2002-01-19T00:00:00Z"), "courses" : [ { "ccode" : "0", "cname" : "algebra", "grade" : 90 } ], "phones" : [ "0523388019", "0524499129" ], "major" : "computer science", "minor" : "math" }
+</pre>
+
+<div test="test" class="fancy-block task" data-before="&lt;p&gt;
+task: &lt;/p&gt;
+" id="dum-human-comp" data-id="dum-human-comp">
+<p>
+show all the students that are in a specific course of your choice.
+</p>
+
+</div>
+
+<div class="org-src-container" data-language="mongo">
+<pre class="src src-mongo">db.students.find<span style="color: #deb07a;">(</span><span style="color: #ffaacf;">{</span><span style="color: #f3a0a0;">"courses.cname"</span>: <span style="color: #f3a0a0;">"algebra"</span><span style="color: #ffaacf;">}</span><span style="color: #deb07a;">)</span>;
+</pre>
+</div>
+
+
+<pre class="example" id="orgf6f85ed">
+{ "_id" : 0, "name" : { "first" : "mahmood0", "last" : "sheikh" }, "bdate" : ISODate("2002-01-10T00:00:00Z"), "courses" : [ { "ccode" : "0", "cname" : "algebra", "grade" : 0 } ], "phones" : [ "0523388010", "0524499120" ], "major" : "computer science" }
+{ "_id" : 1, "name" : { "first" : "mahmood1", "last" : "sheikh" }, "bdate" : ISODate("2002-01-11T00:00:00Z"), "courses" : [ { "ccode" : "0", "cname" : "algebra", "grade" : 10 } ], "phones" : [ "0523388011", "0524499121" ], "major" : "computer science" }
+{ "_id" : 2, "name" : { "first" : "mahmood2", "last" : "sheikh" }, "bdate" : ISODate("2002-01-12T00:00:00Z"), "courses" : [ { "ccode" : "0", "cname" : "algebra", "grade" : 20 } ], "phones" : [ "0523388012", "0524499122" ], "major" : "computer science" }
+{ "_id" : 3, "name" : { "first" : "mahmood3", "last" : "sheikh" }, "bdate" : ISODate("2002-01-13T00:00:00Z"), "courses" : [ { "ccode" : "0", "cname" : "algebra", "grade" : 30 } ], "phones" : [ "0523388013", "0524499123" ], "major" : "computer science" }
+{ "_id" : 4, "name" : { "first" : "mahmood4", "last" : "sheikh" }, "bdate" : ISODate("2002-01-14T00:00:00Z"), "courses" : [ { "ccode" : "0", "cname" : "algebra", "grade" : 40 } ], "phones" : [ "0523388014", "0524499124" ], "major" : "computer science" }
+{ "_id" : 5, "name" : { "first" : "mahmood5", "last" : "sheikh" }, "bdate" : ISODate("2002-01-15T00:00:00Z"), "courses" : [ { "ccode" : "0", "cname" : "algebra", "grade" : 50 } ], "phones" : [ "0523388015", "0524499125" ], "major" : "computer science" }
+{ "_id" : 6, "name" : { "first" : "mahmood6", "last" : "sheikh" }, "bdate" : ISODate("2002-01-16T00:00:00Z"), "courses" : [ { "ccode" : "0", "cname" : "algebra", "grade" : 60 } ], "phones" : [ "0523388016", "0524499126" ], "major" : "computer science", "minor" : "math" }
+{ "_id" : 7, "name" : { "first" : "mahmood7", "last" : "sheikh" }, "bdate" : ISODate("2002-01-17T00:00:00Z"), "courses" : [ { "ccode" : "0", "cname" : "algebra", "grade" : 70 } ], "phones" : [ "0523388017", "0524499127" ], "major" : "computer science", "minor" : "math" }
+{ "_id" : 8, "name" : { "first" : "mahmood8", "last" : "sheikh" }, "bdate" : ISODate("2002-01-18T00:00:00Z"), "courses" : [ { "ccode" : "0", "cname" : "algebra", "grade" : 80 } ], "phones" : [ "0523388018", "0524499128" ], "major" : "computer science", "minor" : "math" }
+{ "_id" : 9, "name" : { "first" : "mahmood9", "last" : "sheikh" }, "bdate" : ISODate("2002-01-19T00:00:00Z"), "courses" : [ { "ccode" : "0", "cname" : "algebra", "grade" : 90 } ], "phones" : [ "0523388019", "0524499129" ], "major" : "computer science", "minor" : "math" }
+</pre>
+
+<div test="test" class="fancy-block task" data-before="&lt;p&gt;
+task: &lt;/p&gt;
+" id="dum-human-comp" data-id="dum-human-comp">
+<p>
+show all the students that are in a specific course of your choice whose grades are above 80, or some other number of your choice.
+</p>
+
+</div>
+
+<div class="org-src-container" data-language="mongo">
+<pre class="src src-mongo">db.students.find<span style="color: #deb07a;">(</span><span style="color: #ffaacf;">{</span><span style="color: #f3a0a0;">"courses.cname"</span>: <span style="color: #f3a0a0;">"algebra"</span>, <span style="color: #f3a0a0;">"courses.grade"</span>: <span style="color: #80aadf;">{</span>$gt: 70<span style="color: #80aadf;">}</span><span style="color: #ffaacf;">}</span><span style="color: #deb07a;">)</span>;
+</pre>
+</div>
+
+
+<pre class="example">
+{ "_id" : 8, "name" : { "first" : "mahmood8", "last" : "sheikh" }, "bdate" : ISODate("2002-01-18T00:00:00Z"), "courses" : [ { "ccode" : "0", "cname" : "algebra", "grade" : 80 } ], "phones" : [ "0523388018", "0524499128" ], "major" : "computer science", "minor" : "math" }
+{ "_id" : 9, "name" : { "first" : "mahmood9", "last" : "sheikh" }, "bdate" : ISODate("2002-01-19T00:00:00Z"), "courses" : [ { "ccode" : "0", "cname" : "algebra", "grade" : 90 } ], "phones" : [ "0523388019", "0524499129" ], "major" : "computer science", "minor" : "math" }
+</pre>
+
+<div test="test" class="fancy-block task" data-before="&lt;p&gt;
+task: &lt;/p&gt;
+" id="dum-human-comp" data-id="dum-human-comp">
+<p>
+show all the students with only one phone number.
+</p>
+
+</div>
+
+<div class="org-src-container" data-language="mongo">
+<pre class="src src-mongo">db.students.find<span style="color: #deb07a;">(</span><span style="color: #ffaacf;">{</span><span style="color: #f3a0a0;">"phones"</span>: <span style="color: #80aadf;">{</span><span style="color: #f3a0a0;">"$size"</span>: 2<span style="color: #80aadf;">}</span><span style="color: #ffaacf;">}</span><span style="color: #deb07a;">)</span>;
+</pre>
+</div>
+
+
+<pre class="example" id="orgc7123dd">
+{ "_id" : 0, "name" : { "first" : "mahmood0", "last" : "sheikh" }, "bdate" : ISODate("2002-01-10T00:00:00Z"), "courses" : [ { "ccode" : "0", "cname" : "algebra", "grade" : 0 } ], "phones" : [ "0523388010", "0524499120" ], "major" : "computer science" }
+{ "_id" : 1, "name" : { "first" : "mahmood1", "last" : "sheikh" }, "bdate" : ISODate("2002-01-11T00:00:00Z"), "courses" : [ { "ccode" : "0", "cname" : "algebra", "grade" : 10 } ], "phones" : [ "0523388011", "0524499121" ], "major" : "computer science" }
+{ "_id" : 2, "name" : { "first" : "mahmood2", "last" : "sheikh" }, "bdate" : ISODate("2002-01-12T00:00:00Z"), "courses" : [ { "ccode" : "0", "cname" : "algebra", "grade" : 20 } ], "phones" : [ "0523388012", "0524499122" ], "major" : "computer science" }
+{ "_id" : 3, "name" : { "first" : "mahmood3", "last" : "sheikh" }, "bdate" : ISODate("2002-01-13T00:00:00Z"), "courses" : [ { "ccode" : "0", "cname" : "algebra", "grade" : 30 } ], "phones" : [ "0523388013", "0524499123" ], "major" : "computer science" }
+{ "_id" : 4, "name" : { "first" : "mahmood4", "last" : "sheikh" }, "bdate" : ISODate("2002-01-14T00:00:00Z"), "courses" : [ { "ccode" : "0", "cname" : "algebra", "grade" : 40 } ], "phones" : [ "0523388014", "0524499124" ], "major" : "computer science" }
+{ "_id" : 5, "name" : { "first" : "mahmood5", "last" : "sheikh" }, "bdate" : ISODate("2002-01-15T00:00:00Z"), "courses" : [ { "ccode" : "0", "cname" : "algebra", "grade" : 50 } ], "phones" : [ "0523388015", "0524499125" ], "major" : "computer science" }
+{ "_id" : 6, "name" : { "first" : "mahmood6", "last" : "sheikh" }, "bdate" : ISODate("2002-01-16T00:00:00Z"), "courses" : [ { "ccode" : "0", "cname" : "algebra", "grade" : 60 } ], "phones" : [ "0523388016", "0524499126" ], "major" : "computer science", "minor" : "math" }
+{ "_id" : 7, "name" : { "first" : "mahmood7", "last" : "sheikh" }, "bdate" : ISODate("2002-01-17T00:00:00Z"), "courses" : [ { "ccode" : "0", "cname" : "algebra", "grade" : 70 } ], "phones" : [ "0523388017", "0524499127" ], "major" : "computer science", "minor" : "math" }
+{ "_id" : 8, "name" : { "first" : "mahmood8", "last" : "sheikh" }, "bdate" : ISODate("2002-01-18T00:00:00Z"), "courses" : [ { "ccode" : "0", "cname" : "algebra", "grade" : 80 } ], "phones" : [ "0523388018", "0524499128" ], "major" : "computer science", "minor" : "math" }
+{ "_id" : 9, "name" : { "first" : "mahmood9", "last" : "sheikh" }, "bdate" : ISODate("2002-01-19T00:00:00Z"), "courses" : [ { "ccode" : "0", "cname" : "algebra", "grade" : 90 } ], "phones" : [ "0523388019", "0524499129" ], "major" : "computer science", "minor" : "math" }
+</pre>
+
+<div test="test" class="fancy-block task" data-before="&lt;p&gt;
+task: &lt;/p&gt;
+" id="dum-human-comp" data-id="dum-human-comp">
+<p>
+show the student with a specific phone number of your choice.
+</p>
+
+</div>
+
+<div class="org-src-container" data-language="mongo">
+<pre class="src src-mongo">db.students.find<span style="color: #deb07a;">(</span><span style="color: #ffaacf;">{</span><span style="color: #f3a0a0;">"phones"</span>: <span style="color: #f3a0a0;">"0524499128"</span><span style="color: #ffaacf;">}</span><span style="color: #deb07a;">)</span>;
+</pre>
+</div>
+
+
+<pre class="example">
+{ "_id" : 8, "name" : { "first" : "mahmood8", "last" : "sheikh" }, "bdate" : ISODate("2002-01-18T00:00:00Z"), "courses" : [ { "ccode" : "0", "cname" : "algebra", "grade" : 80 } ], "phones" : [ "0523388018", "0524499128" ], "major" : "computer science", "minor" : "math" }
+</pre>
+
+<div test="test" class="fancy-block task" data-before="&lt;p&gt;
+task: &lt;/p&gt;
+" id="dum-human-comp" data-id="dum-human-comp">
+<p>
+show the number of students that are in a collection by storing the results in a <code>cursor</code> variable with usage of <code>count</code>.
+</p>
+
+</div>
+
+<div class="org-src-container" data-language="mongo">
+<pre class="src src-mongo"><span style="color: #deb07a; font-weight: bold;">var</span> <span style="color: #ffaacf;">myCursor</span> = db.students.find<span style="color: #deb07a;">(</span><span style="color: #ffaacf;">{}</span><span style="color: #deb07a;">)</span>; myCursor.count<span style="color: #deb07a;">()</span>
+</pre>
+</div>
+
+
+<pre class="example">
+10
+</pre>
+</div>
+</body>
+</html>

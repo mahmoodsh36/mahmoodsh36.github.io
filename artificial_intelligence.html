@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>artificial intelligence</title><!-- for google analytics -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QNNF19VZGH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QNNF19VZGH');
+</script>
+
+<!-- lambda icon, frail attempt -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22100%22 color=%22red%22>λ</text></svg>">
+<!-- not-so-awesome awesome font -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="/main.css">
+<!-- for dark mode -->
+<script src="darkmode.js"></script>
+<script src="main.js"></script>
+<script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div class="navbar">
+  <a href='/'>home</a>
+  <a href='/blog.html'>blog</a>
+  <a href='/search.html'>search</a>
+  <a href='/about.html'>about</a>
+  <div id="darkModeToggle" onclick="toggleDarkMode()">
+    &#9680; <!-- Circle with left half black -->
+  </div>
+</div>
+<div class="toc">
+  <span class="toc-title-container">
+    <a class='feather' data-feather='menu'></a>
+    <span class="toc-title">table of contents</span>
+  </span>
+  <div class="toc-list">
+  </div>
+</div><h1 class="main-title">artificial intelligence</h1><span class='date'>2022-10-03</span>
+</div>
+<div id="content" class="content">
+<p>
+<b>everything should be done from scratch and in lisp</b>
+</p>
+<div id="outline-container-org01a0bea" class="outline-2">
+<h2 id="org01a0bea">roadmap <code>[3/15]</code></h2>
+<div class="outline-text-2" id="text-org01a0bea">
+</div>
+<div id="outline-container-org3fa3b1e" class="outline-3">
+<h3 id="org3fa3b1e"><span class="done DONE">DONE</span> implement <a href="/decision_tree.html">decision tree</a> learning</h3>
+<div class="outline-text-3" id="text-org3fa3b1e">
+<ul class="org-ul">
+<li>State "DONE"       from "TODO"       <span class="timestamp-wrapper"><span class="timestamp">[2023-05-20 Sat 17:56:00]</span></span></li>
+<li>State "TODO"       from              <span class="timestamp-wrapper"><span class="timestamp">[2023-05-20 Sat 17:56:00]</span></span></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org89e5b42" class="outline-3">
+<h3 id="org89e5b42"><span class="done DONE">DONE</span> implement multivariate linear regression</h3>
+<div class="outline-text-3" id="text-org89e5b42">
+<ul class="org-ul">
+<li>State "DONE"       from "TODO"       <span class="timestamp-wrapper"><span class="timestamp">[2023-05-20 Sat 17:56:00]</span></span></li>
+<li>State "TODO"       from              <span class="timestamp-wrapper"><span class="timestamp">[2023-05-20 Sat 17:56:00]</span></span></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgc5915f6" class="outline-3">
+<h3 id="orgc5915f6"><span class="done DONE">DONE</span> implement <a href="/feedforward_neural_network.html">feedforward neural network</a>s</h3>
+<div class="outline-text-3" id="text-orgc5915f6">
+<ul class="org-ul">
+<li>State "DONE"       from "TODO"       <span class="timestamp-wrapper"><span class="timestamp">[2023-05-20 Sat 18:06:00]</span></span></li>
+<li>State "TODO"       from              <span class="timestamp-wrapper"><span class="timestamp">[2023-05-20 Sat 18:06:00]</span></span></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org5914efc" class="outline-3">
+<h3 id="org5914efc"><span class="todo GO">GO</span> implement a graphical interface for visual analysis</h3>
+<div class="outline-text-3" id="text-org5914efc">
+<ul class="org-ul">
+<li>State "GO"         from "TODO"       <span class="timestamp-wrapper"><span class="timestamp">[2023-05-20 Sat 18:15:00]</span></span></li>
+<li>State "TODO"       from              <span class="timestamp-wrapper"><span class="timestamp">[2023-05-20 Sat 18:11:00]</span></span></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org1b11151" class="outline-3">
+<h3 id="org1b11151"><span class="todo TODO">TODO</span> abstraction over GPU APIs (CUDA, opencl)</h3>
+<div class="outline-text-3" id="text-org1b11151">
+<ul class="org-ul">
+<li>State "TODO"       from              <span class="timestamp-wrapper"><span class="timestamp">[2023-05-20 Sat 18:18:00]</span></span></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgd067149" class="outline-3">
+<h3 id="orgd067149"><span class="todo TODO">TODO</span> implement <a href="/convolutional_neural_network.html">convolutional neural network</a>s (for image processing)</h3>
+<div class="outline-text-3" id="text-orgd067149">
+<ul class="org-ul">
+<li>State "TODO"       from              <span class="timestamp-wrapper"><span class="timestamp">[2023-05-20 Sat 03:05:00]</span></span></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org4ac1530" class="outline-3">
+<h3 id="org4ac1530"><span class="todo TODO">TODO</span> implement reinforcement learning (teach agents some physics?)</h3>
+<div class="outline-text-3" id="text-org4ac1530">
+<ul class="org-ul">
+<li>State "TODO"       from              <span class="timestamp-wrapper"><span class="timestamp">[2023-05-20 Sat 18:36:00]</span></span></li>
+</ul>
+<p>
+maybe teach it to draw a circle
+play ping ping
+</p>
+</div>
+</div>
+<div id="outline-container-orgd3a8c50" class="outline-3">
+<h3 id="orgd3a8c50"><span class="todo TODO">TODO</span> implement transformers</h3>
+<div class="outline-text-3" id="text-orgd3a8c50">
+<ul class="org-ul">
+<li>State "TODO"       from              <span class="timestamp-wrapper"><span class="timestamp">[2023-05-20 Sat 03:05:00]</span></span></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgc8a300a" class="outline-3">
+<h3 id="orgc8a300a"><span class="todo TODO">TODO</span> implement support vector machines</h3>
+<div class="outline-text-3" id="text-orgc8a300a">
+<ul class="org-ul">
+<li>State "TODO"       from              <span class="timestamp-wrapper"><span class="timestamp">[2023-05-20 Sat 18:14:00]</span></span></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgd2d82e2" class="outline-3">
+<h3 id="orgd2d82e2"><span class="todo TODO">TODO</span> implement large language models (use llama and falcon-40b)</h3>
+</div>
+<div id="outline-container-orgd676102" class="outline-3">
+<h3 id="orgd676102"><span class="todo TODO">TODO</span> build an AI companion</h3>
+<div class="outline-text-3" id="text-orgd676102">
+<ul class="org-ul">
+<li>State "TODO"       from              <span class="timestamp-wrapper"><span class="timestamp">[2023-05-20 Sat 17:55:00]</span></span></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org8a8c2ee" class="outline-3">
+<h3 id="org8a8c2ee"><span class="todo TODO">TODO</span> build an llm agent that modifies its own code</h3>
+<div class="outline-text-3" id="text-org8a8c2ee">
+<ul class="org-ul">
+<li>State "TODO"       from              <span class="timestamp-wrapper"><span class="timestamp">[2023-05-20 Sat 17:49:00]</span></span></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org875f532" class="outline-3">
+<h3 id="org875f532"><span class="todo TODO">TODO</span> build real-world robotic agents (do i have the budget?)</h3>
+<div class="outline-text-3" id="text-org875f532">
+<ul class="org-ul">
+<li>State "TODO"       from              <span class="timestamp-wrapper"><span class="timestamp">[2023-05-20 Sat 18:22:00]</span></span></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgda8beb7" class="outline-3">
+<h3 id="orgda8beb7"><span class="todo TODO">TODO</span> study the philosophy of general intelligence</h3>
+<div class="outline-text-3" id="text-orgda8beb7">
+<ul class="org-ul">
+<li>State "TODO"       from              <span class="timestamp-wrapper"><span class="timestamp">[2023-05-20 Sat 18:29:00]</span></span></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orge8772d4" class="outline-3">
+<h3 id="orge8772d4"><span class="todo TODO">TODO</span> study latent spaces</h3>
+<div class="outline-text-3" id="text-orge8772d4">
+<ul class="org-ul">
+<li>State "TODO"       from              <span class="timestamp-wrapper"><span class="timestamp">[2023-09-07 Thu 03:00:00]</span></span></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orge89cbad" class="outline-2">
+<h2 id="orge89cbad">study guide</h2>
+<div class="outline-text-2" id="text-orge89cbad">
+<ul class="org-ul">
+<li><a href="/decision_tree.html">decision tree</a></li>
+<li>multivariate linear regression</li>
+<li><a href="/feedforward_neural_network.html">feedforward neural network</a></li>
+<li><a href="/convolutional_neural_network.html">convolutional neural network</a></li>
+</ul>
+</div>
+</div>
+</div>
+</body>
+</html>

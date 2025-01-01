@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>automatic snippet generation automatic abbreviation generation</title><!-- for google analytics -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QNNF19VZGH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QNNF19VZGH');
+</script>
+
+<!-- lambda icon, frail attempt -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22100%22 color=%22red%22>λ</text></svg>">
+<!-- not-so-awesome awesome font -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="/main.css">
+<!-- for dark mode -->
+<script src="darkmode.js"></script>
+<script src="main.js"></script>
+<script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div class="navbar">
+  <a href='/'>home</a>
+  <a href='/blog.html'>blog</a>
+  <a href='/search.html'>search</a>
+  <a href='/about.html'>about</a>
+  <div id="darkModeToggle" onclick="toggleDarkMode()">
+    &#9680; <!-- Circle with left half black -->
+  </div>
+</div>
+<div class="toc">
+  <span class="toc-title-container">
+    <a class='feather' data-feather='menu'></a>
+    <span class="toc-title">table of contents</span>
+  </span>
+  <div class="toc-list">
+  </div>
+</div><h1 class="main-title">automatic snippet generation automatic abbreviation generation</h1><span class='date'>2024-11-20</span>
+</div>
+<div id="content" class="content">
+<div id="outline-container-orgbbe4333" class="outline-2">
+<h2 id="orgbbe4333">the task</h2>
+<div class="outline-text-2" id="text-orgbbe4333">
+<p>
+given a huge text, extract all words, creates abbreviations/acronyms for (perhaps some or majority of) the words to reduce the amount of typing a human has to do at the computer.
+</p>
+
+<p>
+we also may need to generate acronyms for sentences and not just words, consider "what the fuck" -&gt; "wtf".
+</p>
+</div>
+</div>
+<div id="outline-container-org83ab0ce" class="outline-2">
+<h2 id="org83ab0ce">current methods</h2>
+<div class="outline-text-2" id="text-org83ab0ce">
+<p>
+preexisting compression methods like huffman coding dont serve us well, because they dont preserve the familiarity of the word, we need something that shortens words into recognizable abbreviations that are easy to remember.
+</p>
+</div>
+</div>
+<div id="outline-container-org4d127d4" class="outline-2">
+<h2 id="org4d127d4">ideas</h2>
+<div class="outline-text-2" id="text-org4d127d4">
+<ul class="org-ul">
+<li>generate a small transformer to generate abbreviations for words (perhaps we could find some dataset). but what do we do if it generates the same abbreviation for different words?</li>
+<li>what does it mean for a word to retain meaningfulness? perhaps the most prominent characters should be extracted for that to happen, a prominent character is one without which the word would lose its recognizability.</li>
+<li>we could adopt a measure of similarity (or a measure of meaning-preservation) between two words, then, given one word, we iterate through all permutations of length up to a specific constant and grab the top word (or top few words) we need, maybe we should adopt a specific tradeoff between length and similarity since a <?xml version='1.0' encoding='UTF-8'?>
+
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.918502 5.500223 6.918502' style="max-height: 0.7789em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
+<defs>
+<path id='g4-107' d='m4.881694-1.424658c0-.099626-.089664-.099626-.119552-.099626c-.099626 0-.109589 .039851-.139477 .179328c-.199253 .727273-.428394 1.235367-.86675 1.235367c-.18929 0-.318804-.109589-.318804-.468244c0-.169365 .039851-.398506 .079701-.557908c.039851-.169365 .039851-.209215 .039851-.308842c0-.647572-.627646-.936488-1.474471-1.046077c.308842-.179328 .627646-.498132 .856787-.737235c.478207-.52802 .936488-.956413 1.424658-.956413c.059776 0 .069738 0 .089664 .009963c.119552 .019925 .129514 .019925 .209215 .079701c.019925 .009963 .019925 .019925 .039851 .039851c-.478207 .029888-.56787 .418431-.56787 .537983c0 .159402 .109589 .348692 .37858 .348692c.259029 0 .547945-.219178 .547945-.607721c0-.298879-.229141-.627646-.67746-.627646c-.278954 0-.737235 .079701-1.454545 .876712c-.33873 .37858-.727273 .777086-1.105853 .926526l1.036115-4.204234c0 0 0-.109589-.129514-.109589c-.229141 0-.956413 .079701-1.215442 .099626c-.079701 .009963-.18929 .019925-.18929 .199253c0 .119552 .089664 .119552 .239103 .119552c.478207 0 .498132 .069738 .498132 .169365l-.029888 .199253l-1.444583 5.738481c-.039851 .139477-.039851 .159402-.039851 .219178c0 .229141 .199253 .278954 .288917 .278954c.129514 0 .278954-.089664 .33873-.209215c.049813-.089664 .498132-1.932752 .557908-2.181818c.33873 .029888 1.155666 .18929 1.155666 .846824c0 .069738 0 .109589-.029888 .209215c-.019925 .119552-.039851 .239103-.039851 .348692c0 .587796 .398506 .986301 .916563 .986301c.298879 0 .56787-.159402 .787049-.52802c.249066-.438356 .358655-1.006227 .358655-1.006227z'/>
+</defs>
+<g id='page88'>
+<g fill='currentColor'>
+<use x='0' y='0' xlink:href='#g4-107'/>
+</g>
+</g>
+</svg>-length <?xml version='1.0' encoding='UTF-8'?>
+
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -4.289468 4.669988 4.289468' style="max-height: 0.5203em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
+<defs>
+<path id='g4-115' d='m3.945205-1.544209c0-.358655-.18929-.607721-.308842-.727273c-.268991-.278954-.557908-.328767-.996264-.418431c-.358655-.079701-.757161-.14944-.757161-.597758c0-.288917 .239103-.896638 1.115816-.896638c.249066 0 .747198 .069738 .896638 .458281c-.278954 .009963-.478207 .229141-.478207 .448319c0 .139477 .089664 .288917 .308842 .288917s.458281-.169365 .458281-.557908c0-.448319-.428394-.856787-1.185554-.856787c-1.315068 0-1.683686 1.016189-1.683686 1.454545c0 .777086 .737235 .926526 1.026152 .986301c.518057 .099626 1.036115 .209215 1.036115 .757161c0 .259029-.229141 1.09589-1.424658 1.09589c-.139477 0-.9066 0-1.135741-.52802c.37858 .049813 .627646-.249066 .627646-.52802c0-.229141-.159402-.348692-.368618-.348692c-.259029 0-.557908 .209215-.557908 .657534c0 .56787 .56787 .966376 1.424658 .966376c1.613948 0 2.002491-1.205479 2.002491-1.653798z'/>
+</defs>
+<g id='page4'>
+<g fill='currentColor'>
+<use x='0' y='0' xlink:href='#g4-115'/>
+</g>
+</g>
+</svg> may be a better option than a <?xml version='1.0' encoding='UTF-8'?>
+
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.918502 22.658209 7.745403' style="max-height: 0.8603em; vertical-align: -0.1305em; display: inline-block" class="org-latex org-latex-inline">
+<defs>
+<path id='g1-43' d='m7.183064-2.49066c0-.199253-.18929-.199253-.328767-.199253h-2.779577v-2.789539c0-.139477 0-.328767-.199253-.328767s-.199253 .18929-.199253 .328767v2.789539h-2.789539c-.139477 0-.328767 0-.328767 .199253s.18929 .199253 .328767 .199253h2.789539v2.789539c0 .139477 0 .328767 .199253 .328767s.199253-.18929 .199253-.328767v-2.789539h2.779577c.139477 0 .328767 0 .328767-.199253z'/>
+<path id='g1-49' d='m4.174346 0v-.308842h-.318804c-.896638 0-.926526-.109589-.926526-.478207v-5.589041c0-.239103 0-.259029-.229141-.259029c-.617684 .637609-1.494396 .637609-1.8132 .637609v.308842c.199253 0 .787049 0 1.305106-.259029v5.160648c0 .358655-.029888 .478207-.926526 .478207h-.318804v.308842c.348692-.029888 1.215442-.029888 1.613948-.029888s1.265255 0 1.613948 .029888z'/>
+<path id='g0-107' d='m4.881694-1.424658c0-.099626-.089664-.099626-.119552-.099626c-.099626 0-.109589 .039851-.139477 .179328c-.199253 .727273-.428394 1.235367-.86675 1.235367c-.18929 0-.318804-.109589-.318804-.468244c0-.169365 .039851-.398506 .079701-.557908c.039851-.169365 .039851-.209215 .039851-.308842c0-.647572-.627646-.936488-1.474471-1.046077c.308842-.179328 .627646-.498132 .856787-.737235c.478207-.52802 .936488-.956413 1.424658-.956413c.059776 0 .069738 0 .089664 .009963c.119552 .019925 .129514 .019925 .209215 .079701c.019925 .009963 .019925 .019925 .039851 .039851c-.478207 .029888-.56787 .418431-.56787 .537983c0 .159402 .109589 .348692 .37858 .348692c.259029 0 .547945-.219178 .547945-.607721c0-.298879-.229141-.627646-.67746-.627646c-.278954 0-.737235 .079701-1.454545 .876712c-.33873 .37858-.727273 .777086-1.105853 .926526l1.036115-4.204234c0 0 0-.109589-.129514-.109589c-.229141 0-.956413 .079701-1.215442 .099626c-.079701 .009963-.18929 .019925-.18929 .199253c0 .119552 .089664 .119552 .239103 .119552c.478207 0 .498132 .069738 .498132 .169365l-.029888 .199253l-1.444583 5.738481c-.039851 .139477-.039851 .159402-.039851 .219178c0 .229141 .199253 .278954 .288917 .278954c.129514 0 .278954-.089664 .33873-.209215c.049813-.089664 .498132-1.932752 .557908-2.181818c.33873 .029888 1.155666 .18929 1.155666 .846824c0 .069738 0 .109589-.029888 .209215c-.019925 .119552-.039851 .239103-.039851 .348692c0 .587796 .398506 .986301 .916563 .986301c.298879 0 .56787-.159402 .787049-.52802c.249066-.438356 .358655-1.006227 .358655-1.006227z'/>
+</defs>
+<g id='page1'>
+<use x='0' y='0' xlink:href='#g0-107'/>
+<use x='7.714086' y='0' xlink:href='#g1-43'/>
+<use x='17.676889' y='0' xlink:href='#g1-49'/>
+</g>
+</svg>-length string <?xml version='1.0' encoding='UTF-8'?>
+
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.918502 5.185432 6.918502' style="max-height: 0.7789em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
+<defs>
+<path id='g4-100' d='m4.961395-1.424658c0-.099626-.089664-.099626-.119552-.099626c-.099626 0-.109589 .039851-.139477 .179328c-.169365 .647572-.348692 1.235367-.757161 1.235367c-.268991 0-.298879-.259029-.298879-.458281c0-.239103 .019925-.308842 .059776-.478207l1.43462-5.758406c0 0 0-.109589-.129514-.109589c-.14944 0-1.09589 .089664-1.265255 .109589c-.079701 .009963-.139477 .059776-.139477 .18929c0 .119552 .089664 .119552 .239103 .119552c.478207 0 .498132 .069738 .498132 .169365l-.029888 .199253l-.597758 2.361146c-.179328-.368618-.468244-.637609-.916563-.637609c-1.165629 0-2.400996 1.464508-2.400996 2.919054c0 .936488 .547945 1.594022 1.325031 1.594022c.199253 0 .697385-.039851 1.295143-.747198c.079701 .418431 .428394 .747198 .9066 .747198c.348692 0 .577833-.229141 .737235-.547945c.169365-.358655 .298879-.986301 .298879-.986301zm-1.39477-1.713574l-.498132 1.952677c-.049813 .179328-.049813 .199253-.199253 .368618c-.438356 .547945-.846824 .707347-1.125778 .707347c-.498132 0-.637609-.547945-.637609-.936488c0-.498132 .318804-1.723537 .547945-2.181818c.308842-.587796 .757161-.956413 1.155666-.956413c.647572 0 .787049 .816936 .787049 .876712s-.019925 .119552-.029888 .169365z'/>
+</defs>
+<g id='page24'>
+<g fill='currentColor'>
+<use x='0' y='0' xlink:href='#g4-100'/>
+</g>
+</g>
+</svg> even if <?xml version='1.0' encoding='UTF-8'?>
+
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.918502 5.185432 6.918502' style="max-height: 0.7789em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
+<defs>
+<path id='g4-100' d='m4.961395-1.424658c0-.099626-.089664-.099626-.119552-.099626c-.099626 0-.109589 .039851-.139477 .179328c-.169365 .647572-.348692 1.235367-.757161 1.235367c-.268991 0-.298879-.259029-.298879-.458281c0-.239103 .019925-.308842 .059776-.478207l1.43462-5.758406c0 0 0-.109589-.129514-.109589c-.14944 0-1.09589 .089664-1.265255 .109589c-.079701 .009963-.139477 .059776-.139477 .18929c0 .119552 .089664 .119552 .239103 .119552c.478207 0 .498132 .069738 .498132 .169365l-.029888 .199253l-.597758 2.361146c-.179328-.368618-.468244-.637609-.916563-.637609c-1.165629 0-2.400996 1.464508-2.400996 2.919054c0 .936488 .547945 1.594022 1.325031 1.594022c.199253 0 .697385-.039851 1.295143-.747198c.079701 .418431 .428394 .747198 .9066 .747198c.348692 0 .577833-.229141 .737235-.547945c.169365-.358655 .298879-.986301 .298879-.986301zm-1.39477-1.713574l-.498132 1.952677c-.049813 .179328-.049813 .199253-.199253 .368618c-.438356 .547945-.846824 .707347-1.125778 .707347c-.498132 0-.637609-.547945-.637609-.936488c0-.498132 .318804-1.723537 .547945-2.181818c.308842-.587796 .757161-.956413 1.155666-.956413c.647572 0 .787049 .816936 .787049 .876712s-.019925 .119552-.029888 .169365z'/>
+</defs>
+<g id='page24'>
+<g fill='currentColor'>
+<use x='0' y='0' xlink:href='#g4-100'/>
+</g>
+</g>
+</svg> has a higher score of similarity with the target word (the goal is to shorten strings, after all).</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgae81955" class="outline-2">
+<h2 id="orgae81955">using machine learning</h2>
+<div class="outline-text-2" id="text-orgae81955">
+<p>
+we could train a transformer on a set of abbreviations, a transformer is a sequence to sequence model that can generate multiple sequences with different probabilities, we can use those probabilities and give the most frequent word in text the best acronym ("best" as in most probable or shortest, we may define different criteria).
+</p>
+
+<p>
+this could work but it has its limitations.
+</p>
+</div>
+</div>
+<div id="outline-container-org2546f22" class="outline-2">
+<h2 id="org2546f22">simpler techniques</h2>
+<div class="outline-text-2" id="text-org2546f22">
+<p>
+we could take the first letter of every word in the sequence (if it is a sentence), but this may not generalize well as many different sentences may correspond to the same abbreviation, and a machine learning model could learn more complicated patterns than "grabbing the first letter".
+</p>
+
+<p>
+what about words? things like "background" -&gt; "bg", how do we tell which letters are most important? we could use letter frequency distribution to extract the most important letters, which would probably correspond to the least frequent letters in the frequency table, because having an "x" in the acronym (if it exists in the word) is more important than having an "a", since many words contain "a" so the human mind may associate less words and thus less acronyms with the letter "x".
+</p>
+
+<p>
+sometimes its best to shorten a word to its prefix, but this will generalize the worst, since many words may have the same prefix.
+</p>
+</div>
+</div>
+<div id="outline-container-org7fda753" class="outline-2">
+<h2 id="org7fda753">entropy</h2>
+<div class="outline-text-2" id="text-org7fda753">
+<p>
+password entropy measures the unpredicatability of a word, perhaps we want the inverse of that? we want words that are most predictable, we could use entropy as a criterion here.
+</p>
+</div>
+</div>
+<div id="outline-container-orgc6dc866" class="outline-2">
+<h2 id="orgc6dc866">reduction size</h2>
+<div class="outline-text-2" id="text-orgc6dc866">
+<p>
+a technique should be evaluated based on how much compression it succeeds to apply and how recognizable the generated abbreviations are, the former can be automated, the latter, im not yet sure.
+</p>
+</div>
+</div>
+<div id="outline-container-org9d74416" class="outline-2">
+<h2 id="org9d74416">latex</h2>
+<div class="outline-text-2" id="text-org9d74416">
+<p>
+this script lists all latex macro definitions
+</p>
+<div class="org-src-container" data-language="sh">
+<pre class="src src-sh"><span style="color: #a0a0cf; font-style: italic;">#</span><span style="color: #a0a0cf; font-style: italic;">!/bin/</span><span style="color: #deb07a; font-weight: bold;">bash</span>
+
+<span style="color: #a0a0cf; font-style: italic;"># </span><span style="color: #a0a0cf; font-style: italic;">Get the TeX Live root directory</span>
+<span style="color: #ffaacf;">texlive_root</span>=$<span style="color: #deb07a;">(</span>kpsewhich article.sty | sed -r <span style="color: #f3a0a0;">'s|/tex/latex/base/article\.sty$||'</span><span style="color: #deb07a;">)</span>
+
+<span style="color: #a0a0cf; font-style: italic;"># </span><span style="color: #a0a0cf; font-style: italic;">Get all paths from kpsewhich</span>
+<span style="color: #ffaacf;">paths</span>=$<span style="color: #deb07a;">(</span>kpsewhich -show-path=tex<span style="color: #deb07a;">)</span>
+
+<span style="color: #a0a0cf; font-style: italic;"># </span><span style="color: #a0a0cf; font-style: italic;">Append the automatically detected root</span>
+<span style="color: #ffaacf;">paths</span>+=<span style="color: #f3a0a0;">":$texlive_root"</span>
+
+<span style="color: #a0a0cf; font-style: italic;"># </span><span style="color: #a0a0cf; font-style: italic;">Split paths by ':' and iterate through them</span>
+<span style="color: #ffaacf;">IFS</span>=<span style="color: #f3a0a0;">':'</span> read -ra dirs &lt;&lt;&lt; <span style="color: #f3a0a0;">"$paths"</span>
+<span style="color: #deb07a; font-weight: bold;">for</span> dir<span style="color: #deb07a; font-weight: bold;"> in</span> <span style="color: #f3a0a0;">"${dirs[@]}"</span>; <span style="color: #deb07a; font-weight: bold;">do</span>
+    <span style="color: #a0a0cf; font-style: italic;"># </span><span style="color: #a0a0cf; font-style: italic;">Remove leading '!!' if present</span>
+    <span style="color: #ffaacf;">clean_dir</span>=<span style="color: #f3a0a0;">"${dir#!!}"</span>
+
+    <span style="color: #a0a0cf; font-style: italic;"># </span><span style="color: #a0a0cf; font-style: italic;">Skip if the directory doesn't exist</span>
+    <span style="color: #deb07a;">[</span> -d <span style="color: #f3a0a0;">"$clean_dir"</span> <span style="color: #deb07a;">]</span> || <span style="color: #deb07a; font-weight: bold;">continue</span>
+
+    <span style="color: #a0a0cf; font-style: italic;"># </span><span style="color: #a0a0cf; font-style: italic;">Find .sty files in this directory</span>
+    find -L <span style="color: #f3a0a0;">"$clean_dir"</span> -type f -name <span style="color: #f3a0a0;">"*.sty"</span> -print | <span style="color: #deb07a; font-weight: bold;">while </span><span style="color: #e3b0c0; font-weight: bold;">read</span> -r sty_file; <span style="color: #deb07a; font-weight: bold;">do</span>
+        <span style="color: #a0a0cf; font-style: italic;"># </span><span style="color: #a0a0cf; font-style: italic;">Extract macros from the .sty file</span>
+        <span style="color: #e3b0c0; font-weight: bold;">echo</span> <span style="color: #f3a0a0;">"$sty_file"</span>
+        grep -E <span style="color: #f3a0a0;">'\\(new|renew|provide)command\\'</span> <span style="color: #f3a0a0;">"$sty_file"</span> &gt;&gt; macros.txt
+    <span style="color: #deb07a; font-weight: bold;">done</span>
+<span style="color: #deb07a; font-weight: bold;">done</span>
+
+</pre>
+</div>
+
+<p>
+this will take a string containing unseparated words and separate it:
+</p>
+<div class="org-src-container" data-language="python">
+<pre class="src src-python"><span style="color: #deb07a; font-weight: bold;">from</span> nltk.corpus <span style="color: #deb07a; font-weight: bold;">import</span> words
+
+<span style="color: #ffaacf;">string</span> = <span style="color: #f3a0a0;">"thisisinsane"</span>
+<span style="color: #ffaacf;">tokens</span> = <span style="color: #deb07a;">[]</span>
+<span style="color: #ffaacf;">lowercaseCorpus</span> = <span style="color: #deb07a;">[</span>x.lower<span style="color: #ffaacf;">()</span> <span style="color: #deb07a; font-weight: bold;">for</span> x <span style="color: #deb07a; font-weight: bold;">in</span> words.words<span style="color: #ffaacf;">()</span><span style="color: #deb07a;">]</span>
+<span style="color: #ffaacf;">i</span> = 0
+<span style="color: #deb07a; font-weight: bold;">while</span> i &lt; <span style="color: #e3b0c0; font-weight: bold;">len</span><span style="color: #deb07a;">(</span>string<span style="color: #deb07a;">)</span>:
+    <span style="color: #ffaacf;">maxWord</span> = <span style="color: #f3a0a0;">""</span>
+    <span style="color: #deb07a; font-weight: bold;">for</span> j <span style="color: #deb07a; font-weight: bold;">in</span> <span style="color: #e3b0c0; font-weight: bold;">range</span><span style="color: #deb07a;">(</span>i, <span style="color: #e3b0c0; font-weight: bold;">len</span><span style="color: #ffaacf;">(</span>string<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>:
+        <span style="color: #ffaacf;">tempWord</span> = string<span style="color: #deb07a;">[</span>i:j+1<span style="color: #deb07a;">]</span>
+        <span style="color: #deb07a; font-weight: bold;">if</span> tempWord <span style="color: #deb07a; font-weight: bold;">in</span> lowercaseCorpus <span style="color: #deb07a; font-weight: bold;">and</span> <span style="color: #e3b0c0; font-weight: bold;">len</span><span style="color: #deb07a;">(</span>tempWord<span style="color: #deb07a;">)</span> &gt; <span style="color: #e3b0c0; font-weight: bold;">len</span><span style="color: #deb07a;">(</span>maxWord<span style="color: #deb07a;">)</span>:
+            <span style="color: #ffaacf;">maxWord</span> = tempWord
+    <span style="color: #ffaacf;">i</span> = i+<span style="color: #e3b0c0; font-weight: bold;">len</span><span style="color: #deb07a;">(</span>maxWord<span style="color: #deb07a;">)</span>
+    tokens.append<span style="color: #deb07a;">(</span>maxWord<span style="color: #deb07a;">)</span>
+
+<span style="color: #e3b0c0; font-weight: bold;">print</span><span style="color: #deb07a;">(</span>tokens<span style="color: #deb07a;">)</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

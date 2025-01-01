@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>postgresql</title><!-- for google analytics -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QNNF19VZGH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QNNF19VZGH');
+</script>
+
+<!-- lambda icon, frail attempt -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22100%22 color=%22red%22>λ</text></svg>">
+<!-- not-so-awesome awesome font -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="/main.css">
+<!-- for dark mode -->
+<script src="darkmode.js"></script>
+<script src="main.js"></script>
+<script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div class="navbar">
+  <a href='/'>home</a>
+  <a href='/blog.html'>blog</a>
+  <a href='/search.html'>search</a>
+  <a href='/about.html'>about</a>
+  <div id="darkModeToggle" onclick="toggleDarkMode()">
+    &#9680; <!-- Circle with left half black -->
+  </div>
+</div>
+<div class="toc">
+  <span class="toc-title-container">
+    <a class='feather' data-feather='menu'></a>
+    <span class="toc-title">table of contents</span>
+  </span>
+  <div class="toc-list">
+  </div>
+</div><h1 class="main-title">postgresql</h1><span class='date'>2024-01-11</span>
+</div>
+<div id="content" class="content">
+<p>
+postgresql on linux comes with a default "repl" used by invoking <code>psql</code>
+it has alot of nice features, more than mysql
+</p>
+<div test="test" class="fancy-block dummy" data-before="&lt;p&gt;
+listing the available databases&lt;/p&gt;
+" data-after="&lt;p&gt;
+(??, 2023 chapter 23 managing databases)&lt;/p&gt;
+" id="prf-bool-func-1" data-id="prf-bool-func-1">
+<p>
+the <code>psql</code> program's <code>\l</code> meta-command and <code>-l</code> command-line option are also useful for listing the existing databases.
+</p>
+
+</div>
+<div id="outline-container-org45ebfbf" class="outline-2">
+<h2 id="org45ebfbf">database creation</h2>
+<div class="outline-text-2" id="text-org45ebfbf">
+<p>
+create database &lt;name&gt;
+<a href="https://www.postgresql.org/docs/current/sql-createdatabase.html">https://www.postgresql.org/docs/current/sql-createdatabase.html</a>
+</p>
+</div>
+</div>
+<div id="outline-container-org856bd14" class="outline-2">
+<h2 id="org856bd14">list databases</h2>
+<div class="outline-text-2" id="text-org856bd14">
+<p>
+<?xml version='1.0' encoding='UTF-8'?>
+
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.914072 3.347447 6.914072' style="max-height: 0.7785em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
+<defs>
+<path id='g0-392' d='m2.849315-4.174346l-.159402-.209215l-.647572 .478207v-3.008717l-1.43462 .109589v.308842c.697385 0 .777086 .069738 .777086 .557908v2.530511l-.9066 .67746l.159402 .199253l.747198-.557908v2.331258c0 .448319-.109589 .448319-.777086 .448319v.308842l1.105853-.029888l1.105853 .029888v-.308842c-.667497 0-.777086 0-.777086-.448319v-2.809465l.806974-.607721z'/>
+</defs>
+<g id='page1'>
+<g fill='currentColor'>
+<use x='0' y='0' xlink:href='#g0-392'/>
+</g>
+</g>
+</svg>
+</p>
+</div>
+</div>
+<div id="outline-container-org0ba25e6" class="outline-2">
+<h2 id="org0ba25e6">ERROR:  template database "template1" has a collation version mismatch</h2>
+<div class="outline-text-2" id="text-org0ba25e6">
+<div test="test" class="fancy-block dummy" data-before="" id="prf-bool-func-1" data-id="prf-bool-func-1">
+<p>
+sudo -u postgres psql
+alter database template1 refresh collation version;
+<a href="https://stackoverflow.com/questions/75746179/template-database-template1-has-a-collation-version-but-no-actual-collation-v">https://stackoverflow.com/questions/75746179/template-database-template1-has-a-collation-version-but-no-actual-collation-v</a>
+</p>
+
+</div>
+</div>
+</div>
+<div id="outline-container-org37482d1" class="outline-2">
+<h2 id="org37482d1">execute sql file</h2>
+<div class="outline-text-2" id="text-org37482d1">
+<div test="test" class="fancy-block dummy" data-before="" id="prf-bool-func-1" data-id="prf-bool-func-1">
+<p>
+psql &#x2013;username=&lt;db_user_name&gt; databasename &lt; myfile.sql
+<a href="https://stackoverflow.com/questions/6842393/import-sql-dump-into-postgresql-database">https://stackoverflow.com/questions/6842393/import-sql-dump-into-postgresql-database</a>
+</p>
+
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

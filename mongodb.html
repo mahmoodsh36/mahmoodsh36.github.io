@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>mongodb</title><!-- for google analytics -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QNNF19VZGH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QNNF19VZGH');
+</script>
+
+<!-- lambda icon, frail attempt -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22100%22 color=%22red%22>λ</text></svg>">
+<!-- not-so-awesome awesome font -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="/main.css">
+<!-- for dark mode -->
+<script src="darkmode.js"></script>
+<script src="main.js"></script>
+<script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div class="navbar">
+  <a href='/'>home</a>
+  <a href='/blog.html'>blog</a>
+  <a href='/search.html'>search</a>
+  <a href='/about.html'>about</a>
+  <div id="darkModeToggle" onclick="toggleDarkMode()">
+    &#9680; <!-- Circle with left half black -->
+  </div>
+</div>
+<div class="toc">
+  <span class="toc-title-container">
+    <a class='feather' data-feather='menu'></a>
+    <span class="toc-title">table of contents</span>
+  </span>
+  <div class="toc-list">
+  </div>
+</div><h1 class="main-title">mongodb</h1><span class='date'>2024-08-17</span>
+</div>
+<div id="content" class="content">
+<p>
+mongodb is a <a href="/document-based_database.html">document-based database</a>.
+</p>
+<div id="outline-container-org1771a78" class="outline-2">
+<h2 id="org1771a78">mongosh</h2>
+<div class="outline-text-2" id="text-org1771a78">
+<p>
+shell for mongodb
+</p>
+</div>
+</div>
+<div id="outline-container-org8169ec0" class="outline-2">
+<h2 id="org8169ec0">books</h2>
+<div class="outline-text-2" id="text-org8169ec0">
+<ul class="org-ul">
+<li><a href="/mongodb_the_definitive_guide_3rd_edition.html">mongodb the definitive guide 3rd edition</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgc1a3116" class="outline-2">
+<h2 id="orgc1a3116">resources</h2>
+<div class="outline-text-2" id="text-orgc1a3116">
+<ul class="org-ul">
+<li><a href="/big_data_course_homework_2.html">big data course homework 2</a></li>
+<li><a href="/big_data_course_homework_3.html">big data course homework 3</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org4f8b772" class="outline-2">
+<h2 id="org4f8b772">import data</h2>
+<div class="outline-text-2" id="text-org4f8b772">
+<p>
+the commandline tool <code>mongoimport</code> can import json files, example:
+</p>
+<div class="org-src-container" data-language="mongodb">
+<pre class="src src-mongodb">mongoimport --db dbName --collection collectionName --file fileName.json --jsonArray
+</pre>
+</div>
+
+<p>
+if the file contains line-separated objects, drop the <code>--jsonArray</code> parameter.
+</p>
+</div>
+</div>
+<div id="outline-container-org4f4c31b" class="outline-2">
+<h2 id="org4f4c31b">create database</h2>
+<div class="outline-text-2" id="text-org4f4c31b">
+<div test="test" class="fancy-block dummy" data-before="" id="dum-pumplem-cfl-1" data-id="dum-pumplem-cfl-1">
+<p>
+there is no "create" command in the MongoDB Shell. in order to create a database, you will first need to switch the context to a non-existing database using the use command:
+</p>
+<div class="org-src-container" data-language="mongodb">
+<pre class="src src-mongodb">use myshinynewdb
+</pre>
+</div>
+
+<p>
+MongoDB only creates the database when you first store data in that database. this data could be a collection or a document.
+</p>
+
+<p>
+<a href="https://www.mongodb.com/resources/products/fundamentals/create-database">https://www.mongodb.com/resources/products/fundamentals/create-database</a>
+</p>
+
+</div>
+</div>
+</div>
+<div id="outline-container-org7efcf02" class="outline-2">
+<h2 id="org7efcf02">create collection</h2>
+<div class="outline-text-2" id="text-org7efcf02">
+<p>
+collections are automatically created as you add documents.
+</p>
+</div>
+</div>
+<div id="outline-container-org89d6749" class="outline-2">
+<h2 id="org89d6749">fetch entries</h2>
+<div class="outline-text-2" id="text-org89d6749">
+<p>
+to fetch collection entries use
+</p>
+<div class="org-src-container" data-language="mongodb">
+<pre class="src src-mongodb">db.&lt;collection&gt;.find()
+db.&lt;collection&gt;.find({&lt;dict&gt;})
+db.students.find({'_id': 1}).pretty()
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgdb1b6fb" class="outline-2">
+<h2 id="orgdb1b6fb">delete entries</h2>
+<div class="outline-text-2" id="text-orgdb1b6fb">
+<div class="org-src-container" data-language="mongodb">
+<pre class="src src-mongodb">db.&lt;collection&gt;.deleteMany([{&lt;dict&gt;, &lt;dict&gt;, ...}])
+db.&lt;collection&gt;.deleteOne(&lt;dict&gt;)
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgdea22ca" class="outline-2">
+<h2 id="orgdea22ca">insert entries</h2>
+<div class="outline-text-2" id="text-orgdea22ca">
+<div class="org-src-container" data-language="mongodb">
+<pre class="src src-mongodb">db.&lt;collection&gt;.insertOne({&lt;dict&gt;})
+db.&lt;collection&gt;.insertMany([{&lt;dict&gt;, &lt;dict&gt;, ...}])
+db.students.insertMany((function(num) { mylist=[]; for (let i = 0; i &lt; num; ++i) mylist.push({'_id': i, 'name': {'first': 'mahmood'+i, 'last': 'sheikh'}, 'bdate': new Date('2002-1-1'+i), 'courses': [{'ccode': '0', 'cname': 'algebra', 'grade': 10*i}], 'phones': ['052338801'+i, '052449912'+i], 'major': 'computer science', ...(i &gt; 5) &amp;&amp; {'minor': 'math'}}); return mylist; })(10));
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org5711b0b" class="outline-2">
+<h2 id="org5711b0b">aggregation</h2>
+<div class="outline-text-2" id="text-org5711b0b">
+<div test="test" class="fancy-block dummy" data-before="" data-after="&lt;p&gt;
+(taken from Shannon Bradshaw, Eoin Brazil &amp;amp; Kristina Chodorow, 2019 chapter 7)&lt;/p&gt;
+" id="dum-pumplem-cfl-1" data-id="dum-pumplem-cfl-1">
+<div class="org-src-container" data-language="mongodb">
+<pre class="src src-mongodb">db.companies.aggregate([
+    {$match: {founded_year: 2004}},
+])
+</pre>
+</div>
+
+<p>
+this is equivalent to the following operation using find:
+</p>
+<div class="org-src-container" data-language="mongodb">
+<pre class="src src-mongodb">db.companies.find({founded_year: 2004})
+</pre>
+</div>
+
+<p>
+now let's add a project stage to our pipeline to reduce the output to just a few fields per document. we'll exclude the "_id" field, but include "name" and "founded_year". our pipeline will be as follows:
+</p>
+<div class="org-src-container" data-language="mongodb">
+<pre class="src src-mongodb">db.companies.aggregate([
+  {$match: {founded_year: 2004}},
+  {$project: {
+    _id: 0,
+    name: 1,
+    founded_year: 1
+  }}
+])
+</pre>
+</div>
+
+<p>
+more operations that can be added to aggregation pipelines can be found at <a href="https://www.mongodb.com/docs/manual/reference/operator/aggregation/">https://www.mongodb.com/docs/manual/reference/operator/aggregation/</a> and <a href="https://www.mongodb.com/docs/manual/reference/operator/aggregation-pipeline/">https://www.mongodb.com/docs/manual/reference/operator/aggregation-pipeline/</a>.
+</p>
+
+</div>
+</div>
+</div>
+<div id="outline-container-org4db1286" class="outline-2">
+<h2 id="org4db1286">grouping aggregation</h2>
+<div class="outline-text-2" id="text-org4db1286">
+<p>
+<a href="https://stackoverflow.com/questions/61804268/what-is-root-in-mongodb-aggregate-and-how-it-works">https://stackoverflow.com/questions/61804268/what-is-root-in-mongodb-aggregate-and-how-it-works</a>
+consider the following aggregation pipeline:
+</p>
+<div class="org-src-container" data-language="mongodb">
+<pre class="src src-mongodb">db.collection.aggregate([{
+    $group: {
+        _id: '$history',
+        items: {$push: '$$ROOT'}
+    }
+}])
+</pre>
+</div>
+
+<p>
+this causes entries to be grouped by the field <code>history</code>, and <code>items: {$push: '$$ROOT'}</code> is for the entries to be grouped into a subcollection named <code>items</code>, see <a href="https://www.mongodb.com/docs/manual/reference/aggregation-variables/">https://www.mongodb.com/docs/manual/reference/aggregation-variables/</a> about <code>$$ROOT</code>.
+</p>
+
+<p>
+notice the <code>$group</code> also acts as some sort of a <code>$project</code>, as it discards the original element and projects only the specified fields. in the example above, it returns a list of objects with the fields <code>_id</code> and <code>items</code> only.
+</p>
+</div>
+</div>
+<div id="outline-container-org538e196" class="outline-2">
+<h2 id="org538e196">format float</h2>
+<div class="outline-text-2" id="text-org538e196">
+<p>
+this can be done using <a href="https://www.mongodb.com/docs/manual/reference/operator/aggregation/round/">$round</a>
+</p>
+</div>
+</div>
+<div id="outline-container-org943a0df" class="outline-2">
+<h2 id="org943a0df">unwind</h2>
+<div class="outline-text-2" id="text-org943a0df">
+<p>
+<code>$unwind</code> takes an array from the input document and creates an output document for each element in that array.
+</p>
+</div>
+</div>
+<div id="outline-container-org6b70d7c" class="outline-2">
+<h2 id="org6b70d7c">extract a field</h2>
+<div class="outline-text-2" id="text-org6b70d7c">
+<p>
+extract all <code>_id</code>'s from the subcollection <code>data</code> into an array of ids:
+</p>
+<div class="org-src-container" data-language="mongo">
+<pre class="src src-mongo">db.collection.aggregate<span style="color: #deb07a;">(</span><span style="color: #ffaacf;">[</span>
+  <span style="color: #80aadf;">{</span>
+    $addFields: <span style="color: #e47980;">{</span>
+      data: <span style="color: #d0b0ff;">{</span>
+        $map: <span style="color: #3fc489;">{</span>
+          input: <span style="color: #f3a0a0;">"$data"</span>,
+          as: <span style="color: #f3a0a0;">"data"</span>,
+          <span style="color: #deb07a; font-weight: bold;">in</span>: <span style="color: #f3a0a0;">"$$data._id"</span>
+        <span style="color: #3fc489;">}</span>
+      <span style="color: #d0b0ff;">}</span>
+    <span style="color: #e47980;">}</span>
+  <span style="color: #80aadf;">}</span>
+<span style="color: #ffaacf;">]</span><span style="color: #deb07a;">)</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org749fcab" class="outline-2">
+<h2 id="org749fcab">lookup operator</h2>
+<div class="outline-text-2" id="text-org749fcab">
+<p>
+the <code>$lookup</code> operator allows you to read documents from one collection and merge them with documents from another one. much like a left <a href="/outer_join.html">outer join</a> in <a href="/sql.html">sql</a>.
+</p>
+
+<p>
+i cba manually rewriting the text in the following 2 images:
+<img src="/Thu_Sep_19_02:27:50_PM_IDT_2024.png" />
+<img src="/Thu_Sep_19_02:32:44_PM_IDT_2024.png" /></p>
+</div>
+</div>
+</div>
+</body>
+</html>

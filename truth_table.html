@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>truth table</title><!-- for google analytics -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QNNF19VZGH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QNNF19VZGH');
+</script>
+
+<!-- lambda icon, frail attempt -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22100%22 color=%22red%22>λ</text></svg>">
+<!-- not-so-awesome awesome font -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="/main.css">
+<!-- for dark mode -->
+<script src="darkmode.js"></script>
+<script src="main.js"></script>
+<script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div class="navbar">
+  <a href='/'>home</a>
+  <a href='/blog.html'>blog</a>
+  <a href='/search.html'>search</a>
+  <a href='/about.html'>about</a>
+  <div id="darkModeToggle" onclick="toggleDarkMode()">
+    &#9680; <!-- Circle with left half black -->
+  </div>
+</div>
+<div class="toc">
+  <span class="toc-title-container">
+    <a class='feather' data-feather='menu'></a>
+    <span class="toc-title">table of contents</span>
+  </span>
+  <div class="toc-list">
+  </div>
+</div><h1 class="main-title">truth table</h1><span class='date'>2023-01-16</span>
+</div>
+<div id="content" class="content">
+<p>
+a truth table maps variables to their corresponding outputs when passed into a <b>boolean expression</b> or a switching function.
+</p>
+<div test="test" class="fancy-block dummy" data-before="" data-after="&lt;p&gt;
+(Zvi Kohavi and Niraj K. jha, 2010 section 3 switching algebra and its applications)&lt;/p&gt;
+" id="def-jointdist" data-id="def-jointdist">
+<p>
+truth tables have been shown to be the means for describing switching functions. an expression representing a switching function is derived from the table by finding the sum of all the terms that correspond to those combinations (i.e., rows) for which the function assumes the value 1. variable <?xml version='1.0' encoding='UTF-8'?>
+
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -4.289468 8.512659 5.783849' style="max-height: 0.6673em; vertical-align: -0.1962em; display: inline-block" class="org-latex org-latex-inline">
+<defs>
+<path id='g4-105' d='m2.259527-4.358655c0-.111582-.083686-.265006-.278954-.265006c-.188294 0-.390535 .18132-.390535 .383562c0 .118555 .09066 .265006 .278954 .265006c.202242 0 .390535-.195268 .390535-.383562zm.18132 3.361395c0-.09066-.09066-.09066-.111582-.09066c-.097634 0-.104608 .041843-.132503 .118555c-.160399 .557908-.467248 .843836-.739228 .843836c-.139477 0-.174346-.09066-.174346-.244085c0-.160399 .048817-.292902 .111582-.446326l.223163-.557908l.341719-.885679c.020922-.069738 .041843-.153425 .041843-.223163c0-.327771-.278954-.592777-.662516-.592777c-.690411 0-1.011208 .948443-1.011208 1.066999c0 .09066 .097634 .09066 .118555 .09066c.097634 0 .104608-.034869 .125529-.111582c.18132-.599751 .488169-.850809 .746202-.850809c.111582 0 .174346 .055791 .174346 .244085c0 .160399-.041843 .265006-.216189 .697385l-.439352 1.12279c-.027895 .09066-.062765 .174346-.062765 .292902c0 .327771 .278954 .592777 .662516 .592777c.697385 0 1.004234-.962391 1.004234-1.066999z'/>
+<path id='g5-120' d='m4.941469-1.424658c0-.099626-.089664-.099626-.119552-.099626c-.089664 0-.109589 .039851-.129514 .109589c-.328767 1.066002-1.006227 1.305106-1.325031 1.305106c-.388543 0-.547945-.318804-.547945-.657534c0-.219178 .059776-.438356 .169365-.876712l.33873-1.364882c.059776-.259029 .288917-1.175592 .986301-1.175592c.049813 0 .288917 0 .498132 .129514c-.278954 .049813-.478207 .298879-.478207 .537983c0 .159402 .109589 .348692 .37858 .348692c.219178 0 .537983-.179328 .537983-.577833c0-.518057-.587796-.657534-.926526-.657534c-.577833 0-.926526 .52802-1.046077 .757161c-.249066-.657534-.787049-.757161-1.075965-.757161c-1.036115 0-1.603985 1.285181-1.603985 1.534247c0 .099626 .119552 .099626 .119552 .099626c.079701 0 .109589-.019925 .129514-.109589c.33873-1.05604 .996264-1.305106 1.334994-1.305106c.18929 0 .537983 .089664 .537983 .667497c0 .308842-.169365 .976339-.537983 2.371108c-.159402 .617684-.508095 1.036115-.946451 1.036115c-.059776 0-.288917 0-.498132-.129514c.249066-.049813 .468244-.259029 .468244-.537983c0-.268991-.219178-.348692-.368618-.348692c-.298879 0-.547945 .259029-.547945 .577833c0 .458281 .498132 .657534 .936488 .657534c.657534 0 1.016189-.697385 1.046077-.757161c.119552 .368618 .478207 .757161 1.075965 .757161c1.026152 0 1.594022-1.285181 1.594022-1.534247z'/>
+</defs>
+<g id='page11'>
+<g fill='currentColor'>
+<use x='0' y='0' xlink:href='#g5-120'/>
+<use x='5.693932' y='1.494381' xlink:href='#g4-105'/>
+</g>
+</g>
+</svg> appears in <a href="/complement.html">uncomplemented</a> form in the product if it has value 1 in the corresponding combination, and it appears in complemented form if it has value 0.
+</p>
+
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>ssh port forwarding</title><!-- for google analytics -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QNNF19VZGH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QNNF19VZGH');
+</script>
+
+<!-- lambda icon, frail attempt -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22100%22 color=%22red%22>λ</text></svg>">
+<!-- not-so-awesome awesome font -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="/main.css">
+<!-- for dark mode -->
+<script src="darkmode.js"></script>
+<script src="main.js"></script>
+<script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div class="navbar">
+  <a href='/'>home</a>
+  <a href='/blog.html'>blog</a>
+  <a href='/search.html'>search</a>
+  <a href='/about.html'>about</a>
+  <div id="darkModeToggle" onclick="toggleDarkMode()">
+    &#9680; <!-- Circle with left half black -->
+  </div>
+</div>
+<div class="toc">
+  <span class="toc-title-container">
+    <a class='feather' data-feather='menu'></a>
+    <span class="toc-title">table of contents</span>
+  </span>
+  <div class="toc-list">
+  </div>
+</div><h1 class="main-title">ssh port forwarding</h1><span class='date'>2024-05-23</span>
+</div>
+<div id="content" class="content">
+<p>
+to connect to a device behind a private unreachable router you can use <i>remote ssh port forwarding</i> or <i>remote ssh tunneling</i> (notice that <i>remote</i> ssh tunneling is different from <i>local</i> ssh tunneling).
+</p>
+
+<p>
+example:
+</p>
+<div class="org-src-container" data-language="sh">
+<pre class="src src-sh">ssh -i path/to/key -R <span style="color: #f3a0a0;">'*:5000:*:22'</span> user@remote -N -g
+</pre>
+</div>
+
+<p>
+so say you have 3 machines, <code>"local1"</code>, <code>"local2"</code> and <code>"remote1"</code>. when this command is run from <code>local2</code>, it binds to the port 5000 on the machine <code>remote1</code> and forwards the traffic to that port to port 22 of <code>local2</code>. this allows you to ssh into <code>local2</code> through the remote machine from <code>local1</code>, now if you take <code>local1</code> into any other network, not necessarily the network <code>local2</code> is on, you can still connect to <code>local2</code> from <code>local1</code> through <code>remote1</code>.
+</p>
+
+<p>
+basically, this can be used as an alternative to other port forwarding methods when you want to gain access to a machine behind a private network like a home or office network.
+</p>
+
+<p>
+a connection to the tunnel can be opened using the command
+</p>
+<div class="org-src-container" data-language="sh">
+<pre class="src src-sh">ssh -i path/to/key localuser@remote1 -p 5000
+</pre>
+</div>
+
+<p>
+note that <code>localuser</code> would be the user of <code>local2</code> (not the remote machine) that you want ssh to use.
+</p>
+<div id="outline-container-orgcf8f758" class="outline-2">
+<h2 id="orgcf8f758">connection refused</h2>
+<div class="outline-text-2" id="text-orgcf8f758">
+<div test="test" class="fancy-block dummy" data-before="" data-after="&lt;p&gt;
+&lt;a href=&quot;https://serverfault.com/questions/478171/reverse-ssh-tunnel-connexion-refused&quot;&gt;https://serverfault.com/questions/478171/reverse-ssh-tunnel-connexion-refused&lt;/a&gt;&lt;/p&gt;
+" id="def-m-comp" data-id="def-m-comp">
+<p>
+by default tunnel endpoints only listen on 127.0.0.1, so they can't be accessed from other machines. to change this you may need to add this to <code>/etc/ssh/sshd_config</code> on the server:
+</p>
+<div class="literal" id="org5693c77">
+<p>
+GatewayPorts clientspecified
+</p>
+
+</div>
+
+</div>
+
+<p>
+this is also the reason we use the address <code>*:5000:*:22</code>, the star is used to listen on all interfaces, like <code>0.0.0.0</code>.
+</p>
+</div>
+</div>
+<div id="outline-container-org33a0452" class="outline-2">
+<h2 id="org33a0452">using ipv6</h2>
+<div class="outline-text-2" id="text-org33a0452">
+<p>
+if you're using ipv6 you need to make sure its enabled on all machines. <code>vim /etc/sysctl.conf</code> and make sure you have the following:
+</p>
+<div class="org-src-container" data-language="text">
+<pre class="src src-text">net.ipv6.conf.default.disable_ipv6 = 0
+net.ipv6.conf.all.disable_ipv6 = 0
+</pre>
+</div>
+
+<p>
+the ipv6 equivalent for <code>localhost</code> is <code>::1</code>. so, for example, the reverse tunnel ssh command becomes:
+</p>
+<div class="org-src-container" data-language="sh">
+<pre class="src src-sh">ssh -i yourkey -R <span style="color: #f3a0a0;">'*:5000:*:22'</span> -6 user@remote1:etc:etc::1 -N -g
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org9a7464c" class="outline-2">
+<h2 id="org9a7464c">systemd service</h2>
+<div class="outline-text-2" id="text-org9a7464c">
+<p>
+an example systemd service that i use to automatically open an ssh tunnel for a linux server:
+</p>
+<div class="org-src-container" data-language="text">
+<pre class="src src-text">[Unit]
+After=network.target network-online.target
+Description=ssh tunnel
+Wants=network-online.target
+
+[Service]
+ExecStart=ssh -i my/key/path -R '*:5000:*:22' -6 root@my:server:ipv6::1 -NTg -o ServerAliveInterval=60
+Restart=on-failure
+RestartSec=5s
+User=mahmooz
+
+[Install]
+WantedBy=multi-user.target
+</pre>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

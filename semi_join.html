@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>semi join</title><!-- for google analytics -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QNNF19VZGH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QNNF19VZGH');
+</script>
+
+<!-- lambda icon, frail attempt -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22100%22 color=%22red%22>λ</text></svg>">
+<!-- not-so-awesome awesome font -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="/main.css">
+<!-- for dark mode -->
+<script src="darkmode.js"></script>
+<script src="main.js"></script>
+<script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div class="navbar">
+  <a href='/'>home</a>
+  <a href='/blog.html'>blog</a>
+  <a href='/search.html'>search</a>
+  <a href='/about.html'>about</a>
+  <div id="darkModeToggle" onclick="toggleDarkMode()">
+    &#9680; <!-- Circle with left half black -->
+  </div>
+</div>
+<div class="toc">
+  <span class="toc-title-container">
+    <a class='feather' data-feather='menu'></a>
+    <span class="toc-title">table of contents</span>
+  </span>
+  <div class="toc-list">
+  </div>
+</div><h1 class="main-title">semi join</h1><span class='date'>2024-01-10</span>
+</div>
+<div id="content" class="content">
+<div test="test" class="fancy-block dummy" data-before="" data-after="&lt;p&gt;
+(Ramez Elmasri, Shamkant B. Navathe, 2015 chapter 18.1.1 additional operators semi-join and anti-join)&lt;/p&gt;
+" id="prf-bool-func-1" data-id="prf-bool-func-1">
+<p>
+the semantics of semi-join are as follows: a row of <code>T1</code> is returned as soon as <code>T1.X</code> finds a match with any value of <code>T2.Y</code> without searching for further matches. this is in contrast to finding all possible matches in <a href="/inner_join.html">inner join</a>.
+</p>
+
+<p>
+consider the following schema:
+</p>
+<div class="org-src-container" data-language="sql">
+<pre class="src src-sql">EMPLOYEE <span style="color: #deb07a;">(</span>Ssn, Bdate, Address, Sex, Salary, Dno<span style="color: #deb07a;">)</span>
+DEPARTMENT <span style="color: #deb07a;">(</span>Dnumber, Dname, Dmgrssn, Zipcode<span style="color: #deb07a;">)</span>
+</pre>
+</div>
+
+<p>
+where a department is located in a specific zip code.
+</p>
+
+<p>
+let us consider the following query:
+</p>
+<div class="org-src-container" data-language="sql">
+<pre class="src src-sql">Q<span style="color: #deb07a;">(</span>SJ<span style="color: #deb07a;">)</span>: <span style="color: #deb07a; font-weight: bold;">SELECT</span> <span style="color: #e3b0c0; font-weight: bold;">COUNT</span><span style="color: #deb07a;">(</span>*<span style="color: #deb07a;">)</span>
+<span style="color: #deb07a; font-weight: bold;">FROM</span>  DEPARTMENT D
+<span style="color: #deb07a; font-weight: bold;">WHERE</span> D.Dnumber <span style="color: #deb07a; font-weight: bold;">IN</span> <span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">SELECT</span> E.Dno
+                    <span style="color: #deb07a; font-weight: bold;">FROM</span>   EMPLOYEE E
+                    <span style="color: #deb07a; font-weight: bold;">WHERE</span>  E.Salary &gt; 200000<span style="color: #deb07a;">)</span>
+</pre>
+</div>
+
+<p>
+here we have a nested query which is joined by the connector <code>IN</code>.
+</p>
+
+<p>
+to remove the nested query:
+</p>
+<div class="org-src-container" data-language="sql">
+<pre class="src src-sql"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">SELECT</span> E.Dno
+ <span style="color: #deb07a; font-weight: bold;">FROM</span>   EMPLOYEE E
+ <span style="color: #deb07a; font-weight: bold;">WHERE</span>  E.Salary &gt; 200000<span style="color: #deb07a;">)</span>
+</pre>
+</div>
+
+<p>
+is called as unnesting. it leads to the following query with an operation called <i>semi-join</i>, which we show with a non-standard notation "S=" below:
+</p>
+<div class="org-src-container" data-language="sql">
+<pre class="src src-sql"><span style="color: #deb07a; font-weight: bold;">SELECT</span> <span style="color: #e3b0c0; font-weight: bold;">COUNT</span><span style="color: #deb07a;">(</span>*<span style="color: #deb07a;">)</span>
+<span style="color: #deb07a; font-weight: bold;">FROM</span> EMPLOYEE E, DEPARTMENT D
+<span style="color: #deb07a; font-weight: bold;">WHERE</span> D.Dnumber S= E.Dno <span style="color: #deb07a; font-weight: bold;">and</span> E.Salary &gt; 200000;
+</pre>
+</div>
+
+<p>
+the above query is counting the number of departments that have employees who make more than $200,000 annually. here, the operation is to find the department whose <code>Dnumber</code> attribute matches the value(s) for the <code>Dno</code> attribute of <code>Employee</code> with that high salary.
+</p>
+
+<p>
+in algebra, alternate notations exist. one common notation is <?xml version='1.0' encoding='UTF-8'?>
+
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -5.794919 7.748748 6.608519' style="max-height: 0.7484em; vertical-align: -0.1292em; display: inline-block" class="org-latex org-latex-inline">
+<defs>
+<path id='g0-110' d='m6.136986-4.473225c.119552-.119552 .139477-.139477 .139477-.219178c0-.109589-.089664-.199253-.199253-.199253c-.079701 0-.119552 .039851-.219178 .139477l-1.982565 1.982565l-1.992528-1.982565c-.119552-.119552-.139477-.139477-.219178-.139477c-.199253 0-.199253 .18929-.199253 .358655v4.084682c0 .169365 0 .358655 .199253 .358655c.079701 0 .099626-.019925 .219178-.139477l1.982565-1.982565c.488169 .478207 1.942715 1.942715 2.072229 2.062267c.009963 .019925 .079701 .059776 .139477 .059776c.119552 0 .199253-.089664 .199253-.199253c0-.019925 0-.069738-.049813-.129514c-.059776-.069738-1.544209-1.544209-2.062267-2.072229l1.972603-1.982565zm-4.273973 3.706102v-3.437111l1.713574 1.713574l-1.713574 1.723537z'/>
+</defs>
+<g id='page1'>
+<g fill='currentColor'>
+<use x='0' y='0' xlink:href='#g0-110'/>
+</g>
+</g>
+</svg>.
+</p>
+
+</div>
+</div>
+</body>
+</html>

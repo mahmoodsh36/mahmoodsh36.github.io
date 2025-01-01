@@ -1,0 +1,719 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>database course homework 1</title><!-- for google analytics -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QNNF19VZGH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QNNF19VZGH');
+</script>
+
+<!-- lambda icon, frail attempt -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22100%22 color=%22red%22>λ</text></svg>">
+<!-- not-so-awesome awesome font -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="/main.css">
+<!-- for dark mode -->
+<script src="darkmode.js"></script>
+<script src="main.js"></script>
+<script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div class="navbar">
+  <a href='/'>home</a>
+  <a href='/blog.html'>blog</a>
+  <a href='/search.html'>search</a>
+  <a href='/about.html'>about</a>
+  <div id="darkModeToggle" onclick="toggleDarkMode()">
+    &#9680; <!-- Circle with left half black -->
+  </div>
+</div>
+<div class="toc">
+  <span class="toc-title-container">
+    <a class='feather' data-feather='menu'></a>
+    <span class="toc-title">table of contents</span>
+  </span>
+  <div class="toc-list">
+  </div>
+</div><h1 class="main-title">database course homework 1</h1><span class='date'>2023-12-09</span>
+</div>
+<div id="content" class="content">
+<p>
+a car company wants to setup a <a href="/database.html">database</a> to store its customers data, data about their cars and garages that it has and the deals it has made, the following tables are needed:
+</p>
+<ul class="org-ul">
+<li><b>Customer</b>: first name, family name, id, town address, street, house number, phone number, and customer type.</li>
+<li><b>Car</b>: car number, car type, manufacturing company, production year, engine number, miles travelled, status.</li>
+<li><b>CarOwner</b>: customer id, car number, start date, end date.</li>
+<li><b>Garage</b>: garage name, town address, street, house number, phone number, company, car type specialty.</li>
+<li><b>CarMaintenance</b>: maintenance number, car number, type of maintenance, maintenance date, name of garage, name of responsible worker.</li>
+<li><b>ReplacedParts</b>: maintenance number, name of replaced part.</li>
+</ul>
+<p>
+the following constraints on the data need to be applied:
+</p>
+<ul class="org-ul">
+<li>customers: id number contains 9 digits only (ids never repeat). the possible cities are: tel aviv, netanya, herzliya, arael, ashdod, haifa, beer sheva, jerusalem, ramat gan. the type of customer can be either private or business.</li>
+<li>cars: car number is 8 digits (doesnt repeat), type is private/commerical/motorcycle. company is renault/pazo/alpha/fiat/ford/honda/audi/bmw. production year is ba number greater or equal to 1950 and smaller or equal to 2030, engine number is a string of 10 digits and letters in english and doesnt repeat. kilometers travelled is a number between 0 and 1m. status is new/off/maintenance.</li>
+<li>when a car is deleted from the database all the data on it is deleted, including ownership records, maintenance records, and records of replaced parts.</li>
+<li>car ownerships: the id of the customer is taken from the customers table, the car number is taken from the cars table, dates are made up of day,month and year only, end date has to be greater than the start date, end date cannot be in the future, incase there is an end date it means that the customer is not the owner of the car anymore. a customer can be an owner of more than one car and a car can be owned by more than one customer.</li>
+<li>garages: the name of a garage is unique, the list of possible cities is the same as the one for customers, and the companies allowed are the same as for car entries, the specialty in cars is one of private/commercial/motorcycle.</li>
+<li>car maintenances: the number of a maintenance is automatic, types of maintenances are 10000-maintenance/accident/spoilage/proactive. the id of a responsible worker is from the customer list.</li>
+<li>replaced parts: the table contains the parts that were replaced during maintenance.</li>
+</ul>
+<div test="test" class="fancy-block task" data-before="&lt;p&gt;
+task: &lt;/p&gt;
+" id="def-inr-prod" data-id="def-inr-prod">
+<p>
+write <a href="/data_definition_language.html">ddl</a> commands to define a <a href="/schema.html">schema</a> with the proper constraints (primary keys, foreign keys, data types and length, additional tests and constraints stemmed by the requirements. every string field should be a varchar2 of length 22.
+</p>
+
+</div>
+
+<p>
+here, i make use of mariadb, im on nixos (a flavor of linux), and have it installed.
+</p>
+
+<p>
+creating the database:
+</p>
+<div class="org-src-container" data-language="sql">
+<pre class="src src-sql"><span style="color: #deb07a; font-weight: bold;">create</span> database homework1
+</pre>
+</div>
+
+<p>
+line used for deleting the database (for testing):
+</p>
+<div class="org-src-container" data-language="sql">
+<pre class="src src-sql"><span style="color: #deb07a; font-weight: bold;">drop</span> database homework1;
+</pre>
+</div>
+
+<div class="org-src-container" data-language="sql">
+<pre class="src src-sql"><span style="color: #deb07a; font-weight: bold;">drop</span> <span style="color: #deb07a; font-weight: bold;">table</span> <span style="color: #8fcfd0;">if</span> <span style="color: #deb07a; font-weight: bold;">exists</span> customer <span style="color: #deb07a; font-weight: bold;">cascade</span>;
+<span style="color: #deb07a; font-weight: bold;">drop</span> <span style="color: #deb07a; font-weight: bold;">table</span> <span style="color: #8fcfd0;">if</span> <span style="color: #deb07a; font-weight: bold;">exists</span> car <span style="color: #deb07a; font-weight: bold;">cascade</span>;
+<span style="color: #deb07a; font-weight: bold;">drop</span> <span style="color: #deb07a; font-weight: bold;">table</span> <span style="color: #8fcfd0;">if</span> <span style="color: #deb07a; font-weight: bold;">exists</span> car_owner <span style="color: #deb07a; font-weight: bold;">cascade</span>;
+<span style="color: #deb07a; font-weight: bold;">drop</span> <span style="color: #deb07a; font-weight: bold;">table</span> <span style="color: #8fcfd0;">if</span> <span style="color: #deb07a; font-weight: bold;">exists</span> garage <span style="color: #deb07a; font-weight: bold;">cascade</span>;
+<span style="color: #deb07a; font-weight: bold;">drop</span> <span style="color: #deb07a; font-weight: bold;">table</span> <span style="color: #8fcfd0;">if</span> <span style="color: #deb07a; font-weight: bold;">exists</span> car_maintenance <span style="color: #deb07a; font-weight: bold;">cascade</span>;
+<span style="color: #deb07a; font-weight: bold;">drop</span> <span style="color: #deb07a; font-weight: bold;">table</span> <span style="color: #8fcfd0;">if</span> <span style="color: #deb07a; font-weight: bold;">exists</span> replaced_part <span style="color: #deb07a; font-weight: bold;">cascade</span>;
+</pre>
+</div>
+
+<p>
+creating the tables:
+</p>
+<div id="outline-container-org3fff767" class="outline-2">
+<h2 id="org3fff767">schema</h2>
+<div class="outline-text-2" id="text-org3fff767">
+<div class="org-src-container" data-language="sql">
+<pre class="src src-sql" id="src-database-homework-schema"><span style="color: #deb07a; font-weight: bold;">CREATE</span> <span style="color: #deb07a; font-weight: bold;">TABLE</span> <span style="color: #8fcfd0;">customer</span> <span style="color: #deb07a;">(</span>
+  first_name    <span style="color: #a9c99f;">VARCHAR</span><span style="color: #ffaacf;">(</span>22<span style="color: #ffaacf;">)</span> <span style="color: #deb07a; font-weight: bold;">NOT</span> <span style="color: #deb07a; font-weight: bold;">NULL</span>,
+  family_name   <span style="color: #a9c99f;">VARCHAR</span><span style="color: #ffaacf;">(</span>22<span style="color: #ffaacf;">)</span> <span style="color: #deb07a; font-weight: bold;">NOT</span> <span style="color: #deb07a; font-weight: bold;">NULL</span>,
+  customer_id   <span style="color: #a9c99f;">VARCHAR</span><span style="color: #ffaacf;">(</span>9<span style="color: #ffaacf;">)</span>  <span style="color: #deb07a; font-weight: bold;">NOT</span> <span style="color: #deb07a; font-weight: bold;">NULL</span>,
+  hometown      <span style="color: #a9c99f;">VARCHAR</span><span style="color: #ffaacf;">(</span>10<span style="color: #ffaacf;">)</span> <span style="color: #deb07a; font-weight: bold;">CHECK</span> <span style="color: #ffaacf;">(</span><span style="color: #e3b0c0; font-weight: bold;">LOWER</span><span style="color: #80aadf;">(</span>hometown<span style="color: #80aadf;">)</span> <span style="color: #deb07a; font-weight: bold;">IN</span> <span style="color: #80aadf;">(</span><span style="color: #f3a0a0;">'tel aviv'</span>, <span style="color: #f3a0a0;">'netanya'</span>, <span style="color: #f3a0a0;">'herzliya'</span>, <span style="color: #f3a0a0;">'arael'</span>, <span style="color: #f3a0a0;">'ashdod'</span>, <span style="color: #f3a0a0;">'haifa'</span>, <span style="color: #f3a0a0;">'beer sheva'</span>, <span style="color: #f3a0a0;">'jerusalem'</span>, <span style="color: #f3a0a0;">'ramat gan'</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span>,
+  street        <span style="color: #a9c99f;">VARCHAR</span><span style="color: #ffaacf;">(</span>22<span style="color: #ffaacf;">)</span> <span style="color: #deb07a; font-weight: bold;">NOT</span> <span style="color: #deb07a; font-weight: bold;">NULL</span>,
+  house_number  <span style="color: #a9c99f;">VARCHAR</span><span style="color: #ffaacf;">(</span>22<span style="color: #ffaacf;">)</span> <span style="color: #deb07a; font-weight: bold;">NOT</span> <span style="color: #deb07a; font-weight: bold;">NULL</span>,
+  phone_number  <span style="color: #a9c99f;">VARCHAR</span><span style="color: #ffaacf;">(</span>9<span style="color: #ffaacf;">)</span>  <span style="color: #deb07a; font-weight: bold;">CHECK</span> <span style="color: #ffaacf;">(</span>phone_number ~ <span style="color: #f3a0a0;">'^-?[0-9]+$'</span><span style="color: #ffaacf;">)</span>,
+  customer_type <span style="color: #a9c99f;">VARCHAR</span><span style="color: #ffaacf;">(</span>10<span style="color: #ffaacf;">)</span> <span style="color: #deb07a; font-weight: bold;">CHECK</span> <span style="color: #ffaacf;">(</span><span style="color: #e3b0c0; font-weight: bold;">LOWER</span><span style="color: #80aadf;">(</span>customer_type<span style="color: #80aadf;">)</span> <span style="color: #deb07a; font-weight: bold;">IN</span> <span style="color: #80aadf;">(</span><span style="color: #f3a0a0;">'business'</span>, <span style="color: #f3a0a0;">'private'</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span>,
+  <span style="color: #deb07a; font-weight: bold;">primary</span> <span style="color: #deb07a; font-weight: bold;">key</span> <span style="color: #ffaacf;">(</span>customer_id<span style="color: #ffaacf;">)</span>
+<span style="color: #deb07a;">)</span>;
+
+<span style="color: #deb07a; font-weight: bold;">CREATE</span> <span style="color: #deb07a; font-weight: bold;">TABLE</span> <span style="color: #8fcfd0;">car</span> <span style="color: #deb07a;">(</span>
+  car_number      <span style="color: #a9c99f;">VARCHAR</span><span style="color: #ffaacf;">(</span>8<span style="color: #ffaacf;">)</span>  <span style="color: #deb07a; font-weight: bold;">NOT</span> <span style="color: #deb07a; font-weight: bold;">NULL</span>,
+  car_type        <span style="color: #a9c99f;">VARCHAR</span><span style="color: #ffaacf;">(</span>10<span style="color: #ffaacf;">)</span> <span style="color: #deb07a; font-weight: bold;">CHECK</span> <span style="color: #ffaacf;">(</span><span style="color: #e3b0c0; font-weight: bold;">LOWER</span><span style="color: #80aadf;">(</span>car_type<span style="color: #80aadf;">)</span> <span style="color: #deb07a; font-weight: bold;">IN</span> <span style="color: #80aadf;">(</span><span style="color: #f3a0a0;">'private'</span>, <span style="color: #f3a0a0;">'commercial'</span>, <span style="color: #f3a0a0;">'motorcycle'</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span>,
+  company         <span style="color: #a9c99f;">VARCHAR</span><span style="color: #ffaacf;">(</span>10<span style="color: #ffaacf;">)</span> <span style="color: #deb07a; font-weight: bold;">CHECK</span> <span style="color: #ffaacf;">(</span><span style="color: #e3b0c0; font-weight: bold;">LOWER</span><span style="color: #80aadf;">(</span>company<span style="color: #80aadf;">)</span> <span style="color: #deb07a; font-weight: bold;">IN</span> <span style="color: #80aadf;">(</span><span style="color: #f3a0a0;">'renault'</span>, <span style="color: #f3a0a0;">'pazo'</span>, <span style="color: #f3a0a0;">'alpha'</span>, <span style="color: #f3a0a0;">'fiat'</span>, <span style="color: #f3a0a0;">'ford'</span>, <span style="color: #f3a0a0;">'honda'</span>, <span style="color: #f3a0a0;">'audi'</span>, <span style="color: #f3a0a0;">'bmw'</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span>,
+  production_year <span style="color: #a9c99f;">INT</span>         <span style="color: #deb07a; font-weight: bold;">CHECK</span> <span style="color: #ffaacf;">(</span><span style="color: #80aadf;">(</span>1950 &lt;= production_year<span style="color: #80aadf;">)</span> <span style="color: #deb07a; font-weight: bold;">AND</span> <span style="color: #80aadf;">(</span>production_year &lt;= 2030<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span>,
+  engine_number   <span style="color: #a9c99f;">VARCHAR</span><span style="color: #ffaacf;">(</span>10<span style="color: #ffaacf;">)</span> <span style="color: #deb07a; font-weight: bold;">NOT</span> <span style="color: #deb07a; font-weight: bold;">NULL</span> <span style="color: #deb07a; font-weight: bold;">UNIQUE</span>,
+  kilometers      <span style="color: #a9c99f;">INT</span>         <span style="color: #deb07a; font-weight: bold;">CHECK</span> <span style="color: #ffaacf;">(</span><span style="color: #80aadf;">(</span>0 &lt;= kilometers<span style="color: #80aadf;">)</span> <span style="color: #deb07a; font-weight: bold;">AND</span> <span style="color: #80aadf;">(</span>kilometers &lt;= 1000000<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span>,
+  status          <span style="color: #a9c99f;">VARCHAR</span><span style="color: #ffaacf;">(</span>10<span style="color: #ffaacf;">)</span> <span style="color: #deb07a; font-weight: bold;">CHECK</span> <span style="color: #ffaacf;">(</span><span style="color: #e3b0c0; font-weight: bold;">LOWER</span><span style="color: #80aadf;">(</span>status<span style="color: #80aadf;">)</span> <span style="color: #deb07a; font-weight: bold;">IN</span> <span style="color: #80aadf;">(</span><span style="color: #f3a0a0;">'new'</span>, <span style="color: #f3a0a0;">'maintenance'</span>, <span style="color: #f3a0a0;">'off'</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span>,
+  <span style="color: #deb07a; font-weight: bold;">PRIMARY</span> <span style="color: #deb07a; font-weight: bold;">KEY</span> <span style="color: #ffaacf;">(</span>car_number<span style="color: #ffaacf;">)</span>
+<span style="color: #deb07a;">)</span>;
+
+<span style="color: #deb07a; font-weight: bold;">CREATE</span> <span style="color: #deb07a; font-weight: bold;">TABLE</span> <span style="color: #8fcfd0;">car_owner</span> <span style="color: #deb07a;">(</span>
+  customer_id <span style="color: #a9c99f;">VARCHAR</span><span style="color: #ffaacf;">(</span>9<span style="color: #ffaacf;">)</span> <span style="color: #deb07a; font-weight: bold;">NOT</span> <span style="color: #deb07a; font-weight: bold;">NULL</span>,
+  car_number  <span style="color: #a9c99f;">VARCHAR</span><span style="color: #ffaacf;">(</span>8<span style="color: #ffaacf;">)</span> <span style="color: #deb07a; font-weight: bold;">NOT</span> <span style="color: #deb07a; font-weight: bold;">NULL</span>,
+  start_date  <span style="color: #a9c99f;">DATE</span>       <span style="color: #deb07a; font-weight: bold;">NOT</span> <span style="color: #deb07a; font-weight: bold;">NULL</span>,
+  end_date    <span style="color: #a9c99f;">DATE</span> <span style="color: #deb07a; font-weight: bold;">CHECK</span> <span style="color: #ffaacf;">(</span>end_date &gt; start_date <span style="color: #deb07a; font-weight: bold;">OR</span> end_date <span style="color: #deb07a; font-weight: bold;">IS</span> <span style="color: #deb07a; font-weight: bold;">NULL</span><span style="color: #ffaacf;">)</span>,
+  <span style="color: #deb07a; font-weight: bold;">FOREIGN</span> <span style="color: #deb07a; font-weight: bold;">KEY</span> <span style="color: #ffaacf;">(</span>customer_id<span style="color: #ffaacf;">)</span> <span style="color: #deb07a; font-weight: bold;">REFERENCES</span> customer<span style="color: #ffaacf;">(</span>customer_id<span style="color: #ffaacf;">)</span>,
+  <span style="color: #deb07a; font-weight: bold;">FOREIGN</span> <span style="color: #deb07a; font-weight: bold;">KEY</span> <span style="color: #ffaacf;">(</span>car_number<span style="color: #ffaacf;">)</span> <span style="color: #deb07a; font-weight: bold;">REFERENCES</span> car<span style="color: #ffaacf;">(</span>car_number<span style="color: #ffaacf;">)</span> <span style="color: #deb07a; font-weight: bold;">ON</span> <span style="color: #deb07a; font-weight: bold;">DELETE</span> <span style="color: #deb07a; font-weight: bold;">CASCADE</span>
+<span style="color: #deb07a;">)</span>;
+
+<span style="color: #a0a0cf; font-style: italic;">-- </span><span style="color: #a0a0cf; font-style: italic;">DELIMITER //</span>
+
+<span style="color: #a0a0cf; font-style: italic;">-- </span><span style="color: #a0a0cf; font-style: italic;">CREATE TRIGGER date_check BEFORE INSERT ON car_owner FOR EACH ROW</span>
+<span style="color: #a0a0cf; font-style: italic;">-- </span><span style="color: #a0a0cf; font-style: italic;">BEGIN</span>
+<span style="color: #a0a0cf; font-style: italic;">-- </span><span style="color: #a0a0cf; font-style: italic;">IF NEW.end_date &gt;= CURDATE() THEN</span>
+<span style="color: #a0a0cf; font-style: italic;">-- </span><span style="color: #a0a0cf; font-style: italic;">SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Invalid date!';</span>
+<span style="color: #a0a0cf; font-style: italic;">-- </span><span style="color: #a0a0cf; font-style: italic;">END IF;</span>
+<span style="color: #a0a0cf; font-style: italic;">-- </span><span style="color: #a0a0cf; font-style: italic;">END; //</span>
+
+<span style="color: #a0a0cf; font-style: italic;">-- </span><span style="color: #a0a0cf; font-style: italic;">DELIMITER ;</span>
+
+<span style="color: #deb07a; font-weight: bold;">CREATE</span> <span style="color: #deb07a; font-weight: bold;">TABLE</span> <span style="color: #8fcfd0;">garage</span> <span style="color: #deb07a;">(</span>
+  garage_name  <span style="color: #a9c99f;">VARCHAR</span><span style="color: #ffaacf;">(</span>22<span style="color: #ffaacf;">)</span> <span style="color: #deb07a; font-weight: bold;">NOT</span> <span style="color: #deb07a; font-weight: bold;">NULL</span>,
+  town         <span style="color: #a9c99f;">VARCHAR</span><span style="color: #ffaacf;">(</span>10<span style="color: #ffaacf;">)</span> <span style="color: #deb07a; font-weight: bold;">CHECK</span> <span style="color: #ffaacf;">(</span><span style="color: #e3b0c0; font-weight: bold;">LOWER</span><span style="color: #80aadf;">(</span>town<span style="color: #80aadf;">)</span> <span style="color: #deb07a; font-weight: bold;">IN</span> <span style="color: #80aadf;">(</span><span style="color: #f3a0a0;">'tel aviv'</span>, <span style="color: #f3a0a0;">'netanya'</span>, <span style="color: #f3a0a0;">'herzliya'</span>, <span style="color: #f3a0a0;">'arael'</span>, <span style="color: #f3a0a0;">'ashdod'</span>, <span style="color: #f3a0a0;">'haifa'</span>, <span style="color: #f3a0a0;">'beer sheva'</span>, <span style="color: #f3a0a0;">'jerusalem'</span>, <span style="color: #f3a0a0;">'ramat gan'</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span>,
+  street       <span style="color: #a9c99f;">VARCHAR</span><span style="color: #ffaacf;">(</span>22<span style="color: #ffaacf;">)</span> <span style="color: #deb07a; font-weight: bold;">NOT</span> <span style="color: #deb07a; font-weight: bold;">NULL</span>,
+  company      <span style="color: #a9c99f;">VARCHAR</span><span style="color: #ffaacf;">(</span>10<span style="color: #ffaacf;">)</span> <span style="color: #deb07a; font-weight: bold;">CHECK</span> <span style="color: #ffaacf;">(</span><span style="color: #e3b0c0; font-weight: bold;">LOWER</span><span style="color: #80aadf;">(</span>company<span style="color: #80aadf;">)</span> <span style="color: #deb07a; font-weight: bold;">IN</span> <span style="color: #80aadf;">(</span><span style="color: #f3a0a0;">'renault'</span>, <span style="color: #f3a0a0;">'pazo'</span>, <span style="color: #f3a0a0;">'alpha'</span>, <span style="color: #f3a0a0;">'fiat'</span>, <span style="color: #f3a0a0;">'ford'</span>, <span style="color: #f3a0a0;">'honda'</span>, <span style="color: #f3a0a0;">'audi'</span>, <span style="color: #f3a0a0;">'bmw'</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span>,
+  house_number <span style="color: #a9c99f;">VARCHAR</span><span style="color: #ffaacf;">(</span>22<span style="color: #ffaacf;">)</span> <span style="color: #deb07a; font-weight: bold;">NOT</span> <span style="color: #deb07a; font-weight: bold;">NULL</span>,
+  phone_number <span style="color: #a9c99f;">VARCHAR</span><span style="color: #ffaacf;">(</span>9<span style="color: #ffaacf;">)</span>  <span style="color: #deb07a; font-weight: bold;">CHECK</span> <span style="color: #ffaacf;">(</span>phone_number ~ <span style="color: #f3a0a0;">'^-?[0-9]+$'</span><span style="color: #ffaacf;">)</span>,
+  specialty    <span style="color: #a9c99f;">VARCHAR</span><span style="color: #ffaacf;">(</span>10<span style="color: #ffaacf;">)</span> <span style="color: #deb07a; font-weight: bold;">CHECK</span> <span style="color: #ffaacf;">(</span><span style="color: #e3b0c0; font-weight: bold;">LOWER</span><span style="color: #80aadf;">(</span>specialty<span style="color: #80aadf;">)</span> <span style="color: #deb07a; font-weight: bold;">IN</span> <span style="color: #80aadf;">(</span><span style="color: #f3a0a0;">'private'</span>, <span style="color: #f3a0a0;">'commercial'</span>, <span style="color: #f3a0a0;">'motorcycle'</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span>,
+  <span style="color: #deb07a; font-weight: bold;">PRIMARY</span> <span style="color: #deb07a; font-weight: bold;">KEY</span> <span style="color: #ffaacf;">(</span>garage_name<span style="color: #ffaacf;">)</span>
+<span style="color: #deb07a;">)</span>;
+
+<span style="color: #deb07a; font-weight: bold;">CREATE</span> <span style="color: #deb07a; font-weight: bold;">TABLE</span> <span style="color: #8fcfd0;">car_maintenance</span> <span style="color: #deb07a;">(</span>
+  maintenance_number    SERIAL,
+  car_number            <span style="color: #a9c99f;">VARCHAR</span><span style="color: #ffaacf;">(</span>8<span style="color: #ffaacf;">)</span>  <span style="color: #deb07a; font-weight: bold;">NOT</span> <span style="color: #deb07a; font-weight: bold;">NULL</span>,
+  maintenance_type      <span style="color: #a9c99f;">VARCHAR</span><span style="color: #ffaacf;">(</span>10<span style="color: #ffaacf;">)</span> <span style="color: #deb07a; font-weight: bold;">CHECK</span> <span style="color: #ffaacf;">(</span><span style="color: #e3b0c0; font-weight: bold;">LOWER</span><span style="color: #80aadf;">(</span>maintenance_type<span style="color: #80aadf;">)</span> <span style="color: #deb07a; font-weight: bold;">IN</span> <span style="color: #80aadf;">(</span><span style="color: #f3a0a0;">'10000'</span>, <span style="color: #f3a0a0;">'accident'</span>, <span style="color: #f3a0a0;">'spoilage'</span>, <span style="color: #f3a0a0;">'proactive'</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span> ,
+  maintenance_date      <span style="color: #a9c99f;">DATE</span>        <span style="color: #deb07a; font-weight: bold;">NOT</span> <span style="color: #deb07a; font-weight: bold;">NULL</span>,
+  garage_name           <span style="color: #a9c99f;">VARCHAR</span><span style="color: #ffaacf;">(</span>22<span style="color: #ffaacf;">)</span> <span style="color: #deb07a; font-weight: bold;">NOT</span> <span style="color: #deb07a; font-weight: bold;">NULL</span>,
+  responsible_worker_id <span style="color: #a9c99f;">VARCHAR</span><span style="color: #ffaacf;">(</span>9<span style="color: #ffaacf;">)</span>  <span style="color: #deb07a; font-weight: bold;">NOT</span> <span style="color: #deb07a; font-weight: bold;">NULL</span>,
+  <span style="color: #deb07a; font-weight: bold;">PRIMARY</span> <span style="color: #deb07a; font-weight: bold;">KEY</span> <span style="color: #ffaacf;">(</span>maintenance_number<span style="color: #ffaacf;">)</span>,
+  <span style="color: #deb07a; font-weight: bold;">FOREIGN</span> <span style="color: #deb07a; font-weight: bold;">KEY</span> <span style="color: #ffaacf;">(</span>car_number<span style="color: #ffaacf;">)</span> <span style="color: #deb07a; font-weight: bold;">REFERENCES</span> car<span style="color: #ffaacf;">(</span>car_number<span style="color: #ffaacf;">)</span> <span style="color: #deb07a; font-weight: bold;">ON</span> <span style="color: #deb07a; font-weight: bold;">DELETE</span> <span style="color: #deb07a; font-weight: bold;">CASCADE</span>,
+  <span style="color: #deb07a; font-weight: bold;">FOREIGN</span> <span style="color: #deb07a; font-weight: bold;">KEY</span> <span style="color: #ffaacf;">(</span>garage_name<span style="color: #ffaacf;">)</span> <span style="color: #deb07a; font-weight: bold;">REFERENCES</span> garage<span style="color: #ffaacf;">(</span>garage_name<span style="color: #ffaacf;">)</span>,
+  <span style="color: #deb07a; font-weight: bold;">FOREIGN</span> <span style="color: #deb07a; font-weight: bold;">KEY</span> <span style="color: #ffaacf;">(</span>responsible_worker_id<span style="color: #ffaacf;">)</span> <span style="color: #deb07a; font-weight: bold;">REFERENCES</span> customer<span style="color: #ffaacf;">(</span>customer_id<span style="color: #ffaacf;">)</span>
+<span style="color: #deb07a;">)</span>;
+
+<span style="color: #deb07a; font-weight: bold;">CREATE</span> <span style="color: #deb07a; font-weight: bold;">TABLE</span> <span style="color: #8fcfd0;">replaced_part</span> <span style="color: #deb07a;">(</span>
+  maintenance_number <span style="color: #a9c99f;">INT</span>         <span style="color: #deb07a; font-weight: bold;">NOT</span> <span style="color: #deb07a; font-weight: bold;">NULL</span>,
+  part_name          <span style="color: #a9c99f;">VARCHAR</span><span style="color: #ffaacf;">(</span>22<span style="color: #ffaacf;">)</span> <span style="color: #deb07a; font-weight: bold;">NOT</span> <span style="color: #deb07a; font-weight: bold;">NULL</span>,
+  <span style="color: #deb07a; font-weight: bold;">FOREIGN</span> <span style="color: #deb07a; font-weight: bold;">KEY</span> <span style="color: #ffaacf;">(</span>maintenance_number<span style="color: #ffaacf;">)</span> <span style="color: #deb07a; font-weight: bold;">REFERENCES</span> car_maintenance<span style="color: #ffaacf;">(</span>maintenance_number<span style="color: #ffaacf;">)</span>
+<span style="color: #deb07a;">)</span>;
+</pre>
+</div>
+
+<p>
+some tests to make sure the database works as expected:
+</p>
+<div class="org-src-container" data-language="sql">
+<pre class="src src-sql"><span style="color: #deb07a; font-weight: bold;">describe</span> car;
+</pre>
+</div>
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Field</th>
+<th scope="col" class="org-left">Type</th>
+<th scope="col" class="org-left">Null</th>
+<th scope="col" class="org-left">Key</th>
+<th scope="col" class="org-left">Default</th>
+<th scope="col" class="org-left">Extra</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">car_number</td>
+<td class="org-left">varchar(8)</td>
+<td class="org-left">NO</td>
+<td class="org-left">PRI</td>
+<td class="org-left">NULL</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">car_type</td>
+<td class="org-left">varchar(10)</td>
+<td class="org-left">YES</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">NULL</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">company</td>
+<td class="org-left">varchar(10)</td>
+<td class="org-left">YES</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">NULL</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">production_year</td>
+<td class="org-left">int(11)</td>
+<td class="org-left">YES</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">NULL</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">engine_number</td>
+<td class="org-left">varchar(10)</td>
+<td class="org-left">NO</td>
+<td class="org-left">UNI</td>
+<td class="org-left">NULL</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">kilometers</td>
+<td class="org-left">int(11)</td>
+<td class="org-left">YES</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">NULL</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">status</td>
+<td class="org-left">varchar(10)</td>
+<td class="org-left">YES</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">NULL</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+
+<div class="org-src-container" data-language="sql">
+<pre class="src src-sql"><span style="color: #deb07a; font-weight: bold;">describe</span> replaced_part
+</pre>
+</div>
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Field</th>
+<th scope="col" class="org-left">Type</th>
+<th scope="col" class="org-left">Null</th>
+<th scope="col" class="org-left">Key</th>
+<th scope="col" class="org-left">Default</th>
+<th scope="col" class="org-left">Extra</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">maintenance_number</td>
+<td class="org-left">int(11)</td>
+<td class="org-left">NO</td>
+<td class="org-left">MUL</td>
+<td class="org-left">NULL</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">part_name</td>
+<td class="org-left">varchar(22)</td>
+<td class="org-left">NO</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">NULL</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+
+<div class="org-src-container" data-language="sql">
+<pre class="src src-sql"><span style="color: #deb07a; font-weight: bold;">describe</span> car_owner;
+</pre>
+</div>
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Field</th>
+<th scope="col" class="org-left">Type</th>
+<th scope="col" class="org-left">Null</th>
+<th scope="col" class="org-left">Key</th>
+<th scope="col" class="org-left">Default</th>
+<th scope="col" class="org-left">Extra</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">customer_id</td>
+<td class="org-left">varchar(9)</td>
+<td class="org-left">NO</td>
+<td class="org-left">MUL</td>
+<td class="org-left">NULL</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">car_number</td>
+<td class="org-left">varchar(8)</td>
+<td class="org-left">NO</td>
+<td class="org-left">MUL</td>
+<td class="org-left">NULL</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">start_date</td>
+<td class="org-left">date</td>
+<td class="org-left">NO</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">NULL</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">end_date</td>
+<td class="org-left">date</td>
+<td class="org-left">YES</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">NULL</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+
+<div class="org-src-container" data-language="sql">
+<pre class="src src-sql"><span style="color: #deb07a; font-weight: bold;">describe</span> garage;
+</pre>
+</div>
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Field</th>
+<th scope="col" class="org-left">Type</th>
+<th scope="col" class="org-left">Null</th>
+<th scope="col" class="org-left">Key</th>
+<th scope="col" class="org-left">Default</th>
+<th scope="col" class="org-left">Extra</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">garage_name</td>
+<td class="org-left">varchar(22)</td>
+<td class="org-left">NO</td>
+<td class="org-left">PRI</td>
+<td class="org-left">NULL</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">town</td>
+<td class="org-left">varchar(10)</td>
+<td class="org-left">YES</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">NULL</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">street</td>
+<td class="org-left">varchar(22)</td>
+<td class="org-left">NO</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">NULL</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">company</td>
+<td class="org-left">varchar(10)</td>
+<td class="org-left">YES</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">NULL</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">house_number</td>
+<td class="org-left">varchar(22)</td>
+<td class="org-left">NO</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">NULL</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">phone_number</td>
+<td class="org-left">varchar(9)</td>
+<td class="org-left">YES</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">NULL</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">specialty</td>
+<td class="org-left">varchar(10)</td>
+<td class="org-left">YES</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">NULL</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+
+<div class="org-src-container" data-language="sql">
+<pre class="src src-sql"><span style="color: #deb07a; font-weight: bold;">describe</span> car_maintenance
+</pre>
+</div>
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Field</th>
+<th scope="col" class="org-left">Type</th>
+<th scope="col" class="org-left">Null</th>
+<th scope="col" class="org-left">Key</th>
+<th scope="col" class="org-left">Default</th>
+<th scope="col" class="org-left">Extra</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">maintenance_number</td>
+<td class="org-left">int(11)</td>
+<td class="org-left">NO</td>
+<td class="org-left">PRI</td>
+<td class="org-left">NULL</td>
+<td class="org-left">auto_increment</td>
+</tr>
+
+<tr>
+<td class="org-left">car_number</td>
+<td class="org-left">varchar(8)</td>
+<td class="org-left">NO</td>
+<td class="org-left">MUL</td>
+<td class="org-left">NULL</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">maintenance_type</td>
+<td class="org-left">varchar(10)</td>
+<td class="org-left">YES</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">NULL</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">maintenance_date</td>
+<td class="org-left">date</td>
+<td class="org-left">NO</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">NULL</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">garage_name</td>
+<td class="org-left">varchar(22)</td>
+<td class="org-left">NO</td>
+<td class="org-left">MUL</td>
+<td class="org-left">NULL</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">responsible_worker_id</td>
+<td class="org-left">varchar(9)</td>
+<td class="org-left">NO</td>
+<td class="org-left">MUL</td>
+<td class="org-left">NULL</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+
+<div class="org-src-container" data-language="sql">
+<pre class="src src-sql"><span style="color: #deb07a; font-weight: bold;">describe</span> customer
+</pre>
+</div>
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Field</th>
+<th scope="col" class="org-left">Type</th>
+<th scope="col" class="org-left">Null</th>
+<th scope="col" class="org-left">Key</th>
+<th scope="col" class="org-left">Default</th>
+<th scope="col" class="org-left">Extra</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">first_name</td>
+<td class="org-left">varchar(22)</td>
+<td class="org-left">NO</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">NULL</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">family_name</td>
+<td class="org-left">varchar(22)</td>
+<td class="org-left">NO</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">NULL</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">customer_id</td>
+<td class="org-left">varchar(9)</td>
+<td class="org-left">NO</td>
+<td class="org-left">PRI</td>
+<td class="org-left">NULL</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">hometown</td>
+<td class="org-left">varchar(10)</td>
+<td class="org-left">YES</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">NULL</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">street</td>
+<td class="org-left">varchar(22)</td>
+<td class="org-left">NO</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">NULL</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">house_number</td>
+<td class="org-left">varchar(22)</td>
+<td class="org-left">NO</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">NULL</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">phone_number</td>
+<td class="org-left">varchar(9)</td>
+<td class="org-left">YES</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">NULL</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">customer_type</td>
+<td class="org-left">varchar(10)</td>
+<td class="org-left">YES</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">NULL</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+<p>
+i was too lazy to conduct further modification tests, i'll leave it for next homework.</p>
+</div>
+</div>
+</div>
+</body>
+</html>

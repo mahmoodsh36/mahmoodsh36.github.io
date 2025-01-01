@@ -1,0 +1,833 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>database course homework 3</title><!-- for google analytics -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QNNF19VZGH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QNNF19VZGH');
+</script>
+
+<!-- lambda icon, frail attempt -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22100%22 color=%22red%22>λ</text></svg>">
+<!-- not-so-awesome awesome font -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="/main.css">
+<!-- for dark mode -->
+<script src="darkmode.js"></script>
+<script src="main.js"></script>
+<script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div class="navbar">
+  <a href='/'>home</a>
+  <a href='/blog.html'>blog</a>
+  <a href='/search.html'>search</a>
+  <a href='/about.html'>about</a>
+  <div id="darkModeToggle" onclick="toggleDarkMode()">
+    &#9680; <!-- Circle with left half black -->
+  </div>
+</div>
+<div class="toc">
+  <span class="toc-title-container">
+    <a class='feather' data-feather='menu'></a>
+    <span class="toc-title">table of contents</span>
+  </span>
+  <div class="toc-list">
+  </div>
+</div><h1 class="main-title">database course homework 3</h1><span class='date'>2024-01-11</span>
+</div>
+<div id="content" class="content">
+<div test="test" class="fancy-block note" data-before="&lt;p&gt;
+note: &lt;/p&gt;
+" id="prf-bool-func-1" data-id="prf-bool-func-1">
+<p>
+this homework depends on the database built in <a href="/database_course_homework_1.html">database course homework 1</a>.
+</p>
+
+</div>
+
+<div test="test" class="fancy-block note" data-before="&lt;p&gt;
+note: &lt;/p&gt;
+" id="prf-bool-func-1" data-id="prf-bool-func-1">
+<p>
+i used <a href="/postgresql.html">postgresql</a> to do this homework.
+</p>
+
+</div>
+<div id="outline-container-orgd02f5e0" class="outline-2">
+<h2 id="orgd02f5e0">sample data</h2>
+<div class="outline-text-2" id="text-orgd02f5e0">
+<p>
+here i insert some dummy data for testing
+</p>
+<div class="org-src-container" data-language="sql">
+<pre class="src src-sql"><span style="color: #a0a0cf; font-style: italic;">-- </span><span style="color: #a0a0cf; font-style: italic;">customers</span>
+<span style="color: #deb07a; font-weight: bold;">INSERT</span> <span style="color: #deb07a; font-weight: bold;">INTO</span> customer <span style="color: #deb07a;">(</span>first_name, family_name, customer_id, hometown, street, house_number, phone_number, customer_type<span style="color: #deb07a;">)</span>
+            <span style="color: #deb07a; font-weight: bold;">VALUES</span><span style="color: #deb07a;">(</span><span style="color: #f3a0a0;">'some'</span>, <span style="color: #f3a0a0;">'one'</span>, <span style="color: #f3a0a0;">'111'</span>, <span style="color: #f3a0a0;">'netanya'</span>, <span style="color: #f3a0a0;">'hertzel'</span>, <span style="color: #f3a0a0;">'22'</span>, <span style="color: #f3a0a0;">'503344556'</span>, <span style="color: #f3a0a0;">'private'</span><span style="color: #deb07a;">)</span>;
+<span style="color: #deb07a; font-weight: bold;">INSERT</span> <span style="color: #deb07a; font-weight: bold;">INTO</span> customer <span style="color: #deb07a;">(</span>first_name, family_name, customer_id, hometown, street, house_number, phone_number, customer_type<span style="color: #deb07a;">)</span>
+            <span style="color: #deb07a; font-weight: bold;">VALUES</span><span style="color: #deb07a;">(</span><span style="color: #f3a0a0;">'other'</span>, <span style="color: #f3a0a0;">'one'</span>, <span style="color: #f3a0a0;">'222'</span>, <span style="color: #f3a0a0;">'tel aviv'</span>, <span style="color: #f3a0a0;">'dezengov'</span>, <span style="color: #f3a0a0;">'23'</span>, <span style="color: #f3a0a0;">'514455667'</span>, <span style="color: #f3a0a0;">'business'</span><span style="color: #deb07a;">)</span>;
+<span style="color: #deb07a; font-weight: bold;">INSERT</span> <span style="color: #deb07a; font-weight: bold;">INTO</span> customer <span style="color: #deb07a;">(</span>first_name, family_name, customer_id, hometown, street, house_number, phone_number, customer_type<span style="color: #deb07a;">)</span>
+            <span style="color: #deb07a; font-weight: bold;">VALUES</span><span style="color: #deb07a;">(</span><span style="color: #f3a0a0;">'yet'</span>, <span style="color: #f3a0a0;">'another'</span>, <span style="color: #f3a0a0;">'444'</span>, <span style="color: #f3a0a0;">'netanya'</span>, <span style="color: #f3a0a0;">'hertzel'</span>, <span style="color: #f3a0a0;">'77'</span>, <span style="color: #f3a0a0;">'588346677'</span>, <span style="color: #f3a0a0;">'private'</span><span style="color: #deb07a;">)</span>;
+
+<span style="color: #deb07a; font-weight: bold;">INSERT</span> <span style="color: #deb07a; font-weight: bold;">INTO</span> car <span style="color: #deb07a;">(</span>car_number, car_type, company, production_year, engine_number, kilometers, status<span style="color: #deb07a;">)</span>
+            <span style="color: #deb07a; font-weight: bold;">VALUES</span><span style="color: #deb07a;">(</span><span style="color: #f3a0a0;">'1111111'</span>, <span style="color: #f3a0a0;">'private'</span>, <span style="color: #f3a0a0;">'honda'</span>, 2020, <span style="color: #f3a0a0;">'1600'</span>, 100000, <span style="color: #f3a0a0;">'off'</span><span style="color: #deb07a;">)</span>;
+<span style="color: #deb07a; font-weight: bold;">INSERT</span> <span style="color: #deb07a; font-weight: bold;">INTO</span> car <span style="color: #deb07a;">(</span>car_number, car_type, company, production_year, engine_number, kilometers, status<span style="color: #deb07a;">)</span>
+            <span style="color: #deb07a; font-weight: bold;">VALUES</span><span style="color: #deb07a;">(</span><span style="color: #f3a0a0;">'6666666'</span>, <span style="color: #f3a0a0;">'private'</span>, <span style="color: #f3a0a0;">'pazo'</span>, 2010, <span style="color: #f3a0a0;">'2000'</span>, 200000, <span style="color: #f3a0a0;">'new'</span><span style="color: #deb07a;">)</span>;
+
+<span style="color: #deb07a; font-weight: bold;">INSERT</span> <span style="color: #deb07a; font-weight: bold;">INTO</span> car_owner <span style="color: #deb07a;">(</span>customer_id, car_number, start_date, end_date<span style="color: #deb07a;">)</span>
+            <span style="color: #deb07a; font-weight: bold;">VALUES</span><span style="color: #deb07a;">(</span><span style="color: #f3a0a0;">'111'</span>, <span style="color: #f3a0a0;">'1111111'</span>, make_date<span style="color: #ffaacf;">(</span>2022, 5, 15<span style="color: #ffaacf;">)</span>, make_date<span style="color: #ffaacf;">(</span>2024, 5, 29<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>;
+
+<span style="color: #deb07a; font-weight: bold;">INSERT</span> <span style="color: #deb07a; font-weight: bold;">INTO</span> garage <span style="color: #deb07a;">(</span>garage_name, town, street, company, house_number, phone_number, specialty<span style="color: #deb07a;">)</span>
+            <span style="color: #deb07a; font-weight: bold;">VALUES</span><span style="color: #deb07a;">(</span><span style="color: #f3a0a0;">'carioci'</span>, <span style="color: #f3a0a0;">'netanya'</span>, <span style="color: #f3a0a0;">'hertzel'</span>, <span style="color: #f3a0a0;">'pazo'</span>, <span style="color: #f3a0a0;">'11'</span>, <span style="color: #f3a0a0;">'500000000'</span>, <span style="color: #f3a0a0;">'private'</span><span style="color: #deb07a;">)</span>;
+<span style="color: #deb07a; font-weight: bold;">INSERT</span> <span style="color: #deb07a; font-weight: bold;">INTO</span> garage <span style="color: #deb07a;">(</span>garage_name, town, street, company, house_number, phone_number, specialty<span style="color: #deb07a;">)</span>
+            <span style="color: #deb07a; font-weight: bold;">VALUES</span><span style="color: #deb07a;">(</span><span style="color: #f3a0a0;">'carioc2'</span>, <span style="color: #f3a0a0;">'netanya'</span>, <span style="color: #f3a0a0;">'hertzel'</span>, <span style="color: #f3a0a0;">'pazo'</span>, <span style="color: #f3a0a0;">'11'</span>, <span style="color: #f3a0a0;">'500000000'</span>, <span style="color: #f3a0a0;">'private'</span><span style="color: #deb07a;">)</span>;
+
+<span style="color: #deb07a; font-weight: bold;">INSERT</span> <span style="color: #deb07a; font-weight: bold;">INTO</span> car_maintenance <span style="color: #deb07a;">(</span>car_number, maintenance_type, maintenance_date, garage_name, responsible_worker_id<span style="color: #deb07a;">)</span>
+            <span style="color: #deb07a; font-weight: bold;">VALUES</span><span style="color: #deb07a;">(</span><span style="color: #f3a0a0;">'1111111'</span>, <span style="color: #f3a0a0;">'proactive'</span>, make_date<span style="color: #ffaacf;">(</span>2022, 5, 15<span style="color: #ffaacf;">)</span>, <span style="color: #f3a0a0;">'carioci'</span>, <span style="color: #f3a0a0;">'444'</span><span style="color: #deb07a;">)</span>;
+<span style="color: #deb07a; font-weight: bold;">INSERT</span> <span style="color: #deb07a; font-weight: bold;">INTO</span> car_maintenance <span style="color: #deb07a;">(</span>car_number, maintenance_type, maintenance_date, garage_name, responsible_worker_id<span style="color: #deb07a;">)</span>
+            <span style="color: #deb07a; font-weight: bold;">VALUES</span><span style="color: #deb07a;">(</span><span style="color: #f3a0a0;">'1111111'</span>, <span style="color: #f3a0a0;">'proactive'</span>, make_date<span style="color: #ffaacf;">(</span>2018, 5, 15<span style="color: #ffaacf;">)</span>, <span style="color: #f3a0a0;">'carioci'</span>, <span style="color: #f3a0a0;">'444'</span><span style="color: #deb07a;">)</span>;
+<span style="color: #deb07a; font-weight: bold;">INSERT</span> <span style="color: #deb07a; font-weight: bold;">INTO</span> car_maintenance <span style="color: #deb07a;">(</span>car_number, maintenance_type, maintenance_date, garage_name, responsible_worker_id<span style="color: #deb07a;">)</span>
+            <span style="color: #deb07a; font-weight: bold;">VALUES</span><span style="color: #deb07a;">(</span><span style="color: #f3a0a0;">'1111111'</span>, <span style="color: #f3a0a0;">'proactive'</span>, make_date<span style="color: #ffaacf;">(</span>2020, 5, 15<span style="color: #ffaacf;">)</span>, <span style="color: #f3a0a0;">'carioci'</span>, <span style="color: #f3a0a0;">'444'</span><span style="color: #deb07a;">)</span>;
+<span style="color: #deb07a; font-weight: bold;">INSERT</span> <span style="color: #deb07a; font-weight: bold;">INTO</span> car_maintenance <span style="color: #deb07a;">(</span>car_number, maintenance_type, maintenance_date, garage_name, responsible_worker_id<span style="color: #deb07a;">)</span>
+            <span style="color: #deb07a; font-weight: bold;">VALUES</span><span style="color: #deb07a;">(</span><span style="color: #f3a0a0;">'1111111'</span>, <span style="color: #f3a0a0;">'proactive'</span>, make_date<span style="color: #ffaacf;">(</span>2020, 5, 18<span style="color: #ffaacf;">)</span>, <span style="color: #f3a0a0;">'carioci'</span>, <span style="color: #f3a0a0;">'444'</span><span style="color: #deb07a;">)</span>;
+<span style="color: #deb07a; font-weight: bold;">INSERT</span> <span style="color: #deb07a; font-weight: bold;">INTO</span> car_maintenance <span style="color: #deb07a;">(</span>car_number, maintenance_type, maintenance_date, garage_name, responsible_worker_id<span style="color: #deb07a;">)</span>
+            <span style="color: #deb07a; font-weight: bold;">VALUES</span><span style="color: #deb07a;">(</span><span style="color: #f3a0a0;">'1111111'</span>, <span style="color: #f3a0a0;">'proactive'</span>, make_date<span style="color: #ffaacf;">(</span>2015, 5, 18<span style="color: #ffaacf;">)</span>, <span style="color: #f3a0a0;">'carioci'</span>, <span style="color: #f3a0a0;">'444'</span><span style="color: #deb07a;">)</span>;
+<span style="color: #deb07a; font-weight: bold;">INSERT</span> <span style="color: #deb07a; font-weight: bold;">INTO</span> car_maintenance <span style="color: #deb07a;">(</span>car_number, maintenance_type, maintenance_date, garage_name, responsible_worker_id<span style="color: #deb07a;">)</span>
+            <span style="color: #deb07a; font-weight: bold;">VALUES</span><span style="color: #deb07a;">(</span><span style="color: #f3a0a0;">'1111111'</span>, <span style="color: #f3a0a0;">'proactive'</span>, make_date<span style="color: #ffaacf;">(</span>2019, 5, 18<span style="color: #ffaacf;">)</span>, <span style="color: #f3a0a0;">'carioci'</span>, <span style="color: #f3a0a0;">'444'</span><span style="color: #deb07a;">)</span>;
+<span style="color: #deb07a; font-weight: bold;">INSERT</span> <span style="color: #deb07a; font-weight: bold;">INTO</span> car_maintenance <span style="color: #deb07a;">(</span>car_number, maintenance_type, maintenance_date, garage_name, responsible_worker_id<span style="color: #deb07a;">)</span>
+            <span style="color: #deb07a; font-weight: bold;">VALUES</span><span style="color: #deb07a;">(</span><span style="color: #f3a0a0;">'1111111'</span>, <span style="color: #f3a0a0;">'proactive'</span>, make_date<span style="color: #ffaacf;">(</span>2019, 5, 18<span style="color: #ffaacf;">)</span>, <span style="color: #f3a0a0;">'carioc2'</span>, <span style="color: #f3a0a0;">'444'</span><span style="color: #deb07a;">)</span>;
+
+<span style="color: #deb07a; font-weight: bold;">INSERT</span> <span style="color: #deb07a; font-weight: bold;">INTO</span> replaced_part <span style="color: #deb07a;">(</span>maintenance_number, part_name<span style="color: #deb07a;">)</span>
+            <span style="color: #deb07a; font-weight: bold;">VALUES</span><span style="color: #deb07a;">(</span>1, <span style="color: #f3a0a0;">'door'</span><span style="color: #deb07a;">)</span>;
+</pre>
+</div>
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">INSERT 0 1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">INSERT 0 1</td>
+</tr>
+
+<tr>
+<td class="org-left">INSERT 0 1</td>
+</tr>
+
+<tr>
+<td class="org-left">INSERT 0 1</td>
+</tr>
+
+<tr>
+<td class="org-left">INSERT 0 1</td>
+</tr>
+
+<tr>
+<td class="org-left">INSERT 0 1</td>
+</tr>
+
+<tr>
+<td class="org-left">INSERT 0 1</td>
+</tr>
+
+<tr>
+<td class="org-left">INSERT 0 1</td>
+</tr>
+
+<tr>
+<td class="org-left">INSERT 0 1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-orga96e8b0" class="outline-2">
+<h2 id="orga96e8b0">homework problem set</h2>
+<div class="outline-text-2" id="text-orga96e8b0">
+<div test="test" class="fancy-block problem" data-before="&lt;p&gt;
+problem: &lt;/p&gt;
+" id="prf-bool-func-1" data-id="prf-bool-func-1">
+<p>
+write each of the following queries
+</p>
+<div test="test" class="fancy-block subproblem" data-before="&lt;p&gt;
+subproblem: &lt;/p&gt;
+" id="prf-bool-func-1" data-id="prf-bool-func-1">
+<p>
+return all customers, show first name, last name, id, hometown, street, house number, phone number.
+</p>
+
+</div>
+
+<div test="test" class="fancy-block solution" data-before="&lt;p&gt;
+solution: &lt;/p&gt;
+" id="prf-bool-func-1" data-id="prf-bool-func-1">
+<div class="org-src-container" data-language="sql">
+<pre class="src src-sql"><span style="color: #deb07a; font-weight: bold;">SELECT</span> * <span style="color: #deb07a; font-weight: bold;">FROM</span> customer;
+</pre>
+</div>
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">first_name</th>
+<th scope="col" class="org-left">family_name</th>
+<th scope="col" class="org-right">customer_id</th>
+<th scope="col" class="org-left">hometown</th>
+<th scope="col" class="org-left">street</th>
+<th scope="col" class="org-right">house_number</th>
+<th scope="col" class="org-right">phone_number</th>
+<th scope="col" class="org-left">customer_type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">some</td>
+<td class="org-left">one</td>
+<td class="org-right">111</td>
+<td class="org-left">netanya</td>
+<td class="org-left">hertzel</td>
+<td class="org-right">22</td>
+<td class="org-right">503344556</td>
+<td class="org-left">private</td>
+</tr>
+
+<tr>
+<td class="org-left">other</td>
+<td class="org-left">one</td>
+<td class="org-right">222</td>
+<td class="org-left">tel aviv</td>
+<td class="org-left">dezengov</td>
+<td class="org-right">23</td>
+<td class="org-right">514455667</td>
+<td class="org-left">business</td>
+</tr>
+
+<tr>
+<td class="org-left">yet</td>
+<td class="org-left">another</td>
+<td class="org-right">444</td>
+<td class="org-left">netanya</td>
+<td class="org-left">hertzel</td>
+<td class="org-right">77</td>
+<td class="org-right">588346677</td>
+<td class="org-left">private</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+<div test="test" class="fancy-block subproblem" data-before="&lt;p&gt;
+subproblem: &lt;/p&gt;
+" id="prf-bool-func-1" data-id="prf-bool-func-1">
+<p>
+return the name of owners (first name and last name), id, phone number and ids.
+</p>
+
+</div>
+
+<div test="test" class="fancy-block solution" data-before="&lt;p&gt;
+solution: &lt;/p&gt;
+" id="prf-bool-func-1" data-id="prf-bool-func-1">
+<div class="org-src-container" data-language="sql">
+<pre class="src src-sql"><span style="color: #deb07a; font-weight: bold;">SELECT</span>
+  CONCAT<span style="color: #deb07a;">(</span>c.first_name, <span style="color: #f3a0a0;">' '</span>, c.family_name<span style="color: #deb07a;">)</span> <span style="color: #deb07a; font-weight: bold;">AS</span> <span style="color: #deb07a; font-weight: bold;">name</span>, c.customer_id, c.phone_number
+<span style="color: #deb07a; font-weight: bold;">FROM</span> customer c
+<span style="color: #deb07a; font-weight: bold;">INNER</span> <span style="color: #deb07a; font-weight: bold;">JOIN</span> car_owner co <span style="color: #deb07a; font-weight: bold;">ON</span> co.customer_id = c.customer_id;
+</pre>
+</div>
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">name</th>
+<th scope="col" class="org-right">customer_id</th>
+<th scope="col" class="org-right">phone_number</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">some one</td>
+<td class="org-right">111</td>
+<td class="org-right">503344556</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+<div test="test" class="fancy-block subproblem" data-before="&lt;p&gt;
+subproblem: &lt;/p&gt;
+" id="prf-bool-func-1" data-id="prf-bool-func-1">
+<p>
+return the name of a worker (first name and last name) that has done the maintenance, car number, garage name, maintenance date and maintenance type.
+</p>
+
+</div>
+
+<div test="test" class="fancy-block solution" data-before="&lt;p&gt;
+solution: &lt;/p&gt;
+" id="prf-bool-func-1" data-id="prf-bool-func-1">
+<div class="org-src-container" data-language="sql">
+<pre class="src src-sql"><span style="color: #deb07a; font-weight: bold;">SELECT</span>
+  CONCAT<span style="color: #deb07a;">(</span>c.first_name, <span style="color: #f3a0a0;">' '</span>, c.family_name<span style="color: #deb07a;">)</span> <span style="color: #deb07a; font-weight: bold;">AS</span> <span style="color: #deb07a; font-weight: bold;">name</span>, <span style="color: #deb07a; font-weight: bold;">m</span>.car_number, <span style="color: #deb07a; font-weight: bold;">m</span>.garage_name, <span style="color: #deb07a; font-weight: bold;">m</span>.maintenance_date
+<span style="color: #deb07a; font-weight: bold;">FROM</span> customer c
+<span style="color: #deb07a; font-weight: bold;">INNER</span> <span style="color: #deb07a; font-weight: bold;">JOIN</span> car_maintenance <span style="color: #deb07a; font-weight: bold;">m</span> <span style="color: #deb07a; font-weight: bold;">ON</span> <span style="color: #deb07a; font-weight: bold;">m</span>.responsible_worker_id = c.customer_id;
+</pre>
+</div>
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">name</th>
+<th scope="col" class="org-right">car_number</th>
+<th scope="col" class="org-left">garage_name</th>
+<th scope="col" class="org-right">maintenance_date</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">yet another</td>
+<td class="org-right">1111111</td>
+<td class="org-left">carioci</td>
+<td class="org-right">2022-05-15</td>
+</tr>
+
+<tr>
+<td class="org-left">yet another</td>
+<td class="org-right">1111111</td>
+<td class="org-left">carioci</td>
+<td class="org-right">2018-05-15</td>
+</tr>
+
+<tr>
+<td class="org-left">yet another</td>
+<td class="org-right">1111111</td>
+<td class="org-left">carioci</td>
+<td class="org-right">2020-05-15</td>
+</tr>
+
+<tr>
+<td class="org-left">yet another</td>
+<td class="org-right">1111111</td>
+<td class="org-left">carioci</td>
+<td class="org-right">2020-05-18</td>
+</tr>
+
+<tr>
+<td class="org-left">yet another</td>
+<td class="org-right">1111111</td>
+<td class="org-left">carioci</td>
+<td class="org-right">2015-05-18</td>
+</tr>
+
+<tr>
+<td class="org-left">yet another</td>
+<td class="org-right">1111111</td>
+<td class="org-left">carioci</td>
+<td class="org-right">2019-05-18</td>
+</tr>
+
+<tr>
+<td class="org-left">yet another</td>
+<td class="org-right">1111111</td>
+<td class="org-left">carioc2</td>
+<td class="org-right">2019-05-18</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+<div test="test" class="fancy-block subproblem" data-before="&lt;p&gt;
+subproblem: &lt;/p&gt;
+" id="prf-bool-func-1" data-id="prf-bool-func-1">
+<p>
+return for each car its car number, car type, manufacturing company name, production year, engine number, miles travelled only for cars whose engine number contains the digit 6 and the car is in a cancelled status.
+</p>
+
+</div>
+
+<div test="test" class="fancy-block solution" data-before="&lt;p&gt;
+solution: &lt;/p&gt;
+" id="prf-bool-func-1" data-id="prf-bool-func-1">
+<div class="org-src-container" data-language="sql">
+<pre class="src src-sql"><span style="color: #deb07a; font-weight: bold;">SELECT</span>
+  car_number, car_type, company, production_year, engine_number, kilometers
+<span style="color: #deb07a; font-weight: bold;">FROM</span> car
+<span style="color: #deb07a; font-weight: bold;">WHERE</span> engine_number ~ <span style="color: #f3a0a0;">'.*6.*'</span> <span style="color: #deb07a; font-weight: bold;">AND</span> status = <span style="color: #f3a0a0;">'off'</span>;
+</pre>
+</div>
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">car_number</th>
+<th scope="col" class="org-left">car_type</th>
+<th scope="col" class="org-left">company</th>
+<th scope="col" class="org-right">production_year</th>
+<th scope="col" class="org-right">engine_number</th>
+<th scope="col" class="org-right">kilometers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">1111111</td>
+<td class="org-left">private</td>
+<td class="org-left">honda</td>
+<td class="org-right">2020</td>
+<td class="org-right">1600</td>
+<td class="org-right">100000</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+<div test="test" class="fancy-block subproblem" data-before="&lt;p&gt;
+subproblem: &lt;/p&gt;
+" id="prf-bool-func-1" data-id="prf-bool-func-1">
+<p>
+return the garage name and maintenance dates and the number of cars that a garage had done maintenance for in the year 2018 and in the year 2020, sorted according to the garage name.
+</p>
+
+</div>
+
+<div test="test" class="fancy-block solution" data-before="&lt;p&gt;
+solution: &lt;/p&gt;
+" id="prf-bool-func-1" data-id="prf-bool-func-1">
+<div class="org-src-container" data-language="sql">
+<pre class="src src-sql"><span style="color: #deb07a; font-weight: bold;">SELECT</span> g.garage_name, maintenance_date, num
+<span style="color: #deb07a; font-weight: bold;">FROM</span>
+<span style="color: #deb07a;">(</span>
+  <span style="color: #deb07a; font-weight: bold;">SELECT</span> garage_name, <span style="color: #e3b0c0; font-weight: bold;">COUNT</span><span style="color: #ffaacf;">(</span>*<span style="color: #ffaacf;">)</span> <span style="color: #deb07a; font-weight: bold;">as</span> num
+  <span style="color: #deb07a; font-weight: bold;">FROM</span> car_maintenance
+  <span style="color: #deb07a; font-weight: bold;">WHERE</span> <span style="color: #ffaacf;">(</span>2018 = <span style="color: #e3b0c0; font-weight: bold;">EXTRACT</span><span style="color: #80aadf;">(</span><span style="color: #deb07a; font-weight: bold;">year</span> <span style="color: #deb07a; font-weight: bold;">FROM</span> maintenance_date<span style="color: #80aadf;">)</span> <span style="color: #deb07a; font-weight: bold;">OR</span> <span style="color: #e3b0c0; font-weight: bold;">EXTRACT</span><span style="color: #80aadf;">(</span><span style="color: #deb07a; font-weight: bold;">year</span> <span style="color: #deb07a; font-weight: bold;">FROM</span> maintenance_date<span style="color: #80aadf;">)</span> = 2020<span style="color: #ffaacf;">)</span>
+  <span style="color: #deb07a; font-weight: bold;">GROUP</span> <span style="color: #deb07a; font-weight: bold;">BY</span> garage_name
+<span style="color: #deb07a;">)</span> g
+<span style="color: #deb07a; font-weight: bold;">INNER</span> <span style="color: #deb07a; font-weight: bold;">JOIN</span> car_maintenance c
+<span style="color: #deb07a; font-weight: bold;">ON</span> c.garage_name = g.garage_name
+<span style="color: #deb07a; font-weight: bold;">AND</span> <span style="color: #deb07a;">(</span><span style="color: #e3b0c0; font-weight: bold;">EXTRACT</span><span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">year</span> <span style="color: #deb07a; font-weight: bold;">FROM</span> c.maintenance_date<span style="color: #ffaacf;">)</span> = 2018 <span style="color: #deb07a; font-weight: bold;">OR</span> <span style="color: #e3b0c0; font-weight: bold;">EXTRACT</span><span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">year</span> <span style="color: #deb07a; font-weight: bold;">FROM</span> c.maintenance_date<span style="color: #ffaacf;">)</span> = 2020<span style="color: #deb07a;">)</span>
+<span style="color: #deb07a; font-weight: bold;">ORDER</span> <span style="color: #deb07a; font-weight: bold;">BY</span> g.garage_name
+</pre>
+</div>
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">garage_name</th>
+<th scope="col" class="org-right">maintenance_date</th>
+<th scope="col" class="org-right">num</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">carioci</td>
+<td class="org-right">2018-05-15</td>
+<td class="org-right">3</td>
+</tr>
+
+<tr>
+<td class="org-left">carioci</td>
+<td class="org-right">2020-05-15</td>
+<td class="org-right">3</td>
+</tr>
+
+<tr>
+<td class="org-left">carioci</td>
+<td class="org-right">2020-05-18</td>
+<td class="org-right">3</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+<div test="test" class="fancy-block subproblem" data-before="&lt;p&gt;
+subproblem: &lt;/p&gt;
+" id="prf-bool-func-1" data-id="prf-bool-func-1">
+<p>
+return the names of garages that have done more than 3 maintenances in the year 2015 and in the year 2019. show the names of the garages and the number of maintenances in descending order, such that the garage that has done the most maintenances appears first.
+</p>
+
+</div>
+
+<div test="test" class="fancy-block solution" data-before="&lt;p&gt;
+solution: &lt;/p&gt;
+" id="prf-bool-func-1" data-id="prf-bool-func-1">
+<p>
+the writing is ambiguous, but i will assume we're talking about the number of maintenances in the years 2015, 2019 only.
+</p>
+<div class="org-src-container" data-language="sql">
+<pre class="src src-sql"><span style="color: #deb07a; font-weight: bold;">SELECT</span> garage_name, <span style="color: #e3b0c0; font-weight: bold;">COUNT</span><span style="color: #deb07a;">(</span>*<span style="color: #deb07a;">)</span> <span style="color: #deb07a; font-weight: bold;">as</span> num
+<span style="color: #deb07a; font-weight: bold;">FROM</span> car_maintenance
+<span style="color: #deb07a; font-weight: bold;">WHERE</span> <span style="color: #deb07a;">(</span>2015 = <span style="color: #e3b0c0; font-weight: bold;">EXTRACT</span><span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">year</span> <span style="color: #deb07a; font-weight: bold;">FROM</span> maintenance_date<span style="color: #ffaacf;">)</span> <span style="color: #deb07a; font-weight: bold;">OR</span> <span style="color: #e3b0c0; font-weight: bold;">EXTRACT</span><span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">year</span> <span style="color: #deb07a; font-weight: bold;">FROM</span> maintenance_date<span style="color: #ffaacf;">)</span> = 2019<span style="color: #deb07a;">)</span>
+<span style="color: #deb07a; font-weight: bold;">GROUP</span> <span style="color: #deb07a; font-weight: bold;">BY</span> garage_name
+<span style="color: #deb07a; font-weight: bold;">HAVING</span> <span style="color: #e3b0c0; font-weight: bold;">COUNT</span><span style="color: #deb07a;">(</span>*<span style="color: #deb07a;">)</span> &gt; 3
+<span style="color: #deb07a; font-weight: bold;">ORDER</span> <span style="color: #deb07a; font-weight: bold;">BY</span> num <span style="color: #deb07a; font-weight: bold;">DESC</span>
+</pre>
+</div>
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">garage_name</td>
+<td class="org-left">num</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+<div test="test" class="fancy-block subproblem" data-before="&lt;p&gt;
+subproblem: &lt;/p&gt;
+" id="prf-bool-func-1" data-id="prf-bool-func-1">
+<p>
+return the name of the owner of the car (first and last name) and all the maintenances (car number, maintenance type, maintenance date and garage name) of which the date is between 01/01/2015 and 31/12/2020 sorted by the customer name and the maintenance date.
+</p>
+
+</div>
+
+<div test="test" class="fancy-block solution" data-before="&lt;p&gt;
+solution: &lt;/p&gt;
+" id="prf-bool-func-1" data-id="prf-bool-func-1">
+<div class="org-src-container" data-language="sql">
+<pre class="src src-sql"><span style="color: #deb07a; font-weight: bold;">SELECT</span> <span style="color: #deb07a; font-weight: bold;">m</span>.garage_name, CONCAT<span style="color: #deb07a;">(</span>c.first_name, <span style="color: #f3a0a0;">' '</span>, c.family_name<span style="color: #deb07a;">)</span> <span style="color: #deb07a; font-weight: bold;">AS</span> customer_name, w.car_number, <span style="color: #deb07a; font-weight: bold;">m</span>.maintenance_type, <span style="color: #deb07a; font-weight: bold;">m</span>.maintenance_date
+<span style="color: #deb07a; font-weight: bold;">FROM</span> customer c
+<span style="color: #deb07a; font-weight: bold;">INNER</span> <span style="color: #deb07a; font-weight: bold;">JOIN</span> car_owner <span style="color: #deb07a; font-weight: bold;">AS</span> w <span style="color: #deb07a; font-weight: bold;">ON</span> w.customer_id = c.customer_id
+<span style="color: #deb07a; font-weight: bold;">INNER</span> <span style="color: #deb07a; font-weight: bold;">JOIN</span> car_maintenance <span style="color: #deb07a; font-weight: bold;">AS</span> <span style="color: #deb07a; font-weight: bold;">m</span> <span style="color: #deb07a; font-weight: bold;">ON</span> <span style="color: #deb07a; font-weight: bold;">m</span>.car_number = w.car_number
+<span style="color: #deb07a; font-weight: bold;">WHERE</span> <span style="color: #deb07a; font-weight: bold;">m</span>.maintenance_date &gt;= <span style="color: #f3a0a0;">'2014-01-01'</span> <span style="color: #deb07a; font-weight: bold;">AND</span> <span style="color: #deb07a; font-weight: bold;">m</span>.maintenance_date &lt; <span style="color: #f3a0a0;">'2020-12-31'</span>
+<span style="color: #deb07a; font-weight: bold;">ORDER</span> <span style="color: #deb07a; font-weight: bold;">BY</span> customer_name, <span style="color: #deb07a; font-weight: bold;">m</span>.maintenance_date
+</pre>
+</div>
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">garage_name</th>
+<th scope="col" class="org-left">customer_name</th>
+<th scope="col" class="org-right">car_number</th>
+<th scope="col" class="org-left">maintenance_type</th>
+<th scope="col" class="org-right">maintenance_date</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">carioci</td>
+<td class="org-left">someone</td>
+<td class="org-right">1111111</td>
+<td class="org-left">proactive</td>
+<td class="org-right">2015-05-18</td>
+</tr>
+
+<tr>
+<td class="org-left">carioci</td>
+<td class="org-left">someone</td>
+<td class="org-right">1111111</td>
+<td class="org-left">proactive</td>
+<td class="org-right">2018-05-15</td>
+</tr>
+
+<tr>
+<td class="org-left">carioc2</td>
+<td class="org-left">someone</td>
+<td class="org-right">1111111</td>
+<td class="org-left">proactive</td>
+<td class="org-right">2019-05-18</td>
+</tr>
+
+<tr>
+<td class="org-left">carioci</td>
+<td class="org-left">someone</td>
+<td class="org-right">1111111</td>
+<td class="org-left">proactive</td>
+<td class="org-right">2019-05-18</td>
+</tr>
+
+<tr>
+<td class="org-left">carioci</td>
+<td class="org-left">someone</td>
+<td class="org-right">1111111</td>
+<td class="org-left">proactive</td>
+<td class="org-right">2020-05-15</td>
+</tr>
+
+<tr>
+<td class="org-left">carioci</td>
+<td class="org-left">someone</td>
+<td class="org-right">1111111</td>
+<td class="org-left">proactive</td>
+<td class="org-right">2020-05-18</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+<div test="test" class="fancy-block subproblem" data-before="&lt;p&gt;
+subproblem: &lt;/p&gt;
+" id="prf-bool-func-1" data-id="prf-bool-func-1">
+<p>
+return the name of the garage, the name of the part and the number of parts replaced, sorted by the name of the garage.
+</p>
+
+</div>
+
+<div test="test" class="fancy-block solution" data-before="&lt;p&gt;
+solution: &lt;/p&gt;
+" id="prf-bool-func-1" data-id="prf-bool-func-1">
+<div class="org-src-container" data-language="sql">
+<pre class="src src-sql"><span style="color: #deb07a; font-weight: bold;">select</span> g.garage_name, r.part_name, g.num
+<span style="color: #deb07a; font-weight: bold;">from</span>
+<span style="color: #deb07a;">(</span>
+  <span style="color: #deb07a; font-weight: bold;">SELECT</span> garage_name, <span style="color: #e3b0c0; font-weight: bold;">COUNT</span><span style="color: #ffaacf;">(</span>*<span style="color: #ffaacf;">)</span> <span style="color: #deb07a; font-weight: bold;">as</span> num
+  <span style="color: #deb07a; font-weight: bold;">FROM</span> car_maintenance c
+  <span style="color: #deb07a; font-weight: bold;">INNER</span> <span style="color: #deb07a; font-weight: bold;">JOIN</span> replaced_part r <span style="color: #deb07a; font-weight: bold;">ON</span> r.maintenance_number = c.maintenance_number
+  <span style="color: #deb07a; font-weight: bold;">GROUP</span> <span style="color: #deb07a; font-weight: bold;">BY</span> c.garage_name
+<span style="color: #deb07a;">)</span> g
+<span style="color: #deb07a; font-weight: bold;">INNER</span> <span style="color: #deb07a; font-weight: bold;">JOIN</span> car_maintenance c <span style="color: #deb07a; font-weight: bold;">ON</span> c.garage_name = g.garage_name
+<span style="color: #deb07a; font-weight: bold;">INNER</span> <span style="color: #deb07a; font-weight: bold;">JOIN</span> replaced_part r <span style="color: #deb07a; font-weight: bold;">ON</span> c.maintenance_number = r.maintenance_number
+<span style="color: #deb07a; font-weight: bold;">ORDER</span> <span style="color: #deb07a; font-weight: bold;">BY</span> g.garage_name
+</pre>
+</div>
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">garage_name</th>
+<th scope="col" class="org-left">part_name</th>
+<th scope="col" class="org-right">num</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">carioci</td>
+<td class="org-left">door</td>
+<td class="org-right">1</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+<div test="test" class="fancy-block subproblem" data-before="&lt;p&gt;
+subproblem: &lt;/p&gt;
+" id="prf-bool-func-1" data-id="prf-bool-func-1">
+<p>
+show the id and the names of the customers (first and last name) and the number of cars of type honda that they have owned, only if there is more than one car that belongs to the customer.
+</p>
+
+</div>
+
+<div test="test" class="fancy-block solution" data-before="&lt;p&gt;
+solution: &lt;/p&gt;
+" id="prf-bool-func-1" data-id="prf-bool-func-1">
+<div class="org-src-container" data-language="sql">
+<pre class="src src-sql"><span style="color: #deb07a; font-weight: bold;">SELECT</span> CONCAT<span style="color: #deb07a;">(</span>c.first_name, <span style="color: #f3a0a0;">' '</span>, c.family_name<span style="color: #deb07a;">)</span> <span style="color: #deb07a; font-weight: bold;">AS</span> customer_name, <span style="color: #e3b0c0; font-weight: bold;">COUNT</span><span style="color: #deb07a;">(</span>*<span style="color: #deb07a;">)</span> <span style="color: #deb07a; font-weight: bold;">as</span> num
+<span style="color: #deb07a; font-weight: bold;">FROM</span> customer c
+<span style="color: #deb07a; font-weight: bold;">INNER</span> <span style="color: #deb07a; font-weight: bold;">JOIN</span> car_owner <span style="color: #deb07a; font-weight: bold;">AS</span> o <span style="color: #deb07a; font-weight: bold;">ON</span> o.customer_id = c.customer_id
+<span style="color: #deb07a; font-weight: bold;">INNER</span> <span style="color: #deb07a; font-weight: bold;">JOIN</span> car <span style="color: #deb07a; font-weight: bold;">AS</span> a <span style="color: #deb07a; font-weight: bold;">ON</span> a.car_number = o.car_number
+<span style="color: #deb07a; font-weight: bold;">GROUP</span> <span style="color: #deb07a; font-weight: bold;">BY</span> c.customer_id, a.company
+<span style="color: #deb07a; font-weight: bold;">HAVING</span> a.company = <span style="color: #f3a0a0;">'honda'</span>
+</pre>
+</div>
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">customer_name</th>
+<th scope="col" class="org-right">num</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">someone</td>
+<td class="org-right">1</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+<div test="test" class="fancy-block subproblem" data-before="&lt;p&gt;
+subproblem: &lt;/p&gt;
+" id="prf-bool-func-1" data-id="prf-bool-func-1">
+<p>
+show the customers names (first and last name) and the distance travelled in total by all the cars that they own, sorted from the biggest to the smallest.
+</p>
+
+</div>
+
+<div test="test" class="fancy-block solution" data-before="&lt;p&gt;
+solution: &lt;/p&gt;
+" id="prf-bool-func-1" data-id="prf-bool-func-1">
+<div class="org-src-container" data-language="sql">
+<pre class="src src-sql"><span style="color: #deb07a; font-weight: bold;">SELECT</span> CONCAT<span style="color: #deb07a;">(</span>c.first_name, <span style="color: #f3a0a0;">' '</span>, c.family_name<span style="color: #deb07a;">)</span> <span style="color: #deb07a; font-weight: bold;">AS</span> customer_name, <span style="color: #e3b0c0; font-weight: bold;">SUM</span><span style="color: #deb07a;">(</span>kilometers<span style="color: #deb07a;">)</span> <span style="color: #deb07a; font-weight: bold;">as</span> num
+<span style="color: #deb07a; font-weight: bold;">FROM</span> customer c
+<span style="color: #deb07a; font-weight: bold;">INNER</span> <span style="color: #deb07a; font-weight: bold;">JOIN</span> car_owner <span style="color: #deb07a; font-weight: bold;">AS</span> o <span style="color: #deb07a; font-weight: bold;">ON</span> o.customer_id = c.customer_id
+<span style="color: #deb07a; font-weight: bold;">INNER</span> <span style="color: #deb07a; font-weight: bold;">JOIN</span> car <span style="color: #deb07a; font-weight: bold;">AS</span> a <span style="color: #deb07a; font-weight: bold;">ON</span> a.car_number = o.car_number
+<span style="color: #deb07a; font-weight: bold;">GROUP</span> <span style="color: #deb07a; font-weight: bold;">BY</span> c.customer_id
+<span style="color: #deb07a; font-weight: bold;">ORDER</span> <span style="color: #deb07a; font-weight: bold;">BY</span> num <span style="color: #deb07a; font-weight: bold;">DESC</span>
+</pre>
+</div>
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">customer_name</th>
+<th scope="col" class="org-right">num</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">some one</td>
+<td class="org-right">100000</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>big data course homework 3</title><!-- for google analytics -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QNNF19VZGH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QNNF19VZGH');
+</script>
+
+<!-- lambda icon, frail attempt -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22100%22 color=%22red%22>λ</text></svg>">
+<!-- not-so-awesome awesome font -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="/main.css">
+<!-- for dark mode -->
+<script src="darkmode.js"></script>
+<script src="main.js"></script>
+<script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div class="navbar">
+  <a href='/'>home</a>
+  <a href='/blog.html'>blog</a>
+  <a href='/search.html'>search</a>
+  <a href='/about.html'>about</a>
+  <div id="darkModeToggle" onclick="toggleDarkMode()">
+    &#9680; <!-- Circle with left half black -->
+  </div>
+</div>
+<div class="toc">
+  <span class="toc-title-container">
+    <a class='feather' data-feather='menu'></a>
+    <span class="toc-title">table of contents</span>
+  </span>
+  <div class="toc-list">
+  </div>
+</div><h1 class="main-title">big data course homework 3</h1><span class='date'>2024-08-29</span>
+</div>
+<div id="content" class="content">
+<ol class="org-ol">
+<li><p>
+import the file <code>restaurants.json</code>.
+</p>
+<div class="org-src-container" data-language="sh">
+<pre class="src src-sh">c38902-518a-4522-9db6-c4116d1f5a98 &#955; mongoimport --db hw3 --collection restaurants --file restaurants.json
+2024-09-02T21:42:12.811+0300    connected to: mongodb://localhost/
+2024-09-02T21:42:12.952+0300    3772 document<span style="color: #deb07a;">(</span>s<span style="color: #deb07a;">)</span> imported successfully. 0 document<span style="color: #deb07a;">(</span>s<span style="color: #deb07a;">)</span> failed to import.
+</pre>
+</div></li>
+<li><p>
+write a MongoDB query to display all the documents in the collection <code>restaurants</code>.
+</p>
+<div class="org-src-container" data-language="mongo">
+<pre class="src src-mongo">db.restaurants.find<span style="color: #deb07a;">(</span><span style="color: #ffaacf;">{}</span><span style="color: #deb07a;">)</span>
+</pre>
+</div></li>
+<li><p>
+write a MongoDB query to display the fields <code>restaurant_id</code>, <code>name</code>, <code>borough</code> and <code>cuisine</code> for all the documents in the collection <code>restaurants</code>.
+</p>
+<div class="org-src-container" data-language="mongo">
+<pre class="src src-mongo">db.restaurants.find<span style="color: #deb07a;">(</span><span style="color: #ffaacf;">{}</span>, <span style="color: #ffaacf;">{</span><span style="color: #f3a0a0;">'restaurant_id'</span>: 1, <span style="color: #f3a0a0;">'name'</span>: 1, <span style="color: #f3a0a0;">'borough'</span>: 1, <span style="color: #f3a0a0;">'cuisine'</span>: 1<span style="color: #ffaacf;">}</span><span style="color: #deb07a;">)</span>
+</pre>
+</div></li>
+<li><p>
+write a MongoDB query to display the fields <code>restaurant_id</code>, <code>name</code>, <code>borough</code> and <code>cuisine</code>, but exclude the field _~id~ for all the documents in the collection <code>restaurants</code>.
+</p>
+<div class="org-src-container" data-language="mongo">
+<pre class="src src-mongo">db.restaurants.find<span style="color: #deb07a;">(</span><span style="color: #ffaacf;">{}</span>, <span style="color: #ffaacf;">{</span><span style="color: #f3a0a0;">'restaurant_id'</span>: 1, <span style="color: #f3a0a0;">'name'</span>: 1, <span style="color: #f3a0a0;">'borough'</span>: 1, <span style="color: #f3a0a0;">'cuisine'</span>: 1, <span style="color: #f3a0a0;">'_id'</span>: 0<span style="color: #ffaacf;">}</span><span style="color: #deb07a;">)</span>
+</pre>
+</div></li>
+<li><p>
+write a MongoDB query to display the fields <code>restaurant_id</code>, <code>name</code>, <code>borough</code> and <code>zipcode</code>, but exclude the field <code>_id</code> for all the documents in the collection <code>restaurants</code>.
+</p>
+<div class="org-src-container" data-language="mongo">
+<pre class="src src-mongo">db.restaurants.find<span style="color: #deb07a;">(</span><span style="color: #ffaacf;">{}</span>, <span style="color: #ffaacf;">{</span><span style="color: #f3a0a0;">'restaurant_id'</span>: 1, <span style="color: #f3a0a0;">'name'</span>: 1, <span style="color: #f3a0a0;">'borough'</span>: 1, <span style="color: #f3a0a0;">'zipcode'</span>: 1, <span style="color: #f3a0a0;">'_id'</span>: 0<span style="color: #ffaacf;">}</span><span style="color: #deb07a;">)</span>
+</pre>
+</div></li>
+<li><p>
+write a MongoDB query to display all the restaurants which are in the borough Bronx.
+</p>
+<div class="org-src-container" data-language="mongo">
+<pre class="src src-mongo">db.restaurants.find<span style="color: #deb07a;">(</span><span style="color: #ffaacf;">{</span><span style="color: #f3a0a0;">'borough'</span>: <span style="color: #f3a0a0;">'Bronx'</span><span style="color: #ffaacf;">}</span><span style="color: #deb07a;">)</span>
+</pre>
+</div></li>
+<li><p>
+write a MongoDB query to display the first 5 restaurants which are in the borough Bronx.
+</p>
+<div class="org-src-container" data-language="mongo">
+<pre class="src src-mongo">db.restaurants.find<span style="color: #deb07a;">(</span><span style="color: #ffaacf;">{</span><span style="color: #f3a0a0;">'borough'</span>: <span style="color: #f3a0a0;">'Bronx'</span><span style="color: #ffaacf;">}</span><span style="color: #deb07a;">)</span>.limit<span style="color: #deb07a;">(</span>5<span style="color: #deb07a;">)</span>
+</pre>
+</div></li>
+<li><p>
+write a MongoDB query to display the next 5 restaurants after skipping first 5 which are in the borough Bronx.
+</p>
+<div class="org-src-container" data-language="mongo">
+<pre class="src src-mongo">db.restaurants.find<span style="color: #deb07a;">(</span><span style="color: #ffaacf;">{</span><span style="color: #f3a0a0;">'borough'</span>: <span style="color: #f3a0a0;">'Bronx'</span><span style="color: #ffaacf;">}</span><span style="color: #deb07a;">)</span>.skip<span style="color: #deb07a;">(</span>5<span style="color: #deb07a;">)</span>.limit<span style="color: #deb07a;">(</span>1<span style="color: #deb07a;">)</span>
+</pre>
+</div></li>
+<li><p>
+write a MongoDB query to find the restaurants who achieved a score higher than 90.
+</p>
+<div class="org-src-container" data-language="mongo">
+<pre class="src src-mongo">db.restaurants.find<span style="color: #deb07a;">(</span><span style="color: #ffaacf;">{</span><span style="color: #f3a0a0;">'grades.score'</span>: <span style="color: #80aadf;">{</span>$gt: 90<span style="color: #80aadf;">}</span><span style="color: #ffaacf;">}</span><span style="color: #deb07a;">)</span>
+</pre>
+</div></li>
+<li><p>
+write a MongoDB query to find the restaurants that achieved a score higher than 80 but lower than 100.
+</p>
+<div class="org-src-container" data-language="mongo">
+<pre class="src src-mongo">db.restaurants.find<span style="color: #deb07a;">(</span><span style="color: #ffaacf;">{</span><span style="color: #f3a0a0;">'grades.score'</span>: <span style="color: #80aadf;">{</span>$gt: 80, $lt: 100<span style="color: #80aadf;">}</span><span style="color: #ffaacf;">}</span><span style="color: #deb07a;">)</span>
+</pre>
+</div></li>
+<li><p>
+write a MongoDB query to find the restaurants which have a <code>latitude</code> value less than 95.754168.
+</p>
+<div class="org-src-container" data-language="mongo">
+<pre class="src src-mongo">db.restaurants.find<span style="color: #deb07a;">(</span><span style="color: #ffaacf;">{</span><span style="color: #f3a0a0;">'address.coord.0'</span>: <span style="color: #80aadf;">{</span>$lt: 95.754168<span style="color: #80aadf;">}</span><span style="color: #ffaacf;">}</span><span style="color: #deb07a;">)</span>
+</pre>
+</div></li>
+<li><p>
+write a MongoDB query to find the restaurants that do not prepare any cuisine of 'American' and have a grade score is higher than 70 and latitude less than 65.754168.
+</p>
+<div class="org-src-container" data-language="mongo">
+<pre class="src src-mongo">db.restaurants.find<span style="color: #deb07a;">(</span><span style="color: #ffaacf;">{</span>$and: <span style="color: #80aadf;">[</span><span style="color: #e47980;">{</span>$nor: <span style="color: #d0b0ff;">[</span><span style="color: #3fc489;">{</span><span style="color: #f3a0a0;">'cuisine'</span>: <span style="color: #6fb3c0;">{</span>$regex: <span style="color: #f3a0a0;">'American'</span><span style="color: #6fb3c0;">}</span><span style="color: #3fc489;">}</span><span style="color: #d0b0ff;">]</span><span style="color: #e47980;">}</span>, <span style="color: #e47980;">{</span><span style="color: #f3a0a0;">'grades.score'</span>: <span style="color: #d0b0ff;">{</span>$gt: 70<span style="color: #d0b0ff;">}</span><span style="color: #e47980;">}</span>, <span style="color: #e47980;">{</span><span style="color: #f3a0a0;">'address.coord.0'</span>: <span style="color: #d0b0ff;">{</span>$lt: 65.754168<span style="color: #d0b0ff;">}</span><span style="color: #e47980;">}</span><span style="color: #80aadf;">]</span><span style="color: #ffaacf;">}</span><span style="color: #deb07a;">)</span>;
+</pre>
+</div></li>
+<li>write a MongoDB query to find the restaurants which do not prepare any cuisine of 'American' and have achieved a score higher than 70 and are have a longitude less than 65.754168. write this query without using the <code>$and</code> operator.
+same as previous one?</li>
+<li><p>
+write a MongoDB query to find the restaurants which do not prepare any cuisine of 'American ' and achieved a grade point 'A' and dont belong to the borough <code>Brooklyn</code>. the documents must be displayed according to the cuisine in descending order.
+</p>
+<div class="org-src-container" data-language="mongo">
+<pre class="src src-mongo">db.restaurants.find<span style="color: #deb07a;">(</span><span style="color: #ffaacf;">{</span>$and: <span style="color: #80aadf;">[</span><span style="color: #e47980;">{</span>$nor: <span style="color: #d0b0ff;">[</span><span style="color: #3fc489;">{</span><span style="color: #f3a0a0;">'cuisine'</span>: <span style="color: #6fb3c0;">{</span>$regex: <span style="color: #f3a0a0;">'American'</span><span style="color: #6fb3c0;">}</span><span style="color: #3fc489;">}</span>, <span style="color: #3fc489;">{</span><span style="color: #f3a0a0;">'borough'</span>: <span style="color: #f3a0a0;">'Brooklyn'</span><span style="color: #3fc489;">}</span><span style="color: #d0b0ff;">]</span><span style="color: #e47980;">}</span>, <span style="color: #e47980;">{</span><span style="color: #f3a0a0;">'grades.grade'</span>: <span style="color: #f3a0a0;">'A'</span><span style="color: #e47980;">}</span><span style="color: #80aadf;">]</span><span style="color: #ffaacf;">}</span><span style="color: #deb07a;">)</span>.sort<span style="color: #deb07a;">(</span><span style="color: #ffaacf;">{</span><span style="color: #f3a0a0;">'cuisine'</span>: -1<span style="color: #ffaacf;">}</span><span style="color: #deb07a;">)</span>;
+</pre>
+</div></li>
+<li><p>
+write a MongoDB query to find the restaurant id, name, borough and cuisine for restaurants which contain 'Wil' as first three letters for its name.
+</p>
+<div class="org-src-container" data-language="mongo">
+<pre class="src src-mongo">db.restaurants.find<span style="color: #deb07a;">(</span><span style="color: #ffaacf;">{</span><span style="color: #f3a0a0;">'name'</span>: <span style="color: #80aadf;">{</span>$regex: <span style="color: #f3a0a0;">'^Wil.*'</span><span style="color: #80aadf;">}</span><span style="color: #ffaacf;">}</span>, <span style="color: #ffaacf;">{</span><span style="color: #f3a0a0;">'_id'</span>: 1, <span style="color: #f3a0a0;">'name'</span>: 1, <span style="color: #f3a0a0;">'borough'</span>: 1<span style="color: #ffaacf;">}</span><span style="color: #deb07a;">)</span>;
+</pre>
+</div></li>
+<li><p>
+write a MongoDB query to find the restaurant id, name, borough and cuisine for restaurants which contain 'ces' as the last three letters in their names.
+</p>
+<div class="org-src-container" data-language="mongo">
+<pre class="src src-mongo">db.restaurants.find<span style="color: #deb07a;">(</span><span style="color: #ffaacf;">{</span><span style="color: #f3a0a0;">'name'</span>: <span style="color: #80aadf;">{</span>$regex: <span style="color: #f3a0a0;">'.*ces$'</span><span style="color: #80aadf;">}</span><span style="color: #ffaacf;">}</span>, <span style="color: #ffaacf;">{</span><span style="color: #f3a0a0;">'_id'</span>: 1, <span style="color: #f3a0a0;">'name'</span>: 1, <span style="color: #f3a0a0;">'borough'</span>: 1, <span style="color: #f3a0a0;">'cuisine'</span>: 1<span style="color: #ffaacf;">}</span><span style="color: #deb07a;">)</span>;
+</pre>
+</div></li>
+<li><p>
+write a MongoDB query to find the restaurant's <code>id</code>, <code>name</code>, <code>borough</code> and <code>cuisine</code> for restaurants which contain 'Reg' somewhere in their names.
+</p>
+<div class="org-src-container" data-language="mongo">
+<pre class="src src-mongo">db.restaurants.find<span style="color: #deb07a;">(</span><span style="color: #ffaacf;">{</span><span style="color: #f3a0a0;">'name'</span>: <span style="color: #80aadf;">{</span>$regex: <span style="color: #f3a0a0;">'.*Reg.*'</span><span style="color: #80aadf;">}</span><span style="color: #ffaacf;">}</span>, <span style="color: #ffaacf;">{</span><span style="color: #f3a0a0;">'_id'</span>: 1, <span style="color: #f3a0a0;">'name'</span>: 1, <span style="color: #f3a0a0;">'borough'</span>: 1, <span style="color: #f3a0a0;">'cuisine'</span>: 1<span style="color: #ffaacf;">}</span><span style="color: #deb07a;">)</span>;
+</pre>
+</div></li>
+<li><p>
+write a MongoDB query to find the restaurants which belong to the borough Bronx and that prepare either an American or a Chinese dish.
+</p>
+<div class="org-src-container" data-language="mongo">
+<pre class="src src-mongo">db.restaurants.find<span style="color: #deb07a;">(</span><span style="color: #ffaacf;">{</span>$or: <span style="color: #80aadf;">[</span><span style="color: #e47980;">{</span><span style="color: #f3a0a0;">'cuisine'</span>: <span style="color: #d0b0ff;">{</span>$regex: <span style="color: #f3a0a0;">'.*American.*'</span><span style="color: #d0b0ff;">}</span>, <span style="color: #f3a0a0;">'cuisine'</span>: <span style="color: #d0b0ff;">{</span>$regex: <span style="color: #f3a0a0;">'.*Chinese.*'</span><span style="color: #d0b0ff;">}</span><span style="color: #e47980;">}</span><span style="color: #80aadf;">]</span>, <span style="color: #f3a0a0;">'borough'</span>: <span style="color: #f3a0a0;">'Bronx'</span><span style="color: #ffaacf;">}</span><span style="color: #deb07a;">)</span>;
+</pre>
+</div></li>
+<li><p>
+write a MongoDB query to find the restaurants id, name, borough and cuisine for the restaurants which belong to the borough Staten Island or Queens or Bronxor Brooklyn.
+</p>
+<div class="org-src-container" data-language="mongo">
+<pre class="src src-mongo">db.restaurants.find<span style="color: #deb07a;">(</span><span style="color: #ffaacf;">{</span><span style="color: #f3a0a0;">'borough'</span>: <span style="color: #80aadf;">{</span>$in: <span style="color: #e47980;">[</span><span style="color: #f3a0a0;">'Queens'</span>, <span style="color: #f3a0a0;">'Staten Island'</span>, <span style="color: #f3a0a0;">'Bronxor Brooklyn'</span><span style="color: #e47980;">]</span><span style="color: #80aadf;">}</span><span style="color: #ffaacf;">}</span>, <span style="color: #ffaacf;">{</span><span style="color: #f3a0a0;">'_id'</span>: 1, <span style="color: #f3a0a0;">'name'</span>: 1, <span style="color: #f3a0a0;">'borough'</span>: 1, <span style="color: #f3a0a0;">'cuisine'</span>: 1<span style="color: #ffaacf;">}</span><span style="color: #deb07a;">)</span>;
+</pre>
+</div></li>
+<li><p>
+write a MongoDB query to find the restaurant id, name, borough and cuisine for restaurants that dont belong to the borough Staten Island or Queens or Bronxor Brooklyn.
+</p>
+<div class="org-src-container" data-language="mongo">
+<pre class="src src-mongo">db.restaurants.find<span style="color: #deb07a;">(</span><span style="color: #ffaacf;">{</span>$nor: <span style="color: #80aadf;">[</span><span style="color: #e47980;">{</span><span style="color: #f3a0a0;">'borough'</span>: <span style="color: #d0b0ff;">{</span>$in: <span style="color: #3fc489;">[</span><span style="color: #f3a0a0;">'Queens'</span>, <span style="color: #f3a0a0;">'Staten Island'</span>, <span style="color: #f3a0a0;">'Bronxor Brooklyn'</span><span style="color: #3fc489;">]</span><span style="color: #d0b0ff;">}</span><span style="color: #e47980;">}</span><span style="color: #80aadf;">]</span><span style="color: #ffaacf;">}</span>, <span style="color: #ffaacf;">{</span><span style="color: #f3a0a0;">'_id'</span>: 1, <span style="color: #f3a0a0;">'name'</span>: 1, <span style="color: #f3a0a0;">'borough'</span>: 1, <span style="color: #f3a0a0;">'cuisine'</span>: 1<span style="color: #ffaacf;">}</span><span style="color: #deb07a;">)</span>;
+</pre>
+</div></li>
+<li><p>
+write a MongoDB query to find the restaurant id, name, borough and cuisine for restaurants that have achieved a score than isnt higher than 10.
+</p>
+<div class="org-src-container" data-language="mongo">
+<pre class="src src-mongo">db.restaurants.find<span style="color: #deb07a;">(</span><span style="color: #ffaacf;">{</span><span style="color: #f3a0a0;">'grades.score'</span>: <span style="color: #80aadf;">{</span>$lt: 10<span style="color: #80aadf;">}</span><span style="color: #ffaacf;">}</span>, <span style="color: #ffaacf;">{</span><span style="color: #f3a0a0;">'_id'</span>: 1, <span style="color: #f3a0a0;">'name'</span>: 1, <span style="color: #f3a0a0;">'borough'</span>: 1, <span style="color: #f3a0a0;">'cuisine'</span>: 1<span style="color: #ffaacf;">}</span><span style="color: #deb07a;">)</span>;
+</pre>
+</div></li>
+<li><p>
+write a MongoDB query to find the restaurants id, name, borough and cuisine for restaurants that prepare any dish except 'American' and 'Chinese', or if the restaurants name begins with the letters 'Wil'.
+</p>
+<div class="org-src-container" data-language="mongo">
+<pre class="src src-mongo">db.restaurants.find<span style="color: #deb07a;">(</span><span style="color: #ffaacf;">{</span>$or: <span style="color: #80aadf;">[</span><span style="color: #e47980;">{</span>$nor: <span style="color: #d0b0ff;">[</span><span style="color: #3fc489;">{</span><span style="color: #f3a0a0;">'cuisine'</span>: <span style="color: #6fb3c0;">{</span>$in: <span style="color: #c0b24f;">[</span><span style="color: #f3a0a0;">'Chinese'</span>, <span style="color: #f3a0a0;">'American'</span><span style="color: #c0b24f;">]</span><span style="color: #6fb3c0;">}</span><span style="color: #3fc489;">}</span><span style="color: #d0b0ff;">]</span><span style="color: #e47980;">}</span>, <span style="color: #e47980;">{</span><span style="color: #f3a0a0;">'name'</span>: <span style="color: #d0b0ff;">{</span>$regex: <span style="color: #f3a0a0;">'^Wil.*'</span><span style="color: #d0b0ff;">}</span><span style="color: #e47980;">}</span><span style="color: #80aadf;">]</span><span style="color: #ffaacf;">}</span>, <span style="color: #ffaacf;">{</span><span style="color: #f3a0a0;">'_id'</span>: 1, <span style="color: #f3a0a0;">'name'</span>: 1, <span style="color: #f3a0a0;">'borough'</span>: 1, <span style="color: #f3a0a0;">'cuisine'</span>: 1<span style="color: #ffaacf;">}</span><span style="color: #deb07a;">)</span>;
+</pre>
+</div></li>
+<li><p>
+write a MongoDB query to find the restaurant id, name, and grades for restaurants which have achieved a grade of "A" and scored 11 on an ISODate "2014-08-11T00:00:00Z".
+</p>
+<div class="org-src-container" data-language="mongo">
+<pre class="src src-mongo">db.restaurants.find<span style="color: #deb07a;">(</span><span style="color: #ffaacf;">{</span><span style="color: #f3a0a0;">'grades.grade'</span>: <span style="color: #f3a0a0;">'A'</span>, <span style="color: #f3a0a0;">'grades.score'</span>: 11, <span style="color: #f3a0a0;">'grades.date'</span>: ISODate<span style="color: #80aadf;">(</span><span style="color: #f3a0a0;">'2014-08-11T00:00:00Z'</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">}</span>, <span style="color: #ffaacf;">{</span><span style="color: #f3a0a0;">'_id'</span>: 1, <span style="color: #f3a0a0;">'name'</span>: 1, <span style="color: #f3a0a0;">'grades'</span>: 1<span style="color: #ffaacf;">}</span><span style="color: #deb07a;">)</span>;
+</pre>
+</div></li>
+<li><p>
+write a MongoDB query to find the restaurant id, name and grades for those restaurants where the 2nd element of grades array contains a grade of "A" and score 9 on an ISODate "2014-08-11T00:00:00Z".
+</p>
+<div class="org-src-container" data-language="mongo">
+<pre class="src src-mongo">db.restaurants.find<span style="color: #deb07a;">(</span><span style="color: #ffaacf;">{</span><span style="color: #f3a0a0;">'grades.1.grade'</span>: <span style="color: #f3a0a0;">'A'</span>, <span style="color: #f3a0a0;">'grades.1.score'</span>: 9, <span style="color: #f3a0a0;">'grades.1.date'</span>: ISODate<span style="color: #80aadf;">(</span><span style="color: #f3a0a0;">'2014-08-11T00:00:00Z'</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">}</span>, <span style="color: #ffaacf;">{</span><span style="color: #f3a0a0;">'_id'</span>: 1, <span style="color: #f3a0a0;">'name'</span>: 1, <span style="color: #f3a0a0;">'grades'</span>: 1<span style="color: #ffaacf;">}</span><span style="color: #deb07a;">)</span>;
+</pre>
+</div></li>
+<li><p>
+write a MongoDB query to find the restaurant id, name, address and geographical location for those restaurants where 2nd element of coord array contains a value which is more than 42 and up to 52..
+</p>
+<div class="org-src-container" data-language="mongo">
+<pre class="src src-mongo">db.restaurants.find<span style="color: #deb07a;">(</span><span style="color: #ffaacf;">{</span>$and: <span style="color: #80aadf;">[</span><span style="color: #e47980;">{</span><span style="color: #f3a0a0;">'address.coord.1'</span>: <span style="color: #d0b0ff;">{</span>$gt: 42<span style="color: #d0b0ff;">}</span><span style="color: #e47980;">}</span>, <span style="color: #e47980;">{</span><span style="color: #f3a0a0;">'address.coord.1'</span>: <span style="color: #d0b0ff;">{</span>$lte: 52<span style="color: #d0b0ff;">}</span><span style="color: #e47980;">}</span><span style="color: #80aadf;">]</span><span style="color: #ffaacf;">}</span>, <span style="color: #ffaacf;">{</span><span style="color: #f3a0a0;">'_id'</span>: 1, <span style="color: #f3a0a0;">'name'</span>: 1, <span style="color: #f3a0a0;">'address'</span>: 1<span style="color: #ffaacf;">}</span><span style="color: #deb07a;">)</span>;
+</pre>
+</div></li>
+<li><p>
+write a MongoDB query to arrange the name of the restaurants in ascending order along with all the columns.
+</p>
+<div class="org-src-container" data-language="mongo">
+<pre class="src src-mongo">db.restaurants.find<span style="color: #deb07a;">()</span>.sort<span style="color: #deb07a;">(</span><span style="color: #ffaacf;">{</span><span style="color: #f3a0a0;">'name'</span>: 1<span style="color: #ffaacf;">}</span><span style="color: #deb07a;">)</span>;
+</pre>
+</div></li>
+<li><p>
+write a MongoDB query to arrange the name of the restaurants in descending along with all the columns.
+</p>
+<div class="org-src-container" data-language="mongo">
+<pre class="src src-mongo">db.restaurants.find<span style="color: #deb07a;">()</span>.sort<span style="color: #deb07a;">(</span><span style="color: #ffaacf;">{</span><span style="color: #f3a0a0;">'name'</span>: -1<span style="color: #ffaacf;">}</span><span style="color: #deb07a;">)</span>;
+</pre>
+</div></li>
+<li><p>
+write a MongoDB query to arrange the name of the cuisine in ascending order and for that same cuisine borough should be in descending order.
+i dont even know what that means but i guess this is what they wanted:
+</p>
+<div class="org-src-container" data-language="mongo">
+<pre class="src src-mongo">db.restaurants.find<span style="color: #deb07a;">()</span>.sort<span style="color: #deb07a;">(</span><span style="color: #ffaacf;">{</span>cuisine: 1, borough: -1<span style="color: #ffaacf;">}</span><span style="color: #deb07a;">)</span>
+</pre>
+</div></li>
+<li><p>
+write a MongoDB query to know whether all the addresses contains the street or not.
+</p>
+<div class="org-src-container" data-language="mongo">
+<pre class="src src-mongo">db.restaurants.find<span style="color: #deb07a;">(</span><span style="color: #ffaacf;">{</span><span style="color: #f3a0a0;">'address.street'</span>: <span style="color: #80aadf;">{</span>$exists: <span style="color: #80aadf;">false</span><span style="color: #80aadf;">}</span><span style="color: #ffaacf;">}</span><span style="color: #deb07a;">)</span>.count<span style="color: #deb07a;">()</span> == 0;
+</pre>
+</div></li>
+<li><p>
+write a MongoDB query which will select all documents in the restaurants collection where the coord field value is Double.
+see <a href="https://www.mongodb.com/docs/manual/reference/operator/query/type/">https://www.mongodb.com/docs/manual/reference/operator/query/type/</a>
+</p>
+<div class="org-src-container" data-language="mongo">
+<pre class="src src-mongo">db.restaurants.find<span style="color: #deb07a;">(</span><span style="color: #ffaacf;">{</span><span style="color: #f3a0a0;">'address.coord.0'</span>: <span style="color: #80aadf;">{</span>$type: 1<span style="color: #80aadf;">}</span>, <span style="color: #f3a0a0;">'address.coord.1'</span>: <span style="color: #80aadf;">{</span>$type: 1<span style="color: #80aadf;">}</span><span style="color: #ffaacf;">}</span><span style="color: #deb07a;">)</span>
+</pre>
+</div></li>
+<li><p>
+write a MongoDB query which will select the restaurant id, name and grades of restaurants for which the operation of dividing the score by 7 returns 0 as a remainder.
+</p>
+<div class="org-src-container" data-language="mongo">
+<pre class="src src-mongo">db.restaurants.find<span style="color: #deb07a;">(</span>
+  <span style="color: #ffaacf;">{</span>grades: <span style="color: #80aadf;">{</span>$elemMatch: <span style="color: #e47980;">{</span>score: <span style="color: #d0b0ff;">{</span>$mod: <span style="color: #3fc489;">[</span>7, 0<span style="color: #3fc489;">]</span><span style="color: #d0b0ff;">}</span><span style="color: #e47980;">}</span><span style="color: #80aadf;">}</span><span style="color: #ffaacf;">}</span>,
+  <span style="color: #ffaacf;">{</span><span style="color: #f3a0a0;">'_id'</span>: 1, <span style="color: #f3a0a0;">'name'</span>: 1, <span style="color: #f3a0a0;">'grades'</span>: 1<span style="color: #ffaacf;">}</span><span style="color: #deb07a;">)</span>
+</pre>
+</div></li>
+<li><p>
+write a MongoDB query to find the restaurant name, borough, longitude and lattitude and cuisine for those restaurants which contains 'mon' as three letters somewhere in its name.
+</p>
+<div class="org-src-container" data-language="mongo">
+<pre class="src src-mongo">db.restaurants.find<span style="color: #deb07a;">(</span>
+  <span style="color: #ffaacf;">{</span><span style="color: #f3a0a0;">'name'</span>: <span style="color: #80aadf;">{</span>$regex: <span style="color: #f3a0a0;">'.*mon.*'</span><span style="color: #80aadf;">}</span><span style="color: #ffaacf;">}</span>,
+  <span style="color: #ffaacf;">{</span><span style="color: #f3a0a0;">'_id'</span>: 0, <span style="color: #f3a0a0;">'name'</span>: 1, <span style="color: #f3a0a0;">'grades'</span>: 1, <span style="color: #f3a0a0;">'borough'</span>: 1, <span style="color: #f3a0a0;">'address.coord'</span>: 1, <span style="color: #f3a0a0;">'cuisine'</span>: 1<span style="color: #ffaacf;">}</span><span style="color: #deb07a;">)</span>
+</pre>
+</div></li>
+<li><p>
+write a MongoDB query to find the restaurant name, borough, longitude and latitude and cuisine for those restaurants which contain 'Mad' as first three letters of its name.
+</p>
+<div class="org-src-container" data-language="mongo">
+<pre class="src src-mongo">db.restaurants.find<span style="color: #deb07a;">(</span>
+  <span style="color: #ffaacf;">{</span><span style="color: #f3a0a0;">'name'</span>: <span style="color: #80aadf;">{</span>$regex: <span style="color: #f3a0a0;">'Mad.*'</span><span style="color: #80aadf;">}</span><span style="color: #ffaacf;">}</span>,
+  <span style="color: #ffaacf;">{</span><span style="color: #f3a0a0;">'_id'</span>: 0, <span style="color: #f3a0a0;">'name'</span>: 1, <span style="color: #f3a0a0;">'grades'</span>: 1, <span style="color: #f3a0a0;">'borough'</span>: 1, <span style="color: #f3a0a0;">'address.coord'</span>: 1, <span style="color: #f3a0a0;">'cuisine'</span>: 1<span style="color: #ffaacf;">}</span><span style="color: #deb07a;">)</span>
+</pre>
+</div></li>
+</ol>
+</div>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>training on mnist (old)</title><!-- for google analytics -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QNNF19VZGH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QNNF19VZGH');
+</script>
+
+<!-- lambda icon, frail attempt -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22100%22 color=%22red%22>λ</text></svg>">
+<!-- not-so-awesome awesome font -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="/main.css">
+<!-- for dark mode -->
+<script src="darkmode.js"></script>
+<script src="main.js"></script>
+<script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div class="navbar">
+  <a href='/'>home</a>
+  <a href='/blog.html'>blog</a>
+  <a href='/search.html'>search</a>
+  <a href='/about.html'>about</a>
+  <div id="darkModeToggle" onclick="toggleDarkMode()">
+    &#9680; <!-- Circle with left half black -->
+  </div>
+</div>
+<div class="toc">
+  <span class="toc-title-container">
+    <a class='feather' data-feather='menu'></a>
+    <span class="toc-title">table of contents</span>
+  </span>
+  <div class="toc-list">
+  </div>
+</div><h1 class="main-title">training on mnist (old)</h1><span class='date'>2023-05-16</span>
+</div>
+<div id="content" class="content">
+<p>
+got the mnist in csv format from <a href="https://www.kaggle.com/datasets/oddrationale/mnist-in-csv">https://www.kaggle.com/datasets/oddrationale/mnist-in-csv</a>
+im gonna use a <a href="/feedforward_neural_network.html">feedforward neural network</a>:
+we load the dataset using the <code>cl-csv</code> library
+</p>
+<div class="org-src-container" data-language="lisp">
+<pre class="src src-lisp"><span style="color: #deb07a;">(</span>ql:quickload <span style="color: #f3a0a0;">"cl-csv"</span><span style="color: #deb07a;">)</span>
+<span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defparameter</span> <span style="color: #ffaacf;">*train-data*</span> <span style="color: #ffaacf;">(</span>cl-csv:read-csv <span style="color: #80aadf;">(</span>pathname train-data-file<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defparameter</span> <span style="color: #ffaacf;">*test-data*</span> <span style="color: #ffaacf;">(</span>cl-csv:read-csv <span style="color: #80aadf;">(</span>pathname test-data-file<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defparameter</span> <span style="color: #ffaacf;">*train-data*</span> <span style="color: #ffaacf;">(</span>mapcar <span style="color: #80aadf;">(</span><span style="color: #deb07a; font-weight: bold;">lambda</span> <span style="color: #e47980;">(</span>mylist<span style="color: #e47980;">)</span> <span style="color: #e47980;">(</span>mapcar #'parse-integer mylist<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span> <span style="color: #80aadf;">(</span>cdr *train-data*<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defparameter</span> <span style="color: #ffaacf;">*test-data*</span> <span style="color: #ffaacf;">(</span>mapcar <span style="color: #80aadf;">(</span><span style="color: #deb07a; font-weight: bold;">lambda</span> <span style="color: #e47980;">(</span>mylist<span style="color: #e47980;">)</span> <span style="color: #e47980;">(</span>mapcar #'parse-integer mylist<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span> <span style="color: #80aadf;">(</span>cdr *test-data*<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+</pre>
+</div>
+
+
+<pre class="example">
+*TEST-DATA*
+</pre>
+
+
+<p>
+next we create the network, each image is 28x28 pixels so we need an input layer of that size, and an output layer of size 10 because it needs to output 0-9
+</p>
+<div class="org-src-container" data-language="lisp">
+<pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defparameter</span> <span style="color: #ffaacf;">nw</span> <span style="color: #ffaacf;">(</span>make-network
+                  <span style="color: #e3b0c0; font-weight: bold;">:input-layer-size</span> <span style="color: #80aadf;">(</span>* 28 28<span style="color: #80aadf;">)</span>
+                  <span style="color: #e3b0c0; font-weight: bold;">:hidden-layer-sizes</span> '<span style="color: #80aadf;">(</span>10<span style="color: #80aadf;">)</span>
+                  <span style="color: #e3b0c0; font-weight: bold;">:learning-rate</span> 0.01
+                  <span style="color: #e3b0c0; font-weight: bold;">:output-layer-size</span> 10<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+</pre>
+</div>
+
+<p>
+with this network we have <?xml version='1.0' encoding='UTF-8'?>
+
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.273719 119.551522 7.103945' style="max-height: 0.7972em; vertical-align: -0.1309em; display: inline-block" class="org-latex org-latex-inline">
+<defs>
+<path id='g0-2' d='m6.276463-.288917c0-.079701-.019925-.099626-.129514-.209215l-1.982565-1.992528l1.982565-1.992528c.109589-.109589 .129514-.129514 .129514-.209215c0-.109589-.089664-.199253-.199253-.199253c-.079701 0-.119552 .039851-.209215 .129514l-1.992528 1.992528l-2.002491-1.992528c-.109589-.109589-.129514-.129514-.209215-.129514c-.099626 0-.199253 .089664-.199253 .199253c0 .079701 .039851 .119552 .129514 .209215l1.982565 1.992528l-1.982565 1.982565c-.099626 .099626-.129514 .159402-.129514 .219178c0 .109589 .099626 .199253 .199253 .199253c.079701 0 .099626-.019925 .209215-.129514l1.992528-1.992528l1.992528 1.992528c.099626 .099626 .159402 .129514 .219178 .129514c.119552 0 .199253-.089664 .199253-.199253z'/>
+<path id='g1-48' d='m4.582814-3.188045c0-.797011-.049813-1.594022-.398506-2.331258c-.458281-.956413-1.275218-1.115816-1.693649-1.115816c-.597758 0-1.325031 .259029-1.733499 1.185554c-.318804 .687422-.368618 1.464508-.368618 2.261519c0 .747198 .039851 1.643836 .448319 2.400996c.428394 .806974 1.155666 1.006227 1.643836 1.006227c.537983 0 1.295143-.209215 1.733499-1.155666c.318804-.687422 .368618-1.464508 .368618-2.251557zm-.826899-.119552c0 .747198 0 1.424658-.109589 2.062267c-.14944 .946451-.71731 1.24533-1.165629 1.24533c-.388543 0-.976339-.249066-1.155666-1.205479c-.109589-.597758-.109589-1.514321-.109589-2.102117c0-.637609 0-1.295143 .079701-1.833126c.18929-1.185554 .936488-1.275218 1.185554-1.275218c.328767 0 .986301 .179328 1.175592 1.165629c.099626 .557908 .099626 1.315068 .099626 1.942715z'/>
+<path id='g1-49' d='m4.174346 0v-.308842h-.318804c-.896638 0-.926526-.109589-.926526-.478207v-5.589041c0-.239103 0-.259029-.229141-.259029c-.617684 .637609-1.494396 .637609-1.8132 .637609v.308842c.199253 0 .787049 0 1.305106-.259029v5.160648c0 .358655-.029888 .478207-.926526 .478207h-.318804v.308842c.348692-.029888 1.215442-.029888 1.613948-.029888s1.265255 0 1.613948 .029888z'/>
+<path id='g1-50' d='m4.473225-1.733499h-.249066c-.049813 .298879-.119552 .737235-.219178 .886675c-.069738 .079701-.727273 .079701-.946451 .079701h-1.793275l1.05604-1.026152c1.554172-1.374844 2.15193-1.912827 2.15193-2.909091c0-1.135741-.896638-1.932752-2.11208-1.932752c-1.125778 0-1.863014 .916563-1.863014 1.803238c0 .557908 .498132 .557908 .52802 .557908c.169365 0 .518057-.119552 .518057-.52802c0-.259029-.179328-.518057-.52802-.518057c-.079701 0-.099626 0-.129514 .009963c.229141-.647572 .767123-1.016189 1.344956-1.016189c.9066 0 1.334994 .806974 1.334994 1.62391c0 .797011-.498132 1.58406-1.046077 2.201743l-1.912827 2.132005c-.109589 .109589-.109589 .129514-.109589 .368618h3.696139l.278954-1.733499z'/>
+<path id='g1-52' d='m4.692403-1.643836v-.308842h-.996264v-4.533001c0-.199253 0-.259029-.159402-.259029c-.089664 0-.119552 0-.199253 .119552l-3.058531 4.672478v.308842h2.650062v.86675c0 .358655-.019925 .468244-.757161 .468244h-.209215v.308842c.408468-.029888 .926526-.029888 1.344956-.029888s.946451 0 1.354919 .029888v-.308842h-.209215c-.737235 0-.757161-.109589-.757161-.468244v-.86675h.996264zm-1.703611-.308842h-2.430884l2.430884-3.716065v3.716065z'/>
+<path id='g1-53' d='m4.473225-2.002491c0-1.185554-.816936-2.181818-1.892902-2.181818c-.478207 0-.9066 .159402-1.265255 .508095v-1.942715c.199253 .059776 .52802 .129514 .846824 .129514c1.225405 0 1.92279-.9066 1.92279-1.036115c0-.059776-.029888-.109589-.099626-.109589c0 0-.029888 0-.079701 .029888c-.199253 .089664-.687422 .288917-1.354919 .288917c-.398506 0-.856787-.069738-1.325031-.278954c-.079701-.029888-.119552-.029888-.119552-.029888c-.099626 0-.099626 .079701-.099626 .239103v2.948941c0 .179328 0 .259029 .139477 .259029c.069738 0 .089664-.029888 .129514-.089664c.109589-.159402 .478207-.697385 1.285181-.697385c.518057 0 .767123 .458281 .846824 .637609c.159402 .368618 .179328 .757161 .179328 1.255293c0 .348692 0 .946451-.239103 1.364882c-.239103 .388543-.607721 .647572-1.066002 .647572c-.727273 0-1.295143-.52802-1.464508-1.115816c.029888 .009963 .059776 .019925 .169365 .019925c.328767 0 .498132-.249066 .498132-.488169s-.169365-.488169-.498132-.488169c-.139477 0-.488169 .069738-.488169 .52802c0 .856787 .687422 1.823163 1.803238 1.823163c1.155666 0 2.171856-.956413 2.171856-2.221669z'/>
+<path id='g1-54' d='m4.552927-2.032379c0-1.265255-.886675-2.221669-1.992528-2.221669c-.67746 0-1.046077 .508095-1.24533 .986301v-.239103c0-2.520548 1.235367-2.879203 1.743462-2.879203c.239103 0 .657534 .059776 .876712 .398506c-.14944 0-.547945 0-.547945 .448319c0 .308842 .239103 .458281 .458281 .458281c.159402 0 .458281-.089664 .458281-.478207c0-.597758-.438356-1.075965-1.265255-1.075965c-1.275218 0-2.620174 1.285181-2.620174 3.486924c0 2.660025 1.155666 3.367372 2.082192 3.367372c1.105853 0 2.052304-.936488 2.052304-2.251557zm-.896638-.009963c0 .478207 0 .976339-.169365 1.334994c-.298879 .597758-.757161 .647572-.986301 .647572c-.627646 0-.926526-.597758-.986301-.747198c-.179328-.468244-.179328-1.265255-.179328-1.444583c0-.777086 .318804-1.77335 1.215442-1.77335c.159402 0 .617684 0 .926526 .617684c.179328 .368618 .179328 .876712 .179328 1.364882z'/>
+<path id='g1-56' d='m4.552927-1.673724c0-.358655-.109589-.806974-.488169-1.225405c-.18929-.209215-.348692-.308842-.986301-.707347c.71731-.368618 1.205479-.886675 1.205479-1.544209c0-.916563-.886675-1.484433-1.793275-1.484433c-.996264 0-1.803238 .737235-1.803238 1.663761c0 .179328 .019925 .627646 .438356 1.09589c.109589 .119552 .478207 .368618 .727273 .537983c-.577833 .288917-1.43462 .846824-1.43462 1.833126c0 1.05604 1.016189 1.723537 2.062267 1.723537c1.125778 0 2.072229-.826899 2.072229-1.892902zm-.707347-3.476961c0 .56787-.388543 1.046077-.986301 1.39477l-1.235367-.797011c-.458281-.298879-.498132-.637609-.498132-.806974c0-.607721 .647572-1.026152 1.354919-1.026152c.727273 0 1.364882 .518057 1.364882 1.235367zm.209215 3.835616c0 .737235-.747198 1.255293-1.564134 1.255293c-.856787 0-1.574097-.617684-1.574097-1.444583c0-.577833 .318804-1.215442 1.165629-1.683686l1.225405 .777086c.278954 .18929 .747198 .488169 .747198 1.09589z'/>
+<path id='g1-61' d='m7.183064-3.457036c0-.199253-.18929-.199253-.328767-.199253h-5.967621c-.139477 0-.328767 0-.328767 .199253s.18929 .199253 .33873 .199253h5.947696c.14944 0 .33873 0 .33873-.199253zm0 1.932752c0-.199253-.18929-.199253-.33873-.199253h-5.947696c-.14944 0-.33873 0-.33873 .199253s.18929 .199253 .328767 .199253h5.967621c.139477 0 .328767 0 .328767-.199253z'/>
+</defs>
+<g id='page1'>
+<g fill='currentColor'>
+<use x='0' y='0' xlink:href='#g1-50'/>
+<use x='4.98132' y='0' xlink:href='#g1-56'/>
+<use x='12.176506' y='0' xlink:href='#g0-2'/>
+<use x='22.13912' y='0' xlink:href='#g1-50'/>
+<use x='27.12044' y='0' xlink:href='#g1-56'/>
+<use x='34.315626' y='0' xlink:href='#g0-2'/>
+<use x='44.278239' y='0' xlink:href='#g1-49'/>
+<use x='49.259559' y='0' xlink:href='#g1-54'/>
+<use x='56.454745' y='0' xlink:href='#g0-2'/>
+<use x='66.417359' y='0' xlink:href='#g1-49'/>
+<use x='71.398679' y='0' xlink:href='#g1-48'/>
+<use x='79.147331' y='0' xlink:href='#g1-61'/>
+<use x='89.663601' y='0' xlink:href='#g1-49'/>
+<use x='94.644921' y='0' xlink:href='#g1-50'/>
+<use x='99.626241' y='0' xlink:href='#g1-53'/>
+<use x='104.607561' y='0' xlink:href='#g1-52'/>
+<use x='109.588881' y='0' xlink:href='#g1-52'/>
+<use x='114.570202' y='0' xlink:href='#g1-48'/>
+</g>
+</g>
+</svg> weights to update for each training example, its a large network and would take alot of time since we're only using a single CPU thread
+</p>
+<div class="org-src-container" data-language="lisp">
+<pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">test</span> <span style="color: #ffaacf;">()</span>
+  <span style="color: #ffaacf;">(</span>network-train
+   nw
+   <span style="color: #80aadf;">(</span>list-&gt;vector <span style="color: #e47980;">(</span>mapcar 'cdr *train-data*<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
+   <span style="color: #80aadf;">(</span>list-&gt;vector <span style="color: #e47980;">(</span>mapcar <span style="color: #d0b0ff;">(</span><span style="color: #deb07a; font-weight: bold;">lambda</span> <span style="color: #3fc489;">(</span>digit<span style="color: #3fc489;">)</span>
+                           <span style="color: #3fc489;">(</span><span style="color: #deb07a; font-weight: bold;">let</span> <span style="color: #6fb3c0;">(</span><span style="color: #c0b24f;">(</span>mylist <span style="color: #f3a0a0;">(</span>make-list 10 <span style="color: #e3b0c0; font-weight: bold;">:initial-element</span> 0<span style="color: #f3a0a0;">)</span><span style="color: #c0b24f;">)</span><span style="color: #6fb3c0;">)</span>
+                             <span style="color: #6fb3c0;">(</span>setf <span style="color: #c0b24f;">(</span>nth digit mylist<span style="color: #c0b24f;">)</span> 1<span style="color: #6fb3c0;">)</span>
+                             mylist<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span>
+                         <span style="color: #d0b0ff;">(</span>mapcar 'car *train-data*<span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+</pre>
+</div>
+
+<p>
+i was getting (relatively) good results even after a few epochs</p>
+</div>
+</body>
+</html>

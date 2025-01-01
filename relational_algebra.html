@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>relational algebra</title><!-- for google analytics -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QNNF19VZGH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QNNF19VZGH');
+</script>
+
+<!-- lambda icon, frail attempt -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22100%22 color=%22red%22>λ</text></svg>">
+<!-- not-so-awesome awesome font -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="/main.css">
+<!-- for dark mode -->
+<script src="darkmode.js"></script>
+<script src="main.js"></script>
+<script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div class="navbar">
+  <a href='/'>home</a>
+  <a href='/blog.html'>blog</a>
+  <a href='/search.html'>search</a>
+  <a href='/about.html'>about</a>
+  <div id="darkModeToggle" onclick="toggleDarkMode()">
+    &#9680; <!-- Circle with left half black -->
+  </div>
+</div>
+<div class="toc">
+  <span class="toc-title-container">
+    <a class='feather' data-feather='menu'></a>
+    <span class="toc-title">table of contents</span>
+  </span>
+  <div class="toc-list">
+  </div>
+</div><h1 class="main-title">relational algebra</h1><span class='date'>2023-12-12</span>
+</div>
+<div id="content" class="content">
+<div test="test" class="fancy-block dummy" data-before="" data-after="&lt;p&gt;
+(Ramez Elmasri, Shamkant B. Navathe, 2015 chapter 8 the relational algebra and relational calculus)&lt;/p&gt;
+" id="def-inr-prod" data-id="def-inr-prod">
+<p>
+the basic set of operations for the formal relational model is the <i>relational algebra</i>. these operations enable a user to specify basic retrieval requests as <i>relational algebra expressions</i>. the result of a retrieval query is a new <a href="/relation.html">relation</a>. the algebra operations thus produce new relations, which can be further manipulated using operations of the same algebra. a sequence of relational algebra operations forms a relational algebra expression, whose result will also be a relation that represents the result of a database query (or retrieval request).
+</p>
+
+</div>
+
+<div test="test" class="fancy-block dummy" data-before="" id="def-inr-prod" data-id="def-inr-prod">
+<p>
+the operations of relational algebra include:
+</p>
+<ul class="org-ul">
+<li><a href="/set_operations.html">set operations</a></li>
+<li><a href="/select.html">select operation</a></li>
+<li><a href="/project_operation.html">project operation</a></li>
+<li><a href="/rename_operation.html">rename operation</a></li>
+<li><a href="/division_operation.html">division operation</a></li>
+<li><a href="/join_operation.html">join operation</a>
+<ul class="org-ul">
+<li><a href="/semi_join.html">semi join</a></li>
+<li><a href="/outer_join.html">outer join</a></li>
+<li><a href="/inner_join.html">inner join</a></li>
+<li><a href="/natural_join.html">natural join</a></li>
+</ul></li>
+<li><a href="/outer_union.html">outer union</a></li>
+<li><a href="/insert_operation.html">insert operation</a></li>
+<li><a href="/delete_operation.html">delete operation</a></li>
+<li><a href="/update_operation.html">update operation</a></li>
+</ul>
+
+</div>
+
+<div test="test" class="fancy-block dummy" data-before="" data-after="&lt;p&gt;
+(Ramez Elmasri, Shamkant B. Navathe, 2015 chapter 8.3.3 a complete set of relational algebra operations)&lt;/p&gt;
+" id="def-inr-prod" data-id="def-inr-prod">
+<p>
+the set of relational algebra operations <?xml version='1.0' encoding='UTF-8'?>
+
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -7.47198 70.925001 9.96264' style="max-height: 1.0784em; vertical-align: -0.2942em; display: inline-block" class="org-latex org-latex-inline">
+<defs>
+<path id='g1-25' d='m5.648817-4.054795c0-.239103-.209215-.239103-.398506-.239103h-3.337484c-.219178 0-.597758 0-1.036115 .468244c-.348692 .388543-.607721 .846824-.607721 .896638c0 0 0 .099626 .119552 .099626c.079701 0 .099626-.039851 .159402-.119552c.488169-.767123 1.066002-.767123 1.265255-.767123h.56787c-.318804 1.205479-.856787 2.410959-1.275218 3.317559c-.079701 .14944-.079701 .169365-.079701 .239103c0 .18929 .159402 .268991 .288917 .268991c.298879 0 .37858-.278954 .498132-.647572c.139477-.458281 .139477-.478207 .268991-.976339l.557908-2.201743h1.125778c-.328767 1.474471-.418431 1.902864-.418431 2.570361c0 .14944 0 .418431 .079701 .757161c.099626 .438356 .209215 .498132 .358655 .498132c.199253 0 .408468-.179328 .408468-.37858c0-.059776 0-.079701-.059776-.219178c-.288917-.71731-.288917-1.364882-.288917-1.643836c0-.52802 .069738-1.066002 .179328-1.58406h1.135741c.129514 0 .488169 0 .488169-.33873z'/>
+<path id='g1-26' d='m5.001245-2.779577c0-1.05604-.657534-1.62391-1.384807-1.62391c-.966376 0-2.012453 .996264-2.311333 2.211706l-.976339 3.915318c-.029888 .119552-.029888 .159402-.029888 .159402c0 .14944 .109589 .268991 .278954 .268991c.209215 0 .328767-.179328 .348692-.209215c.049813-.089664 .368618-1.424658 .637609-2.500623c.199253 .398506 .518057 .667497 .986301 .667497c1.165629 0 2.450809-1.404732 2.450809-2.889166zm-.71731-.428394c0 .547945-.288917 1.663761-.557908 2.15193c-.328767 .627646-.806974 .946451-1.185554 .946451c-.697385 0-.856787-.797011-.856787-.886675c0-.039851 .049813-.239103 .079701-.368618c.278954-1.115816 .37858-1.474471 .597758-1.872976c.428394-.727273 .926526-.946451 1.235367-.946451c.368618 0 .687422 .288917 .687422 .976339z'/>
+<path id='g1-27' d='m5.648817-4.054795c0-.239103-.209215-.239103-.388543-.239103h-2.271482c-1.504359 0-2.610212 1.643836-2.610212 2.82939c0 .876712 .587796 1.574097 1.494396 1.574097c1.175592 0 2.500623-1.205479 2.500623-2.739726c0-.169365 0-.647572-.308842-1.085928h1.09589c.129514 0 .488169 0 .488169-.33873zm-1.912827 1.305106c0 .468244-.199253 1.285181-.537983 1.793275c-.388543 .587796-.926526 .846824-1.315068 .846824c-.488169 0-.886675-.358655-.886675-1.075965c0-.298879 .119552-1.115816 .468244-1.703611c.418431-.687422 1.016189-.826899 1.354919-.826899c.836862 0 .916563 .657534 .916563 .966376z'/>
+<path id='g1-59' d='m2.022416-.009963c0-.657534-.249066-1.046077-.637609-1.046077c-.328767 0-.52802 .249066-.52802 .52802c0 .268991 .199253 .52802 .52802 .52802c.119552 0 .249066-.039851 .348692-.129514c.029888-.019925 .049813-.029888 .049813-.029888s.019925 .009963 .019925 .14944c0 .737235-.348692 1.334994-.67746 1.663761c-.109589 .109589-.109589 .129514-.109589 .159402c0 .069738 .049813 .109589 .099626 .109589c.109589 0 .9066-.767123 .9066-1.932752z'/>
+<path id='g0-0' d='m6.914072-2.49066c0-.199253-.18929-.199253-.328767-.199253h-5.429639c-.139477 0-.328767 0-.328767 .199253s.18929 .199253 .328767 .199253h5.429639c.139477 0 .328767 0 .328767-.199253z'/>
+<path id='g0-2' d='m6.276463-.288917c0-.079701-.019925-.099626-.129514-.209215l-1.982565-1.992528l1.982565-1.992528c.109589-.109589 .129514-.129514 .129514-.209215c0-.109589-.089664-.199253-.199253-.199253c-.079701 0-.119552 .039851-.209215 .129514l-1.992528 1.992528l-2.002491-1.992528c-.109589-.109589-.129514-.129514-.209215-.129514c-.099626 0-.199253 .089664-.199253 .199253c0 .079701 .039851 .119552 .129514 .209215l1.982565 1.992528l-1.982565 1.982565c-.099626 .099626-.129514 .159402-.129514 .219178c0 .109589 .099626 .199253 .199253 .199253c.079701 0 .099626-.019925 .209215-.129514l1.992528-1.992528l1.992528 1.992528c.099626 .099626 .159402 .129514 .219178 .129514c.119552 0 .199253-.089664 .199253-.199253z'/>
+<path id='g0-91' d='m6.07721-1.942715v-3.686177c0-.139477 0-.328767-.199253-.328767s-.199253 .18929-.199253 .328767v3.656289c0 1.325031-1.404732 1.793275-2.361146 1.793275c-.946451 0-2.361146-.458281-2.361146-1.793275v-3.656289c0-.139477 0-.328767-.199253-.328767s-.199253 .18929-.199253 .328767v3.686177c0 1.454545 1.454545 2.161893 2.759651 2.161893s2.759651-.71731 2.759651-2.161893z'/>
+<path id='g0-102' d='m4.254047 2.381071c0-.099626-.059776-.099626-.159402-.109589c-.787049-.049813-1.155666-.498132-1.24533-.856787c-.029888-.109589-.029888-.129514-.029888-.478207v-1.494396c0-.298879 0-.806974-.019925-.9066c-.129514-.657534-.767123-.916563-1.155666-1.026152c1.175592-.33873 1.175592-1.046077 1.175592-1.325031v-1.793275c0-.71731 0-.936488 .239103-1.185554c.179328-.179328 .408468-.418431 1.105853-.458281c.049813-.009963 .089664-.049813 .089664-.109589c0-.109589-.079701-.109589-.199253-.109589c-.996264 0-1.882939 .508095-1.902864 1.225405v1.823163c0 .936488 0 1.09589-.259029 1.374844c-.139477 .139477-.408468 .408468-1.036115 .448319c-.069738 0-.139477 .009963-.139477 .109589s.059776 .099626 .159402 .109589c.428394 .029888 1.275218 .239103 1.275218 1.235367v1.972603c0 .577833 0 .916563 .518057 1.285181c.428394 .298879 1.075965 .37858 1.384807 .37858c.119552 0 .199253 0 .199253-.109589z'/>
+<path id='g0-103' d='m4.254047-2.49066c0-.099626-.059776-.099626-.159402-.109589c-.428394-.029888-1.275218-.239103-1.275218-1.235367v-1.972603c0-.577833 0-.916563-.518057-1.285181c-.428394-.288917-1.066002-.37858-1.384807-.37858c-.099626 0-.199253 0-.199253 .109589c0 .099626 .059776 .099626 .159402 .109589c.787049 .049813 1.155666 .498132 1.24533 .856787c.029888 .109589 .029888 .129514 .029888 .478207v1.494396c0 .298879 0 .806974 .019925 .9066c.129514 .657534 .767123 .916563 1.155666 1.026152c-1.175592 .33873-1.175592 1.046077-1.175592 1.325031v1.793275c0 .71731 0 .936488-.239103 1.185554c-.179328 .179328-.408468 .418431-1.105853 .458281c-.049813 .009963-.089664 .049813-.089664 .109589c0 .109589 .099626 .109589 .199253 .109589c.996264 0 1.882939-.508095 1.902864-1.225405v-1.823163c0-.936488 0-1.09589 .259029-1.374844c.139477-.139477 .408468-.408468 1.036115-.448319c.069738 0 .139477-.009963 .139477-.109589z'/>
+</defs>
+<g id='page1'>
+<g fill='currentColor'>
+<use x='0' y='0' xlink:href='#g0-102'/>
+<use x='4.981339' y='0' xlink:href='#g1-27'/>
+<use x='10.478089' y='0' xlink:href='#g1-59'/>
+<use x='14.905897' y='0' xlink:href='#g1-25'/>
+<use x='20.942314' y='0' xlink:href='#g1-59'/>
+<use x='25.370122' y='0' xlink:href='#g0-91'/>
+<use x='32.011904' y='0' xlink:href='#g1-59'/>
+<use x='36.439712' y='0' xlink:href='#g1-26'/>
+<use x='41.590551' y='0' xlink:href='#g1-59'/>
+<use x='46.018359' y='0' xlink:href='#g0-0'/>
+<use x='53.767106' y='0' xlink:href='#g1-59'/>
+<use x='58.194914' y='0' xlink:href='#g0-2'/>
+<use x='65.943662' y='0' xlink:href='#g0-103'/>
+</g>
+</g>
+</svg> is a complete set; that is, any of the other original relational algebra operations can be expressed as a sequence of operations from this set.
+</p>
+
+</div>
+</div>
+</body>
+</html>
