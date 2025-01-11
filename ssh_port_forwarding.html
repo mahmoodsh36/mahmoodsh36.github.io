@@ -56,7 +56,7 @@ to connect to a device behind a private unreachable router you can use <i>remote
 example:
 </p>
 <div class="org-src-container" data-language="sh">
-<pre class="src src-sh">ssh -i path/to/key -R <span style="color: #f3a0a0;">'*:5000:*:22'</span> user@remote -N -g
+<pre class="src src-sh">ssh -i path/to/key -R <span style="color: #b8bb26;">'*:5000:*:22'</span> user@remote -N -g
 </pre>
 </div>
 
@@ -79,16 +79,16 @@ a connection to the tunnel can be opened using the command
 <p>
 note that <code>localuser</code> would be the user of <code>local2</code> (not the remote machine) that you want ssh to use.
 </p>
-<div id="outline-container-org2616abc" class="outline-2">
-<h2 id="org2616abc">connection refused</h2>
-<div class="outline-text-2" id="text-org2616abc">
+<div id="outline-container-orgae25850" class="outline-2">
+<h2 id="orgae25850">connection refused</h2>
+<div class="outline-text-2" id="text-orgae25850">
 <div test="test" class="fancy-block dummy" data-before="" data-after="&lt;p&gt;
 &lt;a href=&quot;https://serverfault.com/questions/478171/reverse-ssh-tunnel-connexion-refused&quot;&gt;https://serverfault.com/questions/478171/reverse-ssh-tunnel-connexion-refused&lt;/a&gt;&lt;/p&gt;
-" id="sol-automata-homework1-1" data-id="sol-automata-homework1-1">
+" id="def-m-comp" data-id="def-m-comp">
 <p>
 by default tunnel endpoints only listen on 127.0.0.1, so they can't be accessed from other machines. to change this you may need to add this to <code>/etc/ssh/sshd_config</code> on the server:
 </p>
-<div class="literal" id="orge7d60f5">
+<div class="literal" id="orge554349">
 <p>
 GatewayPorts clientspecified
 </p>
@@ -102,17 +102,17 @@ this is also the reason we use the address <code>*:5000:*:22</code>, the star is
 </p>
 </div>
 </div>
-<div id="outline-container-org520ea95" class="outline-2">
-<h2 id="org520ea95">other issues</h2>
-<div class="outline-text-2" id="text-org520ea95">
+<div id="outline-container-orgd649c5f" class="outline-2">
+<h2 id="orgd649c5f">other issues</h2>
+<div class="outline-text-2" id="text-orgd649c5f">
 <p>
 you may have to ssh into the server and try connecting locally (from the server to itself) to the forwarded port, so that the machine will add your other machine to its recognized hosts (in <code>~/.ssh/known_hosts</code>), otherwise the server will refuse to forward the connection because it wouldnt connect to your other machine. this is simply done by running <code>ssh user@localhost -p 5000 -i &lt;key&gt;</code> on your server.
 </p>
 </div>
 </div>
-<div id="outline-container-org62a7003" class="outline-2">
-<h2 id="org62a7003">using ipv6</h2>
-<div class="outline-text-2" id="text-org62a7003">
+<div id="outline-container-orgbe50275" class="outline-2">
+<h2 id="orgbe50275">using ipv6</h2>
+<div class="outline-text-2" id="text-orgbe50275">
 <p>
 if you're using ipv6 you need to make sure its enabled on all machines. <code>vim /etc/sysctl.conf</code> and make sure you have the following:
 </p>
@@ -126,14 +126,14 @@ net.ipv6.conf.all.disable_ipv6 = 0
 the ipv6 equivalent for <code>localhost</code> is <code>::1</code>. so, for example, the reverse tunnel ssh command becomes:
 </p>
 <div class="org-src-container" data-language="sh">
-<pre class="src src-sh">ssh -i yourkey -R <span style="color: #f3a0a0;">'*:5000:*:22'</span> -6 user@remote1:etc:etc::1 -N -g
+<pre class="src src-sh">ssh -i yourkey -R <span style="color: #b8bb26;">'*:5000:*:22'</span> -6 user@remote1:etc:etc::1 -N -g
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org195bb8c" class="outline-2">
-<h2 id="org195bb8c">systemd service</h2>
-<div class="outline-text-2" id="text-org195bb8c">
+<div id="outline-container-org0f91669" class="outline-2">
+<h2 id="org0f91669">systemd service</h2>
+<div class="outline-text-2" id="text-org0f91669">
 <p>
 an example systemd service that i use to automatically open an ssh tunnel for a linux server:
 </p>

@@ -205,22 +205,22 @@ answer: &lt;/p&gt;
 the graph with the electric layout algorithm:
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defparameter</span> <span style="color: #ffaacf;">*homework4-knowledge-base*</span>
-  '<span style="color: #ffaacf;">(</span><span style="color: #80aadf;">(</span>implies <span style="color: #e47980;">(</span>and a b  <span style="color: #e47980;">)</span> e        <span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span>implies <span style="color: #e47980;">(</span>and a c  <span style="color: #e47980;">)</span> k        <span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span>implies <span style="color: #e47980;">(</span>and a c d<span style="color: #e47980;">)</span> f        <span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span>implies <span style="color: #e47980;">(</span>and c d  <span style="color: #e47980;">)</span> g        <span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span>implies <span style="color: #e47980;">(</span>and e f  <span style="color: #e47980;">)</span> h        <span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span>implies <span style="color: #e47980;">(</span>and f g  <span style="color: #e47980;">)</span> i        <span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span>implies <span style="color: #e47980;">(</span>and f e g<span style="color: #e47980;">)</span> j        <span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span>implies <span style="color: #e47980;">(</span>and k l  <span style="color: #e47980;">)</span> <span style="color: #e47980;">(</span>and m n<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span>implies <span style="color: #e47980;">(</span>and f d  <span style="color: #e47980;">)</span> l        <span style="color: #80aadf;">)</span>
-    a b c<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span><span style="color: #fb4933;">defparameter</span> <span style="color: #83a598;">*homework4-knowledge-base*</span>
+  '<span style="color: #b16286;">(</span><span style="color: #8ec07c;">(</span>implies <span style="color: #d65d0e;">(</span>and a b  <span style="color: #d65d0e;">)</span> e        <span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>implies <span style="color: #d65d0e;">(</span>and a c  <span style="color: #d65d0e;">)</span> k        <span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>implies <span style="color: #d65d0e;">(</span>and a c d<span style="color: #d65d0e;">)</span> f        <span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>implies <span style="color: #d65d0e;">(</span>and c d  <span style="color: #d65d0e;">)</span> g        <span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>implies <span style="color: #d65d0e;">(</span>and e f  <span style="color: #d65d0e;">)</span> h        <span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>implies <span style="color: #d65d0e;">(</span>and f g  <span style="color: #d65d0e;">)</span> i        <span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>implies <span style="color: #d65d0e;">(</span>and f e g<span style="color: #d65d0e;">)</span> j        <span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>implies <span style="color: #d65d0e;">(</span>and k l  <span style="color: #d65d0e;">)</span> <span style="color: #d65d0e;">(</span>and m n<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>implies <span style="color: #d65d0e;">(</span>and f d  <span style="color: #d65d0e;">)</span> l        <span style="color: #8ec07c;">)</span>
+    a b c<span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 
-<span style="color: #deb07a;">(</span>graph-generate-tikz
- <span style="color: #ffaacf;">(</span>generate-graph-from-knowledge-base *homework4-knowledge-base*<span style="color: #ffaacf;">)</span>
- <span style="color: #e3b0c0; font-weight: bold;">:directed</span> t
- <span style="color: #e3b0c0; font-weight: bold;">:node-distance</span> 60<span style="color: #deb07a;">)</span>
+<span style="color: #458588;">(</span>graph-generate-tikz
+ <span style="color: #b16286;">(</span>generate-graph-from-knowledge-base *homework4-knowledge-base*<span style="color: #b16286;">)</span>
+ <span style="color: #fe8019;">:directed</span> t
+ <span style="color: #fe8019;">:node-distance</span> 60<span style="color: #458588;">)</span>
 </pre>
 </div>
 
@@ -351,10 +351,10 @@ the graph with the electric layout algorithm:
 the same graph with the layered layout algorithm:
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span>graph-generate-tikz
- <span style="color: #ffaacf;">(</span>generate-graph-from-knowledge-base *homework4-knowledge-base*<span style="color: #ffaacf;">)</span>
- <span style="color: #e3b0c0; font-weight: bold;">:directed</span> t
- <span style="color: #e3b0c0; font-weight: bold;">:tikz-params</span> <span style="color: #f3a0a0;">"layered layout, grow=up, edges={-{Stealth[]}}, edges=rounded corners, level sep=40px"</span><span style="color: #deb07a;">)</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span>graph-generate-tikz
+ <span style="color: #b16286;">(</span>generate-graph-from-knowledge-base *homework4-knowledge-base*<span style="color: #b16286;">)</span>
+ <span style="color: #fe8019;">:directed</span> t
+ <span style="color: #fe8019;">:tikz-params</span> <span style="color: #b8bb26;">"layered layout, grow=up, edges={-{Stealth[]}}, edges=rounded corners, level sep=40px"</span><span style="color: #458588;">)</span>
 </pre>
 </div>
 
@@ -514,10 +514,12 @@ using <a href="/backward_chaining.html">backward chaining</a>, try to prove <?xm
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.570609 4.67298 8.507792' style="max-height: 0.9353em; vertical-align: -0.2397em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
-<path id='g10-106' d='m3.955168-6.22665c0-.18929-.139477-.358655-.37858-.358655c-.229141 0-.52802 .229141-.52802 .52802c0 .199253 .139477 .358655 .368618 .358655c.268991 0 .537983-.259029 .537983-.52802zm-.418431 3.108344c.049813-.199253 .049813-.33873 .049813-.368618c0-.56787-.418431-.916563-.916563-.916563c-1.016189 0-1.58406 1.444583-1.58406 1.534247c0 .099626 .119552 .099626 .119552 .099626c.089664 0 .099626-.009963 .179328-.199253c.249066-.607721 .707347-1.215442 1.255293-1.215442c.139477 0 .318804 .039851 .318804 .458281c0 .229141-.029888 .33873-.069738 .508095l-.936488 3.716065c-.18929 .757161-.667497 1.325031-1.225405 1.325031c-.059776 0-.209215 0-.388543-.089664c.298879-.069738 .448319-.328767 .448319-.52802c0-.159402-.109589-.348692-.37858-.348692c-.249066 0-.537983 .209215-.537983 .56787c0 .398506 .398506 .617684 .876712 .617684c.697385 0 1.62391-.52802 1.872976-1.514321l.916563-3.646326z'/>
+<path id='g7-106' d='m3.955168-6.22665c0-.18929-.139477-.358655-.37858-.358655c-.229141 0-.52802 .229141-.52802 .52802c0 .199253 .139477 .358655 .368618 .358655c.268991 0 .537983-.259029 .537983-.52802zm-.418431 3.108344c.049813-.199253 .049813-.33873 .049813-.368618c0-.56787-.418431-.916563-.916563-.916563c-1.016189 0-1.58406 1.444583-1.58406 1.534247c0 .099626 .119552 .099626 .119552 .099626c.089664 0 .099626-.009963 .179328-.199253c.249066-.607721 .707347-1.215442 1.255293-1.215442c.139477 0 .318804 .039851 .318804 .458281c0 .229141-.029888 .33873-.069738 .508095l-.936488 3.716065c-.18929 .757161-.667497 1.325031-1.225405 1.325031c-.059776 0-.209215 0-.388543-.089664c.298879-.069738 .448319-.328767 .448319-.52802c0-.159402-.109589-.348692-.37858-.348692c-.249066 0-.537983 .209215-.537983 .56787c0 .398506 .398506 .617684 .876712 .617684c.697385 0 1.62391-.52802 1.872976-1.514321l.916563-3.646326z'/>
 </defs>
-<g id='page234'>
-<use x='0' y='0' xlink:href='#g10-106'/>
+<g id='page37'>
+<g fill='currentColor'>
+<use x='0' y='0' xlink:href='#g7-106'/>
+</g>
 </g>
 </svg> using <?xml version='1.0' encoding='UTF-8'?>
 
@@ -545,12 +547,10 @@ using <a href="/backward_chaining.html">backward chaining</a>, try to prove <?xm
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -4.289468 4.311397 4.289468' style="max-height: 0.5203em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
-<path id='g11-99' d='m4.283935-1.066002c0-.059776-.059776-.129514-.119552-.129514c-.049813 0-.069738 .019925-.129514 .099626c-.787049 .986301-1.872976 .986301-1.992528 .986301c-.627646 0-.896638-.488169-.896638-1.085928c0-.408468 .199253-1.374844 .537983-1.992528c.308842-.56787 .856787-.996264 1.404732-.996264c.33873 0 .71731 .129514 .856787 .398506c-.159402 0-.298879 0-.438356 .139477c-.159402 .14944-.179328 .318804-.179328 .388543c0 .239103 .179328 .348692 .368618 .348692c.288917 0 .557908-.239103 .557908-.637609c0-.488169-.468244-.856787-1.175592-.856787c-1.344956 0-2.669988 1.424658-2.669988 2.82939c0 .896638 .577833 1.683686 1.613948 1.683686c1.424658 0 2.261519-1.05604 2.261519-1.175592z'/>
+<path id='g6-99' d='m4.283935-1.066002c0-.059776-.059776-.129514-.119552-.129514c-.049813 0-.069738 .019925-.129514 .099626c-.787049 .986301-1.872976 .986301-1.992528 .986301c-.627646 0-.896638-.488169-.896638-1.085928c0-.408468 .199253-1.374844 .537983-1.992528c.308842-.56787 .856787-.996264 1.404732-.996264c.33873 0 .71731 .129514 .856787 .398506c-.159402 0-.298879 0-.438356 .139477c-.159402 .14944-.179328 .318804-.179328 .388543c0 .239103 .179328 .348692 .368618 .348692c.288917 0 .557908-.239103 .557908-.637609c0-.488169-.468244-.856787-1.175592-.856787c-1.344956 0-2.669988 1.424658-2.669988 2.82939c0 .896638 .577833 1.683686 1.613948 1.683686c1.424658 0 2.261519-1.05604 2.261519-1.175592z'/>
 </defs>
-<g id='page49'>
-<g fill='currentColor'>
-<use x='0' y='0' xlink:href='#g11-99'/>
-</g>
+<g id='page9'>
+<use x='0' y='0' xlink:href='#g6-99'/>
 </g>
 </svg> as the data.
 </p>
@@ -561,8 +561,8 @@ answer: &lt;/p&gt;
 with <a href="/symbolic_logic_in_common_lisp.html">common lisp logic programming</a>:
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">let</span> <span style="color: #ffaacf;">(</span><span style="color: #80aadf;">(</span>kb <span style="color: #e47980;">(</span>copy-tree *homework4-knowledge-base*<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span>
-  <span style="color: #ffaacf;">(</span>backward-chaining kb 'j<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span><span style="color: #fb4933;">let</span> <span style="color: #b16286;">(</span><span style="color: #8ec07c;">(</span>kb <span style="color: #d65d0e;">(</span>copy-tree *homework4-knowledge-base*<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span>
+  <span style="color: #b16286;">(</span>backward-chaining kb 'j<span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 </pre>
 </div>
 
@@ -587,10 +587,12 @@ the algorithm stopped at <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.570609 4.67298 8.507792' style="max-height: 0.9353em; vertical-align: -0.2397em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
-<path id='g10-106' d='m3.955168-6.22665c0-.18929-.139477-.358655-.37858-.358655c-.229141 0-.52802 .229141-.52802 .52802c0 .199253 .139477 .358655 .368618 .358655c.268991 0 .537983-.259029 .537983-.52802zm-.418431 3.108344c.049813-.199253 .049813-.33873 .049813-.368618c0-.56787-.418431-.916563-.916563-.916563c-1.016189 0-1.58406 1.444583-1.58406 1.534247c0 .099626 .119552 .099626 .119552 .099626c.089664 0 .099626-.009963 .179328-.199253c.249066-.607721 .707347-1.215442 1.255293-1.215442c.139477 0 .318804 .039851 .318804 .458281c0 .229141-.029888 .33873-.069738 .508095l-.936488 3.716065c-.18929 .757161-.667497 1.325031-1.225405 1.325031c-.059776 0-.209215 0-.388543-.089664c.298879-.069738 .448319-.328767 .448319-.52802c0-.159402-.109589-.348692-.37858-.348692c-.249066 0-.537983 .209215-.537983 .56787c0 .398506 .398506 .617684 .876712 .617684c.697385 0 1.62391-.52802 1.872976-1.514321l.916563-3.646326z'/>
+<path id='g7-106' d='m3.955168-6.22665c0-.18929-.139477-.358655-.37858-.358655c-.229141 0-.52802 .229141-.52802 .52802c0 .199253 .139477 .358655 .368618 .358655c.268991 0 .537983-.259029 .537983-.52802zm-.418431 3.108344c.049813-.199253 .049813-.33873 .049813-.368618c0-.56787-.418431-.916563-.916563-.916563c-1.016189 0-1.58406 1.444583-1.58406 1.534247c0 .099626 .119552 .099626 .119552 .099626c.089664 0 .099626-.009963 .179328-.199253c.249066-.607721 .707347-1.215442 1.255293-1.215442c.139477 0 .318804 .039851 .318804 .458281c0 .229141-.029888 .33873-.069738 .508095l-.936488 3.716065c-.18929 .757161-.667497 1.325031-1.225405 1.325031c-.059776 0-.209215 0-.388543-.089664c.298879-.069738 .448319-.328767 .448319-.52802c0-.159402-.109589-.348692-.37858-.348692c-.249066 0-.537983 .209215-.537983 .56787c0 .398506 .398506 .617684 .876712 .617684c.697385 0 1.62391-.52802 1.872976-1.514321l.916563-3.646326z'/>
 </defs>
-<g id='page234'>
-<use x='0' y='0' xlink:href='#g10-106'/>
+<g id='page37'>
+<g fill='currentColor'>
+<use x='0' y='0' xlink:href='#g7-106'/>
+</g>
 </g>
 </svg> we need to use the formula <?xml version='1.0' encoding='UTF-8'?>
 
@@ -680,12 +682,10 @@ the algorithm stopped at <?xml version='1.0' encoding='UTF-8'?>
 
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -4.289468 4.311397 4.289468' style="max-height: 0.5203em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
-<path id='g11-99' d='m4.283935-1.066002c0-.059776-.059776-.129514-.119552-.129514c-.049813 0-.069738 .019925-.129514 .099626c-.787049 .986301-1.872976 .986301-1.992528 .986301c-.627646 0-.896638-.488169-.896638-1.085928c0-.408468 .199253-1.374844 .537983-1.992528c.308842-.56787 .856787-.996264 1.404732-.996264c.33873 0 .71731 .129514 .856787 .398506c-.159402 0-.298879 0-.438356 .139477c-.159402 .14944-.179328 .318804-.179328 .388543c0 .239103 .179328 .348692 .368618 .348692c.288917 0 .557908-.239103 .557908-.637609c0-.488169-.468244-.856787-1.175592-.856787c-1.344956 0-2.669988 1.424658-2.669988 2.82939c0 .896638 .577833 1.683686 1.613948 1.683686c1.424658 0 2.261519-1.05604 2.261519-1.175592z'/>
+<path id='g6-99' d='m4.283935-1.066002c0-.059776-.059776-.129514-.119552-.129514c-.049813 0-.069738 .019925-.129514 .099626c-.787049 .986301-1.872976 .986301-1.992528 .986301c-.627646 0-.896638-.488169-.896638-1.085928c0-.408468 .199253-1.374844 .537983-1.992528c.308842-.56787 .856787-.996264 1.404732-.996264c.33873 0 .71731 .129514 .856787 .398506c-.159402 0-.298879 0-.438356 .139477c-.159402 .14944-.179328 .318804-.179328 .388543c0 .239103 .179328 .348692 .368618 .348692c.288917 0 .557908-.239103 .557908-.637609c0-.488169-.468244-.856787-1.175592-.856787c-1.344956 0-2.669988 1.424658-2.669988 2.82939c0 .896638 .577833 1.683686 1.613948 1.683686c1.424658 0 2.261519-1.05604 2.261519-1.175592z'/>
 </defs>
-<g id='page49'>
-<g fill='currentColor'>
-<use x='0' y='0' xlink:href='#g11-99'/>
-</g>
+<g id='page9'>
+<use x='0' y='0' xlink:href='#g6-99'/>
 </g>
 </svg> we already know are true, but <?xml version='1.0' encoding='UTF-8'?>
 
@@ -748,10 +748,10 @@ use <a href="/forward_chaining.html">forward chaining</a> and the data <?xml ver
 answer: &lt;/p&gt;
 " id="note:note1" data-id="note:note1">
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">let</span> <span style="color: #ffaacf;">(</span><span style="color: #80aadf;">(</span>kb <span style="color: #e47980;">(</span>copy-tree *homework4-knowledge-base*<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span>
-  <span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">multiple-value-bind</span> <span style="color: #80aadf;">(</span>substitution inference-alist-list<span style="color: #80aadf;">)</span>
-      <span style="color: #80aadf;">(</span>forward-chaining kb nil<span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span>forward-chaining-generate-tikz-graph inference-alist-list<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span><span style="color: #fb4933;">let</span> <span style="color: #b16286;">(</span><span style="color: #8ec07c;">(</span>kb <span style="color: #d65d0e;">(</span>copy-tree *homework4-knowledge-base*<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span>
+  <span style="color: #b16286;">(</span><span style="color: #fb4933;">multiple-value-bind</span> <span style="color: #8ec07c;">(</span>substitution inference-alist-list<span style="color: #8ec07c;">)</span>
+      <span style="color: #8ec07c;">(</span>forward-chaining kb nil<span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>forward-chaining-generate-tikz-graph inference-alist-list<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 </pre>
 </div>
 

@@ -78,9 +78,9 @@ in a heap the keys arent necessarily sorted like in <a href="/binary_search_tree
 </p>
 
 </div>
-<div id="outline-container-org437f07f" class="outline-2">
-<h2 id="org437f07f">bubbling</h2>
-<div class="outline-text-2" id="text-org437f07f">
+<div id="outline-container-orgfec6b35" class="outline-2">
+<h2 id="orgfec6b35">bubbling</h2>
+<div class="outline-text-2" id="text-orgfec6b35">
 <div test="test" class="fancy-block definition" data-before="&lt;p&gt;
 definition: &lt;/p&gt;
 " id="def-tree-bin" data-id="def-tree-bin">
@@ -90,40 +90,40 @@ moving a <a href="/tree_data_structure.html">node</a> up/down a heap to get it t
 
 </div>
 </div>
-<div id="outline-container-orgfd6326d" class="outline-3">
-<h3 id="orgfd6326d">bubble up</h3>
-<div class="outline-text-3" id="text-orgfd6326d">
+<div id="outline-container-orgc948cc2" class="outline-3">
+<h3 id="orgc948cc2">bubble up</h3>
+<div class="outline-text-3" id="text-orgc948cc2">
 <p>
 <a href="/binary_heap.html">bubbling</a> a node <b>upwards</b> consists of recursively switching it with its parent until its parent is bigger/smaller than it (depending on whether we're using a <a href="/heap.html">min heap</a> or a <a href="/heap.html">max heap</a>)
 </p>
 </div>
 </div>
-<div id="outline-container-orge7c5cb6" class="outline-3">
-<h3 id="orge7c5cb6">bubble down</h3>
-<div class="outline-text-3" id="text-orge7c5cb6">
+<div id="outline-container-orge7a044d" class="outline-3">
+<h3 id="orge7a044d">bubble down</h3>
+<div class="outline-text-3" id="text-orge7a044d">
 <p>
 <a href="/binary_heap.html">bubbling</a> a node <b>downards</b> consists of recursively switching it with one of its children until it gets to its correct position
 this is a pseudocode for the <a href="/algorithm.html">algorithm</a>:
 </p>
 <div class="org-src-container" data-language="C">
-<pre class="src src-C">l = left<span style="color: #deb07a;">(</span>i<span style="color: #deb07a;">)</span> <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">index of left child</span>
-r = right<span style="color: #deb07a;">(</span>i<span style="color: #deb07a;">)</span> <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">index of right child</span>
-<span style="color: #deb07a; font-weight: bold;">if</span> l &lt;= heap-size<span style="color: #deb07a;">[</span>A<span style="color: #deb07a;">]</span> and A<span style="color: #deb07a;">[</span>l<span style="color: #deb07a;">]</span> &gt; A<span style="color: #deb07a;">[</span>i<span style="color: #deb07a;">]</span>
+<pre class="src src-C">l = left<span style="color: #458588;">(</span>i<span style="color: #458588;">)</span> <span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">index of left child</span>
+r = right<span style="color: #458588;">(</span>i<span style="color: #458588;">)</span> <span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">index of right child</span>
+<span style="color: #fb4933;">if</span> l &lt;= heap-size<span style="color: #458588;">[</span>A<span style="color: #458588;">]</span> and A<span style="color: #458588;">[</span>l<span style="color: #458588;">]</span> &gt; A<span style="color: #458588;">[</span>i<span style="color: #458588;">]</span>
   largest = l
-<span style="color: #deb07a; font-weight: bold;">else</span>
+<span style="color: #fb4933;">else</span>
   largest = i
-<span style="color: #deb07a; font-weight: bold;">if</span> r &lt;= heap-size<span style="color: #deb07a;">[</span>A<span style="color: #deb07a;">]</span> and A<span style="color: #deb07a;">[</span>r<span style="color: #deb07a;">]</span> &gt; A<span style="color: #deb07a;">[</span>largest<span style="color: #deb07a;">]</span>
+<span style="color: #fb4933;">if</span> r &lt;= heap-size<span style="color: #458588;">[</span>A<span style="color: #458588;">]</span> and A<span style="color: #458588;">[</span>r<span style="color: #458588;">]</span> &gt; A<span style="color: #458588;">[</span>largest<span style="color: #458588;">]</span>
   largest = r
-<span style="color: #deb07a; font-weight: bold;">if</span> largest != i
-  exchange A<span style="color: #deb07a;">[</span>i<span style="color: #deb07a;">]</span> A<span style="color: #deb07a;">[</span>largest<span style="color: #deb07a;">]</span>
-  heapify<span style="color: #deb07a;">(</span>A, largest<span style="color: #deb07a;">)</span>
+<span style="color: #fb4933;">if</span> largest != i
+  exchange A<span style="color: #458588;">[</span>i<span style="color: #458588;">]</span> A<span style="color: #458588;">[</span>largest<span style="color: #458588;">]</span>
+  heapify<span style="color: #458588;">(</span>A, largest<span style="color: #458588;">)</span>
 </pre>
 </div>
 
 <p>
 <a href="/time_complexity.html">time complexity</a> is <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -7.47198 34.462199 9.96264' style="max-height: 1.0784em; vertical-align: -0.2942em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -7.47198 34.462199 9.96264' style="max-height: 0.9800em; vertical-align: -0.2450em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g13-40' d='m3.297634 2.391034c0-.029888 0-.049813-.169365-.219178c-1.24533-1.255293-1.564134-3.138232-1.564134-4.662516c0-1.733499 .37858-3.466999 1.603985-4.712329c.129514-.119552 .129514-.139477 .129514-.169365c0-.069738-.039851-.099626-.099626-.099626c-.099626 0-.996264 .67746-1.58406 1.942715c-.508095 1.09589-.627646 2.201743-.627646 3.038605c0 .777086 .109589 1.982565 .657534 3.108344c.597758 1.225405 1.454545 1.872976 1.554172 1.872976c.059776 0 .099626-.029888 .099626-.099626z'/>
 <path id='g13-41' d='m2.879203-2.49066c0-.777086-.109589-1.982565-.657534-3.108344c-.597758-1.225405-1.454545-1.872976-1.554172-1.872976c-.059776 0-.099626 .039851-.099626 .099626c0 .029888 0 .049813 .18929 .229141c.976339 .986301 1.544209 2.570361 1.544209 4.652553c0 1.703611-.368618 3.457036-1.603985 4.712329c-.129514 .119552-.129514 .139477-.129514 .169365c0 .059776 .039851 .099626 .099626 .099626c.099626 0 .996264-.67746 1.58406-1.942715c.508095-1.09589 .627646-2.201743 .627646-3.038605z'/>
@@ -155,33 +155,33 @@ r = right<span style="color: #deb07a;">(</span>i<span style="color: #deb07a;">)<
 </div>
 </div>
 </div>
-<div id="outline-container-orge081df9" class="outline-2">
-<h2 id="orge081df9">insertion</h2>
-<div class="outline-text-2" id="text-orge081df9">
+<div id="outline-container-orga75041e" class="outline-2">
+<h2 id="orga75041e">insertion</h2>
+<div class="outline-text-2" id="text-orga75041e">
 <p>
 inserting a new <a href="/tree_data_structure.html">node</a> to the heap consists of adding it as a <a href="/tree_data_structure.html">leaf</a> such that the heap remains <a href="/tree_data_structure.html">almost complete</a> and <a href="/binary_heap.html">bubbling up</a> the newly added node so that the keys in the tree remain sorted
 if the heap is in <a href="/binary_heap.html">array representation</a>, we insert the new node to the end of the array and heapify it upwards (bubble up)
 </p>
 </div>
 </div>
-<div id="outline-container-orgfb6f73f" class="outline-2">
-<h2 id="orgfb6f73f">deletion</h2>
-<div class="outline-text-2" id="text-orgfb6f73f">
+<div id="outline-container-org670cb92" class="outline-2">
+<h2 id="org670cb92">deletion</h2>
+<div class="outline-text-2" id="text-org670cb92">
 <p>
 deletion of a node consists of replacing the rightmost leaf with it and bubble it <a href="/binary_heap.html">downwards</a> if its smaller than one of its children or <a href="/binary_heap.html">upwards</a> if its bigger than its parent
 </p>
 </div>
 </div>
-<div id="outline-container-orgb1aabb2" class="outline-2">
-<h2 id="orgb1aabb2">binary heap array representation</h2>
-<div class="outline-text-2" id="text-orgb1aabb2">
+<div id="outline-container-org4efd4b1" class="outline-2">
+<h2 id="org4efd4b1">binary heap array representation</h2>
+<div class="outline-text-2" id="text-org4efd4b1">
 <div test="test" class="fancy-block note" data-before="&lt;p&gt;
 note: &lt;/p&gt;
 " id="def-tree-bin" data-id="def-tree-bin">
 <p>
 some resources may use assume that arrays start at index 1, i see no point in that since most programming languages use 0 as the first index, so some of the following propositions might seem a little different like for example the proposition number 2 in the following list according to these sources would be that the left child of i^{th} node is <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -7.47198 31.013114 9.96264' style="max-height: 1.0784em; vertical-align: -0.2942em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -7.47198 31.013114 9.96264' style="max-height: 0.9800em; vertical-align: -0.2450em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g13-50' d='m4.473225-1.733499h-.249066c-.049813 .298879-.119552 .737235-.219178 .886675c-.069738 .079701-.727273 .079701-.946451 .079701h-1.793275l1.05604-1.026152c1.554172-1.374844 2.15193-1.912827 2.15193-2.909091c0-1.135741-.896638-1.932752-2.11208-1.932752c-1.125778 0-1.863014 .916563-1.863014 1.803238c0 .557908 .498132 .557908 .52802 .557908c.169365 0 .518057-.119552 .518057-.52802c0-.259029-.179328-.518057-.52802-.518057c-.079701 0-.099626 0-.129514 .009963c.229141-.647572 .767123-1.016189 1.344956-1.016189c.9066 0 1.334994 .806974 1.334994 1.62391c0 .797011-.498132 1.58406-1.046077 2.201743l-1.912827 2.132005c-.109589 .109589-.109589 .129514-.109589 .368618h3.696139l.278954-1.733499z'/>
 <path id='g13-91' d='m2.540473 2.49066v-.398506h-.966376v-9.165629h.966376v-.398506h-1.364882v9.96264h1.364882z'/>
@@ -203,7 +203,7 @@ some resources may use assume that arrays start at index 1, i see no point in th
 </g>
 </svg> instead of <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -7.47198 48.171104 9.96264' style="max-height: 1.0784em; vertical-align: -0.2942em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -7.47198 48.171104 9.96264' style="max-height: 0.9800em; vertical-align: -0.2450em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g13-43' d='m7.183064-2.49066c0-.199253-.18929-.199253-.328767-.199253h-2.779577v-2.789539c0-.139477 0-.328767-.199253-.328767s-.199253 .18929-.199253 .328767v2.789539h-2.789539c-.139477 0-.328767 0-.328767 .199253s.18929 .199253 .328767 .199253h2.789539v2.789539c0 .139477 0 .328767 .199253 .328767s.199253-.18929 .199253-.328767v-2.789539h2.779577c.139477 0 .328767 0 .328767-.199253z'/>
 <path id='g13-49' d='m4.174346 0v-.308842h-.318804c-.896638 0-.926526-.109589-.926526-.478207v-5.589041c0-.239103 0-.259029-.229141-.259029c-.617684 .637609-1.494396 .637609-1.8132 .637609v.308842c.199253 0 .787049 0 1.305106-.259029v5.160648c0 .358655-.029888 .478207-.926526 .478207h-.318804v.308842c.348692-.029888 1.215442-.029888 1.613948-.029888s1.265255 0 1.613948 .029888z'/>
@@ -229,7 +229,7 @@ some resources may use assume that arrays start at index 1, i see no point in th
 </g>
 </svg> and the right child is <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -7.47198 48.171104 9.96264' style="max-height: 1.0784em; vertical-align: -0.2942em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -7.47198 48.171104 9.96264' style="max-height: 0.9800em; vertical-align: -0.2450em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g13-43' d='m7.183064-2.49066c0-.199253-.18929-.199253-.328767-.199253h-2.779577v-2.789539c0-.139477 0-.328767-.199253-.328767s-.199253 .18929-.199253 .328767v2.789539h-2.789539c-.139477 0-.328767 0-.328767 .199253s.18929 .199253 .328767 .199253h2.789539v2.789539c0 .139477 0 .328767 .199253 .328767s.199253-.18929 .199253-.328767v-2.789539h2.779577c.139477 0 .328767 0 .328767-.199253z'/>
 <path id='g13-49' d='m4.174346 0v-.308842h-.318804c-.896638 0-.926526-.109589-.926526-.478207v-5.589041c0-.239103 0-.259029-.229141-.259029c-.617684 .637609-1.494396 .637609-1.8132 .637609v.308842c.199253 0 .787049 0 1.305106-.259029v5.160648c0 .358655-.029888 .478207-.926526 .478207h-.318804v.308842c.348692-.029888 1.215442-.029888 1.613948-.029888s1.265255 0 1.613948 .029888z'/>
@@ -261,7 +261,7 @@ some resources may use assume that arrays start at index 1, i see no point in th
 <p>
 for an array to represent a <a href="/binary_heap.html">binary heap</a>, the only condition is that <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -18.929256 75.344476 23.910579' style="max-height: 2.4504em; vertical-align: -0.5392em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -18.929256 75.344476 23.910579' style="max-height: 2.3520em; vertical-align: -0.4900em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g12-49' d='m3.29863 0v-.251059h-.265006c-.697385 0-.697385-.09066-.697385-.320797v-3.863512c0-.188294-.013948-.195268-.209215-.195268c-.446326 .439352-1.080946 .446326-1.366874 .446326v.251059c.167372 0 .627646 0 1.011208-.195268v3.556663c0 .230137 0 .320797-.697385 .320797h-.265006v.251059l1.241345-.027895l1.248319 .027895z'/>
 <path id='g12-50' d='m3.521793-1.26924h-.237111c-.020922 .153425-.09066 .564882-.18132 .63462c-.055791 .041843-.592777 .041843-.690411 .041843h-1.283188c.732254-.648568 .976339-.843836 1.39477-1.171606c.516065-.411457 .99726-.843836 .99726-1.506351c0-.843836-.739228-1.3599-1.63188-1.3599c-.864757 0-1.45056 .606725-1.45056 1.248319c0 .355666 .299875 .390535 .369614 .390535c.167372 0 .369614-.118555 .369614-.369614c0-.125529-.048817-.369614-.411457-.369614c.216189-.495143 .690411-.648568 1.018182-.648568c.697385 0 1.060025 .54396 1.060025 1.108842c0 .606725-.432379 1.08792-.655542 1.338979l-1.680697 1.659776c-.069738 .062765-.069738 .076712-.069738 .27198h2.873225l.209215-1.26924z'/>
@@ -302,7 +302,7 @@ arrays that represent heap have the following characterstics:
 <ol class="org-ol">
 <li>root is <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -7.47198 27.580856 9.96264' style="max-height: 1.0784em; vertical-align: -0.2942em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -7.47198 27.580856 9.96264' style="max-height: 0.9800em; vertical-align: -0.2450em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g13-48' d='m4.582814-3.188045c0-.797011-.049813-1.594022-.398506-2.331258c-.458281-.956413-1.275218-1.115816-1.693649-1.115816c-.597758 0-1.325031 .259029-1.733499 1.185554c-.318804 .687422-.368618 1.464508-.368618 2.261519c0 .747198 .039851 1.643836 .448319 2.400996c.428394 .806974 1.155666 1.006227 1.643836 1.006227c.537983 0 1.295143-.209215 1.733499-1.155666c.318804-.687422 .368618-1.464508 .368618-2.251557zm-.826899-.119552c0 .747198 0 1.424658-.109589 2.062267c-.14944 .946451-.71731 1.24533-1.165629 1.24533c-.388543 0-.976339-.249066-1.155666-1.205479c-.109589-.597758-.109589-1.514321-.109589-2.102117c0-.637609 0-1.295143 .079701-1.833126c.18929-1.185554 .936488-1.275218 1.185554-1.275218c.328767 0 .986301 .179328 1.175592 1.165629c.099626 .557908 .099626 1.315068 .099626 1.942715z'/>
 <path id='g13-91' d='m2.540473 2.49066v-.398506h-.966376v-9.165629h.966376v-.398506h-1.364882v9.96264h1.364882z'/>
@@ -323,7 +323,7 @@ arrays that represent heap have the following characterstics:
 </svg></li>
 <li>the parent of the i^{th} node (in the array) is <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -18.929256 45.572245 23.910579' style="max-height: 2.4504em; vertical-align: -0.5392em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -18.929256 45.572245 23.910579' style="max-height: 2.3520em; vertical-align: -0.4900em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g12-49' d='m3.29863 0v-.251059h-.265006c-.697385 0-.697385-.09066-.697385-.320797v-3.863512c0-.188294-.013948-.195268-.209215-.195268c-.446326 .439352-1.080946 .446326-1.366874 .446326v.251059c.167372 0 .627646 0 1.011208-.195268v3.556663c0 .230137 0 .320797-.697385 .320797h-.265006v.251059l1.241345-.027895l1.248319 .027895z'/>
 <path id='g12-50' d='m3.521793-1.26924h-.237111c-.020922 .153425-.09066 .564882-.18132 .63462c-.055791 .041843-.592777 .041843-.690411 .041843h-1.283188c.732254-.648568 .976339-.843836 1.39477-1.171606c.516065-.411457 .99726-.843836 .99726-1.506351c0-.843836-.739228-1.3599-1.63188-1.3599c-.864757 0-1.45056 .606725-1.45056 1.248319c0 .355666 .299875 .390535 .369614 .390535c.167372 0 .369614-.118555 .369614-.369614c0-.125529-.048817-.369614-.411457-.369614c.216189-.495143 .690411-.648568 1.018182-.648568c.697385 0 1.060025 .54396 1.060025 1.108842c0 .606725-.432379 1.08792-.655542 1.338979l-1.680697 1.659776c-.069738 .062765-.069738 .076712-.069738 .27198h2.873225l.209215-1.26924z'/>
@@ -352,7 +352,7 @@ arrays that represent heap have the following characterstics:
 </svg></li>
 <li>left child of the i^{th} node is <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -7.47198 48.171104 9.96264' style="max-height: 1.0784em; vertical-align: -0.2942em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -7.47198 48.171104 9.96264' style="max-height: 0.9800em; vertical-align: -0.2450em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g13-43' d='m7.183064-2.49066c0-.199253-.18929-.199253-.328767-.199253h-2.779577v-2.789539c0-.139477 0-.328767-.199253-.328767s-.199253 .18929-.199253 .328767v2.789539h-2.789539c-.139477 0-.328767 0-.328767 .199253s.18929 .199253 .328767 .199253h2.789539v2.789539c0 .139477 0 .328767 .199253 .328767s.199253-.18929 .199253-.328767v-2.789539h2.779577c.139477 0 .328767 0 .328767-.199253z'/>
 <path id='g13-49' d='m4.174346 0v-.308842h-.318804c-.896638 0-.926526-.109589-.926526-.478207v-5.589041c0-.239103 0-.259029-.229141-.259029c-.617684 .637609-1.494396 .637609-1.8132 .637609v.308842c.199253 0 .787049 0 1.305106-.259029v5.160648c0 .358655-.029888 .478207-.926526 .478207h-.318804v.308842c.348692-.029888 1.215442-.029888 1.613948-.029888s1.265255 0 1.613948 .029888z'/>
@@ -379,7 +379,7 @@ arrays that represent heap have the following characterstics:
 </svg></li>
 <li>right child of the i^{th} node is <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -7.47198 48.171104 9.96264' style="max-height: 1.0784em; vertical-align: -0.2942em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -7.47198 48.171104 9.96264' style="max-height: 0.9800em; vertical-align: -0.2450em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g13-43' d='m7.183064-2.49066c0-.199253-.18929-.199253-.328767-.199253h-2.779577v-2.789539c0-.139477 0-.328767-.199253-.328767s-.199253 .18929-.199253 .328767v2.789539h-2.789539c-.139477 0-.328767 0-.328767 .199253s.18929 .199253 .328767 .199253h2.789539v2.789539c0 .139477 0 .328767 .199253 .328767s.199253-.18929 .199253-.328767v-2.789539h2.779577c.139477 0 .328767 0 .328767-.199253z'/>
 <path id='g13-50' d='m4.473225-1.733499h-.249066c-.049813 .298879-.119552 .737235-.219178 .886675c-.069738 .079701-.727273 .079701-.946451 .079701h-1.793275l1.05604-1.026152c1.554172-1.374844 2.15193-1.912827 2.15193-2.909091c0-1.135741-.896638-1.932752-2.11208-1.932752c-1.125778 0-1.863014 .916563-1.863014 1.803238c0 .557908 .498132 .557908 .52802 .557908c.169365 0 .518057-.119552 .518057-.52802c0-.259029-.179328-.518057-.52802-.518057c-.079701 0-.099626 0-.129514 .009963c.229141-.647572 .767123-1.016189 1.344956-1.016189c.9066 0 1.334994 .806974 1.334994 1.62391c0 .797011-.498132 1.58406-1.046077 2.201743l-1.912827 2.132005c-.109589 .109589-.109589 .129514-.109589 .368618h3.696139l.278954-1.733499z'/>
@@ -410,15 +410,15 @@ the array should hold 2 values, <code>array-size</code>, which is the size of th
 </p>
 </div>
 </div>
-<div id="outline-container-org9ee78bb" class="outline-2">
-<h2 id="org9ee78bb">construction of binary heap from array</h2>
-<div class="outline-text-2" id="text-org9ee78bb">
+<div id="outline-container-orga5d01f8" class="outline-2">
+<h2 id="orga5d01f8">construction of binary heap from array</h2>
+<div class="outline-text-2" id="text-orga5d01f8">
 <p>
 given some random array, e.g. <code>A=[10,20,30,40,50,70,35,60,80]</code>, we need to reorganize its elements such that it <a href="/binary_heap.html">represents a binary heap</a>
 to achieve this we apply <a href="/binary_heap.html">bubble down</a> to the first half of the array <b>in reverse</b> (because the <a href="/tree_data_structure.html">leaf</a> nodes need not be heapified as they already follow the heap property)
 e.g. for the given array we apply <code>bubble(A, i)</code> such that <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.570609 42.175835 6.570609' style="max-height: 0.7447em; vertical-align: -0.0492em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.570609 42.175835 6.570609' style="max-height: 0.6463em; vertical-align: --0.0000em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g7-33' d='m9.39477-2.49066c0-.049813-.039851-.089664-.079701-.099626c-1.066002-.37858-1.853051-1.295143-2.042341-2.410959c-.009963-.049813-.059776-.089664-.109589-.089664h-.179328c-.059776 0-.109589 .049813-.109589 .129514c.159402 .916563 .67746 1.733499 1.424658 2.271482h-7.541719c-.139477 0-.209215 .099626-.209215 .199253s.069738 .199253 .209215 .199253h7.541719c-.747198 .537983-1.265255 1.354919-1.424658 2.271482c0 .079701 .049813 .129514 .109589 .129514h.179328c.049813 0 .099626-.039851 .109589-.089664c.18929-1.115816 .976339-2.032379 2.042341-2.410959c.039851-.009963 .079701-.049813 .079701-.099626z'/>
 <path id='g13-48' d='m4.582814-3.188045c0-.797011-.049813-1.594022-.398506-2.331258c-.458281-.956413-1.275218-1.115816-1.693649-1.115816c-.597758 0-1.325031 .259029-1.733499 1.185554c-.318804 .687422-.368618 1.464508-.368618 2.261519c0 .747198 .039851 1.643836 .448319 2.400996c.428394 .806974 1.155666 1.006227 1.643836 1.006227c.537983 0 1.295143-.209215 1.733499-1.155666c.318804-.687422 .368618-1.464508 .368618-2.251557zm-.826899-.119552c0 .747198 0 1.424658-.109589 2.062267c-.14944 .946451-.71731 1.24533-1.165629 1.24533c-.388543 0-.976339-.249066-1.155666-1.205479c-.109589-.597758-.109589-1.514321-.109589-2.102117c0-.637609 0-1.295143 .079701-1.833126c.18929-1.185554 .936488-1.275218 1.185554-1.275218c.328767 0 .986301 .179328 1.175592 1.165629c.099626 .557908 .099626 1.315068 .099626 1.942715z'/>
@@ -439,11 +439,11 @@ e.g. for the given array we apply <code>bubble(A, i)</code> such that <?xml vers
 this is the constructing <a href="/algorithm.html">algorithm</a> in pseudocode:
 </p>
 <div class="org-src-container" data-language="C">
-<pre class="src src-C">Build-Heap<span style="color: #deb07a;">(</span>A<span style="color: #deb07a;">)</span>
-  n = length<span style="color: #deb07a;">(</span>A<span style="color: #deb07a;">)</span>
+<pre class="src src-C">Build-Heap<span style="color: #458588;">(</span>A<span style="color: #458588;">)</span>
+  n = length<span style="color: #458588;">(</span>A<span style="color: #458588;">)</span>
   heap-size = n
-  <span style="color: #deb07a; font-weight: bold;">for</span> i = n/2 to 1
-    heapify<span style="color: #deb07a;">(</span>A, i<span style="color: #deb07a;">)</span>
+  <span style="color: #fb4933;">for</span> i = n/2 to 1
+    heapify<span style="color: #458588;">(</span>A, i<span style="color: #458588;">)</span>
 </pre>
 </div>
 
@@ -453,7 +453,7 @@ lemma: &lt;/p&gt;
 <p>
 this algorithm runs in <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -7.47198 21.477819 9.96264' style="max-height: 1.0784em; vertical-align: -0.2942em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -7.47198 21.477819 9.96264' style="max-height: 0.9800em; vertical-align: -0.2450em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g10-110' d='m5.688667-1.424658c0-.099626-.089664-.099626-.119552-.099626c-.099626 0-.099626 .029888-.14944 .179328c-.199253 .67746-.52802 1.235367-1.016189 1.235367c-.169365 0-.239103-.099626-.239103-.328767c0-.249066 .089664-.488169 .179328-.707347c.18929-.52802 .607721-1.62391 .607721-2.191781c0-.667497-.428394-1.066002-1.145704-1.066002c-.896638 0-1.384807 .637609-1.554172 .86675c-.049813-.557908-.458281-.86675-.916563-.86675s-.647572 .388543-.747198 .56787c-.159402 .33873-.298879 .926526-.298879 .966376c0 .099626 .119552 .099626 .119552 .099626c.099626 0 .109589-.009963 .169365-.229141c.169365-.707347 .368618-1.185554 .727273-1.185554c.199253 0 .308842 .129514 .308842 .458281c0 .209215-.029888 .318804-.159402 .836862l-.577833 2.30137c-.029888 .14944-.089664 .37858-.089664 .428394c0 .179328 .139477 .268991 .288917 .268991c.119552 0 .298879-.079701 .368618-.278954c.009963-.019925 .129514-.488169 .18929-.737235l.219178-.896638c.059776-.219178 .119552-.438356 .169365-.667497l.129514-.498132c.14944-.308842 .67746-1.215442 1.62391-1.215442c.448319 0 .537983 .368618 .537983 .697385c0 .617684-.488169 1.892902-.647572 2.321295c-.089664 .229141-.099626 .348692-.099626 .458281c0 .468244 .348692 .816936 .816936 .816936c.936488 0 1.305106-1.454545 1.305106-1.534247z'/>
 <path id='g13-2' d='m7.183064-3.377335c0-2.032379-1.504359-3.646326-3.317559-3.646326c-1.783313 0-3.307597 1.594022-3.307597 3.646326c0 2.042341 1.534247 3.596513 3.307597 3.596513c1.8132 0 3.317559-1.58406 3.317559-3.596513zm-.966376 0c0 2.540473-1.404732 3.367372-2.34122 3.367372c-.986301 0-2.351183-.856787-2.351183-3.367372c0-2.560399 1.384807-3.427148 2.34122-3.427148c1.006227 0 2.351183 .9066 2.351183 3.427148zm-.56787 .687422v-1.43462h-.249066v.33873h-3.058531v-.33873h-.249066v1.43462h.249066v-.33873h3.058531v.33873h.249066z'/>
@@ -476,7 +476,7 @@ proof: &lt;/p&gt;
 <p>
 for <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.918502 42.029685 7.308019' style="max-height: 0.8172em; vertical-align: -0.0875em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.918502 42.029685 7.308019' style="max-height: 0.7189em; vertical-align: -0.0383em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g10-60' d='m6.914072 .199253c0-.109589-.069738-.159402-.18929-.219178l-5.230386-2.470735l5.230386-2.470735c.119552-.059776 .18929-.109589 .18929-.219178s-.089664-.199253-.199253-.199253c-.029888 0-.049813 0-.179328 .069738l-5.519303 2.600249c-.109589 .049813-.18929 .099626-.18929 .219178s.079701 .169365 .18929 .219178l5.519303 2.600249c.129514 .069738 .14944 .069738 .179328 .069738c.109589 0 .199253-.089664 .199253-.199253z'/>
 <path id='g10-107' d='m4.881694-1.424658c0-.099626-.089664-.099626-.119552-.099626c-.099626 0-.109589 .039851-.139477 .179328c-.199253 .727273-.428394 1.235367-.86675 1.235367c-.18929 0-.318804-.109589-.318804-.468244c0-.169365 .039851-.398506 .079701-.557908c.039851-.169365 .039851-.209215 .039851-.308842c0-.647572-.627646-.936488-1.474471-1.046077c.308842-.179328 .627646-.498132 .856787-.737235c.478207-.52802 .936488-.956413 1.424658-.956413c.059776 0 .069738 0 .089664 .009963c.119552 .019925 .129514 .019925 .209215 .079701c.019925 .009963 .019925 .019925 .039851 .039851c-.478207 .029888-.56787 .418431-.56787 .537983c0 .159402 .109589 .348692 .37858 .348692c.259029 0 .547945-.219178 .547945-.607721c0-.298879-.229141-.627646-.67746-.627646c-.278954 0-.737235 .079701-1.454545 .876712c-.33873 .37858-.727273 .777086-1.105853 .926526l1.036115-4.204234c0 0 0-.109589-.129514-.109589c-.229141 0-.956413 .079701-1.215442 .099626c-.079701 .009963-.18929 .019925-.18929 .199253c0 .119552 .089664 .119552 .239103 .119552c.478207 0 .498132 .069738 .498132 .169365l-.029888 .199253l-1.444583 5.738481c-.039851 .139477-.039851 .159402-.039851 .219178c0 .229141 .199253 .278954 .288917 .278954c.129514 0 .278954-.089664 .33873-.209215c.049813-.089664 .498132-1.932752 .557908-2.181818c.33873 .029888 1.155666 .18929 1.155666 .846824c0 .069738 0 .109589-.029888 .209215c-.019925 .119552-.039851 .239103-.039851 .348692c0 .587796 .398506 .986301 .916563 .986301c.298879 0 .56787-.159402 .787049-.52802c.249066-.438356 .358655-1.006227 .358655-1.006227z'/>
@@ -535,7 +535,7 @@ for <?xml version='1.0' encoding='UTF-8'?>
 </svg>
 so for <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -8.416758 23.950437 11.85227' style="max-height: 1.2642em; vertical-align: -0.3871em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -8.416758 23.950437 11.85227' style="max-height: 1.1659em; vertical-align: -0.3379em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g12-49' d='m3.29863 0v-.251059h-.265006c-.697385 0-.697385-.09066-.697385-.320797v-3.863512c0-.188294-.013948-.195268-.209215-.195268c-.446326 .439352-1.080946 .446326-1.366874 .446326v.251059c.167372 0 .627646 0 1.011208-.195268v3.556663c0 .230137 0 .320797-.697385 .320797h-.265006v.251059l1.241345-.027895l1.248319 .027895z'/>
 <path id='g12-50' d='m3.521793-1.26924h-.237111c-.020922 .153425-.09066 .564882-.18132 .63462c-.055791 .041843-.592777 .041843-.690411 .041843h-1.283188c.732254-.648568 .976339-.843836 1.39477-1.171606c.516065-.411457 .99726-.843836 .99726-1.506351c0-.843836-.739228-1.3599-1.63188-1.3599c-.864757 0-1.45056 .606725-1.45056 1.248319c0 .355666 .299875 .390535 .369614 .390535c.167372 0 .369614-.118555 .369614-.369614c0-.125529-.048817-.369614-.411457-.369614c.216189-.495143 .690411-.648568 1.018182-.648568c.697385 0 1.060025 .54396 1.060025 1.108842c0 .606725-.432379 1.08792-.655542 1.338979l-1.680697 1.659776c-.069738 .062765-.069738 .076712-.069738 .27198h2.873225l.209215-1.26924z'/>
@@ -648,13 +648,13 @@ to be continued
 </div>
 </div>
 </div>
-<div id="outline-container-orgf021436" class="outline-2">
-<h2 id="orgf021436">binary heap algorithms</h2>
-<div class="outline-text-2" id="text-orgf021436">
+<div id="outline-container-orgcddf4ff" class="outline-2">
+<h2 id="orgcddf4ff">binary heap algorithms</h2>
+<div class="outline-text-2" id="text-orgcddf4ff">
 </div>
-<div id="outline-container-org8d63414" class="outline-3">
-<h3 id="org8d63414">biggest k nodes</h3>
-<div class="outline-text-3" id="text-org8d63414">
+<div id="outline-container-org000cd4f" class="outline-3">
+<h3 id="org000cd4f">biggest k nodes</h3>
+<div class="outline-text-3" id="text-org000cd4f">
 <p>
 initial inefficient solution:
 </p>
@@ -663,7 +663,7 @@ initial inefficient solution:
 <span class="equation">
 <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='5.450553 -36.311859 130.31034 34.869271' style="max-height: 4.5915em; vertical-align: -0.5392em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='5.450553 -36.311859 130.31034 34.869271' style="max-height: 4.4931em; vertical-align: -0.4900em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g13-49' d='m4.174346 0v-.308842h-.318804c-.896638 0-.926526-.109589-.926526-.478207v-5.589041c0-.239103 0-.259029-.229141-.259029c-.617684 .637609-1.494396 .637609-1.8132 .637609v.308842c.199253 0 .787049 0 1.305106-.259029v5.160648c0 .358655-.029888 .478207-.926526 .478207h-.318804v.308842c.348692-.029888 1.215442-.029888 1.613948-.029888s1.265255 0 1.613948 .029888z'/>
 <path id='g14-28' d='m4.811955-.886675v-.557908h-.249066v.557908c0 .577833-.249066 .637609-.358655 .637609c-.328767 0-.368618-.448319-.368618-.498132v-1.992528c0-.418431 0-.806974-.358655-1.175592c-.388543-.388543-.886675-.547945-1.364882-.547945c-.816936 0-1.504359 .468244-1.504359 1.125778c0 .298879 .199253 .468244 .458281 .468244c.278954 0 .458281-.199253 .458281-.458281c0-.119552-.049813-.448319-.508095-.458281c.268991-.348692 .757161-.458281 1.075965-.458281c.488169 0 1.05604 .388543 1.05604 1.275218v.368618c-.508095 .029888-1.205479 .059776-1.833126 .358655c-.747198 .33873-.996264 .856787-.996264 1.295143c0 .806974 .966376 1.05604 1.594022 1.05604c.657534 0 1.115816-.398506 1.305106-.86675c.039851 .398506 .308842 .816936 .777086 .816936c.209215 0 .816936-.139477 .816936-.946451zm-1.663761-.508095c0 .946451-.71731 1.285181-1.165629 1.285181c-.488169 0-.896638-.348692-.896638-.846824c0-.547945 .418431-1.374844 2.062267-1.43462v.996264z'/>
@@ -884,7 +884,7 @@ we analyze the <a href="/time_complexity.html">time complexity</a> of this <a hr
 </svg>
 which means that the time complexity is <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -7.47198 74.180546 9.96264' style="max-height: 1.0784em; vertical-align: -0.2942em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -7.47198 74.180546 9.96264' style="max-height: 0.9800em; vertical-align: -0.2450em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g13-40' d='m3.297634 2.391034c0-.029888 0-.049813-.169365-.219178c-1.24533-1.255293-1.564134-3.138232-1.564134-4.662516c0-1.733499 .37858-3.466999 1.603985-4.712329c.129514-.119552 .129514-.139477 .129514-.169365c0-.069738-.039851-.099626-.099626-.099626c-.099626 0-.996264 .67746-1.58406 1.942715c-.508095 1.09589-.627646 2.201743-.627646 3.038605c0 .777086 .109589 1.982565 .657534 3.108344c.597758 1.225405 1.454545 1.872976 1.554172 1.872976c.059776 0 .099626-.029888 .099626-.099626z'/>
 <path id='g13-41' d='m2.879203-2.49066c0-.777086-.109589-1.982565-.657534-3.108344c-.597758-1.225405-1.454545-1.872976-1.554172-1.872976c-.059776 0-.099626 .039851-.099626 .099626c0 .029888 0 .049813 .18929 .229141c.976339 .986301 1.544209 2.570361 1.544209 4.652553c0 1.703611-.368618 3.457036-1.603985 4.712329c-.129514 .119552-.129514 .139477-.129514 .169365c0 .059776 .039851 .099626 .099626 .099626c.099626 0 .996264-.67746 1.58406-1.942715c.508095-1.09589 .627646-2.201743 .627646-3.038605z'/>

@@ -54,11 +54,11 @@ im gonna use a <a href="/feedforward_neural_network.html">feedforward neural net
 we load the dataset using the <code>cl-csv</code> library
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span>ql:quickload <span style="color: #f3a0a0;">"cl-csv"</span><span style="color: #deb07a;">)</span>
-<span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defparameter</span> <span style="color: #ffaacf;">*train-data*</span> <span style="color: #ffaacf;">(</span>cl-csv:read-csv <span style="color: #80aadf;">(</span>pathname train-data-file<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
-<span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defparameter</span> <span style="color: #ffaacf;">*test-data*</span> <span style="color: #ffaacf;">(</span>cl-csv:read-csv <span style="color: #80aadf;">(</span>pathname test-data-file<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
-<span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defparameter</span> <span style="color: #ffaacf;">*train-data*</span> <span style="color: #ffaacf;">(</span>mapcar <span style="color: #80aadf;">(</span><span style="color: #deb07a; font-weight: bold;">lambda</span> <span style="color: #e47980;">(</span>mylist<span style="color: #e47980;">)</span> <span style="color: #e47980;">(</span>mapcar #'parse-integer mylist<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span> <span style="color: #80aadf;">(</span>cdr *train-data*<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
-<span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defparameter</span> <span style="color: #ffaacf;">*test-data*</span> <span style="color: #ffaacf;">(</span>mapcar <span style="color: #80aadf;">(</span><span style="color: #deb07a; font-weight: bold;">lambda</span> <span style="color: #e47980;">(</span>mylist<span style="color: #e47980;">)</span> <span style="color: #e47980;">(</span>mapcar #'parse-integer mylist<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span> <span style="color: #80aadf;">(</span>cdr *test-data*<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span>ql:quickload <span style="color: #b8bb26;">"cl-csv"</span><span style="color: #458588;">)</span>
+<span style="color: #458588;">(</span><span style="color: #fb4933;">defparameter</span> <span style="color: #83a598;">*train-data*</span> <span style="color: #b16286;">(</span>cl-csv:read-csv <span style="color: #8ec07c;">(</span>pathname train-data-file<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
+<span style="color: #458588;">(</span><span style="color: #fb4933;">defparameter</span> <span style="color: #83a598;">*test-data*</span> <span style="color: #b16286;">(</span>cl-csv:read-csv <span style="color: #8ec07c;">(</span>pathname test-data-file<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
+<span style="color: #458588;">(</span><span style="color: #fb4933;">defparameter</span> <span style="color: #83a598;">*train-data*</span> <span style="color: #b16286;">(</span>mapcar <span style="color: #8ec07c;">(</span><span style="color: #fb4933;">lambda</span> <span style="color: #d65d0e;">(</span>mylist<span style="color: #d65d0e;">)</span> <span style="color: #d65d0e;">(</span>mapcar #'parse-integer mylist<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span> <span style="color: #8ec07c;">(</span>cdr *train-data*<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
+<span style="color: #458588;">(</span><span style="color: #fb4933;">defparameter</span> <span style="color: #83a598;">*test-data*</span> <span style="color: #b16286;">(</span>mapcar <span style="color: #8ec07c;">(</span><span style="color: #fb4933;">lambda</span> <span style="color: #d65d0e;">(</span>mylist<span style="color: #d65d0e;">)</span> <span style="color: #d65d0e;">(</span>mapcar #'parse-integer mylist<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span> <span style="color: #8ec07c;">(</span>cdr *test-data*<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 </pre>
 </div>
 
@@ -72,11 +72,11 @@ we load the dataset using the <code>cl-csv</code> library
 next we create the network, each image is 28x28 pixels so we need an input layer of that size, and an output layer of size 10 because it needs to output 0-9
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defparameter</span> <span style="color: #ffaacf;">nw</span> <span style="color: #ffaacf;">(</span>make-network
-                  <span style="color: #e3b0c0; font-weight: bold;">:input-layer-size</span> <span style="color: #80aadf;">(</span>* 28 28<span style="color: #80aadf;">)</span>
-                  <span style="color: #e3b0c0; font-weight: bold;">:hidden-layer-sizes</span> '<span style="color: #80aadf;">(</span>10<span style="color: #80aadf;">)</span>
-                  <span style="color: #e3b0c0; font-weight: bold;">:learning-rate</span> 0.01
-                  <span style="color: #e3b0c0; font-weight: bold;">:output-layer-size</span> 10<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span><span style="color: #fb4933;">defparameter</span> <span style="color: #83a598;">nw</span> <span style="color: #b16286;">(</span>make-network
+                  <span style="color: #fe8019;">:input-layer-size</span> <span style="color: #8ec07c;">(</span>* 28 28<span style="color: #8ec07c;">)</span>
+                  <span style="color: #fe8019;">:hidden-layer-sizes</span> '<span style="color: #8ec07c;">(</span>10<span style="color: #8ec07c;">)</span>
+                  <span style="color: #fe8019;">:learning-rate</span> 0.01
+                  <span style="color: #fe8019;">:output-layer-size</span> 10<span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 </pre>
 </div>
 
@@ -120,15 +120,15 @@ with this network we have <?xml version='1.0' encoding='UTF-8'?>
 </svg> weights to update for each training example, its a large network and would take alot of time since we're only using a single CPU thread
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">test</span> <span style="color: #ffaacf;">()</span>
-  <span style="color: #ffaacf;">(</span>network-train
+<pre class="src src-lisp"><span style="color: #458588;">(</span><span style="color: #fb4933;">defun</span> <span style="color: #fabd2f;">test</span> <span style="color: #b16286;">()</span>
+  <span style="color: #b16286;">(</span>network-train
    nw
-   <span style="color: #80aadf;">(</span>list-&gt;vector <span style="color: #e47980;">(</span>mapcar 'cdr *train-data*<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
-   <span style="color: #80aadf;">(</span>list-&gt;vector <span style="color: #e47980;">(</span>mapcar <span style="color: #d0b0ff;">(</span><span style="color: #deb07a; font-weight: bold;">lambda</span> <span style="color: #3fc489;">(</span>digit<span style="color: #3fc489;">)</span>
-                           <span style="color: #3fc489;">(</span><span style="color: #deb07a; font-weight: bold;">let</span> <span style="color: #6fb3c0;">(</span><span style="color: #c0b24f;">(</span>mylist <span style="color: #f3a0a0;">(</span>make-list 10 <span style="color: #e3b0c0; font-weight: bold;">:initial-element</span> 0<span style="color: #f3a0a0;">)</span><span style="color: #c0b24f;">)</span><span style="color: #6fb3c0;">)</span>
-                             <span style="color: #6fb3c0;">(</span>setf <span style="color: #c0b24f;">(</span>nth digit mylist<span style="color: #c0b24f;">)</span> 1<span style="color: #6fb3c0;">)</span>
-                             mylist<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span>
-                         <span style="color: #d0b0ff;">(</span>mapcar 'car *train-data*<span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+   <span style="color: #8ec07c;">(</span>list-&gt;vector <span style="color: #d65d0e;">(</span>mapcar 'cdr *train-data*<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+   <span style="color: #8ec07c;">(</span>list-&gt;vector <span style="color: #d65d0e;">(</span>mapcar <span style="color: #458588;">(</span><span style="color: #fb4933;">lambda</span> <span style="color: #b16286;">(</span>digit<span style="color: #b16286;">)</span>
+                           <span style="color: #b16286;">(</span><span style="color: #fb4933;">let</span> <span style="color: #8ec07c;">(</span><span style="color: #d65d0e;">(</span>mylist <span style="color: #458588;">(</span>make-list 10 <span style="color: #fe8019;">:initial-element</span> 0<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+                             <span style="color: #8ec07c;">(</span>setf <span style="color: #d65d0e;">(</span>nth digit mylist<span style="color: #d65d0e;">)</span> 1<span style="color: #8ec07c;">)</span>
+                             mylist<span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
+                         <span style="color: #458588;">(</span>mapcar 'car *train-data*<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 </pre>
 </div>
 

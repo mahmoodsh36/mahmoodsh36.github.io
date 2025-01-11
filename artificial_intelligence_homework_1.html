@@ -84,44 +84,44 @@ gotta apply the <a href="/A*_algorithm.html">A* algorithm</a> to the graph from 
 first i turned the tables/graphs into memory:
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defparameter</span> <span style="color: #ffaacf;">*graph*</span>
-  #<span style="color: #ffaacf;">(</span><span style="color: #80aadf;">(</span>c1 . <span style="color: #e47980;">(</span>c2 . 90<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span>c2 . <span style="color: #e47980;">(</span>c7 . 150<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span>c2 . <span style="color: #e47980;">(</span>c3 . 100<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span>c3 . <span style="color: #e47980;">(</span>c6 . 60<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span>c3 . <span style="color: #e47980;">(</span>c4 . 70<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span>c4 . <span style="color: #e47980;">(</span>c5 . 110<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span>c4 . <span style="color: #e47980;">(</span>c14 . 50<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span>c5 . <span style="color: #e47980;">(</span>c14 . 90<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span>c5 . <span style="color: #e47980;">(</span>c12 . 80<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span>c5 . <span style="color: #e47980;">(</span>c8 . 100<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span>c7 . <span style="color: #e47980;">(</span>c9 . 180<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span>c9 . <span style="color: #e47980;">(</span>c12 . 140<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span>c10 . <span style="color: #e47980;">(</span>c9 . 150<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span>c10 . <span style="color: #e47980;">(</span>c17 . 200<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span>c11 . <span style="color: #e47980;">(</span>c12 . 240<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span>c12 . <span style="color: #e47980;">(</span>c15 . 130<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span>c13 . <span style="color: #e47980;">(</span>c14 . 130<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span>c15 . <span style="color: #e47980;">(</span>c17 . 130<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span>c16 . <span style="color: #e47980;">(</span>c8 . 100<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
-<span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defparameter</span> <span style="color: #ffaacf;">*straight-line-distances*</span>
-  '<span style="color: #ffaacf;">(</span><span style="color: #80aadf;">(</span>c1 . 200<span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span>c2 . 210<span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span>c3 . 220<span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span>c4 . 250<span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span>c5 . 190<span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span>c6 . 80<span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span>c7 . 50<span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span>c8 . 20<span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span>c9 . 0<span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span>c10 . 20<span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span>c11 . 10<span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span>c12 . 20<span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span>c13 . 60<span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span>c14 . 170<span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span>c15 . 100<span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span>c16 . 60<span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span>c17 . 80<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span><span style="color: #fb4933;">defparameter</span> <span style="color: #83a598;">*graph*</span>
+  #<span style="color: #b16286;">(</span><span style="color: #8ec07c;">(</span>c1 . <span style="color: #d65d0e;">(</span>c2 . 90<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>c2 . <span style="color: #d65d0e;">(</span>c7 . 150<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>c2 . <span style="color: #d65d0e;">(</span>c3 . 100<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>c3 . <span style="color: #d65d0e;">(</span>c6 . 60<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>c3 . <span style="color: #d65d0e;">(</span>c4 . 70<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>c4 . <span style="color: #d65d0e;">(</span>c5 . 110<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>c4 . <span style="color: #d65d0e;">(</span>c14 . 50<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>c5 . <span style="color: #d65d0e;">(</span>c14 . 90<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>c5 . <span style="color: #d65d0e;">(</span>c12 . 80<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>c5 . <span style="color: #d65d0e;">(</span>c8 . 100<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>c7 . <span style="color: #d65d0e;">(</span>c9 . 180<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>c9 . <span style="color: #d65d0e;">(</span>c12 . 140<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>c10 . <span style="color: #d65d0e;">(</span>c9 . 150<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>c10 . <span style="color: #d65d0e;">(</span>c17 . 200<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>c11 . <span style="color: #d65d0e;">(</span>c12 . 240<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>c12 . <span style="color: #d65d0e;">(</span>c15 . 130<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>c13 . <span style="color: #d65d0e;">(</span>c14 . 130<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>c15 . <span style="color: #d65d0e;">(</span>c17 . 130<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>c16 . <span style="color: #d65d0e;">(</span>c8 . 100<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
+<span style="color: #458588;">(</span><span style="color: #fb4933;">defparameter</span> <span style="color: #83a598;">*straight-line-distances*</span>
+  '<span style="color: #b16286;">(</span><span style="color: #8ec07c;">(</span>c1 . 200<span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>c2 . 210<span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>c3 . 220<span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>c4 . 250<span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>c5 . 190<span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>c6 . 80<span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>c7 . 50<span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>c8 . 20<span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>c9 . 0<span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>c10 . 20<span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>c11 . 10<span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>c12 . 20<span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>c13 . 60<span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>c14 . 170<span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>c15 . 100<span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>c16 . 60<span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>c17 . 80<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 </pre>
 </div>
 
@@ -129,12 +129,12 @@ first i turned the tables/graphs into memory:
 i generated an image for the graph with tikz
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span>generate-graph-tikz *graph*<span style="color: #deb07a;">)</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span>generate-graph-tikz *graph*<span style="color: #458588;">)</span>
 </pre>
 </div>
 
 
-<pre class="example" id="orgf487f5c">
+<pre class="example" id="org719ce22">
 \tikz\graph[spring electrical layout,node distance=50] {
 C1 -- C2,
 C2 -- C7,
@@ -168,11 +168,11 @@ result image (used the parameters <code>spring electrical layout,node distance=5
 time to apply the algorithm:
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span>a-star *graph*
+<pre class="src src-lisp"><span style="color: #458588;">(</span>a-star *graph*
         'c14
         'c9
-        <span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">lambda</span> <span style="color: #80aadf;">(</span>node<span style="color: #80aadf;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">heuristic function</span>
-          <span style="color: #80aadf;">(</span>cdr <span style="color: #e47980;">(</span>assoc node *straight-line-distances*<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+        <span style="color: #b16286;">(</span><span style="color: #fb4933;">lambda</span> <span style="color: #8ec07c;">(</span>node<span style="color: #8ec07c;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">heuristic function</span>
+          <span style="color: #8ec07c;">(</span>cdr <span style="color: #d65d0e;">(</span>assoc node *straight-line-distances*<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 </pre>
 </div>
 
@@ -187,53 +187,53 @@ basically this says that we go the path <code>c9 -&gt; c10 -&gt; c17 -&gt; c15 -
 but i feel like taking this a bit further and generating a tree of the decisions that were made during the algorithm, so i edited the algorithm:
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">a-star</span> <span style="color: #ffaacf;">(</span>graph src dest heuristic-function<span style="color: #ffaacf;">)</span>
-  <span style="color: #caa89f; font-style: italic;">"modified function to output the tree of the decision making process"</span>
-  <span style="color: #ffaacf;">(</span>format t <span style="color: #f3a0a0;">"\\begin{forest}~%"</span><span style="color: #ffaacf;">)</span>
-  <span style="color: #ffaacf;">(</span>a-star-helper graph src nil dest 0 heuristic-function<span style="color: #ffaacf;">)</span>
-  <span style="color: #ffaacf;">(</span>format t <span style="color: #f3a0a0;">"~%\\end{forest}"</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span><span style="color: #fb4933;">defun</span> <span style="color: #fabd2f;">a-star</span> <span style="color: #b16286;">(</span>graph src dest heuristic-function<span style="color: #b16286;">)</span>
+  <span style="color: #b8bb26;">"modified function to output the tree of the decision making process"</span>
+  <span style="color: #b16286;">(</span>format t <span style="color: #b8bb26;">"\\begin{forest}~%"</span><span style="color: #b16286;">)</span>
+  <span style="color: #b16286;">(</span>a-star-helper graph src nil dest 0 heuristic-function<span style="color: #b16286;">)</span>
+  <span style="color: #b16286;">(</span>format t <span style="color: #b8bb26;">"~%\\end{forest}"</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 
-<span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">a-star-helper</span> <span style="color: #ffaacf;">(</span>graph node parent dest cost heuristic-function<span style="color: #ffaacf;">)</span>
-  <span style="color: #caa89f; font-style: italic;">"modified function to output the tree of the decision making process"</span>
-  <span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">let</span> <span style="color: #80aadf;">(</span><span style="color: #e47980;">(</span>frontier <span style="color: #d0b0ff;">(</span>adjacent-edges graph node<span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span>sort frontier
-          <span style="color: #e47980;">(</span><span style="color: #deb07a; font-weight: bold;">lambda</span> <span style="color: #d0b0ff;">(</span>edge1 edge2<span style="color: #d0b0ff;">)</span>
-            <span style="color: #d0b0ff;">(</span><span style="color: #deb07a; font-weight: bold;">let*</span> <span style="color: #3fc489;">(</span><span style="color: #6fb3c0;">(</span>next1 <span style="color: #c0b24f;">(</span><span style="color: #deb07a; font-weight: bold;">cond</span> <span style="color: #f3a0a0;">(</span><span style="color: #deb07a;">(</span>eq <span style="color: #ffaacf;">(</span>edge-dest edge1<span style="color: #ffaacf;">)</span> node<span style="color: #deb07a;">)</span> <span style="color: #deb07a;">(</span>edge-src edge1<span style="color: #deb07a;">)</span><span style="color: #f3a0a0;">)</span>
-                                <span style="color: #f3a0a0;">(</span><span style="color: #deb07a;">(</span>eq <span style="color: #ffaacf;">(</span>edge-src edge1<span style="color: #ffaacf;">)</span> node<span style="color: #deb07a;">)</span> <span style="color: #deb07a;">(</span>edge-dest edge1<span style="color: #deb07a;">)</span><span style="color: #f3a0a0;">)</span><span style="color: #c0b24f;">)</span><span style="color: #6fb3c0;">)</span>
-                   <span style="color: #6fb3c0;">(</span>next2 <span style="color: #c0b24f;">(</span><span style="color: #deb07a; font-weight: bold;">cond</span> <span style="color: #f3a0a0;">(</span><span style="color: #deb07a;">(</span>eq <span style="color: #ffaacf;">(</span>edge-dest edge2<span style="color: #ffaacf;">)</span> node<span style="color: #deb07a;">)</span> <span style="color: #deb07a;">(</span>edge-src edge2<span style="color: #deb07a;">)</span><span style="color: #f3a0a0;">)</span>
-                                <span style="color: #f3a0a0;">(</span><span style="color: #deb07a;">(</span>eq <span style="color: #ffaacf;">(</span>edge-src edge2<span style="color: #ffaacf;">)</span> node<span style="color: #deb07a;">)</span> <span style="color: #deb07a;">(</span>edge-dest edge2<span style="color: #deb07a;">)</span><span style="color: #f3a0a0;">)</span><span style="color: #c0b24f;">)</span><span style="color: #6fb3c0;">)</span>
-                   <span style="color: #6fb3c0;">(</span>cost1 <span style="color: #c0b24f;">(</span>+ <span style="color: #f3a0a0;">(</span>edge-weight edge1<span style="color: #f3a0a0;">)</span> <span style="color: #f3a0a0;">(</span>funcall heuristic-function next1<span style="color: #f3a0a0;">)</span><span style="color: #c0b24f;">)</span><span style="color: #6fb3c0;">)</span>
-                   <span style="color: #6fb3c0;">(</span>cost2 <span style="color: #c0b24f;">(</span>+ <span style="color: #f3a0a0;">(</span>edge-weight edge2<span style="color: #f3a0a0;">)</span> <span style="color: #f3a0a0;">(</span>funcall heuristic-function next2<span style="color: #f3a0a0;">)</span><span style="color: #c0b24f;">)</span><span style="color: #6fb3c0;">)</span><span style="color: #3fc489;">)</span>
-              <span style="color: #3fc489;">(</span>&lt; cost1 cost2<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span>format t <span style="color: #f3a0a0;">"[~A"</span> node<span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span><span style="color: #deb07a; font-weight: bold;">loop</span> for edge in frontier do
-      <span style="color: #e47980;">(</span>format t <span style="color: #f3a0a0;">"[~A]"</span> <span style="color: #d0b0ff;">(</span><span style="color: #deb07a; font-weight: bold;">cond</span> <span style="color: #3fc489;">(</span><span style="color: #6fb3c0;">(</span>eq <span style="color: #c0b24f;">(</span>edge-dest edge<span style="color: #c0b24f;">)</span> node<span style="color: #6fb3c0;">)</span> <span style="color: #6fb3c0;">(</span>edge-src edge<span style="color: #6fb3c0;">)</span><span style="color: #3fc489;">)</span>
-                             <span style="color: #3fc489;">(</span><span style="color: #6fb3c0;">(</span>eq <span style="color: #c0b24f;">(</span>edge-src edge<span style="color: #c0b24f;">)</span> node<span style="color: #6fb3c0;">)</span> <span style="color: #6fb3c0;">(</span>edge-dest edge<span style="color: #6fb3c0;">)</span><span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span><span style="color: #deb07a; font-weight: bold;">loop</span> while frontier do
-      <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">grab the node with the least cost from the frontier</span>
-      <span style="color: #e47980;">(</span><span style="color: #deb07a; font-weight: bold;">let*</span> <span style="color: #d0b0ff;">(</span><span style="color: #3fc489;">(</span>edge <span style="color: #6fb3c0;">(</span>car frontier<span style="color: #6fb3c0;">)</span><span style="color: #3fc489;">)</span>
-             <span style="color: #3fc489;">(</span>next <span style="color: #6fb3c0;">(</span><span style="color: #deb07a; font-weight: bold;">cond</span> <span style="color: #c0b24f;">(</span><span style="color: #f3a0a0;">(</span>eq <span style="color: #deb07a;">(</span>edge-dest edge<span style="color: #deb07a;">)</span> node<span style="color: #f3a0a0;">)</span> <span style="color: #f3a0a0;">(</span>edge-src edge<span style="color: #f3a0a0;">)</span><span style="color: #c0b24f;">)</span>
-                         <span style="color: #c0b24f;">(</span><span style="color: #f3a0a0;">(</span>eq <span style="color: #deb07a;">(</span>edge-src edge<span style="color: #deb07a;">)</span> node<span style="color: #f3a0a0;">)</span> <span style="color: #f3a0a0;">(</span>edge-dest edge<span style="color: #f3a0a0;">)</span><span style="color: #c0b24f;">)</span><span style="color: #6fb3c0;">)</span><span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span>
-        <span style="color: #d0b0ff;">(</span><span style="color: #deb07a; font-weight: bold;">if</span> <span style="color: #3fc489;">(</span>eq next dest<span style="color: #3fc489;">)</span>
-            <span style="color: #3fc489;">(</span><span style="color: #deb07a; font-weight: bold;">progn</span>
-              <span style="color: #6fb3c0;">(</span>format t <span style="color: #f3a0a0;">"]"</span><span style="color: #6fb3c0;">)</span>
-              <span style="color: #6fb3c0;">(</span><span style="color: #deb07a; font-weight: bold;">return-from</span> a-star-helper <span style="color: #c0b24f;">(</span>cons dest nil<span style="color: #c0b24f;">)</span><span style="color: #6fb3c0;">)</span><span style="color: #3fc489;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">arrived at destination</span>
-            <span style="color: #3fc489;">(</span><span style="color: #deb07a; font-weight: bold;">if</span> <span style="color: #6fb3c0;">(</span>eq next parent<span style="color: #6fb3c0;">)</span>
-                <span style="color: #6fb3c0;">(</span>pop frontier<span style="color: #6fb3c0;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">dont go back to parent!, get rid of that edge</span>
-                <span style="color: #6fb3c0;">(</span><span style="color: #deb07a; font-weight: bold;">let</span> <span style="color: #c0b24f;">(</span><span style="color: #f3a0a0;">(</span>new-path <span style="color: #deb07a;">(</span>a-star-helper graph
+<span style="color: #458588;">(</span><span style="color: #fb4933;">defun</span> <span style="color: #fabd2f;">a-star-helper</span> <span style="color: #b16286;">(</span>graph node parent dest cost heuristic-function<span style="color: #b16286;">)</span>
+  <span style="color: #b8bb26;">"modified function to output the tree of the decision making process"</span>
+  <span style="color: #b16286;">(</span><span style="color: #fb4933;">let</span> <span style="color: #8ec07c;">(</span><span style="color: #d65d0e;">(</span>frontier <span style="color: #458588;">(</span>adjacent-edges graph node<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>sort frontier
+          <span style="color: #d65d0e;">(</span><span style="color: #fb4933;">lambda</span> <span style="color: #458588;">(</span>edge1 edge2<span style="color: #458588;">)</span>
+            <span style="color: #458588;">(</span><span style="color: #fb4933;">let*</span> <span style="color: #b16286;">(</span><span style="color: #8ec07c;">(</span>next1 <span style="color: #d65d0e;">(</span><span style="color: #fb4933;">cond</span> <span style="color: #458588;">(</span><span style="color: #458588;">(</span>eq <span style="color: #b16286;">(</span>edge-dest edge1<span style="color: #b16286;">)</span> node<span style="color: #458588;">)</span> <span style="color: #458588;">(</span>edge-src edge1<span style="color: #458588;">)</span><span style="color: #458588;">)</span>
+                                <span style="color: #458588;">(</span><span style="color: #458588;">(</span>eq <span style="color: #b16286;">(</span>edge-src edge1<span style="color: #b16286;">)</span> node<span style="color: #458588;">)</span> <span style="color: #458588;">(</span>edge-dest edge1<span style="color: #458588;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+                   <span style="color: #8ec07c;">(</span>next2 <span style="color: #d65d0e;">(</span><span style="color: #fb4933;">cond</span> <span style="color: #458588;">(</span><span style="color: #458588;">(</span>eq <span style="color: #b16286;">(</span>edge-dest edge2<span style="color: #b16286;">)</span> node<span style="color: #458588;">)</span> <span style="color: #458588;">(</span>edge-src edge2<span style="color: #458588;">)</span><span style="color: #458588;">)</span>
+                                <span style="color: #458588;">(</span><span style="color: #458588;">(</span>eq <span style="color: #b16286;">(</span>edge-src edge2<span style="color: #b16286;">)</span> node<span style="color: #458588;">)</span> <span style="color: #458588;">(</span>edge-dest edge2<span style="color: #458588;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+                   <span style="color: #8ec07c;">(</span>cost1 <span style="color: #d65d0e;">(</span>+ <span style="color: #458588;">(</span>edge-weight edge1<span style="color: #458588;">)</span> <span style="color: #458588;">(</span>funcall heuristic-function next1<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+                   <span style="color: #8ec07c;">(</span>cost2 <span style="color: #d65d0e;">(</span>+ <span style="color: #458588;">(</span>edge-weight edge2<span style="color: #458588;">)</span> <span style="color: #458588;">(</span>funcall heuristic-function next2<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span>
+              <span style="color: #b16286;">(</span>&lt; cost1 cost2<span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>format t <span style="color: #b8bb26;">"[~A"</span> node<span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span><span style="color: #fb4933;">loop</span> for edge in frontier do
+      <span style="color: #d65d0e;">(</span>format t <span style="color: #b8bb26;">"[~A]"</span> <span style="color: #458588;">(</span><span style="color: #fb4933;">cond</span> <span style="color: #b16286;">(</span><span style="color: #8ec07c;">(</span>eq <span style="color: #d65d0e;">(</span>edge-dest edge<span style="color: #d65d0e;">)</span> node<span style="color: #8ec07c;">)</span> <span style="color: #8ec07c;">(</span>edge-src edge<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span>
+                             <span style="color: #b16286;">(</span><span style="color: #8ec07c;">(</span>eq <span style="color: #d65d0e;">(</span>edge-src edge<span style="color: #d65d0e;">)</span> node<span style="color: #8ec07c;">)</span> <span style="color: #8ec07c;">(</span>edge-dest edge<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span><span style="color: #fb4933;">loop</span> while frontier do
+      <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">grab the node with the least cost from the frontier</span>
+      <span style="color: #d65d0e;">(</span><span style="color: #fb4933;">let*</span> <span style="color: #458588;">(</span><span style="color: #b16286;">(</span>edge <span style="color: #8ec07c;">(</span>car frontier<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span>
+             <span style="color: #b16286;">(</span>next <span style="color: #8ec07c;">(</span><span style="color: #fb4933;">cond</span> <span style="color: #d65d0e;">(</span><span style="color: #458588;">(</span>eq <span style="color: #458588;">(</span>edge-dest edge<span style="color: #458588;">)</span> node<span style="color: #458588;">)</span> <span style="color: #458588;">(</span>edge-src edge<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span>
+                         <span style="color: #d65d0e;">(</span><span style="color: #458588;">(</span>eq <span style="color: #458588;">(</span>edge-src edge<span style="color: #458588;">)</span> node<span style="color: #458588;">)</span> <span style="color: #458588;">(</span>edge-dest edge<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
+        <span style="color: #458588;">(</span><span style="color: #fb4933;">if</span> <span style="color: #b16286;">(</span>eq next dest<span style="color: #b16286;">)</span>
+            <span style="color: #b16286;">(</span><span style="color: #fb4933;">progn</span>
+              <span style="color: #8ec07c;">(</span>format t <span style="color: #b8bb26;">"]"</span><span style="color: #8ec07c;">)</span>
+              <span style="color: #8ec07c;">(</span><span style="color: #fb4933;">return-from</span> a-star-helper <span style="color: #d65d0e;">(</span>cons dest nil<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">arrived at destination</span>
+            <span style="color: #b16286;">(</span><span style="color: #fb4933;">if</span> <span style="color: #8ec07c;">(</span>eq next parent<span style="color: #8ec07c;">)</span>
+                <span style="color: #8ec07c;">(</span>pop frontier<span style="color: #8ec07c;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">dont go back to parent!, get rid of that edge</span>
+                <span style="color: #8ec07c;">(</span><span style="color: #fb4933;">let</span> <span style="color: #d65d0e;">(</span><span style="color: #458588;">(</span>new-path <span style="color: #458588;">(</span>a-star-helper graph
                                                next
                                                node
                                                dest
-                                               <span style="color: #ffaacf;">(</span>+ cost <span style="color: #80aadf;">(</span>edge-weight edge<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span>
-                                               heuristic-function<span style="color: #deb07a;">)</span><span style="color: #f3a0a0;">)</span><span style="color: #c0b24f;">)</span>
-                  <span style="color: #c0b24f;">(</span><span style="color: #deb07a; font-weight: bold;">if</span> new-path
-                      <span style="color: #f3a0a0;">(</span><span style="color: #deb07a; font-weight: bold;">progn</span>
-                        <span style="color: #deb07a;">(</span>format t <span style="color: #f3a0a0;">"]"</span> node<span style="color: #deb07a;">)</span>
-                        <span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">return-from</span> a-star-helper <span style="color: #ffaacf;">(</span>cons node new-path<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span><span style="color: #f3a0a0;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">keep returning, we're done</span>
-                      <span style="color: #f3a0a0;">(</span>pop frontier<span style="color: #f3a0a0;">)</span><span style="color: #c0b24f;">)</span><span style="color: #6fb3c0;">)</span><span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">subpath hit a dead end, pop it and continue looping</span>
-    <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">we exhausted the frontier, we hit a dead end, return false/empty list</span>
-    <span style="color: #80aadf;">(</span>format t <span style="color: #f3a0a0;">"]"</span><span style="color: #80aadf;">)</span>
-    nil<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+                                               <span style="color: #b16286;">(</span>+ cost <span style="color: #8ec07c;">(</span>edge-weight edge<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span>
+                                               heuristic-function<span style="color: #458588;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span>
+                  <span style="color: #d65d0e;">(</span><span style="color: #fb4933;">if</span> new-path
+                      <span style="color: #458588;">(</span><span style="color: #fb4933;">progn</span>
+                        <span style="color: #458588;">(</span>format t <span style="color: #b8bb26;">"]"</span> node<span style="color: #458588;">)</span>
+                        <span style="color: #458588;">(</span><span style="color: #fb4933;">return-from</span> a-star-helper <span style="color: #b16286;">(</span>cons node new-path<span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #458588;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">keep returning, we're done</span>
+                      <span style="color: #458588;">(</span>pop frontier<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">subpath hit a dead end, pop it and continue looping</span>
+    <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">we exhausted the frontier, we hit a dead end, return false/empty list</span>
+    <span style="color: #8ec07c;">(</span>format t <span style="color: #b8bb26;">"]"</span><span style="color: #8ec07c;">)</span>
+    nil<span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 </pre>
 </div>
 
@@ -241,11 +241,11 @@ but i feel like taking this a bit further and generating a tree of the decisions
 usage:
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span>a-star *graph*
+<pre class="src src-lisp"><span style="color: #458588;">(</span>a-star *graph*
         'c14
         'c9
-        <span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">lambda</span> <span style="color: #80aadf;">(</span>node<span style="color: #80aadf;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">heuristic function</span>
-          <span style="color: #80aadf;">(</span>cdr <span style="color: #e47980;">(</span>assoc node *straight-line-distances*<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+        <span style="color: #b16286;">(</span><span style="color: #fb4933;">lambda</span> <span style="color: #8ec07c;">(</span>node<span style="color: #8ec07c;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">heuristic function</span>
+          <span style="color: #8ec07c;">(</span>cdr <span style="color: #d65d0e;">(</span>assoc node *straight-line-distances*<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 </pre>
 </div>
 

@@ -50,7 +50,7 @@
 <div id="content" class="content">
 <div test="test" class="fancy-block dummy" data-before="" data-after="&lt;p&gt;
 (Ramez Elmasri, Shamkant B. Navathe, 2015 chapter 8.1.2 the PROJECT operation)&lt;/p&gt;
-" id="prf-bool-func-1" data-id="prf-bool-func-1">
+" id="the-bool-func-1" data-id="the-bool-func-1">
 <p>
 if we think of a <a href="/relation.html">relation</a> as a table, the <a href="/select.html">SELECT operation</a> chooses some of the rows from the table while discarding other rows. the PROJECT operation, on the other hand, selects certain columns from the table and discards the other columns. if we are interested in only certain attributes of a relation, we use the PROJECT operation to project the relation over these attributes only. therefore, the result of the PROJECT operation can be visualized as a vertical partition of the relation into two relations:
 one has the needed columns (attributes) and contains the result of the operation, and the other contains the discarded columns. for example, to list each employee's first and last name and salary, we can use the PROJECT operation as follows:
@@ -412,7 +412,7 @@ In <a href="/sql.html">sql</a>, the PROJECT attribute list is specified in the S
 would correspond to the following sql query:
 </p>
 <div class="org-src-container" data-language="sql">
-<pre class="src src-sql"><span style="color: #deb07a; font-weight: bold;">SELECT</span> <span style="color: #deb07a; font-weight: bold;">DISTINCT</span> Sex, Salary <span style="color: #deb07a; font-weight: bold;">FROM</span> EMPLOYEE
+<pre class="src src-sql"><span style="color: #fb4933;">SELECT</span> <span style="color: #fb4933;">DISTINCT</span> Sex, Salary <span style="color: #fb4933;">FROM</span> EMPLOYEE
 </pre>
 </div>
 

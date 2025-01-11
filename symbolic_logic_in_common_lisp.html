@@ -51,9 +51,9 @@
 <p>
 <a href="/logic_programming.html">logic programming</a> in <a href="/common_lisp.html">common lisp</a>
 </p>
-<div id="outline-container-org79ca7a2" class="outline-2">
-<h2 id="org79ca7a2">logical statements</h2>
-<div class="outline-text-2" id="text-org79ca7a2">
+<div id="outline-container-org05c7f9c" class="outline-2">
+<h2 id="org05c7f9c">logical statements</h2>
+<div class="outline-text-2" id="text-org05c7f9c">
 <p>
 we make use of the symbolic capabilities of lisp, we use quoting and symbols to represent logical <a href="/statement.html">statement</a>s, e.g. given the following <a href="/knowledge_base.html">knowledge base</a> of <a href="/horn_clause.html">horn clause</a>s:
 </p>
@@ -119,14 +119,14 @@ we make use of the symbolic capabilities of lisp, we use quoting and symbols to 
 in lisp we could write it as:
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defparameter</span> <span style="color: #ffaacf;">*kb*</span>
-  '<span style="color: #ffaacf;">(</span><span style="color: #80aadf;">(</span>implies p q<span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span>implies <span style="color: #e47980;">(</span>and l m<span style="color: #e47980;">)</span> p<span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span>implies <span style="color: #e47980;">(</span>and b l<span style="color: #e47980;">)</span> m<span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span>implies <span style="color: #e47980;">(</span>and a p<span style="color: #e47980;">)</span> l<span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span>implies <span style="color: #e47980;">(</span>and a b s<span style="color: #e47980;">)</span> l<span style="color: #80aadf;">)</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span><span style="color: #fb4933;">defparameter</span> <span style="color: #83a598;">*kb*</span>
+  '<span style="color: #b16286;">(</span><span style="color: #8ec07c;">(</span>implies p q<span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>implies <span style="color: #d65d0e;">(</span>and l m<span style="color: #d65d0e;">)</span> p<span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>implies <span style="color: #d65d0e;">(</span>and b l<span style="color: #d65d0e;">)</span> m<span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>implies <span style="color: #d65d0e;">(</span>and a p<span style="color: #d65d0e;">)</span> l<span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>implies <span style="color: #d65d0e;">(</span>and a b s<span style="color: #d65d0e;">)</span> l<span style="color: #8ec07c;">)</span>
     A
-    B<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+    B<span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 *kb*
 </pre>
 </div>
@@ -188,10 +188,10 @@ first obstacle we may face is the issue of distinguishing a variable from a <a h
 in our previous example, this doesnt make much difference as we were dealing with constants only, consider this example which demonstrates how we apply the idea of prefixing variables with a question mark:
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defparameter</span> <span style="color: #ffaacf;">*kb*</span>
-  '<span style="color: #ffaacf;">(</span><span style="color: #80aadf;">(</span>person john<span style="color: #80aadf;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">person(john)</span>
-    <span style="color: #80aadf;">(</span>implies <span style="color: #e47980;">(</span>person ?x<span style="color: #e47980;">)</span> <span style="color: #e47980;">(</span>human ?x<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">person(x) =&gt; human(x)</span>
-    <span style="color: #80aadf;">(</span>implies <span style="color: #e47980;">(</span>and <span style="color: #d0b0ff;">(</span>not <span style="color: #3fc489;">(</span>widower ?x<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span> <span style="color: #d0b0ff;">(</span>father ?x<span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span> <span style="color: #e47980;">(</span>married ?x<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span><span style="color: #fb4933;">defparameter</span> <span style="color: #83a598;">*kb*</span>
+  '<span style="color: #b16286;">(</span><span style="color: #8ec07c;">(</span>person john<span style="color: #8ec07c;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">person(john)</span>
+    <span style="color: #8ec07c;">(</span>implies <span style="color: #d65d0e;">(</span>person ?x<span style="color: #d65d0e;">)</span> <span style="color: #d65d0e;">(</span>human ?x<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">person(x) =&gt; human(x)</span>
+    <span style="color: #8ec07c;">(</span>implies <span style="color: #d65d0e;">(</span>and <span style="color: #458588;">(</span>not <span style="color: #b16286;">(</span>widower ?x<span style="color: #b16286;">)</span><span style="color: #458588;">)</span> <span style="color: #458588;">(</span>father ?x<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span> <span style="color: #d65d0e;">(</span>married ?x<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 *kb*
 </pre>
 </div>
@@ -240,10 +240,10 @@ how about substitutions? how do we represent for example the substitution <?xml 
 </svg>, we just use an <a href="/common_lisp.html">association list</a>:
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">let</span> <span style="color: #ffaacf;">(</span><span style="color: #80aadf;">(</span>sub nil<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">sub is the substitution</span>
-  <span style="color: #ffaacf;">(</span>push <span style="color: #80aadf;">(</span>cons '?x 'val1<span style="color: #80aadf;">)</span> sub<span style="color: #ffaacf;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">add pair using push</span>
-  <span style="color: #ffaacf;">(</span>push <span style="color: #80aadf;">(</span>cons '?y 'val2<span style="color: #80aadf;">)</span> sub<span style="color: #ffaacf;">)</span>
-  sub<span style="color: #deb07a;">)</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span><span style="color: #fb4933;">let</span> <span style="color: #b16286;">(</span><span style="color: #8ec07c;">(</span>sub nil<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">sub is the substitution</span>
+  <span style="color: #b16286;">(</span>push <span style="color: #8ec07c;">(</span>cons '?x 'val1<span style="color: #8ec07c;">)</span> sub<span style="color: #b16286;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">add pair using push</span>
+  <span style="color: #b16286;">(</span>push <span style="color: #8ec07c;">(</span>cons '?y 'val2<span style="color: #8ec07c;">)</span> sub<span style="color: #b16286;">)</span>
+  sub<span style="color: #458588;">)</span>
 </pre>
 </div>
 
@@ -253,54 +253,54 @@ how about substitutions? how do we represent for example the substitution <?xml 
 </pre>
 </div>
 </div>
-<div id="outline-container-org5959eef" class="outline-2">
-<h2 id="org5959eef">early <a href="/inference_engine.html">inference engine</a>s</h2>
-<div class="outline-text-2" id="text-org5959eef">
+<div id="outline-container-org3224c79" class="outline-2">
+<h2 id="org3224c79">early <a href="/inference_engine.html">inference engine</a>s</h2>
+<div class="outline-text-2" id="text-org3224c79">
 <p>
 imma start off with the <a href="/unification.html">unification</a> algorithm, this one differs a bit from the pseudocode version, as it doesnt apply the <b>occur check</b> and doesnt distinguish between a compound statement or a list of expressions, as they are only used to represent predicates
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">variable?</span> <span style="color: #ffaacf;">(</span>x<span style="color: #ffaacf;">)</span>
-  <span style="color: #caa89f; font-style: italic;">"return whether an expression is a variable"</span>
-  <span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">if</span> <span style="color: #80aadf;">(</span>atom x<span style="color: #80aadf;">)</span>
-      <span style="color: #80aadf;">(</span>equal <span style="color: #e47980;">(</span>char <span style="color: #d0b0ff;">(</span>symbol-name x<span style="color: #d0b0ff;">)</span> 0<span style="color: #e47980;">)</span> #\?<span style="color: #80aadf;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">if symbol starts with a question mark</span>
-      nil<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span><span style="color: #fb4933;">defun</span> <span style="color: #fabd2f;">variable?</span> <span style="color: #b16286;">(</span>x<span style="color: #b16286;">)</span>
+  <span style="color: #b8bb26;">"return whether an expression is a variable"</span>
+  <span style="color: #b16286;">(</span><span style="color: #fb4933;">if</span> <span style="color: #8ec07c;">(</span>atom x<span style="color: #8ec07c;">)</span>
+      <span style="color: #8ec07c;">(</span>equal <span style="color: #d65d0e;">(</span>char <span style="color: #458588;">(</span>symbol-name x<span style="color: #458588;">)</span> 0<span style="color: #d65d0e;">)</span> #\?<span style="color: #8ec07c;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">if symbol starts with a question mark</span>
+      nil<span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 
-<span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">compound?</span> <span style="color: #ffaacf;">(</span>obj<span style="color: #ffaacf;">)</span>
-  <span style="color: #caa89f; font-style: italic;">"whether an object is compound, or simply whether its a cons cell or not '(atom obj)' returns false for a cons cell"</span>
-  <span style="color: #ffaacf;">(</span>not <span style="color: #80aadf;">(</span>atom obj<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<span style="color: #458588;">(</span><span style="color: #fb4933;">defun</span> <span style="color: #fabd2f;">compound?</span> <span style="color: #b16286;">(</span>obj<span style="color: #b16286;">)</span>
+  <span style="color: #b8bb26;">"whether an object is compound, or simply whether its a cons cell or not '(atom obj)' returns false for a cons cell"</span>
+  <span style="color: #b16286;">(</span>not <span style="color: #8ec07c;">(</span>atom obj<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 
-<span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">unify</span> <span style="color: #ffaacf;">(</span>x y <span style="color: #a9c99f;">&amp;optional</span> <span style="color: #80aadf;">(</span>sub nil<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span>
-  <span style="color: #caa89f; font-style: italic;">"x,y are logical statements, sub is the substitution, sub is initalized to `</span><span style="color: #80aadf; font-style: italic;">nil</span><span style="color: #caa89f; font-style: italic;">', if it ever becomes `</span><span style="color: #80aadf; font-style: italic;">failure</span><span style="color: #caa89f; font-style: italic;">', it means we've failed to find a substitution, we return `</span><span style="color: #80aadf; font-style: italic;">failure</span><span style="color: #caa89f; font-style: italic;">' (symbol), otherwise we return a substitution (could be `</span><span style="color: #80aadf; font-style: italic;">nil</span><span style="color: #caa89f; font-style: italic;">' which denotes an empty substitution)"</span>
-  <span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">if</span> <span style="color: #80aadf;">(</span>equal sub 'failure<span style="color: #80aadf;">)</span>
+<span style="color: #458588;">(</span><span style="color: #fb4933;">defun</span> <span style="color: #fabd2f;">unify</span> <span style="color: #b16286;">(</span>x y <span style="color: #d3869b;">&amp;optional</span> <span style="color: #8ec07c;">(</span>sub nil<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span>
+  <span style="color: #b8bb26;">"x,y are logical statements, sub is the substitution, sub is initalized to `</span><span style="color: #d3869b;">nil</span><span style="color: #b8bb26;">', if it ever becomes `</span><span style="color: #d3869b;">failure</span><span style="color: #b8bb26;">', it means we've failed to find a substitution, we return `</span><span style="color: #d3869b;">failure</span><span style="color: #b8bb26;">' (symbol), otherwise we return a substitution (could be `</span><span style="color: #d3869b;">nil</span><span style="color: #b8bb26;">' which denotes an empty substitution)"</span>
+  <span style="color: #b16286;">(</span><span style="color: #fb4933;">if</span> <span style="color: #8ec07c;">(</span>equal sub 'failure<span style="color: #8ec07c;">)</span>
       'failure
-      <span style="color: #80aadf;">(</span><span style="color: #deb07a; font-weight: bold;">if</span> <span style="color: #e47980;">(</span>equal x y<span style="color: #e47980;">)</span>
+      <span style="color: #8ec07c;">(</span><span style="color: #fb4933;">if</span> <span style="color: #d65d0e;">(</span>equal x y<span style="color: #d65d0e;">)</span>
           sub
-          <span style="color: #e47980;">(</span><span style="color: #deb07a; font-weight: bold;">if</span> <span style="color: #d0b0ff;">(</span>variable? x<span style="color: #d0b0ff;">)</span>
-              <span style="color: #d0b0ff;">(</span>unify-var x y sub<span style="color: #d0b0ff;">)</span>
-              <span style="color: #d0b0ff;">(</span><span style="color: #deb07a; font-weight: bold;">if</span> <span style="color: #3fc489;">(</span>variable? y<span style="color: #3fc489;">)</span>
-                  <span style="color: #3fc489;">(</span>unify-var y x sub<span style="color: #3fc489;">)</span>
-                  <span style="color: #3fc489;">(</span><span style="color: #deb07a; font-weight: bold;">if</span> <span style="color: #6fb3c0;">(</span>and <span style="color: #c0b24f;">(</span>compound? x<span style="color: #c0b24f;">)</span> <span style="color: #c0b24f;">(</span>compound? y<span style="color: #c0b24f;">)</span><span style="color: #6fb3c0;">)</span>
-                      <span style="color: #6fb3c0;">(</span>unify <span style="color: #c0b24f;">(</span>rest x<span style="color: #c0b24f;">)</span> <span style="color: #c0b24f;">(</span>rest y<span style="color: #c0b24f;">)</span> <span style="color: #c0b24f;">(</span>unify <span style="color: #f3a0a0;">(</span>first x<span style="color: #f3a0a0;">)</span> <span style="color: #f3a0a0;">(</span>first y<span style="color: #f3a0a0;">)</span> sub<span style="color: #c0b24f;">)</span><span style="color: #6fb3c0;">)</span>
-                      'failure<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">failure</span>
+          <span style="color: #d65d0e;">(</span><span style="color: #fb4933;">if</span> <span style="color: #458588;">(</span>variable? x<span style="color: #458588;">)</span>
+              <span style="color: #458588;">(</span>unify-var x y sub<span style="color: #458588;">)</span>
+              <span style="color: #458588;">(</span><span style="color: #fb4933;">if</span> <span style="color: #b16286;">(</span>variable? y<span style="color: #b16286;">)</span>
+                  <span style="color: #b16286;">(</span>unify-var y x sub<span style="color: #b16286;">)</span>
+                  <span style="color: #b16286;">(</span><span style="color: #fb4933;">if</span> <span style="color: #8ec07c;">(</span>and <span style="color: #d65d0e;">(</span>compound? x<span style="color: #d65d0e;">)</span> <span style="color: #d65d0e;">(</span>compound? y<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+                      <span style="color: #8ec07c;">(</span>unify <span style="color: #d65d0e;">(</span>rest x<span style="color: #d65d0e;">)</span> <span style="color: #d65d0e;">(</span>rest y<span style="color: #d65d0e;">)</span> <span style="color: #d65d0e;">(</span>unify <span style="color: #458588;">(</span>first x<span style="color: #458588;">)</span> <span style="color: #458588;">(</span>first y<span style="color: #458588;">)</span> sub<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+                      'failure<span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">failure</span>
 
-<span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">unify-var</span> <span style="color: #ffaacf;">(</span>var x <span style="color: #a9c99f;">&amp;optional</span> <span style="color: #80aadf;">(</span>sub t<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span>
-  <span style="color: #caa89f; font-style: italic;">"returns a substitution"</span>
-  <span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">let*</span> <span style="color: #80aadf;">(</span><span style="color: #e47980;">(</span>sub-entry <span style="color: #d0b0ff;">(</span>assoc var sub<span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">an entry in the substitution that corresponds to var, if no such entry exists, both sub-entry and val will be nil</span>
-         <span style="color: #e47980;">(</span>val <span style="color: #d0b0ff;">(</span>cdr sub-entry<span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span><span style="color: #deb07a; font-weight: bold;">if</span> sub-entry
-        <span style="color: #e47980;">(</span>unify val x sub<span style="color: #e47980;">)</span>
-        <span style="color: #e47980;">(</span><span style="color: #deb07a; font-weight: bold;">if</span> <span style="color: #d0b0ff;">(</span>assoc x sub<span style="color: #d0b0ff;">)</span>
-            <span style="color: #d0b0ff;">(</span>unify var val sub<span style="color: #d0b0ff;">)</span>
-            <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">(if (occur-check? var x) ;; occur check, not implemented</span>
-            <span style="color: #a0a0cf; font-style: italic;">;;     </span><span style="color: #a0a0cf; font-style: italic;">'failure</span>
-            <span style="color: #a0a0cf; font-style: italic;">;;     </span><span style="color: #a0a0cf; font-style: italic;">(push (cons var x) sub))))))</span>
-            <span style="color: #d0b0ff;">(</span>push <span style="color: #3fc489;">(</span>cons var x<span style="color: #3fc489;">)</span> sub<span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<span style="color: #458588;">(</span><span style="color: #fb4933;">defun</span> <span style="color: #fabd2f;">unify-var</span> <span style="color: #b16286;">(</span>var x <span style="color: #d3869b;">&amp;optional</span> <span style="color: #8ec07c;">(</span>sub t<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span>
+  <span style="color: #b8bb26;">"returns a substitution"</span>
+  <span style="color: #b16286;">(</span><span style="color: #fb4933;">let*</span> <span style="color: #8ec07c;">(</span><span style="color: #d65d0e;">(</span>sub-entry <span style="color: #458588;">(</span>assoc var sub<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">an entry in the substitution that corresponds to var, if no such entry exists, both sub-entry and val will be nil</span>
+         <span style="color: #d65d0e;">(</span>val <span style="color: #458588;">(</span>cdr sub-entry<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span><span style="color: #fb4933;">if</span> sub-entry
+        <span style="color: #d65d0e;">(</span>unify val x sub<span style="color: #d65d0e;">)</span>
+        <span style="color: #d65d0e;">(</span><span style="color: #fb4933;">if</span> <span style="color: #458588;">(</span>assoc x sub<span style="color: #458588;">)</span>
+            <span style="color: #458588;">(</span>unify var val sub<span style="color: #458588;">)</span>
+            <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">(if (occur-check? var x) ;; occur check, not implemented</span>
+            <span style="color: #7c6f64;">;;     </span><span style="color: #7c6f64;">'failure</span>
+            <span style="color: #7c6f64;">;;     </span><span style="color: #7c6f64;">(push (cons var x) sub))))))</span>
+            <span style="color: #458588;">(</span>push <span style="color: #b16286;">(</span>cons var x<span style="color: #b16286;">)</span> sub<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 
-<span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">unify-success?</span> <span style="color: #ffaacf;">(</span>unify-out<span style="color: #ffaacf;">)</span>
-  <span style="color: #caa89f; font-style: italic;">"check whether the value returned by `</span><span style="color: #80aadf; font-style: italic;">unify</span><span style="color: #caa89f; font-style: italic;">' represents a proper substitution and not a failure"</span>
-  <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">(listp unify-out) ;; alternative solution</span>
-  <span style="color: #ffaacf;">(</span>not <span style="color: #80aadf;">(</span>eq unify-out 'failure<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<span style="color: #458588;">(</span><span style="color: #fb4933;">defun</span> <span style="color: #fabd2f;">unify-success?</span> <span style="color: #b16286;">(</span>unify-out<span style="color: #b16286;">)</span>
+  <span style="color: #b8bb26;">"check whether the value returned by `</span><span style="color: #d3869b;">unify</span><span style="color: #b8bb26;">' represents a proper substitution and not a failure"</span>
+  <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">(listp unify-out) ;; alternative solution</span>
+  <span style="color: #b16286;">(</span>not <span style="color: #8ec07c;">(</span>eq unify-out 'failure<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 </pre>
 </div>
 
@@ -308,7 +308,7 @@ imma start off with the <a href="/unification.html">unification</a> algorithm, t
 a test:
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span>unify '<span style="color: #ffaacf;">(</span>person john<span style="color: #ffaacf;">)</span> '<span style="color: #ffaacf;">(</span>person ?x<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span>unify '<span style="color: #b16286;">(</span>person john<span style="color: #b16286;">)</span> '<span style="color: #b16286;">(</span>person ?x<span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 </pre>
 </div>
 
@@ -322,136 +322,136 @@ a test:
 next up, we need to implement <a href="/forward_chaining.html">forward chaining</a> and <a href="/backward_chaining.html">backward chaining</a> which take in a knowledge base of statements which are <a href="/definite_clause.html">definite clause</a>s and do <a href="/inference_algorithm.html">algorithmic inference</a>, this code makes use of <a href="/common_lisp_math_utils.html">common lisp math utils</a>
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">find-variables-in-statement</span> <span style="color: #ffaacf;">(</span>statement<span style="color: #ffaacf;">)</span>
-  <span style="color: #caa89f; font-style: italic;">"find the variables in the list `</span><span style="color: #80aadf; font-style: italic;">statement</span><span style="color: #caa89f; font-style: italic;">' (variables are symbols that start with '?')"</span>
-  <span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">let</span> <span style="color: #80aadf;">(</span><span style="color: #e47980;">(</span>vars<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span><span style="color: #deb07a; font-weight: bold;">loop</span> for myelt in statement do
-      <span style="color: #e47980;">(</span><span style="color: #deb07a; font-weight: bold;">if</span> <span style="color: #d0b0ff;">(</span>variable? myelt<span style="color: #d0b0ff;">)</span>
-          <span style="color: #d0b0ff;">(</span>setf vars <span style="color: #3fc489;">(</span>union <span style="color: #6fb3c0;">(</span>list myelt<span style="color: #6fb3c0;">)</span> vars<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span>
-          <span style="color: #d0b0ff;">(</span><span style="color: #deb07a; font-weight: bold;">when</span> <span style="color: #3fc489;">(</span>not <span style="color: #6fb3c0;">(</span>atom myelt<span style="color: #6fb3c0;">)</span><span style="color: #3fc489;">)</span>
-            <span style="color: #3fc489;">(</span>setf vars <span style="color: #6fb3c0;">(</span>union <span style="color: #c0b24f;">(</span>find-variables-in-statement myelt<span style="color: #c0b24f;">)</span> vars<span style="color: #6fb3c0;">)</span><span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
-    vars<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span><span style="color: #fb4933;">defun</span> <span style="color: #fabd2f;">find-variables-in-statement</span> <span style="color: #b16286;">(</span>statement<span style="color: #b16286;">)</span>
+  <span style="color: #b8bb26;">"find the variables in the list `</span><span style="color: #d3869b;">statement</span><span style="color: #b8bb26;">' (variables are symbols that start with '?')"</span>
+  <span style="color: #b16286;">(</span><span style="color: #fb4933;">let</span> <span style="color: #8ec07c;">(</span><span style="color: #d65d0e;">(</span>vars<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span><span style="color: #fb4933;">loop</span> for myelt in statement do
+      <span style="color: #d65d0e;">(</span><span style="color: #fb4933;">if</span> <span style="color: #458588;">(</span>variable? myelt<span style="color: #458588;">)</span>
+          <span style="color: #458588;">(</span>setf vars <span style="color: #b16286;">(</span>union <span style="color: #8ec07c;">(</span>list myelt<span style="color: #8ec07c;">)</span> vars<span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
+          <span style="color: #458588;">(</span><span style="color: #fb4933;">when</span> <span style="color: #b16286;">(</span>not <span style="color: #8ec07c;">(</span>atom myelt<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span>
+            <span style="color: #b16286;">(</span>setf vars <span style="color: #8ec07c;">(</span>union <span style="color: #d65d0e;">(</span>find-variables-in-statement myelt<span style="color: #d65d0e;">)</span> vars<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+    vars<span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 
-<span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">find-constants-in-statement</span> <span style="color: #ffaacf;">(</span>statement<span style="color: #ffaacf;">)</span>
-  <span style="color: #caa89f; font-style: italic;">"find all constants in a statement, constants are non-variable literals, basically words that arent predicates (symbol at the beginning of a list) or variables (symbol starting with '?')"</span>
-  <span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">if</span> <span style="color: #80aadf;">(</span>atom statement<span style="color: #80aadf;">)</span>
-      <span style="color: #80aadf;">(</span><span style="color: #deb07a; font-weight: bold;">if</span> <span style="color: #e47980;">(</span>variable? statement<span style="color: #e47980;">)</span>
+<span style="color: #458588;">(</span><span style="color: #fb4933;">defun</span> <span style="color: #fabd2f;">find-constants-in-statement</span> <span style="color: #b16286;">(</span>statement<span style="color: #b16286;">)</span>
+  <span style="color: #b8bb26;">"find all constants in a statement, constants are non-variable literals, basically words that arent predicates (symbol at the beginning of a list) or variables (symbol starting with '?')"</span>
+  <span style="color: #b16286;">(</span><span style="color: #fb4933;">if</span> <span style="color: #8ec07c;">(</span>atom statement<span style="color: #8ec07c;">)</span>
+      <span style="color: #8ec07c;">(</span><span style="color: #fb4933;">if</span> <span style="color: #d65d0e;">(</span>variable? statement<span style="color: #d65d0e;">)</span>
           nil
-          <span style="color: #e47980;">(</span>list statement<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
-      <span style="color: #80aadf;">(</span><span style="color: #deb07a; font-weight: bold;">let</span> <span style="color: #e47980;">(</span><span style="color: #d0b0ff;">(</span>constants<span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span>
-        <span style="color: #e47980;">(</span><span style="color: #deb07a; font-weight: bold;">loop</span> for myelt in <span style="color: #d0b0ff;">(</span>cdr statement<span style="color: #d0b0ff;">)</span> do
-          <span style="color: #d0b0ff;">(</span><span style="color: #deb07a; font-weight: bold;">if</span> <span style="color: #3fc489;">(</span>compound? myelt<span style="color: #3fc489;">)</span>
-              <span style="color: #3fc489;">(</span>setf constants <span style="color: #6fb3c0;">(</span>union <span style="color: #c0b24f;">(</span>find-constants-in-statement <span style="color: #f3a0a0;">(</span>cdr myelt<span style="color: #f3a0a0;">)</span><span style="color: #c0b24f;">)</span> constants<span style="color: #6fb3c0;">)</span><span style="color: #3fc489;">)</span>
-              <span style="color: #3fc489;">(</span>setf constants <span style="color: #6fb3c0;">(</span>union <span style="color: #c0b24f;">(</span>find-constants-in-statement myelt<span style="color: #c0b24f;">)</span> constants<span style="color: #6fb3c0;">)</span><span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span>
-        constants<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+          <span style="color: #d65d0e;">(</span>list statement<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+      <span style="color: #8ec07c;">(</span><span style="color: #fb4933;">let</span> <span style="color: #d65d0e;">(</span><span style="color: #458588;">(</span>constants<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span>
+        <span style="color: #d65d0e;">(</span><span style="color: #fb4933;">loop</span> for myelt in <span style="color: #458588;">(</span>cdr statement<span style="color: #458588;">)</span> do
+          <span style="color: #458588;">(</span><span style="color: #fb4933;">if</span> <span style="color: #b16286;">(</span>compound? myelt<span style="color: #b16286;">)</span>
+              <span style="color: #b16286;">(</span>setf constants <span style="color: #8ec07c;">(</span>union <span style="color: #d65d0e;">(</span>find-constants-in-statement <span style="color: #458588;">(</span>cdr myelt<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span> constants<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span>
+              <span style="color: #b16286;">(</span>setf constants <span style="color: #8ec07c;">(</span>union <span style="color: #d65d0e;">(</span>find-constants-in-statement myelt<span style="color: #d65d0e;">)</span> constants<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span>
+        constants<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 
-<span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">find-constants-in-knowledge-base</span> <span style="color: #ffaacf;">(</span>knowledge-base<span style="color: #ffaacf;">)</span>
-  <span style="color: #caa89f; font-style: italic;">"find all constants in a knowledge base"</span>
-  <span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">let</span> <span style="color: #80aadf;">(</span><span style="color: #e47980;">(</span>constants<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span><span style="color: #deb07a; font-weight: bold;">loop</span> for statement in knowledge-base do
-      <span style="color: #e47980;">(</span>setf constants <span style="color: #d0b0ff;">(</span>union <span style="color: #3fc489;">(</span>find-constants-in-statement statement<span style="color: #3fc489;">)</span> constants<span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
-    constants<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<span style="color: #458588;">(</span><span style="color: #fb4933;">defun</span> <span style="color: #fabd2f;">find-constants-in-knowledge-base</span> <span style="color: #b16286;">(</span>knowledge-base<span style="color: #b16286;">)</span>
+  <span style="color: #b8bb26;">"find all constants in a knowledge base"</span>
+  <span style="color: #b16286;">(</span><span style="color: #fb4933;">let</span> <span style="color: #8ec07c;">(</span><span style="color: #d65d0e;">(</span>constants<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span><span style="color: #fb4933;">loop</span> for statement in knowledge-base do
+      <span style="color: #d65d0e;">(</span>setf constants <span style="color: #458588;">(</span>union <span style="color: #b16286;">(</span>find-constants-in-statement statement<span style="color: #b16286;">)</span> constants<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+    constants<span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 
-<span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">standardize-variables</span> <span style="color: #ffaacf;">(</span>formula<span style="color: #ffaacf;">)</span>
-  <span style="color: #caa89f; font-style: italic;">"replace variables with new unseen unique variable names, implementation is inefficient but it'll do for now</span>
-<span style="color: #caa89f; font-style: italic;">example usage:</span>
-<span style="color: #caa89f; font-style: italic;">CL-USER&gt; (setf a '(hi ?there (whats up) up ?there ?what))</span>
-<span style="color: #caa89f; font-style: italic;">CL-USER&gt; (standardize-variables a)</span>
-<span style="color: #caa89f; font-style: italic;">(HI #:?479 (WHATS UP) UP #:?479 #:?481)</span>
-<span style="color: #caa89f; font-style: italic;">CL-USER&gt; (standardize-variables '(implies (and (king ?x) (greedy ?x)) (evil ?x)))</span>
-<span style="color: #caa89f; font-style: italic;">(IMPLIES (AND (KING #:?495) (GREEDY #:?495)) (EVIL #:?495))</span>
-<span style="color: #caa89f; font-style: italic;">"</span>
-  <span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">let</span> <span style="color: #80aadf;">(</span><span style="color: #e47980;">(</span>vars <span style="color: #d0b0ff;">(</span><span style="color: #deb07a; font-weight: bold;">if</span> <span style="color: #3fc489;">(</span>compound? formula<span style="color: #3fc489;">)</span>
-                  <span style="color: #3fc489;">(</span>find-variables-in-statement formula<span style="color: #3fc489;">)</span>
-                  nil<span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">nil if the formula is just a constant</span>
-    <span style="color: #80aadf;">(</span><span style="color: #deb07a; font-weight: bold;">loop</span> for var in vars do
-      <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">generate a new variable (symbol) that starts with '?' to replace each variable</span>
-      <span style="color: #e47980;">(</span>setf formula <span style="color: #d0b0ff;">(</span>subst <span style="color: #3fc489;">(</span>gensym <span style="color: #f3a0a0;">"?"</span><span style="color: #3fc489;">)</span> var formula<span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
-    formula<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<span style="color: #458588;">(</span><span style="color: #fb4933;">defun</span> <span style="color: #fabd2f;">standardize-variables</span> <span style="color: #b16286;">(</span>formula<span style="color: #b16286;">)</span>
+  <span style="color: #b8bb26;">"replace variables with new unseen unique variable names, implementation is inefficient but it'll do for now</span>
+<span style="color: #b8bb26;">example usage:</span>
+<span style="color: #b8bb26;">CL-USER&gt; (setf a '(hi ?there (whats up) up ?there ?what))</span>
+<span style="color: #b8bb26;">CL-USER&gt; (standardize-variables a)</span>
+<span style="color: #b8bb26;">(HI #:?479 (WHATS UP) UP #:?479 #:?481)</span>
+<span style="color: #b8bb26;">CL-USER&gt; (standardize-variables '(implies (and (king ?x) (greedy ?x)) (evil ?x)))</span>
+<span style="color: #b8bb26;">(IMPLIES (AND (KING #:?495) (GREEDY #:?495)) (EVIL #:?495))</span>
+<span style="color: #b8bb26;">"</span>
+  <span style="color: #b16286;">(</span><span style="color: #fb4933;">let</span> <span style="color: #8ec07c;">(</span><span style="color: #d65d0e;">(</span>vars <span style="color: #458588;">(</span><span style="color: #fb4933;">if</span> <span style="color: #b16286;">(</span>compound? formula<span style="color: #b16286;">)</span>
+                  <span style="color: #b16286;">(</span>find-variables-in-statement formula<span style="color: #b16286;">)</span>
+                  nil<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">nil if the formula is just a constant</span>
+    <span style="color: #8ec07c;">(</span><span style="color: #fb4933;">loop</span> for var in vars do
+      <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">generate a new variable (symbol) that starts with '?' to replace each variable</span>
+      <span style="color: #d65d0e;">(</span>setf formula <span style="color: #458588;">(</span>subst <span style="color: #b16286;">(</span>gensym <span style="color: #b8bb26;">"?"</span><span style="color: #b16286;">)</span> var formula<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+    formula<span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 
-<span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">all-substitutions</span> <span style="color: #ffaacf;">(</span>variables constants<span style="color: #ffaacf;">)</span>
-  <span style="color: #caa89f; font-style: italic;">"generate all possible substitutions, a substitution is a list of cons's"</span>
-  <span style="color: #ffaacf;">(</span>list* nil <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">nil is a possible substitution too</span>
-         <span style="color: #80aadf;">(</span>concatenate*
-          <span style="color: #e47980;">(</span><span style="color: #deb07a; font-weight: bold;">let</span> <span style="color: #d0b0ff;">(</span><span style="color: #3fc489;">(</span>variable-combinations <span style="color: #6fb3c0;">(</span>combinations-upto-length variables<span style="color: #6fb3c0;">)</span><span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span>
-            <span style="color: #d0b0ff;">(</span><span style="color: #deb07a; font-weight: bold;">loop</span> for variable-combination in variable-combinations
-                  collect <span style="color: #3fc489;">(</span><span style="color: #deb07a; font-weight: bold;">let</span> <span style="color: #6fb3c0;">(</span><span style="color: #c0b24f;">(</span>constant-variations <span style="color: #f3a0a0;">(</span>variations-with-repetition constants <span style="color: #deb07a;">(</span>length variable-combination<span style="color: #deb07a;">)</span><span style="color: #f3a0a0;">)</span><span style="color: #c0b24f;">)</span><span style="color: #6fb3c0;">)</span>
-                            <span style="color: #6fb3c0;">(</span><span style="color: #deb07a; font-weight: bold;">loop</span> for constant-variation in constant-variations
-                                  collect <span style="color: #c0b24f;">(</span>pairlis variable-combination constant-variation<span style="color: #c0b24f;">)</span><span style="color: #6fb3c0;">)</span><span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<span style="color: #458588;">(</span><span style="color: #fb4933;">defun</span> <span style="color: #fabd2f;">all-substitutions</span> <span style="color: #b16286;">(</span>variables constants<span style="color: #b16286;">)</span>
+  <span style="color: #b8bb26;">"generate all possible substitutions, a substitution is a list of cons's"</span>
+  <span style="color: #b16286;">(</span>list* nil <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">nil is a possible substitution too</span>
+         <span style="color: #8ec07c;">(</span>concatenate*
+          <span style="color: #d65d0e;">(</span><span style="color: #fb4933;">let</span> <span style="color: #458588;">(</span><span style="color: #b16286;">(</span>variable-combinations <span style="color: #8ec07c;">(</span>combinations-upto-length variables<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
+            <span style="color: #458588;">(</span><span style="color: #fb4933;">loop</span> for variable-combination in variable-combinations
+                  collect <span style="color: #b16286;">(</span><span style="color: #fb4933;">let</span> <span style="color: #8ec07c;">(</span><span style="color: #d65d0e;">(</span>constant-variations <span style="color: #458588;">(</span>variations-with-repetition constants <span style="color: #458588;">(</span>length variable-combination<span style="color: #458588;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+                            <span style="color: #8ec07c;">(</span><span style="color: #fb4933;">loop</span> for constant-variation in constant-variations
+                                  collect <span style="color: #d65d0e;">(</span>pairlis variable-combination constant-variation<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 
-<span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">apply-substitution</span> <span style="color: #ffaacf;">(</span>sub formula<span style="color: #ffaacf;">)</span>
-  <span style="color: #caa89f; font-style: italic;">"given the substitution `</span><span style="color: #80aadf; font-style: italic;">sub</span><span style="color: #caa89f; font-style: italic;">', which is a list of conses (basically an alist), apply it to a given formula"</span>
-  <span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">loop</span> for entry in sub do
-    <span style="color: #80aadf;">(</span>setf formula <span style="color: #e47980;">(</span>subst <span style="color: #d0b0ff;">(</span>cdr entry<span style="color: #d0b0ff;">)</span> <span style="color: #d0b0ff;">(</span>car entry<span style="color: #d0b0ff;">)</span> formula<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span>
-  formula<span style="color: #deb07a;">)</span>
+<span style="color: #458588;">(</span><span style="color: #fb4933;">defun</span> <span style="color: #fabd2f;">apply-substitution</span> <span style="color: #b16286;">(</span>sub formula<span style="color: #b16286;">)</span>
+  <span style="color: #b8bb26;">"given the substitution `</span><span style="color: #d3869b;">sub</span><span style="color: #b8bb26;">', which is a list of conses (basically an alist), apply it to a given formula"</span>
+  <span style="color: #b16286;">(</span><span style="color: #fb4933;">loop</span> for entry in sub do
+    <span style="color: #8ec07c;">(</span>setf formula <span style="color: #d65d0e;">(</span>subst <span style="color: #458588;">(</span>cdr entry<span style="color: #458588;">)</span> <span style="color: #458588;">(</span>car entry<span style="color: #458588;">)</span> formula<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span>
+  formula<span style="color: #458588;">)</span>
 
-<span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">implication?</span> <span style="color: #ffaacf;">(</span>formula<span style="color: #ffaacf;">)</span>
-  <span style="color: #caa89f; font-style: italic;">"check whether a logic formula is an implication formula of the form 'something =&gt; something' or in lisp (implies something something)"</span>
-  <span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">when</span> <span style="color: #80aadf;">(</span>compound? formula<span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span>eq <span style="color: #e47980;">(</span>first formula<span style="color: #e47980;">)</span> 'implies<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<span style="color: #458588;">(</span><span style="color: #fb4933;">defun</span> <span style="color: #fabd2f;">implication?</span> <span style="color: #b16286;">(</span>formula<span style="color: #b16286;">)</span>
+  <span style="color: #b8bb26;">"check whether a logic formula is an implication formula of the form 'something =&gt; something' or in lisp (implies something something)"</span>
+  <span style="color: #b16286;">(</span><span style="color: #fb4933;">when</span> <span style="color: #8ec07c;">(</span>compound? formula<span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>eq <span style="color: #d65d0e;">(</span>first formula<span style="color: #d65d0e;">)</span> 'implies<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 
-<span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">parse-implication</span> <span style="color: #ffaacf;">(</span>formula<span style="color: #ffaacf;">)</span>
-  <span style="color: #caa89f; font-style: italic;">"given an implication formula `</span><span style="color: #80aadf; font-style: italic;">formula</span><span style="color: #caa89f; font-style: italic;">', return both the implying expression and the implied expression (precedent and consequent)"</span>
-  <span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">if</span> <span style="color: #80aadf;">(</span>implication? formula<span style="color: #80aadf;">)</span>
-      <span style="color: #80aadf;">(</span>values <span style="color: #e47980;">(</span>second formula<span style="color: #e47980;">)</span> <span style="color: #e47980;">(</span>third formula<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
-      <span style="color: #80aadf;">(</span>values nil formula<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<span style="color: #458588;">(</span><span style="color: #fb4933;">defun</span> <span style="color: #fabd2f;">parse-implication</span> <span style="color: #b16286;">(</span>formula<span style="color: #b16286;">)</span>
+  <span style="color: #b8bb26;">"given an implication formula `</span><span style="color: #d3869b;">formula</span><span style="color: #b8bb26;">', return both the implying expression and the implied expression (precedent and consequent)"</span>
+  <span style="color: #b16286;">(</span><span style="color: #fb4933;">if</span> <span style="color: #8ec07c;">(</span>implication? formula<span style="color: #8ec07c;">)</span>
+      <span style="color: #8ec07c;">(</span>values <span style="color: #d65d0e;">(</span>second formula<span style="color: #d65d0e;">)</span> <span style="color: #d65d0e;">(</span>third formula<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+      <span style="color: #8ec07c;">(</span>values nil formula<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 
-<span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">conjunction?</span> <span style="color: #ffaacf;">(</span>formula<span style="color: #ffaacf;">)</span>
-  <span style="color: #caa89f; font-style: italic;">"check if a formula is a conjunction of predicates"</span>
-  <span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">when</span> <span style="color: #80aadf;">(</span>compound? formula<span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span>eq <span style="color: #e47980;">(</span>first formula<span style="color: #e47980;">)</span> 'and<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<span style="color: #458588;">(</span><span style="color: #fb4933;">defun</span> <span style="color: #fabd2f;">conjunction?</span> <span style="color: #b16286;">(</span>formula<span style="color: #b16286;">)</span>
+  <span style="color: #b8bb26;">"check if a formula is a conjunction of predicates"</span>
+  <span style="color: #b16286;">(</span><span style="color: #fb4933;">when</span> <span style="color: #8ec07c;">(</span>compound? formula<span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>eq <span style="color: #d65d0e;">(</span>first formula<span style="color: #d65d0e;">)</span> 'and<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 
-<span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">forward-chaining</span> <span style="color: #ffaacf;">(</span>knowledge-base query <span style="color: #a9c99f;">&amp;optional</span> <span style="color: #80aadf;">(</span>add-query-to-kb t<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span>
-  <span style="color: #caa89f; font-style: italic;">"apply the forward chaining algorithm to the knowledge base `</span><span style="color: #80aadf; font-style: italic;">knowledge-base</span><span style="color: #caa89f; font-style: italic;">' and the query `</span><span style="color: #80aadf; font-style: italic;">query</span><span style="color: #caa89f; font-style: italic;">', tries to infer the query from the knowledge base, returns `</span><span style="color: #80aadf; font-style: italic;">nil</span><span style="color: #caa89f; font-style: italic;">' if it fails, if `</span><span style="color: #80aadf; font-style: italic;">add-query-to-kb</span><span style="color: #caa89f; font-style: italic;">' is `</span><span style="color: #80aadf; font-style: italic;">t</span><span style="color: #caa89f; font-style: italic;">', `</span><span style="color: #80aadf; font-style: italic;">query</span><span style="color: #caa89f; font-style: italic;">' gets added to the knowledge base (along with the other conclusions)"</span>
-  <span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">let</span> <span style="color: #80aadf;">(</span><span style="color: #e47980;">(</span>inference-alist-list<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">list of association lists that holds the antecedents of the inferences, each association list corresponds to a chaining step</span>
-    <span style="color: #80aadf;">(</span><span style="color: #deb07a; font-weight: bold;">loop</span> do
-      <span style="color: #e47980;">(</span><span style="color: #deb07a; font-weight: bold;">let</span> <span style="color: #d0b0ff;">(</span><span style="color: #3fc489;">(</span>new<span style="color: #3fc489;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">list to hold newly inferred sentences on each iteration</span>
-            <span style="color: #3fc489;">(</span>inference-alist<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span>
-        <span style="color: #d0b0ff;">(</span><span style="color: #deb07a; font-weight: bold;">loop</span> for formula in knowledge-base do
-          <span style="color: #3fc489;">(</span><span style="color: #deb07a; font-weight: bold;">when</span> <span style="color: #6fb3c0;">(</span>implication? formula<span style="color: #6fb3c0;">)</span>
-            <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">in an implication 'a-&gt;b', 'a' is the antecedent and 'b' is the consequent</span>
-            <span style="color: #6fb3c0;">(</span><span style="color: #deb07a; font-weight: bold;">multiple-value-bind</span> <span style="color: #c0b24f;">(</span>antecedent consequent<span style="color: #c0b24f;">)</span>
-                <span style="color: #c0b24f;">(</span>parse-implication formula<span style="color: #c0b24f;">)</span>
-              <span style="color: #c0b24f;">(</span><span style="color: #deb07a; font-weight: bold;">let*</span> <span style="color: #f3a0a0;">(</span><span style="color: #deb07a;">(</span>standardized-antecedent <span style="color: #ffaacf;">(</span>standardize-variables antecedent<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">change variable names in formula to avoid unification problems, see [[id:40d1a33f-7e80-4b94-bc0c-c778beefca01::note:note1]]</span>
-                     <span style="color: #deb07a;">(</span>vars <span style="color: #ffaacf;">(</span>append <span style="color: #80aadf;">(</span>find-variables-in-statement formula<span style="color: #80aadf;">)</span>
-                                   <span style="color: #80aadf;">(</span>find-variables-in-statement standardized-antecedent<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span><span style="color: #f3a0a0;">)</span>
-                <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">generate possible values for the substitution, see [[id:bd481a5c-e869-440e-be1d-33e0838620f9::note:theta_domain]]</span>
-                <span style="color: #f3a0a0;">(</span><span style="color: #deb07a; font-weight: bold;">loop</span> for sub in <span style="color: #deb07a;">(</span>all-substitutions vars <span style="color: #ffaacf;">(</span>find-constants-in-knowledge-base knowledge-base<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span> do
-                  <span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">loop</span> for some-premises in <span style="color: #ffaacf;">(</span>variations-upto-length
-                                              <span style="color: #80aadf;">(</span>remove-if #'implication?
-                                                         knowledge-base<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span>
-                        do <span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">when</span> <span style="color: #80aadf;">(</span>or <span style="color: #e47980;">(</span>equal <span style="color: #d0b0ff;">(</span>apply-substitution sub antecedent<span style="color: #d0b0ff;">)</span>
-                                            <span style="color: #d0b0ff;">(</span>apply-substitution sub <span style="color: #3fc489;">(</span>list* 'and some-premises<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">construct the AND (conjunction) predicate</span>
-                                     <span style="color: #e47980;">(</span>equal <span style="color: #d0b0ff;">(</span>apply-substitution sub <span style="color: #3fc489;">(</span>list antecedent<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span>
-                                            <span style="color: #d0b0ff;">(</span>apply-substitution sub some-premises<span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
-                             <span style="color: #80aadf;">(</span><span style="color: #deb07a; font-weight: bold;">let</span> <span style="color: #e47980;">(</span><span style="color: #d0b0ff;">(</span>actual-consequent <span style="color: #3fc489;">(</span>apply-substitution sub consequent<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">non-standardized (original variables names) consequent</span>
-                                   <span style="color: #d0b0ff;">(</span>unifies nil<span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span>
-                               <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">check if it unifies with another formula something in `</span><span style="color: #80aadf; font-style: italic;">new</span><span style="color: #a0a0cf; font-style: italic;">'</span>
-                               <span style="color: #e47980;">(</span><span style="color: #deb07a; font-weight: bold;">loop</span> for other-formula in new do
-                                 <span style="color: #d0b0ff;">(</span>setf unifies <span style="color: #3fc489;">(</span>or unifies
-                                                   <span style="color: #6fb3c0;">(</span>unify-success? <span style="color: #c0b24f;">(</span>unify actual-consequent other-formula<span style="color: #c0b24f;">)</span><span style="color: #6fb3c0;">)</span><span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span>
-                               <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">check if it unifies with another formula something in `</span><span style="color: #80aadf; font-style: italic;">knowledge-base</span><span style="color: #a0a0cf; font-style: italic;">'</span>
-                               <span style="color: #e47980;">(</span><span style="color: #deb07a; font-weight: bold;">loop</span> for other-formula-again in knowledge-base do
-                                 <span style="color: #d0b0ff;">(</span>setf unifies <span style="color: #3fc489;">(</span>or unifies
-                                                   <span style="color: #6fb3c0;">(</span>unify-success? <span style="color: #c0b24f;">(</span>unify actual-consequent other-formula-again<span style="color: #c0b24f;">)</span><span style="color: #6fb3c0;">)</span><span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span>
-                               <span style="color: #e47980;">(</span><span style="color: #deb07a; font-weight: bold;">when</span> <span style="color: #d0b0ff;">(</span>not unifies<span style="color: #d0b0ff;">)</span>
-                                 <span style="color: #d0b0ff;">(</span>setf new <span style="color: #3fc489;">(</span>append new <span style="color: #6fb3c0;">(</span>list actual-consequent<span style="color: #6fb3c0;">)</span><span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span>
-                                 <span style="color: #d0b0ff;">(</span>setf inference-alist
-                                       <span style="color: #3fc489;">(</span>append inference-alist
-                                               <span style="color: #6fb3c0;">(</span>list <span style="color: #c0b24f;">(</span>cons actual-consequent
-                                                           <span style="color: #f3a0a0;">(</span>apply-substitution sub antecedent<span style="color: #f3a0a0;">)</span><span style="color: #c0b24f;">)</span><span style="color: #6fb3c0;">)</span><span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span>
-                                 <span style="color: #d0b0ff;">(</span><span style="color: #deb07a; font-weight: bold;">let</span> <span style="color: #3fc489;">(</span><span style="color: #6fb3c0;">(</span>unify-out <span style="color: #c0b24f;">(</span>unify actual-consequent query<span style="color: #c0b24f;">)</span><span style="color: #6fb3c0;">)</span><span style="color: #3fc489;">)</span>
-                                   <span style="color: #3fc489;">(</span><span style="color: #deb07a; font-weight: bold;">when</span> <span style="color: #6fb3c0;">(</span>unify-success? unify-out<span style="color: #6fb3c0;">)</span>
-                                     <span style="color: #6fb3c0;">(</span><span style="color: #deb07a; font-weight: bold;">when</span> add-query-to-kb
-                                       <span style="color: #c0b24f;">(</span>nconc knowledge-base new<span style="color: #c0b24f;">)</span><span style="color: #6fb3c0;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">final addition to knowledge base before returning</span>
-                                     <span style="color: #6fb3c0;">(</span>setf inference-alist-list <span style="color: #c0b24f;">(</span>append inference-alist-list <span style="color: #f3a0a0;">(</span>list inference-alist<span style="color: #f3a0a0;">)</span><span style="color: #c0b24f;">)</span><span style="color: #6fb3c0;">)</span>
-                                     <span style="color: #6fb3c0;">(</span><span style="color: #deb07a; font-weight: bold;">return-from</span> forward-chaining
-                                       <span style="color: #c0b24f;">(</span>values unify-out
-                                               inference-alist-list<span style="color: #c0b24f;">)</span><span style="color: #6fb3c0;">)</span><span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span><span style="color: #f3a0a0;">)</span><span style="color: #c0b24f;">)</span><span style="color: #6fb3c0;">)</span><span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span>
-        <span style="color: #d0b0ff;">(</span>setf inference-alist-list <span style="color: #3fc489;">(</span>append inference-alist-list <span style="color: #6fb3c0;">(</span>list inference-alist<span style="color: #6fb3c0;">)</span><span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span>
-        <span style="color: #d0b0ff;">(</span><span style="color: #deb07a; font-weight: bold;">if</span> new
-            <span style="color: #3fc489;">(</span>nconc knowledge-base new<span style="color: #3fc489;">)</span>
-            <span style="color: #3fc489;">(</span><span style="color: #deb07a; font-weight: bold;">return-from</span> forward-chaining <span style="color: #6fb3c0;">(</span>values nil inference-alist-list<span style="color: #6fb3c0;">)</span><span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<span style="color: #458588;">(</span><span style="color: #fb4933;">defun</span> <span style="color: #fabd2f;">forward-chaining</span> <span style="color: #b16286;">(</span>knowledge-base query <span style="color: #d3869b;">&amp;optional</span> <span style="color: #8ec07c;">(</span>add-query-to-kb t<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span>
+  <span style="color: #b8bb26;">"apply the forward chaining algorithm to the knowledge base `</span><span style="color: #d3869b;">knowledge-base</span><span style="color: #b8bb26;">' and the query `</span><span style="color: #d3869b;">query</span><span style="color: #b8bb26;">', tries to infer the query from the knowledge base, returns `</span><span style="color: #d3869b;">nil</span><span style="color: #b8bb26;">' if it fails, if `</span><span style="color: #d3869b;">add-query-to-kb</span><span style="color: #b8bb26;">' is `</span><span style="color: #d3869b;">t</span><span style="color: #b8bb26;">', `</span><span style="color: #d3869b;">query</span><span style="color: #b8bb26;">' gets added to the knowledge base (along with the other conclusions)"</span>
+  <span style="color: #b16286;">(</span><span style="color: #fb4933;">let</span> <span style="color: #8ec07c;">(</span><span style="color: #d65d0e;">(</span>inference-alist-list<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">list of association lists that holds the antecedents of the inferences, each association list corresponds to a chaining step</span>
+    <span style="color: #8ec07c;">(</span><span style="color: #fb4933;">loop</span> do
+      <span style="color: #d65d0e;">(</span><span style="color: #fb4933;">let</span> <span style="color: #458588;">(</span><span style="color: #b16286;">(</span>new<span style="color: #b16286;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">list to hold newly inferred sentences on each iteration</span>
+            <span style="color: #b16286;">(</span>inference-alist<span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
+        <span style="color: #458588;">(</span><span style="color: #fb4933;">loop</span> for formula in knowledge-base do
+          <span style="color: #b16286;">(</span><span style="color: #fb4933;">when</span> <span style="color: #8ec07c;">(</span>implication? formula<span style="color: #8ec07c;">)</span>
+            <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">in an implication 'a-&gt;b', 'a' is the antecedent and 'b' is the consequent</span>
+            <span style="color: #8ec07c;">(</span><span style="color: #fb4933;">multiple-value-bind</span> <span style="color: #d65d0e;">(</span>antecedent consequent<span style="color: #d65d0e;">)</span>
+                <span style="color: #d65d0e;">(</span>parse-implication formula<span style="color: #d65d0e;">)</span>
+              <span style="color: #d65d0e;">(</span><span style="color: #fb4933;">let*</span> <span style="color: #458588;">(</span><span style="color: #458588;">(</span>standardized-antecedent <span style="color: #b16286;">(</span>standardize-variables antecedent<span style="color: #b16286;">)</span><span style="color: #458588;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">change variable names in formula to avoid unification problems, see [[id:40d1a33f-7e80-4b94-bc0c-c778beefca01::note:note1]]</span>
+                     <span style="color: #458588;">(</span>vars <span style="color: #b16286;">(</span>append <span style="color: #8ec07c;">(</span>find-variables-in-statement formula<span style="color: #8ec07c;">)</span>
+                                   <span style="color: #8ec07c;">(</span>find-variables-in-statement standardized-antecedent<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #458588;">)</span>
+                <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">generate possible values for the substitution, see [[id:bd481a5c-e869-440e-be1d-33e0838620f9::note:theta_domain]]</span>
+                <span style="color: #458588;">(</span><span style="color: #fb4933;">loop</span> for sub in <span style="color: #458588;">(</span>all-substitutions vars <span style="color: #b16286;">(</span>find-constants-in-knowledge-base knowledge-base<span style="color: #b16286;">)</span><span style="color: #458588;">)</span> do
+                  <span style="color: #458588;">(</span><span style="color: #fb4933;">loop</span> for some-premises in <span style="color: #b16286;">(</span>variations-upto-length
+                                              <span style="color: #8ec07c;">(</span>remove-if #'implication?
+                                                         knowledge-base<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span>
+                        do <span style="color: #b16286;">(</span><span style="color: #fb4933;">when</span> <span style="color: #8ec07c;">(</span>or <span style="color: #d65d0e;">(</span>equal <span style="color: #458588;">(</span>apply-substitution sub antecedent<span style="color: #458588;">)</span>
+                                            <span style="color: #458588;">(</span>apply-substitution sub <span style="color: #b16286;">(</span>list* 'and some-premises<span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">construct the AND (conjunction) predicate</span>
+                                     <span style="color: #d65d0e;">(</span>equal <span style="color: #458588;">(</span>apply-substitution sub <span style="color: #b16286;">(</span>list antecedent<span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
+                                            <span style="color: #458588;">(</span>apply-substitution sub some-premises<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+                             <span style="color: #8ec07c;">(</span><span style="color: #fb4933;">let</span> <span style="color: #d65d0e;">(</span><span style="color: #458588;">(</span>actual-consequent <span style="color: #b16286;">(</span>apply-substitution sub consequent<span style="color: #b16286;">)</span><span style="color: #458588;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">non-standardized (original variables names) consequent</span>
+                                   <span style="color: #458588;">(</span>unifies nil<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span>
+                               <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">check if it unifies with another formula something in `</span><span style="color: #d3869b;">new</span><span style="color: #7c6f64;">'</span>
+                               <span style="color: #d65d0e;">(</span><span style="color: #fb4933;">loop</span> for other-formula in new do
+                                 <span style="color: #458588;">(</span>setf unifies <span style="color: #b16286;">(</span>or unifies
+                                                   <span style="color: #8ec07c;">(</span>unify-success? <span style="color: #d65d0e;">(</span>unify actual-consequent other-formula<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span>
+                               <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">check if it unifies with another formula something in `</span><span style="color: #d3869b;">knowledge-base</span><span style="color: #7c6f64;">'</span>
+                               <span style="color: #d65d0e;">(</span><span style="color: #fb4933;">loop</span> for other-formula-again in knowledge-base do
+                                 <span style="color: #458588;">(</span>setf unifies <span style="color: #b16286;">(</span>or unifies
+                                                   <span style="color: #8ec07c;">(</span>unify-success? <span style="color: #d65d0e;">(</span>unify actual-consequent other-formula-again<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span>
+                               <span style="color: #d65d0e;">(</span><span style="color: #fb4933;">when</span> <span style="color: #458588;">(</span>not unifies<span style="color: #458588;">)</span>
+                                 <span style="color: #458588;">(</span>setf new <span style="color: #b16286;">(</span>append new <span style="color: #8ec07c;">(</span>list actual-consequent<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
+                                 <span style="color: #458588;">(</span>setf inference-alist
+                                       <span style="color: #b16286;">(</span>append inference-alist
+                                               <span style="color: #8ec07c;">(</span>list <span style="color: #d65d0e;">(</span>cons actual-consequent
+                                                           <span style="color: #458588;">(</span>apply-substitution sub antecedent<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
+                                 <span style="color: #458588;">(</span><span style="color: #fb4933;">let</span> <span style="color: #b16286;">(</span><span style="color: #8ec07c;">(</span>unify-out <span style="color: #d65d0e;">(</span>unify actual-consequent query<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span>
+                                   <span style="color: #b16286;">(</span><span style="color: #fb4933;">when</span> <span style="color: #8ec07c;">(</span>unify-success? unify-out<span style="color: #8ec07c;">)</span>
+                                     <span style="color: #8ec07c;">(</span><span style="color: #fb4933;">when</span> add-query-to-kb
+                                       <span style="color: #d65d0e;">(</span>nconc knowledge-base new<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">final addition to knowledge base before returning</span>
+                                     <span style="color: #8ec07c;">(</span>setf inference-alist-list <span style="color: #d65d0e;">(</span>append inference-alist-list <span style="color: #458588;">(</span>list inference-alist<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+                                     <span style="color: #8ec07c;">(</span><span style="color: #fb4933;">return-from</span> forward-chaining
+                                       <span style="color: #d65d0e;">(</span>values unify-out
+                                               inference-alist-list<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
+        <span style="color: #458588;">(</span>setf inference-alist-list <span style="color: #b16286;">(</span>append inference-alist-list <span style="color: #8ec07c;">(</span>list inference-alist<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
+        <span style="color: #458588;">(</span><span style="color: #fb4933;">if</span> new
+            <span style="color: #b16286;">(</span>nconc knowledge-base new<span style="color: #b16286;">)</span>
+            <span style="color: #b16286;">(</span><span style="color: #fb4933;">return-from</span> forward-chaining <span style="color: #8ec07c;">(</span>values nil inference-alist-list<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 </pre>
 </div>
 
@@ -459,23 +459,23 @@ next up, we need to implement <a href="/forward_chaining.html">forward chaining<
 example usage:
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">forward-chaining-test-1</span> <span style="color: #ffaacf;">()</span>
-  <span style="color: #ffaacf;">(</span>setf *forward-chaining-test-1-kb*
-        '<span style="color: #80aadf;">(</span><span style="color: #e47980;">(</span>implies <span style="color: #d0b0ff;">(</span>and <span style="color: #3fc489;">(</span>american ?x<span style="color: #3fc489;">)</span> <span style="color: #3fc489;">(</span>weapon ?y<span style="color: #3fc489;">)</span> <span style="color: #3fc489;">(</span>sells ?x ?y ?z<span style="color: #3fc489;">)</span> <span style="color: #3fc489;">(</span>hostile ?z<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span> <span style="color: #d0b0ff;">(</span>criminal ?x<span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span>
-          <span style="color: #e47980;">(</span>implies <span style="color: #d0b0ff;">(</span>and <span style="color: #3fc489;">(</span>missile ?x<span style="color: #3fc489;">)</span> <span style="color: #3fc489;">(</span>owns nono ?x<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span> <span style="color: #d0b0ff;">(</span>sells west ?x nono<span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span>
-          <span style="color: #e47980;">(</span>implies <span style="color: #d0b0ff;">(</span>missile ?x<span style="color: #d0b0ff;">)</span> <span style="color: #d0b0ff;">(</span>weapon ?x<span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span>
-          <span style="color: #e47980;">(</span>implies <span style="color: #d0b0ff;">(</span>enemy ?x america<span style="color: #d0b0ff;">)</span> <span style="color: #d0b0ff;">(</span>hostile ?x<span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span>
-          <span style="color: #e47980;">(</span>owns nono m1<span style="color: #e47980;">)</span>
-          <span style="color: #e47980;">(</span>missile m1<span style="color: #e47980;">)</span>
-          <span style="color: #e47980;">(</span>american west<span style="color: #e47980;">)</span>
-          <span style="color: #e47980;">(</span>enemy nono america<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span>
-  <span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">let</span> <span style="color: #80aadf;">(</span><span style="color: #e47980;">(</span>kb2 <span style="color: #d0b0ff;">(</span>copy-tree *forward-chaining-test-1-kb*<span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span><span style="color: #deb07a; font-weight: bold;">multiple-value-bind</span> <span style="color: #e47980;">(</span>substitution inference-alist-list<span style="color: #e47980;">)</span>
-        <span style="color: #e47980;">(</span>forward-chaining kb2 '<span style="color: #d0b0ff;">(</span>criminal west<span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span>
-      <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">not a good idea to use setf but should be fine for debugging</span>
-      <span style="color: #e47980;">(</span>setf *forward-chaining-test-1-inference-alist-list* inference-alist-list<span style="color: #e47980;">)</span>
-      <span style="color: #e47980;">(</span>setf *forward-chaining-test-1-kb-result* kb2<span style="color: #e47980;">)</span>
-      kb2<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span><span style="color: #fb4933;">defun</span> <span style="color: #fabd2f;">forward-chaining-test-1</span> <span style="color: #b16286;">()</span>
+  <span style="color: #b16286;">(</span>setf *forward-chaining-test-1-kb*
+        '<span style="color: #8ec07c;">(</span><span style="color: #d65d0e;">(</span>implies <span style="color: #458588;">(</span>and <span style="color: #b16286;">(</span>american ?x<span style="color: #b16286;">)</span> <span style="color: #b16286;">(</span>weapon ?y<span style="color: #b16286;">)</span> <span style="color: #b16286;">(</span>sells ?x ?y ?z<span style="color: #b16286;">)</span> <span style="color: #b16286;">(</span>hostile ?z<span style="color: #b16286;">)</span><span style="color: #458588;">)</span> <span style="color: #458588;">(</span>criminal ?x<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span>
+          <span style="color: #d65d0e;">(</span>implies <span style="color: #458588;">(</span>and <span style="color: #b16286;">(</span>missile ?x<span style="color: #b16286;">)</span> <span style="color: #b16286;">(</span>owns nono ?x<span style="color: #b16286;">)</span><span style="color: #458588;">)</span> <span style="color: #458588;">(</span>sells west ?x nono<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span>
+          <span style="color: #d65d0e;">(</span>implies <span style="color: #458588;">(</span>missile ?x<span style="color: #458588;">)</span> <span style="color: #458588;">(</span>weapon ?x<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span>
+          <span style="color: #d65d0e;">(</span>implies <span style="color: #458588;">(</span>enemy ?x america<span style="color: #458588;">)</span> <span style="color: #458588;">(</span>hostile ?x<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span>
+          <span style="color: #d65d0e;">(</span>owns nono m1<span style="color: #d65d0e;">)</span>
+          <span style="color: #d65d0e;">(</span>missile m1<span style="color: #d65d0e;">)</span>
+          <span style="color: #d65d0e;">(</span>american west<span style="color: #d65d0e;">)</span>
+          <span style="color: #d65d0e;">(</span>enemy nono america<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span>
+  <span style="color: #b16286;">(</span><span style="color: #fb4933;">let</span> <span style="color: #8ec07c;">(</span><span style="color: #d65d0e;">(</span>kb2 <span style="color: #458588;">(</span>copy-tree *forward-chaining-test-1-kb*<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span><span style="color: #fb4933;">multiple-value-bind</span> <span style="color: #d65d0e;">(</span>substitution inference-alist-list<span style="color: #d65d0e;">)</span>
+        <span style="color: #d65d0e;">(</span>forward-chaining kb2 '<span style="color: #458588;">(</span>criminal west<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span>
+      <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">not a good idea to use setf but should be fine for debugging</span>
+      <span style="color: #d65d0e;">(</span>setf *forward-chaining-test-1-inference-alist-list* inference-alist-list<span style="color: #d65d0e;">)</span>
+      <span style="color: #d65d0e;">(</span>setf *forward-chaining-test-1-kb-result* kb2<span style="color: #d65d0e;">)</span>
+      kb2<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 </pre>
 </div>
 
@@ -483,30 +483,30 @@ example usage:
 some functions (that do their best) to "unpack" a knowledge base by unpacking conjunctions and implications into multiple smaller statements that are easier to deal with (there isnt much we can do when the precedent of an implication is a <a href="/logical_connective.html">logical connective</a>)
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">unpack-implication</span> <span style="color: #ffaacf;">(</span>implication<span style="color: #ffaacf;">)</span>
-  <span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">multiple-value-bind</span> <span style="color: #80aadf;">(</span>antecedent consequent<span style="color: #80aadf;">)</span>
-      <span style="color: #80aadf;">(</span>parse-implication implication<span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span><span style="color: #deb07a; font-weight: bold;">if</span> <span style="color: #e47980;">(</span>conjunction? consequent<span style="color: #e47980;">)</span>
-        <span style="color: #e47980;">(</span>mapcar <span style="color: #d0b0ff;">(</span><span style="color: #deb07a; font-weight: bold;">lambda</span> <span style="color: #3fc489;">(</span>consequent-predicate<span style="color: #3fc489;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">one predicate from the conjunction in the consequent</span>
-                  <span style="color: #3fc489;">(</span>list 'implies antecedent consequent-predicate<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span>
-                <span style="color: #d0b0ff;">(</span>unpack-conjunction consequent<span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span>
-        <span style="color: #e47980;">(</span>list implication<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span><span style="color: #fb4933;">defun</span> <span style="color: #fabd2f;">unpack-implication</span> <span style="color: #b16286;">(</span>implication<span style="color: #b16286;">)</span>
+  <span style="color: #b16286;">(</span><span style="color: #fb4933;">multiple-value-bind</span> <span style="color: #8ec07c;">(</span>antecedent consequent<span style="color: #8ec07c;">)</span>
+      <span style="color: #8ec07c;">(</span>parse-implication implication<span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span><span style="color: #fb4933;">if</span> <span style="color: #d65d0e;">(</span>conjunction? consequent<span style="color: #d65d0e;">)</span>
+        <span style="color: #d65d0e;">(</span>mapcar <span style="color: #458588;">(</span><span style="color: #fb4933;">lambda</span> <span style="color: #b16286;">(</span>consequent-predicate<span style="color: #b16286;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">one predicate from the conjunction in the consequent</span>
+                  <span style="color: #b16286;">(</span>list 'implies antecedent consequent-predicate<span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
+                <span style="color: #458588;">(</span>unpack-conjunction consequent<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span>
+        <span style="color: #d65d0e;">(</span>list implication<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 
-<span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">unpack-conjunction</span> <span style="color: #ffaacf;">(</span>conjunction<span style="color: #ffaacf;">)</span>
-  <span style="color: #ffaacf;">(</span>cdr conjunction<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<span style="color: #458588;">(</span><span style="color: #fb4933;">defun</span> <span style="color: #fabd2f;">unpack-conjunction</span> <span style="color: #b16286;">(</span>conjunction<span style="color: #b16286;">)</span>
+  <span style="color: #b16286;">(</span>cdr conjunction<span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 
-<span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">unpack-formula</span> <span style="color: #ffaacf;">(</span>formula<span style="color: #ffaacf;">)</span>
-  <span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">if</span> <span style="color: #80aadf;">(</span>implication? formula<span style="color: #80aadf;">)</span>
-      <span style="color: #80aadf;">(</span>unpack-implication formula<span style="color: #80aadf;">)</span>
-      <span style="color: #80aadf;">(</span><span style="color: #deb07a; font-weight: bold;">if</span> <span style="color: #e47980;">(</span>conjunction? formula<span style="color: #e47980;">)</span>
-          <span style="color: #e47980;">(</span>unpack-conjunction formula<span style="color: #e47980;">)</span>
-          <span style="color: #e47980;">(</span>list formula<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<span style="color: #458588;">(</span><span style="color: #fb4933;">defun</span> <span style="color: #fabd2f;">unpack-formula</span> <span style="color: #b16286;">(</span>formula<span style="color: #b16286;">)</span>
+  <span style="color: #b16286;">(</span><span style="color: #fb4933;">if</span> <span style="color: #8ec07c;">(</span>implication? formula<span style="color: #8ec07c;">)</span>
+      <span style="color: #8ec07c;">(</span>unpack-implication formula<span style="color: #8ec07c;">)</span>
+      <span style="color: #8ec07c;">(</span><span style="color: #fb4933;">if</span> <span style="color: #d65d0e;">(</span>conjunction? formula<span style="color: #d65d0e;">)</span>
+          <span style="color: #d65d0e;">(</span>unpack-conjunction formula<span style="color: #d65d0e;">)</span>
+          <span style="color: #d65d0e;">(</span>list formula<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 
-<span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">unpack-knowledge-base</span> <span style="color: #ffaacf;">(</span>kb<span style="color: #ffaacf;">)</span>
-  <span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">let</span> <span style="color: #80aadf;">(</span><span style="color: #e47980;">(</span>new-kb<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span><span style="color: #deb07a; font-weight: bold;">loop</span> for formula in kb do
-      <span style="color: #e47980;">(</span>setf new-kb <span style="color: #d0b0ff;">(</span>append new-kb <span style="color: #3fc489;">(</span>unpack-formula formula<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
-    new-kb<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<span style="color: #458588;">(</span><span style="color: #fb4933;">defun</span> <span style="color: #fabd2f;">unpack-knowledge-base</span> <span style="color: #b16286;">(</span>kb<span style="color: #b16286;">)</span>
+  <span style="color: #b16286;">(</span><span style="color: #fb4933;">let</span> <span style="color: #8ec07c;">(</span><span style="color: #d65d0e;">(</span>new-kb<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span><span style="color: #fb4933;">loop</span> for formula in kb do
+      <span style="color: #d65d0e;">(</span>setf new-kb <span style="color: #458588;">(</span>append new-kb <span style="color: #b16286;">(</span>unpack-formula formula<span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+    new-kb<span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 </pre>
 </div>
 
@@ -514,21 +514,21 @@ some functions (that do their best) to "unpack" a knowledge base by unpacking co
 a function to generate a graph from a knowledge base, see <a href="/working_with_graphs_in_common_lisp.html">common lisp graphs</a>:
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">generate-graph-from-knowledge-base</span> <span style="color: #ffaacf;">(</span>kb<span style="color: #ffaacf;">)</span>
-  <span style="color: #caa89f; font-style: italic;">"generate and-or graph (not really, cant tell OR from AND) for a knowledge base"</span>
-  <span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">let</span> <span style="color: #80aadf;">(</span><span style="color: #e47980;">(</span>g <span style="color: #d0b0ff;">(</span>make-graph<span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span><span style="color: #deb07a; font-weight: bold;">loop</span> for statement in <span style="color: #e47980;">(</span>unpack-knowledge-base kb<span style="color: #e47980;">)</span> do
-      <span style="color: #e47980;">(</span><span style="color: #deb07a; font-weight: bold;">if</span> <span style="color: #d0b0ff;">(</span>implication? statement<span style="color: #d0b0ff;">)</span>
-          <span style="color: #d0b0ff;">(</span><span style="color: #deb07a; font-weight: bold;">multiple-value-bind</span> <span style="color: #3fc489;">(</span>antecedent consequent<span style="color: #3fc489;">)</span> <span style="color: #3fc489;">(</span>parse-implication statement<span style="color: #3fc489;">)</span>
-            <span style="color: #3fc489;">(</span><span style="color: #deb07a; font-weight: bold;">if</span> <span style="color: #6fb3c0;">(</span>conjunction? antecedent<span style="color: #6fb3c0;">)</span>
-                <span style="color: #6fb3c0;">(</span><span style="color: #deb07a; font-weight: bold;">loop</span> for predicate in <span style="color: #c0b24f;">(</span>cdr antecedent<span style="color: #c0b24f;">)</span> do
-                  <span style="color: #c0b24f;">(</span>graph-add-edge g predicate consequent<span style="color: #c0b24f;">)</span><span style="color: #6fb3c0;">)</span>
-                <span style="color: #6fb3c0;">(</span>graph-add-edge g antecedent consequent<span style="color: #6fb3c0;">)</span><span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span>
-          <span style="color: #d0b0ff;">(</span><span style="color: #deb07a; font-weight: bold;">if</span> <span style="color: #3fc489;">(</span>conjunction? statement<span style="color: #3fc489;">)</span>
-              <span style="color: #3fc489;">(</span><span style="color: #deb07a; font-weight: bold;">loop</span> for predicate in <span style="color: #6fb3c0;">(</span>cdr statement<span style="color: #6fb3c0;">)</span> do
-                <span style="color: #6fb3c0;">(</span>graph-add-vertex g predicate<span style="color: #6fb3c0;">)</span><span style="color: #3fc489;">)</span>
-              <span style="color: #3fc489;">(</span>graph-add-vertex g statement<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
-    g<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span><span style="color: #fb4933;">defun</span> <span style="color: #fabd2f;">generate-graph-from-knowledge-base</span> <span style="color: #b16286;">(</span>kb<span style="color: #b16286;">)</span>
+  <span style="color: #b8bb26;">"generate and-or graph (not really, cant tell OR from AND) for a knowledge base"</span>
+  <span style="color: #b16286;">(</span><span style="color: #fb4933;">let</span> <span style="color: #8ec07c;">(</span><span style="color: #d65d0e;">(</span>g <span style="color: #458588;">(</span>make-graph<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span><span style="color: #fb4933;">loop</span> for statement in <span style="color: #d65d0e;">(</span>unpack-knowledge-base kb<span style="color: #d65d0e;">)</span> do
+      <span style="color: #d65d0e;">(</span><span style="color: #fb4933;">if</span> <span style="color: #458588;">(</span>implication? statement<span style="color: #458588;">)</span>
+          <span style="color: #458588;">(</span><span style="color: #fb4933;">multiple-value-bind</span> <span style="color: #b16286;">(</span>antecedent consequent<span style="color: #b16286;">)</span> <span style="color: #b16286;">(</span>parse-implication statement<span style="color: #b16286;">)</span>
+            <span style="color: #b16286;">(</span><span style="color: #fb4933;">if</span> <span style="color: #8ec07c;">(</span>conjunction? antecedent<span style="color: #8ec07c;">)</span>
+                <span style="color: #8ec07c;">(</span><span style="color: #fb4933;">loop</span> for predicate in <span style="color: #d65d0e;">(</span>cdr antecedent<span style="color: #d65d0e;">)</span> do
+                  <span style="color: #d65d0e;">(</span>graph-add-edge g predicate consequent<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+                <span style="color: #8ec07c;">(</span>graph-add-edge g antecedent consequent<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
+          <span style="color: #458588;">(</span><span style="color: #fb4933;">if</span> <span style="color: #b16286;">(</span>conjunction? statement<span style="color: #b16286;">)</span>
+              <span style="color: #b16286;">(</span><span style="color: #fb4933;">loop</span> for predicate in <span style="color: #8ec07c;">(</span>cdr statement<span style="color: #8ec07c;">)</span> do
+                <span style="color: #8ec07c;">(</span>graph-add-vertex g predicate<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span>
+              <span style="color: #b16286;">(</span>graph-add-vertex g statement<span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+    g<span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 </pre>
 </div>
 
@@ -536,42 +536,42 @@ a function to generate a graph from a knowledge base, see <a href="/working_with
 example usage:
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">forward-chaining-test-2</span> <span style="color: #ffaacf;">()</span>
-  <span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">let</span> <span style="color: #80aadf;">(</span><span style="color: #e47980;">(</span>kb <span style="color: #d0b0ff;">(</span>copy-tree '<span style="color: #3fc489;">(</span><span style="color: #6fb3c0;">(</span>implies <span style="color: #c0b24f;">(</span>and <span style="color: #f3a0a0;">(</span>american ?x<span style="color: #f3a0a0;">)</span> <span style="color: #f3a0a0;">(</span>weapon ?y<span style="color: #f3a0a0;">)</span> <span style="color: #f3a0a0;">(</span>sells ?x ?y ?z<span style="color: #f3a0a0;">)</span> <span style="color: #f3a0a0;">(</span>hostile ?z<span style="color: #f3a0a0;">)</span><span style="color: #c0b24f;">)</span> <span style="color: #c0b24f;">(</span>criminal ?x<span style="color: #c0b24f;">)</span><span style="color: #6fb3c0;">)</span>
-                         <span style="color: #6fb3c0;">(</span>implies <span style="color: #c0b24f;">(</span>and <span style="color: #f3a0a0;">(</span>missile ?x<span style="color: #f3a0a0;">)</span> <span style="color: #f3a0a0;">(</span>owns nono ?x<span style="color: #f3a0a0;">)</span><span style="color: #c0b24f;">)</span> <span style="color: #c0b24f;">(</span>sells west ?x nono<span style="color: #c0b24f;">)</span><span style="color: #6fb3c0;">)</span>
-                         <span style="color: #6fb3c0;">(</span>implies <span style="color: #c0b24f;">(</span>missile ?x<span style="color: #c0b24f;">)</span> <span style="color: #c0b24f;">(</span>weapon ?x<span style="color: #c0b24f;">)</span><span style="color: #6fb3c0;">)</span>
-                         <span style="color: #6fb3c0;">(</span>implies <span style="color: #c0b24f;">(</span>enemy ?x america<span style="color: #c0b24f;">)</span> <span style="color: #c0b24f;">(</span>hostile ?x<span style="color: #c0b24f;">)</span><span style="color: #6fb3c0;">)</span>
-                         <span style="color: #6fb3c0;">(</span>owns nono m1<span style="color: #6fb3c0;">)</span>
-                         <span style="color: #6fb3c0;">(</span>missile m1<span style="color: #6fb3c0;">)</span>
-                         <span style="color: #6fb3c0;">(</span>american west<span style="color: #6fb3c0;">)</span>
-                         <span style="color: #6fb3c0;">(</span>enemy nono america<span style="color: #6fb3c0;">)</span><span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span><span style="color: #deb07a; font-weight: bold;">let</span> <span style="color: #e47980;">(</span><span style="color: #d0b0ff;">(</span>g <span style="color: #3fc489;">(</span>generate-graph-from-knowledge-base kb<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span>
-          <span style="color: #d0b0ff;">(</span>vertex-idx 0<span style="color: #d0b0ff;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">to number vertices (gotta do it for proper drawing of the graph), each vertex gets a unique number</span>
-          <span style="color: #d0b0ff;">(</span>vertex-indicies-cache nil<span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">cache vertex indicies</span>
-      <span style="color: #e47980;">(</span>graph-generate-tikz
+<pre class="src src-lisp"><span style="color: #458588;">(</span><span style="color: #fb4933;">defun</span> <span style="color: #fabd2f;">forward-chaining-test-2</span> <span style="color: #b16286;">()</span>
+  <span style="color: #b16286;">(</span><span style="color: #fb4933;">let</span> <span style="color: #8ec07c;">(</span><span style="color: #d65d0e;">(</span>kb <span style="color: #458588;">(</span>copy-tree '<span style="color: #b16286;">(</span><span style="color: #8ec07c;">(</span>implies <span style="color: #d65d0e;">(</span>and <span style="color: #458588;">(</span>american ?x<span style="color: #458588;">)</span> <span style="color: #458588;">(</span>weapon ?y<span style="color: #458588;">)</span> <span style="color: #458588;">(</span>sells ?x ?y ?z<span style="color: #458588;">)</span> <span style="color: #458588;">(</span>hostile ?z<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span> <span style="color: #d65d0e;">(</span>criminal ?x<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+                         <span style="color: #8ec07c;">(</span>implies <span style="color: #d65d0e;">(</span>and <span style="color: #458588;">(</span>missile ?x<span style="color: #458588;">)</span> <span style="color: #458588;">(</span>owns nono ?x<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span> <span style="color: #d65d0e;">(</span>sells west ?x nono<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+                         <span style="color: #8ec07c;">(</span>implies <span style="color: #d65d0e;">(</span>missile ?x<span style="color: #d65d0e;">)</span> <span style="color: #d65d0e;">(</span>weapon ?x<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+                         <span style="color: #8ec07c;">(</span>implies <span style="color: #d65d0e;">(</span>enemy ?x america<span style="color: #d65d0e;">)</span> <span style="color: #d65d0e;">(</span>hostile ?x<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+                         <span style="color: #8ec07c;">(</span>owns nono m1<span style="color: #8ec07c;">)</span>
+                         <span style="color: #8ec07c;">(</span>missile m1<span style="color: #8ec07c;">)</span>
+                         <span style="color: #8ec07c;">(</span>american west<span style="color: #8ec07c;">)</span>
+                         <span style="color: #8ec07c;">(</span>enemy nono america<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span><span style="color: #fb4933;">let</span> <span style="color: #d65d0e;">(</span><span style="color: #458588;">(</span>g <span style="color: #b16286;">(</span>generate-graph-from-knowledge-base kb<span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
+          <span style="color: #458588;">(</span>vertex-idx 0<span style="color: #458588;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">to number vertices (gotta do it for proper drawing of the graph), each vertex gets a unique number</span>
+          <span style="color: #458588;">(</span>vertex-indicies-cache nil<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">cache vertex indicies</span>
+      <span style="color: #d65d0e;">(</span>graph-generate-tikz
        g
-       <span style="color: #e3b0c0; font-weight: bold;">:format-function</span> <span style="color: #d0b0ff;">(</span><span style="color: #deb07a; font-weight: bold;">lambda</span> <span style="color: #3fc489;">(</span>vertex<span style="color: #3fc489;">)</span>
-                          <span style="color: #3fc489;">(</span><span style="color: #deb07a; font-weight: bold;">let</span> <span style="color: #6fb3c0;">(</span><span style="color: #c0b24f;">(</span>vertex-entry
-                                  <span style="color: #f3a0a0;">(</span>assoc
+       <span style="color: #fe8019;">:format-function</span> <span style="color: #458588;">(</span><span style="color: #fb4933;">lambda</span> <span style="color: #b16286;">(</span>vertex<span style="color: #b16286;">)</span>
+                          <span style="color: #b16286;">(</span><span style="color: #fb4933;">let</span> <span style="color: #8ec07c;">(</span><span style="color: #d65d0e;">(</span>vertex-entry
+                                  <span style="color: #458588;">(</span>assoc
                                    vertex
                                    vertex-indicies-cache
-                                   <span style="color: #e3b0c0; font-weight: bold;">:test</span> #'equal<span style="color: #f3a0a0;">)</span><span style="color: #c0b24f;">)</span><span style="color: #6fb3c0;">)</span>
-                                   <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">:test (lambda (predicate1 predicate2)</span>
-                                   <span style="color: #a0a0cf; font-style: italic;">;;         </span><span style="color: #a0a0cf; font-style: italic;">(unify-success? (unify predicate1 predicate2))))))</span>
-                            <span style="color: #6fb3c0;">(</span><span style="color: #deb07a; font-weight: bold;">if</span> vertex-entry
-                                <span style="color: #c0b24f;">(</span>format nil <span style="color: #f3a0a0;">"v~A/{~A}"</span> <span style="color: #f3a0a0;">(</span>cdr vertex-entry<span style="color: #f3a0a0;">)</span> vertex<span style="color: #c0b24f;">)</span>
-                                <span style="color: #c0b24f;">(</span><span style="color: #deb07a; font-weight: bold;">progn</span>
-                                  <span style="color: #f3a0a0;">(</span>incf vertex-idx<span style="color: #f3a0a0;">)</span>
-                                  <span style="color: #f3a0a0;">(</span>setf vertex-indicies-cache <span style="color: #deb07a;">(</span>acons vertex vertex-idx vertex-indicies-cache<span style="color: #deb07a;">)</span><span style="color: #f3a0a0;">)</span>
-                                  <span style="color: #f3a0a0;">(</span>format nil <span style="color: #f3a0a0;">"v~A/{~A}"</span> vertex-idx vertex<span style="color: #f3a0a0;">)</span><span style="color: #c0b24f;">)</span><span style="color: #6fb3c0;">)</span><span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span>
-       <span style="color: #e3b0c0; font-weight: bold;">:tikz-params</span> <span style="color: #f3a0a0;">"layered layout, grow=up, edges={-{Stealth[]}}, edges=rounded corners"</span>
-       <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">:node-distance 50</span>
-       <span style="color: #e3b0c0; font-weight: bold;">:directed</span> t<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+                                   <span style="color: #fe8019;">:test</span> #'equal<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+                                   <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">:test (lambda (predicate1 predicate2)</span>
+                                   <span style="color: #7c6f64;">;;         </span><span style="color: #7c6f64;">(unify-success? (unify predicate1 predicate2))))))</span>
+                            <span style="color: #8ec07c;">(</span><span style="color: #fb4933;">if</span> vertex-entry
+                                <span style="color: #d65d0e;">(</span>format nil <span style="color: #b8bb26;">"v~A/{~A}"</span> <span style="color: #458588;">(</span>cdr vertex-entry<span style="color: #458588;">)</span> vertex<span style="color: #d65d0e;">)</span>
+                                <span style="color: #d65d0e;">(</span><span style="color: #fb4933;">progn</span>
+                                  <span style="color: #458588;">(</span>incf vertex-idx<span style="color: #458588;">)</span>
+                                  <span style="color: #458588;">(</span>setf vertex-indicies-cache <span style="color: #458588;">(</span>acons vertex vertex-idx vertex-indicies-cache<span style="color: #458588;">)</span><span style="color: #458588;">)</span>
+                                  <span style="color: #458588;">(</span>format nil <span style="color: #b8bb26;">"v~A/{~A}"</span> vertex-idx vertex<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
+       <span style="color: #fe8019;">:tikz-params</span> <span style="color: #b8bb26;">"layered layout, grow=up, edges={-{Stealth[]}}, edges=rounded corners"</span>
+       <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">:node-distance 50</span>
+       <span style="color: #fe8019;">:directed</span> t<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 </pre>
 </div>
 
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span>forward-chaining-test-2<span style="color: #deb07a;">)</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span>forward-chaining-test-2<span style="color: #458588;">)</span>
 </pre>
 </div>
 
@@ -866,63 +866,63 @@ example usage:
 functions to generate a graph from the forward chaining process (see <a href="/working_with_graphs_in_common_lisp.html">common lisp graphs</a>):
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">forward-chaining-generate-inference-graph</span> <span style="color: #ffaacf;">(</span>inference-alist-list<span style="color: #ffaacf;">)</span>
-  <span style="color: #caa89f; font-style: italic;">"generate and-or graph (not really, cant tell OR from AND) for a knowledge base"</span>
-  <span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">let</span> <span style="color: #80aadf;">(</span><span style="color: #e47980;">(</span>g <span style="color: #d0b0ff;">(</span>make-graph<span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span><span style="color: #deb07a; font-weight: bold;">loop</span> for inference-alist in inference-alist-list do
-      <span style="color: #e47980;">(</span><span style="color: #deb07a; font-weight: bold;">loop</span> for entry in inference-alist do
-        <span style="color: #d0b0ff;">(</span><span style="color: #deb07a; font-weight: bold;">let</span> <span style="color: #3fc489;">(</span><span style="color: #6fb3c0;">(</span>precedent <span style="color: #c0b24f;">(</span>cdr entry<span style="color: #c0b24f;">)</span><span style="color: #6fb3c0;">)</span>
-              <span style="color: #6fb3c0;">(</span>consequent <span style="color: #c0b24f;">(</span>car entry<span style="color: #c0b24f;">)</span><span style="color: #6fb3c0;">)</span><span style="color: #3fc489;">)</span>
-          <span style="color: #3fc489;">(</span><span style="color: #deb07a; font-weight: bold;">if</span> <span style="color: #6fb3c0;">(</span>conjunction? precedent<span style="color: #6fb3c0;">)</span>
-              <span style="color: #6fb3c0;">(</span><span style="color: #deb07a; font-weight: bold;">loop</span> for predicate in <span style="color: #c0b24f;">(</span>cdr precedent<span style="color: #c0b24f;">)</span> do
-                <span style="color: #c0b24f;">(</span><span style="color: #deb07a; font-weight: bold;">if</span> <span style="color: #f3a0a0;">(</span>conjunction? consequent<span style="color: #f3a0a0;">)</span>
-                    <span style="color: #f3a0a0;">(</span><span style="color: #deb07a; font-weight: bold;">loop</span> for consequent-predicate in <span style="color: #deb07a;">(</span>cdr consequent<span style="color: #deb07a;">)</span> do
-                      <span style="color: #deb07a;">(</span>graph-add-edge g predicate consequent-predicate<span style="color: #deb07a;">)</span><span style="color: #f3a0a0;">)</span>
-                    <span style="color: #f3a0a0;">(</span>graph-add-edge g predicate consequent<span style="color: #f3a0a0;">)</span><span style="color: #c0b24f;">)</span><span style="color: #6fb3c0;">)</span>
-              <span style="color: #6fb3c0;">(</span><span style="color: #deb07a; font-weight: bold;">if</span> <span style="color: #c0b24f;">(</span>conjunction? consequent<span style="color: #c0b24f;">)</span>
-                  <span style="color: #c0b24f;">(</span><span style="color: #deb07a; font-weight: bold;">loop</span> for consequent-predicate in <span style="color: #f3a0a0;">(</span>cdr consequent<span style="color: #f3a0a0;">)</span> do
-                    <span style="color: #f3a0a0;">(</span>graph-add-edge g precedent consequent-predicate<span style="color: #f3a0a0;">)</span><span style="color: #c0b24f;">)</span>
-                  <span style="color: #c0b24f;">(</span>graph-add-edge g precedent consequent<span style="color: #c0b24f;">)</span><span style="color: #6fb3c0;">)</span><span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
-    g<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span><span style="color: #fb4933;">defun</span> <span style="color: #fabd2f;">forward-chaining-generate-inference-graph</span> <span style="color: #b16286;">(</span>inference-alist-list<span style="color: #b16286;">)</span>
+  <span style="color: #b8bb26;">"generate and-or graph (not really, cant tell OR from AND) for a knowledge base"</span>
+  <span style="color: #b16286;">(</span><span style="color: #fb4933;">let</span> <span style="color: #8ec07c;">(</span><span style="color: #d65d0e;">(</span>g <span style="color: #458588;">(</span>make-graph<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span><span style="color: #fb4933;">loop</span> for inference-alist in inference-alist-list do
+      <span style="color: #d65d0e;">(</span><span style="color: #fb4933;">loop</span> for entry in inference-alist do
+        <span style="color: #458588;">(</span><span style="color: #fb4933;">let</span> <span style="color: #b16286;">(</span><span style="color: #8ec07c;">(</span>precedent <span style="color: #d65d0e;">(</span>cdr entry<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+              <span style="color: #8ec07c;">(</span>consequent <span style="color: #d65d0e;">(</span>car entry<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span>
+          <span style="color: #b16286;">(</span><span style="color: #fb4933;">if</span> <span style="color: #8ec07c;">(</span>conjunction? precedent<span style="color: #8ec07c;">)</span>
+              <span style="color: #8ec07c;">(</span><span style="color: #fb4933;">loop</span> for predicate in <span style="color: #d65d0e;">(</span>cdr precedent<span style="color: #d65d0e;">)</span> do
+                <span style="color: #d65d0e;">(</span><span style="color: #fb4933;">if</span> <span style="color: #458588;">(</span>conjunction? consequent<span style="color: #458588;">)</span>
+                    <span style="color: #458588;">(</span><span style="color: #fb4933;">loop</span> for consequent-predicate in <span style="color: #458588;">(</span>cdr consequent<span style="color: #458588;">)</span> do
+                      <span style="color: #458588;">(</span>graph-add-edge g predicate consequent-predicate<span style="color: #458588;">)</span><span style="color: #458588;">)</span>
+                    <span style="color: #458588;">(</span>graph-add-edge g predicate consequent<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+              <span style="color: #8ec07c;">(</span><span style="color: #fb4933;">if</span> <span style="color: #d65d0e;">(</span>conjunction? consequent<span style="color: #d65d0e;">)</span>
+                  <span style="color: #d65d0e;">(</span><span style="color: #fb4933;">loop</span> for consequent-predicate in <span style="color: #458588;">(</span>cdr consequent<span style="color: #458588;">)</span> do
+                    <span style="color: #458588;">(</span>graph-add-edge g precedent consequent-predicate<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span>
+                  <span style="color: #d65d0e;">(</span>graph-add-edge g precedent consequent<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+    g<span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 </pre>
 </div>
 
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">forward-chaining-generate-tikz-graph</span> <span style="color: #ffaacf;">(</span>inference-alist-list<span style="color: #ffaacf;">)</span>
-  <span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">let*</span> <span style="color: #80aadf;">(</span><span style="color: #e47980;">(</span>g <span style="color: #d0b0ff;">(</span>forward-chaining-generate-inference-graph inference-alist-list<span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span>
-         <span style="color: #e47980;">(</span>vertex-idx 0<span style="color: #e47980;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">to number vertices (gotta do it for proper drawing of the graph), each vertex gets a unique number)</span>
-         <span style="color: #e47980;">(</span>vertex-indicies-cache nil<span style="color: #e47980;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">cache vertex indicies</span>
-         <span style="color: #e47980;">(</span>vertex-format-function
-           <span style="color: #d0b0ff;">(</span><span style="color: #deb07a; font-weight: bold;">lambda</span> <span style="color: #3fc489;">(</span>vertex<span style="color: #3fc489;">)</span>
-             <span style="color: #3fc489;">(</span><span style="color: #deb07a; font-weight: bold;">let</span> <span style="color: #6fb3c0;">(</span><span style="color: #c0b24f;">(</span>vertex-entry
-                     <span style="color: #f3a0a0;">(</span>assoc
+<pre class="src src-lisp"><span style="color: #458588;">(</span><span style="color: #fb4933;">defun</span> <span style="color: #fabd2f;">forward-chaining-generate-tikz-graph</span> <span style="color: #b16286;">(</span>inference-alist-list<span style="color: #b16286;">)</span>
+  <span style="color: #b16286;">(</span><span style="color: #fb4933;">let*</span> <span style="color: #8ec07c;">(</span><span style="color: #d65d0e;">(</span>g <span style="color: #458588;">(</span>forward-chaining-generate-inference-graph inference-alist-list<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span>
+         <span style="color: #d65d0e;">(</span>vertex-idx 0<span style="color: #d65d0e;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">to number vertices (gotta do it for proper drawing of the graph), each vertex gets a unique number)</span>
+         <span style="color: #d65d0e;">(</span>vertex-indicies-cache nil<span style="color: #d65d0e;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">cache vertex indicies</span>
+         <span style="color: #d65d0e;">(</span>vertex-format-function
+           <span style="color: #458588;">(</span><span style="color: #fb4933;">lambda</span> <span style="color: #b16286;">(</span>vertex<span style="color: #b16286;">)</span>
+             <span style="color: #b16286;">(</span><span style="color: #fb4933;">let</span> <span style="color: #8ec07c;">(</span><span style="color: #d65d0e;">(</span>vertex-entry
+                     <span style="color: #458588;">(</span>assoc
                       vertex
                       vertex-indicies-cache
-                      <span style="color: #e3b0c0; font-weight: bold;">:test</span> #'equal<span style="color: #f3a0a0;">)</span><span style="color: #c0b24f;">)</span><span style="color: #6fb3c0;">)</span>
-               <span style="color: #6fb3c0;">(</span><span style="color: #deb07a; font-weight: bold;">if</span> vertex-entry
-                   <span style="color: #c0b24f;">(</span>format nil <span style="color: #f3a0a0;">"v~A/{~A}"</span> <span style="color: #f3a0a0;">(</span>cdr vertex-entry<span style="color: #f3a0a0;">)</span> vertex<span style="color: #c0b24f;">)</span>
-                   <span style="color: #c0b24f;">(</span><span style="color: #deb07a; font-weight: bold;">progn</span>
-                     <span style="color: #f3a0a0;">(</span>incf vertex-idx<span style="color: #f3a0a0;">)</span>
-                     <span style="color: #f3a0a0;">(</span>setf vertex-indicies-cache <span style="color: #deb07a;">(</span>acons vertex vertex-idx vertex-indicies-cache<span style="color: #deb07a;">)</span><span style="color: #f3a0a0;">)</span>
-                     <span style="color: #f3a0a0;">(</span>format nil <span style="color: #f3a0a0;">"v~A/{~A}"</span> vertex-idx vertex<span style="color: #f3a0a0;">)</span><span style="color: #c0b24f;">)</span><span style="color: #6fb3c0;">)</span><span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span>graph-generate-tikz
+                      <span style="color: #fe8019;">:test</span> #'equal<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+               <span style="color: #8ec07c;">(</span><span style="color: #fb4933;">if</span> vertex-entry
+                   <span style="color: #d65d0e;">(</span>format nil <span style="color: #b8bb26;">"v~A/{~A}"</span> <span style="color: #458588;">(</span>cdr vertex-entry<span style="color: #458588;">)</span> vertex<span style="color: #d65d0e;">)</span>
+                   <span style="color: #d65d0e;">(</span><span style="color: #fb4933;">progn</span>
+                     <span style="color: #458588;">(</span>incf vertex-idx<span style="color: #458588;">)</span>
+                     <span style="color: #458588;">(</span>setf vertex-indicies-cache <span style="color: #458588;">(</span>acons vertex vertex-idx vertex-indicies-cache<span style="color: #458588;">)</span><span style="color: #458588;">)</span>
+                     <span style="color: #458588;">(</span>format nil <span style="color: #b8bb26;">"v~A/{~A}"</span> vertex-idx vertex<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>graph-generate-tikz
      g
-     <span style="color: #e3b0c0; font-weight: bold;">:format-function</span> vertex-format-function
-     <span style="color: #e3b0c0; font-weight: bold;">:tikz-params</span> <span style="color: #f3a0a0;">"layered layout, grow=up, edges={-{Stealth[]}}, edges=rounded corners, level sep=40px"</span>
-     <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">incomplete attempt to make the figure look more like [[id:bd481a5c-e869-440e-be1d-33e0838620f9::fig:fig4][forward chaining]]</span>
-     <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">:tikz-postamble</span>
-     <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">(concatenate*</span>
-     <span style="color: #a0a0cf; font-style: italic;">;;  </span><span style="color: #a0a0cf; font-style: italic;">(mapcar (lambda (inference-alist)</span>
-     <span style="color: #a0a0cf; font-style: italic;">;;            </span><span style="color: #a0a0cf; font-style: italic;">(apply #'concatenate</span>
-     <span style="color: #a0a0cf; font-style: italic;">;;                   </span><span style="color: #a0a0cf; font-style: italic;">(append (list 'string)</span>
-     <span style="color: #a0a0cf; font-style: italic;">;;                           </span><span style="color: #a0a0cf; font-style: italic;">(list "{[same layer] ")</span>
-     <span style="color: #a0a0cf; font-style: italic;">;;                           </span><span style="color: #a0a0cf; font-style: italic;">(mapcar (lambda (vertex-entry)</span>
-     <span style="color: #a0a0cf; font-style: italic;">;;                                     </span><span style="color: #a0a0cf; font-style: italic;">(format nil "~A," (funcall vertex-format-function</span>
-     <span style="color: #a0a0cf; font-style: italic;">;;                                                                </span><span style="color: #a0a0cf; font-style: italic;">(car vertex-entry))))</span>
-     <span style="color: #a0a0cf; font-style: italic;">;;                                   </span><span style="color: #a0a0cf; font-style: italic;">inference-alist)</span>
-     <span style="color: #a0a0cf; font-style: italic;">;;                           </span><span style="color: #a0a0cf; font-style: italic;">(list " };"))))</span>
-     <span style="color: #a0a0cf; font-style: italic;">;;          </span><span style="color: #a0a0cf; font-style: italic;">*forward-chaining-test-1-inference-alist-list*))</span>
-     <span style="color: #e3b0c0; font-weight: bold;">:directed</span> t<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+     <span style="color: #fe8019;">:format-function</span> vertex-format-function
+     <span style="color: #fe8019;">:tikz-params</span> <span style="color: #b8bb26;">"layered layout, grow=up, edges={-{Stealth[]}}, edges=rounded corners, level sep=40px"</span>
+     <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">incomplete attempt to make the figure look more like [[id:bd481a5c-e869-440e-be1d-33e0838620f9::fig:fig4][forward chaining]]</span>
+     <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">:tikz-postamble</span>
+     <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">(concatenate*</span>
+     <span style="color: #7c6f64;">;;  </span><span style="color: #7c6f64;">(mapcar (lambda (inference-alist)</span>
+     <span style="color: #7c6f64;">;;            </span><span style="color: #7c6f64;">(apply #'concatenate</span>
+     <span style="color: #7c6f64;">;;                   </span><span style="color: #7c6f64;">(append (list 'string)</span>
+     <span style="color: #7c6f64;">;;                           </span><span style="color: #7c6f64;">(list "{[same layer] ")</span>
+     <span style="color: #7c6f64;">;;                           </span><span style="color: #7c6f64;">(mapcar (lambda (vertex-entry)</span>
+     <span style="color: #7c6f64;">;;                                     </span><span style="color: #7c6f64;">(format nil "~A," (funcall vertex-format-function</span>
+     <span style="color: #7c6f64;">;;                                                                </span><span style="color: #7c6f64;">(car vertex-entry))))</span>
+     <span style="color: #7c6f64;">;;                                   </span><span style="color: #7c6f64;">inference-alist)</span>
+     <span style="color: #7c6f64;">;;                           </span><span style="color: #7c6f64;">(list " };"))))</span>
+     <span style="color: #7c6f64;">;;          </span><span style="color: #7c6f64;">*forward-chaining-test-1-inference-alist-list*))</span>
+     <span style="color: #fe8019;">:directed</span> t<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 </pre>
 </div>
 
@@ -930,25 +930,25 @@ functions to generate a graph from the forward chaining process (see <a href="/w
 example usage:
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">forward-chaining-test-3</span> <span style="color: #ffaacf;">()</span>
-  <span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">let</span> <span style="color: #80aadf;">(</span><span style="color: #e47980;">(</span>kb <span style="color: #d0b0ff;">(</span>copy-tree
-             '<span style="color: #3fc489;">(</span><span style="color: #6fb3c0;">(</span>implies <span style="color: #c0b24f;">(</span>and <span style="color: #f3a0a0;">(</span>american ?x<span style="color: #f3a0a0;">)</span> <span style="color: #f3a0a0;">(</span>weapon ?y<span style="color: #f3a0a0;">)</span> <span style="color: #f3a0a0;">(</span>sells ?x ?y ?z<span style="color: #f3a0a0;">)</span> <span style="color: #f3a0a0;">(</span>hostile ?z<span style="color: #f3a0a0;">)</span><span style="color: #c0b24f;">)</span> <span style="color: #c0b24f;">(</span>criminal ?x<span style="color: #c0b24f;">)</span><span style="color: #6fb3c0;">)</span>
-               <span style="color: #6fb3c0;">(</span>implies <span style="color: #c0b24f;">(</span>and <span style="color: #f3a0a0;">(</span>missile ?x<span style="color: #f3a0a0;">)</span> <span style="color: #f3a0a0;">(</span>owns nono ?x<span style="color: #f3a0a0;">)</span><span style="color: #c0b24f;">)</span> <span style="color: #c0b24f;">(</span>sells west ?x nono<span style="color: #c0b24f;">)</span><span style="color: #6fb3c0;">)</span>
-               <span style="color: #6fb3c0;">(</span>implies <span style="color: #c0b24f;">(</span>missile ?x<span style="color: #c0b24f;">)</span> <span style="color: #c0b24f;">(</span>weapon ?x<span style="color: #c0b24f;">)</span><span style="color: #6fb3c0;">)</span>
-               <span style="color: #6fb3c0;">(</span>implies <span style="color: #c0b24f;">(</span>enemy ?x america<span style="color: #c0b24f;">)</span> <span style="color: #c0b24f;">(</span>hostile ?x<span style="color: #c0b24f;">)</span><span style="color: #6fb3c0;">)</span>
-               <span style="color: #6fb3c0;">(</span>owns nono m1<span style="color: #6fb3c0;">)</span>
-               <span style="color: #6fb3c0;">(</span>missile m1<span style="color: #6fb3c0;">)</span>
-               <span style="color: #6fb3c0;">(</span>american west<span style="color: #6fb3c0;">)</span>
-               <span style="color: #6fb3c0;">(</span>enemy nono america<span style="color: #6fb3c0;">)</span><span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span><span style="color: #deb07a; font-weight: bold;">multiple-value-bind</span> <span style="color: #e47980;">(</span>substitution inference-alist-list<span style="color: #e47980;">)</span>
-        <span style="color: #e47980;">(</span>forward-chaining kb '<span style="color: #d0b0ff;">(</span>criminal west<span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span>
-      <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">not a good idea to use setf but should be fine for debugging</span>
-      <span style="color: #e47980;">(</span>forward-chaining-generate-tikz-graph inference-alist-list<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span><span style="color: #fb4933;">defun</span> <span style="color: #fabd2f;">forward-chaining-test-3</span> <span style="color: #b16286;">()</span>
+  <span style="color: #b16286;">(</span><span style="color: #fb4933;">let</span> <span style="color: #8ec07c;">(</span><span style="color: #d65d0e;">(</span>kb <span style="color: #458588;">(</span>copy-tree
+             '<span style="color: #b16286;">(</span><span style="color: #8ec07c;">(</span>implies <span style="color: #d65d0e;">(</span>and <span style="color: #458588;">(</span>american ?x<span style="color: #458588;">)</span> <span style="color: #458588;">(</span>weapon ?y<span style="color: #458588;">)</span> <span style="color: #458588;">(</span>sells ?x ?y ?z<span style="color: #458588;">)</span> <span style="color: #458588;">(</span>hostile ?z<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span> <span style="color: #d65d0e;">(</span>criminal ?x<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+               <span style="color: #8ec07c;">(</span>implies <span style="color: #d65d0e;">(</span>and <span style="color: #458588;">(</span>missile ?x<span style="color: #458588;">)</span> <span style="color: #458588;">(</span>owns nono ?x<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span> <span style="color: #d65d0e;">(</span>sells west ?x nono<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+               <span style="color: #8ec07c;">(</span>implies <span style="color: #d65d0e;">(</span>missile ?x<span style="color: #d65d0e;">)</span> <span style="color: #d65d0e;">(</span>weapon ?x<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+               <span style="color: #8ec07c;">(</span>implies <span style="color: #d65d0e;">(</span>enemy ?x america<span style="color: #d65d0e;">)</span> <span style="color: #d65d0e;">(</span>hostile ?x<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+               <span style="color: #8ec07c;">(</span>owns nono m1<span style="color: #8ec07c;">)</span>
+               <span style="color: #8ec07c;">(</span>missile m1<span style="color: #8ec07c;">)</span>
+               <span style="color: #8ec07c;">(</span>american west<span style="color: #8ec07c;">)</span>
+               <span style="color: #8ec07c;">(</span>enemy nono america<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span><span style="color: #fb4933;">multiple-value-bind</span> <span style="color: #d65d0e;">(</span>substitution inference-alist-list<span style="color: #d65d0e;">)</span>
+        <span style="color: #d65d0e;">(</span>forward-chaining kb '<span style="color: #458588;">(</span>criminal west<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span>
+      <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">not a good idea to use setf but should be fine for debugging</span>
+      <span style="color: #d65d0e;">(</span>forward-chaining-generate-tikz-graph inference-alist-list<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 </pre>
 </div>
 
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span>forward-chaining-test-3<span style="color: #deb07a;">)</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span>forward-chaining-test-3<span style="color: #458588;">)</span>
 </pre>
 </div>
 
@@ -1145,42 +1145,42 @@ example usage:
 the <a href="/backward_chaining.html">backward chaining</a> algorithm (we dont implement it as a generator here):
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">backward-chaining</span> <span style="color: #ffaacf;">(</span>knowledge-base query<span style="color: #ffaacf;">)</span>
-  <span style="color: #caa89f; font-style: italic;">"apply backward chaining, find all proofs for `</span><span style="color: #80aadf; font-style: italic;">query</span><span style="color: #caa89f; font-style: italic;">'"</span>
-  <span style="color: #ffaacf;">(</span>backward-chaining-or knowledge-base query nil<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span><span style="color: #fb4933;">defun</span> <span style="color: #fabd2f;">backward-chaining</span> <span style="color: #b16286;">(</span>knowledge-base query<span style="color: #b16286;">)</span>
+  <span style="color: #b8bb26;">"apply backward chaining, find all proofs for `</span><span style="color: #d3869b;">query</span><span style="color: #b8bb26;">'"</span>
+  <span style="color: #b16286;">(</span>backward-chaining-or knowledge-base query nil<span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 
-<span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">backward-chaining-or</span> <span style="color: #ffaacf;">(</span>knowledge-base goal substitution<span style="color: #ffaacf;">)</span>
-  <span style="color: #caa89f; font-style: italic;">"returns substitutions that prove `</span><span style="color: #80aadf; font-style: italic;">goal</span><span style="color: #caa89f; font-style: italic;">'"</span>
-  <span style="color: #ffaacf;">(</span>format t <span style="color: #f3a0a0;">"~A &lt;- "</span> goal<span style="color: #ffaacf;">)</span>
-  <span style="color: #ffaacf;">(</span>concatenate*
-   <span style="color: #80aadf;">(</span><span style="color: #deb07a; font-weight: bold;">loop</span> for implication-formula in knowledge-base
-         collect <span style="color: #e47980;">(</span><span style="color: #deb07a; font-weight: bold;">multiple-value-bind</span> <span style="color: #d0b0ff;">(</span>precedent consequent<span style="color: #d0b0ff;">)</span>
-                     <span style="color: #d0b0ff;">(</span>parse-implication <span style="color: #3fc489;">(</span>standardize-variables implication-formula<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span>
+<span style="color: #458588;">(</span><span style="color: #fb4933;">defun</span> <span style="color: #fabd2f;">backward-chaining-or</span> <span style="color: #b16286;">(</span>knowledge-base goal substitution<span style="color: #b16286;">)</span>
+  <span style="color: #b8bb26;">"returns substitutions that prove `</span><span style="color: #d3869b;">goal</span><span style="color: #b8bb26;">'"</span>
+  <span style="color: #b16286;">(</span>format t <span style="color: #b8bb26;">"~A &lt;- "</span> goal<span style="color: #b16286;">)</span>
+  <span style="color: #b16286;">(</span>concatenate*
+   <span style="color: #8ec07c;">(</span><span style="color: #fb4933;">loop</span> for implication-formula in knowledge-base
+         collect <span style="color: #d65d0e;">(</span><span style="color: #fb4933;">multiple-value-bind</span> <span style="color: #458588;">(</span>precedent consequent<span style="color: #458588;">)</span>
+                     <span style="color: #458588;">(</span>parse-implication <span style="color: #b16286;">(</span>standardize-variables implication-formula<span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 
-                   <span style="color: #d0b0ff;">(</span><span style="color: #deb07a; font-weight: bold;">loop</span> for substitution1 in <span style="color: #3fc489;">(</span>backward-chaining-and
+                   <span style="color: #458588;">(</span><span style="color: #fb4933;">loop</span> for substitution1 in <span style="color: #b16286;">(</span>backward-chaining-and
                                                knowledge-base
-                                               <span style="color: #6fb3c0;">(</span><span style="color: #deb07a; font-weight: bold;">if</span> <span style="color: #c0b24f;">(</span>conjunction? precedent<span style="color: #c0b24f;">)</span>
-                                                   <span style="color: #c0b24f;">(</span>cdr precedent<span style="color: #c0b24f;">)</span>
-                                                   precedent<span style="color: #6fb3c0;">)</span>
-                                               <span style="color: #6fb3c0;">(</span>unify consequent
+                                               <span style="color: #8ec07c;">(</span><span style="color: #fb4933;">if</span> <span style="color: #d65d0e;">(</span>conjunction? precedent<span style="color: #d65d0e;">)</span>
+                                                   <span style="color: #d65d0e;">(</span>cdr precedent<span style="color: #d65d0e;">)</span>
+                                                   precedent<span style="color: #8ec07c;">)</span>
+                                               <span style="color: #8ec07c;">(</span>unify consequent
                                                       goal
-                                                      substitution<span style="color: #6fb3c0;">)</span><span style="color: #3fc489;">)</span>
-                         collect substitution1<span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+                                                      substitution<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span>
+                         collect substitution1<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 
-<span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">backward-chaining-and</span> <span style="color: #ffaacf;">(</span>knowledge-base goals substitution<span style="color: #ffaacf;">)</span>
-  <span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">if</span> <span style="color: #80aadf;">(</span>equal 'failure substitution<span style="color: #80aadf;">)</span>
+<span style="color: #458588;">(</span><span style="color: #fb4933;">defun</span> <span style="color: #fabd2f;">backward-chaining-and</span> <span style="color: #b16286;">(</span>knowledge-base goals substitution<span style="color: #b16286;">)</span>
+  <span style="color: #b16286;">(</span><span style="color: #fb4933;">if</span> <span style="color: #8ec07c;">(</span>equal 'failure substitution<span style="color: #8ec07c;">)</span>
       nil
-      <span style="color: #80aadf;">(</span><span style="color: #deb07a; font-weight: bold;">if</span> <span style="color: #e47980;">(</span>equal <span style="color: #d0b0ff;">(</span>length goals<span style="color: #d0b0ff;">)</span> 0<span style="color: #e47980;">)</span>
-          <span style="color: #e47980;">(</span>list substitution<span style="color: #e47980;">)</span>
-          <span style="color: #e47980;">(</span>concatenate*
-           <span style="color: #d0b0ff;">(</span><span style="color: #deb07a; font-weight: bold;">loop</span> for substitution1 in <span style="color: #3fc489;">(</span>backward-chaining-or knowledge-base
-                                                            <span style="color: #6fb3c0;">(</span>apply-substitution substitution
-                                                                                <span style="color: #c0b24f;">(</span>first goals<span style="color: #c0b24f;">)</span><span style="color: #6fb3c0;">)</span>
-                                                            substitution<span style="color: #3fc489;">)</span>
-                 collect <span style="color: #3fc489;">(</span><span style="color: #deb07a; font-weight: bold;">loop</span> for substitution2 in <span style="color: #6fb3c0;">(</span>backward-chaining-and knowledge-base
-                                                                           <span style="color: #c0b24f;">(</span>rest goals<span style="color: #c0b24f;">)</span>
-                                                                           substitution1<span style="color: #6fb3c0;">)</span>
-                               collect substitution2<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+      <span style="color: #8ec07c;">(</span><span style="color: #fb4933;">if</span> <span style="color: #d65d0e;">(</span>equal <span style="color: #458588;">(</span>length goals<span style="color: #458588;">)</span> 0<span style="color: #d65d0e;">)</span>
+          <span style="color: #d65d0e;">(</span>list substitution<span style="color: #d65d0e;">)</span>
+          <span style="color: #d65d0e;">(</span>concatenate*
+           <span style="color: #458588;">(</span><span style="color: #fb4933;">loop</span> for substitution1 in <span style="color: #b16286;">(</span>backward-chaining-or knowledge-base
+                                                            <span style="color: #8ec07c;">(</span>apply-substitution substitution
+                                                                                <span style="color: #d65d0e;">(</span>first goals<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+                                                            substitution<span style="color: #b16286;">)</span>
+                 collect <span style="color: #b16286;">(</span><span style="color: #fb4933;">loop</span> for substitution2 in <span style="color: #8ec07c;">(</span>backward-chaining-and knowledge-base
+                                                                           <span style="color: #d65d0e;">(</span>rest goals<span style="color: #d65d0e;">)</span>
+                                                                           substitution1<span style="color: #8ec07c;">)</span>
+                               collect substitution2<span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 </pre>
 </div>
 </div>

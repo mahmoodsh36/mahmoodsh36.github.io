@@ -50,7 +50,7 @@
 <div id="content" class="content">
 <div test="test" class="fancy-block dummy" data-before="" data-after="&lt;p&gt;
 (Ramez Elmasri, Shamkant B. Navathe, 2015 chapter 7.1 more complex sql retrieval queries)&lt;/p&gt;
-" id="prf-bool-func-1" data-id="prf-bool-func-1">
+" id="the-bool-func-1" data-id="the-bool-func-1">
 <p>
 aggregate functions are used to summarize information from multiple tuples into a single-tuple summary. grouping is used to create subgroups of tuples before summarization. grouping and aggregation are required in many database applications, a number of built-in functions exist: <i>COUNT</i>, <i>SUM</i>, <i>MAX</i>, <i>MIN</i>, and <i>AVG</i>.
 </p>
@@ -63,16 +63,16 @@ in many cases we want to apply an <a href="/aggregate_function.html">aggregate f
 sometimes we want to retrieve the values of these functions only for groups that satisfy certain conditions. SQL provides a <code>HAVING</code> clause, which can appear in conjunction with a GROUP BY clause, for this purpose. HAVING provides a condition on the summary information regarding the group of tuples associated with each value of the grouping attributes. only the groups that satisfy the condition are retrieved in the result of the query.
 </p>
 <div class="org-src-container" data-language="sql">
-<label class="org-src-name"><span class="listing-number">Listing 1: </span>for each project on which more than two employees work, retrieve the project number, the project name, and the number of employees who work on the project.</label><pre class="src src-sql"><span style="color: #deb07a; font-weight: bold;">SELECT</span>
-  Pnumber, Pname, <span style="color: #e3b0c0; font-weight: bold;">COUNT</span> <span style="color: #deb07a;">(</span>*<span style="color: #deb07a;">)</span>
-<span style="color: #deb07a; font-weight: bold;">FROM</span>
+<label class="org-src-name"><span class="listing-number">Listing 1: </span>for each project on which more than two employees work, retrieve the project number, the project name, and the number of employees who work on the project.</label><pre class="src src-sql"><span style="color: #fb4933;">SELECT</span>
+  Pnumber, Pname, <span style="color: #fe8019;">COUNT</span> <span style="color: #458588;">(</span>*<span style="color: #458588;">)</span>
+<span style="color: #fb4933;">FROM</span>
   PROJECT, WORKS_ON
-<span style="color: #deb07a; font-weight: bold;">WHERE</span>
+<span style="color: #fb4933;">WHERE</span>
   Pnumber = Pno
-<span style="color: #deb07a; font-weight: bold;">GROUP</span> <span style="color: #deb07a; font-weight: bold;">BY</span>
+<span style="color: #fb4933;">GROUP</span> <span style="color: #fb4933;">BY</span>
   Pnumber, Pname
-<span style="color: #deb07a; font-weight: bold;">HAVING</span>
-  <span style="color: #e3b0c0; font-weight: bold;">COUNT</span> <span style="color: #deb07a;">(</span>*<span style="color: #deb07a;">)</span> &gt; 2;
+<span style="color: #fb4933;">HAVING</span>
+  <span style="color: #fe8019;">COUNT</span> <span style="color: #458588;">(</span>*<span style="color: #458588;">)</span> &gt; 2;
 </pre>
 </div>
 

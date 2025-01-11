@@ -48,37 +48,37 @@
 </div><h1 class="main-title">common lisp</h1><span class='date'>2023-02-24</span>
 </div>
 <div id="content" class="content">
-<div id="outline-container-org00a5510" class="outline-2">
-<h2 id="org00a5510">for loop</h2>
-<div class="outline-text-2" id="text-org00a5510">
+<div id="outline-container-org31422a8" class="outline-2">
+<h2 id="org31422a8">for loop</h2>
+<div class="outline-text-2" id="text-org31422a8">
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">loop</span> for x in '<span style="color: #ffaacf;">(</span>1 2 3<span style="color: #ffaacf;">)</span>
-      collect x<span style="color: #deb07a;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">returns list</span>
-<span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">loop</span> for x in '<span style="color: #ffaacf;">(</span>1 2 3<span style="color: #ffaacf;">)</span>
-      do <span style="color: #ffaacf;">(</span>print x<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">prints the numbers</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span><span style="color: #fb4933;">loop</span> for x in '<span style="color: #b16286;">(</span>1 2 3<span style="color: #b16286;">)</span>
+      collect x<span style="color: #458588;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">returns list</span>
+<span style="color: #458588;">(</span><span style="color: #fb4933;">loop</span> for x in '<span style="color: #b16286;">(</span>1 2 3<span style="color: #b16286;">)</span>
+      do <span style="color: #b16286;">(</span>print x<span style="color: #b16286;">)</span><span style="color: #458588;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">prints the numbers</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org7ff9141" class="outline-2">
-<h2 id="org7ff9141">functions</h2>
-<div class="outline-text-2" id="text-org7ff9141">
+<div id="outline-container-orgad53ea2" class="outline-2">
+<h2 id="orgad53ea2">functions</h2>
+<div class="outline-text-2" id="text-orgad53ea2">
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">&lt;name&gt;</span> <span style="color: #ffaacf;">(</span>list of arguments<span style="color: #ffaacf;">)</span>
-  <span style="color: #caa89f; font-style: italic;">"docstring"</span>
-  <span style="color: #ffaacf;">(</span>body<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span><span style="color: #fb4933;">defun</span> <span style="color: #fabd2f;">&lt;name&gt;</span> <span style="color: #b16286;">(</span>list of arguments<span style="color: #b16286;">)</span>
+  <span style="color: #b8bb26;">"docstring"</span>
+  <span style="color: #b16286;">(</span>body<span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgfe2fb2a" class="outline-2">
-<h2 id="orgfe2fb2a">plist</h2>
-<div class="outline-text-2" id="text-orgfe2fb2a">
+<div id="outline-container-org3e38b25" class="outline-2">
+<h2 id="org3e38b25">plist</h2>
+<div class="outline-text-2" id="text-org3e38b25">
 <p>
 defining a plist
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span>setf my-plist '<span style="color: #ffaacf;">(</span>alt <span style="color: #f3a0a0;">"yes"</span> bar <span style="color: #f3a0a0;">"no"</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span>setf my-plist '<span style="color: #b16286;">(</span>alt <span style="color: #b8bb26;">"yes"</span> bar <span style="color: #b8bb26;">"no"</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 </pre>
 </div>
 
@@ -86,7 +86,7 @@ defining a plist
 retrieve a value by key
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span>getf my-plist 'alt<span style="color: #deb07a;">)</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span>getf my-plist 'alt<span style="color: #458588;">)</span>
 </pre>
 </div>
 
@@ -94,7 +94,7 @@ retrieve a value by key
 change the value that corresponds to a key
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span>setf <span style="color: #ffaacf;">(</span>getf my-plist 'alt<span style="color: #ffaacf;">)</span> 45<span style="color: #deb07a;">)</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span>setf <span style="color: #b16286;">(</span>getf my-plist 'alt<span style="color: #b16286;">)</span> 45<span style="color: #458588;">)</span>
 </pre>
 </div>
 
@@ -102,33 +102,33 @@ change the value that corresponds to a key
 get a list of the attributes
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">loop</span> for <span style="color: #ffaacf;">(</span>key value<span style="color: #ffaacf;">)</span> on my-plist by #'cddr
-      collect key<span style="color: #deb07a;">)</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span><span style="color: #fb4933;">loop</span> for <span style="color: #b16286;">(</span>key value<span style="color: #b16286;">)</span> on my-plist by #'cddr
+      collect key<span style="color: #458588;">)</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgd577cb2" class="outline-2">
-<h2 id="orgd577cb2">unbind variable</h2>
-<div class="outline-text-2" id="text-orgd577cb2">
+<div id="outline-container-org4f60877" class="outline-2">
+<h2 id="org4f60877">unbind variable</h2>
+<div class="outline-text-2" id="text-org4f60877">
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span>makunbound 'foo<span style="color: #deb07a;">)</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span>makunbound 'foo<span style="color: #458588;">)</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org44ebc50" class="outline-2">
-<h2 id="org44ebc50">undefine funciton</h2>
-<div class="outline-text-2" id="text-org44ebc50">
+<div id="outline-container-orgcf9e189" class="outline-2">
+<h2 id="orgcf9e189">undefine funciton</h2>
+<div class="outline-text-2" id="text-orgcf9e189">
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span>fmakunbound 'function<span style="color: #deb07a;">)</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span>fmakunbound 'function<span style="color: #458588;">)</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org4e3eb90" class="outline-2">
-<h2 id="org4e3eb90">quicklisp</h2>
-<div class="outline-text-2" id="text-org4e3eb90">
+<div id="outline-container-orgcb1f53b" class="outline-2">
+<h2 id="orgcb1f53b">quicklisp</h2>
+<div class="outline-text-2" id="text-orgcb1f53b">
 <p>
 need to install it manually afaik
 </p>
@@ -142,8 +142,8 @@ sbcl --load quicklisp.lisp
 then in sbcl
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span>quicklisp-quickstart:install <span style="color: #e3b0c0; font-weight: bold;">:path</span> <span style="color: #f3a0a0;">"~/.quicklisp"</span><span style="color: #deb07a;">)</span>
-<span style="color: #deb07a;">(</span>ql:add-to-init-file<span style="color: #deb07a;">)</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span>quicklisp-quickstart:install <span style="color: #fe8019;">:path</span> <span style="color: #b8bb26;">"~/.quicklisp"</span><span style="color: #458588;">)</span>
+<span style="color: #458588;">(</span>ql:add-to-init-file<span style="color: #458588;">)</span>
 </pre>
 </div>
 
@@ -151,7 +151,7 @@ then in sbcl
 then to install a package in sbcl:
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span>ql:quickload <span style="color: #f3a0a0;">"cl-csv"</span><span style="color: #deb07a;">)</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span>ql:quickload <span style="color: #b8bb26;">"cl-csv"</span><span style="color: #458588;">)</span>
 </pre>
 </div>
 
@@ -160,16 +160,16 @@ this will install the package if it doesnt exist, and if it exists it just loads
 </p>
 </div>
 </div>
-<div id="outline-container-org8d11562" class="outline-2">
-<h2 id="org8d11562">classes</h2>
-<div class="outline-text-2" id="text-org8d11562">
+<div id="outline-container-org920526e" class="outline-2">
+<h2 id="org920526e">classes</h2>
+<div class="outline-text-2" id="text-org920526e">
 <p>
 example class:
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defclass</span> <span style="color: #a9c99f;">my-class</span> <span style="color: #ffaacf;">()</span>
-  <span style="color: #ffaacf;">(</span><span style="color: #80aadf;">(</span>property1 <span style="color: #e3b0c0; font-weight: bold;">:accessor</span> property1-accessor<span style="color: #80aadf;">)</span>
-   <span style="color: #80aadf;">(</span>property2 <span style="color: #e3b0c0; font-weight: bold;">:accessor</span> property2-accessor<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span><span style="color: #fb4933;">defclass</span> <span style="color: #d3869b;">my-class</span> <span style="color: #b16286;">()</span>
+  <span style="color: #b16286;">(</span><span style="color: #8ec07c;">(</span>property1 <span style="color: #fe8019;">:accessor</span> property1-accessor<span style="color: #8ec07c;">)</span>
+   <span style="color: #8ec07c;">(</span>property2 <span style="color: #fe8019;">:accessor</span> property2-accessor<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 </pre>
 </div>
 
@@ -179,7 +179,7 @@ the <code>accessor</code> is the name you use to access a property1
 we construct an object using <code>make-instance</code>:
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defvar</span> <span style="color: #ffaacf;">p1</span> <span style="color: #ffaacf;">(</span>make-instance 'my-class<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span><span style="color: #fb4933;">defvar</span> <span style="color: #83a598;">p1</span> <span style="color: #b16286;">(</span>make-instance 'my-class<span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 </pre>
 </div>
 
@@ -188,9 +188,9 @@ we construct an object using <code>make-instance</code>:
 we can initialize the class with specific values, first we need to use the <code>:initarg</code> keyword on the class properties
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defclass</span> <span style="color: #a9c99f;">my-class</span> <span style="color: #ffaacf;">()</span>
-  <span style="color: #ffaacf;">(</span><span style="color: #80aadf;">(</span>property1 <span style="color: #e3b0c0; font-weight: bold;">:initarg</span> property1-initarg <span style="color: #e3b0c0; font-weight: bold;">:initform</span> default-value <span style="color: #e3b0c0; font-weight: bold;">:accessor</span> property1-accessor<span style="color: #80aadf;">)</span>
-   <span style="color: #80aadf;">(</span>property2 <span style="color: #e3b0c0; font-weight: bold;">:accessor</span> property2-accessor<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span><span style="color: #fb4933;">defclass</span> <span style="color: #d3869b;">my-class</span> <span style="color: #b16286;">()</span>
+  <span style="color: #b16286;">(</span><span style="color: #8ec07c;">(</span>property1 <span style="color: #fe8019;">:initarg</span> property1-initarg <span style="color: #fe8019;">:initform</span> default-value <span style="color: #fe8019;">:accessor</span> property1-accessor<span style="color: #8ec07c;">)</span>
+   <span style="color: #8ec07c;">(</span>property2 <span style="color: #fe8019;">:accessor</span> property2-accessor<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 </pre>
 </div>
 
@@ -200,7 +200,7 @@ then we can pass the values we want to <code>make-instance</code>
 <code>:initform</code> is used to pass a default value to the slot incase <code>:initarg</code> argument isnt passed to <code>make-instance</code>
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defvar</span> <span style="color: #ffaacf;">p1</span> <span style="color: #ffaacf;">(</span>make-instance 'my-class <span style="color: #e3b0c0; font-weight: bold;">:property1-initarg</span> property1-value<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span><span style="color: #fb4933;">defvar</span> <span style="color: #83a598;">p1</span> <span style="color: #b16286;">(</span>make-instance 'my-class <span style="color: #fe8019;">:property1-initarg</span> property1-value<span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 </pre>
 </div>
 
@@ -209,7 +209,7 @@ then we can pass the values we want to <code>make-instance</code>
 this is the syntax for accessing variables of a class
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span>property1-accessor p1<span style="color: #deb07a;">)</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span>property1-accessor p1<span style="color: #458588;">)</span>
 </pre>
 </div>
 
@@ -217,7 +217,7 @@ this is the syntax for accessing variables of a class
 we can do inheritance by passing the parent class in the parenthases after the class name:
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defclass</span> <span style="color: #a9c99f;">my-class</span> <span style="color: #ffaacf;">(</span>my-parent-class<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span><span style="color: #fb4933;">defclass</span> <span style="color: #d3869b;">my-class</span> <span style="color: #b16286;">(</span>my-parent-class<span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 </pre>
 </div>
 
@@ -225,39 +225,39 @@ we can do inheritance by passing the parent class in the parenthases after the c
 the following syntax is used to define a function for a class, note that the function <code>print-object</code> is the function that gets called when trying to print an object using <code>(print object)</code> so thats what we're defining here
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defmethod</span> <span style="color: #8fcfd0;">print-object</span> <span style="color: #ffaacf;">(</span><span style="color: #80aadf;">(</span>obj my-class<span style="color: #80aadf;">)</span> stream<span style="color: #ffaacf;">)</span>
-  <span style="color: #ffaacf;">(</span>print-unreadable-object <span style="color: #80aadf;">(</span>obj stream <span style="color: #e3b0c0; font-weight: bold;">:type</span> t<span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span>format stream <span style="color: #f3a0a0;">"value of property1: ~a"</span> <span style="color: #e47980;">(</span>property1 obj<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span><span style="color: #fb4933;">defmethod</span> <span style="color: #fabd2f;">print-object</span> <span style="color: #b16286;">(</span><span style="color: #8ec07c;">(</span>obj my-class<span style="color: #8ec07c;">)</span> stream<span style="color: #b16286;">)</span>
+  <span style="color: #b16286;">(</span>print-unreadable-object <span style="color: #8ec07c;">(</span>obj stream <span style="color: #fe8019;">:type</span> t<span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>format stream <span style="color: #b8bb26;">"value of property1: ~a"</span> <span style="color: #d65d0e;">(</span>property1 obj<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgffb22ac" class="outline-2">
-<h2 id="orgffb22ac">structs</h2>
-<div class="outline-text-2" id="text-orgffb22ac">
+<div id="outline-container-org08652cc" class="outline-2">
+<h2 id="org08652cc">structs</h2>
+<div class="outline-text-2" id="text-org08652cc">
 <p>
 structs are basically simpler classes with default functions/initializers/etc
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defstruct</span> <span style="color: #a9c99f;">rgb</span> <span style="color: #ffaacf;">()</span>
-           <span style="color: #ffaacf;">(</span>r 0<span style="color: #ffaacf;">)</span> <span style="color: #ffaacf;">(</span>g 0<span style="color: #ffaacf;">)</span> <span style="color: #ffaacf;">(</span>b 0<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">initialize slot values to 0</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span><span style="color: #fb4933;">defstruct</span> <span style="color: #d3869b;">rgb</span> <span style="color: #b16286;">()</span>
+           <span style="color: #b16286;">(</span>r 0<span style="color: #b16286;">)</span> <span style="color: #b16286;">(</span>g 0<span style="color: #b16286;">)</span> <span style="color: #b16286;">(</span>b 0<span style="color: #b16286;">)</span><span style="color: #458588;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">initialize slot values to 0</span>
 
-<span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">e.g. constructor built by default</span>
-<span style="color: #deb07a;">(</span>setf color <span style="color: #ffaacf;">(</span>make-rgb <span style="color: #e3b0c0; font-weight: bold;">:r</span> 2<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">=&gt; #S(RGB :NIL NIL :R 2 :G 0 :B 0)</span>
+<span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">e.g. constructor built by default</span>
+<span style="color: #458588;">(</span>setf color <span style="color: #b16286;">(</span>make-rgb <span style="color: #fe8019;">:r</span> 2<span style="color: #b16286;">)</span><span style="color: #458588;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">=&gt; #S(RGB :NIL NIL :R 2 :G 0 :B 0)</span>
 
-<span style="color: #deb07a;">(</span>list <span style="color: #ffaacf;">(</span>rgb-r color<span style="color: #ffaacf;">)</span> <span style="color: #ffaacf;">(</span>rgb-b color<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">=&gt; (2 0)</span>
+<span style="color: #458588;">(</span>list <span style="color: #b16286;">(</span>rgb-r color<span style="color: #b16286;">)</span> <span style="color: #b16286;">(</span>rgb-b color<span style="color: #b16286;">)</span><span style="color: #458588;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">=&gt; (2 0)</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orga8e81c0" class="outline-2">
-<h2 id="orga8e81c0">arrays/matrices</h2>
-<div class="outline-text-2" id="text-orga8e81c0">
+<div id="outline-container-org8467994" class="outline-2">
+<h2 id="org8467994">arrays/matrices</h2>
+<div class="outline-text-2" id="text-org8467994">
 <p>
 to create an array:
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span>make-array 10 <span style="color: #e3b0c0; font-weight: bold;">:initial-element</span> 10<span style="color: #deb07a;">)</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span>make-array 10 <span style="color: #fe8019;">:initial-element</span> 10<span style="color: #458588;">)</span>
 </pre>
 </div>
 
@@ -306,7 +306,7 @@ to create an array:
 multidimensional arrays:
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span>make-array '<span style="color: #ffaacf;">(</span>4 3<span style="color: #ffaacf;">)</span> <span style="color: #e3b0c0; font-weight: bold;">:initial-element</span> 15<span style="color: #deb07a;">)</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span>make-array '<span style="color: #b16286;">(</span>4 3<span style="color: #b16286;">)</span> <span style="color: #fe8019;">:initial-element</span> 15<span style="color: #458588;">)</span>
 </pre>
 </div>
 
@@ -320,7 +320,7 @@ multidimensional arrays:
 access slot in array
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span>aref <span style="color: #ffaacf;">(</span>make-array '<span style="color: #80aadf;">(</span>4 3 1<span style="color: #80aadf;">)</span> <span style="color: #e3b0c0; font-weight: bold;">:initial-element</span> 15<span style="color: #ffaacf;">)</span> 2 0 0<span style="color: #deb07a;">)</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span>aref <span style="color: #b16286;">(</span>make-array '<span style="color: #8ec07c;">(</span>4 3 1<span style="color: #8ec07c;">)</span> <span style="color: #fe8019;">:initial-element</span> 15<span style="color: #b16286;">)</span> 2 0 0<span style="color: #458588;">)</span>
 </pre>
 </div>
 
@@ -334,8 +334,8 @@ access slot in array
 get the length of the array (last argument is the dimension to check length of):
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span>print <span style="color: #ffaacf;">(</span>array-dimension <span style="color: #80aadf;">(</span>make-array '<span style="color: #e47980;">(</span>4 3<span style="color: #e47980;">)</span> <span style="color: #e3b0c0; font-weight: bold;">:initial-element</span> 15<span style="color: #80aadf;">)</span> 0<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
-<span style="color: #deb07a;">(</span>print <span style="color: #ffaacf;">(</span>array-dimension <span style="color: #80aadf;">(</span>make-array '<span style="color: #e47980;">(</span>4 3<span style="color: #e47980;">)</span> <span style="color: #e3b0c0; font-weight: bold;">:initial-element</span> 15<span style="color: #80aadf;">)</span> 1<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span>print <span style="color: #b16286;">(</span>array-dimension <span style="color: #8ec07c;">(</span>make-array '<span style="color: #d65d0e;">(</span>4 3<span style="color: #d65d0e;">)</span> <span style="color: #fe8019;">:initial-element</span> 15<span style="color: #8ec07c;">)</span> 0<span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
+<span style="color: #458588;">(</span>print <span style="color: #b16286;">(</span>array-dimension <span style="color: #8ec07c;">(</span>make-array '<span style="color: #d65d0e;">(</span>4 3<span style="color: #d65d0e;">)</span> <span style="color: #fe8019;">:initial-element</span> 15<span style="color: #8ec07c;">)</span> 1<span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 </pre>
 </div>
 
@@ -351,7 +351,7 @@ get the length of the array (last argument is the dimension to check length of):
 iterate through array:
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span>map nil #'print <span style="color: #ffaacf;">(</span>make-array 3 <span style="color: #e3b0c0; font-weight: bold;">:initial-element</span> 15<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span>map nil #'print <span style="color: #b16286;">(</span>make-array 3 <span style="color: #fe8019;">:initial-element</span> 15<span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 </pre>
 </div>
 
@@ -368,9 +368,9 @@ iterate through array:
 iterate with index:
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">let</span> <span style="color: #ffaacf;">(</span><span style="color: #80aadf;">(</span>arr <span style="color: #e47980;">(</span>make-array '<span style="color: #d0b0ff;">(</span>4 3<span style="color: #d0b0ff;">)</span> <span style="color: #e3b0c0; font-weight: bold;">:initial-element</span> 15<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span>
-  <span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">loop</span> for i from 0 below <span style="color: #80aadf;">(</span>array-dimension arr 0<span style="color: #80aadf;">)</span>
-    do <span style="color: #80aadf;">(</span>print <span style="color: #e47980;">(</span>aref arr i 1<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span><span style="color: #fb4933;">let</span> <span style="color: #b16286;">(</span><span style="color: #8ec07c;">(</span>arr <span style="color: #d65d0e;">(</span>make-array '<span style="color: #458588;">(</span>4 3<span style="color: #458588;">)</span> <span style="color: #fe8019;">:initial-element</span> 15<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span>
+  <span style="color: #b16286;">(</span><span style="color: #fb4933;">loop</span> for i from 0 below <span style="color: #8ec07c;">(</span>array-dimension arr 0<span style="color: #8ec07c;">)</span>
+    do <span style="color: #8ec07c;">(</span>print <span style="color: #d65d0e;">(</span>aref arr i 1<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 </pre>
 </div>
 
@@ -388,12 +388,12 @@ iterate with index:
 use displacement arrays to get the first element of every row in a 2d array:
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">loop</span> for i from 0 below <span style="color: #ffaacf;">(</span>array-dimension arr 0<span style="color: #ffaacf;">)</span>
-      collect <span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">let</span> <span style="color: #80aadf;">(</span><span style="color: #e47980;">(</span>row <span style="color: #d0b0ff;">(</span>make-array
-                          <span style="color: #3fc489;">(</span>array-dimension arr 1<span style="color: #3fc489;">)</span>
-                          <span style="color: #e3b0c0; font-weight: bold;">:displaced-to</span> arr
-                          <span style="color: #e3b0c0; font-weight: bold;">:displaced-index-offset</span> <span style="color: #3fc489;">(</span>* i <span style="color: #6fb3c0;">(</span>array-dimension arr 1<span style="color: #6fb3c0;">)</span><span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
-                <span style="color: #80aadf;">(</span>aref row 0<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span><span style="color: #fb4933;">loop</span> for i from 0 below <span style="color: #b16286;">(</span>array-dimension arr 0<span style="color: #b16286;">)</span>
+      collect <span style="color: #b16286;">(</span><span style="color: #fb4933;">let</span> <span style="color: #8ec07c;">(</span><span style="color: #d65d0e;">(</span>row <span style="color: #458588;">(</span>make-array
+                          <span style="color: #b16286;">(</span>array-dimension arr 1<span style="color: #b16286;">)</span>
+                          <span style="color: #fe8019;">:displaced-to</span> arr
+                          <span style="color: #fe8019;">:displaced-index-offset</span> <span style="color: #b16286;">(</span>* i <span style="color: #8ec07c;">(</span>array-dimension arr 1<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+                <span style="color: #8ec07c;">(</span>aref row 0<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 </pre>
 </div>
 
@@ -402,9 +402,9 @@ use displacement arrays to get the first element of every row in a 2d array:
 we can create resizable arrays with the <code>:adjustable</code> keyword, <code>:fill-pointer</code> denotes the next position to be filled in the array and is automatically maintained by the array itself, but has to be initialized
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defparameter</span> <span style="color: #ffaacf;">*x*</span> <span style="color: #ffaacf;">(</span>make-array 0 <span style="color: #e3b0c0; font-weight: bold;">:adjustable</span> t <span style="color: #e3b0c0; font-weight: bold;">:fill-pointer</span> 0<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
-<span style="color: #deb07a;">(</span>vector-push-extend 'a *x*<span style="color: #deb07a;">)</span>
-<span style="color: #deb07a;">(</span>vector-push-extend 'b *x*<span style="color: #deb07a;">)</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span><span style="color: #fb4933;">defparameter</span> <span style="color: #83a598;">*x*</span> <span style="color: #b16286;">(</span>make-array 0 <span style="color: #fe8019;">:adjustable</span> t <span style="color: #fe8019;">:fill-pointer</span> 0<span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
+<span style="color: #458588;">(</span>vector-push-extend 'a *x*<span style="color: #458588;">)</span>
+<span style="color: #458588;">(</span>vector-push-extend 'b *x*<span style="color: #458588;">)</span>
 *x*
 </pre>
 </div>
@@ -430,19 +430,19 @@ we can create resizable arrays with the <code>:adjustable</code> keyword, <code>
 fill array manually:
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span>make-array '<span style="color: #ffaacf;">(</span>3 3<span style="color: #ffaacf;">)</span> <span style="color: #e3b0c0; font-weight: bold;">:initial-contents</span> '<span style="color: #ffaacf;">(</span><span style="color: #80aadf;">(</span>1 0 0<span style="color: #80aadf;">)</span> <span style="color: #80aadf;">(</span>0 1 0<span style="color: #80aadf;">)</span> <span style="color: #80aadf;">(</span>0 0 1<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span>make-array '<span style="color: #b16286;">(</span>3 3<span style="color: #b16286;">)</span> <span style="color: #fe8019;">:initial-contents</span> '<span style="color: #b16286;">(</span><span style="color: #8ec07c;">(</span>1 0 0<span style="color: #8ec07c;">)</span> <span style="color: #8ec07c;">(</span>0 1 0<span style="color: #8ec07c;">)</span> <span style="color: #8ec07c;">(</span>0 0 1<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgfbbb5fd" class="outline-2">
-<h2 id="orgfbbb5fd">vectors</h2>
-<div class="outline-text-2" id="text-orgfbbb5fd">
+<div id="outline-container-orgb433d5b" class="outline-2">
+<h2 id="orgb433d5b">vectors</h2>
+<div class="outline-text-2" id="text-orgb433d5b">
 <p>
 create vector
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span>vector 3 5 1<span style="color: #deb07a;">)</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span>vector 3 5 1<span style="color: #458588;">)</span>
 </pre>
 </div>
 
@@ -451,7 +451,7 @@ create vector
 we can use <code>length</code> on vectors
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span>length <span style="color: #ffaacf;">(</span>vector 3 5 1<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span> ==&gt; 3
+<pre class="src src-lisp"><span style="color: #458588;">(</span>length <span style="color: #b16286;">(</span>vector 3 5 1<span style="color: #b16286;">)</span><span style="color: #458588;">)</span> ==&gt; 3
 </pre>
 </div>
 
@@ -460,9 +460,9 @@ we can use <code>length</code> on vectors
 get nth element:
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defparameter</span> <span style="color: #ffaacf;">*x*</span> <span style="color: #ffaacf;">(</span>vector 1 2 3<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
-<span style="color: #deb07a;">(</span>length *x*<span style="color: #deb07a;">)</span> ==&gt; 3
-<span style="color: #deb07a;">(</span>elt *x* 1<span style="color: #deb07a;">)</span>  ==&gt; 2
+<pre class="src src-lisp"><span style="color: #458588;">(</span><span style="color: #fb4933;">defparameter</span> <span style="color: #83a598;">*x*</span> <span style="color: #b16286;">(</span>vector 1 2 3<span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
+<span style="color: #458588;">(</span>length *x*<span style="color: #458588;">)</span> ==&gt; 3
+<span style="color: #458588;">(</span>elt *x* 1<span style="color: #458588;">)</span>  ==&gt; 2
 </pre>
 </div>
 
@@ -471,9 +471,9 @@ get nth element:
 we can have nested vectors
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">let</span> <span style="color: #ffaacf;">(</span><span style="color: #80aadf;">(</span>a <span style="color: #e47980;">(</span>vector <span style="color: #d0b0ff;">(</span>vector 1 2<span style="color: #d0b0ff;">)</span> <span style="color: #d0b0ff;">(</span>vector 3<span style="color: #d0b0ff;">)</span> 4<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span>
-  <span style="color: #ffaacf;">(</span>print a<span style="color: #ffaacf;">)</span>
-  <span style="color: #ffaacf;">(</span>print <span style="color: #80aadf;">(</span>elt a 0<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span><span style="color: #fb4933;">let</span> <span style="color: #b16286;">(</span><span style="color: #8ec07c;">(</span>a <span style="color: #d65d0e;">(</span>vector <span style="color: #458588;">(</span>vector 1 2<span style="color: #458588;">)</span> <span style="color: #458588;">(</span>vector 3<span style="color: #458588;">)</span> 4<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span>
+  <span style="color: #b16286;">(</span>print a<span style="color: #b16286;">)</span>
+  <span style="color: #b16286;">(</span>print <span style="color: #8ec07c;">(</span>elt a 0<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 </pre>
 </div>
 
@@ -485,20 +485,20 @@ we can have nested vectors
 </pre>
 </div>
 </div>
-<div id="outline-container-org1b37c21" class="outline-2">
-<h2 id="org1b37c21">multithreading</h2>
-<div class="outline-text-2" id="text-org1b37c21">
+<div id="outline-container-org5b64c7b" class="outline-2">
+<h2 id="org5b64c7b">multithreading</h2>
+<div class="outline-text-2" id="text-org5b64c7b">
 <p>
 in <a href="/sbcl.html">sbcl</a> <code>sb-thread:make-thread</code> takes a function to call in a newly created thread.
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span>sb-thread:make-thread
- <span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">lambda</span> <span style="color: #80aadf;">()</span>
-   <span style="color: #80aadf;">(</span><span style="color: #deb07a; font-weight: bold;">progn</span>
-     <span style="color: #e47980;">(</span>sleep 0<span style="color: #e47980;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">give other threads a chance to run, then return here</span>
-     <span style="color: #e47980;">(</span>setf c <span style="color: #d0b0ff;">(</span>+ a b<span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span>
-     <span style="color: #e47980;">(</span>print <span style="color: #f3a0a0;">"ADDITION:"</span><span style="color: #e47980;">)</span>
-     <span style="color: #e47980;">(</span>print c<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span>sb-thread:make-thread
+ <span style="color: #b16286;">(</span><span style="color: #fb4933;">lambda</span> <span style="color: #8ec07c;">()</span>
+   <span style="color: #8ec07c;">(</span><span style="color: #fb4933;">progn</span>
+     <span style="color: #d65d0e;">(</span>sleep 0<span style="color: #d65d0e;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">give other threads a chance to run, then return here</span>
+     <span style="color: #d65d0e;">(</span>setf c <span style="color: #458588;">(</span>+ a b<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span>
+     <span style="color: #d65d0e;">(</span>print <span style="color: #b8bb26;">"ADDITION:"</span><span style="color: #d65d0e;">)</span>
+     <span style="color: #d65d0e;">(</span>print c<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 </pre>
 </div>
 
@@ -511,16 +511,16 @@ the <a href="https://github.com/lmj/lparallel">lparallel</a> library works great
 </p>
 </div>
 </div>
-<div id="outline-container-org566fbd9" class="outline-2">
-<h2 id="org566fbd9">macros</h2>
-<div class="outline-text-2" id="text-org566fbd9">
+<div id="outline-container-org8bbae38" class="outline-2">
+<h2 id="org8bbae38">macros</h2>
+<div class="outline-text-2" id="text-org8bbae38">
 <p>
 simple macro from <a href="https://lispcookbook.github.io/cl-cookbook/macros.html">https://lispcookbook.github.io/cl-cookbook/macros.html</a>:
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defmacro</span> <span style="color: #8fcfd0;">setq2</span> <span style="color: #ffaacf;">(</span>v1 v2 e<span style="color: #ffaacf;">)</span>
-  <span style="color: #ffaacf;">(</span>list 'progn <span style="color: #80aadf;">(</span>list 'setq v1 e<span style="color: #80aadf;">)</span> <span style="color: #80aadf;">(</span>list 'setq v2 e<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
-<span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">(setq2 v1 v2 3) =&gt; v1=3,v2=3</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span><span style="color: #fb4933;">defmacro</span> <span style="color: #fabd2f;">setq2</span> <span style="color: #b16286;">(</span>v1 v2 e<span style="color: #b16286;">)</span>
+  <span style="color: #b16286;">(</span>list 'progn <span style="color: #8ec07c;">(</span>list 'setq v1 e<span style="color: #8ec07c;">)</span> <span style="color: #8ec07c;">(</span>list 'setq v2 e<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
+<span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">(setq2 v1 v2 3) =&gt; v1=3,v2=3</span>
 </pre>
 </div>
 
@@ -528,8 +528,8 @@ simple macro from <a href="https://lispcookbook.github.io/cl-cookbook/macros.htm
 this macro is very close to the following function definition:
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">setq2-function</span> <span style="color: #ffaacf;">(</span>v1 v2 e<span style="color: #ffaacf;">)</span>
-  <span style="color: #ffaacf;">(</span>list 'progn <span style="color: #80aadf;">(</span>list 'setq v1 e<span style="color: #80aadf;">)</span> <span style="color: #80aadf;">(</span>list 'setq v2 e<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span><span style="color: #fb4933;">defun</span> <span style="color: #fabd2f;">setq2-function</span> <span style="color: #b16286;">(</span>v1 v2 e<span style="color: #b16286;">)</span>
+  <span style="color: #b16286;">(</span>list 'progn <span style="color: #8ec07c;">(</span>list 'setq v1 e<span style="color: #8ec07c;">)</span> <span style="color: #8ec07c;">(</span>list 'setq v2 e<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 </pre>
 </div>
 
@@ -537,10 +537,10 @@ this macro is very close to the following function definition:
 consider the following macro <code>when2</code> which behaves like the builtin <code>when</code>
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defmacro</span> <span style="color: #8fcfd0;">when2</span> <span style="color: #ffaacf;">(</span>condition <span style="color: #a9c99f;">&amp;rest</span> body<span style="color: #ffaacf;">)</span>
-  `<span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">if</span> ,condition <span style="color: #80aadf;">(</span><span style="color: #deb07a; font-weight: bold;">progn</span> ,@body<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
-<span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">(when2 t (print "hey")) =&gt; "hey"</span>
-<span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">(when2 nil (print "hey")) =&gt; nothing</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span><span style="color: #fb4933;">defmacro</span> <span style="color: #fabd2f;">when2</span> <span style="color: #b16286;">(</span>condition <span style="color: #d3869b;">&amp;rest</span> body<span style="color: #b16286;">)</span>
+  `<span style="color: #b16286;">(</span><span style="color: #fb4933;">if</span> ,condition <span style="color: #8ec07c;">(</span><span style="color: #fb4933;">progn</span> ,@body<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
+<span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">(when2 t (print "hey")) =&gt; "hey"</span>
+<span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">(when2 nil (print "hey")) =&gt; nothing</span>
 </pre>
 </div>
 
@@ -560,8 +560,8 @@ if a comma is immediately followed by an at-sign, then the form following the at
 <code>body</code> is just a list and can be used/modified
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defmacro</span> <span style="color: #8fcfd0;">test-macro</span> <span style="color: #ffaacf;">(</span><span style="color: #a9c99f;">&amp;rest</span> body<span style="color: #ffaacf;">)</span>
-  `<span style="color: #ffaacf;">(</span>quote ,body<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span><span style="color: #fb4933;">defmacro</span> <span style="color: #fabd2f;">test-macro</span> <span style="color: #b16286;">(</span><span style="color: #d3869b;">&amp;rest</span> body<span style="color: #b16286;">)</span>
+  `<span style="color: #b16286;">(</span>quote ,body<span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 </pre>
 </div>
 
@@ -569,32 +569,32 @@ if a comma is immediately followed by an at-sign, then the form following the at
 this is called an <b>anaphoric macro</b> where you wrap the body with a lexical function definition that shadows the global one
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp">CL-USER&gt; <span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">foo</span> <span style="color: #ffaacf;">()</span> 1<span style="color: #deb07a;">)</span>
+<pre class="src src-lisp">CL-USER&gt; <span style="color: #458588;">(</span><span style="color: #fb4933;">defun</span> <span style="color: #fabd2f;">foo</span> <span style="color: #b16286;">()</span> 1<span style="color: #458588;">)</span>
 FOO
-CL-USER&gt; <span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defmacro</span> <span style="color: #8fcfd0;">with-different-foo</span> <span style="color: #ffaacf;">(</span><span style="color: #a9c99f;">&amp;body</span> body<span style="color: #ffaacf;">)</span>
-           `<span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">flet</span> <span style="color: #80aadf;">(</span><span style="color: #e47980;">(</span>foo <span style="color: #d0b0ff;">()</span> 2<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
-              ,@body<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+CL-USER&gt; <span style="color: #458588;">(</span><span style="color: #fb4933;">defmacro</span> <span style="color: #fabd2f;">with-different-foo</span> <span style="color: #b16286;">(</span><span style="color: #d3869b;">&amp;body</span> body<span style="color: #b16286;">)</span>
+           `<span style="color: #b16286;">(</span><span style="color: #fb4933;">flet</span> <span style="color: #8ec07c;">(</span><span style="color: #d65d0e;">(</span>foo <span style="color: #458588;">()</span> 2<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+              ,@body<span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 WITH-DIFFERENT-FOO
-CL-USER&gt; <span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">progn</span>
-           <span style="color: #ffaacf;">(</span>foo<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+CL-USER&gt; <span style="color: #458588;">(</span><span style="color: #fb4933;">progn</span>
+           <span style="color: #b16286;">(</span>foo<span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 1
-CL-USER&gt; <span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">with-different-foo</span>
-           <span style="color: #ffaacf;">(</span>foo<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+CL-USER&gt; <span style="color: #458588;">(</span><span style="color: #fb4933;">with-different-foo</span>
+           <span style="color: #b16286;">(</span>foo<span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 2
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org332ae6e" class="outline-2">
-<h2 id="org332ae6e">reader macros</h2>
-<div class="outline-text-2" id="text-org332ae6e">
+<div id="outline-container-org29e5046" class="outline-2">
+<h2 id="org29e5046">reader macros</h2>
+<div class="outline-text-2" id="text-org29e5046">
 <p>
 the <code>#+</code> and <code>#-</code> <b>reader macros</b> are pretty nice for commenting out sexps. they allow ignoring the following sexp, if the given symbol isn't/is found in <code>*FEATURES*</code>. Just pick a symbol not in <code>*FEATURES*</code>, and use it with <code>#+</code> like this:
 </p>
 <div class="org-src-container" data-language="lisp">
 <pre class="src src-lisp">#+nil
-<span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">foo</span> <span style="color: #ffaacf;">()</span>
-  ...<span style="color: #deb07a;">)</span>
+<span style="color: #458588;">(</span><span style="color: #fb4933;">defun</span> <span style="color: #fabd2f;">foo</span> <span style="color: #b16286;">()</span>
+  ...<span style="color: #458588;">)</span>
 </pre>
 </div>
 
@@ -603,23 +603,23 @@ Now, the function definition will be ignored (unless NIL is in <code>*FEATURES*<
 </p>
 </div>
 </div>
-<div id="outline-container-org51434f6" class="outline-2">
-<h2 id="org51434f6">use double-floats by default</h2>
-<div class="outline-text-2" id="text-org51434f6">
+<div id="outline-container-orge92fc05" class="outline-2">
+<h2 id="orge92fc05">use double-floats by default</h2>
+<div class="outline-text-2" id="text-orge92fc05">
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span>setf *read-default-float-format* 'double-float<span style="color: #deb07a;">)</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span>setf *read-default-float-format* 'double-float<span style="color: #458588;">)</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org404b241" class="outline-2">
-<h2 id="org404b241">enforce garbage collection</h2>
-<div class="outline-text-2" id="text-org404b241">
+<div id="outline-container-org91e6311" class="outline-2">
+<h2 id="org91e6311">enforce garbage collection</h2>
+<div class="outline-text-2" id="text-org91e6311">
 <p>
 running
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span>gc <span style="color: #e3b0c0; font-weight: bold;">:full</span> t<span style="color: #deb07a;">)</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span>gc <span style="color: #fe8019;">:full</span> t<span style="color: #458588;">)</span>
 </pre>
 </div>
 
@@ -628,15 +628,15 @@ invokes the garbage collector
 </p>
 </div>
 </div>
-<div id="outline-container-orgae7bae6" class="outline-2">
-<h2 id="orgae7bae6">checking equalities</h2>
-<div class="outline-text-2" id="text-orgae7bae6">
+<div id="outline-container-org6f2cc27" class="outline-2">
+<h2 id="org6f2cc27">checking equalities</h2>
+<div class="outline-text-2" id="text-org6f2cc27">
 <p>
 some equality tests may return results that are implementation-specific, i dont list those here, i only wrote the ones that are supposed to work on any cl implementation
 string equality:
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span>equal <span style="color: #f3a0a0;">"foo"</span> <span style="color: #ffaacf;">(</span>copy-seq <span style="color: #f3a0a0;">"foo"</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">=&gt; T</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span>equal <span style="color: #b8bb26;">"foo"</span> <span style="color: #b16286;">(</span>copy-seq <span style="color: #b8bb26;">"foo"</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">=&gt; T</span>
 </pre>
 </div>
 
@@ -644,7 +644,7 @@ string equality:
 symbol equality (any equality operator works for symbols):
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span>eq 'foo 'foo<span style="color: #deb07a;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">=&gt; T</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span>eq 'foo 'foo<span style="color: #458588;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">=&gt; T</span>
 </pre>
 </div>
 
@@ -652,15 +652,15 @@ symbol equality (any equality operator works for symbols):
 number equality:
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">'eql' is "type sensitive"</span>
-<span style="color: #deb07a;">(</span>eql 3 3.0<span style="color: #deb07a;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">=&gt; NIL</span>
-<span style="color: #deb07a;">(</span>eql 3 3<span style="color: #deb07a;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">=&gt; T</span>
-<span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">'equal' works for floats and integers all the same</span>
-<span style="color: #deb07a;">(</span>equal 3 3.0<span style="color: #deb07a;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">=&gt; T</span>
-<span style="color: #deb07a;">(</span>equal 3 3<span style="color: #deb07a;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">=&gt; T</span>
-<span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">'equalp' works for floats and integers all the same</span>
-<span style="color: #deb07a;">(</span>equalp 3 3.0<span style="color: #deb07a;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">=&gt; T</span>
-<span style="color: #deb07a;">(</span>equalp 3 3<span style="color: #deb07a;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">=&gt; T</span>
+<pre class="src src-lisp"><span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">'eql' is "type sensitive"</span>
+<span style="color: #458588;">(</span>eql 3 3.0<span style="color: #458588;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">=&gt; NIL</span>
+<span style="color: #458588;">(</span>eql 3 3<span style="color: #458588;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">=&gt; T</span>
+<span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">'equal' works for floats and integers all the same</span>
+<span style="color: #458588;">(</span>equal 3 3.0<span style="color: #458588;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">=&gt; T</span>
+<span style="color: #458588;">(</span>equal 3 3<span style="color: #458588;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">=&gt; T</span>
+<span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">'equalp' works for floats and integers all the same</span>
+<span style="color: #458588;">(</span>equalp 3 3.0<span style="color: #458588;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">=&gt; T</span>
+<span style="color: #458588;">(</span>equalp 3 3<span style="color: #458588;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">=&gt; T</span>
 </pre>
 </div>
 
@@ -668,9 +668,9 @@ number equality:
 object equality (same object in memory):
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span>eq 'a 'a<span style="color: #deb07a;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">=&gt; T</span>
-<span style="color: #deb07a;">(</span>eq <span style="color: #f3a0a0;">"foo"</span> <span style="color: #ffaacf;">(</span>copy-seq <span style="color: #f3a0a0;">"foo"</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">=&gt; NIL</span>
-<span style="color: #deb07a;">(</span>eq 3 3.0<span style="color: #deb07a;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">=&gt; NIL</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span>eq 'a 'a<span style="color: #458588;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">=&gt; T</span>
+<span style="color: #458588;">(</span>eq <span style="color: #b8bb26;">"foo"</span> <span style="color: #b16286;">(</span>copy-seq <span style="color: #b8bb26;">"foo"</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">=&gt; NIL</span>
+<span style="color: #458588;">(</span>eq 3 3.0<span style="color: #458588;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">=&gt; NIL</span>
 </pre>
 </div>
 
@@ -679,32 +679,32 @@ sequence equality (and general object equality which compares the internal struc
 uppercase and lowercase letters in strings are considered by <code>equal</code> to be distinct. in contrast, <code>equalp</code> ignores case distinctions in strings. <code>equalp</code> works for arrays but <code>equal</code> doesnt ("works" as in does element-wise comparison, which is the intended equality check here)
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">strings</span>
-<span style="color: #deb07a;">(</span>equal <span style="color: #f3a0a0;">"Foo"</span> <span style="color: #ffaacf;">(</span>copy-seq <span style="color: #f3a0a0;">"Foo"</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">=&gt; T</span>
-<span style="color: #deb07a;">(</span>equal <span style="color: #f3a0a0;">"Foo"</span> <span style="color: #ffaacf;">(</span>copy-seq <span style="color: #f3a0a0;">"foo"</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">=&gt; NIL</span>
-<span style="color: #deb07a;">(</span>equalp <span style="color: #f3a0a0;">"Foo"</span> <span style="color: #ffaacf;">(</span>copy-seq <span style="color: #f3a0a0;">"foo"</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">=&gt; NIL</span>
+<pre class="src src-lisp"><span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">strings</span>
+<span style="color: #458588;">(</span>equal <span style="color: #b8bb26;">"Foo"</span> <span style="color: #b16286;">(</span>copy-seq <span style="color: #b8bb26;">"Foo"</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">=&gt; T</span>
+<span style="color: #458588;">(</span>equal <span style="color: #b8bb26;">"Foo"</span> <span style="color: #b16286;">(</span>copy-seq <span style="color: #b8bb26;">"foo"</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">=&gt; NIL</span>
+<span style="color: #458588;">(</span>equalp <span style="color: #b8bb26;">"Foo"</span> <span style="color: #b16286;">(</span>copy-seq <span style="color: #b8bb26;">"foo"</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">=&gt; NIL</span>
 
-<span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">vectors/arrays</span>
-<span style="color: #deb07a;">(</span>equal #<span style="color: #ffaacf;">(</span>1 2 3<span style="color: #ffaacf;">)</span> <span style="color: #ffaacf;">(</span>copy-seq #<span style="color: #80aadf;">(</span>1 2 3<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">=&gt; NIL</span>
-<span style="color: #deb07a;">(</span>equalp #<span style="color: #ffaacf;">(</span>1 2 3<span style="color: #ffaacf;">)</span> <span style="color: #ffaacf;">(</span>copy-seq #<span style="color: #80aadf;">(</span>1 2 3<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">=&gt; T</span>
+<span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">vectors/arrays</span>
+<span style="color: #458588;">(</span>equal #<span style="color: #b16286;">(</span>1 2 3<span style="color: #b16286;">)</span> <span style="color: #b16286;">(</span>copy-seq #<span style="color: #8ec07c;">(</span>1 2 3<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">=&gt; NIL</span>
+<span style="color: #458588;">(</span>equalp #<span style="color: #b16286;">(</span>1 2 3<span style="color: #b16286;">)</span> <span style="color: #b16286;">(</span>copy-seq #<span style="color: #8ec07c;">(</span>1 2 3<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">=&gt; T</span>
 
-<span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">lists</span>
-<span style="color: #deb07a;">(</span>equal '<span style="color: #ffaacf;">(</span>1 2 3<span style="color: #ffaacf;">)</span> <span style="color: #ffaacf;">(</span>copy-seq '<span style="color: #80aadf;">(</span>1 2 3<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">=&gt; T</span>
-<span style="color: #deb07a;">(</span>equalp '<span style="color: #ffaacf;">(</span>1 2 3<span style="color: #ffaacf;">)</span> <span style="color: #ffaacf;">(</span>copy-seq '<span style="color: #80aadf;">(</span>1 2 3<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">=&gt; T</span>
+<span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">lists</span>
+<span style="color: #458588;">(</span>equal '<span style="color: #b16286;">(</span>1 2 3<span style="color: #b16286;">)</span> <span style="color: #b16286;">(</span>copy-seq '<span style="color: #8ec07c;">(</span>1 2 3<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">=&gt; T</span>
+<span style="color: #458588;">(</span>equalp '<span style="color: #b16286;">(</span>1 2 3<span style="color: #b16286;">)</span> <span style="color: #b16286;">(</span>copy-seq '<span style="color: #8ec07c;">(</span>1 2 3<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">=&gt; T</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org6cbdd2a" class="outline-2">
-<h2 id="org6cbdd2a">alist</h2>
-<div class="outline-text-2" id="text-org6cbdd2a">
+<div id="outline-container-orgbb5f7ae" class="outline-2">
+<h2 id="orgbb5f7ae">alist</h2>
+<div class="outline-text-2" id="text-orgbb5f7ae">
 <p>
 we can append new pairs to an alist using <code>push</code> (there are many other ways):
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">let</span> <span style="color: #ffaacf;">(</span><span style="color: #80aadf;">(</span>my-alist '<span style="color: #e47980;">(</span><span style="color: #d0b0ff;">(</span>a . b<span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span>
-  <span style="color: #ffaacf;">(</span>push <span style="color: #80aadf;">(</span>cons 'x 'y<span style="color: #80aadf;">)</span> my-alist<span style="color: #ffaacf;">)</span>
-  <span style="color: #ffaacf;">(</span>push '<span style="color: #80aadf;">(</span>10 . 20<span style="color: #80aadf;">)</span> my-alist<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span><span style="color: #fb4933;">let</span> <span style="color: #b16286;">(</span><span style="color: #8ec07c;">(</span>my-alist '<span style="color: #d65d0e;">(</span><span style="color: #458588;">(</span>a . b<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span>
+  <span style="color: #b16286;">(</span>push <span style="color: #8ec07c;">(</span>cons 'x 'y<span style="color: #8ec07c;">)</span> my-alist<span style="color: #b16286;">)</span>
+  <span style="color: #b16286;">(</span>push '<span style="color: #8ec07c;">(</span>10 . 20<span style="color: #8ec07c;">)</span> my-alist<span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 </pre>
 </div>
 
@@ -714,9 +714,9 @@ we can append new pairs to an alist using <code>push</code> (there are many othe
 </pre>
 </div>
 </div>
-<div id="outline-container-org52ec0ce" class="outline-2">
-<h2 id="org52ec0ce">resources</h2>
-<div class="outline-text-2" id="text-org52ec0ce">
+<div id="outline-container-orgb21f112" class="outline-2">
+<h2 id="orgb21f112">resources</h2>
+<div class="outline-text-2" id="text-orgb21f112">
 <p>
 <a href="https://lisp-journey.gitlab.io/blog/common-lisp-macros-by-example-tutorial">https://lisp-journey.gitlab.io/blog/common-lisp-macros-by-example-tutorial</a>
 <a href="https://taeric.github.io/CodeAsData.html">https://taeric.github.io/CodeAsData.html</a>

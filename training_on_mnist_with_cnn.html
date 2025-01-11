@@ -53,27 +53,27 @@ refer to <a href="/training_on_mnist_(old).html">training on mnist</a>, which wa
 load the dataset (replace <code>train-data-file</code> and <code>test-data-file</code> if youre not me):
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span>ql:quickload <span style="color: #f3a0a0;">"cl-csv"</span><span style="color: #deb07a;">)</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span>ql:quickload <span style="color: #b8bb26;">"cl-csv"</span><span style="color: #458588;">)</span>
 </pre>
 </div>
 
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">parse-mylist</span> <span style="color: #ffaacf;">(</span>mylist<span style="color: #ffaacf;">)</span>
-  <span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">let*</span> <span style="color: #80aadf;">(</span><span style="color: #e47980;">(</span>digit <span style="color: #d0b0ff;">(</span>parse-integer <span style="color: #3fc489;">(</span>car mylist<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">digit is at the beginning of the list</span>
-         <span style="color: #e47980;">(</span>mylist <span style="color: #d0b0ff;">(</span>cdr mylist<span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">the rest of the list contains the pixels</span>
-         <span style="color: #e47980;">(</span>size <span style="color: #d0b0ff;">(</span>floor <span style="color: #3fc489;">(</span>sqrt <span style="color: #6fb3c0;">(</span>length mylist<span style="color: #6fb3c0;">)</span><span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span>
-         <span style="color: #e47980;">(</span>arr <span style="color: #d0b0ff;">(</span>make-array <span style="color: #3fc489;">(</span>list 1 size size<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span><span style="color: #deb07a; font-weight: bold;">loop</span> for i from 0 below size do
-      <span style="color: #e47980;">(</span><span style="color: #deb07a; font-weight: bold;">loop</span> for j from 0 below size do
-        <span style="color: #d0b0ff;">(</span>setf <span style="color: #3fc489;">(</span>aref arr 0 i j<span style="color: #3fc489;">)</span> <span style="color: #3fc489;">(</span>/ <span style="color: #6fb3c0;">(</span>parse-integer <span style="color: #c0b24f;">(</span>elt mylist <span style="color: #f3a0a0;">(</span>+ <span style="color: #deb07a;">(</span>* size i<span style="color: #deb07a;">)</span> j<span style="color: #f3a0a0;">)</span><span style="color: #c0b24f;">)</span><span style="color: #6fb3c0;">)</span> 255<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
-        <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">(setf (aref arr 0 i j) (parse-integer (elt mylist (+ (* size i) j))))))</span>
-    <span style="color: #80aadf;">(</span>cons arr digit<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
-<span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">load-mnist</span> <span style="color: #ffaacf;">()</span>
-  <span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">defparameter</span> <span style="color: #ffaacf;">*mnist-train-data*</span> <span style="color: #80aadf;">(</span>cl-csv:read-csv <span style="color: #e47980;">(</span>pathname train-data-file<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span>
-  <span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">defparameter</span> <span style="color: #ffaacf;">*mnist-test-data*</span> <span style="color: #80aadf;">(</span>cl-csv:read-csv <span style="color: #e47980;">(</span>pathname test-data-file<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span>
-  <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">use vector, access is O(1) unlike lists</span>
-  <span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">defparameter</span> <span style="color: #ffaacf;">*mnist-train-data*</span> <span style="color: #80aadf;">(</span>map 'vector #'parse-mylist <span style="color: #e47980;">(</span>cdr *mnist-train-data*<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span>
-  <span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">defparameter</span> <span style="color: #ffaacf;">*mnist-test-data*</span> <span style="color: #80aadf;">(</span>map 'vector #'parse-mylist <span style="color: #e47980;">(</span>cdr *mnist-test-data*<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span><span style="color: #fb4933;">defun</span> <span style="color: #fabd2f;">parse-mylist</span> <span style="color: #b16286;">(</span>mylist<span style="color: #b16286;">)</span>
+  <span style="color: #b16286;">(</span><span style="color: #fb4933;">let*</span> <span style="color: #8ec07c;">(</span><span style="color: #d65d0e;">(</span>digit <span style="color: #458588;">(</span>parse-integer <span style="color: #b16286;">(</span>car mylist<span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">digit is at the beginning of the list</span>
+         <span style="color: #d65d0e;">(</span>mylist <span style="color: #458588;">(</span>cdr mylist<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">the rest of the list contains the pixels</span>
+         <span style="color: #d65d0e;">(</span>size <span style="color: #458588;">(</span>floor <span style="color: #b16286;">(</span>sqrt <span style="color: #8ec07c;">(</span>length mylist<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span>
+         <span style="color: #d65d0e;">(</span>arr <span style="color: #458588;">(</span>make-array <span style="color: #b16286;">(</span>list 1 size size<span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span><span style="color: #fb4933;">loop</span> for i from 0 below size do
+      <span style="color: #d65d0e;">(</span><span style="color: #fb4933;">loop</span> for j from 0 below size do
+        <span style="color: #458588;">(</span>setf <span style="color: #b16286;">(</span>aref arr 0 i j<span style="color: #b16286;">)</span> <span style="color: #b16286;">(</span>/ <span style="color: #8ec07c;">(</span>parse-integer <span style="color: #d65d0e;">(</span>elt mylist <span style="color: #458588;">(</span>+ <span style="color: #458588;">(</span>* size i<span style="color: #458588;">)</span> j<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span> 255<span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+        <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">(setf (aref arr 0 i j) (parse-integer (elt mylist (+ (* size i) j))))))</span>
+    <span style="color: #8ec07c;">(</span>cons arr digit<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
+<span style="color: #458588;">(</span><span style="color: #fb4933;">defun</span> <span style="color: #fabd2f;">load-mnist</span> <span style="color: #b16286;">()</span>
+  <span style="color: #b16286;">(</span><span style="color: #fb4933;">defparameter</span> <span style="color: #83a598;">*mnist-train-data*</span> <span style="color: #8ec07c;">(</span>cl-csv:read-csv <span style="color: #d65d0e;">(</span>pathname train-data-file<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span>
+  <span style="color: #b16286;">(</span><span style="color: #fb4933;">defparameter</span> <span style="color: #83a598;">*mnist-test-data*</span> <span style="color: #8ec07c;">(</span>cl-csv:read-csv <span style="color: #d65d0e;">(</span>pathname test-data-file<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span>
+  <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">use vector, access is O(1) unlike lists</span>
+  <span style="color: #b16286;">(</span><span style="color: #fb4933;">defparameter</span> <span style="color: #83a598;">*mnist-train-data*</span> <span style="color: #8ec07c;">(</span>map 'vector #'parse-mylist <span style="color: #d65d0e;">(</span>cdr *mnist-train-data*<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span>
+  <span style="color: #b16286;">(</span><span style="color: #fb4933;">defparameter</span> <span style="color: #83a598;">*mnist-test-data*</span> <span style="color: #8ec07c;">(</span>map 'vector #'parse-mylist <span style="color: #d65d0e;">(</span>cdr *mnist-test-data*<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 </pre>
 </div>
 
@@ -82,27 +82,27 @@ note that i had to normalize the pixel value from 1-255 to 0-1, otherwise i coul
 each image is of size 28x28, we can use the following architecture:
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">input meant to be of size 1x28x28</span>
-<span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">construct-mnist-network</span> <span style="color: #ffaacf;">()</span>
-  <span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">defparameter</span> <span style="color: #ffaacf;">*mnist-network*</span>
-    <span style="color: #80aadf;">(</span>make-network
-     <span style="color: #e3b0c0; font-weight: bold;">:layers</span> <span style="color: #e47980;">(</span>list
-              <span style="color: #d0b0ff;">(</span>make-3d-convolutional-layer-from-dims <span style="color: #e3b0c0; font-weight: bold;">:dims</span> '<span style="color: #3fc489;">(</span>32 1 5 5<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">size of image becomes 32x24x24</span>
-              <span style="color: #d0b0ff;">(</span>make-pooling-layer <span style="color: #e3b0c0; font-weight: bold;">:rows</span> 2 <span style="color: #e3b0c0; font-weight: bold;">:cols</span> 2
-                                  <span style="color: #e3b0c0; font-weight: bold;">:pooling-function</span> #'average-pooling-function
-                                  <span style="color: #e3b0c0; font-weight: bold;">:unpooling-function</span> #'average-unpooling-function<span style="color: #d0b0ff;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">size beccomes 32x12x12</span>
-              <span style="color: #d0b0ff;">(</span>make-3d-convolutional-layer-from-dims <span style="color: #e3b0c0; font-weight: bold;">:dims</span> '<span style="color: #3fc489;">(</span>16 32 5 5<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">size becomes 16x8x8</span>
-              <span style="color: #d0b0ff;">(</span>make-pooling-layer <span style="color: #e3b0c0; font-weight: bold;">:rows</span> 2 <span style="color: #e3b0c0; font-weight: bold;">:cols</span> 2
-                                  <span style="color: #e3b0c0; font-weight: bold;">:pooling-function</span> #'average-pooling-function
-                                  <span style="color: #e3b0c0; font-weight: bold;">:unpooling-function</span> #'average-unpooling-function<span style="color: #d0b0ff;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">size becomes 6x4x4</span>
-              <span style="color: #d0b0ff;">(</span>make-flatten-layer<span style="color: #d0b0ff;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">flatten it, becomes 6x4x4=96</span>
-              <span style="color: #d0b0ff;">(</span>make-dense-layer <span style="color: #e3b0c0; font-weight: bold;">:num-units</span> 30 <span style="color: #e3b0c0; font-weight: bold;">:prev-layer-num-units</span> 96
-                                <span style="color: #e3b0c0; font-weight: bold;">:activation-function</span> #'relu
-                                <span style="color: #e3b0c0; font-weight: bold;">:activation-function-derivative</span> #'relu-derivative<span style="color: #d0b0ff;">)</span>
-              <span style="color: #d0b0ff;">(</span>make-dense-layer <span style="color: #e3b0c0; font-weight: bold;">:num-units</span> 10 <span style="color: #e3b0c0; font-weight: bold;">:prev-layer-num-units</span> 30
-                                <span style="color: #e3b0c0; font-weight: bold;">:activation-function</span> #'sigmoid
-                                <span style="color: #e3b0c0; font-weight: bold;">:activation-function-derivative</span> #'sigmoid-derivative<span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span>
-     <span style="color: #e3b0c0; font-weight: bold;">:learning-rate</span> 0.02<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<pre class="src src-lisp"><span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">input meant to be of size 1x28x28</span>
+<span style="color: #458588;">(</span><span style="color: #fb4933;">defun</span> <span style="color: #fabd2f;">construct-mnist-network</span> <span style="color: #b16286;">()</span>
+  <span style="color: #b16286;">(</span><span style="color: #fb4933;">defparameter</span> <span style="color: #83a598;">*mnist-network*</span>
+    <span style="color: #8ec07c;">(</span>make-network
+     <span style="color: #fe8019;">:layers</span> <span style="color: #d65d0e;">(</span>list
+              <span style="color: #458588;">(</span>make-3d-convolutional-layer-from-dims <span style="color: #fe8019;">:dims</span> '<span style="color: #b16286;">(</span>32 1 5 5<span style="color: #b16286;">)</span><span style="color: #458588;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">size of image becomes 32x24x24</span>
+              <span style="color: #458588;">(</span>make-pooling-layer <span style="color: #fe8019;">:rows</span> 2 <span style="color: #fe8019;">:cols</span> 2
+                                  <span style="color: #fe8019;">:pooling-function</span> #'average-pooling-function
+                                  <span style="color: #fe8019;">:unpooling-function</span> #'average-unpooling-function<span style="color: #458588;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">size beccomes 32x12x12</span>
+              <span style="color: #458588;">(</span>make-3d-convolutional-layer-from-dims <span style="color: #fe8019;">:dims</span> '<span style="color: #b16286;">(</span>16 32 5 5<span style="color: #b16286;">)</span><span style="color: #458588;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">size becomes 16x8x8</span>
+              <span style="color: #458588;">(</span>make-pooling-layer <span style="color: #fe8019;">:rows</span> 2 <span style="color: #fe8019;">:cols</span> 2
+                                  <span style="color: #fe8019;">:pooling-function</span> #'average-pooling-function
+                                  <span style="color: #fe8019;">:unpooling-function</span> #'average-unpooling-function<span style="color: #458588;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">size becomes 6x4x4</span>
+              <span style="color: #458588;">(</span>make-flatten-layer<span style="color: #458588;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">flatten it, becomes 6x4x4=96</span>
+              <span style="color: #458588;">(</span>make-dense-layer <span style="color: #fe8019;">:num-units</span> 30 <span style="color: #fe8019;">:prev-layer-num-units</span> 96
+                                <span style="color: #fe8019;">:activation-function</span> #'relu
+                                <span style="color: #fe8019;">:activation-function-derivative</span> #'relu-derivative<span style="color: #458588;">)</span>
+              <span style="color: #458588;">(</span>make-dense-layer <span style="color: #fe8019;">:num-units</span> 10 <span style="color: #fe8019;">:prev-layer-num-units</span> 30
+                                <span style="color: #fe8019;">:activation-function</span> #'sigmoid
+                                <span style="color: #fe8019;">:activation-function-derivative</span> #'sigmoid-derivative<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span>
+     <span style="color: #fe8019;">:learning-rate</span> 0.02<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 </pre>
 </div>
 
@@ -110,9 +110,9 @@ each image is of size 28x28, we can use the following architecture:
 example usage:
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span>construct-mnist-network<span style="color: #deb07a;">)</span>
-<span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">might wanna make weights closer to 0</span>
-<span style="color: #deb07a;">(</span>divide-network-weights *mnist-network* 5<span style="color: #deb07a;">)</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span>construct-mnist-network<span style="color: #458588;">)</span>
+<span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">might wanna make weights closer to 0</span>
+<span style="color: #458588;">(</span>divide-network-weights *mnist-network* 5<span style="color: #458588;">)</span>
 *mnist-network*
 </pre>
 </div>
@@ -136,33 +136,33 @@ after running <code>load-mnist</code>, we can begin training
 because at the time (<span class="timestamp-wrapper"><span class="timestamp">&lt;2023-08-12 Sat 17:52:00&gt;</span></span>), my training algorithm for cnn's was slow, i wanted to measure the accuracy of the algorithm but didnt want to wait days for training to finish, so i tried training on a single image, the network should overfit and be able to classify the image correctly:
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">train-on-mnist-single-image</span> <span style="color: #ffaacf;">()</span>
-  <span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">let</span> <span style="color: #80aadf;">(</span><span style="color: #e47980;">(</span>x <span style="color: #d0b0ff;">(</span>car <span style="color: #3fc489;">(</span>elt *mnist-train-data* 0<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span>
-        <span style="color: #e47980;">(</span>y <span style="color: #d0b0ff;">(</span>make-array '<span style="color: #3fc489;">(</span>10<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span>
-        <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">(nw (make-network</span>
-        <span style="color: #a0a0cf; font-style: italic;">;;      </span><span style="color: #a0a0cf; font-style: italic;">:layers</span>
-        <span style="color: #a0a0cf; font-style: italic;">;;      </span><span style="color: #a0a0cf; font-style: italic;">(list</span>
-        <span style="color: #a0a0cf; font-style: italic;">;;       </span><span style="color: #a0a0cf; font-style: italic;">(make-3d-convolutional-layer-from-dims</span>
-        <span style="color: #a0a0cf; font-style: italic;">;;        </span><span style="color: #a0a0cf; font-style: italic;">:dims '(16 1 3 3)</span>
-        <span style="color: #a0a0cf; font-style: italic;">;;        </span><span style="color: #a0a0cf; font-style: italic;">:activation-function #'relu</span>
-        <span style="color: #a0a0cf; font-style: italic;">;;        </span><span style="color: #a0a0cf; font-style: italic;">:activation-function-derivative #'relu-derivative)</span>
-        <span style="color: #a0a0cf; font-style: italic;">;;       </span><span style="color: #a0a0cf; font-style: italic;">(make-flatten-layer)</span>
-        <span style="color: #a0a0cf; font-style: italic;">;;       </span><span style="color: #a0a0cf; font-style: italic;">(make-3d-convolutional-layer-from-dims</span>
-        <span style="color: #a0a0cf; font-style: italic;">;;        </span><span style="color: #a0a0cf; font-style: italic;">:dims '(10 144)</span>
-        <span style="color: #a0a0cf; font-style: italic;">;;        </span><span style="color: #a0a0cf; font-style: italic;">:activation-function #'sigmoid</span>
-        <span style="color: #a0a0cf; font-style: italic;">;;        </span><span style="color: #a0a0cf; font-style: italic;">:activation-function-derivative #'sigmoid-derivative))</span>
-        <span style="color: #a0a0cf; font-style: italic;">;;      </span><span style="color: #a0a0cf; font-style: italic;">:learning-rate 0.02)))</span>
-        <span style="color: #e47980;">(</span>nw *mnist-network*<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span>setf <span style="color: #e47980;">(</span>aref y <span style="color: #d0b0ff;">(</span>cdr <span style="color: #3fc489;">(</span>elt *mnist-train-data* 0<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span> 1<span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span>format t <span style="color: #f3a0a0;">"~%out layer should be: ~A"</span> y<span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span>print <span style="color: #f3a0a0;">"running 100 epochs:"</span><span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span><span style="color: #deb07a; font-weight: bold;">loop</span> for i from 0 below 10000 do
-      <span style="color: #e47980;">(</span>network-train
+<pre class="src src-lisp"><span style="color: #458588;">(</span><span style="color: #fb4933;">defun</span> <span style="color: #fabd2f;">train-on-mnist-single-image</span> <span style="color: #b16286;">()</span>
+  <span style="color: #b16286;">(</span><span style="color: #fb4933;">let</span> <span style="color: #8ec07c;">(</span><span style="color: #d65d0e;">(</span>x <span style="color: #458588;">(</span>car <span style="color: #b16286;">(</span>elt *mnist-train-data* 0<span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span>
+        <span style="color: #d65d0e;">(</span>y <span style="color: #458588;">(</span>make-array '<span style="color: #b16286;">(</span>10<span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span>
+        <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">(nw (make-network</span>
+        <span style="color: #7c6f64;">;;      </span><span style="color: #7c6f64;">:layers</span>
+        <span style="color: #7c6f64;">;;      </span><span style="color: #7c6f64;">(list</span>
+        <span style="color: #7c6f64;">;;       </span><span style="color: #7c6f64;">(make-3d-convolutional-layer-from-dims</span>
+        <span style="color: #7c6f64;">;;        </span><span style="color: #7c6f64;">:dims '(16 1 3 3)</span>
+        <span style="color: #7c6f64;">;;        </span><span style="color: #7c6f64;">:activation-function #'relu</span>
+        <span style="color: #7c6f64;">;;        </span><span style="color: #7c6f64;">:activation-function-derivative #'relu-derivative)</span>
+        <span style="color: #7c6f64;">;;       </span><span style="color: #7c6f64;">(make-flatten-layer)</span>
+        <span style="color: #7c6f64;">;;       </span><span style="color: #7c6f64;">(make-3d-convolutional-layer-from-dims</span>
+        <span style="color: #7c6f64;">;;        </span><span style="color: #7c6f64;">:dims '(10 144)</span>
+        <span style="color: #7c6f64;">;;        </span><span style="color: #7c6f64;">:activation-function #'sigmoid</span>
+        <span style="color: #7c6f64;">;;        </span><span style="color: #7c6f64;">:activation-function-derivative #'sigmoid-derivative))</span>
+        <span style="color: #7c6f64;">;;      </span><span style="color: #7c6f64;">:learning-rate 0.02)))</span>
+        <span style="color: #d65d0e;">(</span>nw *mnist-network*<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>setf <span style="color: #d65d0e;">(</span>aref y <span style="color: #458588;">(</span>cdr <span style="color: #b16286;">(</span>elt *mnist-train-data* 0<span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span> 1<span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>format t <span style="color: #b8bb26;">"~%out layer should be: ~A"</span> y<span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>print <span style="color: #b8bb26;">"running 100 epochs:"</span><span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span><span style="color: #fb4933;">loop</span> for i from 0 below 10000 do
+      <span style="color: #d65d0e;">(</span>network-train
        nw
-       <span style="color: #d0b0ff;">(</span>list x<span style="color: #d0b0ff;">)</span>
-       <span style="color: #d0b0ff;">(</span>list y<span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span>
-      <span style="color: #e47980;">(</span>format t <span style="color: #f3a0a0;">"~%cost: ~A"</span> <span style="color: #d0b0ff;">(</span>network-test nw <span style="color: #3fc489;">(</span>list x<span style="color: #3fc489;">)</span> <span style="color: #3fc489;">(</span>list y<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span>format t <span style="color: #f3a0a0;">"~%out layer: ~A"</span> <span style="color: #e47980;">(</span>car <span style="color: #d0b0ff;">(</span>car <span style="color: #3fc489;">(</span>network-feedforward *mnist-network* <span style="color: #6fb3c0;">(</span>car <span style="color: #c0b24f;">(</span>elt *MNIST-TRAIN-DATA* 0<span style="color: #c0b24f;">)</span><span style="color: #6fb3c0;">)</span><span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+       <span style="color: #458588;">(</span>list x<span style="color: #458588;">)</span>
+       <span style="color: #458588;">(</span>list y<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span>
+      <span style="color: #d65d0e;">(</span>format t <span style="color: #b8bb26;">"~%cost: ~A"</span> <span style="color: #458588;">(</span>network-test nw <span style="color: #b16286;">(</span>list x<span style="color: #b16286;">)</span> <span style="color: #b16286;">(</span>list y<span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>format t <span style="color: #b8bb26;">"~%out layer: ~A"</span> <span style="color: #d65d0e;">(</span>car <span style="color: #458588;">(</span>car <span style="color: #b16286;">(</span>network-feedforward *mnist-network* <span style="color: #8ec07c;">(</span>car <span style="color: #d65d0e;">(</span>elt *MNIST-TRAIN-DATA* 0<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 </pre>
 </div>
 
@@ -170,18 +170,18 @@ because at the time (<span class="timestamp-wrapper"><span class="timestamp">&lt
 eventually, after alot debugging of my code, simplified network did converge and overfit, so the next task was to train it on the actual dataset and not just a single image
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">train-on-mnist</span> <span style="color: #ffaacf;">()</span>
-  <span style="color: #ffaacf;">(</span>network-train-distributed-cpu
+<pre class="src src-lisp"><span style="color: #458588;">(</span><span style="color: #fb4933;">defun</span> <span style="color: #fabd2f;">train-on-mnist</span> <span style="color: #b16286;">()</span>
+  <span style="color: #b16286;">(</span>network-train-distributed-cpu
    *mnist-network*
-   <span style="color: #80aadf;">(</span>map
+   <span style="color: #8ec07c;">(</span>map
     'list
-    <span style="color: #e47980;">(</span><span style="color: #deb07a; font-weight: bold;">lambda</span> <span style="color: #d0b0ff;">(</span>data-entry<span style="color: #d0b0ff;">)</span>
-      <span style="color: #d0b0ff;">(</span><span style="color: #deb07a; font-weight: bold;">let</span> <span style="color: #3fc489;">(</span><span style="color: #6fb3c0;">(</span>in-tensor <span style="color: #c0b24f;">(</span>car data-entry<span style="color: #c0b24f;">)</span><span style="color: #6fb3c0;">)</span>
-            <span style="color: #6fb3c0;">(</span>digit <span style="color: #c0b24f;">(</span>cdr data-entry<span style="color: #c0b24f;">)</span><span style="color: #6fb3c0;">)</span>
-            <span style="color: #6fb3c0;">(</span>out-tensor <span style="color: #c0b24f;">(</span>make-array 10<span style="color: #c0b24f;">)</span><span style="color: #6fb3c0;">)</span><span style="color: #3fc489;">)</span>
-        <span style="color: #3fc489;">(</span>setf <span style="color: #6fb3c0;">(</span>aref out-tensor digit<span style="color: #6fb3c0;">)</span> 1<span style="color: #3fc489;">)</span>
-        <span style="color: #3fc489;">(</span>cons in-tensor out-tensor<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span>
-    *mnist-train-data*<span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+    <span style="color: #d65d0e;">(</span><span style="color: #fb4933;">lambda</span> <span style="color: #458588;">(</span>data-entry<span style="color: #458588;">)</span>
+      <span style="color: #458588;">(</span><span style="color: #fb4933;">let</span> <span style="color: #b16286;">(</span><span style="color: #8ec07c;">(</span>in-tensor <span style="color: #d65d0e;">(</span>car data-entry<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+            <span style="color: #8ec07c;">(</span>digit <span style="color: #d65d0e;">(</span>cdr data-entry<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+            <span style="color: #8ec07c;">(</span>out-tensor <span style="color: #d65d0e;">(</span>make-array 10<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span>
+        <span style="color: #b16286;">(</span>setf <span style="color: #8ec07c;">(</span>aref out-tensor digit<span style="color: #8ec07c;">)</span> 1<span style="color: #b16286;">)</span>
+        <span style="color: #b16286;">(</span>cons in-tensor out-tensor<span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span>
+    *mnist-train-data*<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 </pre>
 </div>
 </div>

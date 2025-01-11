@@ -56,12 +56,12 @@ using <code>cl-cuda</code>.
 load it using <a href="/common_lisp.html">quicklisp</a>:
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span>ql:quickload <span style="color: #e3b0c0; font-weight: bold;">:cl-cuda</span><span style="color: #deb07a;">)</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span>ql:quickload <span style="color: #fe8019;">:cl-cuda</span><span style="color: #458588;">)</span>
 </pre>
 </div>
-<div id="outline-container-orgbdb6edc" class="outline-2">
-<h2 id="orgbdb6edc">arch linux setup</h2>
-<div class="outline-text-2" id="text-orgbdb6edc">
+<div id="outline-container-org7c517fe" class="outline-2">
+<h2 id="org7c517fe">arch linux setup</h2>
+<div class="outline-text-2" id="text-org7c517fe">
 <p>
 i had to install <code>cuda</code> for the <code>nvcc</code> compiler and more, and <code>nvidia</code> for the gpu driver, at first you may have to use <code>/opt/cuda/bin/nvcc</code> until you reboot or extend your $PATH.
 </p>
@@ -70,7 +70,7 @@ i had to install <code>cuda</code> for the <code>nvcc</code> compiler and more, 
 to check which nvidia driver is in use run:
 </p>
 <div class="org-src-container" data-language="sh">
-<pre class="src src-sh">lspci -k | grep -A 2 -E <span style="color: #f3a0a0;">"(VGA|3D)"</span>
+<pre class="src src-sh">lspci -k | grep -A 2 -E <span style="color: #b8bb26;">"(VGA|3D)"</span>
 </pre>
 </div>
 
@@ -79,13 +79,13 @@ if you have installed the <code>nvidia</code> package and your os still uses <co
 </p>
 </div>
 </div>
-<div id="outline-container-org2726ab0" class="outline-2">
-<h2 id="org2726ab0">essential concepts</h2>
-<div class="outline-text-2" id="text-org2726ab0">
+<div id="outline-container-org84eb598" class="outline-2">
+<h2 id="org84eb598">essential concepts</h2>
+<div class="outline-text-2" id="text-org84eb598">
 </div>
-<div id="outline-container-org8a8e7c0" class="outline-3">
-<h3 id="org8a8e7c0">threads</h3>
-<div class="outline-text-3" id="text-org8a8e7c0">
+<div id="outline-container-orgbf11e6d" class="outline-3">
+<h3 id="orgbf11e6d">threads</h3>
+<div class="outline-text-3" id="text-orgbf11e6d">
 <p>
 mostly from <a href="https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#programming-model">https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#programming-model</a>.
 </p>
@@ -123,9 +123,9 @@ for efficient cooperation, the shared memory is expected to be a low-latency mem
 </p>
 </div>
 </div>
-<div id="outline-container-orgb892474" class="outline-3">
-<h3 id="orgb892474">memory</h3>
-<div class="outline-text-3" id="text-orgb892474">
+<div id="outline-container-org1598ab0" class="outline-3">
+<h3 id="org1598ab0">memory</h3>
+<div class="outline-text-3" id="text-org1598ab0">
 <p>
 CUDA threads may access data from multiple memory spaces during their execution. each thread has private <b>local memory</b>. each thread block has <b>shared memory</b> visible to all threads of the block and with the same lifetime as the block. thread blocks in a thread block cluster can perform read, write, and atomics operations on each other’s shared memory. all threads have access to the same <b>global memory</b>.
 </p>
@@ -151,9 +151,9 @@ unified memory provides managed memory to bridge the host and device memory spac
 </p>
 </div>
 </div>
-<div id="outline-container-org7ecf12d" class="outline-3">
-<h3 id="org7ecf12d">device memory</h3>
-<div class="outline-text-3" id="text-org7ecf12d">
+<div id="outline-container-org1956358" class="outline-3">
+<h3 id="org1956358">device memory</h3>
+<div class="outline-text-3" id="text-org1956358">
 <p>
 the CUDA programming model assumes a system composed of a host and a device, each with their own separate memory. kernels operate out of device memory, so the runtime provides functions to allocate, deallocate, and copy device memory, as well as transfer data between host memory and device memory.
 </p>
@@ -172,9 +172,9 @@ CUDA arrays are opaque memory layouts optimized for texture fetching.
 </div>
 </div>
 </div>
-<div id="outline-container-org4ad8db9" class="outline-2">
-<h2 id="org4ad8db9">code</h2>
-<div class="outline-text-2" id="text-org4ad8db9">
+<div id="outline-container-orgfed7c2b" class="outline-2">
+<h2 id="orgfed7c2b">code</h2>
+<div class="outline-text-2" id="text-orgfed7c2b">
 <p>
 see <a href="/connect_to_remote_common_lisp_repl_with_sly_slime.html">connect to remote common lisp repl with sly/slime</a> for connecting to a remote common lisp repl with <a href="/emacs.html">emacs</a>.
 </p>
@@ -187,9 +187,9 @@ notice that when working cl-cuda the data that we're passing to the gpu is gonna
 
 </div>
 </div>
-<div id="outline-container-org0238119" class="outline-3">
-<h3 id="org0238119">cuda vector addition</h3>
-<div class="outline-text-3" id="text-org0238119">
+<div id="outline-container-orgab94d8f" class="outline-3">
+<h3 id="orgab94d8f">cuda vector addition</h3>
+<div class="outline-text-3" id="text-orgab94d8f">
 <p>
 we start with the vectorAdd example, a simple example in C, stolen from <a href="https://github.com/NVIDIA/cuda-samples/blob/master/Samples/0_Introduction/vectorAdd/vectorAdd.cu">https://github.com/NVIDIA/cuda-samples/blob/master/Samples/0_Introduction/vectorAdd/vectorAdd.cu</a> and modified to reduce boilerplate code.
 </p>
@@ -206,64 +206,64 @@ consider the following program which does vector addition.
 place this code in a file with a <code>.cu</code> extension (only .cu works):
 </p>
 <div class="org-src-container" data-language="C">
-<pre class="src src-C"><span style="color: #65c5a8;">#include</span> <span style="color: #deb07a;">&lt;</span><span style="color: #f3a0a0;">stdio.h</span><span style="color: #deb07a;">&gt;</span>
+<pre class="src src-C"><span style="color: #fe8019;">#include</span> <span style="color: #458588;">&lt;</span><span style="color: #b8bb26;">stdio.h</span><span style="color: #458588;">&gt;</span>
 
-__global__ <span style="color: #a9c99f;">void</span> <span style="color: #8fcfd0;">vector_add</span><span style="color: #deb07a;">(</span><span style="color: #a9c99f;">float</span> *<span style="color: #ffaacf;">c</span>, <span style="color: #a9c99f;">float</span> *<span style="color: #ffaacf;">a</span>, <span style="color: #a9c99f;">float</span> *<span style="color: #ffaacf;">b</span>, <span style="color: #a9c99f;">int</span> <span style="color: #ffaacf;">n</span><span style="color: #deb07a;">)</span> <span style="color: #deb07a;">{</span>
-  <span style="color: #deb07a; font-weight: bold;">for</span> <span style="color: #ffaacf;">(</span><span style="color: #a9c99f;">int</span> <span style="color: #ffaacf;">i</span> = 0; i &lt; n; i++<span style="color: #ffaacf;">)</span> <span style="color: #ffaacf;">{</span>
-    c<span style="color: #80aadf;">[</span>i<span style="color: #80aadf;">]</span> = a<span style="color: #80aadf;">[</span>i<span style="color: #80aadf;">]</span> + b<span style="color: #80aadf;">[</span>i<span style="color: #80aadf;">]</span>;
-  <span style="color: #ffaacf;">}</span>
-<span style="color: #deb07a;">}</span>
+__global__ <span style="color: #d3869b;">void</span> <span style="color: #fabd2f;">vector_add</span><span style="color: #458588;">(</span><span style="color: #d3869b;">float</span> *<span style="color: #83a598;">c</span>, <span style="color: #d3869b;">float</span> *<span style="color: #83a598;">a</span>, <span style="color: #d3869b;">float</span> *<span style="color: #83a598;">b</span>, <span style="color: #d3869b;">int</span> <span style="color: #83a598;">n</span><span style="color: #458588;">)</span> <span style="color: #458588;">{</span>
+  <span style="color: #fb4933;">for</span> <span style="color: #b16286;">(</span><span style="color: #d3869b;">int</span> <span style="color: #83a598;">i</span> = 0; i &lt; n; i++<span style="color: #b16286;">)</span> <span style="color: #b16286;">{</span>
+    c<span style="color: #8ec07c;">[</span>i<span style="color: #8ec07c;">]</span> = a<span style="color: #8ec07c;">[</span>i<span style="color: #8ec07c;">]</span> + b<span style="color: #8ec07c;">[</span>i<span style="color: #8ec07c;">]</span>;
+  <span style="color: #b16286;">}</span>
+<span style="color: #458588;">}</span>
 
-<span style="color: #a9c99f;">int</span> <span style="color: #8fcfd0;">main</span><span style="color: #deb07a;">()</span> <span style="color: #deb07a;">{</span>
-  <span style="color: #deb07a; font-weight: bold;">const</span> <span style="color: #a9c99f;">int</span> <span style="color: #ffaacf;">N</span> = 1000; <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">length of vectors</span>
-  <span style="color: #a9c99f;">size_t</span> <span style="color: #ffaacf;">size</span> = N * <span style="color: #deb07a; font-weight: bold;">sizeof</span><span style="color: #ffaacf;">(</span><span style="color: #a9c99f;">float</span><span style="color: #ffaacf;">)</span>; <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">size of a vector in memory</span>
+<span style="color: #d3869b;">int</span> <span style="color: #fabd2f;">main</span><span style="color: #458588;">()</span> <span style="color: #458588;">{</span>
+  <span style="color: #fb4933;">const</span> <span style="color: #d3869b;">int</span> <span style="color: #83a598;">N</span> = 1000; <span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">length of vectors</span>
+  <span style="color: #d3869b;">size_t</span> <span style="color: #83a598;">size</span> = N * <span style="color: #fb4933;">sizeof</span><span style="color: #b16286;">(</span><span style="color: #d3869b;">float</span><span style="color: #b16286;">)</span>; <span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">size of a vector in memory</span>
 
-  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">allocate vectors in host memory</span>
-  <span style="color: #a9c99f;">float</span>* <span style="color: #ffaacf;">host_a</span> = <span style="color: #ffaacf;">(</span><span style="color: #a9c99f;">float</span>*<span style="color: #ffaacf;">)</span>malloc<span style="color: #ffaacf;">(</span>size<span style="color: #ffaacf;">)</span>;
-  <span style="color: #a9c99f;">float</span>* <span style="color: #ffaacf;">host_b</span> = <span style="color: #ffaacf;">(</span><span style="color: #a9c99f;">float</span>*<span style="color: #ffaacf;">)</span>malloc<span style="color: #ffaacf;">(</span>size<span style="color: #ffaacf;">)</span>;
-  <span style="color: #a9c99f;">float</span>* <span style="color: #ffaacf;">host_c</span> = <span style="color: #ffaacf;">(</span><span style="color: #a9c99f;">float</span>*<span style="color: #ffaacf;">)</span>malloc<span style="color: #ffaacf;">(</span>size<span style="color: #ffaacf;">)</span>; <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">output vector a+b=c</span>
+  <span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">allocate vectors in host memory</span>
+  <span style="color: #d3869b;">float</span>* <span style="color: #83a598;">host_a</span> = <span style="color: #b16286;">(</span><span style="color: #d3869b;">float</span>*<span style="color: #b16286;">)</span>malloc<span style="color: #b16286;">(</span>size<span style="color: #b16286;">)</span>;
+  <span style="color: #d3869b;">float</span>* <span style="color: #83a598;">host_b</span> = <span style="color: #b16286;">(</span><span style="color: #d3869b;">float</span>*<span style="color: #b16286;">)</span>malloc<span style="color: #b16286;">(</span>size<span style="color: #b16286;">)</span>;
+  <span style="color: #d3869b;">float</span>* <span style="color: #83a598;">host_c</span> = <span style="color: #b16286;">(</span><span style="color: #d3869b;">float</span>*<span style="color: #b16286;">)</span>malloc<span style="color: #b16286;">(</span>size<span style="color: #b16286;">)</span>; <span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">output vector a+b=c</span>
 
-  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">initialize host input vectors</span>
-  <span style="color: #deb07a; font-weight: bold;">for</span> <span style="color: #ffaacf;">(</span><span style="color: #a9c99f;">int</span> <span style="color: #ffaacf;">i</span> = 0; i &lt; N; i++<span style="color: #ffaacf;">)</span> <span style="color: #ffaacf;">{</span>
-    host_a<span style="color: #80aadf;">[</span>i<span style="color: #80aadf;">]</span> = 1.0f;
-    host_b<span style="color: #80aadf;">[</span>i<span style="color: #80aadf;">]</span> = 2.0f;
-  <span style="color: #ffaacf;">}</span>
+  <span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">initialize host input vectors</span>
+  <span style="color: #fb4933;">for</span> <span style="color: #b16286;">(</span><span style="color: #d3869b;">int</span> <span style="color: #83a598;">i</span> = 0; i &lt; N; i++<span style="color: #b16286;">)</span> <span style="color: #b16286;">{</span>
+    host_a<span style="color: #8ec07c;">[</span>i<span style="color: #8ec07c;">]</span> = 1.0f;
+    host_b<span style="color: #8ec07c;">[</span>i<span style="color: #8ec07c;">]</span> = 2.0f;
+  <span style="color: #b16286;">}</span>
 
-  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">allocate (global) linear memory for vectors on the device (gpu)</span>
-  <span style="color: #a9c99f;">float</span>* <span style="color: #ffaacf;">device_a</span>;
-  <span style="color: #a9c99f;">float</span>* <span style="color: #ffaacf;">device_b</span>;
-  <span style="color: #a9c99f;">float</span>* <span style="color: #ffaacf;">device_c</span>;
-  cudaMalloc<span style="color: #ffaacf;">(</span>&amp;device_a, size<span style="color: #ffaacf;">)</span>;
-  cudaMalloc<span style="color: #ffaacf;">(</span>&amp;device_b, size<span style="color: #ffaacf;">)</span>;
-  cudaMalloc<span style="color: #ffaacf;">(</span>&amp;device_c, size<span style="color: #ffaacf;">)</span>;
+  <span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">allocate (global) linear memory for vectors on the device (gpu)</span>
+  <span style="color: #d3869b;">float</span>* <span style="color: #83a598;">device_a</span>;
+  <span style="color: #d3869b;">float</span>* <span style="color: #83a598;">device_b</span>;
+  <span style="color: #d3869b;">float</span>* <span style="color: #83a598;">device_c</span>;
+  cudaMalloc<span style="color: #b16286;">(</span>&amp;device_a, size<span style="color: #b16286;">)</span>;
+  cudaMalloc<span style="color: #b16286;">(</span>&amp;device_b, size<span style="color: #b16286;">)</span>;
+  cudaMalloc<span style="color: #b16286;">(</span>&amp;device_c, size<span style="color: #b16286;">)</span>;
 
-  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">copy vectors from host memory to device memory</span>
-  cudaMemcpy<span style="color: #ffaacf;">(</span>device_a, host_a, size, cudaMemcpyHostToDevice<span style="color: #ffaacf;">)</span>;
-  cudaMemcpy<span style="color: #ffaacf;">(</span>device_b, host_b, size, cudaMemcpyHostToDevice<span style="color: #ffaacf;">)</span>;
+  <span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">copy vectors from host memory to device memory</span>
+  cudaMemcpy<span style="color: #b16286;">(</span>device_a, host_a, size, cudaMemcpyHostToDevice<span style="color: #b16286;">)</span>;
+  cudaMemcpy<span style="color: #b16286;">(</span>device_b, host_b, size, cudaMemcpyHostToDevice<span style="color: #b16286;">)</span>;
 
-  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">invoke kernel</span>
-  <span style="color: #a9c99f;">int</span> <span style="color: #ffaacf;">threads_per_block</span> = 256;
-  <span style="color: #a9c99f;">int</span> <span style="color: #ffaacf;">blocks_per_grid</span> =
-    <span style="color: #ffaacf;">(</span>N + threads_per_block - 1<span style="color: #ffaacf;">)</span> / threads_per_block;
-  vector_add&lt;&lt;&lt;blocks_per_grid, threads_per_block&gt;&gt;&gt;<span style="color: #ffaacf;">(</span>device_c, device_b, device_a, N<span style="color: #ffaacf;">)</span>;
+  <span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">invoke kernel</span>
+  <span style="color: #d3869b;">int</span> <span style="color: #83a598;">threads_per_block</span> = 256;
+  <span style="color: #d3869b;">int</span> <span style="color: #83a598;">blocks_per_grid</span> =
+    <span style="color: #b16286;">(</span>N + threads_per_block - 1<span style="color: #b16286;">)</span> / threads_per_block;
+  vector_add&lt;&lt;&lt;blocks_per_grid, threads_per_block&gt;&gt;&gt;<span style="color: #b16286;">(</span>device_c, device_b, device_a, N<span style="color: #b16286;">)</span>;
 
-  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">copy result from device memory to host memory</span>
-  cudaMemcpy<span style="color: #ffaacf;">(</span>host_c, device_c, size, cudaMemcpyDeviceToHost<span style="color: #ffaacf;">)</span>;
+  <span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">copy result from device memory to host memory</span>
+  cudaMemcpy<span style="color: #b16286;">(</span>host_c, device_c, size, cudaMemcpyDeviceToHost<span style="color: #b16286;">)</span>;
 
-  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">free device memory</span>
-  cudaFree<span style="color: #ffaacf;">(</span>device_a<span style="color: #ffaacf;">)</span>;
-  cudaFree<span style="color: #ffaacf;">(</span>device_b<span style="color: #ffaacf;">)</span>;
-  cudaFree<span style="color: #ffaacf;">(</span>device_c<span style="color: #ffaacf;">)</span>;
+  <span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">free device memory</span>
+  cudaFree<span style="color: #b16286;">(</span>device_a<span style="color: #b16286;">)</span>;
+  cudaFree<span style="color: #b16286;">(</span>device_b<span style="color: #b16286;">)</span>;
+  cudaFree<span style="color: #b16286;">(</span>device_c<span style="color: #b16286;">)</span>;
 
-  <span style="color: #deb07a; font-weight: bold;">for</span> <span style="color: #ffaacf;">(</span><span style="color: #a9c99f;">int</span> <span style="color: #ffaacf;">i</span> = 0; i &lt; N; ++i<span style="color: #ffaacf;">)</span> <span style="color: #ffaacf;">{</span>
-    printf<span style="color: #80aadf;">(</span><span style="color: #f3a0a0;">"%d: %f\n"</span>, i, host_c<span style="color: #e47980;">[</span>i<span style="color: #e47980;">]</span><span style="color: #80aadf;">)</span>;
-  <span style="color: #ffaacf;">}</span>
+  <span style="color: #fb4933;">for</span> <span style="color: #b16286;">(</span><span style="color: #d3869b;">int</span> <span style="color: #83a598;">i</span> = 0; i &lt; N; ++i<span style="color: #b16286;">)</span> <span style="color: #b16286;">{</span>
+    printf<span style="color: #8ec07c;">(</span><span style="color: #b8bb26;">"%d: %f\n"</span>, i, host_c<span style="color: #d65d0e;">[</span>i<span style="color: #d65d0e;">]</span><span style="color: #8ec07c;">)</span>;
+  <span style="color: #b16286;">}</span>
 
-  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">free host memory</span>
-  free<span style="color: #ffaacf;">(</span>host_a<span style="color: #ffaacf;">)</span>;
-  free<span style="color: #ffaacf;">(</span>host_b<span style="color: #ffaacf;">)</span>;
-  free<span style="color: #ffaacf;">(</span>host_c<span style="color: #ffaacf;">)</span>;
-<span style="color: #deb07a;">}</span>
+  <span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">free host memory</span>
+  free<span style="color: #b16286;">(</span>host_a<span style="color: #b16286;">)</span>;
+  free<span style="color: #b16286;">(</span>host_b<span style="color: #b16286;">)</span>;
+  free<span style="color: #b16286;">(</span>host_c<span style="color: #b16286;">)</span>;
+<span style="color: #458588;">}</span>
 </pre>
 </div>
 
@@ -275,42 +275,42 @@ compile with <code>nvcc &lt;name&gt;.cu -o vector_add</code> and run with <code>
 similar same code but in cl:
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">random-init</span> <span style="color: #ffaacf;">(</span>data n<span style="color: #ffaacf;">)</span>
-  <span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">dotimes</span> <span style="color: #80aadf;">(</span>i n<span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span>setf <span style="color: #e47980;">(</span>cl-cuda:memory-block-aref data i<span style="color: #e47980;">)</span> <span style="color: #e47980;">(</span>random 1.0<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span><span style="color: #fb4933;">defun</span> <span style="color: #fabd2f;">random-init</span> <span style="color: #b16286;">(</span>data n<span style="color: #b16286;">)</span>
+  <span style="color: #b16286;">(</span><span style="color: #fb4933;">dotimes</span> <span style="color: #8ec07c;">(</span>i n<span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>setf <span style="color: #d65d0e;">(</span>cl-cuda:memory-block-aref data i<span style="color: #d65d0e;">)</span> <span style="color: #d65d0e;">(</span>random 1.0<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 
-<span style="color: #deb07a;">(</span>cl-cuda:defkernel vec-add-kernel <span style="color: #ffaacf;">(</span>cl-cuda:void <span style="color: #80aadf;">(</span><span style="color: #e47980;">(</span>a cl-cuda:float*<span style="color: #e47980;">)</span> <span style="color: #e47980;">(</span>b cl-cuda:float*<span style="color: #e47980;">)</span> <span style="color: #e47980;">(</span>c cl-cuda:float*<span style="color: #e47980;">)</span> <span style="color: #e47980;">(</span>n cl-cuda:int<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span>
-  <span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">let</span> <span style="color: #80aadf;">(</span><span style="color: #e47980;">(</span>i <span style="color: #d0b0ff;">(</span>+ <span style="color: #3fc489;">(</span>* cl-cuda:block-dim-x cl-cuda:block-idx-x<span style="color: #3fc489;">)</span> cl-cuda:thread-idx-x<span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span><span style="color: #deb07a; font-weight: bold;">if</span> <span style="color: #e47980;">(</span>&lt; i n<span style="color: #e47980;">)</span>
-        <span style="color: #e47980;">(</span>set <span style="color: #d0b0ff;">(</span>aref c i<span style="color: #d0b0ff;">)</span>
-             <span style="color: #d0b0ff;">(</span>+ <span style="color: #3fc489;">(</span>aref a i<span style="color: #3fc489;">)</span> <span style="color: #3fc489;">(</span>aref b i<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<span style="color: #458588;">(</span>cl-cuda:defkernel vec-add-kernel <span style="color: #b16286;">(</span>cl-cuda:void <span style="color: #8ec07c;">(</span><span style="color: #d65d0e;">(</span>a cl-cuda:float*<span style="color: #d65d0e;">)</span> <span style="color: #d65d0e;">(</span>b cl-cuda:float*<span style="color: #d65d0e;">)</span> <span style="color: #d65d0e;">(</span>c cl-cuda:float*<span style="color: #d65d0e;">)</span> <span style="color: #d65d0e;">(</span>n cl-cuda:int<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span>
+  <span style="color: #b16286;">(</span><span style="color: #fb4933;">let</span> <span style="color: #8ec07c;">(</span><span style="color: #d65d0e;">(</span>i <span style="color: #458588;">(</span>+ <span style="color: #b16286;">(</span>* cl-cuda:block-dim-x cl-cuda:block-idx-x<span style="color: #b16286;">)</span> cl-cuda:thread-idx-x<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span><span style="color: #fb4933;">if</span> <span style="color: #d65d0e;">(</span>&lt; i n<span style="color: #d65d0e;">)</span>
+        <span style="color: #d65d0e;">(</span>set <span style="color: #458588;">(</span>aref c i<span style="color: #458588;">)</span>
+             <span style="color: #458588;">(</span>+ <span style="color: #b16286;">(</span>aref a i<span style="color: #b16286;">)</span> <span style="color: #b16286;">(</span>aref b i<span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 
-<span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">main</span> <span style="color: #ffaacf;">()</span>
-  <span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">let*</span> <span style="color: #80aadf;">(</span><span style="color: #e47980;">(</span>dev-id 0<span style="color: #e47980;">)</span>
-         <span style="color: #e47980;">(</span>n 1024<span style="color: #e47980;">)</span>
-         <span style="color: #e47980;">(</span>threads-per-block 256<span style="color: #e47980;">)</span>
-         <span style="color: #e47980;">(</span>blocks-per-grid <span style="color: #d0b0ff;">(</span>/ n threads-per-block<span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span>cl-cuda:with-cuda <span style="color: #e47980;">(</span>dev-id<span style="color: #e47980;">)</span>
-      <span style="color: #e47980;">(</span>cl-cuda:with-memory-blocks <span style="color: #d0b0ff;">(</span><span style="color: #3fc489;">(</span>a 'float n<span style="color: #3fc489;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">allocate (global) linear memory on both host+device</span>
-                                   <span style="color: #3fc489;">(</span>b 'float n<span style="color: #3fc489;">)</span>
-                                   <span style="color: #3fc489;">(</span>c 'float n<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span>
-        <span style="color: #d0b0ff;">(</span>random-init a n<span style="color: #d0b0ff;">)</span>
-        <span style="color: #d0b0ff;">(</span>random-init b n<span style="color: #d0b0ff;">)</span>
-        <span style="color: #d0b0ff;">(</span>cl-cuda:sync-memory-block a <span style="color: #e3b0c0; font-weight: bold;">:host-to-device</span><span style="color: #d0b0ff;">)</span>
-        <span style="color: #d0b0ff;">(</span>cl-cuda:sync-memory-block b <span style="color: #e3b0c0; font-weight: bold;">:host-to-device</span><span style="color: #d0b0ff;">)</span>
-        <span style="color: #d0b0ff;">(</span>vec-add-kernel a b c n
-                        <span style="color: #e3b0c0; font-weight: bold;">:grid-dim</span> <span style="color: #3fc489;">(</span>list blocks-per-grid 1 1<span style="color: #3fc489;">)</span>
-                        <span style="color: #e3b0c0; font-weight: bold;">:block-dim</span> <span style="color: #3fc489;">(</span>list threads-per-block 1 1<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span>
-        <span style="color: #d0b0ff;">(</span>cl-cuda:sync-memory-block c <span style="color: #e3b0c0; font-weight: bold;">:device-to-host</span><span style="color: #d0b0ff;">)</span>
-        <span style="color: #d0b0ff;">(</span><span style="color: #deb07a; font-weight: bold;">loop</span> for i from 0 below 1024
-              do <span style="color: #3fc489;">(</span>print <span style="color: #6fb3c0;">(</span>cl-cuda:memory-block-aref c i<span style="color: #6fb3c0;">)</span><span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<span style="color: #458588;">(</span><span style="color: #fb4933;">defun</span> <span style="color: #fabd2f;">main</span> <span style="color: #b16286;">()</span>
+  <span style="color: #b16286;">(</span><span style="color: #fb4933;">let*</span> <span style="color: #8ec07c;">(</span><span style="color: #d65d0e;">(</span>dev-id 0<span style="color: #d65d0e;">)</span>
+         <span style="color: #d65d0e;">(</span>n 1024<span style="color: #d65d0e;">)</span>
+         <span style="color: #d65d0e;">(</span>threads-per-block 256<span style="color: #d65d0e;">)</span>
+         <span style="color: #d65d0e;">(</span>blocks-per-grid <span style="color: #458588;">(</span>/ n threads-per-block<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>cl-cuda:with-cuda <span style="color: #d65d0e;">(</span>dev-id<span style="color: #d65d0e;">)</span>
+      <span style="color: #d65d0e;">(</span>cl-cuda:with-memory-blocks <span style="color: #458588;">(</span><span style="color: #b16286;">(</span>a 'float n<span style="color: #b16286;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">allocate (global) linear memory on both host+device</span>
+                                   <span style="color: #b16286;">(</span>b 'float n<span style="color: #b16286;">)</span>
+                                   <span style="color: #b16286;">(</span>c 'float n<span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
+        <span style="color: #458588;">(</span>random-init a n<span style="color: #458588;">)</span>
+        <span style="color: #458588;">(</span>random-init b n<span style="color: #458588;">)</span>
+        <span style="color: #458588;">(</span>cl-cuda:sync-memory-block a <span style="color: #fe8019;">:host-to-device</span><span style="color: #458588;">)</span>
+        <span style="color: #458588;">(</span>cl-cuda:sync-memory-block b <span style="color: #fe8019;">:host-to-device</span><span style="color: #458588;">)</span>
+        <span style="color: #458588;">(</span>vec-add-kernel a b c n
+                        <span style="color: #fe8019;">:grid-dim</span> <span style="color: #b16286;">(</span>list blocks-per-grid 1 1<span style="color: #b16286;">)</span>
+                        <span style="color: #fe8019;">:block-dim</span> <span style="color: #b16286;">(</span>list threads-per-block 1 1<span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
+        <span style="color: #458588;">(</span>cl-cuda:sync-memory-block c <span style="color: #fe8019;">:device-to-host</span><span style="color: #458588;">)</span>
+        <span style="color: #458588;">(</span><span style="color: #fb4933;">loop</span> for i from 0 below 1024
+              do <span style="color: #b16286;">(</span>print <span style="color: #8ec07c;">(</span>cl-cuda:memory-block-aref c i<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgcdf8b3a" class="outline-3">
-<h3 id="orgcdf8b3a">cuda matrix multiplication</h3>
-<div class="outline-text-3" id="text-orgcdf8b3a">
+<div id="outline-container-orgb8f5482" class="outline-3">
+<h3 id="orgb8f5482">cuda matrix multiplication</h3>
+<div class="outline-text-3" id="text-orgb8f5482">
 <p>
 mostly taken from <a href="https://docs.nvidia.com/deeplearning/performance/dl-performance-matrix-multiplication/index.html">https://docs.nvidia.com/deeplearning/performance/dl-performance-matrix-multiplication/index.html</a> and <a href="https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#programming-model">https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#programming-model</a>.
 </p>
@@ -418,7 +418,7 @@ the product of two matrices <?xml version='1.0' encoding='UTF-8'?>
 </g>
 </svg> <a href="/flops.html">flops</a> are required, if we were to consider <a href="/gemm.html">gemm</a>, the parameters <?xml version='1.0' encoding='UTF-8'?>
 
-<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.918502 16.998747 8.855684' style="max-height: 0.6806em; vertical-align: -0.1906em; display: inline-block" class="org-latex org-latex-inline">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 -6.918502 16.998747 8.855684' style="max-height: 0.9203em; vertical-align: -0.2397em; display: inline-block" class="org-latex org-latex-inline">
 <defs>
 <path id='g4-11' d='m5.867995-.597758c0-.069738-.059776-.099626-.119552-.099626c-.069738 0-.099626 .029888-.129514 .099626c-.179328 .488169-.557908 .488169-.557908 .488169c-.308842 0-.308842-.777086-.308842-1.016189c0-.209215 0-.229141 .099626-.348692c.936488-1.175592 1.145704-2.34122 1.145704-2.34122s-.009963-.099626-.119552-.099626c-.099626 0-.099626 .029888-.14944 .209215c-.179328 .627646-.508095 1.384807-.976339 1.972603v-.617684c0-1.564134-.926526-2.052304-1.663761-2.052304c-1.364882 0-2.67995 1.424658-2.67995 2.82939c0 .926526 .597758 1.683686 1.613948 1.683686c.627646 0 1.344956-.229141 2.102117-.836862c.129514 .52802 .458281 .836862 .9066 .836862c.52802 0 .836862-.547945 .836862-.707347zm-1.783313-.388543c-.876712 .767123-1.643836 .876712-2.042341 .876712c-.597758 0-.896638-.448319-.896638-1.085928c0-.488169 .259029-1.564134 .577833-2.072229c.468244-.727273 1.006227-.916563 1.354919-.916563c.986301 0 .986301 1.305106 .986301 2.082192c0 .368618 0 .946451 .019925 1.115816z'/>
 <path id='g4-12' d='m5.210461-1.853051c.049813-.219178 .079701-.438356 .079701-.637609c0-.398506-.099626-.767123-.298879-1.075965c-.119552-.169365-.259029-.318804-.428394-.428394c.099626-.059776 .199253-.119552 .298879-.199253c.398506-.298879 .697385-.707347 .806974-1.155666c.029888-.129514 .049813-.249066 .049813-.368618c0-.308842-.109589-.597758-.288917-.816936c-.268991-.318804-.687422-.498132-1.155666-.498132c-1.195517 0-2.102117 1.364882-2.440847 2.719801l-1.534247 6.127024c0 .079701 .039851 .119552 .099626 .119552h.049813c.049813 0 .089664-.029888 .099626-.069738l.67746-2.729763c.169365 .577833 .627646 .976339 1.305106 .976339c.56787 0 1.175592-.18929 1.693649-.56787c.478207-.358655 .846824-.86675 .986301-1.39477zm-.657534-.049813c-.119552 .458281-.33873 .926526-.727273 1.275218c-.37858 .328767-.846824 .518057-1.285181 .518057c-.71731 0-1.125778-.547945-1.125778-1.255293c0-.159402 .019925-.318804 .059776-.488169l.597758-2.410959c.318804-1.255293 1.09589-2.540473 2.191781-2.540473c.33873 0 .617684 .139477 .777086 .398506c.089664 .14944 .119552 .318804 .119552 .508095c0 .159402-.019925 .328767-.069738 .498132c-.089664 .37858-.268991 .757161-.577833 1.046077c-.079701 .069738-.169365 .139477-.259029 .18929c-.199253-.079701-.428394-.129514-.667497-.129514c-.358655 0-.777086 0-.846824 .268991c-.009963 .019925-.009963 .069738-.009963 .069738c0 .239103 .408468 .239103 .757161 .239103c.249066 0 .498132-.039851 .747198-.129514c.129514 .099626 .229141 .229141 .298879 .388543c.099626 .209215 .139477 .438356 .139477 .687422c0 .278954-.049813 .577833-.119552 .86675zm-.617684-2.11208c-.14944 .049813-.298879 .079701-.438356 .079701c-.219178 0-.52802 0-.518057-.039851c.029888-.089664 .358655-.089664 .597758-.089664c.129514 0 .249066 .019925 .358655 .049813z'/>
@@ -442,91 +442,91 @@ in the example of vector addition, we used <b>global memory</b> (using <code>cud
 first, an implementation without shared memory:
 </p>
 <div class="org-src-container" data-language="C">
-<pre class="src src-C"><span style="color: #65c5a8;">#include</span> <span style="color: #deb07a;">&lt;</span><span style="color: #f3a0a0;">stdio.h</span><span style="color: #deb07a;">&gt;</span>
-<span style="color: #65c5a8;">#include</span> <span style="color: #deb07a;">&lt;</span><span style="color: #f3a0a0;">stdlib.h</span><span style="color: #deb07a;">&gt;</span>
+<pre class="src src-C"><span style="color: #fe8019;">#include</span> <span style="color: #458588;">&lt;</span><span style="color: #b8bb26;">stdio.h</span><span style="color: #458588;">&gt;</span>
+<span style="color: #fe8019;">#include</span> <span style="color: #458588;">&lt;</span><span style="color: #b8bb26;">stdlib.h</span><span style="color: #458588;">&gt;</span>
 
-<span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">matrices are stored in row-major order:</span>
-<span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">M(row, col) = *(M.elements + row * M.width + col)</span>
-<span style="color: #deb07a; font-weight: bold;">typedef</span> <span style="color: #deb07a; font-weight: bold;">struct</span> <span style="color: #deb07a;">{</span>
-  <span style="color: #a9c99f;">int</span> <span style="color: #ffaacf;">width</span>;
-  <span style="color: #a9c99f;">int</span> <span style="color: #ffaacf;">height</span>;
-  <span style="color: #a9c99f;">float</span>* <span style="color: #ffaacf;">elements</span>;
-<span style="color: #deb07a;">}</span> <span style="color: #a9c99f;">Matrix</span>;
+<span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">matrices are stored in row-major order:</span>
+<span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">M(row, col) = *(M.elements + row * M.width + col)</span>
+<span style="color: #fb4933;">typedef</span> <span style="color: #fb4933;">struct</span> <span style="color: #458588;">{</span>
+  <span style="color: #d3869b;">int</span> <span style="color: #83a598;">width</span>;
+  <span style="color: #d3869b;">int</span> <span style="color: #83a598;">height</span>;
+  <span style="color: #d3869b;">float</span>* <span style="color: #83a598;">elements</span>;
+<span style="color: #458588;">}</span> <span style="color: #d3869b;">Matrix</span>;
 
-<span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">thread block size</span>
-<span style="color: #65c5a8;">#define</span> <span style="color: #ffaacf;">BLOCK_SIZE</span> 16
+<span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">thread block size</span>
+<span style="color: #fe8019;">#define</span> <span style="color: #83a598;">BLOCK_SIZE</span> 16
 
-<span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">forward declaration of the matrix multiplication kernel</span>
-__global__ <span style="color: #a9c99f;">void</span> <span style="color: #8fcfd0;">MatMulKernel</span><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">const</span> <span style="color: #ffaacf;">Matrix</span>, <span style="color: #deb07a; font-weight: bold;">const</span> <span style="color: #ffaacf;">Matrix</span>, <span style="color: #a9c99f;">Matrix</span><span style="color: #deb07a;">)</span>;
+<span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">forward declaration of the matrix multiplication kernel</span>
+__global__ <span style="color: #d3869b;">void</span> <span style="color: #fabd2f;">MatMulKernel</span><span style="color: #458588;">(</span><span style="color: #fb4933;">const</span> <span style="color: #83a598;">Matrix</span>, <span style="color: #fb4933;">const</span> <span style="color: #83a598;">Matrix</span>, <span style="color: #d3869b;">Matrix</span><span style="color: #458588;">)</span>;
 
-<span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">matrix multiplication - host code</span>
-<span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">matrix dimensions are assumed to be multiples of BLOCK_SIZE</span>
-<span style="color: #a9c99f;">void</span> <span style="color: #8fcfd0;">MatMul</span><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">const</span> <span style="color: #a9c99f;">Matrix</span> <span style="color: #ffaacf;">A</span>, <span style="color: #deb07a; font-weight: bold;">const</span> <span style="color: #a9c99f;">Matrix</span> <span style="color: #ffaacf;">B</span>, <span style="color: #a9c99f;">Matrix</span> <span style="color: #ffaacf;">C</span><span style="color: #deb07a;">)</span>
-<span style="color: #deb07a;">{</span>
-  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">load A and B to device memory</span>
-  <span style="color: #a9c99f;">Matrix</span> <span style="color: #ffaacf;">d_A</span>;
+<span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">matrix multiplication - host code</span>
+<span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">matrix dimensions are assumed to be multiples of BLOCK_SIZE</span>
+<span style="color: #d3869b;">void</span> <span style="color: #fabd2f;">MatMul</span><span style="color: #458588;">(</span><span style="color: #fb4933;">const</span> <span style="color: #d3869b;">Matrix</span> <span style="color: #83a598;">A</span>, <span style="color: #fb4933;">const</span> <span style="color: #d3869b;">Matrix</span> <span style="color: #83a598;">B</span>, <span style="color: #d3869b;">Matrix</span> <span style="color: #83a598;">C</span><span style="color: #458588;">)</span>
+<span style="color: #458588;">{</span>
+  <span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">load A and B to device memory</span>
+  <span style="color: #d3869b;">Matrix</span> <span style="color: #83a598;">d_A</span>;
   d_A.width = A.width; d_A.height = A.height;
-  <span style="color: #a9c99f;">size_t</span> <span style="color: #ffaacf;">size</span> = A.width * A.height * <span style="color: #deb07a; font-weight: bold;">sizeof</span><span style="color: #ffaacf;">(</span><span style="color: #a9c99f;">float</span><span style="color: #ffaacf;">)</span>;
-  cudaMalloc<span style="color: #ffaacf;">(</span>&amp;d_A.elements, size<span style="color: #ffaacf;">)</span>;
-  cudaMemcpy<span style="color: #ffaacf;">(</span>d_A.elements, A.elements, size,
-             cudaMemcpyHostToDevice<span style="color: #ffaacf;">)</span>;
-  <span style="color: #a9c99f;">Matrix</span> <span style="color: #ffaacf;">d_B</span>;
+  <span style="color: #d3869b;">size_t</span> <span style="color: #83a598;">size</span> = A.width * A.height * <span style="color: #fb4933;">sizeof</span><span style="color: #b16286;">(</span><span style="color: #d3869b;">float</span><span style="color: #b16286;">)</span>;
+  cudaMalloc<span style="color: #b16286;">(</span>&amp;d_A.elements, size<span style="color: #b16286;">)</span>;
+  cudaMemcpy<span style="color: #b16286;">(</span>d_A.elements, A.elements, size,
+             cudaMemcpyHostToDevice<span style="color: #b16286;">)</span>;
+  <span style="color: #d3869b;">Matrix</span> <span style="color: #83a598;">d_B</span>;
   d_B.width = B.width; d_B.height = B.height;
-  size = B.width * B.height * <span style="color: #deb07a; font-weight: bold;">sizeof</span><span style="color: #ffaacf;">(</span><span style="color: #a9c99f;">float</span><span style="color: #ffaacf;">)</span>;
-  cudaMalloc<span style="color: #ffaacf;">(</span>&amp;d_B.elements, size<span style="color: #ffaacf;">)</span>;
-  cudaMemcpy<span style="color: #ffaacf;">(</span>d_B.elements, B.elements, size,
-             cudaMemcpyHostToDevice<span style="color: #ffaacf;">)</span>;
+  size = B.width * B.height * <span style="color: #fb4933;">sizeof</span><span style="color: #b16286;">(</span><span style="color: #d3869b;">float</span><span style="color: #b16286;">)</span>;
+  cudaMalloc<span style="color: #b16286;">(</span>&amp;d_B.elements, size<span style="color: #b16286;">)</span>;
+  cudaMemcpy<span style="color: #b16286;">(</span>d_B.elements, B.elements, size,
+             cudaMemcpyHostToDevice<span style="color: #b16286;">)</span>;
 
-  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">allocate C in device memory</span>
-  <span style="color: #a9c99f;">Matrix</span> <span style="color: #ffaacf;">d_C</span>;
+  <span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">allocate C in device memory</span>
+  <span style="color: #d3869b;">Matrix</span> <span style="color: #83a598;">d_C</span>;
   d_C.width = C.width; d_C.height = C.height;
-  size = C.width * C.height * <span style="color: #deb07a; font-weight: bold;">sizeof</span><span style="color: #ffaacf;">(</span><span style="color: #a9c99f;">float</span><span style="color: #ffaacf;">)</span>;
-  cudaMalloc<span style="color: #ffaacf;">(</span>&amp;d_C.elements, size<span style="color: #ffaacf;">)</span>;
+  size = C.width * C.height * <span style="color: #fb4933;">sizeof</span><span style="color: #b16286;">(</span><span style="color: #d3869b;">float</span><span style="color: #b16286;">)</span>;
+  cudaMalloc<span style="color: #b16286;">(</span>&amp;d_C.elements, size<span style="color: #b16286;">)</span>;
 
-  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">invoke kernel</span>
-  <span style="color: #a9c99f;">dim3</span> <span style="color: #8fcfd0;">dimBlock</span><span style="color: #ffaacf;">(</span>BLOCK_SIZE, BLOCK_SIZE<span style="color: #ffaacf;">)</span>;
-  <span style="color: #a9c99f;">dim3</span> <span style="color: #8fcfd0;">dimGrid</span><span style="color: #ffaacf;">(</span>B.width / dimBlock.x, A.height / dimBlock.y<span style="color: #ffaacf;">)</span>;
-  MatMulKernel&lt;&lt;&lt;dimGrid, dimBlock&gt;&gt;&gt;<span style="color: #ffaacf;">(</span>d_A, d_B, d_C<span style="color: #ffaacf;">)</span>;
+  <span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">invoke kernel</span>
+  <span style="color: #d3869b;">dim3</span> <span style="color: #fabd2f;">dimBlock</span><span style="color: #b16286;">(</span>BLOCK_SIZE, BLOCK_SIZE<span style="color: #b16286;">)</span>;
+  <span style="color: #d3869b;">dim3</span> <span style="color: #fabd2f;">dimGrid</span><span style="color: #b16286;">(</span>B.width / dimBlock.x, A.height / dimBlock.y<span style="color: #b16286;">)</span>;
+  MatMulKernel&lt;&lt;&lt;dimGrid, dimBlock&gt;&gt;&gt;<span style="color: #b16286;">(</span>d_A, d_B, d_C<span style="color: #b16286;">)</span>;
 
-  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">read C from device memory</span>
-  cudaMemcpy<span style="color: #ffaacf;">(</span>C.elements, d_C.elements, size,
-             cudaMemcpyDeviceToHost<span style="color: #ffaacf;">)</span>;
+  <span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">read C from device memory</span>
+  cudaMemcpy<span style="color: #b16286;">(</span>C.elements, d_C.elements, size,
+             cudaMemcpyDeviceToHost<span style="color: #b16286;">)</span>;
 
-  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">free device memory</span>
-  cudaFree<span style="color: #ffaacf;">(</span>d_A.elements<span style="color: #ffaacf;">)</span>;
-  cudaFree<span style="color: #ffaacf;">(</span>d_B.elements<span style="color: #ffaacf;">)</span>;
-  cudaFree<span style="color: #ffaacf;">(</span>d_C.elements<span style="color: #ffaacf;">)</span>;
-<span style="color: #deb07a;">}</span>
+  <span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">free device memory</span>
+  cudaFree<span style="color: #b16286;">(</span>d_A.elements<span style="color: #b16286;">)</span>;
+  cudaFree<span style="color: #b16286;">(</span>d_B.elements<span style="color: #b16286;">)</span>;
+  cudaFree<span style="color: #b16286;">(</span>d_C.elements<span style="color: #b16286;">)</span>;
+<span style="color: #458588;">}</span>
 
-<span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">matrix multiplication kernel called by MatMul()</span>
-__global__ <span style="color: #a9c99f;">void</span> <span style="color: #8fcfd0;">MatMulKernel</span><span style="color: #deb07a;">(</span><span style="color: #a9c99f;">Matrix</span> <span style="color: #ffaacf;">A</span>, <span style="color: #a9c99f;">Matrix</span> <span style="color: #ffaacf;">B</span>, <span style="color: #a9c99f;">Matrix</span> <span style="color: #ffaacf;">C</span><span style="color: #deb07a;">)</span>
-<span style="color: #deb07a;">{</span>
-  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">each thread computes one element of C</span>
-  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">by accumulating results into Cvalue</span>
-  <span style="color: #a9c99f;">float</span> <span style="color: #ffaacf;">Cvalue</span> = 0;
-  <span style="color: #a9c99f;">int</span> <span style="color: #ffaacf;">row</span> = blockIdx.y * blockDim.y + threadIdx.y;
-  <span style="color: #a9c99f;">int</span> <span style="color: #ffaacf;">col</span> = blockIdx.x * blockDim.x + threadIdx.x;
-  <span style="color: #deb07a; font-weight: bold;">for</span> <span style="color: #ffaacf;">(</span><span style="color: #a9c99f;">int</span> <span style="color: #ffaacf;">e</span> = 0; e &lt; A.width; ++e<span style="color: #ffaacf;">)</span>
-    Cvalue += A.elements<span style="color: #ffaacf;">[</span>row * A.width + e<span style="color: #ffaacf;">]</span>
-      * B.elements<span style="color: #ffaacf;">[</span>e * B.width + col<span style="color: #ffaacf;">]</span>;
-  C.elements<span style="color: #ffaacf;">[</span>row * C.width + col<span style="color: #ffaacf;">]</span> = Cvalue;
-<span style="color: #deb07a;">}</span>
+<span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">matrix multiplication kernel called by MatMul()</span>
+__global__ <span style="color: #d3869b;">void</span> <span style="color: #fabd2f;">MatMulKernel</span><span style="color: #458588;">(</span><span style="color: #d3869b;">Matrix</span> <span style="color: #83a598;">A</span>, <span style="color: #d3869b;">Matrix</span> <span style="color: #83a598;">B</span>, <span style="color: #d3869b;">Matrix</span> <span style="color: #83a598;">C</span><span style="color: #458588;">)</span>
+<span style="color: #458588;">{</span>
+  <span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">each thread computes one element of C</span>
+  <span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">by accumulating results into Cvalue</span>
+  <span style="color: #d3869b;">float</span> <span style="color: #83a598;">Cvalue</span> = 0;
+  <span style="color: #d3869b;">int</span> <span style="color: #83a598;">row</span> = blockIdx.y * blockDim.y + threadIdx.y;
+  <span style="color: #d3869b;">int</span> <span style="color: #83a598;">col</span> = blockIdx.x * blockDim.x + threadIdx.x;
+  <span style="color: #fb4933;">for</span> <span style="color: #b16286;">(</span><span style="color: #d3869b;">int</span> <span style="color: #83a598;">e</span> = 0; e &lt; A.width; ++e<span style="color: #b16286;">)</span>
+    Cvalue += A.elements<span style="color: #b16286;">[</span>row * A.width + e<span style="color: #b16286;">]</span>
+      * B.elements<span style="color: #b16286;">[</span>e * B.width + col<span style="color: #b16286;">]</span>;
+  C.elements<span style="color: #b16286;">[</span>row * C.width + col<span style="color: #b16286;">]</span> = Cvalue;
+<span style="color: #458588;">}</span>
 
-<span style="color: #a9c99f;">int</span> <span style="color: #8fcfd0;">main</span><span style="color: #deb07a;">()</span> <span style="color: #deb07a;">{</span>
-  <span style="color: #a9c99f;">Matrix</span> <span style="color: #ffaacf;">a</span>,<span style="color: #ffaacf;">b</span>,<span style="color: #ffaacf;">c</span>;
-  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">width*height should be a multiple of 16</span>
-  <span style="color: #a9c99f;">float</span> <span style="color: #ffaacf;">elements</span><span style="color: #ffaacf;">[</span>16*16<span style="color: #ffaacf;">]</span>;
+<span style="color: #d3869b;">int</span> <span style="color: #fabd2f;">main</span><span style="color: #458588;">()</span> <span style="color: #458588;">{</span>
+  <span style="color: #d3869b;">Matrix</span> <span style="color: #83a598;">a</span>,<span style="color: #83a598;">b</span>,<span style="color: #83a598;">c</span>;
+  <span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">width*height should be a multiple of 16</span>
+  <span style="color: #d3869b;">float</span> <span style="color: #83a598;">elements</span><span style="color: #b16286;">[</span>16*16<span style="color: #b16286;">]</span>;
   c.width = c.height = a.width = a.height = b.width = b.height = 16;
   a.elements = b.elements = elements;
-  c.elements = <span style="color: #ffaacf;">(</span><span style="color: #a9c99f;">float</span>*<span style="color: #ffaacf;">)</span>malloc<span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">sizeof</span><span style="color: #80aadf;">(</span><span style="color: #a9c99f;">float</span><span style="color: #80aadf;">)</span>*c.width*c.height<span style="color: #ffaacf;">)</span>;
-  <span style="color: #deb07a; font-weight: bold;">for</span> <span style="color: #ffaacf;">(</span><span style="color: #a9c99f;">int</span> <span style="color: #ffaacf;">i</span> = 0; i &lt; c.width * c.height; ++i<span style="color: #ffaacf;">)</span> <span style="color: #ffaacf;">{</span>
-    a.elements<span style="color: #80aadf;">[</span>i<span style="color: #80aadf;">]</span> = b.elements<span style="color: #80aadf;">[</span>i<span style="color: #80aadf;">]</span> = c.elements<span style="color: #80aadf;">[</span>i<span style="color: #80aadf;">]</span> = i;
-  <span style="color: #ffaacf;">}</span>
-  MatMul<span style="color: #ffaacf;">(</span>a,b,c<span style="color: #ffaacf;">)</span>;
-  <span style="color: #deb07a; font-weight: bold;">for</span> <span style="color: #ffaacf;">(</span><span style="color: #a9c99f;">int</span> <span style="color: #ffaacf;">i</span> = 0; i &lt; c.width * c.height; ++i<span style="color: #ffaacf;">)</span> <span style="color: #ffaacf;">{</span>
-    printf<span style="color: #80aadf;">(</span><span style="color: #f3a0a0;">"%f\n"</span>, c.elements<span style="color: #e47980;">[</span>i<span style="color: #e47980;">]</span><span style="color: #80aadf;">)</span>;
-  <span style="color: #ffaacf;">}</span>
-<span style="color: #deb07a;">}</span>
+  c.elements = <span style="color: #b16286;">(</span><span style="color: #d3869b;">float</span>*<span style="color: #b16286;">)</span>malloc<span style="color: #b16286;">(</span><span style="color: #fb4933;">sizeof</span><span style="color: #8ec07c;">(</span><span style="color: #d3869b;">float</span><span style="color: #8ec07c;">)</span>*c.width*c.height<span style="color: #b16286;">)</span>;
+  <span style="color: #fb4933;">for</span> <span style="color: #b16286;">(</span><span style="color: #d3869b;">int</span> <span style="color: #83a598;">i</span> = 0; i &lt; c.width * c.height; ++i<span style="color: #b16286;">)</span> <span style="color: #b16286;">{</span>
+    a.elements<span style="color: #8ec07c;">[</span>i<span style="color: #8ec07c;">]</span> = b.elements<span style="color: #8ec07c;">[</span>i<span style="color: #8ec07c;">]</span> = c.elements<span style="color: #8ec07c;">[</span>i<span style="color: #8ec07c;">]</span> = i;
+  <span style="color: #b16286;">}</span>
+  MatMul<span style="color: #b16286;">(</span>a,b,c<span style="color: #b16286;">)</span>;
+  <span style="color: #fb4933;">for</span> <span style="color: #b16286;">(</span><span style="color: #d3869b;">int</span> <span style="color: #83a598;">i</span> = 0; i &lt; c.width * c.height; ++i<span style="color: #b16286;">)</span> <span style="color: #b16286;">{</span>
+    printf<span style="color: #8ec07c;">(</span><span style="color: #b8bb26;">"%f\n"</span>, c.elements<span style="color: #d65d0e;">[</span>i<span style="color: #d65d0e;">]</span><span style="color: #8ec07c;">)</span>;
+  <span style="color: #b16286;">}</span>
+<span style="color: #458588;">}</span>
 </pre>
 </div>
 
@@ -543,125 +543,125 @@ the threads cooperate in loading from memory the values of the input matrices to
 the best way to understand this is to read the code:
 </p>
 <div class="org-src-container" data-language="C">
-<pre class="src src-C"><span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">matrices are stored in row-major order:</span>
-<span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">M(row, col) = *(M.elements + row * M.stride + col)</span>
-<span style="color: #deb07a; font-weight: bold;">typedef</span> <span style="color: #deb07a; font-weight: bold;">struct</span> <span style="color: #deb07a;">{</span>
-  <span style="color: #a9c99f;">int</span> <span style="color: #ffaacf;">width</span>;
-  <span style="color: #a9c99f;">int</span> <span style="color: #ffaacf;">height</span>;
-  <span style="color: #a9c99f;">int</span> <span style="color: #ffaacf;">stride</span>;
-  <span style="color: #a9c99f;">float</span>* <span style="color: #ffaacf;">elements</span>;
-<span style="color: #deb07a;">}</span> <span style="color: #a9c99f;">Matrix</span>;
+<pre class="src src-C"><span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">matrices are stored in row-major order:</span>
+<span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">M(row, col) = *(M.elements + row * M.stride + col)</span>
+<span style="color: #fb4933;">typedef</span> <span style="color: #fb4933;">struct</span> <span style="color: #458588;">{</span>
+  <span style="color: #d3869b;">int</span> <span style="color: #83a598;">width</span>;
+  <span style="color: #d3869b;">int</span> <span style="color: #83a598;">height</span>;
+  <span style="color: #d3869b;">int</span> <span style="color: #83a598;">stride</span>;
+  <span style="color: #d3869b;">float</span>* <span style="color: #83a598;">elements</span>;
+<span style="color: #458588;">}</span> <span style="color: #d3869b;">Matrix</span>;
 
-<span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">get a matrix element</span>
-__device__ <span style="color: #a9c99f;">float</span> <span style="color: #8fcfd0;">GetElement</span><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">const</span> <span style="color: #a9c99f;">Matrix</span> <span style="color: #ffaacf;">A</span>, <span style="color: #a9c99f;">int</span> <span style="color: #ffaacf;">row</span>, <span style="color: #a9c99f;">int</span> <span style="color: #ffaacf;">col</span><span style="color: #deb07a;">)</span> <span style="color: #deb07a;">{</span>
-  <span style="color: #deb07a; font-weight: bold;">return</span> A.elements<span style="color: #ffaacf;">[</span>row * A.stride + col<span style="color: #ffaacf;">]</span>;
-<span style="color: #deb07a;">}</span>
+<span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">get a matrix element</span>
+__device__ <span style="color: #d3869b;">float</span> <span style="color: #fabd2f;">GetElement</span><span style="color: #458588;">(</span><span style="color: #fb4933;">const</span> <span style="color: #d3869b;">Matrix</span> <span style="color: #83a598;">A</span>, <span style="color: #d3869b;">int</span> <span style="color: #83a598;">row</span>, <span style="color: #d3869b;">int</span> <span style="color: #83a598;">col</span><span style="color: #458588;">)</span> <span style="color: #458588;">{</span>
+  <span style="color: #fb4933;">return</span> A.elements<span style="color: #b16286;">[</span>row * A.stride + col<span style="color: #b16286;">]</span>;
+<span style="color: #458588;">}</span>
 
-<span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">set a matrix element</span>
-__device__ <span style="color: #a9c99f;">void</span> <span style="color: #8fcfd0;">SetElement</span><span style="color: #deb07a;">(</span><span style="color: #a9c99f;">Matrix</span> <span style="color: #ffaacf;">A</span>, <span style="color: #a9c99f;">int</span> <span style="color: #ffaacf;">row</span>, <span style="color: #a9c99f;">int</span> <span style="color: #ffaacf;">col</span>, <span style="color: #a9c99f;">float</span> <span style="color: #ffaacf;">value</span><span style="color: #deb07a;">)</span> <span style="color: #deb07a;">{</span>
-  A.elements<span style="color: #ffaacf;">[</span>row * A.stride + col<span style="color: #ffaacf;">]</span> = value;
-<span style="color: #deb07a;">}</span>
-<span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">get the BLOCK_SIZExBLOCK_SIZE sub-matrix Asub of A that is</span>
-<span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">located col sub-matrices to the right and row sub-matrices down</span>
-<span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">from the upper-left corner of A</span>
-__device__ <span style="color: #a9c99f;">Matrix</span> <span style="color: #8fcfd0;">GetSubMatrix</span><span style="color: #deb07a;">(</span><span style="color: #a9c99f;">Matrix</span> <span style="color: #ffaacf;">A</span>, <span style="color: #a9c99f;">int</span> <span style="color: #ffaacf;">row</span>, <span style="color: #a9c99f;">int</span> <span style="color: #ffaacf;">col</span><span style="color: #deb07a;">)</span> <span style="color: #deb07a;">{</span>
-  <span style="color: #a9c99f;">Matrix</span> <span style="color: #ffaacf;">Asub</span>;
+<span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">set a matrix element</span>
+__device__ <span style="color: #d3869b;">void</span> <span style="color: #fabd2f;">SetElement</span><span style="color: #458588;">(</span><span style="color: #d3869b;">Matrix</span> <span style="color: #83a598;">A</span>, <span style="color: #d3869b;">int</span> <span style="color: #83a598;">row</span>, <span style="color: #d3869b;">int</span> <span style="color: #83a598;">col</span>, <span style="color: #d3869b;">float</span> <span style="color: #83a598;">value</span><span style="color: #458588;">)</span> <span style="color: #458588;">{</span>
+  A.elements<span style="color: #b16286;">[</span>row * A.stride + col<span style="color: #b16286;">]</span> = value;
+<span style="color: #458588;">}</span>
+<span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">get the BLOCK_SIZExBLOCK_SIZE sub-matrix Asub of A that is</span>
+<span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">located col sub-matrices to the right and row sub-matrices down</span>
+<span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">from the upper-left corner of A</span>
+__device__ <span style="color: #d3869b;">Matrix</span> <span style="color: #fabd2f;">GetSubMatrix</span><span style="color: #458588;">(</span><span style="color: #d3869b;">Matrix</span> <span style="color: #83a598;">A</span>, <span style="color: #d3869b;">int</span> <span style="color: #83a598;">row</span>, <span style="color: #d3869b;">int</span> <span style="color: #83a598;">col</span><span style="color: #458588;">)</span> <span style="color: #458588;">{</span>
+  <span style="color: #d3869b;">Matrix</span> <span style="color: #83a598;">Asub</span>;
   Asub.width    = BLOCK_SIZE;
   Asub.height   = BLOCK_SIZE;
   Asub.stride   = A.stride;
-  Asub.elements = &amp;A.elements<span style="color: #ffaacf;">[</span>A.stride * BLOCK_SIZE * row
-                              + BLOCK_SIZE * col<span style="color: #ffaacf;">]</span>;
-  <span style="color: #deb07a; font-weight: bold;">return</span> Asub;
-<span style="color: #deb07a;">}</span>
+  Asub.elements = &amp;A.elements<span style="color: #b16286;">[</span>A.stride * BLOCK_SIZE * row
+                              + BLOCK_SIZE * col<span style="color: #b16286;">]</span>;
+  <span style="color: #fb4933;">return</span> Asub;
+<span style="color: #458588;">}</span>
 
-<span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">thread block size</span>
-<span style="color: #65c5a8;">#define</span> <span style="color: #ffaacf;">BLOCK_SIZE</span> 16
+<span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">thread block size</span>
+<span style="color: #fe8019;">#define</span> <span style="color: #83a598;">BLOCK_SIZE</span> 16
 
-<span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">forward declaration of the matrix multiplication kernel</span>
-__global__ <span style="color: #a9c99f;">void</span> <span style="color: #8fcfd0;">MatMulKernel</span><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">const</span> <span style="color: #ffaacf;">Matrix</span>, <span style="color: #deb07a; font-weight: bold;">const</span> <span style="color: #ffaacf;">Matrix</span>, <span style="color: #a9c99f;">Matrix</span><span style="color: #deb07a;">)</span>;
+<span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">forward declaration of the matrix multiplication kernel</span>
+__global__ <span style="color: #d3869b;">void</span> <span style="color: #fabd2f;">MatMulKernel</span><span style="color: #458588;">(</span><span style="color: #fb4933;">const</span> <span style="color: #83a598;">Matrix</span>, <span style="color: #fb4933;">const</span> <span style="color: #83a598;">Matrix</span>, <span style="color: #d3869b;">Matrix</span><span style="color: #458588;">)</span>;
 
-<span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">matrix multiplication - host code</span>
-<span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">matrix dimensions are assumed to be multiples of BLOCK_SIZE</span>
-<span style="color: #a9c99f;">void</span> <span style="color: #8fcfd0;">MatMul</span><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">const</span> <span style="color: #a9c99f;">Matrix</span> <span style="color: #ffaacf;">A</span>, <span style="color: #deb07a; font-weight: bold;">const</span> <span style="color: #a9c99f;">Matrix</span> <span style="color: #ffaacf;">B</span>, <span style="color: #a9c99f;">Matrix</span> <span style="color: #ffaacf;">C</span><span style="color: #deb07a;">)</span> <span style="color: #deb07a;">{</span>
-  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">load A and B to device memory</span>
-  <span style="color: #a9c99f;">Matrix</span> <span style="color: #ffaacf;">d_A</span>;
+<span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">matrix multiplication - host code</span>
+<span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">matrix dimensions are assumed to be multiples of BLOCK_SIZE</span>
+<span style="color: #d3869b;">void</span> <span style="color: #fabd2f;">MatMul</span><span style="color: #458588;">(</span><span style="color: #fb4933;">const</span> <span style="color: #d3869b;">Matrix</span> <span style="color: #83a598;">A</span>, <span style="color: #fb4933;">const</span> <span style="color: #d3869b;">Matrix</span> <span style="color: #83a598;">B</span>, <span style="color: #d3869b;">Matrix</span> <span style="color: #83a598;">C</span><span style="color: #458588;">)</span> <span style="color: #458588;">{</span>
+  <span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">load A and B to device memory</span>
+  <span style="color: #d3869b;">Matrix</span> <span style="color: #83a598;">d_A</span>;
   d_A.width = d_A.stride = A.width; d_A.height = A.height;
-  <span style="color: #a9c99f;">size_t</span> <span style="color: #ffaacf;">size</span> = A.width * A.height * <span style="color: #deb07a; font-weight: bold;">sizeof</span><span style="color: #ffaacf;">(</span><span style="color: #a9c99f;">float</span><span style="color: #ffaacf;">)</span>;
-  cudaMalloc<span style="color: #ffaacf;">(</span>&amp;d_A.elements, size<span style="color: #ffaacf;">)</span>;
-  cudaMemcpy<span style="color: #ffaacf;">(</span>d_A.elements, A.elements, size,
-             cudaMemcpyHostToDevice<span style="color: #ffaacf;">)</span>;
-  <span style="color: #a9c99f;">Matrix</span> <span style="color: #ffaacf;">d_B</span>;
+  <span style="color: #d3869b;">size_t</span> <span style="color: #83a598;">size</span> = A.width * A.height * <span style="color: #fb4933;">sizeof</span><span style="color: #b16286;">(</span><span style="color: #d3869b;">float</span><span style="color: #b16286;">)</span>;
+  cudaMalloc<span style="color: #b16286;">(</span>&amp;d_A.elements, size<span style="color: #b16286;">)</span>;
+  cudaMemcpy<span style="color: #b16286;">(</span>d_A.elements, A.elements, size,
+             cudaMemcpyHostToDevice<span style="color: #b16286;">)</span>;
+  <span style="color: #d3869b;">Matrix</span> <span style="color: #83a598;">d_B</span>;
   d_B.width = d_B.stride = B.width; d_B.height = B.height;
-  size = B.width * B.height * <span style="color: #deb07a; font-weight: bold;">sizeof</span><span style="color: #ffaacf;">(</span><span style="color: #a9c99f;">float</span><span style="color: #ffaacf;">)</span>;
-  cudaMalloc<span style="color: #ffaacf;">(</span>&amp;d_B.elements, size<span style="color: #ffaacf;">)</span>;
-  cudaMemcpy<span style="color: #ffaacf;">(</span>d_B.elements, B.elements, size,
-             cudaMemcpyHostToDevice<span style="color: #ffaacf;">)</span>;
+  size = B.width * B.height * <span style="color: #fb4933;">sizeof</span><span style="color: #b16286;">(</span><span style="color: #d3869b;">float</span><span style="color: #b16286;">)</span>;
+  cudaMalloc<span style="color: #b16286;">(</span>&amp;d_B.elements, size<span style="color: #b16286;">)</span>;
+  cudaMemcpy<span style="color: #b16286;">(</span>d_B.elements, B.elements, size,
+             cudaMemcpyHostToDevice<span style="color: #b16286;">)</span>;
 
-  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">allocate C in device memory</span>
-  <span style="color: #a9c99f;">Matrix</span> <span style="color: #ffaacf;">d_C</span>;
+  <span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">allocate C in device memory</span>
+  <span style="color: #d3869b;">Matrix</span> <span style="color: #83a598;">d_C</span>;
   d_C.width = d_C.stride = C.width; d_C.height = C.height;
-  size = C.width * C.height * <span style="color: #deb07a; font-weight: bold;">sizeof</span><span style="color: #ffaacf;">(</span><span style="color: #a9c99f;">float</span><span style="color: #ffaacf;">)</span>;
-  cudaMalloc<span style="color: #ffaacf;">(</span>&amp;d_C.elements, size<span style="color: #ffaacf;">)</span>;
+  size = C.width * C.height * <span style="color: #fb4933;">sizeof</span><span style="color: #b16286;">(</span><span style="color: #d3869b;">float</span><span style="color: #b16286;">)</span>;
+  cudaMalloc<span style="color: #b16286;">(</span>&amp;d_C.elements, size<span style="color: #b16286;">)</span>;
 
-  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">invoke kernel</span>
-  <span style="color: #a9c99f;">dim3</span> <span style="color: #8fcfd0;">dimBlock</span><span style="color: #ffaacf;">(</span>BLOCK_SIZE, BLOCK_SIZE<span style="color: #ffaacf;">)</span>;
-  <span style="color: #a9c99f;">dim3</span> <span style="color: #8fcfd0;">dimGrid</span><span style="color: #ffaacf;">(</span>B.width / dimBlock.x, A.height / dimBlock.y<span style="color: #ffaacf;">)</span>;
-  MatMulKernel&lt;&lt;&lt;dimGrid, dimBlock&gt;&gt;&gt;<span style="color: #ffaacf;">(</span>d_A, d_B, d_C<span style="color: #ffaacf;">)</span>;
+  <span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">invoke kernel</span>
+  <span style="color: #d3869b;">dim3</span> <span style="color: #fabd2f;">dimBlock</span><span style="color: #b16286;">(</span>BLOCK_SIZE, BLOCK_SIZE<span style="color: #b16286;">)</span>;
+  <span style="color: #d3869b;">dim3</span> <span style="color: #fabd2f;">dimGrid</span><span style="color: #b16286;">(</span>B.width / dimBlock.x, A.height / dimBlock.y<span style="color: #b16286;">)</span>;
+  MatMulKernel&lt;&lt;&lt;dimGrid, dimBlock&gt;&gt;&gt;<span style="color: #b16286;">(</span>d_A, d_B, d_C<span style="color: #b16286;">)</span>;
 
-  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">read C from device memory</span>
-  cudaMemcpy<span style="color: #ffaacf;">(</span>C.elements, d_C.elements, size,
-             cudaMemcpyDeviceToHost<span style="color: #ffaacf;">)</span>;
+  <span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">read C from device memory</span>
+  cudaMemcpy<span style="color: #b16286;">(</span>C.elements, d_C.elements, size,
+             cudaMemcpyDeviceToHost<span style="color: #b16286;">)</span>;
 
-  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">free device memory</span>
-  cudaFree<span style="color: #ffaacf;">(</span>d_A.elements<span style="color: #ffaacf;">)</span>;
-  cudaFree<span style="color: #ffaacf;">(</span>d_B.elements<span style="color: #ffaacf;">)</span>;
-  cudaFree<span style="color: #ffaacf;">(</span>d_C.elements<span style="color: #ffaacf;">)</span>;
-<span style="color: #deb07a;">}</span>
+  <span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">free device memory</span>
+  cudaFree<span style="color: #b16286;">(</span>d_A.elements<span style="color: #b16286;">)</span>;
+  cudaFree<span style="color: #b16286;">(</span>d_B.elements<span style="color: #b16286;">)</span>;
+  cudaFree<span style="color: #b16286;">(</span>d_C.elements<span style="color: #b16286;">)</span>;
+<span style="color: #458588;">}</span>
 
-<span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">matrix multiplication kernel called by MatMul()</span>
-__global__ <span style="color: #a9c99f;">void</span> <span style="color: #8fcfd0;">MatMulKernel</span><span style="color: #deb07a;">(</span><span style="color: #a9c99f;">Matrix</span> <span style="color: #ffaacf;">A</span>, <span style="color: #a9c99f;">Matrix</span> <span style="color: #ffaacf;">B</span>, <span style="color: #a9c99f;">Matrix</span> <span style="color: #ffaacf;">C</span><span style="color: #deb07a;">)</span> <span style="color: #deb07a;">{</span>
-  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">block row and column</span>
-  <span style="color: #a9c99f;">int</span> <span style="color: #ffaacf;">blockRow</span> = blockIdx.y;
-  <span style="color: #a9c99f;">int</span> <span style="color: #ffaacf;">blockCol</span> = blockIdx.x;
-  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">each thread block computes one sub-matrix Csub of C</span>
-  <span style="color: #a9c99f;">Matrix</span> <span style="color: #ffaacf;">Csub</span> = GetSubMatrix<span style="color: #ffaacf;">(</span>C, blockRow, blockCol<span style="color: #ffaacf;">)</span>;
-  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">each thread computes one element of Csub</span>
-  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">by accumulating results into Cvalue</span>
-  <span style="color: #a9c99f;">float</span> <span style="color: #ffaacf;">Cvalue</span> = 0;
-  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">thread row and column within Csub</span>
-  <span style="color: #a9c99f;">int</span> <span style="color: #ffaacf;">row</span> = threadIdx.y;
-  <span style="color: #a9c99f;">int</span> <span style="color: #ffaacf;">col</span> = threadIdx.x;
-  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">loop over all the sub-matrices of A and B that are</span>
-  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">required to compute Csub</span>
-  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">multiply each pair of sub-matrices together</span>
-  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">and accumulate the results</span>
-  <span style="color: #deb07a; font-weight: bold;">for</span> <span style="color: #ffaacf;">(</span><span style="color: #a9c99f;">int</span> <span style="color: #ffaacf;">m</span> = 0; m &lt; <span style="color: #80aadf;">(</span>A.width / BLOCK_SIZE<span style="color: #80aadf;">)</span>; ++m<span style="color: #ffaacf;">)</span> <span style="color: #ffaacf;">{</span>
-    <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">get sub-matrix Asub of A</span>
-    <span style="color: #a9c99f;">Matrix</span> <span style="color: #ffaacf;">Asub</span> = GetSubMatrix<span style="color: #80aadf;">(</span>A, blockRow, m<span style="color: #80aadf;">)</span>;
-    <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">get sub-matrix Bsub of B</span>
-    <span style="color: #a9c99f;">Matrix</span> <span style="color: #ffaacf;">Bsub</span> = GetSubMatrix<span style="color: #80aadf;">(</span>B, m, blockCol<span style="color: #80aadf;">)</span>;
-    <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">shared memory (static variables) used to store Asub and Bsub respectively</span>
-    __shared__ <span style="color: #a9c99f;">float</span> <span style="color: #ffaacf;">As</span><span style="color: #80aadf;">[</span>BLOCK_SIZE<span style="color: #80aadf;">][</span>BLOCK_SIZE<span style="color: #80aadf;">]</span>;
-    __shared__ <span style="color: #a9c99f;">float</span> <span style="color: #ffaacf;">Bs</span><span style="color: #80aadf;">[</span>BLOCK_SIZE<span style="color: #80aadf;">][</span>BLOCK_SIZE<span style="color: #80aadf;">]</span>;
-    <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">load Asub and Bsub from device memory to shared memory</span>
-    <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">each thread loads one element of each sub-matrix</span>
-    As<span style="color: #80aadf;">[</span>row<span style="color: #80aadf;">][</span>col<span style="color: #80aadf;">]</span> = GetElement<span style="color: #80aadf;">(</span>Asub, row, col<span style="color: #80aadf;">)</span>;
-    Bs<span style="color: #80aadf;">[</span>row<span style="color: #80aadf;">][</span>col<span style="color: #80aadf;">]</span> = GetElement<span style="color: #80aadf;">(</span>Bsub, row, col<span style="color: #80aadf;">)</span>;
-    <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">synchronize to make sure the sub-matrices are loaded</span>
-    <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">before starting the computation</span>
-    __syncthreads<span style="color: #80aadf;">()</span>;
-    <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">multiply Asub and Bsub together</span>
-    <span style="color: #deb07a; font-weight: bold;">for</span> <span style="color: #80aadf;">(</span><span style="color: #a9c99f;">int</span> <span style="color: #ffaacf;">e</span> = 0; e &lt; BLOCK_SIZE; ++e<span style="color: #80aadf;">)</span>
-      Cvalue += As<span style="color: #80aadf;">[</span>row<span style="color: #80aadf;">][</span>e<span style="color: #80aadf;">]</span> * Bs<span style="color: #80aadf;">[</span>e<span style="color: #80aadf;">][</span>col<span style="color: #80aadf;">]</span>;
-    <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">synchronize to make sure that the preceding</span>
-    <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">computation is done before loading two new</span>
-    <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">sub-matrices of A and B in the next iteration</span>
-    __syncthreads<span style="color: #80aadf;">()</span>;
-  <span style="color: #ffaacf;">}</span>
-  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">write Csub to device memory</span>
-  <span style="color: #a0a0cf; font-style: italic;">// </span><span style="color: #a0a0cf; font-style: italic;">each thread writes one element</span>
-  SetElement<span style="color: #ffaacf;">(</span>Csub, row, col, Cvalue<span style="color: #ffaacf;">)</span>;
-<span style="color: #deb07a;">}</span>
+<span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">matrix multiplication kernel called by MatMul()</span>
+__global__ <span style="color: #d3869b;">void</span> <span style="color: #fabd2f;">MatMulKernel</span><span style="color: #458588;">(</span><span style="color: #d3869b;">Matrix</span> <span style="color: #83a598;">A</span>, <span style="color: #d3869b;">Matrix</span> <span style="color: #83a598;">B</span>, <span style="color: #d3869b;">Matrix</span> <span style="color: #83a598;">C</span><span style="color: #458588;">)</span> <span style="color: #458588;">{</span>
+  <span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">block row and column</span>
+  <span style="color: #d3869b;">int</span> <span style="color: #83a598;">blockRow</span> = blockIdx.y;
+  <span style="color: #d3869b;">int</span> <span style="color: #83a598;">blockCol</span> = blockIdx.x;
+  <span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">each thread block computes one sub-matrix Csub of C</span>
+  <span style="color: #d3869b;">Matrix</span> <span style="color: #83a598;">Csub</span> = GetSubMatrix<span style="color: #b16286;">(</span>C, blockRow, blockCol<span style="color: #b16286;">)</span>;
+  <span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">each thread computes one element of Csub</span>
+  <span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">by accumulating results into Cvalue</span>
+  <span style="color: #d3869b;">float</span> <span style="color: #83a598;">Cvalue</span> = 0;
+  <span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">thread row and column within Csub</span>
+  <span style="color: #d3869b;">int</span> <span style="color: #83a598;">row</span> = threadIdx.y;
+  <span style="color: #d3869b;">int</span> <span style="color: #83a598;">col</span> = threadIdx.x;
+  <span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">loop over all the sub-matrices of A and B that are</span>
+  <span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">required to compute Csub</span>
+  <span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">multiply each pair of sub-matrices together</span>
+  <span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">and accumulate the results</span>
+  <span style="color: #fb4933;">for</span> <span style="color: #b16286;">(</span><span style="color: #d3869b;">int</span> <span style="color: #83a598;">m</span> = 0; m &lt; <span style="color: #8ec07c;">(</span>A.width / BLOCK_SIZE<span style="color: #8ec07c;">)</span>; ++m<span style="color: #b16286;">)</span> <span style="color: #b16286;">{</span>
+    <span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">get sub-matrix Asub of A</span>
+    <span style="color: #d3869b;">Matrix</span> <span style="color: #83a598;">Asub</span> = GetSubMatrix<span style="color: #8ec07c;">(</span>A, blockRow, m<span style="color: #8ec07c;">)</span>;
+    <span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">get sub-matrix Bsub of B</span>
+    <span style="color: #d3869b;">Matrix</span> <span style="color: #83a598;">Bsub</span> = GetSubMatrix<span style="color: #8ec07c;">(</span>B, m, blockCol<span style="color: #8ec07c;">)</span>;
+    <span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">shared memory (static variables) used to store Asub and Bsub respectively</span>
+    __shared__ <span style="color: #d3869b;">float</span> <span style="color: #83a598;">As</span><span style="color: #8ec07c;">[</span>BLOCK_SIZE<span style="color: #8ec07c;">][</span>BLOCK_SIZE<span style="color: #8ec07c;">]</span>;
+    __shared__ <span style="color: #d3869b;">float</span> <span style="color: #83a598;">Bs</span><span style="color: #8ec07c;">[</span>BLOCK_SIZE<span style="color: #8ec07c;">][</span>BLOCK_SIZE<span style="color: #8ec07c;">]</span>;
+    <span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">load Asub and Bsub from device memory to shared memory</span>
+    <span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">each thread loads one element of each sub-matrix</span>
+    As<span style="color: #8ec07c;">[</span>row<span style="color: #8ec07c;">][</span>col<span style="color: #8ec07c;">]</span> = GetElement<span style="color: #8ec07c;">(</span>Asub, row, col<span style="color: #8ec07c;">)</span>;
+    Bs<span style="color: #8ec07c;">[</span>row<span style="color: #8ec07c;">][</span>col<span style="color: #8ec07c;">]</span> = GetElement<span style="color: #8ec07c;">(</span>Bsub, row, col<span style="color: #8ec07c;">)</span>;
+    <span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">synchronize to make sure the sub-matrices are loaded</span>
+    <span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">before starting the computation</span>
+    __syncthreads<span style="color: #8ec07c;">()</span>;
+    <span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">multiply Asub and Bsub together</span>
+    <span style="color: #fb4933;">for</span> <span style="color: #8ec07c;">(</span><span style="color: #d3869b;">int</span> <span style="color: #83a598;">e</span> = 0; e &lt; BLOCK_SIZE; ++e<span style="color: #8ec07c;">)</span>
+      Cvalue += As<span style="color: #8ec07c;">[</span>row<span style="color: #8ec07c;">][</span>e<span style="color: #8ec07c;">]</span> * Bs<span style="color: #8ec07c;">[</span>e<span style="color: #8ec07c;">][</span>col<span style="color: #8ec07c;">]</span>;
+    <span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">synchronize to make sure that the preceding</span>
+    <span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">computation is done before loading two new</span>
+    <span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">sub-matrices of A and B in the next iteration</span>
+    __syncthreads<span style="color: #8ec07c;">()</span>;
+  <span style="color: #b16286;">}</span>
+  <span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">write Csub to device memory</span>
+  <span style="color: #7c6f64;">// </span><span style="color: #7c6f64;">each thread writes one element</span>
+  SetElement<span style="color: #b16286;">(</span>Csub, row, col, Cvalue<span style="color: #b16286;">)</span>;
+<span style="color: #458588;">}</span>
 </pre>
 </div>
 
@@ -675,77 +675,77 @@ some points to consider before implementating in lisp:
 <li>loops in kernels can only be done using the <code>do</code> statement.</li>
 </ol>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">random-init</span> <span style="color: #ffaacf;">(</span>data n<span style="color: #ffaacf;">)</span>
-  <span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">dotimes</span> <span style="color: #80aadf;">(</span>i n<span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span>setf <span style="color: #e47980;">(</span>cl-cuda:memory-block-aref data i<span style="color: #e47980;">)</span> <span style="color: #e47980;">(</span>random 1.0<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span><span style="color: #fb4933;">defun</span> <span style="color: #fabd2f;">random-init</span> <span style="color: #b16286;">(</span>data n<span style="color: #b16286;">)</span>
+  <span style="color: #b16286;">(</span><span style="color: #fb4933;">dotimes</span> <span style="color: #8ec07c;">(</span>i n<span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>setf <span style="color: #d65d0e;">(</span>cl-cuda:memory-block-aref data i<span style="color: #d65d0e;">)</span> <span style="color: #d65d0e;">(</span>random 1.0<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 
-<span style="color: #deb07a;">(</span>cl-cuda:defkernel matrix-mul-kernel <span style="color: #ffaacf;">(</span>cl-cuda:void <span style="color: #80aadf;">(</span><span style="color: #e47980;">(</span>arr1      cl-cuda:float*<span style="color: #e47980;">)</span>
-                                                    <span style="color: #e47980;">(</span>arr2      cl-cuda:float*<span style="color: #e47980;">)</span>
-                                                    <span style="color: #e47980;">(</span>out       cl-cuda:float*<span style="color: #e47980;">)</span>
-                                                    <span style="color: #e47980;">(</span>arr1-rows cl-cuda:int<span style="color: #e47980;">)</span>
-                                                    <span style="color: #e47980;">(</span>arr2-cols cl-cuda:int<span style="color: #e47980;">)</span>
-                                                    <span style="color: #e47980;">(</span>arr2-rows cl-cuda:int<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span>
-  <span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">let*</span> <span style="color: #80aadf;">(</span><span style="color: #e47980;">(</span>block-row cl-cuda:block-idx-y<span style="color: #e47980;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">location of current thread block in the grid</span>
-         <span style="color: #e47980;">(</span>block-col cl-cuda:block-idx-x<span style="color: #e47980;">)</span>
-         <span style="color: #e47980;">(</span>row cl-cuda:thread-idx-y<span style="color: #e47980;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">cell this thread is responsible for in output matrix</span>
-         <span style="color: #e47980;">(</span>col cl-cuda:thread-idx-x<span style="color: #e47980;">)</span>
-         <span style="color: #e47980;">(</span>c-value 10.0<span style="color: #e47980;">)</span>
-         <span style="color: #e47980;">(</span>arr1-cols arr2-rows<span style="color: #e47980;">)</span>
-         <span style="color: #e47980;">(</span>block-size cl-cuda:block-dim-x<span style="color: #e47980;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">16 unless modified</span>
-         <span style="color: #e47980;">(</span>out-size arr1-rows<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
-    <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">start iterating through input submatrices</span>
-    <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">(set c-value (float arr1-cols))</span>
-    <span style="color: #80aadf;">(</span><span style="color: #deb07a; font-weight: bold;">do</span> <span style="color: #e47980;">(</span><span style="color: #d0b0ff;">(</span>i 0 <span style="color: #3fc489;">(</span>+ i 1<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span>
-        <span style="color: #e47980;">(</span><span style="color: #d0b0ff;">(</span>&gt;= i <span style="color: #3fc489;">(</span>/ arr1-cols block-size<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span>
-      <span style="color: #e47980;">(</span>cl-cuda:with-shared-memory <span style="color: #d0b0ff;">(</span><span style="color: #3fc489;">(</span>arr1-sub float 16 16<span style="color: #3fc489;">)</span>
-                                   <span style="color: #3fc489;">(</span>arr2-sub float 16 16<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span>
-        <span style="color: #d0b0ff;">(</span>set <span style="color: #3fc489;">(</span>aref arr1-sub row col<span style="color: #3fc489;">)</span> <span style="color: #3fc489;">(</span>aref arr1 <span style="color: #6fb3c0;">(</span>+ <span style="color: #c0b24f;">(</span>* block-row block-size<span style="color: #c0b24f;">)</span>
-                                                   <span style="color: #c0b24f;">(</span>* row block-size<span style="color: #c0b24f;">)</span>
-                                                   <span style="color: #c0b24f;">(</span>* i block-size<span style="color: #c0b24f;">)</span>
-                                                   col<span style="color: #6fb3c0;">)</span><span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span>
-        <span style="color: #d0b0ff;">(</span>set <span style="color: #3fc489;">(</span>aref arr2-sub row col<span style="color: #3fc489;">)</span> <span style="color: #3fc489;">(</span>aref arr2 <span style="color: #6fb3c0;">(</span>+ <span style="color: #c0b24f;">(</span>* i block-size<span style="color: #c0b24f;">)</span>
-                                                   <span style="color: #c0b24f;">(</span>* row block-size<span style="color: #c0b24f;">)</span>
-                                                   <span style="color: #c0b24f;">(</span>* block-col block-size<span style="color: #c0b24f;">)</span>
-                                                   col<span style="color: #6fb3c0;">)</span><span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span>
-        <span style="color: #d0b0ff;">(</span>cl-cuda:syncthreads<span style="color: #d0b0ff;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">synchronize to make sure submatrices are loaded</span>
-        <span style="color: #d0b0ff;">(</span><span style="color: #deb07a; font-weight: bold;">do</span> <span style="color: #3fc489;">(</span><span style="color: #6fb3c0;">(</span>j 0 <span style="color: #c0b24f;">(</span>+ j 1<span style="color: #c0b24f;">)</span><span style="color: #6fb3c0;">)</span><span style="color: #3fc489;">)</span>
-            <span style="color: #3fc489;">(</span><span style="color: #6fb3c0;">(</span>&gt;= j block-size<span style="color: #6fb3c0;">)</span><span style="color: #3fc489;">)</span>
-          <span style="color: #3fc489;">(</span>set c-value <span style="color: #6fb3c0;">(</span>+ c-value <span style="color: #c0b24f;">(</span>* <span style="color: #f3a0a0;">(</span>aref arr1-sub row j<span style="color: #f3a0a0;">)</span> <span style="color: #f3a0a0;">(</span>aref arr2-sub j col<span style="color: #f3a0a0;">)</span><span style="color: #c0b24f;">)</span><span style="color: #6fb3c0;">)</span><span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span>
-        <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">synchronize to make sure that the preceding</span>
-        <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">computation is done before loading two new</span>
-        <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">sub-matrices of A and B in the next iteration</span>
-        <span style="color: #d0b0ff;">(</span>cl-cuda:syncthreads<span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span>set <span style="color: #e47980;">(</span>aref out <span style="color: #d0b0ff;">(</span>+ <span style="color: #3fc489;">(</span>* block-row block-size<span style="color: #3fc489;">)</span>
-                      <span style="color: #3fc489;">(</span>* block-col block-size<span style="color: #3fc489;">)</span>
-                      <span style="color: #3fc489;">(</span>* row block-size<span style="color: #3fc489;">)</span>
-                      col<span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span> <span style="color: #d09950;">c-value</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<span style="color: #458588;">(</span>cl-cuda:defkernel matrix-mul-kernel <span style="color: #b16286;">(</span>cl-cuda:void <span style="color: #8ec07c;">(</span><span style="color: #d65d0e;">(</span>arr1      cl-cuda:float*<span style="color: #d65d0e;">)</span>
+                                                    <span style="color: #d65d0e;">(</span>arr2      cl-cuda:float*<span style="color: #d65d0e;">)</span>
+                                                    <span style="color: #d65d0e;">(</span>out       cl-cuda:float*<span style="color: #d65d0e;">)</span>
+                                                    <span style="color: #d65d0e;">(</span>arr1-rows cl-cuda:int<span style="color: #d65d0e;">)</span>
+                                                    <span style="color: #d65d0e;">(</span>arr2-cols cl-cuda:int<span style="color: #d65d0e;">)</span>
+                                                    <span style="color: #d65d0e;">(</span>arr2-rows cl-cuda:int<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span>
+  <span style="color: #b16286;">(</span><span style="color: #fb4933;">let*</span> <span style="color: #8ec07c;">(</span><span style="color: #d65d0e;">(</span>block-row cl-cuda:block-idx-y<span style="color: #d65d0e;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">location of current thread block in the grid</span>
+         <span style="color: #d65d0e;">(</span>block-col cl-cuda:block-idx-x<span style="color: #d65d0e;">)</span>
+         <span style="color: #d65d0e;">(</span>row cl-cuda:thread-idx-y<span style="color: #d65d0e;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">cell this thread is responsible for in output matrix</span>
+         <span style="color: #d65d0e;">(</span>col cl-cuda:thread-idx-x<span style="color: #d65d0e;">)</span>
+         <span style="color: #d65d0e;">(</span>c-value 10.0<span style="color: #d65d0e;">)</span>
+         <span style="color: #d65d0e;">(</span>arr1-cols arr2-rows<span style="color: #d65d0e;">)</span>
+         <span style="color: #d65d0e;">(</span>block-size cl-cuda:block-dim-x<span style="color: #d65d0e;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">16 unless modified</span>
+         <span style="color: #d65d0e;">(</span>out-size arr1-rows<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+    <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">start iterating through input submatrices</span>
+    <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">(set c-value (float arr1-cols))</span>
+    <span style="color: #8ec07c;">(</span><span style="color: #fb4933;">do</span> <span style="color: #d65d0e;">(</span><span style="color: #458588;">(</span>i 0 <span style="color: #b16286;">(</span>+ i 1<span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span>
+        <span style="color: #d65d0e;">(</span><span style="color: #458588;">(</span>&gt;= i <span style="color: #b16286;">(</span>/ arr1-cols block-size<span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span>
+      <span style="color: #d65d0e;">(</span>cl-cuda:with-shared-memory <span style="color: #458588;">(</span><span style="color: #b16286;">(</span>arr1-sub float 16 16<span style="color: #b16286;">)</span>
+                                   <span style="color: #b16286;">(</span>arr2-sub float 16 16<span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
+        <span style="color: #458588;">(</span>set <span style="color: #b16286;">(</span>aref arr1-sub row col<span style="color: #b16286;">)</span> <span style="color: #b16286;">(</span>aref arr1 <span style="color: #8ec07c;">(</span>+ <span style="color: #d65d0e;">(</span>* block-row block-size<span style="color: #d65d0e;">)</span>
+                                                   <span style="color: #d65d0e;">(</span>* row block-size<span style="color: #d65d0e;">)</span>
+                                                   <span style="color: #d65d0e;">(</span>* i block-size<span style="color: #d65d0e;">)</span>
+                                                   col<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
+        <span style="color: #458588;">(</span>set <span style="color: #b16286;">(</span>aref arr2-sub row col<span style="color: #b16286;">)</span> <span style="color: #b16286;">(</span>aref arr2 <span style="color: #8ec07c;">(</span>+ <span style="color: #d65d0e;">(</span>* i block-size<span style="color: #d65d0e;">)</span>
+                                                   <span style="color: #d65d0e;">(</span>* row block-size<span style="color: #d65d0e;">)</span>
+                                                   <span style="color: #d65d0e;">(</span>* block-col block-size<span style="color: #d65d0e;">)</span>
+                                                   col<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
+        <span style="color: #458588;">(</span>cl-cuda:syncthreads<span style="color: #458588;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">synchronize to make sure submatrices are loaded</span>
+        <span style="color: #458588;">(</span><span style="color: #fb4933;">do</span> <span style="color: #b16286;">(</span><span style="color: #8ec07c;">(</span>j 0 <span style="color: #d65d0e;">(</span>+ j 1<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span>
+            <span style="color: #b16286;">(</span><span style="color: #8ec07c;">(</span>&gt;= j block-size<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span>
+          <span style="color: #b16286;">(</span>set c-value <span style="color: #8ec07c;">(</span>+ c-value <span style="color: #d65d0e;">(</span>* <span style="color: #458588;">(</span>aref arr1-sub row j<span style="color: #458588;">)</span> <span style="color: #458588;">(</span>aref arr2-sub j col<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
+        <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">synchronize to make sure that the preceding</span>
+        <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">computation is done before loading two new</span>
+        <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">sub-matrices of A and B in the next iteration</span>
+        <span style="color: #458588;">(</span>cl-cuda:syncthreads<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>set <span style="color: #d65d0e;">(</span>aref out <span style="color: #458588;">(</span>+ <span style="color: #b16286;">(</span>* block-row block-size<span style="color: #b16286;">)</span>
+                      <span style="color: #b16286;">(</span>* block-col block-size<span style="color: #b16286;">)</span>
+                      <span style="color: #b16286;">(</span>* row block-size<span style="color: #b16286;">)</span>
+                      col<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span> <span style="color: #fb4933; font-weight: bold;">c-value</span><span style="color: #8ec07c; font-weight: bold;">)</span><span style="color: #b16286; font-weight: bold;">)</span><span style="color: #458588; font-weight: bold;">)</span>
 
-<span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">cuda-matrix-mul</span> <span style="color: #ffaacf;">(</span>arr1 arr2<span style="color: #ffaacf;">)</span>
-  <span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">let*</span> <span style="color: #80aadf;">(</span><span style="color: #e47980;">(</span>out-size <span style="color: #d0b0ff;">(</span>* <span style="color: #3fc489;">(</span>array-rows arr1<span style="color: #3fc489;">)</span> <span style="color: #3fc489;">(</span>array-cols arr2<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span>
-         <span style="color: #e47980;">(</span>dev-id 0<span style="color: #e47980;">)</span>
-         <span style="color: #e47980;">(</span>block-size 16<span style="color: #e47980;">)</span> <span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">actual size is squared, this is more of a "length"</span>
-         <span style="color: #e47980;">(</span>threads-per-block <span style="color: #d0b0ff;">(</span>expt block-size 2<span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span>
-         <span style="color: #e47980;">(</span>blocks-per-grid <span style="color: #d0b0ff;">(</span>/ out-size threads-per-block<span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span>cl-cuda:with-cuda <span style="color: #e47980;">(</span>dev-id<span style="color: #e47980;">)</span>
-      <span style="color: #e47980;">(</span>cl-cuda:with-memory-blocks <span style="color: #d0b0ff;">(</span><span style="color: #3fc489;">(</span>c-arr1 'float <span style="color: #6fb3c0;">(</span>array-size arr1<span style="color: #6fb3c0;">)</span><span style="color: #3fc489;">)</span>
-                                   <span style="color: #3fc489;">(</span>c-arr2 'float <span style="color: #6fb3c0;">(</span>array-size arr2<span style="color: #6fb3c0;">)</span><span style="color: #3fc489;">)</span>
-                                   <span style="color: #3fc489;">(</span>c-out 'float out-size<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span>
-        <span style="color: #d0b0ff;">(</span>random-init c-arr1 <span style="color: #3fc489;">(</span>array-size arr1<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span>
-        <span style="color: #d0b0ff;">(</span>random-init c-arr2 <span style="color: #3fc489;">(</span>array-size arr2<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span>
-        <span style="color: #d0b0ff;">(</span>cl-cuda:sync-memory-block c-arr1 <span style="color: #e3b0c0; font-weight: bold;">:host-to-device</span><span style="color: #d0b0ff;">)</span>
-        <span style="color: #d0b0ff;">(</span>cl-cuda:sync-memory-block c-arr2 <span style="color: #e3b0c0; font-weight: bold;">:host-to-device</span><span style="color: #d0b0ff;">)</span>
-        <span style="color: #d0b0ff;">(</span>matrix-mul-kernel
+<span style="color: #458588;">(</span><span style="color: #fb4933;">defun</span> <span style="color: #fabd2f;">cuda-matrix-mul</span> <span style="color: #b16286;">(</span>arr1 arr2<span style="color: #b16286;">)</span>
+  <span style="color: #b16286;">(</span><span style="color: #fb4933;">let*</span> <span style="color: #8ec07c;">(</span><span style="color: #d65d0e;">(</span>out-size <span style="color: #458588;">(</span>* <span style="color: #b16286;">(</span>array-rows arr1<span style="color: #b16286;">)</span> <span style="color: #b16286;">(</span>array-cols arr2<span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span>
+         <span style="color: #d65d0e;">(</span>dev-id 0<span style="color: #d65d0e;">)</span>
+         <span style="color: #d65d0e;">(</span>block-size 16<span style="color: #d65d0e;">)</span> <span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">actual size is squared, this is more of a "length"</span>
+         <span style="color: #d65d0e;">(</span>threads-per-block <span style="color: #458588;">(</span>expt block-size 2<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span>
+         <span style="color: #d65d0e;">(</span>blocks-per-grid <span style="color: #458588;">(</span>/ out-size threads-per-block<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span>cl-cuda:with-cuda <span style="color: #d65d0e;">(</span>dev-id<span style="color: #d65d0e;">)</span>
+      <span style="color: #d65d0e;">(</span>cl-cuda:with-memory-blocks <span style="color: #458588;">(</span><span style="color: #b16286;">(</span>c-arr1 'float <span style="color: #8ec07c;">(</span>array-size arr1<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span>
+                                   <span style="color: #b16286;">(</span>c-arr2 'float <span style="color: #8ec07c;">(</span>array-size arr2<span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span>
+                                   <span style="color: #b16286;">(</span>c-out 'float out-size<span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
+        <span style="color: #458588;">(</span>random-init c-arr1 <span style="color: #b16286;">(</span>array-size arr1<span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
+        <span style="color: #458588;">(</span>random-init c-arr2 <span style="color: #b16286;">(</span>array-size arr2<span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
+        <span style="color: #458588;">(</span>cl-cuda:sync-memory-block c-arr1 <span style="color: #fe8019;">:host-to-device</span><span style="color: #458588;">)</span>
+        <span style="color: #458588;">(</span>cl-cuda:sync-memory-block c-arr2 <span style="color: #fe8019;">:host-to-device</span><span style="color: #458588;">)</span>
+        <span style="color: #458588;">(</span>matrix-mul-kernel
          c-arr1 c-arr2 c-out
-         <span style="color: #3fc489;">(</span>array-rows arr1<span style="color: #3fc489;">)</span> <span style="color: #3fc489;">(</span>array-cols arr2<span style="color: #3fc489;">)</span> <span style="color: #3fc489;">(</span>array-rows arr2<span style="color: #3fc489;">)</span>
-         <span style="color: #e3b0c0; font-weight: bold;">:grid-dim</span> <span style="color: #3fc489;">(</span>list blocks-per-grid 1 1<span style="color: #3fc489;">)</span>
-         <span style="color: #e3b0c0; font-weight: bold;">:block-dim</span> <span style="color: #3fc489;">(</span>list block-size block-size 1<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span>
-        <span style="color: #d0b0ff;">(</span>cl-cuda:sync-memory-block c-out <span style="color: #e3b0c0; font-weight: bold;">:device-to-host</span><span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+         <span style="color: #b16286;">(</span>array-rows arr1<span style="color: #b16286;">)</span> <span style="color: #b16286;">(</span>array-cols arr2<span style="color: #b16286;">)</span> <span style="color: #b16286;">(</span>array-rows arr2<span style="color: #b16286;">)</span>
+         <span style="color: #fe8019;">:grid-dim</span> <span style="color: #b16286;">(</span>list blocks-per-grid 1 1<span style="color: #b16286;">)</span>
+         <span style="color: #fe8019;">:block-dim</span> <span style="color: #b16286;">(</span>list block-size block-size 1<span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
+        <span style="color: #458588;">(</span>cl-cuda:sync-memory-block c-out <span style="color: #fe8019;">:device-to-host</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 
-<span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">example-cuda-matrix-mul</span> <span style="color: #ffaacf;">()</span>
-  <span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">let</span> <span style="color: #80aadf;">(</span><span style="color: #e47980;">(</span>size <span style="color: #d0b0ff;">(</span>expt 16 3<span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span><span style="color: #deb07a; font-weight: bold;">let</span> <span style="color: #e47980;">(</span><span style="color: #d0b0ff;">(</span>mat1 <span style="color: #3fc489;">(</span>make-array <span style="color: #6fb3c0;">(</span>list size size<span style="color: #6fb3c0;">)</span> <span style="color: #e3b0c0; font-weight: bold;">:initial-element</span> 10<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span>
-          <span style="color: #d0b0ff;">(</span>mat2 <span style="color: #3fc489;">(</span>make-array <span style="color: #6fb3c0;">(</span>list size size<span style="color: #6fb3c0;">)</span> <span style="color: #e3b0c0; font-weight: bold;">:initial-element</span> 20<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span>
-      <span style="color: #e47980;">(</span>cuda-matrix-mul mat1 mat2<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<span style="color: #458588;">(</span><span style="color: #fb4933;">defun</span> <span style="color: #fabd2f;">example-cuda-matrix-mul</span> <span style="color: #b16286;">()</span>
+  <span style="color: #b16286;">(</span><span style="color: #fb4933;">let</span> <span style="color: #8ec07c;">(</span><span style="color: #d65d0e;">(</span>size <span style="color: #458588;">(</span>expt 16 3<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span><span style="color: #fb4933;">let</span> <span style="color: #d65d0e;">(</span><span style="color: #458588;">(</span>mat1 <span style="color: #b16286;">(</span>make-array <span style="color: #8ec07c;">(</span>list size size<span style="color: #8ec07c;">)</span> <span style="color: #fe8019;">:initial-element</span> 10<span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
+          <span style="color: #458588;">(</span>mat2 <span style="color: #b16286;">(</span>make-array <span style="color: #8ec07c;">(</span>list size size<span style="color: #8ec07c;">)</span> <span style="color: #fe8019;">:initial-element</span> 20<span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span>
+      <span style="color: #d65d0e;">(</span>cuda-matrix-mul mat1 mat2<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 </pre>
 </div>
 
@@ -753,9 +753,9 @@ some points to consider before implementating in lisp:
 that took some effort, i had to hard-code the block size because as it compiles to C the variable isnt defined as a constant which it has to be because i'd get this error if i were to replace the number 16 with the variable <code>block-size</code>:
 </p>
 <div class="org-src-container" data-language="C">
-<pre class="src src-C">nvcc exits with <span style="color: #a9c99f;">code</span>: 1
-/tmp/cl-cuda.EjtQeE.cu<span style="color: #deb07a;">(</span>60<span style="color: #deb07a;">)</span>: error: expression must have a constant value
-                        <span style="color: #deb07a; font-weight: bold;">__attribute__</span><span style="color: #deb07a;">(</span><span style="color: #ffaacf;">(</span>shared<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span> <span style="color: #a9c99f;">float</span> <span style="color: #ffaacf;">arr1_sub</span><span style="color: #deb07a;">[</span>block_size<span style="color: #deb07a;">][</span>block_size<span style="color: #deb07a;">]</span>;
+<pre class="src src-C">nvcc exits with <span style="color: #d3869b;">code</span>: 1
+/tmp/cl-cuda.EjtQeE.cu<span style="color: #458588;">(</span>60<span style="color: #458588;">)</span>: error: expression must have a constant value
+                        <span style="color: #fb4933;">__attribute__</span><span style="color: #458588;">(</span><span style="color: #b16286;">(</span>shared<span style="color: #b16286;">)</span><span style="color: #458588;">)</span> <span style="color: #d3869b;">float</span> <span style="color: #83a598;">arr1_sub</span><span style="color: #458588;">[</span>block_size<span style="color: #458588;">][</span>block_size<span style="color: #458588;">]</span>;
 </pre>
 </div>
 
@@ -767,34 +767,34 @@ kernels are very limtied in terms of functionality, not everything can be used i
 now a small benchmark to test this against my previous cpu solution:
 </p>
 <div class="org-src-container" data-language="lisp">
-<pre class="src src-lisp"><span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">example-cuda-matrix-mul</span> <span style="color: #ffaacf;">()</span>
-  <span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">let</span> <span style="color: #80aadf;">(</span><span style="color: #e47980;">(</span>size <span style="color: #d0b0ff;">(</span>expt 16 3<span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span><span style="color: #deb07a; font-weight: bold;">let</span> <span style="color: #e47980;">(</span><span style="color: #d0b0ff;">(</span>mat1 <span style="color: #3fc489;">(</span>make-array <span style="color: #6fb3c0;">(</span>list size size<span style="color: #6fb3c0;">)</span> <span style="color: #e3b0c0; font-weight: bold;">:initial-element</span> 10<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span>
-          <span style="color: #d0b0ff;">(</span>mat2 <span style="color: #3fc489;">(</span>make-array <span style="color: #6fb3c0;">(</span>list size size<span style="color: #6fb3c0;">)</span> <span style="color: #e3b0c0; font-weight: bold;">:initial-element</span> 20<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span>
-      <span style="color: #e47980;">(</span>cuda-matrix-mul mat1 mat2<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<pre class="src src-lisp"><span style="color: #458588;">(</span><span style="color: #fb4933;">defun</span> <span style="color: #fabd2f;">example-cuda-matrix-mul</span> <span style="color: #b16286;">()</span>
+  <span style="color: #b16286;">(</span><span style="color: #fb4933;">let</span> <span style="color: #8ec07c;">(</span><span style="color: #d65d0e;">(</span>size <span style="color: #458588;">(</span>expt 16 3<span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span><span style="color: #fb4933;">let</span> <span style="color: #d65d0e;">(</span><span style="color: #458588;">(</span>mat1 <span style="color: #b16286;">(</span>make-array <span style="color: #8ec07c;">(</span>list size size<span style="color: #8ec07c;">)</span> <span style="color: #fe8019;">:initial-element</span> 10<span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
+          <span style="color: #458588;">(</span>mat2 <span style="color: #b16286;">(</span>make-array <span style="color: #8ec07c;">(</span>list size size<span style="color: #8ec07c;">)</span> <span style="color: #fe8019;">:initial-element</span> 20<span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span>
+      <span style="color: #d65d0e;">(</span>cuda-matrix-mul mat1 mat2<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 
-<span style="color: #deb07a;">(</span><span style="color: #deb07a; font-weight: bold;">defun</span> <span style="color: #8fcfd0;">example-cpu-matrix-mul</span> <span style="color: #ffaacf;">()</span>
-  <span style="color: #ffaacf;">(</span><span style="color: #deb07a; font-weight: bold;">let</span> <span style="color: #80aadf;">(</span><span style="color: #e47980;">(</span>size 768<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span>
-    <span style="color: #80aadf;">(</span><span style="color: #deb07a; font-weight: bold;">let</span> <span style="color: #e47980;">(</span><span style="color: #d0b0ff;">(</span>mat1 <span style="color: #3fc489;">(</span>make-array <span style="color: #6fb3c0;">(</span>list size size<span style="color: #6fb3c0;">)</span> <span style="color: #e3b0c0; font-weight: bold;">:initial-element</span> 10<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span>
-          <span style="color: #d0b0ff;">(</span>mat2 <span style="color: #3fc489;">(</span>make-array <span style="color: #6fb3c0;">(</span>list size size<span style="color: #6fb3c0;">)</span> <span style="color: #e3b0c0; font-weight: bold;">:initial-element</span> 20<span style="color: #3fc489;">)</span><span style="color: #d0b0ff;">)</span><span style="color: #e47980;">)</span>
-      <span style="color: #e47980;">(</span>matrix-mul mat1 mat2<span style="color: #e47980;">)</span><span style="color: #80aadf;">)</span><span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
+<span style="color: #458588;">(</span><span style="color: #fb4933;">defun</span> <span style="color: #fabd2f;">example-cpu-matrix-mul</span> <span style="color: #b16286;">()</span>
+  <span style="color: #b16286;">(</span><span style="color: #fb4933;">let</span> <span style="color: #8ec07c;">(</span><span style="color: #d65d0e;">(</span>size 768<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span>
+    <span style="color: #8ec07c;">(</span><span style="color: #fb4933;">let</span> <span style="color: #d65d0e;">(</span><span style="color: #458588;">(</span>mat1 <span style="color: #b16286;">(</span>make-array <span style="color: #8ec07c;">(</span>list size size<span style="color: #8ec07c;">)</span> <span style="color: #fe8019;">:initial-element</span> 10<span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
+          <span style="color: #458588;">(</span>mat2 <span style="color: #b16286;">(</span>make-array <span style="color: #8ec07c;">(</span>list size size<span style="color: #8ec07c;">)</span> <span style="color: #fe8019;">:initial-element</span> 20<span style="color: #b16286;">)</span><span style="color: #458588;">)</span><span style="color: #d65d0e;">)</span>
+      <span style="color: #d65d0e;">(</span>matrix-mul mat1 mat2<span style="color: #d65d0e;">)</span><span style="color: #8ec07c;">)</span><span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
 
-<span style="color: #deb07a;">(</span>time <span style="color: #ffaacf;">(</span>example-cuda-matrix-mul<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
-<span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">Evaluation took:</span>
-<span style="color: #a0a0cf; font-style: italic;">;;   </span><span style="color: #a0a0cf; font-style: italic;">2.776 seconds of real time</span>
-<span style="color: #a0a0cf; font-style: italic;">;;   </span><span style="color: #a0a0cf; font-style: italic;">2.771769 seconds of total run time (2.600099 user, 0.171670 system)</span>
-<span style="color: #a0a0cf; font-style: italic;">;;   </span><span style="color: #a0a0cf; font-style: italic;">[ Run times consist of 0.032 seconds GC time, and 2.740 seconds non-GC time. ]</span>
-<span style="color: #a0a0cf; font-style: italic;">;;   </span><span style="color: #a0a0cf; font-style: italic;">99.86% CPU</span>
-<span style="color: #a0a0cf; font-style: italic;">;;   </span><span style="color: #a0a0cf; font-style: italic;">7,192,807,350 processor cycles</span>
-<span style="color: #a0a0cf; font-style: italic;">;;   </span><span style="color: #a0a0cf; font-style: italic;">268,435,488 bytes consed</span>
+<span style="color: #458588;">(</span>time <span style="color: #b16286;">(</span>example-cuda-matrix-mul<span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
+<span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">Evaluation took:</span>
+<span style="color: #7c6f64;">;;   </span><span style="color: #7c6f64;">2.776 seconds of real time</span>
+<span style="color: #7c6f64;">;;   </span><span style="color: #7c6f64;">2.771769 seconds of total run time (2.600099 user, 0.171670 system)</span>
+<span style="color: #7c6f64;">;;   </span><span style="color: #7c6f64;">[ Run times consist of 0.032 seconds GC time, and 2.740 seconds non-GC time. ]</span>
+<span style="color: #7c6f64;">;;   </span><span style="color: #7c6f64;">99.86% CPU</span>
+<span style="color: #7c6f64;">;;   </span><span style="color: #7c6f64;">7,192,807,350 processor cycles</span>
+<span style="color: #7c6f64;">;;   </span><span style="color: #7c6f64;">268,435,488 bytes consed</span>
 
-<span style="color: #deb07a;">(</span>time <span style="color: #ffaacf;">(</span>example-cpu-matrix-mul<span style="color: #ffaacf;">)</span><span style="color: #deb07a;">)</span>
-<span style="color: #a0a0cf; font-style: italic;">;; </span><span style="color: #a0a0cf; font-style: italic;">Evaluation took:</span>
-<span style="color: #a0a0cf; font-style: italic;">;;   </span><span style="color: #a0a0cf; font-style: italic;">6.533 seconds of real time</span>
-<span style="color: #a0a0cf; font-style: italic;">;;   </span><span style="color: #a0a0cf; font-style: italic;">6.530840 seconds of total run time (6.530840 user, 0.000000 system)</span>
-<span style="color: #a0a0cf; font-style: italic;">;;   </span><span style="color: #a0a0cf; font-style: italic;">99.97% CPU</span>
-<span style="color: #a0a0cf; font-style: italic;">;;   </span><span style="color: #a0a0cf; font-style: italic;">16,934,213,216 processor cycles</span>
-<span style="color: #a0a0cf; font-style: italic;">;;   </span><span style="color: #a0a0cf; font-style: italic;">14,155,824 bytes consed</span>
+<span style="color: #458588;">(</span>time <span style="color: #b16286;">(</span>example-cpu-matrix-mul<span style="color: #b16286;">)</span><span style="color: #458588;">)</span>
+<span style="color: #7c6f64;">;; </span><span style="color: #7c6f64;">Evaluation took:</span>
+<span style="color: #7c6f64;">;;   </span><span style="color: #7c6f64;">6.533 seconds of real time</span>
+<span style="color: #7c6f64;">;;   </span><span style="color: #7c6f64;">6.530840 seconds of total run time (6.530840 user, 0.000000 system)</span>
+<span style="color: #7c6f64;">;;   </span><span style="color: #7c6f64;">99.97% CPU</span>
+<span style="color: #7c6f64;">;;   </span><span style="color: #7c6f64;">16,934,213,216 processor cycles</span>
+<span style="color: #7c6f64;">;;   </span><span style="color: #7c6f64;">14,155,824 bytes consed</span>
 </pre>
 </div>
 

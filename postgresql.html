@@ -56,24 +56,24 @@ it has alot of nice features, more than mysql
 listing the available databases&lt;/p&gt;
 " data-after="&lt;p&gt;
 (??, 2023 chapter 23 managing databases)&lt;/p&gt;
-" id="prf-bool-func-1" data-id="prf-bool-func-1">
+" id="the-bool-func-1" data-id="the-bool-func-1">
 <p>
 the <code>psql</code> program's <code>\l</code> meta-command and <code>-l</code> command-line option are also useful for listing the existing databases.
 </p>
 
 </div>
-<div id="outline-container-org45ebfbf" class="outline-2">
-<h2 id="org45ebfbf">database creation</h2>
-<div class="outline-text-2" id="text-org45ebfbf">
+<div id="outline-container-org7e72723" class="outline-2">
+<h2 id="org7e72723">database creation</h2>
+<div class="outline-text-2" id="text-org7e72723">
 <p>
 create database &lt;name&gt;
 <a href="https://www.postgresql.org/docs/current/sql-createdatabase.html">https://www.postgresql.org/docs/current/sql-createdatabase.html</a>
 </p>
 </div>
 </div>
-<div id="outline-container-org856bd14" class="outline-2">
-<h2 id="org856bd14">list databases</h2>
-<div class="outline-text-2" id="text-org856bd14">
+<div id="outline-container-orgbfc7196" class="outline-2">
+<h2 id="orgbfc7196">list databases</h2>
+<div class="outline-text-2" id="text-orgbfc7196">
 <p>
 <?xml version='1.0' encoding='UTF-8'?>
 
@@ -90,10 +90,10 @@ create database &lt;name&gt;
 </p>
 </div>
 </div>
-<div id="outline-container-org0ba25e6" class="outline-2">
-<h2 id="org0ba25e6">ERROR:  template database "template1" has a collation version mismatch</h2>
-<div class="outline-text-2" id="text-org0ba25e6">
-<div test="test" class="fancy-block dummy" data-before="" id="prf-bool-func-1" data-id="prf-bool-func-1">
+<div id="outline-container-org1446605" class="outline-2">
+<h2 id="org1446605">ERROR:  template database "template1" has a collation version mismatch</h2>
+<div class="outline-text-2" id="text-org1446605">
+<div test="test" class="fancy-block dummy" data-before="" id="the-bool-func-1" data-id="the-bool-func-1">
 <p>
 sudo -u postgres psql
 alter database template1 refresh collation version;
@@ -103,10 +103,10 @@ alter database template1 refresh collation version;
 </div>
 </div>
 </div>
-<div id="outline-container-org37482d1" class="outline-2">
-<h2 id="org37482d1">execute sql file</h2>
-<div class="outline-text-2" id="text-org37482d1">
-<div test="test" class="fancy-block dummy" data-before="" id="prf-bool-func-1" data-id="prf-bool-func-1">
+<div id="outline-container-orgbd77107" class="outline-2">
+<h2 id="orgbd77107">execute sql file</h2>
+<div class="outline-text-2" id="text-orgbd77107">
+<div test="test" class="fancy-block dummy" data-before="" id="the-bool-func-1" data-id="the-bool-func-1">
 <p>
 psql &#x2013;username=&lt;db_user_name&gt; databasename &lt; myfile.sql
 <a href="https://stackoverflow.com/questions/6842393/import-sql-dump-into-postgresql-database">https://stackoverflow.com/questions/6842393/import-sql-dump-into-postgresql-database</a>
